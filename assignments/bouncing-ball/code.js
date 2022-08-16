@@ -17,8 +17,15 @@ let ballSize = 15;
 // May also need to define a variable to keep track of when each bounce starts
 // as the time value that is passed in is just the current time, i.e. the same
 // thing we would get from calling now().
+let start = now();
+
+
 const drawFrame = (time) => {
-    drawBall(height(time), 15);
+    let h = height(now() - start);
+    drawBall(height(t), 15);
+    if (h <= 0) {
+        start = now();
+    }
 
 };
 
