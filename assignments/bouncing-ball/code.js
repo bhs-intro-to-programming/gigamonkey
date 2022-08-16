@@ -22,7 +22,7 @@ let start = now();
 
 const drawFrame = (time) => {
     let h = height(now() - start);
-    drawBall(height(t), 15);
+    drawBall(h, 15);
     if (h <= 0) {
         start = now();
     }
