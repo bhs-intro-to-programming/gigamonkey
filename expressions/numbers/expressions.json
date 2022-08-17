@@ -13,5 +13,15 @@
     "name": "A million",
     "answer": "1e7",
     "correct": false
+  },
+  {
+    "name": "A million",
+    "answer": "1e6",
+    "correct": true
+  },
+  {
+    "name": "Area of cicrle with radius 2",
+    "answer": "Math.PI * 4",
+    "correct": true
   }
 ]
