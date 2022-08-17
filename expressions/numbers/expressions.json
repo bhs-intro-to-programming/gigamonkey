@@ -3,5 +3,10 @@
     "name": "Ten",
     "answer": "10",
     "correct": true
+  },
+  {
+    "name": "Two plus two",
+    "answer": "4",
+    "correct": true
   }
 ]
