@@ -8,5 +8,10 @@
     "name": "Two plus two",
     "answer": "4",
     "correct": true
+  },
+  {
+    "name": "A million",
+    "answer": "1e7",
+    "correct": false
   }
 ]
