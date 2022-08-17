@@ -23,5 +23,10 @@
     "name": "Area of cicrle with radius 2",
     "answer": "Math.PI * 4",
     "correct": true
+  },
+  {
+    "name": "1337 times 32",
+    "answer": "1337 * 32",
+    "correct": true
   }
 ]
