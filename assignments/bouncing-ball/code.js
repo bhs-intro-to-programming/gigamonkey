@@ -21,13 +21,6 @@ let start = now();
 
 
 const drawFrame = (time) => {
-    let h = height(now() - start);
-    drawBall(h, 15);
-    drawShadow(20, 20);
-    if (h <= 0) {
-        start = now();
-    }
-
 };
 
 // Compute the height in pixels at time t after the ball hit the ground
