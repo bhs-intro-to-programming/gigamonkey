@@ -37,11 +37,11 @@
 
 
 
-const drawTriangle = (x1, y1, x2, y2, x3, y3, color) => {
-    drawLine(x1, y1, x2, y2, 'green');
-    drawLine(x2, y2, x3, y3, 'green');
-    drawLine(x3, y3, x1, y1, 'green');
-};
+function drawTriangle(x1, y1, x2, y2, x3, y3, color) {
+    drawLine(x1, y1, x2, y2, color);
+    drawLine(x2, y2, x3, y3, color);
+    drawLine(x3, y3, x1, y1, color);
+}
 
 drawTriangle(
     width / 2 - 75, height / 2, 
