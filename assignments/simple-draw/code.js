@@ -36,7 +36,7 @@
  */
 
 drawLine(width / 2 - 50, height / 2, width/2, height / 2 - 50, 'green');
-drawLine(width/2, height / 2 - 50, width / 2 + 50, height / 2'green');
+drawLine(width/2, height / 2 - 50, width / 2 + 50, height / 2, 'green');
 //drawLine(width / 2 - 50, height / 2, width/2, height / 2 - 50, 'green');
 
 
