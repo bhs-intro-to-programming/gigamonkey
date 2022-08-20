@@ -47,7 +47,7 @@ drawTriangle(
     width / 2 - 75, height / 2, 
     width / 2, height / 2 - 50, 
     width / 2 + 50, height / 2 + 20, 
-    'green')
+    'red')
 
 drawLine(0, 0, width, height, 'pink')
 
