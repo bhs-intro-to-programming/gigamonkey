@@ -46,7 +46,7 @@ const drawTriangle = (x1, y1, x2, y2, x3, y3, color) => {
 drawTriangle(
     width / 2 - 75, height / 2, 
     width / 2, height / 2 - 50, 
-    width / 2 + 50, height / 2, 
+    width / 2 + 50, height / 2 + 20, 
     'green')
 
 drawLine(0, 0, width, height, 'pink')
