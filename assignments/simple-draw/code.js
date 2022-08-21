@@ -43,13 +43,12 @@ for (let y = height; y >= 0; y -= gap) {
     drawLine(0, y, width, height, 'black');
 }
 
-let i = 1;
+let extraHeight = gap;
 while (true) {
-    let extra = gap * i;
-    let x = (width * extra) / (height + extra);
+    let x = (width * extraHeight) / (height + extraHeight);
     drawLine(x, 0, width, height, 'black');
     if (width - x < 1) break;
-    i++;
+    extraHeight += gap;
 }
 
 
