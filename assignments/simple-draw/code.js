@@ -47,7 +47,7 @@ function drawTriangle(x1, y1, x2, y2, x3, y3, color) {
 drawTriangle(
     midX - 75, midY, 
     midX, midY - 50, 
-    midX + 50, midY + 20, 
+    midX + 50, midY + 50, 
     'red')
 
 drawLine(0, 0, width, height, 'pink')
