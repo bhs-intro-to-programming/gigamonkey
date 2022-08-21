@@ -43,6 +43,14 @@ for (let y = height; y >= 0; y -= gap) {
     drawLine(0, y, width, height, 'black');
 }
 
+let i = 1;
+while (true) {
+    let extra = gap * i;
+    let x = (width * extra) / (height + extra);
+    drawLine(x, 0, width, height, 'black');
+    if (i++ > 20) break;
+}
+
 
 drawFilledCircle(width/2, height/2, 150, 'white');
 
