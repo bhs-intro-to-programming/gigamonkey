@@ -48,7 +48,7 @@ for (let y = height, x = 0; width - x > 1; y -= gap) {
     }
 }
 
-drawFilledCircle(width/2, height/2, 150, 'rgba(0,129,128,0.2)');
+drawFilledCircle(width/2, height/2, 150, 'rgba(128,0,128,0.2)');
 
 /*
 const size = 7;
