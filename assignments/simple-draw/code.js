@@ -49,8 +49,7 @@ while (true) {
     let x = (width * extra) / (height + extra);
     drawLine(x, 0, width, height, 'black');
     if (width - x < 1) break;
-
-    if (i++ > 20000) break;
+    i++;
 }
 
 
