@@ -43,13 +43,11 @@ for (let y = height; y > 0; y -= gap) {
     drawLine(0, y, width, height, 'black');
 }
 
-let y = 0;
+let x = 0;
 
-while (true) {
-    let x = width * (Math.abs(y) / (height - y));
+for (let y = 0; width - x < 1; y -= gap) {
+    x = width * (Math.abs(y) / (height - y));
     drawLine(x, 0, width, height, 'black');
-    if (width - x < 1) break;
-    y -= gap;
 }
 
 drawFilledCircle(width/2, height/2, 150, 'white');
