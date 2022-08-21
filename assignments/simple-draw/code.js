@@ -40,7 +40,11 @@ const size = 7;
 const foo = () => {
     for (let x = size + ((width % (2 * size)) / 2); x < width - size/2; x += 2 * size) {
         for (let y = size +((height % (2 * size)) / 2); y <= height - size/2; y += 2 * size) {
-            drawCircle(x, y, size, 'blue');
+            if (Math.random() < 0.5) {
+                drawCircle(x, y, size, 'blue');
+            } else {
+                drawFilledCircle(x, y, size, 'blue');
+            }
         }
 
     }
