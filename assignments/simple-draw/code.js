@@ -45,7 +45,7 @@ for (let y = height; y > 0; y -= gap) {
 
 let x = 0;
 
-for (let y = 0; width - x < 1; y -= gap) {
+for (let y = 0; width - x > 1; y -= gap) {
     x = width * (Math.abs(y) / (height - y));
     drawLine(x, 0, width, height, 'black');
 }
