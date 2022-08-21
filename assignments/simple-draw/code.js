@@ -35,6 +35,13 @@
  *
  */
 
+const gap = 15;
+
+for (let y = height; y >= 0; y -= gap) {
+    drawLine(0, y, width, height, 'black');
+}
+
+/*
 const size = 7;
 
 const foo = () => {
@@ -51,6 +58,7 @@ const foo = () => {
 }
 
 foo();
+*/
 /*
 const midX = width / 2;
 const midY = height / 2;
