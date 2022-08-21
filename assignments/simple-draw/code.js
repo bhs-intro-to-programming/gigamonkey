@@ -43,6 +43,9 @@ for (let y = height; y >= 0; y -= gap) {
     drawLine(0, y, width, height, 'black');
 }
 
+
+drawFilledCircle(width/2, height/2, 150, 'white');
+
 /*
 const size = 7;
 
