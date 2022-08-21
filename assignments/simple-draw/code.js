@@ -39,19 +39,18 @@ const gap = 10;
 
 drawFilledRect(0, 0, width, height, 'white');
 
-for (let y = height; y >= 0; y -= gap) {
+for (let y = height; y > 0; y -= gap) {
     drawLine(0, y, width, height, 'black');
 }
 
-let extraHeight = gap;
+let y = 0;
 
 while (true) {
-    let x = width * (extraHeight / (height + extraHeight));
+    let x = width * (Math.abs(y) / (height - y));
     drawLine(x, 0, width, height, 'black');
     if (width - x < 1) break;
-    extraHeight += gap;
+    y -= gap;
 }
-
 
 drawFilledCircle(width/2, height/2, 150, 'white');
 
