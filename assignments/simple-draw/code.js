@@ -50,7 +50,7 @@ while (true) {
     drawLine(x, 0, width, height, 'black');
     if (width - x < width * 0.001) break;
 
-    if (i++ > 2000) break;
+    if (i++ > 20000) break;
 }
 
 
