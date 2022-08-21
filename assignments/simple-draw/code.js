@@ -37,6 +37,8 @@
 
 const gap = 15;
 
+drawFilledRect(0, 0, width, height, 'white');
+
 for (let y = height; y >= 0; y -= gap) {
     drawLine(0, y, width, height, 'black');
 }
