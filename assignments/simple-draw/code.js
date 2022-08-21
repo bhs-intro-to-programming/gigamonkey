@@ -35,9 +35,11 @@
  *
  */
 
-for (let x = 3; x < width - 3; x += 6) {
-    for (let y = 3; y < height - 3; y += 6) {
-        drawCircle(x, y, 3, 'blue');
+const size = 5;
+
+for (let x = size; x < width - size; x += 2 * size) {
+    for (let y = size; y < height - size; y += 2 * size) {
+        drawCircle(x, y, size, 'blue');
     }
 
 }
