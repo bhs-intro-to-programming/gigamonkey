@@ -35,6 +35,16 @@
  *
  */
 
+for (let x = 3; x < width - 3; x += 6) {
+    for (let y = 3; y < height - 3; y += 6) {
+        drawCircle(x, y, 3, 'blue');
+    }
+
+}
+
+
+
+/*
 const midX = width / 2;
 const midY = height / 2;
 
@@ -45,10 +55,10 @@ function drawTriangle(x1, y1, x2, y2, x3, y3, color) {
 }
 
 drawTriangle(
-    midX - 75, midY, 
-    midX, midY - 50, 
-    midX + 50, midY + 50, 
-    'red')
+    midX - 75, midY,
+    midX, midY - 50,
+    midX + 50, midY + 50,
+    'red');
 
 drawLine(0, 0, width, height, 'pink')
 
@@ -59,3 +69,4 @@ drawRect(50, 50, 60, 40, 'black');
 drawFilledCircle(width - 50, height - 50, 50, 'red');
 
 drawFilledRect(5, height - 20, 45, 15, 'purple');
+*/
