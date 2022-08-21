@@ -35,7 +35,7 @@
  *
  */
 
-const gap = 4;
+const gap = 15;
 
 drawFilledRect(0, 0, width, height, 'white');
 
