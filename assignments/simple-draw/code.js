@@ -44,10 +44,11 @@ for (let y = height; y >= 0; y -= gap) {
 }
 
 let extraHeight = gap;
+
 while (true) {
     let x = (width * extraHeight) / (height + extraHeight);
     drawLine(x, 0, width, height, 'black');
-    if (width - x < 1) break;
+    if (width - x < 100) break;
     extraHeight += gap;
 }
 
