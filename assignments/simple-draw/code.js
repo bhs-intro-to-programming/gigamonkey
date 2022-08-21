@@ -35,7 +35,8 @@
  *
  */
 
-
+const midX = width / 2;
+const midY = height / 2;
 
 function drawTriangle(x1, y1, x2, y2, x3, y3, color) {
     drawLine(x1, y1, x2, y2, color);
@@ -44,9 +45,9 @@ function drawTriangle(x1, y1, x2, y2, x3, y3, color) {
 }
 
 drawTriangle(
-    width / 2 - 75, height / 2, 
-    width / 2, height / 2 - 50, 
-    width / 2 + 50, height / 2 + 20, 
+    midX - 75, midY, 
+    midX, midY - 50, 
+    midX + 50, midY + 20, 
     'red')
 
 drawLine(0, 0, width, height, 'pink')
