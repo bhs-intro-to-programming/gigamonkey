@@ -40,7 +40,7 @@ const size = 7;
 const foo = () => {
     console.log(width % (2 * size));
     for (let x = size + ((width % size)); x < width - size/2; x += 2 * size) {
-        for (let y = size + Math.ceil(((height % size) / 2)); y < height - size/2; y += 2 * size) {
+        for (let y = size + Math.ceil(((height % size) / 2)); y <= height - size/2; y += 2 * size) {
             drawCircle(x, y, size, 'blue');
         }
 
