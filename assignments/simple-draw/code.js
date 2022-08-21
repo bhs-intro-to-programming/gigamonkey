@@ -35,7 +35,7 @@
  *
  */
 
-const size = 23;
+const size = 57;
 
 const foo = () => {
     console.log(width % (2 * size));
