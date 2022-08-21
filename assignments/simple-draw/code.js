@@ -39,9 +39,7 @@ const gap = 10;
 
 drawFilledRect(0, 0, width, height, 'white');
 
-let x = 0;
-
-for (let y = height; width - x > 1; y -= gap) {
+for (let y = height, x = 0; width - x > 1; y -= gap) {
     if (y > 0) {
         drawLine(0, y, width, height, 'black');
     } else {
