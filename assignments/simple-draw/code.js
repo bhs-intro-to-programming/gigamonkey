@@ -39,15 +39,15 @@ const gap = 10;
 
 drawFilledRect(0, 0, width, height, 'white');
 
-for (let y = height; y > 0; y -= gap) {
-    drawLine(0, y, width, height, 'black');
-}
-
 let x = 0;
 
-for (let y = 0; width - x > 1; y -= gap) {
-    x = width * (Math.abs(y) / (height - y));
-    drawLine(x, 0, width, height, 'black');
+for (let y = height; width - x > 1; y -= gap) {
+    if (y > 0) {
+        drawLine(0, y, width, height, 'black');
+    } else {
+        x = width * (Math.abs(y) / (height - y));
+        drawLine(x, 0, width, height, 'black');
+    }
 }
 
 drawFilledCircle(width/2, height/2, 150, 'white');
