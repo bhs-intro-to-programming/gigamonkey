@@ -35,7 +35,7 @@
  *
  */
 
-const size = 17;
+const size = 2;
 
 const foo = () => {
     for (let x = size + ((width % (2 * size)) / 2); x < width - size/2; x += 2 * size) {
