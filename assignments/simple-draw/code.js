@@ -37,7 +37,7 @@
 
 const size = 5;
 
-for (let x = size + ((width % size) / 2); x < width - size; x += 2 * size) {
+for (let x = size + ((width % (2 * size)) / 2); x < width - size; x += 2 * size) {
     for (let y = size + ((height % size)); y < height - size; y += 2 * size) {
         drawCircle(x, y, size, 'blue');
     }
