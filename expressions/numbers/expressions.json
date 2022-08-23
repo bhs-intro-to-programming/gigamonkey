@@ -18,5 +18,10 @@
     "name": "A million",
     "answer": "1e6",
     "correct": true
+  },
+  {
+    "name": "Sally's apples",
+    "answer": "6 - 4",
+    "correct": true
   }
 ]
