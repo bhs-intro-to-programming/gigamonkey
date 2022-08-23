@@ -13,5 +13,10 @@
     "name": "1337 times 32",
     "answer": "1337 * 2 ** 5",
     "correct": true
+  },
+  {
+    "name": "A million",
+    "answer": "1e6",
+    "correct": true
   }
 ]
