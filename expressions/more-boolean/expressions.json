@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Will we skip our trip to the store?",
+    "answer": "!storeOpen || linesToLong",
+    "correct": false
+  },
+  {
+    "name": "Will we skip our trip to the store?",
+    "answer": "!storeOpen || linesTooLong",
+    "correct": true
+  }
+]
