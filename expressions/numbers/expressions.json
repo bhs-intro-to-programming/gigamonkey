@@ -28,5 +28,10 @@
     "name": "Sally's even more apples",
     "answer": "6432 - 4000",
     "correct": true
+  },
+  {
+    "name": "Area of cicrle with radius 2",
+    "answer": "Math.PI * 2 ** 2",
+    "correct": true
   }
 ]
