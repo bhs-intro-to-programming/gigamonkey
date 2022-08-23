@@ -18,5 +18,10 @@
     "name": "Dragging?",
     "answer": "enoughSleep <= lotsOfWork",
     "correct": false
+  },
+  {
+    "name": "Dragging?",
+    "answer": "enoughSleep <= lo",
+    "correct": false
   }
 ]
