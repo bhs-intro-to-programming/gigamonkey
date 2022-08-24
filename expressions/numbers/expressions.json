@@ -58,5 +58,11 @@
     "answer": "60 * 24 * 365",
     "correct": true,
     "timestamp": 1661311405137
+  },
+  {
+    "name": "Seconds in a century",
+    "answer": "60 * 60 * 24 * 365 * 100",
+    "correct": true,
+    "timestamp": 1661311415674
   }
 ]
