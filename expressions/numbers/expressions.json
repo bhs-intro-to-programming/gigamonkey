@@ -40,5 +40,11 @@
     "answer": "Math.PI * 4",
     "correct": true,
     "timestamp": 1661311614979
+  },
+  {
+    "name": "Seconds in a day",
+    "answer": "60 * 60 * 24",
+    "correct": true,
+    "timestamp": 1661311619448
   }
 ]
