@@ -58,5 +58,11 @@
     "answer": "Math.abs(x1 - x2) + Math.abs(y1 - y2)",
     "correct": true,
     "timestamp": 1661314317690
+  },
+  {
+    "name": "2D distance",
+    "answer": "Math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2)",
+    "correct": true,
+    "timestamp": 1661314330025
   }
 ]
