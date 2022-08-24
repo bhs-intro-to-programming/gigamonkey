@@ -52,5 +52,11 @@
     "answer": "60 * 60 * 24 * 36500",
     "correct": true,
     "timestamp": 1661311823115
+  },
+  {
+    "name": "Ten",
+    "answer": "10",
+    "correct": true,
+    "timestamp": 1661311824441
   }
 ]
