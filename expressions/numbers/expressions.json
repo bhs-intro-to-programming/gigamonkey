@@ -70,5 +70,11 @@
     "answer": "60 * 60 * 24 * 365 * 100",
     "correct": true,
     "timestamp": 1661313626223
+  },
+  {
+    "name": "Ten",
+    "answer": "10",
+    "correct": true,
+    "timestamp": 1661313629095
   }
 ]
