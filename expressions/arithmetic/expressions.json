@@ -52,5 +52,11 @@
     "answer": "Math.abs(a - b)",
     "correct": true,
     "timestamp": 1661314305712
+  },
+  {
+    "name": "Manhattan distance",
+    "answer": "Math.abs(x1 - x2) + Math.abs(y1 - y2)",
+    "correct": true,
+    "timestamp": 1661314317690
   }
 ]
