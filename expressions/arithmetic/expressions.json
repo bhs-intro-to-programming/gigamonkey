@@ -46,5 +46,11 @@
     "answer": "total / count",
     "correct": true,
     "timestamp": 1661314302847
+  },
+  {
+    "name": "Distance",
+    "answer": "Math.abs(a - b)",
+    "correct": true,
+    "timestamp": 1661314305712
   }
 ]
