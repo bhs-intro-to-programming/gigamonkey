@@ -16,5 +16,11 @@
     "answer": "1337 * 2 ** 5",
     "correct": true,
     "timestamp": 1661316866072
+  },
+  {
+    "name": "A million",
+    "answer": "1e6",
+    "correct": true,
+    "timestamp": 1661316868057
   }
 ]
