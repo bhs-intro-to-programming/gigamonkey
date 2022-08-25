@@ -36,7 +36,7 @@ const height = (t) => Math.max(0, t * (bounce - (gravity*t)) / 2);
 const shadowDarkness = (h) => 128;
 
 // Compute the size of the shadow.
-const shadowSize = (h) => ballSize/2 * 1.01 ** h;
+const shadowSize = (h) => ballSize * 1.005 ** h;
 
 // Call the animate function from the framework.
 animate(drawFrame);
