@@ -8,7 +8,7 @@ const drawFrame = (time) => {
     clear();
     drawFilledCircle((time / 3) % width, height/2, 25, 'blue');
     drawFallingTriangle(width/2, time);
-}
+};
 
 // This is a function that we define to make it easier to draw a triangle. You
 // may want to experiment with writing your own functions using this one as a
@@ -17,7 +17,7 @@ const drawTriangle = (x1, y1, x2, y2, x3, y3, color, width=1) => {
     drawLine(x1, y1, x2, y2, color, width);
     drawLine(x2, y2, x3, y3, color, width);
     drawLine(x3, y3, x1, y1, color, width);
-}
+};
 
 // This draws a falling trangle of a particular shape whose bottom point is
 // positioned at x and whose y is a function of time.
@@ -35,7 +35,7 @@ const drawFallingTriangle = (x, time) => {
 
     // Actually draw the triangle.
     drawTriangle(x1, y1, x2, y2, x3, y3, 'pink', 3);
-}
+};
 
 // Leave this code here or the animation won't run. Also don't change the name
 // of drawFrame either here or where it is defined. (Or, if you must, change it
