@@ -21,15 +21,16 @@ let start = now();
 
 const drawFrame = (time) => {
     let h = height(time - start);
-    // Put code here to draw things.
-    drawShadow(shadowSize(h), shadowDarkness(h));
-    drawBall(h, ballSize);
+    // Put code here to draw things. I.e. try calling drawBall and drawShadow.
+    // You may want to use the functions below to compute the arguments you pass
+    // to those two functions.
+    // e.g. something like drawBall(h, ballSize);
     if (h <= 0) {
         start = now();
     }
 };
 
-// Compute the height in pixels at time t after the ball hit the ground
+// Compute the height in pixels at time t after the ball hit the ground.
 const height = (t) => 0;
 
 // Compute the shade of the shadow when the ball is at a given height.
@@ -41,5 +42,6 @@ const shadowDarkness = (h) => 100;
 // It should get bigger as the ball gets higher.
 const shadowSize = (h) => ballSize;
 
-// This calls the animate function from the framework. You can leave this as it is.
+// This calls the animate function from the framework. You can leave this 
+// as it is.
 animate(drawFrame);
