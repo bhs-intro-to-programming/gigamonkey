@@ -24,7 +24,7 @@ const drawFrame = (time) => {
     // Put code here to draw things. I.e. try calling drawBall and drawShadow.
     // You may want to use the functions below to compute the arguments you pass
     // to those two functions.
-    // e.g. something like drawBall(h, ballSize);
+    drawBall(h, ballSize);
     if (h <= 0) {
         start = now();
     }
