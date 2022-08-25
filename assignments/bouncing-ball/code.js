@@ -37,7 +37,7 @@ const height = (t) => 0;
 // Compute the shade of the shadow when the ball is at a given height.
 // 0 is black; 255 is white. The shadow should get lighter as the ball
 // get higher.
-const shadowDarkness = (h) => 100;
+const shadowDarkness = (h) => 128;
 
 // Compute the size of the shadow when the ball is at a given height. 
 // It should get bigger as the ball gets higher.
