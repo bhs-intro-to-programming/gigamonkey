@@ -33,7 +33,7 @@ const drawFrame = (time) => {
 const height = (t) => Math.max(0, t * (bounce - (gravity*t)) / 2);
 
 // Compute the shade of the shadow. 0 is black; 255 is white.
-const shadowDarkness = (h) => 0 + 1.007 ** h;
+const shadowDarkness = (h) => 100 + 1.007 ** h;
 
 // Compute the size of the shadow.
 const shadowSize = (h) => ballSize * 1.005 ** h;
