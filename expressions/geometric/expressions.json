@@ -118,5 +118,11 @@
     "answer": "Math.abs(a - b) / 2",
     "correct": false,
     "timestamp": 1661481369509
+  },
+  {
+    "name": "Midpoint of line",
+    "answer": "(b - a) / 2",
+    "correct": false,
+    "timestamp": 1661481384997
   }
 ]
