@@ -59,5 +59,11 @@
     "answer": "!sleepy || !dark",
     "correct": true,
     "timestamp": 1661481484641
+  },
+  {
+    "name": "Doing well?",
+    "answer": "enoughSleep && keepingUp",
+    "correct": true,
+    "timestamp": 1661481492357
   }
 ]
