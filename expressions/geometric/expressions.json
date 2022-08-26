@@ -124,5 +124,11 @@
     "answer": "(b - a) / 2",
     "correct": false,
     "timestamp": 1661481384997
+  },
+  {
+    "name": "Midpoint of line",
+    "answer": "a + (b - a) / 2",
+    "correct": true,
+    "timestamp": 1661481406652
   }
 ]
