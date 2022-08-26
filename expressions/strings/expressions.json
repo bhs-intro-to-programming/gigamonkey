@@ -16,5 +16,11 @@
     "answer": "'foo'.length",
     "correct": true,
     "timestamp": 1661481693334
+  },
+  {
+    "name": "Another length",
+    "answer": "'foo\\nbar'.length",
+    "correct": true,
+    "timestamp": 1661481697452
   }
 ]
