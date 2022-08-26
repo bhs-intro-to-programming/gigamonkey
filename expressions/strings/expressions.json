@@ -4,5 +4,11 @@
     "answer": "'foo' + 'bar'",
     "correct": true,
     "timestamp": 1661481687011
+  },
+  {
+    "name": "Indexing",
+    "answer": "'foo'[0]",
+    "correct": true,
+    "timestamp": 1661481689976
   }
 ]
