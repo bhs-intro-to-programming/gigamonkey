@@ -23,5 +23,11 @@
     "name": "Dragging?",
     "answer": "enoughSleep <= lo",
     "correct": false
+  },
+  {
+    "name": "Energetic?",
+    "answer": "enoughSleep && !justWorkedOut",
+    "correct": true,
+    "timestamp": 1661481442190
   }
 ]
