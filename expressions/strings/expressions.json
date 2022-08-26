@@ -10,5 +10,11 @@
     "answer": "'foo'[0]",
     "correct": true,
     "timestamp": 1661481689976
+  },
+  {
+    "name": "Length",
+    "answer": "'foo'.length",
+    "correct": true,
+    "timestamp": 1661481693334
   }
 ]
