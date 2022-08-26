@@ -64,5 +64,11 @@
     "answer": "Math.PI * r ** 2 * h",
     "correct": true,
     "timestamp": 1661481229074
+  },
+  {
+    "name": "The curved surface area of a cone from slant height",
+    "answer": "Math.PI * r * s",
+    "correct": true,
+    "timestamp": 1661481242095
   }
 ]
