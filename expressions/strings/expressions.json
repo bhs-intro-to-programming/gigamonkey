@@ -40,5 +40,11 @@
     "answer": "'FOO'",
     "correct": true,
     "timestamp": 1661481716251
+  },
+  {
+    "name": "lower case",
+    "answer": "'foo'",
+    "correct": true,
+    "timestamp": 1661481717916
   }
 ]
