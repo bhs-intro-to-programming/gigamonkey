@@ -28,5 +28,11 @@
     "answer": "fast && strong",
     "correct": true,
     "timestamp": 1661481650713
+  },
+  {
+    "name": "Lighting a fire?",
+    "answer": "fireLit || !haveMatches",
+    "correct": true,
+    "timestamp": 1661481658191
   }
 ]
