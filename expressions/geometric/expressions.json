@@ -76,5 +76,11 @@
     "answer": "Math.PI * r * s + Math.PI * r ** 2",
     "correct": true,
     "timestamp": 1661481260266
+  },
+  {
+    "name": "Total surface area of a cone from height",
+    "answer": "Math.PI * r * (Math.sqrt(r ** 2 + h ** 2))",
+    "correct": false,
+    "timestamp": 1661481285566
   }
 ]
