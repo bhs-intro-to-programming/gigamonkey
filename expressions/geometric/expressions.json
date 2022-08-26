@@ -94,5 +94,11 @@
     "answer": "Math.PI * r ** 2 * h/3",
     "correct": true,
     "timestamp": 1661481336826
+  },
+  {
+    "name": "Surface area of a sphere",
+    "answer": "4 * Math.PI * r ** 2",
+    "correct": true,
+    "timestamp": 1661481346285
   }
 ]
