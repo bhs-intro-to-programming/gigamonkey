@@ -88,5 +88,11 @@
     "answer": "Math.PI * r * Math.sqrt(r ** 2 + h ** 2) + Math.PI * r ** 2",
     "correct": true,
     "timestamp": 1661481324132
+  },
+  {
+    "name": "Volume of a cone",
+    "answer": "Math.PI * r ** 2 * h/3",
+    "correct": true,
+    "timestamp": 1661481336826
   }
 ]
