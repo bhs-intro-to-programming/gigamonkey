@@ -60,5 +60,11 @@
     "answer": "inTheClass || isProctor",
     "correct": true,
     "timestamp": 1661481595876
+  },
+  {
+    "name": "Can go into creepy crawly cave?",
+    "answer": "!afraidOfTheDark && !afraidOfSpiders",
+    "correct": true,
+    "timestamp": 1661481604895
   }
 ]
