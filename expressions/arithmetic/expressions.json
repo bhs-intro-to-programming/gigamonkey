@@ -10,5 +10,11 @@
     "answer": "a - b",
     "correct": true,
     "timestamp": 1661481049057
+  },
+  {
+    "name": "Product",
+    "answer": "a * b",
+    "correct": true,
+    "timestamp": 1661481050510
   }
 ]
