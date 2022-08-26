@@ -29,5 +29,11 @@
     "answer": "enoughSleep && !justWorkedOut",
     "correct": true,
     "timestamp": 1661481442190
+  },
+  {
+    "name": "Super beat?",
+    "answer": "!enoughSleep && !eatenEnough",
+    "correct": true,
+    "timestamp": 1661481450610
   }
 ]
