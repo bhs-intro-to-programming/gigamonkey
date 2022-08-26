@@ -28,5 +28,11 @@
     "answer": "'foo\\\\nbar'.length",
     "correct": true,
     "timestamp": 1661481702732
+  },
+  {
+    "name": "More indexing",
+    "answer": "'foo'['foo'.length - 1]",
+    "correct": true,
+    "timestamp": 1661481712279
   }
 ]
