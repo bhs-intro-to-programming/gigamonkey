@@ -22,5 +22,11 @@
     "answer": "'foo\\nbar'.length",
     "correct": true,
     "timestamp": 1661481697452
+  },
+  {
+    "name": "And one more",
+    "answer": "'foo\\\\nbar'.length",
+    "correct": true,
+    "timestamp": 1661481702732
   }
 ]
