@@ -1,5 +1,5 @@
 const MILLIS_PER_PASS = 2500;
-const TIME_GAP = MILLIS_PER_PASS / 12;
+const TIME_GAP = MILLIS_PER_PASS / 16;
 const INTRO_RATE = MILLIS_PER_PASS * 2;
 const ORDER = [0, 4, 2, 6, 3, 7, 1, 5];
 
