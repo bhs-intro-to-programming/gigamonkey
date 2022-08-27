@@ -10,7 +10,11 @@ const drawFrame = (time) => {
     drawFallingTriangle(width * 0.14, time);
 }
 
-const ballX = (time) => time / 3 % width;
+const ballX = (time) => {
+    let i = time / 3;
+    let c = Math.floor(i / width) % 2;
+    return c === 0 ? i % width : width - (i % width);
+};
 
 // This is a function that we define to make it easier to draw a triangle. You
 // may want to experiment with writing your own functions using this one as a
