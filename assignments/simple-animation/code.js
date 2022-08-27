@@ -24,10 +24,12 @@ const drawBall = (x1, y1, x2, y2, time, color) => {
     drawFilledCircle(x, y, 10, color);
 };
 
-const fromStart = (d, time) => {
+const fromStartLinear = (d, time) => {
     const i = time / 4;
     return Math.floor(i / d) % 2 ? i % d : d - (i % d);
 };
+
+const fromStart = fromStartLinear;
 
 const distance = (x1, y1, x2, y2) => Math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2);
 
