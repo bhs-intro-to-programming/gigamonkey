@@ -27,7 +27,7 @@ const drawBall = (x1, y1, x2, y2, time, color) => {
 };
 
 const fromStartLinear = (d, time, ms) => {
-    const step = d/ms;
+    const step = 2 * d/ms;
     const i = time * step;
     return Math.floor(i / d) % 2 ? i % d : d - (i % d);
 };
