@@ -1,4 +1,4 @@
-const LINEAR = true;
+const LINEAR = false;
 
 const MILLIS_PER_PASS = 3000;
 
@@ -58,7 +58,7 @@ const fromStartSinusoidal = (d, time, ms) => {
     // We want to go across and back in m milliseconds so we need to
     // cycle the arguments to cos() from 0 to 2pi in that many millis
     const i = time * (Math.PI * 2 / ms);
-    return (1 - Math.cos(i)) / d;
+    return (1 - Math.cos(i)) / 2 * d;
 }
 
 const fromStart = LINEAR ? fromStartLinear : fromStartSinusoidal;
