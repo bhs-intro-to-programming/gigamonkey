@@ -1,21 +1,21 @@
 const MILLIS_PER_PASS = 2500;
-const TIME_GAP = MILLIS_PER_PASS / 16;
-const ORDER = [0, 4, 2, 6, 3, 7, 1, 5];
-
-const start = now();
+const ORDER = [0, 4, 2, 6, 3, 7, 5, 1];
 
 const midX = width / 2;
 const midY = height / 2;
-
 const r = Math.min(midX, midY) - 5;
+
+const start = now();
 
 const drawFrame = (time) => {
     clear();
     drawCircle(midX, midY, r, '#bbb');
 
+    const timeGap = MILLIS_PER_PASS / 16;
+
     for (let i = 0; i < 8; i++) {
         if (now() - start > i * MILLIS_PER_PASS * 2) {
-            ballAndLine(2 * Math.PI * ORDER[i] / 16, time, ORDER[i] * TIME_GAP);
+            ballAndLine(2 * Math.PI * ORDER[i] / 16, time, ORDER[i] * timeGap);
         }
     }
 }
