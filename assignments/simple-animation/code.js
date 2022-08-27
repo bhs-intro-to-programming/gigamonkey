@@ -18,7 +18,7 @@ const ballX = (time) => {
 };
 
 const foo = (time) => {
-    return ballX(time) * Math.sin(time);
+    return ballX(time) * Math.sin(time / 4);
 };
 
 animate(drawFrame);
