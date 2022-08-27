@@ -29,7 +29,12 @@ const fromStartLinear = (d, time) => {
     return Math.floor(i / d) % 2 ? i % d : d - (i % d);
 };
 
-const fromStart = fromStartLinear;
+const fromStartSinusoidal = (d, time) => {
+    const i = time / 5;
+    return (1 - Math.cos(i)) / 2 * d;
+}
+
+const fromStart = fromStartSinusoidal;
 
 const distance = (x1, y1, x2, y2) => Math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2);
 
