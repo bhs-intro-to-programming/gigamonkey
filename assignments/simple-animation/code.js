@@ -3,6 +3,7 @@ const midY = height / 2;
 
 const drawFrame = (time) => {
     clear();
+    drawCircle(midX, midY, Math.min(midX, midY), '#bbb');
     drawLine(0, midY, width, midY, '#bbb');
     drawFilledCircle(ballX(time), midY, 10, 'blue');
 }
