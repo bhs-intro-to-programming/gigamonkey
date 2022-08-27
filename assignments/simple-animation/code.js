@@ -11,7 +11,7 @@ const start = now();
 const midX = width / 2;
 const midY = height / 2;
 
-const r = Math.min(midX, midY);
+const r = Math.min(midX, midY) - 5;
 
 const drawFrame = (time) => {
     clear();
@@ -20,7 +20,7 @@ const drawFrame = (time) => {
     const timeGap = MILLIS_PER_PASS / 16;
 
     for (let i = 0; i < 8; i++) {
-        if (now() - start >= i * INTRO_RATE) {
+        if (now() - start > i * INTRO_RATE) {
             ballAndLine(2 * Math.PI * ORDER[i] / 16, time, ORDER[i] * timeGap);
         }
     }
