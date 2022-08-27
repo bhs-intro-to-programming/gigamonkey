@@ -14,9 +14,9 @@ const drawFrame = (time) => {
 const drawBall = (x1, y1, x2, y2, time) => {
     const d = distance(x1, y1, x2, y2);
     const t = fromStart(d, time);
-
     const x = t/d * (x2 - x1);
     const y = t/d * (y2 - y1);
+    console.log(`x: ${x}; y: ${y}`);
 
     drawFilledCircle(x, y, 10, 'blue');
 };
