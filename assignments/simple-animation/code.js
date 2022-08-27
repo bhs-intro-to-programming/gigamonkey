@@ -6,7 +6,7 @@ const drawFrame = (time) => {
     clear();
     drawCircle(midX, midY, r, '#bbb');
     drawLine(midX - r, midY, midX + r, midY, '#bbb');
-    drawFilledCircle(foo(time), midY, 10, 'blue');
+    drawFilledCircle(ballX(time), midY, 10, 'blue');
 }
 
 const ballX = (time) => {
