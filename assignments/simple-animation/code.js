@@ -2,6 +2,7 @@ const LINEAR = true;
 
 const midX = width / 2;
 const midY = height / 2;
+
 const r = Math.min(midX, midY);
 
 const drawFrame = (time) => {
@@ -13,6 +14,9 @@ const drawFrame = (time) => {
     drawBallAndLine(midX, midY - r, midX, midY + r, time, 200);
 }
 
+const xOnCircle = (angle) = 0;
+
+
 const drawBallAndLine = (x1, y1, x2, y2, time, timeOffset) => {
     drawLine(x1, y1, x2, y2, '#bbb');
     drawBall(x1, y1, x2, y2, time + timeOffset, 'blue');
@@ -21,7 +25,6 @@ const drawBallAndLine = (x1, y1, x2, y2, time, timeOffset) => {
 const drawBall = (x1, y1, x2, y2, time, color) => {
     const d = distance(x1, y1, x2, y2);
     const t = fromStart(d, time, 2000);
-    console.log(Date.now()); 
     const x = x1 + t/d * (x2 - x1);
     const y = y1 + t/d * (y2 - y1);
     drawFilledCircle(x, y, 10, color);
