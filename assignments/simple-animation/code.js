@@ -8,7 +8,7 @@ const drawFrame = (time) => {
     const x1 = midX - r;
     const x2 = midX + r;
     drawLine(x1, midY, x2, midY, '#bbb');
-    drawBall(x1, midY, x2, midY, 'blue');
+    drawBall(x1, midY, x2, midY, 'blue', time);
 }
 
 const drawBall = (x1, y1, x2, y2, time) => {
