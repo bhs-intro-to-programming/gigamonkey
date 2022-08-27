@@ -2,7 +2,7 @@ const LINEAR = false;
 
 const MILLIS_PER_PASS = 3000;
 
-const INTRO_RATE = MILLIS_PER_PASS * 3;
+const INTRO_RATE = MILLIS_PER_PASS * 2;
 
 const start = now();
 
