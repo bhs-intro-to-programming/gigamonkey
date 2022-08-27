@@ -30,7 +30,13 @@ const fromStartLinear = (d, time) => {
 };
 
 const fromStartSinusoidal = (d, time) => {
-    const i = time / 400;
+    // We want to go across and back in m milliseconds so we need to
+    // cycle the arguments to cos() from 0 to 2pi in that many millis
+
+    // 500 = 2pi
+    // 1 = 2pi / 500
+
+    const i = time * (Math.PI * 2 / 500);
     return (1 - Math.cos(i)) / 2 * d;
 }
 
