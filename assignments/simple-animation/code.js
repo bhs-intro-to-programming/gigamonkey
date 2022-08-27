@@ -15,7 +15,7 @@ const drawFrame = (time) => {
     //drawBallAndLine(midX, midY - r, midX, midY + r, time, 200);
 }
 
-const ballAndline = (theta, time, offset) => {
+const ballAndLine = (theta, time, startOffset) => {
     let x1 = xOnCircle(theta);
     let y1 = yOnCircle(theta);
     let x2 = xOnCircle(theta + Math.PI);
