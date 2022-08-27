@@ -8,17 +8,17 @@ const drawFrame = (time) => {
     const x1 = midX - r;
     const x2 = midX + r;
     drawLine(x1, midY, x2, midY, '#bbb');
-    drawBall(x1, midY, x2, midY, 'blue', time);
+    drawBall(x1, midY, x2, midY, time, 'blue');
 }
 
-const drawBall = (x1, y1, x2, y2, time) => {
+const drawBall = (x1, y1, x2, y2, time, color) => {
     const d = distance(x1, y1, x2, y2);
     const t = fromStart(d, time);
     const x = t/d * (x2 - x1);
     const y = t/d * (y2 - y1);
     console.log(`d: ${d}; t: ${t}; x: ${x}; y: ${y}`);
 
-    drawFilledCircle(x, y, 10, 'blue');
+    drawFilledCircle(x, y, 10, color);
 };
 
 const fromStart = (d, time) => {
