@@ -36,7 +36,7 @@ const fromStartSinusoidal = (d, time) => {
     // 500 = 2pi
     // 1 = 2pi / 500
 
-    const i = time * (Math.PI * 2 / 500);
+    const i = time * (Math.PI * 2 / 1000);
     return (1 - Math.cos(i)) / 2 * d;
 }
 
