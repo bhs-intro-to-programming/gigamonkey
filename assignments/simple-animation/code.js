@@ -20,7 +20,7 @@ const drawBallAndLine = (x1, y1, x2, y2, time, timeOffset) => {
 
 const drawBall = (x1, y1, x2, y2, time, color) => {
     const d = distance(x1, y1, x2, y2);
-    const t = fromStart(d, time, 1000);
+    const t = fromStart(d, time, 2000);
     const x = x1 + t/d * (x2 - x1);
     const y = y1 + t/d * (y2 - y1);
     drawFilledCircle(x, y, 10, color);
