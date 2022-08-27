@@ -1,5 +1,3 @@
-const LINEAR = false;
-
 const MILLIS_PER_PASS = 2500;
 const TIME_GAP = MILLIS_PER_PASS / 16;
 const INTRO_RATE = MILLIS_PER_PASS * 2;
@@ -48,21 +46,13 @@ const drawBall = (x1, y1, x2, y2, time, color) => {
     drawFilledCircle(x, y, 10, color);
 };
 
-const fromStartLinear = (d, time, ms) => {
-    const step = 2 * d / ms;
-    const i = time * step;
-    return Math.floor(i / d) % 2 ? i % d : d - (i % d);
-};
+const distance = (x1, y1, x2, y2) => Math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2);
 
-const fromStartSinusoidal = (d, time, ms) => {
-    // We want to go across and back in m milliseconds so we need to
+const fromStart = (d, time, ms) => {
+    // We want to go across and back in ms milliseconds so we need to
     // cycle the arguments to cos() from 0 to 2pi in that many millis
     const i = time * (Math.PI * 2 / ms);
     return (1 - Math.cos(i)) / 2 * d;
 }
-
-const fromStart = LINEAR ? fromStartLinear : fromStartSinusoidal;
-
-const distance = (x1, y1, x2, y2) => Math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2);
 
 animate(drawFrame);
