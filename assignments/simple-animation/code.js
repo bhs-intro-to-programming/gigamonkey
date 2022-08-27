@@ -10,10 +10,8 @@ const r = Math.min(midX, midY);
 const drawFrame = (time) => {
     clear();
     drawCircle(midX, midY, r, '#bbb');
-    const x1 = midX - r;
-    const x2 = midX + r;
-    const timeGap = MILLIS_PER_PASS / 16;
 
+    const timeGap = MILLIS_PER_PASS / 16;
 
     ballAndLine(2 * Math.PI * 0/16, time, 7 * timeGap);
     ballAndLine(2 * Math.PI * 1/16, time, 6 * timeGap);
@@ -23,8 +21,6 @@ const drawFrame = (time) => {
     ballAndLine(2 * Math.PI * 5/16, time, 2 * timeGap);
     ballAndLine(2 * Math.PI * 6/16, time, 1 * timeGap);
     ballAndLine(2 * Math.PI * 7/16, time, 0 * timeGap);
-    //drawBallAndLine(x1, midY, x2, midY, time, 0);
-    //drawBallAndLine(midX, midY - r, midX, midY + r, time, 200);
 }
 
 const ballAndLine = (theta, time, startOffset) => {
