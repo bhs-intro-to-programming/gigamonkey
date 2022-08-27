@@ -12,7 +12,7 @@ const drawFrame = (time) => {
 
 const drawBallAndLine = (x1, y1, x2, y2, time) => {
     drawLine(x1, y1, x2, y2, '#bbb');
-    //drawBall(x1, y1, x2, y2, time, 'blue');
+    drawBall(x1, y1, x2, y2, time, 'blue');
 }
 
 const drawBall = (x1, y1, x2, y2, time, color) => {
