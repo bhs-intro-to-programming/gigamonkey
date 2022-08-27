@@ -30,7 +30,7 @@ const fromStartLinear = (d, time) => {
 };
 
 const fromStartSinusoidal = (d, time) => {
-    const i = time / 500;
+    const i = time / 400;
     return (1 - Math.cos(i)) / 2 * d;
 }
 
