@@ -14,15 +14,15 @@ const drawFrame = (time) => {
 const drawBall = (x1, y1, x2, y2, time, color) => {
     const d = distance(x1, y1, x2, y2);
     const t = fromStart(d, time);
-    const x = t/d * (x2 - x1);
-    const y = t/d * (y2 - y1);
+    const x = x1 + t/d * (x2 - x1);
+    const y = y1 + t/d * (y2 - y1);
     console.log(`d: ${d}; t: ${t}; x: ${x}; y: ${y}`);
 
     drawFilledCircle(x, y, 10, color);
 };
 
 const fromStart = (d, time) => {
-    console.log(`d: ${d}; time: ${time}`);
+    //console.log(`d: ${d}; time: ${time}`);
     const i = time / 4;
     return Math.floor(i / d) % 2 ? i % d : d - (i % d);
 };
