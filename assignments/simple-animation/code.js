@@ -4,6 +4,8 @@ const MILLIS_PER_PASS = 3000;
 
 const INTRO_RATE = MILLIS_PER_PASS * 2;
 
+const ORDER = [0, 4, 2, 6, 3, 7, 1, 5];
+
 const start = now();
 
 const midX = width / 2;
@@ -17,7 +19,7 @@ const drawFrame = (time) => {
 
     const timeGap = MILLIS_PER_PASS / 16;
 
-    for (let i = 0; i < 8; i++) {
+    for (let i of ORDER) {
         if (now() - start > i * INTRO_RATE) {
             ballAndLine(2 * Math.PI * i / 16, time, i * timeGap);
         }
