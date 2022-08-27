@@ -7,13 +7,13 @@ const drawFrame = (time) => {
     drawCircle(midX, midY, r, '#bbb');
     const x1 = midX - r;
     const x2 = midX + r;
-    drawBallAndLine(x1, midY, x2, midY, time);
-    drawBallAndLine(midX, midY - r, midX, midY + r, time);
+    drawBallAndLine(x1, midY, x2, midY, time, 0);
+    drawBallAndLine(midX, midY - r, midX, midY + r, time, 200);
 }
 
-const drawBallAndLine = (x1, y1, x2, y2, time) => {
+const drawBallAndLine = (x1, y1, x2, y2, time, timeOffset) => {
     drawLine(x1, y1, x2, y2, '#bbb');
-    drawBall(x1, y1, x2, y2, time, 'blue');
+    drawBall(x1, y1, x2, y2, time + timeOffset, 'blue');
 }
 
 const drawBall = (x1, y1, x2, y2, time, color) => {
