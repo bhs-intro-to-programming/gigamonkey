@@ -14,7 +14,7 @@ const drawFrame = (time) => {
     drawBallAndLine(midX, midY - r, midX, midY + r, time, 200);
 }
 
-const xOnCircle = (angle) = 0;
+const xOnCircle = (angle) => 0;
 
 
 const drawBallAndLine = (x1, y1, x2, y2, time, timeOffset) => {
