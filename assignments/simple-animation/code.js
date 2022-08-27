@@ -22,13 +22,10 @@ const drawBall = (x1, y1, x2, y2, time, color) => {
 };
 
 const fromStart = (d, time) => {
-    //console.log(`d: ${d}; time: ${time}`);
     const i = time / 4;
     return Math.floor(i / d) % 2 ? i % d : d - (i % d);
 };
 
-const distance = (x1, y1, x2, y2) => {
-    return Math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2);
-};
+const distance = (x1, y1, x2, y2) => Math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2);
 
 animate(drawFrame);
