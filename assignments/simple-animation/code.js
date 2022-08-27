@@ -17,14 +17,9 @@ const drawFrame = (time) => {
 
     const timeGap = MILLIS_PER_PASS / 16;
 
-    ballAndLine(2 * Math.PI * 0/16, time, 7 * timeGap);
-    ballAndLine(2 * Math.PI * 1/16, time, 6 * timeGap);
-    ballAndLine(2 * Math.PI * 2/16, time, 5 * timeGap);
-    ballAndLine(2 * Math.PI * 3/16, time, 4 * timeGap);
-    ballAndLine(2 * Math.PI * 4/16, time, 3 * timeGap);
-    ballAndLine(2 * Math.PI * 5/16, time, 2 * timeGap);
-    ballAndLine(2 * Math.PI * 6/16, time, 1 * timeGap);
-    ballAndLine(2 * Math.PI * 7/16, time, 0 * timeGap);
+    for (let i = 0; i < 8; i++) {
+        ballAndLine(2 * Math.PI * i/16, time, i * timeGap);
+    }
 }
 
 const ballAndLine = (theta, time, startOffset) => {
