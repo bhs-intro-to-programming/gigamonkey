@@ -2,6 +2,10 @@ const LINEAR = false;
 
 const MILLIS_PER_PASS = 3000;
 
+const INTRO_RATE = 2000;
+
+const start = now();
+
 const midX = width / 2;
 const midY = height / 2;
 
