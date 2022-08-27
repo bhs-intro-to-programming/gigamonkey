@@ -23,9 +23,9 @@ const ballAndLine = (theta, time, startOffset) => {
     drawBallAndLine(x1, y1, x2, y2, time, startOffset);
 }
 
-const xOnCircle = (theta) => midX + Math.cos(theta) * 2 * r;
+const xOnCircle = (theta) => midX + Math.cos(theta) * r;
 
-const yOnCircle = (theta) => midY + Math.sin(theta) * 2 * r;
+const yOnCircle = (theta) => midY + Math.sin(theta) * r;
 
 const drawBallAndLine = (x1, y1, x2, y2, time, startOffset) => {
     drawLine(x1, y1, x2, y2, '#bbb');
