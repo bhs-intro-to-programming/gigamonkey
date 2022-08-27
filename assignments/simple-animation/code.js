@@ -16,7 +16,7 @@ const drawBall = (x1, y1, x2, y2, time, color) => {
     const t = fromStart(d, time);
     const x = x1 + t/d * (x2 - x1);
     const y = y1 + t/d * (y2 - y1);
-    console.log(`d: ${d}; t: ${t}; x: ${x}; y: ${y}`);
+    //console.log(`d: ${d}; t: ${t}; x: ${x}; y: ${y}`);
 
     drawFilledCircle(x, y, 10, color);
 };
