@@ -6,7 +6,7 @@ const drawFrame = (time) => {
     clear();
     drawCircle(midX, midY, r, '#bbb');
     drawLine(midX - r, midY, midX + r, midY, '#bbb');
-    drawFilledCircle(ballX(time), midY, 10, 'blue');
+    drawFilledCircle(foo(time), midY, 10, 'blue');
 }
 
 const ballX = (time) => {
@@ -15,6 +15,10 @@ const ballX = (time) => {
     let start = midX - r;
     let c = Math.floor(i / d) % 2;
     return start + (c === 0 ? i % d : d - (i % d));
+};
+
+const foo = (time) => {
+    return ballX(time) * Math.sin(time);
 };
 
 animate(drawFrame);
