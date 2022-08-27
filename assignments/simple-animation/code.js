@@ -19,7 +19,7 @@ const drawFrame = (time) => {
 
     for (let i = 0; i < 8; i++) {
         if (now() - start > i * INTRO_RATE) {
-            ballAndLine(2 * Math.PI * i/16, time, i * timeGap);
+            ballAndLine(2 * Math.PI * i / 16, time, i * timeGap);
         }
     }
 }
@@ -44,13 +44,13 @@ const drawBallAndLine = (x1, y1, x2, y2, time, startOffset) => {
 const drawBall = (x1, y1, x2, y2, time, color) => {
     const d = distance(x1, y1, x2, y2);
     const t = fromStart(d, time, MILLIS_PER_PASS);
-    const x = x1 + t/d * (x2 - x1);
-    const y = y1 + t/d * (y2 - y1);
+    const x = x1 + t / d * (x2 - x1);
+    const y = y1 + t / d * (y2 - y1);
     drawFilledCircle(x, y, 10, color);
 };
 
 const fromStartLinear = (d, time, ms) => {
-    const step = 2 * d/ms;
+    const step = 2 * d / ms;
     const i = time * step;
     return Math.floor(i / d) % 2 ? i % d : d - (i % d);
 };
