@@ -10,11 +10,14 @@ const drawFrame = (time) => {
     drawCircle(midX, midY, r, '#bbb');
     const x1 = midX - r;
     const x2 = midX + r;
-    ballAndLine(0, time, 0);
-    ballAndLine(Math.PI * 1/8, time, 4 * 2000/8);
-    ballAndLine(Math.PI * 1/2, time, 2000/8);
-    ballAndLine(Math.PI * 3/4, time, 2 * 2000/8);
-    ballAndLine(Math.PI * 1/4, time, 3 * 2000/8);
+    const timeGap = 2000 / 8;
+
+
+    ballAndLine(2 * Math.PI * 0/8, time, 0 * timeGap);
+    ballAndLine(2 * Math.PI * 1/8, time, 1 * timeGap);
+    ballAndLine(2 * Math.PI * 2/8, time, 2 * timeGap);
+    ballAndLine(2 * Math.PI * 3/8, time, 3 * timeGap);
+    ballAndLine(2 * Math.PI * 4/8, time, 4 * timeGap);
     //drawBallAndLine(x1, midY, x2, midY, time, 0);
     //drawBallAndLine(midX, midY - r, midX, midY + r, time, 200);
 }
