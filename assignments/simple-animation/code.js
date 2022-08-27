@@ -1,5 +1,7 @@
 const LINEAR = true;
 
+const MILLIS_PER_PASS = 3000;
+
 const midX = width / 2;
 const midY = height / 2;
 
@@ -10,7 +12,7 @@ const drawFrame = (time) => {
     drawCircle(midX, midY, r, '#bbb');
     const x1 = midX - r;
     const x2 = midX + r;
-    const timeGap = 2000 / 16;
+    const timeGap = MILLIS_PER_PASS / 16;
 
 
     ballAndLine(2 * Math.PI * 0/16, time, 7 * timeGap);
@@ -44,7 +46,7 @@ const drawBallAndLine = (x1, y1, x2, y2, time, startOffset) => {
 
 const drawBall = (x1, y1, x2, y2, time, color) => {
     const d = distance(x1, y1, x2, y2);
-    const t = fromStart(d, time, 2000);
+    const t = fromStart(d, time, MILLIS_PER_PASS);
     const x = x1 + t/d * (x2 - x1);
     const y = y1 + t/d * (y2 - y1);
     drawFilledCircle(x, y, 10, color);
