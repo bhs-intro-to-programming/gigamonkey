@@ -10,9 +10,11 @@ const drawFrame = (time) => {
 }
 
 const ballX = (time) => {
+    let d = 2 * r;
+    let start = midX - r;
     let i = time / 4;
-    let c = Math.floor(i / width) % 2;
-    return c === 0 ? i % width : width - (i % width);
+    let c = Math.floor(i / d) % 2;
+    return start + (c === 0 ? i % d : d - (i % d));
 };
 
 animate(drawFrame);
