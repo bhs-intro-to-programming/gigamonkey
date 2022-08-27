@@ -22,6 +22,7 @@ const drawBall = (x1, y1, x2, y2, time) => {
 };
 
 const fromStart = (d, time) => {
+    console.log(`d: ${d}; time: ${time}`);
     const i = time / 4;
     return Math.floor(i / d) % 2 ? i % d : d - (i % d);
 };
