@@ -1,3 +1,5 @@
+const LINEAR = true;
+
 const midX = width / 2;
 const midY = height / 2;
 const r = Math.min(midX, midY);
@@ -18,29 +20,25 @@ const drawBallAndLine = (x1, y1, x2, y2, time, timeOffset) => {
 
 const drawBall = (x1, y1, x2, y2, time, color) => {
     const d = distance(x1, y1, x2, y2);
-    const t = fromStart(d, time);
+    const t = fromStart(d, time, 1000);
     const x = x1 + t/d * (x2 - x1);
     const y = y1 + t/d * (y2 - y1);
     drawFilledCircle(x, y, 10, color);
 };
 
-const fromStartLinear = (d, time) => {
-    const i = time / 5;
+const fromStartLinear = (d, time, ms) => {
+    const i = time / (d * ms);
     return Math.floor(i / d) % 2 ? i % d : d - (i % d);
 };
 
-const fromStartSinusoidal = (d, time) => {
+const fromStartSinusoidal = (d, time, ms) => {
     // We want to go across and back in m milliseconds so we need to
     // cycle the arguments to cos() from 0 to 2pi in that many millis
-
-    // 500 = 2pi
-    // 1 = 2pi / 500
-
-    const i = time * (Math.PI * 2 / 1000);
+    const i = time * (Math.PI * 2 / ms);
     return (1 - Math.cos(i)) / 2 * d;
 }
 
-const fromStart = fromStartSinusoidal;
+const fromStart = LINEAR ? fromStartLinear : fromStartSinusoidal;
 
 const distance = (x1, y1, x2, y2) => Math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2);
 
