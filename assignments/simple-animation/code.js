@@ -25,7 +25,7 @@ const drawBall = (x1, y1, x2, y2, time, color) => {
 };
 
 const fromStartLinear = (d, time) => {
-    const i = time / 4;
+    const i = time / 2;
     return Math.floor(i / d) % 2 ? i % d : d - (i % d);
 };
 
