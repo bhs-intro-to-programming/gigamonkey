@@ -2,7 +2,6 @@ const drawFrame = (time) => {
     clear();
     drawLine(0, height / 2, width, height / 2, '#bbb');
     drawFilledCircle(ballX(time), height / 2, 10, 'blue');
-    //drawFallingTriangle(width * 0.14, time);
 }
 
 const ballX = (time) => {
