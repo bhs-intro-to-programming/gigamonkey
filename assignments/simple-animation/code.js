@@ -5,20 +5,29 @@ const r = Math.min(midX, midY);
 const drawFrame = (time) => {
     clear();
     drawCircle(midX, midY, r, '#bbb');
-    drawLine(midX - r, midY, midX + r, midY, '#bbb');
-    drawFilledCircle(ballX(time), midY, 10, 'blue');
+    const x1 = midX - r;
+    const x2 = midX + r;
+    drawLine(x1, midY, x2, midY, '#bbb');
+    drawBall(x1, midY, x2, midY, 'blue');
 }
 
-const ballX = (time) => {
-    let d = 2 * r;
-    let i = time / 4;
-    let start = midX - r;
-    let c = Math.floor(i / d) % 2;
-    return start + (c === 0 ? i % d : d - (i % d));
+const drawBall = (x1, y1, x2, y2, time) => {
+    const d = distance(x1, y1, x2, y2);
+    const t = fromStart(d, time);
+
+    const x = t/d * (x2 - x1);
+    const y = t/d * (y2 - y1);
+
+    drawFilledCircle(x, y, 10, 'blue');
 };
 
-const foo = (time) => {
-    return ballX(time) * Math.sin(time / 4);
+const fromStart = (d, time) => {
+    const i = time / 4;
+    return Math.floor(i / d) % 2 ? i % d : d - (i % d);
+};
+
+const distance = (x1, y1, x2, y2) => {
+    Math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2);
 };
 
 animate(drawFrame);
