@@ -10,7 +10,7 @@ const drawFrame = (time) => {
     drawCircle(midX, midY, r, '#bbb');
     const x1 = midX - r;
     const x2 = midX + r;
-    const timeGap = 2000 / 8;
+    const timeGap = 2000 / 16;
 
 
     ballAndLine(2 * Math.PI * 0/16, time, 7 * timeGap);
