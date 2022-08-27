@@ -20,6 +20,7 @@ const drawFrame = (time) => {
     ballAndLine(2 * Math.PI * 4/16, time, 4 * timeGap);
     ballAndLine(2 * Math.PI * 5/16, time, 5 * timeGap);
     ballAndLine(2 * Math.PI * 6/16, time, 6 * timeGap);
+    ballAndLine(2 * Math.PI * 7/16, time, 7 * timeGap);
     //drawBallAndLine(x1, midY, x2, midY, time, 0);
     //drawBallAndLine(midX, midY - r, midX, midY + r, time, 200);
 }
