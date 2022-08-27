@@ -1,9 +1,8 @@
 const LINEAR = false;
 
-const MILLIS_PER_PASS = 3000;
-
+const MILLIS_PER_PASS = 2000;
+const TIME_GAP = MILLIS_PER_PASS / 16;
 const INTRO_RATE = MILLIS_PER_PASS * 2;
-
 const ORDER = [0, 4, 2, 6, 3, 7, 1, 5];
 
 const start = now();
@@ -17,11 +16,9 @@ const drawFrame = (time) => {
     clear();
     drawCircle(midX, midY, r, '#bbb');
 
-    const timeGap = MILLIS_PER_PASS / 16;
-
     for (let i = 0; i < 8; i++) {
         if (now() - start > i * INTRO_RATE) {
-            ballAndLine(2 * Math.PI * ORDER[i] / 16, time, ORDER[i] * timeGap);
+            ballAndLine(2 * Math.PI * ORDER[i] / 16, time, ORDER[i] * TIME_GAP);
         }
     }
 }
@@ -41,7 +38,7 @@ const yOnCircle = (theta) => midY + Math.sin(theta) * r;
 const drawBallAndLine = (x1, y1, x2, y2, time, startOffset) => {
     drawLine(x1, y1, x2, y2, '#bbb');
     drawBall(x1, y1, x2, y2, time + startOffset, 'blue');
-}
+};
 
 const drawBall = (x1, y1, x2, y2, time, color) => {
     const d = distance(x1, y1, x2, y2);
