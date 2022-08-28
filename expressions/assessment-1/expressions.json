@@ -124,5 +124,12 @@
     "answer": "s[0]",
     "correct": true,
     "timestamp": 1661715428806
+  },
+  {
+    "name": "Ready for some football?",
+    "canonical": "fast && strong",
+    "answer": "fast && strong",
+    "correct": true,
+    "timestamp": 1661715433147
   }
 ]
