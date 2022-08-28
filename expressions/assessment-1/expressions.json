@@ -236,5 +236,12 @@
     "answer": "s.toUpperCase()",
     "correct": true,
     "timestamp": 1661715530448
+  },
+  {
+    "name": "Last character",
+    "canonical": "s[s.length - 1]",
+    "answer": "s[s.length - 1]",
+    "correct": true,
+    "timestamp": 1661715538294
   }
 ]
