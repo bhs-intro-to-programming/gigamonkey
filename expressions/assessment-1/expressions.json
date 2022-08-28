@@ -215,5 +215,12 @@
     "answer": "Math.abs(x1 - x2) + Math.abs(y1 - y2)",
     "correct": true,
     "timestamp": 1661715516357
+  },
+  {
+    "name": "Difference",
+    "canonical": "a - b",
+    "answer": "a - b",
+    "correct": true,
+    "timestamp": 1661715518974
   }
 ]
