@@ -152,5 +152,12 @@
     "answer": "s.substring(0, 3)",
     "correct": true,
     "timestamp": 1661715452644
+  },
+  {
+    "name": "Will we skip our trip to the store?",
+    "canonical": "!storeOpen || linesTooLong",
+    "answer": "!storeOpen || linesTooLong",
+    "correct": true,
+    "timestamp": 1661715462966
   }
 ]
