@@ -229,5 +229,12 @@
     "answer": "isSenior || invitedBySenior",
     "correct": true,
     "timestamp": 1661715525214
+  },
+  {
+    "name": "UPPER CASE",
+    "canonical": "s.toUpperCase()",
+    "answer": "s.toUpperCase()",
+    "correct": true,
+    "timestamp": 1661715530448
   }
 ]
