@@ -250,5 +250,12 @@
     "answer": "a * b",
     "correct": true,
     "timestamp": 1661715540375
+  },
+  {
+    "name": "Wait for a sale?",
+    "canonical": "!storeOpen || !isASale",
+    "answer": "!storeOpen || !isASale",
+    "correct": true,
+    "timestamp": 1661715553578
   }
 ]
