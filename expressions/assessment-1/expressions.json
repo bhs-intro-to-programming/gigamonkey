@@ -75,5 +75,12 @@
     "answer": "60 * 60 * 24",
     "correct": true,
     "timestamp": 1661715368841
+  },
+  {
+    "name": "Coming to bookclub?",
+    "canonical": "member && !outSick",
+    "answer": "member && !outSick",
+    "correct": true,
+    "timestamp": 1661715376822
   }
 ]
