@@ -19,5 +19,12 @@
     "answer": "Math.PI * 4",
     "correct": true,
     "timestamp": 1661715025610
+  },
+  {
+    "name": "Not feeling it?",
+    "canonical": "!fun || tired",
+    "answer": "!fun || tired",
+    "correct": true,
+    "timestamp": 1661715328225
   }
 ]
