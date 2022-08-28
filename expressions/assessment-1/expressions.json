@@ -257,5 +257,12 @@
     "answer": "!storeOpen || !isASale",
     "correct": true,
     "timestamp": 1661715553578
+  },
+  {
+    "name": "Time to sleep?",
+    "canonical": "!sleepy || !dark",
+    "answer": "!sleepy || !dark",
+    "correct": true,
+    "timestamp": 1661715560046
   }
 ]
