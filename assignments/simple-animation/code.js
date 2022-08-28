@@ -18,7 +18,7 @@ const drawFrame = (time) => {
             ballAndLine(2 * Math.PI * ORDER[i] / SECTIONS, time, ORDER[i] * TIME_GAP);
         }
     }
-    if (now() - start > SECTIONS * MILLIS_PER_PASS) {
+    if (now() - start > SECTIONS * MILLIS_PER_PASS * 1.2) {
         start = now();
     }
 }
