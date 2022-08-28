@@ -1,4 +1,3 @@
-const LINES = 8;
 const MILLIS_PER_PASS = 2500;
 const ORDER = [0, 4, 2, 6, 3, 7, 5, 1];
 
@@ -12,9 +11,9 @@ const drawFrame = (time) => {
     clear();
     drawCircle(midX, midY, r, '#bbb');
 
-    const timeGap = MILLIS_PER_PASS / (LINES * 2);
+    const timeGap = MILLIS_PER_PASS / (ORDER.length * 2);
 
-    for (let i = 0; i < LINES; i++) {
+    for (let i = 0; i < ORDER.length; i++) {
         if (now() - start > i * MILLIS_PER_PASS * 2) {
             ballAndLine(2 * Math.PI * ORDER[i] / 16, time, ORDER[i] * timeGap);
         }
