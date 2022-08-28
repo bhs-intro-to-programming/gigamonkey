@@ -40,5 +40,12 @@
     "answer": "Math.abs(a - b)",
     "correct": true,
     "timestamp": 1661715335917
+  },
+  {
+    "name": "Energetic?",
+    "canonical": "enoughSleep && !justWorkedOut",
+    "answer": "enoughSleep && !justWorkedOut",
+    "correct": true,
+    "timestamp": 1661715342375
   }
 ]
