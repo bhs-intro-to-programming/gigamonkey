@@ -159,5 +159,12 @@
     "answer": "!storeOpen || linesTooLong",
     "correct": true,
     "timestamp": 1661715462966
+  },
+  {
+    "name": "Having fun?",
+    "canonical": "done || !fun",
+    "answer": "done || !fun",
+    "correct": true,
+    "timestamp": 1661715467433
   }
 ]
