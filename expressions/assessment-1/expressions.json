@@ -187,5 +187,12 @@
     "answer": "inTheClass || isProctor",
     "correct": true,
     "timestamp": 1661715482476
+  },
+  {
+    "name": "Can pay attention?",
+    "canonical": "!hungry && interested",
+    "answer": "!hungry && interested",
+    "correct": true,
+    "timestamp": 1661715489716
   }
 ]
