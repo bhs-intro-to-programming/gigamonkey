@@ -12,5 +12,12 @@
     "answer": "1337 * 32",
     "correct": true,
     "timestamp": 1661718619983
+  },
+  {
+    "name": "Two plus two",
+    "canonical": "2 + 2",
+    "answer": "5",
+    "correct": false,
+    "timestamp": 1661718626198
   }
 ]
