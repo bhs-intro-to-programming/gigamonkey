@@ -264,5 +264,12 @@
     "answer": "!sleepy || !dark",
     "correct": true,
     "timestamp": 1661715560046
+  },
+  {
+    "name": "Ratio",
+    "canonical": "a / b",
+    "answer": "a / b",
+    "correct": true,
+    "timestamp": 1661715562100
   }
 ]
