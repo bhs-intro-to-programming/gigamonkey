@@ -173,5 +173,12 @@
     "answer": "fireLit || !haveMatches",
     "correct": true,
     "timestamp": 1661715473314
+  },
+  {
+    "name": "Sum",
+    "canonical": "a + b",
+    "answer": "a + b",
+    "correct": true,
+    "timestamp": 1661715475559
   }
 ]
