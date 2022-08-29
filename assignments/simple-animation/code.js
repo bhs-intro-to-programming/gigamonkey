@@ -1,8 +1,8 @@
 const MILLIS_PER_PASS = 2500;
 const ORDER = [0, 4, 2, 6, 3, 7, 5, 1];
-const SECTIONS = ORDER.length * 2;
-const TIME_GAP = MILLIS_PER_PASS / SECTIONS;
 
+const sections = ORDER.length * 2;
+const timeGap = MILLIS_PER_PASS / sections;
 const midX = width / 2;
 const midY = height / 2;
 const r = Math.min(midX, midY) - 5;
@@ -15,10 +15,10 @@ const drawFrame = (time) => {
 
     for (let i = 0; i < ORDER.length; i++) {
         if (now() - start > i * MILLIS_PER_PASS * 2) {
-            ballAndLine(2 * Math.PI * ORDER[i] / SECTIONS, time, ORDER[i] * TIME_GAP);
+            ballAndLine(2 * Math.PI * ORDER[i] / sections, time, ORDER[i] * timeGap);
         }
     }
-    if (now() - start > SECTIONS * MILLIS_PER_PASS * 1.5) {
+    if (now() - start > sections * MILLIS_PER_PASS * 1.5) {
         start = now();
     }
 }
