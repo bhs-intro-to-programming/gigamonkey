@@ -42,9 +42,9 @@ const drawBallAndLine = (x1, y1, x2, y2, time, startOffset) => {
 
 const drawBall = (x1, y1, x2, y2, time, color) => {
     const d = distance(x1, y1, x2, y2);
-    const t = fromStart(d, time, MILLIS_PER_PASS);
-    const x = x1 + t / d * (x2 - x1);
-    const y = y1 + t / d * (y2 - y1);
+    const p = fromStart(d, time, MILLIS_PER_PASS);
+    const x = x1 + p / d * (x2 - x1);
+    const y = y1 + p / d * (y2 - y1);
     drawFilledCircle(x, y, 10, color);
 };
 
