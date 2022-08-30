@@ -15,7 +15,7 @@ const lerp = (a, b, amount) => {
     return (rr << 16) + (rg << 8) + (rb | 0);
 };
 
-const convert = (a, base) => { //int -> str
+const convert2 = (a, base) => { //int -> str
     let e = ""
     let b = ""
     while (a > 0) {
@@ -27,6 +27,8 @@ const convert = (a, base) => { //int -> str
     while (b.length < 6) b = "0" + b
     return "#" + b
 };
+
+const convert = (a, base) => `#${a.toString(16).padStart(6, '0')}`;
 
 const gradient = (clr0, clr1) => { // takes 2 24bit ints
     //drawFilledRect(0, 0, width, height, convert(clr0, 16));
