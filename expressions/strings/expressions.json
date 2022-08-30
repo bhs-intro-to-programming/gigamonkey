@@ -54,5 +54,12 @@
     "answer": "'FOO'.toLowerCase()",
     "correct": true,
     "timestamp": 1661863909019
+  },
+  {
+    "name": "First character",
+    "canonical": "s[0]",
+    "answer": "s[0]",
+    "correct": true,
+    "timestamp": 1661863916606
   }
 ]
