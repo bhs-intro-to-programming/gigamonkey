@@ -31,7 +31,7 @@ const convert = (a, base) => { //int -> str
 const gradient = (clr0, clr1) => { // takes 2 24bit ints
     drawFilledRect(0, 0, width, height, convert(clr0, 16));
     for (var i = 0; i < width; i++) {
-        drawFilledRect(i, 0, 1, height, convert(lerp(clr1, clr0, i / width)));
+        drawFilledRect(i, 0, 1, height, convert(lerp(clr1, clr0, i / width), 16));
     }
 };
 
