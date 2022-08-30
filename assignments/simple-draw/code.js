@@ -1,5 +1,5 @@
 /*
- * Interpolate between two colors by interpolating the the red, 
+ * Interpolate between two colors by interpolating the red, 
  * green, and blue components individually.
  */
 const lerp = (a, b, amount) => {
