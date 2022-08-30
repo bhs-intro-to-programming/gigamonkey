@@ -2,10 +2,18 @@
  * Interpolate between two colors by interpolating the the red, 
  * green, and blue components individually.
  */
-const lerp = (a, b, amount) => {
+const OLDlerp = (a, b, amount) => {
     return interpolate(a >> 16, b >> 16, amount) << 16
         | interpolate(a >> 8 & 0xff, b >> 8 & 0xff, amount) << 8
         | interpolate(a & 0xff, b & 0xff, amount);
+};
+
+const lerp = (a, b, amount) => {
+    let r = 0;
+    for (let i = 0; i < 3; i++) {
+        r |= interpolate(a >> (i * 8) & 0xff, b >> (i * 8) & 0xff, amount);
+    };
+    return r;
 };
 
 /*
