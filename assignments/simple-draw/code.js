@@ -26,8 +26,8 @@ const rgb = (a) => `#${a.toString(16).padStart(6, '0')}`;
  * Fill the drawing area with a gradient.
  */
 const gradient = (clr0, clr1) => {
-    for (let i = 0; i < width; i++) {
-        drawFilledRect(i, 0, 1, height, rgb(lerp(clr0, clr1, i / width)));
+    for (let x = 0; x < width; x++) {
+        drawFilledRect(x, 0, 1, height, rgb(lerp(clr0, clr1, x / width)));
     }
 };
 
