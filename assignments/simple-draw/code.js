@@ -41,4 +41,4 @@ const gradient = (clr0, clr1) => { // takes 2 24bit ints
     }
 };
 
-gradient(0xff0000, 0xff00ff)//call
+gradient(0xff0000, 0x0000ff)//call
