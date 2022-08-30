@@ -40,5 +40,12 @@
     "answer": "'foo'['foo'.length - 1]",
     "correct": true,
     "timestamp": 1661863903266
+  },
+  {
+    "name": "UPPER CASE",
+    "canonical": "'FOO'",
+    "answer": "'foo'.toUpperCase()",
+    "correct": true,
+    "timestamp": 1661863906750
   }
 ]
