@@ -15,26 +15,12 @@ const lerp = (a, b, amount) => {
     return (rr << 16) + (rg << 8) + (rb | 0);
 };
 
-const convert2 = (a, base) => { //int -> str
-    let e = ""
-    let b = ""
-    while (a > 0) {
-        let c = a % base
-        c = c == 10 ? "A" : c == 11 ? "B" : c == 12 ? "C" : c == 13 ? "D" : c == 14 ? "E" : c == 15 ? "F" : c
-        b = (c + b)
-        a = Math.floor(a / base)
-    }
-    while (b.length < 6) b = "0" + b
-    return "#" + b
-};
-
-const convert = (a, base) => `#${a.toString(16).padStart(6, '0')}`;
+const convert = (a) => `#${a.toString(16).padStart(6, '0')}`;
 
 const gradient = (clr0, clr1) => { // takes 2 24bit ints
-    //drawFilledRect(0, 0, width, height, convert(clr0, 16));
-    drawFilledRect(0, 0, width, height, `#${clr0.toString(16)}`);
+    drawFilledRect(0, 0, width, height, convert(clr0));
     for (var i = 0; i < width; i++) {
-        drawFilledRect(i, 0, 1, height, convert(lerp(clr1, clr0, i / width), 16));
+        drawFilledRect(i, 0, 1, height, convert(lerp(clr1, clr0, i / width)));
     }
 };
 
