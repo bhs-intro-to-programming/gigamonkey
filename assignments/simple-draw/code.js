@@ -32,7 +32,7 @@ const gradient = (clr0, clr1) => { // takes 2 24bit ints
     //drawFilledRect(0, 0, width, height, convert(clr0, 16));
     drawFilledRect(0, 0, width, height, `#${clr0.toString(16)}`);
     for (var i = 0; i < width; i++) {
-        drawFilledRect(i, 0, 1, height, convert(lerp(clr1, clr0, i / width), 16));
+        drawFilledRect(i, 0, 1, height, `#${lerp(clr1, clr0, i / width).toString(16)}`);
     }
 };
 
