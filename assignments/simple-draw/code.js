@@ -1,26 +1,26 @@
 const lerp = (a, b, amount) => {
     // 0xrrggbb hex linear interpolate
-    const ar = a >> 16,
-        ag = a >> 8 & 0xff,
-        ab = a & 0xff,
+    const ar = a >> 16;
+    const ag = a >> 8 & 0xff;
+    const ab = a & 0xff;
 
-        br = b >> 16,
-        bg = b >> 8 & 0xff,
-        bb = b & 0xff,
+    const br = b >> 16;
+    const bg = b >> 8 & 0xff;
+    const bb = b & 0xff;
 
-        rr = ar + amount * (br - ar),
-        rg = ag + amount * (bg - ag),
-        rb = ab + amount * (bb - ab);
+    const rr = ar + amount * (br - ar);
+    const rg = ag + amount * (bg - ag);
+    const rb = ab + amount * (bb - ab);
 
     return (rr << 16) + (rg << 8) + (rb | 0);
 };
 
-const convert = (a) => `#${a.toString(16).padStart(6, '0')}`;
+const rgb = (a) => `#${a.toString(16).padStart(6, '0')}`;
 
 const gradient = (clr0, clr1) => { // takes 2 24bit ints
-    drawFilledRect(0, 0, width, height, convert(clr0));
+    drawFilledRect(0, 0, width, height, rgb(clr0));
     for (var i = 0; i < width; i++) {
-        drawFilledRect(i, 0, 1, height, convert(lerp(clr1, clr0, i / width)));
+        drawFilledRect(i, 0, 1, height, rgb(lerp(clr1, clr0, i / width)));
     }
 };
 
