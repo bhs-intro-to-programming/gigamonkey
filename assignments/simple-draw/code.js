@@ -11,7 +11,7 @@ const OLDlerp = (a, b, amount) => {
 const lerp = (a, b, amount) => {
     let r = 0;
     for (let i = 0; i < 3; i++) {
-        r |= interpolate(a >> (i * 8) & 0xff, b >> (i * 8) & 0xff, amount);
+        r |= interpolate(a >> (i * 8) & 0xff, b >> (i * 8) & 0xff, amount) << (i * 8);
     };
     return r;
 };
