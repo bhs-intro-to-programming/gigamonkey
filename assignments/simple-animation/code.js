@@ -10,25 +10,25 @@ const r = Math.min(midX, midY) - 5;
 let start = now();
 
 const drawFrame = (time) => {
-    clear();
-    drawCircle(midX, midY, r, '#bbb');
+  clear();
+  drawCircle(midX, midY, r, '#bbb');
 
-    for (let i = 0; i < ORDER.length; i++) {
-        if (now() - start > i * MILLIS_PER_PASS * 2) {
-            ballAndLine(2 * Math.PI * ORDER[i] / sections, time, ORDER[i] * timeGap);
-        }
+  for (let i = 0; i < ORDER.length; i++) {
+    if (now() - start > i * MILLIS_PER_PASS * 2) {
+      ballAndLine(2 * Math.PI * ORDER[i] / sections, time, ORDER[i] * timeGap);
     }
-    if (now() - start > sections * MILLIS_PER_PASS * 1.5) {
-        start = now();
-    }
+  }
+  if (now() - start > sections * MILLIS_PER_PASS * 1.5) {
+    start = now();
+  }
 }
 
 const ballAndLine = (theta, time, startOffset) => {
-    let x1 = xOnCircle(theta);
-    let y1 = yOnCircle(theta);
-    let x2 = xOnCircle(theta + Math.PI);
-    let y2 = yOnCircle(theta + Math.PI);
-    drawBallAndLine(x1, y1, x2, y2, time, startOffset);
+  let x1 = xOnCircle(theta);
+  let y1 = yOnCircle(theta);
+  let x2 = xOnCircle(theta + Math.PI);
+  let y2 = yOnCircle(theta + Math.PI);
+  drawBallAndLine(x1, y1, x2, y2, time, startOffset);
 }
 
 const xOnCircle = (theta) => midX + Math.cos(theta) * r;
@@ -36,25 +36,25 @@ const xOnCircle = (theta) => midX + Math.cos(theta) * r;
 const yOnCircle = (theta) => midY + Math.sin(theta) * r;
 
 const drawBallAndLine = (x1, y1, x2, y2, time, startOffset) => {
-    drawLine(x1, y1, x2, y2, '#bbb');
-    drawBall(x1, y1, x2, y2, time + startOffset, 'blue');
+  drawLine(x1, y1, x2, y2, '#bbb');
+  drawBall(x1, y1, x2, y2, time + startOffset, 'blue');
 };
 
 const drawBall = (x1, y1, x2, y2, time, color) => {
-    const d = distance(x1, y1, x2, y2);
-    const p = fromStart(d, time, MILLIS_PER_PASS);
-    const x = x1 + p / d * (x2 - x1);
-    const y = y1 + p / d * (y2 - y1);
-    drawFilledCircle(x, y, 10, color);
+  const d = distance(x1, y1, x2, y2);
+  const p = fromStart(d, time, MILLIS_PER_PASS);
+  const x = x1 + p / d * (x2 - x1);
+  const y = y1 + p / d * (y2 - y1);
+  drawFilledCircle(x, y, 10, color);
 };
 
 const distance = (x1, y1, x2, y2) => Math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2);
 
 const fromStart = (d, time, ms) => {
-    // We want to go across and back in ms milliseconds so we need to
-    // cycle the arguments to cos() from 0 to 2pi in that many millis
-    const i = time * (Math.PI * 2 / ms);
-    return (1 - Math.cos(i)) / 2 * d;
+  // We want to go across and back in ms milliseconds so we need to
+  // cycle the arguments to cos() from 0 to 2pi in that many millis
+  const i = time * (Math.PI * 2 / ms);
+  return (1 - Math.cos(i)) / 2 * d;
 }
 
 animate(drawFrame);
