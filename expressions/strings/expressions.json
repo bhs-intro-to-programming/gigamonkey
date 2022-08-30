@@ -96,5 +96,12 @@
     "answer": "s[0].toUpperCase() + s.substring(1).toLowerCase()",
     "correct": true,
     "timestamp": 1661863956518
+  },
+  {
+    "name": "Capitalize first three",
+    "canonical": "s.substring(0,3).toUpperCase() + s.substring(3).toLowerCase()",
+    "answer": "s.substring(0, 3).toUpperCase() + s.substring(3).toLowerCase()",
+    "correct": true,
+    "timestamp": 1661863972824
   }
 ]
