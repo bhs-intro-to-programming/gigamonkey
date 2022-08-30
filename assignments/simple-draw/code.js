@@ -4,10 +4,10 @@
  */
 const lerp = (a, b, amount) => {
     let r = 0;
-    for (let i = 0; i < 3; i++) {
-        const ac = a >> (i * 8) & 0xff;
-        const bc = b >> (i * 8) & 0xff;
-        r |= interpolate(ac, bc, amount) << (i * 8);
+    for (let shift = 0; shift < 24; shift += 8) {
+        const ac = a >> shift & 0xff;
+        const bc = b >> shift & 0xff;
+        r |= interpolate(ac, bc, amount) << shift;
     };
     return r;
 };
