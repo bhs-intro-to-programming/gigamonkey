@@ -19,5 +19,12 @@
     "answer": "'foo'.length",
     "correct": true,
     "timestamp": 1661863898214
+  },
+  {
+    "name": "Another length",
+    "canonical": "7",
+    "answer": "'foo\\nbar'.length",
+    "correct": true,
+    "timestamp": 1661863899981
   }
 ]
