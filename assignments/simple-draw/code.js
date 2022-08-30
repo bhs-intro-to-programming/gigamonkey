@@ -38,6 +38,7 @@ const gradient = (clr0, clr1) => { // takes 2 24bit ints
     //drawFilledRect(0, 0, width, height, rgb(clr0));
     for (let i = 0; i < width; i += 30) {
         drawFilledRect(i, 0, i + 1, height, rgb(lerp(clr1, clr0, i / width)));
+        console.log(i);
     }
 };
 
