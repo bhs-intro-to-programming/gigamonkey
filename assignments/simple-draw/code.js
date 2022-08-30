@@ -17,17 +17,9 @@ const OLDlerp = (a, b, amount) => {
 
 const lerp = (a, b, amount) => {
     // 0xrrggbb hex linear interpolate
-    const ar = a >> 16;
-    const ag = a >> 8 & 0xff;
-    const ab = a & 0xff;
-
-    const br = b >> 16;
-    const bg = b >> 8 & 0xff;
-    const bb = b & 0xff;
-
-    const rr = interpolate(ar, br, amount);
-    const rg = interpolate(ag, bg, amount);
-    const rb = interpolate(ab, bb, amount);
+    const rr = interpolate(a >> 16, b >> 16, amount);
+    const rg = interpolate(a >> 8 & 0xff, b >> 8 & 0xff, amount);
+    const rb = interpolate(a & 0xff, b & 0xff, amount);
 
     return (rr << 16) + (rg << 8) + (rb | 0);
 };
