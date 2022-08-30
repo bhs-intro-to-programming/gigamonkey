@@ -25,9 +25,9 @@ const lerp = (a, b, amount) => {
     const bg = b >> 8 & 0xff;
     const bb = b & 0xff;
 
-    const rr = interpolate(ar, br);
-    const rg = interpolate(ag, bg);
-    const rb = interpolate(ab, bb);
+    const rr = interpolate(ar, br, amount);
+    const rg = interpolate(ag, bg, amount);
+    const rb = interpolate(ab, bb, amount);
 
     return (rr << 16) + (rg << 8) + (rb | 0);
 };
