@@ -33,4 +33,4 @@ const gradient = (clr0, clr1) => {
 
 //gradient(0xff0000, 0x0000ff);
 
-drawFilledRect(20, 20, width - 40, height - 40, 'rgba(255, 0, 0, 0.5)');
+drawFilledRect(20, 20, width - 40, height - 40, 'rgba(255, 0, 0, 0.5)')
