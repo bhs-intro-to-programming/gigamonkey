@@ -7,20 +7,23 @@ const midX = width / 2;
 const midY = height / 2;
 const r = Math.min(midX, midY) - 5;
 
-let start = now();
+//let start = now();
 
 const drawFrame = (time) => {
   clear();
   drawCircle(midX, midY, r, '#bbb');
 
+  let t = time % (sections * MILLIS_PER_PASS * 1.5);
+
   for (let i = 0; i < ORDER.length; i++) {
-    if (now() - start > i * MILLIS_PER_PASS * 2) {
-      ballAndLine(2 * Math.PI * ORDER[i] / sections, time, ORDER[i] * timeGap);
+    //if (now() - start > i * MILLIS_PER_PASS * 2) {
+    if (t > i * MILLIS_PER_PASS * 2) {
+      ballAndLine(2 * Math.PI * ORDER[i] / sections, t, ORDER[i] * timeGap);
     }
   }
-  if (now() - start > sections * MILLIS_PER_PASS * 1.5) {
-    start = now();
-  }
+//  if (now() - start > sections * MILLIS_PER_PASS * 1.5) {
+//    start = now();
+// }
 }
 
 const ballAndLine = (theta, time, startOffset) => {
