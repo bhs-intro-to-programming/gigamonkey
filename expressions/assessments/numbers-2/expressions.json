@@ -68,5 +68,12 @@
     "answer": "6432 - 4000",
     "correct": true,
     "timestamp": 1662004588905
+  },
+  {
+    "name": "Distance",
+    "canonical": "Math.abs(a - b)",
+    "answer": "Math.abs(a - b)",
+    "correct": true,
+    "timestamp": 1662004595978
   }
 ]
