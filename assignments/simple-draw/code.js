@@ -40,4 +40,4 @@ drawLine(10, 60, 10, 20, 'blue', 1);
 
 drawLine(12, 22, 32, 42, 'blue', 1);
 drawLine(32, 42, 12, 42, 'blue', 1);
-drawLine(12, 62, 12, 22, 'blue', 1);
+drawLine(12, 42, 12, 22, 'blue', 1);
