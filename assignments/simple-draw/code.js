@@ -31,7 +31,8 @@ const gradient = (clr0, clr1) => {
   }
 };
 
-gradient(0xff0000, 0x0000ff);
+//gradient(0xff0000, 0x0000ff);
 
-drawFilledRect(20, 20, width - 40, height - 40, 'rgba(255, 0, 45, 0.5)');
-drawFilledRect(50, 50, width - 45, height - 40, 'rgba(255, 0, 255, 0.25)');
+drawLine(10, 20, 30, 40, 'blue', 1);
+drawLine(30, 40, 10, 60, 'blue', 1);
+drawLine(10, 60, 10, 20, 'blue', 1);
