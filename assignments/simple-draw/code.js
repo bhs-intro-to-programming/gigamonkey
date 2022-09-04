@@ -36,3 +36,8 @@ const gradient = (clr0, clr1) => {
 drawLine(10, 20, 30, 40, 'blue', 1);
 drawLine(30, 40, 10, 60, 'blue', 1);
 drawLine(10, 60, 10, 20, 'blue', 1);
+
+
+drawLine(12, 22, 32, 42, 'blue', 1);
+drawLine(32, 42, 12, 62, 'blue', 1);
+drawLine(12, 62, 12, 22, 'blue', 1);
