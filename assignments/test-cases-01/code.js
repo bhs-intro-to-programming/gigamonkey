@@ -8,7 +8,9 @@ const divide = (a, b) => a / b;
 
 const mod = (a, b) => a % b;
 
-const averageOfTwo = (a, b) => (a + b) / 2;
+const average = (ns) => ns.reduce((a, b) => a + b, 0) / ns.length;
+
+const averageOfTwo = (a, b) => average([a, b]);
 
 const averageOfThree = (a, b, c) => (a + b + c) / 3;
 
