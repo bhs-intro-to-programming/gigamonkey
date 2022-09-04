@@ -10,9 +10,9 @@ const mod = (a, b) => a % b;
 
 const average = (ns) => ns.reduce((a, b) => a + b, 0) / ns.length;
 
-const averageOfTwo = (a, b) => average([a, b]);
+const averageOfTwo = (...args) => average(args);
 
-const averageOfThree = (a, b, c) => (a + b + c) / 3;
+const averageOfThree = (...args) => average(args)
 
 const distance = (a, b) => Math.abs(a - b);
 
