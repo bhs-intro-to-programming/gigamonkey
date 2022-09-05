@@ -32,4 +32,3 @@ const gradient = (clr0, clr1) => {
 };
 
 gradient(0xff0000, 0x0000ff);
-//test
