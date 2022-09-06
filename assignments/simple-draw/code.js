@@ -4,4 +4,10 @@ const side = Math.min(width - padding * 2, height - padding * 2);
 const x = width/2 - side/2;
 const y = height/2 - side/2;
 
+
+const hole = (x, y, size) => {
+  drawFilledRect(x + size/3, y + size/3, size/3, 'white');
+}
+
 drawFilledRect(x, y, side, side, 'black');
+hole(x, y, side);
