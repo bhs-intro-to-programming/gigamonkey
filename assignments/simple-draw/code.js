@@ -17,3 +17,7 @@ hole(x + 2 * side/3, y, side/3);
 hole(x, y + side/3, side/3);
 //hole(x + side/3, y, side/3);
 hole(x + 2 * side/3, y + side/3, side/3);
+
+hole(x, y + 2 * side/3, side/3);
+hole(x + side/3, y + 2 * side/3, side/3);
+hole(x + 2 * side/3, y + 2 * side/3, side/3);
