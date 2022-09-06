@@ -11,3 +11,4 @@ const hole = (x, y, size) => {
 
 drawFilledRect(x, y, side, side, 'black');
 hole(x, y, side);
+hole(x, y, side/3);
