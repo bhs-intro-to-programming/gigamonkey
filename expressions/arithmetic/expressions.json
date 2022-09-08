@@ -40,5 +40,12 @@
     "answer": "a/2 + b/2",
     "correct": true,
     "timestamp": 1662674383093
+  },
+  {
+    "name": "Average of three",
+    "canonical": "(a + b + c) / 3",
+    "answer": "(a + b + c) / 3",
+    "correct": true,
+    "timestamp": 1662674397253
   }
 ]
