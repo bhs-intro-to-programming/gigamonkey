@@ -27,4 +27,4 @@ hole(x + side/3, y + 2 * side/3, side/3);
 hole(x + 2 * side/3, y + 2 * side/3, side/3);
 */
 
-drawTriangle(0,0, 0,height/2, width/2, height/3, 'blue');
+drawTriangle(10, 10, 10,height/2, width/2, height/3, 'blue');
