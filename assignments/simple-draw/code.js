@@ -8,6 +8,9 @@ const hole = (x, y, size) => {
   drawFilledRect(x + size/3, y + size/3, size/3, size/3, 'white');
 };
 
+/*
+
+
 drawFilledRect(x, y, side, side, 'black');
 
 hole(x, y, side);
@@ -22,3 +25,6 @@ hole(x + 2 * side/3, y + side/3, side/3);
 hole(x, y + 2 * side/3, side/3);
 hole(x + side/3, y + 2 * side/3, side/3);
 hole(x + 2 * side/3, y + 2 * side/3, side/3);
+*/
+
+drawTriangle(0,0, 0,height/2, width/2, height/3, 'blue');
