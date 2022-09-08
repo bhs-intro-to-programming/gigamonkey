@@ -28,3 +28,4 @@ hole(x + 2 * side/3, y + 2 * side/3, side/3);
 */
 
 drawFilledTriangle(10, 10, 10,height/2, width/2, height/3, 'blue');
+drawFilledCircle(width/2, height/2, 20, 'red');
