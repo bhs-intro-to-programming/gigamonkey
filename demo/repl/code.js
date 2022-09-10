@@ -17,10 +17,10 @@ const MAX_FIB_N = 1476;
 
 const MAX_FIB = fib2(MAX_FIB_N);
 
-const foo = () => { console.log(this); };
+const foo = () => { console.log(this.value); };
 
-const bar = function () { console.log(this); };
+const bar = function () { console.log(this.value); };
 
-const x = {};
+const x = {value: 10};
 x.foo = foo;
 x.bar = bar;
