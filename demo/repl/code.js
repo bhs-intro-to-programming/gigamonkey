@@ -25,7 +25,7 @@ const x = {
   value: 10, 
   baz: () => console.log(this),
   quux: function () { console.log(this) },
-  biff() { console.log(this); }
+  biff() { console.log(this.value); }
 };
 x.foo = foo;
 x.bar = bar;
