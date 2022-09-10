@@ -21,6 +21,10 @@ const foo = () => { console.log(this.value); };
 
 const bar = function () { console.log(this.value); };
 
-const x = {value: 10, baz: () => console.log(this) };
+const x = { 
+  value: 10, 
+  baz: () => console.log(this),
+  quux: function () { console.log(this) },
+};
 x.foo = foo;
 x.bar = bar;
