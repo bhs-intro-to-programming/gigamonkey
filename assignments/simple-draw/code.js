@@ -59,4 +59,4 @@ const sierpinski = (x, y, size, smallest) => {
   console.log(`${t} triangles.`);
 }
 
-sierpinski(0, bottom, MAX, 1);
+sierpinski(0, bottom, MAX, 32);
