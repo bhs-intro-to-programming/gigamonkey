@@ -68,7 +68,7 @@ const lineOfCircles = (radius) => {
 }
 
 const thingy = (lines) => {
-  const divisions = lines + 1;
+  const divisions = lines - 1;
   const size = Math.min(width, height);
   const top = (height % size) / 2;
   const bottom = top + size;
