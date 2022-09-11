@@ -32,19 +32,30 @@ const cutHoles = (x, y, side, smallest) => {
   }
 };
 
+/*
+ * Cut the big hole out of the middle of the given triangle.
+ */
 const cutBigHole = (x, y, side) => {
   triangles++;
   downTriangle(x + side * 0.25, y - (side/2 * RISE), side/2, '#eeeeef');
 };
 
+/*
+ * Cut the holes out of the three smaller triangles left after cutting the
+ * big hole.
+ */
 const cutSmallerHoles = (x, y, side, smallest) => {
   cutHoles(x, y, side/2, smallest);
   cutHoles(x + side/2, y, side/2, smallest);
   cutHoles(x + side/4, y - side/2 * RISE, side/2, smallest);
 };
 
-// Draw the big blue triangle first
-upTriangle(0, bottom, MAX, 'blue');
-cutHoles(0, bottom, MAX, 1);
+const sierpinski = (x, y, size, smallest) {
+  // Draw the big blue triangle first
+  upTriangle(x, y, size, 'blue');
+  cutHoles(x, y, size, smallest);
+}
+
+sierpinski(0, bottom, MAX, 1);
 
 console.log(`${triangles} triangles.`);
