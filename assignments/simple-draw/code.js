@@ -8,7 +8,7 @@ const BOTTOM = height - (height - MAX * RISE) * 0.75;
  */
 const upTriangle = (x, y, side, color) => {
   drawFilledTriangle(x, y, side / 2, y - side * RISE, x + side, y, color);
-}
+};
 
 /*
  * Draw a filled equilateral triange pointing down with top-left corner at 
@@ -16,7 +16,7 @@ const upTriangle = (x, y, side, color) => {
  */
 const downTriangle = (x, y, side, color) => {
   drawFilledTriangle(x, y, x + side / 2, y + side * RISE, x + side, y, color);
-}
+};
 
 /*
  * Cut all the holes in the triangle with its bottom-left corner at x,y and
@@ -54,6 +54,12 @@ const sierpinski = (x, y, size, smallest) => {
   upTriangle(x, y, size, 'blue');
   const t = cutHoles(x, y, size, smallest);
   console.log(`${t} triangles.`);
-}
+};
 
-sierpinski(0, BOTTOM, MAX, 1);
+const thingy = (top, left, bottom, right, gap) => {
+  drawLine(left, top, left, bottom);
+};
+
+thingy(50, 10, 250, 210, 5);
+
+//sierpinski(0, BOTTOM, MAX, 1);
