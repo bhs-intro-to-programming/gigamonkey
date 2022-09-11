@@ -67,7 +67,7 @@ const thingy = (top, left, size, divisions) => {
 
 const squareOfCircles = (x, y, size, rows, columns) => {
   for (let r = 0; r < rows; r++) {
-    for (let c = 0; c < cols; c++) {
+    for (let c = 0; c < columns; c++) {
       drawFilledCircle(x + r * size, y + c * size, size, 'blue');
     }
   }
