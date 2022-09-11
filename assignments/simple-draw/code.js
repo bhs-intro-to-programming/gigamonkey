@@ -1,7 +1,7 @@
 const RISE = Math.sin(60 * Math.PI / 180);
 const MAX = Math.min(width, height);
 
-const bottom = height - (height - MAX * RISE) * 0.25;
+const bottom = height - (height - MAX * RISE) * 0.75;
 
 let triangles = 1;
 
