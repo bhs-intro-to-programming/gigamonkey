@@ -1,37 +1,14 @@
-const padding = 10;
-const side = Math.min(width - padding * 2, height - padding * 2);
-
-const x = width/2 - side/2;
-const y = height/2 - side/2;
-
-const hole = (x, y, size) => {
-  drawFilledRect(x + size/3, y + size/3, size/3, size/3, 'white');
-};
-
-/*
-
-
-drawFilledRect(x, y, side, side, 'black');
-
-hole(x, y, side);
-
-hole(x, y, side/3);
-hole(x + side/3, y, side/3);
-hole(x + 2 * side/3, y, side/3);
-
-hole(x, y + side/3, side/3);
-hole(x + 2 * side/3, y + side/3, side/3);
-
-hole(x, y + 2 * side/3, side/3);
-hole(x + side/3, y + 2 * side/3, side/3);
-hole(x + 2 * side/3, y + 2 * side/3, side/3);
-*/
-
 const RISE = Math.sin(60 * Math.PI / 180);
 const MAX = Math.max(width, height);
+
 const bottom = MAX * RISE;
 
-drawFilledTriangle(0, bottom, width/2, 0, width, bottom, 'blue');
+const upTriangle = (x, y, side, color) => {
+  drawFilledTriangle(x, y, side/2, y - side * RISE, x + side, y, color);
+}
+
+//drawFilledTriangle(0, bottom, width/2, 0, width, bottom, 'blue');
+upTriangle(0, bottom, MAX, 'blue');
 
 //drawFilledTriangle(10, 10, 10,height/2, width/2, height/3, 'blue');
 //drawFilledCircle(width/2, height/2, 20, 'red');
