@@ -111,8 +111,8 @@ const concentricCircles = (num) => {
 
 //fillWithCircles(17);
 
-//lineOfCircles(12);
-concentricCircles(20);
+lineOfCircles(12);
+//concentricCircles(20);
 
 //thingy(50, 10, Math.min(width, height) - 20, 60);
 
