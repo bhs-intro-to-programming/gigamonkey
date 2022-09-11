@@ -71,11 +71,12 @@ const lineOfCircles = (size) => {
   }
 }
 
-const fillWithCircles = (size) => {
-  let rows = Math.floor(height/(size * 2));
-  let columns = Math.floor(width/(size * 2));
-  let x = (width - (columns * size * 2)) / 2;
-  let y = (height - (rows * size * 2)) / 2;
+const fillWithCircles = (radius) => {
+  let d = radius * 2;
+  let rows = Math.floor(height/d);
+  let columns = Math.floor(width/d);
+  let x = (height % d) / 2;
+  let y = (width % d) / 2;
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < columns; c++) {
       drawCircle(x + size + c * size * 2, y + size + r * size * 2, size, 'blue');
@@ -90,6 +91,8 @@ const squareOfCircles = (x, y, size, rows, columns) => {
     }
   }
 };
+
+fillCircles(17);
 
 //lineOfCircles(12);
 
