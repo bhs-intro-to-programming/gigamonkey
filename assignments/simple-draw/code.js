@@ -78,7 +78,7 @@ const fillWithCircles = (size) => {
   let y = (height - (rows * size * 2)) / 2;
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < columns; c++) {
-      drawCircle(x + r * size * 2, y + c * size * 2, size, 'blue');
+      drawCircle(x + size + r * size * 2, y + size + c * size * 2, size, 'blue');
     }
   }
 };
