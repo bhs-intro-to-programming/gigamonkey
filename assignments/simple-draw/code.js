@@ -64,6 +64,6 @@ const thingy = (top, left, size, gap) => {
   }
 };
 
-thingy(50, 10, Math.min(width, height) - 20, 25);
+thingy(50, 10, Math.min(width, height) - 20, 15);
 
 //sierpinski(0, BOTTOM, MAX, 1);
