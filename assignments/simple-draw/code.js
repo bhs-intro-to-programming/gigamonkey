@@ -95,6 +95,7 @@ const fillWithCircles = (radius) => {
 };
 
 const squareOfCircles = (radius) => {
+  const size = Math.min(width, height);
   const d = radius * 2;
   const num = Math.floor(Math.min(width, height) / d);
   for (let r = 0; r < num; r++) {
@@ -125,8 +126,8 @@ const concentricCircles = (num) => {
 
 //concentricCircles(11);
 
-//fillWithCircles(17);
+fillWithCircles(17);
 
-squareOfCircles(13);
+//squareOfCircles(13);
 
 //sierpinski(0, BOTTOM, MAX, 1);
