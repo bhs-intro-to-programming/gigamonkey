@@ -45,6 +45,6 @@ const cutSmallerHoles = (x, y, side, smallest) => {
 
 // Draw the big blue triangle first
 upTriangle(0, bottom, MAX, 'blue');
-cutHoles(0, bottom, MAX, 32);
+cutHoles(0, bottom, MAX, 1);
 
 console.log(`${triangles} triangles.`);
