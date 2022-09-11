@@ -3,6 +3,8 @@ const MAX = Math.min(width, height);
 
 const bottom = MAX * RISE;
 
+let triangles = 1;
+
 const upTriangle = (x, y, side, color) => {
   drawFilledTriangle(x, y, side / 2, y - side * RISE, x + side, y, color);
 }
@@ -19,6 +21,7 @@ const cutHoles = (x, y, side) => {
 };
 
 const cutBigHole = (x, y, side) => {
+  triangles++;
   downTriangle(x + side * 0.25, y - (side/2 * RISE), side/2, '#ddd');
 };
 
@@ -35,3 +38,4 @@ upTriangle(0, bottom, side, 'blue');
 cutHoles(0, bottom, side);
 
 //cutSmallHoles(0, bottom, side);
+console.log(triangles);
