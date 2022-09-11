@@ -65,6 +65,14 @@ const thingy = (top, left, size, divisions) => {
   }
 };
 
+const squareOfCircles = (x, y, size, rows, columns) => {
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      drawFilledCircle(x + r * size, y + c * size, size, 'blue');
+    }
+  }
+}
+
 thingy(50, 10, Math.min(width, height) - 20, 60);
 
 //sierpinski(0, BOTTOM, MAX, 1);
