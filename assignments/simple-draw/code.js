@@ -15,7 +15,7 @@ const downTriangle = (x, y, side, color) => {
 
 const cutHoles = (x, y, side) => {
   cutBigHole(x, y, side);
-  if (side > 4) {
+  if (side > 6) {
     cutSmallHoles(x, y, side);
   }
 };
