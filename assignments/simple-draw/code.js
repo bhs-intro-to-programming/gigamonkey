@@ -29,6 +29,6 @@ let side = MAX;
 
 // Draw the big blue triangle first
 upTriangle(0, bottom, side, 'blue');
-//cutBigHole(0, bottom, side);
+cutBigHole(0, bottom, side);
 
 //cutSmallHoles(0, bottom, side);
