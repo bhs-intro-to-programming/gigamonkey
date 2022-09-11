@@ -31,7 +31,7 @@ const RISE = Math.sin(60 * Math.PI / 180);
 const MAX = Math.max(width, height);
 const bottom = MAX * RISE;
 
-drawFilledTriangle(0, bottom, width/2, 0, width, bottom, 'red');
+drawFilledTriangle(0, bottom, width/2, 0, width, bottom, 'blue');
 
 //drawFilledTriangle(10, 10, 10,height/2, width/2, height/3, 'blue');
 //drawFilledCircle(width/2, height/2, 20, 'red');
