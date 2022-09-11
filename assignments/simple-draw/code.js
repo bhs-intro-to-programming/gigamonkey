@@ -27,6 +27,7 @@ const downTriangle = (x, y, side, color) => {
  */
 const cutHoles = (x, y, side, smallest) => {
   let t = 1;
+  cutBigHole(x, y, side);
   if (side > smallest) {
     t += cutSmallerHoles(x, y, side, smallest);
   }
