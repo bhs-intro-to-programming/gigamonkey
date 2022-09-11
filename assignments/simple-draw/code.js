@@ -144,7 +144,7 @@ const concentricCircles = (num) => {
 //fillWithCircles(17);
 
 
-fillWithCirclesRandomFill(17, 0.79);
+fillWithCirclesRandomFill(17, 0.19);
 
 //squareOfCircles(27);
 
