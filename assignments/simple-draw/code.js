@@ -71,15 +71,27 @@ const lineOfCircles = (size) => {
   }
 }
 
+const fillWithCircles = (size) => {
+  let rows = Math.floor(height/size);
+  let columns = Math.floor(width/size);
+  let x = (width - (columns * size * 2)) / 2;
+  let y = (height - (rows * size * 2)) / 2;
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < columns; c++) {
+      drawCircle(x + r * size * 2, y + c * size * 2, size, 'blue');
+    }
+  }
+};
+
 const squareOfCircles = (x, y, size, rows, columns) => {
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < columns; c++) {
       drawCircle(x + r * size * 2, y + c * size * 2, size, 'blue');
     }
   }
-}
+};
 
-lineOfCircles(12);
+//lineOfCircles(12);
 
 //thingy(50, 10, Math.min(width, height) - 20, 60);
 
