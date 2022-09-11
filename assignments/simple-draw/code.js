@@ -56,23 +56,25 @@ const sierpinski = (x, y, size, smallest) => {
   console.log(`${t} triangles.`);
 };
 
+
+
+const lineOfCircles = (radius) => {
+  const d = radius * 2;
+  const num = Math.floor(width / d);
+  const xOffset = ((width % d) / 2) + radius;
+   for (let i = 0; i < num; i++) {
+    drawFilledCircle(xOffset + i * d, height/2, radius, i % 2 === 0 ? 'blue' : 'red');
+  }
+}
+
 const thingy = (top, left, size, divisions) => {
-  let gap = size / divisions;
+  const gap = size / divisions;
   drawLine(left, top, left, top + size);
   drawLine(left, top + size, left + size, top + size);
   for (let i = 0; i < size / gap; i++) {
     drawLine(left, top + i * gap, left + (i+1) * gap, top + size)
   }
 };
-
-const lineOfCircles = (radius) => {
-  let d = radius * 2;
-  let num = Math.floor(width / d);
-  let xOffset = ((width % d) / 2) + radius;
-   for (let i = 0; i < num; i++) {
-    drawFilledCircle(xOffset + i * d, height/2, radius, i % 2 === 0 ? 'blue' : 'red');
-  }
-}
 
 const fillWithCircles = (radius) => {
   let d = radius * 2;
@@ -112,8 +114,10 @@ const concentricCircles = (num) => {
 //fillWithCircles(17);
 
 //lineOfCircles(12);
-concentricCircles(11);
 
-//thingy(50, 10, Math.min(width, height) - 20, 60);
+thingy(50, 10, Math.min(width, height) - 20, 60);
+
+//concentricCircles(11);
+
 
 //sierpinski(0, BOTTOM, MAX, 1);
