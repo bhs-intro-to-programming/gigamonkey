@@ -66,8 +66,8 @@ const thingy = (top, left, size, divisions) => {
 };
 
 const lineOfCircles = (size) => {
-  for (let x = size; x < width - size; x += size * 2) {
-    drawFilledCircle(x, height/2, size, 'blue');
+  for (let i = 0; i  < width/(size * 2); i++) {
+    drawFilledCircle(i * size * 2, height/2, size, 'blue');
   }
 }
 
