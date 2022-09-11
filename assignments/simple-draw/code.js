@@ -13,6 +13,9 @@ const downTriangle = (x, y, side, color) => {
 
 const cutHoles = (x, y, side) => {
   cutBigHole(x, y, size);
+  if (side > 2) {
+    cutSmallHoles(x, y, side);
+  }
 };
 
 const cutBigHole = (x, y, side) => {
@@ -29,6 +32,6 @@ let side = MAX;
 
 // Draw the big blue triangle first
 upTriangle(0, bottom, side, 'blue');
-cutBigHole(0, bottom, side);
+cutHoles(0, bottom, side);
 
-cutSmallHoles(0, bottom, side);
+//cutSmallHoles(0, bottom, side);
