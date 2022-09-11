@@ -56,9 +56,17 @@ const sierpinski = (x, y, size, smallest) => {
   console.log(`${t} triangles.`);
 };
 
-
-
 const lineOfCircles = (radius) => {
+  const d = radius * 2;
+  const num = Math.floor(width / d);
+  const xOffset = ((width % d) / 2) + radius;
+  for (let i = 0; i < num; i++) {
+    drawFilledCircle(xOffset + i * d, height / 2, radius, 'red');
+  }
+}
+
+
+const lineOfCirclesAlternating = (radius) => {
   const d = radius * 2;
   const num = Math.floor(width / d);
   const xOffset = ((width % d) / 2) + radius;
@@ -135,7 +143,7 @@ const concentricCircles = (num) => {
 }
 
 
-//lineOfCircles(12);
+lineOfCircles(12);
 
 //thingy(23);
 
@@ -144,7 +152,7 @@ const concentricCircles = (num) => {
 //fillWithCircles(17);
 
 
-fillWithCirclesRandomFill(17, 0.19);
+//fillWithCirclesRandomFill(17, 0.19);
 
 //squareOfCircles(27);
 
