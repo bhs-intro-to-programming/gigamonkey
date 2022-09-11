@@ -37,5 +37,4 @@ let side = MAX;
 upTriangle(0, bottom, side, 'blue');
 cutHoles(0, bottom, side);
 
-//cutSmallHoles(0, bottom, side);
-console.log(triangles);
+console.log(`${triangles} triangles.`);
