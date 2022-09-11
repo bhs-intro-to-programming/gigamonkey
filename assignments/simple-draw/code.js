@@ -66,7 +66,7 @@ const thingy = (top, left, size, divisions) => {
 };
 
 const lineOfCircles = (size) => {
-  for (let i = 0; i  < width/(size * 2); i++) {
+  for (let i = 0; i < Math.floor(width/(size * 2)); i++) {
     drawFilledCircle(size + i * size * 2, height/2, size, i % 2 === 0 ? 'blue' : 'red');
   }
 }
