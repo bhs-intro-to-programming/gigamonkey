@@ -65,9 +65,12 @@ const thingy = (top, left, size, divisions) => {
   }
 };
 
-const lineOfCircles = (size) => {
-  for (let i = 0; i < Math.floor(width/(size * 2)); i++) {
-    drawFilledCircle(size + i * size * 2, height/2, size, i % 2 === 0 ? 'blue' : 'red');
+const lineOfCircles = (radius) => {
+  let d = radius * 2;
+  let num = Math.floor(width / d);
+  let xOffset = ((width % d) / 2) + radius;
+   for (let i = 0; i < num; i++) {
+    drawFilledCircle(xOffset + i * d, height/2, radius, i % 2 === 0 ? 'blue' : 'red');
   }
 }
 
@@ -96,9 +99,9 @@ const squareOfCircles = (x, y, size, rows, columns) => {
   }
 };
 
-fillWithCircles(17);
+//fillWithCircles(17);
 
-//lineOfCircles(12);
+lineOfCircles(12);
 
 //thingy(50, 10, Math.min(width, height) - 20, 60);
 
