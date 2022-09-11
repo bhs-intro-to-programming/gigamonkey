@@ -15,17 +15,18 @@ const cutHole = (x, y, side) => {
   downTriangle(x + side * 0.25, y - (side/2 * RISE), side/2, 'white');
 };
 
-// Draw the big blue triangle first
+const cutSmallHoles = (x, y, side) => {
+  cutHole(x, y, side/4);
+}
+
 let side = MAX;
+
+// Draw the big blue triangle first
 upTriangle(0, bottom, side, 'blue');
-
-
-
-// Cut a hole out of the middle
-//downTriangle(side * 0.25, bottom - (side * RISE * 0.5), side / 2, 'white');
 cutHole(0, bottom, side);
 
+cutSmallHoles(0, bottom, side);
 // The next three holes
-downTriangle(MAX * 0.25 * 0.5, bottom - (MAX * RISE * 0.5 * 0.5), MAX / 2 * 0.5, 'white');
-downTriangle(MAX / 2 + MAX * 0.25 * 0.5, bottom - (MAX * RISE * 0.5 * 0.5), MAX / 2 * 0.5, 'white');
-downTriangle(MAX / 2 - MAX * 0.125, bottom - (MAX * RISE * 0.75), MAX / 2 * 0.5, 'white');
+//downTriangle(MAX * 0.25 * 0.5, bottom - (MAX * RISE * 0.5 * 0.5), MAX / 2 * 0.5, 'white');
+//downTriangle(MAX / 2 + MAX * 0.25 * 0.5, bottom - (MAX * RISE * 0.5 * 0.5), MAX / 2 * 0.5, 'white');
+//downTriangle(MAX / 2 - MAX * 0.125, bottom - (MAX * RISE * 0.75), MAX / 2 * 0.5, 'white');
