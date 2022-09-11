@@ -79,7 +79,7 @@ const fillWithCircles = (radius) => {
   let y = (width % d) / 2;
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < columns; c++) {
-      drawCircle(x + size + c * size * 2, y + size + r * size * 2, size, 'blue');
+      drawCircle(x + radius + c * d, y + size + r * d, radius, 'blue');
     }
   }
 };
