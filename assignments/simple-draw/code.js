@@ -94,10 +94,16 @@ const fillWithCircles = (radius) => {
   }
 };
 
-const squareOfCircles = (x, y, size, rows, columns) => {
-  for (let r = 0; r < rows; r++) {
-    for (let c = 0; c < columns; c++) {
-      drawCircle(x + r * size * 2, y + c * size * 2, size, 'blue');
+const squareOfCircles = (radius) => {
+  const d = radius * 2;
+  const num = Math.floor(Math.min(width, height) / d);
+  for (let r = 0; r < num; r++) {
+    for (let c = 0; c < num; c++) {
+      const topOrBottom = r === 0 || r === (num - 1);
+      const side = c === 0 || c === (num - 1);
+      if (topOrBottom || side) {
+        drawCircle(x + r * size * 2, y + c * size * 2, size, 'blue');
+      }
     }
   }
 };
@@ -112,13 +118,15 @@ const concentricCircles = (num) => {
   }
 }
 
-//fillWithCircles(17);
 
 //lineOfCircles(12);
 
-thingy(23);
+//thingy(23);
 
 //concentricCircles(11);
 
+//fillWithCircles(17);
+
+squareOfCircles(13);
 
 //sierpinski(0, BOTTOM, MAX, 1);
