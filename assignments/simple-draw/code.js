@@ -79,7 +79,7 @@ const squareOfCircles = (x, y, size, rows, columns) => {
   }
 }
 
-lineOfCircles(10);
+lineOfCircles(12);
 
 //thingy(50, 10, Math.min(width, height) - 20, 60);
 
