@@ -17,6 +17,7 @@ const cutHole = (x, y, side) => {
 
 const cutSmallHoles = (x, y, side) => {
   cutHole(x, y, side/2);
+  cutHole(x + side/2, y, side/2);
 }
 
 let side = MAX;
