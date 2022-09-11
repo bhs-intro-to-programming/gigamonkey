@@ -100,10 +100,10 @@ const squareOfCircles = (x, y, size, rows, columns) => {
 };
 
 const concentricCircles = (num) => {
-  const d = Math.min(width, height);
-  const step = d / 2 / num;
+  const radius = Math.min(width, height) / 2;
+  const step = radius / num;
   let color = 'blue';
-  for (let r = d / 2; r > 0; r -= step) {
+  for (let r = radius; r > 0; r -= step) {
     drawFilledCircle(width/2, height/2, r, color);
     color = color === 'red' ? 'blue' : 'red';
   }
