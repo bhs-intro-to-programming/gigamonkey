@@ -79,7 +79,7 @@ const fillWithCircles = (radius) => {
   let yOffset = (width % d) / 2 + radius;
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < columns; c++) {
-      if (Math.random() < 0.12) {
+      if (Math.random() < 0.19) {
         drawFilledCircle(xOffset + c * d, yOffset + r * d, radius, 'blue');
       } else {
         drawCircle(xOffset + c * d, yOffset + r * d, radius, 'blue');
