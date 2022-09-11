@@ -59,6 +59,9 @@ const sierpinski = (x, y, size, smallest) => {
 const thingy = (top, left, size, gap) => {
   drawLine(left, top, left, top + size);
   drawLine(left, top + size, left + size, top + size);
+  for (let i = 0; i < size / gap; i++) {
+    drawLine(left, top + i * gap, left + gap, top + size)
+  }
 };
 
 thingy(50, 10, Math.min(width, height) - 20, 5);
