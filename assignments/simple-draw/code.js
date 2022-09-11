@@ -65,6 +65,12 @@ const thingy = (top, left, size, divisions) => {
   }
 };
 
+const lineOfCircles = (size) => {
+  for (let x = size; x < width/(size*2); x += size * 2) {
+    drawFilledCircle(x, height/2, size, 'blue');
+  }
+}
+
 const squareOfCircles = (x, y, size, rows, columns) => {
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < columns; c++) {
@@ -73,6 +79,8 @@ const squareOfCircles = (x, y, size, rows, columns) => {
   }
 }
 
-thingy(50, 10, Math.min(width, height) - 20, 60);
+lineOfCircles(10);
+
+//thingy(50, 10, Math.min(width, height) - 20, 60);
 
 //sierpinski(0, BOTTOM, MAX, 1);
