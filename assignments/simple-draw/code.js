@@ -12,7 +12,7 @@ const downTriangle = (x, y, side, color) => {
 }
 
 const cutHoles = (x, y, side) => {
-  cutBigHole(x, y, size);
+  cutBigHole(x, y, side);
   if (side > 2) {
     cutSmallHoles(x, y, side);
   }
