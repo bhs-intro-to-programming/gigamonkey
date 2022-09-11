@@ -12,10 +12,11 @@ const downTriangle = (x, y, side, color) => {
 }
 
 // Draw the big blue triangle first
-upTriangle(0, bottom, MAX, 'blue');
+let side = MAX;
+upTriangle(0, bottom, side, 'blue');
 
 // Cut a hole out of the middle
-downTriangle(MAX * 0.25, bottom - (MAX * RISE * 0.5), MAX/2, 'white');
+downTriangle(side * 0.25, bottom - (side * RISE * 0.5), side/2, 'white');
 
 // The next three holes
 downTriangle(MAX * 0.25 * 0.5, bottom - (MAX * RISE * 0.5 * 0.5), MAX/2 * 0.5, 'white');
