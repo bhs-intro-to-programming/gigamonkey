@@ -20,7 +20,7 @@ const downTriangle = (x, y, side, color) => {
 
 /*
  * Cut all the holes in the triangle with its bottom-left corner at x,y and
- * sides of length side.
+ * given side length. Also returns total number of triangles cut.
  */
 const cutHoles = (x, y, side, smallest) => {
   let t = 1;
