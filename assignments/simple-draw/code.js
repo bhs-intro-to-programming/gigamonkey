@@ -74,8 +74,8 @@ const thingy = (divisions) => {
   const gap = size / divisions;
   //drawLine(0, top, 0, bottom);
   //drawLine(0, bottom, size, bottom);
-  for (let i = 0; i < size / gap; i++) {
-    drawLine(0, top + i * gap, (i+1) * gap, bottom)
+  for (let i = 0; i <= size / gap; i++) {
+    drawLine(0, top + i * gap, i * gap, bottom)
   }
 };
 
