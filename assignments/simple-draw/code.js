@@ -130,6 +130,6 @@ const concentricCircles = (num) => {
 
 //fillWithCircles(17);
 
-squareOfCircles(13);
+squareOfCircles(27);
 
 //sierpinski(0, BOTTOM, MAX, 1);
