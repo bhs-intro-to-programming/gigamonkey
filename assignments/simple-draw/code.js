@@ -67,12 +67,15 @@ const lineOfCircles = (radius) => {
   }
 }
 
-const thingy = (top, left, size, divisions) => {
+const thingy = (divisions) => {
+  const size = Math.min(width, height);
+  const top = (height % size) / 2;
+  const bottom = top + size;
   const gap = size / divisions;
-  drawLine(left, top, left, top + size);
-  drawLine(left, top + size, left + size, top + size);
+  drawLine(0, top, 0, bottom);
+  drawLine(0, bottom, size, bottom);
   for (let i = 0; i < size / gap; i++) {
-    drawLine(left, top + i * gap, left + (i+1) * gap, top + size)
+    drawLine(0, top + i * gap, left + (i+1) * gap, bottom)
   }
 };
 
@@ -115,7 +118,7 @@ const concentricCircles = (num) => {
 
 //lineOfCircles(12);
 
-thingy(50, 10, Math.min(width, height) - 20, 60);
+thingy(23);
 
 //concentricCircles(11);
 
