@@ -145,7 +145,7 @@ const concentricCircles = (num) => {
 
 //lineOfCircles(12);
 
-lineOfCirclesAlternating(12);
+//lineOfCirclesAlternating(12);
 
 //thingy(23);
 
@@ -158,4 +158,4 @@ lineOfCirclesAlternating(12);
 
 //squareOfCircles(27);
 
-//sierpinski(0, BOTTOM, MAX, 1);
+sierpinski(0, BOTTOM, MAX, 1);
