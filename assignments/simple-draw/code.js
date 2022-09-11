@@ -19,7 +19,7 @@ const cutHoles = (x, y, side) => {
 };
 
 const cutBigHole = (x, y, side) => {
-  downTriangle(x + side * 0.25, y - (side/2 * RISE), side/2, 'white');
+  downTriangle(x + side * 0.25, y - (side/2 * RISE), side/2, 'purple');
 };
 
 const cutSmallHoles = (x, y, side) => {
