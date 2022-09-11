@@ -1,5 +1,5 @@
 const RISE = Math.sin(60 * Math.PI / 180);
-const MAX = Math.max(width, height);
+const MAX = Math.min(width, height);
 
 const bottom = MAX * RISE;
 
