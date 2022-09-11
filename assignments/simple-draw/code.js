@@ -50,7 +50,7 @@ const cutSmallerHoles = (x, y, side, smallest) => {
   cutHoles(x + side/4, y - side/2 * RISE, side/2, smallest);
 };
 
-const sierpinski = (x, y, size, smallest) {
+const sierpinski = (x, y, size, smallest) => {
   // Draw the big blue triangle first
   upTriangle(x, y, size, 'blue');
   cutHoles(x, y, size, smallest);
