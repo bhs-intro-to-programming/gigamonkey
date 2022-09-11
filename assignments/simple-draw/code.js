@@ -61,7 +61,7 @@ const thingy = (top, left, size, divisions) => {
   drawLine(left, top, left, top + size);
   drawLine(left, top + size, left + size, top + size);
   for (let i = 0; i < size / gap; i++) {
-    drawLine(left, top + i * gap, left + i * gap, top + size)
+    drawLine(left, top + i * gap, left + (i+1) * gap, top + size)
   }
 };
 
