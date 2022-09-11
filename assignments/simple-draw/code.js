@@ -99,9 +99,20 @@ const squareOfCircles = (x, y, size, rows, columns) => {
   }
 };
 
+const concentricCircles = (num) => {
+  const d = Math.min(width, height);
+  const step = d / num;
+  let color = 'red';
+  for (let r = d / 2; r > 0; r -= step) {
+    drawFilledCircle(width/2, height/2, r, color);
+    color = color === 'red' ? 'blue' : 'red';
+  }
+}
+
 //fillWithCircles(17);
 
-lineOfCircles(12);
+//lineOfCircles(12);
+concentricCircles(20);
 
 //thingy(50, 10, Math.min(width, height) - 20, 60);
 
