@@ -12,4 +12,4 @@ const downTriangle = (x, y, side, color) => {
 }
 
 upTriangle(0, bottom, MAX, 'blue');
-downTriangle(0 + MAX * 0.25, y + (MAX * RISE/2), MAX/2, 'red');
+downTriangle(0 + MAX * 0.25, bottom - (MAX * RISE/2), MAX/2, 'red');
