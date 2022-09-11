@@ -92,7 +92,7 @@ const squareOfCircles = (x, y, size, rows, columns) => {
   }
 };
 
-fillCircles(17);
+fillWithCircles(17);
 
 //lineOfCircles(12);
 
