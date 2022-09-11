@@ -8,7 +8,7 @@ const upTriangle = (x, y, side, color) => {
 }
 
 const downTriangle = (x, y, side, color) => {
-  drawfilledTriangle(x, y, side/2, y + side * RISE, x + side, y, color);
+  drawFilledTriangle(x, y, side/2, y + side * RISE, x + side, y, color);
 }
 
 //upTriangle(0, bottom, MAX, 'blue');
