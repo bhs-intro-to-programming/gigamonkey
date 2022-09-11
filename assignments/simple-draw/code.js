@@ -30,7 +30,7 @@ hole(x + 2 * side/3, y + 2 * side/3, side/3);
 const RISE = Math.sin(60 * Math.PI / 180);
 const MAX = Math.max(width, height);
 
-drawFilledTriangle(0, height/2 - MAX/2, width/2, MAX * RISE, width, height/2 - MAX/2, 'red');
+drawFilledTriangle(0, 50, width/2, 50 - MAX * RISE, width, 50, 'red');
 
 //drawFilledTriangle(10, 10, 10,height/2, width/2, height/3, 'blue');
 //drawFilledCircle(width/2, height/2, 20, 'red');
