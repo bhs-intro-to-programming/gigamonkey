@@ -143,7 +143,9 @@ const concentricCircles = (num) => {
 }
 
 
-lineOfCircles(12);
+//lineOfCircles(12);
+
+lineOfCirclesAlternating(12);
 
 //thingy(23);
 
