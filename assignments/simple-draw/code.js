@@ -11,5 +11,5 @@ const downTriangle = (x, y, side, color) => {
   drawFilledTriangle(x, y, side/2, y + side * RISE, x + side, y, color);
 }
 
-//upTriangle(0, bottom, MAX, 'blue');
+upTriangle(0, bottom, MAX, 'blue');
 downTriangle(0, 20, MAX, 'red');
