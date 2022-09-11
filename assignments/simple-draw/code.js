@@ -22,7 +22,7 @@ const cutHoles = (x, y, side) => {
 
 const cutBigHole = (x, y, side) => {
   triangles++;
-  downTriangle(x + side * 0.25, y - (side/2 * RISE), side/2, '#ddd');
+  downTriangle(x + side * 0.25, y - (side/2 * RISE), side/2, '#eef');
 };
 
 const cutSmallHoles = (x, y, side) => {
