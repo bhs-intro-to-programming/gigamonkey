@@ -72,8 +72,8 @@ const lineOfCircles = (size) => {
 }
 
 const fillWithCircles = (size) => {
-  let rows = Math.floor(height/size);
-  let columns = Math.floor(width/size);
+  let rows = Math.floor(height/(size * 2));
+  let columns = Math.floor(width/(size * 2));
   let x = (width - (columns * size * 2)) / 2;
   let y = (height - (rows * size * 2)) / 2;
   for (let r = 0; r < rows; r++) {
