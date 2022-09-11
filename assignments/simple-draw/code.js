@@ -35,7 +35,7 @@ const cutHoles = (x, y, side, smallest) => {
  * Cut the big hole out of the middle of the given triangle.
  */
 const cutBigHole = (x, y, side) => {
-  downTriangle(x + side * 0.25, y - (side/2 * RISE), side/2, '#eeeeef');
+  downTriangle(x + side * 0.25, y - (side / 2 * RISE), side / 2, '#eeeeef');
 };
 
 /*
@@ -44,9 +44,9 @@ const cutBigHole = (x, y, side) => {
  */
 const cutSmallerHoles = (x, y, side, smallest) => {
   let t = 0;
-  t += cutHoles(x, y, side/2, smallest);
-  t += cutHoles(x + side/2, y, side/2, smallest);
-  t += cutHoles(x + side/4, y - side/2 * RISE, side/2, smallest);
+  t += cutHoles(x, y, side / 2, smallest);
+  t += cutHoles(x + side / 2, y, side / 2, smallest);
+  t += cutHoles(x + side / 4, y - side / 2 * RISE, side / 2, smallest);
   return t;
 };
 
@@ -62,8 +62,8 @@ const lineOfCircles = (radius) => {
   const d = radius * 2;
   const num = Math.floor(width / d);
   const xOffset = ((width % d) / 2) + radius;
-   for (let i = 0; i < num; i++) {
-    drawFilledCircle(xOffset + i * d, height/2, radius, i % 2 === 0 ? 'blue' : 'red');
+  for (let i = 0; i < num; i++) {
+    drawFilledCircle(xOffset + i * d, height / 2, radius, i % 2 === 0 ? 'blue' : 'red');
   }
 }
 
@@ -80,13 +80,26 @@ const thingy = (lines) => {
 
 const fillWithCircles = (radius) => {
   let d = radius * 2;
-  let rows = Math.floor(height/d);
-  let columns = Math.floor(width/d);
+  let rows = Math.floor(height / d);
+  let columns = Math.floor(width / d);
   let xOffset = (width % d) / 2 + radius;
   let yOffset = (height % d) / 2 + radius;
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < columns; c++) {
-      if (Math.random() < 0.19) {
+      drawCircle(xOffset + c * d, yOffset + r * d, radius, 'blue');
+    }
+  }
+};
+
+const fillWithCirclesRandomFill = (radius, p) => {
+  let d = radius * 2;
+  let rows = Math.floor(height / d);
+  let columns = Math.floor(width / d);
+  let xOffset = (width % d) / 2 + radius;
+  let yOffset = (height % d) / 2 + radius;
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < columns; c++) {
+      if (Math.random() < p) {
         drawFilledCircle(xOffset + c * d, yOffset + r * d, radius, 'blue');
       } else {
         drawCircle(xOffset + c * d, yOffset + r * d, radius, 'blue');
@@ -116,7 +129,7 @@ const concentricCircles = (num) => {
   const step = radius / num;
   let color = 'blue';
   for (let r = radius; r > 0; r -= step) {
-    drawFilledCircle(width/2, height/2, r, color);
+    drawFilledCircle(width / 2, height / 2, r, color);
     color = color === 'red' ? 'blue' : 'red';
   }
 }
@@ -130,6 +143,9 @@ const concentricCircles = (num) => {
 
 //fillWithCircles(17);
 
-squareOfCircles(27);
+
+fillWithCirclesRandomFill(17, 0.19);
+
+//squareOfCircles(27);
 
 //sierpinski(0, BOTTOM, MAX, 1);
