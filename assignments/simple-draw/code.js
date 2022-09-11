@@ -116,7 +116,7 @@ const concentricCircles = (num) => {
 
 //lineOfCircles(12);
 
-thingy(17);
+thingy(23);
 
 //concentricCircles(11);
 
