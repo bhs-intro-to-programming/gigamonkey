@@ -56,10 +56,10 @@ const sierpinski = (x, y, size, smallest) => {
   console.log(`${t} triangles.`);
 };
 
-const thingy = (top, left, bottom, right, gap) => {
-  drawLine(left, top, left, bottom);
+const thingy = (top, left, size, gap) => {
+  drawLine(left, top, left, top + size);
 };
 
-thingy(50, 10, 250, 210, 5);
+thingy(50, 10, Math.min(width, height) - 20, 5);
 
 //sierpinski(0, BOTTOM, MAX, 1);
