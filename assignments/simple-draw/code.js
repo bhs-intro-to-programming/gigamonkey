@@ -31,4 +31,4 @@ let side = MAX;
 upTriangle(0, bottom, side, 'blue');
 cutBigHole(0, bottom, side);
 
-//cutSmallHoles(0, bottom, side);
+cutSmallHoles(0, bottom, side);
