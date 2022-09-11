@@ -1,9 +1,6 @@
 const RISE = Math.sin(60 * Math.PI / 180);
 const MAX = Math.min(width, height);
-
 const bottom = height - (height - MAX * RISE) * 0.75;
-
-let triangles = 1;
 
 /*
  * Draw a filled equilateral triange pointing up with bottom-left corner at 
@@ -54,7 +51,6 @@ const cutSmallerHoles = (x, y, side, smallest) => {
 };
 
 const sierpinski = (x, y, size, smallest) => {
-  // Draw the big blue triangle first
   upTriangle(x, y, size, 'blue');
   const t = cutHoles(x, y, size, smallest);
   console.log(`${t} triangles.`);
