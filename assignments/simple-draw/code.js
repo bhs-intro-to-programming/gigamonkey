@@ -56,7 +56,8 @@ const sierpinski = (x, y, size, smallest) => {
   console.log(`${t} triangles.`);
 };
 
-const thingy = (top, left, size, gap) => {
+const thingy = (top, left, size, divisions) => {
+  let gap = size / divisions;
   drawLine(left, top, left, top + size);
   drawLine(left, top + size, left + size, top + size);
   for (let i = 0; i < size / gap; i++) {
