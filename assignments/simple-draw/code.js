@@ -81,8 +81,8 @@ const fillWithCircles = (radius) => {
   let d = radius * 2;
   let rows = Math.floor(height/d);
   let columns = Math.floor(width/d);
-  let xOffset = (height % d) / 2 + radius;
-  let yOffset = (width % d) / 2 + radius;
+  let xOffset = (width % d) / 2 + radius;
+  let yOffset = (heigh % d) / 2 + radius;
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < columns; c++) {
       if (Math.random() < 0.19) {
