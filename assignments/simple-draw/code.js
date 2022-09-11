@@ -23,7 +23,7 @@ const cutBigHole = (x, y, side) => {
 };
 
 const cutSmallHoles = (x, y, side) => {
-  cutBigHole(x, y, side/2);
+  cutHoles(x, y, side/2);
   cutBigHole(x + side/2, y, side/2);
   cutBigHole(x + side/4, y - side/2 * RISE, side/2);
 };
