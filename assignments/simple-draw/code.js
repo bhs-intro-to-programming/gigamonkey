@@ -95,10 +95,9 @@ const fillWithCircles = (radius) => {
 };
 
 const squareOfCircles = (radius) => {
-  const size = Math.min(width, height);
   const d = radius * 2;
   const num = Math.floor(Math.min(width, height) / d);
-  const xOffset = (width % (num * d)) / 2 + radius;
+  const xOffset = (width % d) / 2 + radius;
   const yOffset = (height % (num * d)) / 2 + radius;
   for (let r = 0; r < num; r++) {
     for (let c = 0; c < num; c++) {
