@@ -24,8 +24,8 @@ const cutBigHole = (x, y, side) => {
 
 const cutSmallHoles = (x, y, side) => {
   cutHoles(x, y, side/2);
-  cutBigHole(x + side/2, y, side/2);
-  cutBigHole(x + side/4, y - side/2 * RISE, side/2);
+  cutHoles(x + side/2, y, side/2);
+  cutHoles(x + side/4, y - side/2 * RISE, side/2);
 };
 
 let side = MAX;
