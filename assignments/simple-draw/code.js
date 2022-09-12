@@ -170,6 +170,6 @@ const checkerBoard = (dim) => {
 
 //squareOfCircles(27);
 
-checkerBoard(8);
+checkerBoard(7);
 
 //sierpinski(0, BOTTOM, MAX, 1);
