@@ -23,3 +23,5 @@
  *
  *  clear()
  */
+
+drawFilledCircle(width/2, hight/2, 50, 'blue');
