@@ -24,4 +24,4 @@
  *  clear()
  */
 
-drawFilledCircle(width/2, hight/2, 50, 'blue');
+drawFilledCircle(width/2, height/2, 50, 'blue');
