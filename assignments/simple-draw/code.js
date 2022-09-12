@@ -142,6 +142,18 @@ const concentricCircles = (num) => {
   }
 }
 
+const checkerBoard = (dim) => {
+  const size = Math.min(width, height);
+  const sq = Math.floor(size / dim);
+  const xOffset = width % (sq * dim) / 2;
+  const yOffset = height % (sq * dim) / 2;
+  for (let r = 0; r < dim; r++) {
+    for (let c = 0; c < dim; c++) {
+      const color = (r + c) % 2 === 0 ? 'red' : 'blue';
+      drawFilledRect(xOffset + c * sq, yOffset + r * sq, color);
+    }
+  }
+}
 
 //lineOfCircles(12);
 
@@ -158,4 +170,6 @@ const concentricCircles = (num) => {
 
 //squareOfCircles(27);
 
-sierpinski(0, BOTTOM, MAX, 1);
+checkerBoard(8);
+
+//sierpinski(0, BOTTOM, MAX, 1);
