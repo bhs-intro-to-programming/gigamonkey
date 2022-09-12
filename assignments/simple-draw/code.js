@@ -149,7 +149,7 @@ const checkerBoard = (dim) => {
   const yOffset = height % (sq * dim) / 2;
   for (let r = 0; r < dim; r++) {
     for (let c = 0; c < dim; c++) {
-      const color = (r + c) % 2 === 0 ? 'red' : 'blue';
+      const color = (r + c) % 2 === 0 ? 'blue' : 'red';
       drawFilledRect(xOffset + c * sq, yOffset + r * sq, sq, sq, color);
     }
   }
