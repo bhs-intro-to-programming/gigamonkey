@@ -156,20 +156,12 @@ const checkerBoard = (dim) => {
 }
 
 //lineOfCircles(12);
-
 //lineOfCirclesAlternating(12);
-
 //thingy(23);
-
 //concentricCircles(11);
-
 //fillWithCircles(17);
-
-
 //fillWithCirclesRandomFill(17, 0.19);
-
 //squareOfCircles(27);
+// checkerBoard(8);
 
-checkerBoard(8);
-
-//sierpinski(0, BOTTOM, MAX, 1);
+sierpinski(0, BOTTOM, MAX, 1);
