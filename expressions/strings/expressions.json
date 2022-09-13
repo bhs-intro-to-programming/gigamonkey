@@ -12,5 +12,12 @@
     "answer": "'f'",
     "correct": false,
     "timestamp": 1663107401478
+  },
+  {
+    "name": "First character",
+    "canonical": "s[0]",
+    "answer": "'b'",
+    "correct": false,
+    "timestamp": 1663107452983
   }
 ]
