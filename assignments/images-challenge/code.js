@@ -24,4 +24,4 @@
  *  clear()
  */
 
-drawCircle(100, 0, 100, 'blue');
+drawCircle(100, 100, 100, 'blue');
