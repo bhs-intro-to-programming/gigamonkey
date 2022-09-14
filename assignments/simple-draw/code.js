@@ -172,14 +172,14 @@ const szeting = () => {
   const r = 24
   let d = r * 2
   while (d < width) {
-    d = d + r * 2
+    d += r * 2
   }
 
   const center = width - d
   let x = center + r * 2
   while (x < width) {
     drawFilledCircle(x - center / 2, height / 2, r, 'red')
-    x = x + r * 2;
+    x += r * 2;
   }
 
 };
