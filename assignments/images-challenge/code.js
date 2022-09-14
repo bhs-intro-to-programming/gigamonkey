@@ -24,5 +24,5 @@
  *  clear()
  */
 
-drawCircle(100, 100, 100, 'blue');
+drawCircle(100, 200, 100, 'blue');
 drawCircle(width - 100, height - 100, 100, 'red');
