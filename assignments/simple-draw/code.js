@@ -170,7 +170,7 @@ const checkerBoard = (dim) => {
 const szeting = (r) => {
 
   const d = r * 2;
-  const totalWidth = Math.ceiling(width / d) * d;
+  const totalWidth = Math.ceil(width / d) * d;
   const center = width - totalWidth;
 
   let x = center + r * 2  - (center / 2);
