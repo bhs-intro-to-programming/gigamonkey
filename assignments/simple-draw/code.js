@@ -167,9 +167,8 @@ const checkerBoard = (dim) => {
 //sierpinski(0, BOTTOM, MAX, 1);
 
 
-const szeting = () => {
+const szeting = (r) => {
 
-  const r = 24
   const totalWidth = (Math.floor(width / (r * 2)) + 1) * r * 2;
 
   const center = width - totalWidth;
@@ -183,4 +182,4 @@ const szeting = () => {
 
 };
 
-szeting();
+szeting(13);
