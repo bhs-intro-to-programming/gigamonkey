@@ -174,6 +174,8 @@ const szeting = () => {
   while (d < width) {
     d += r * 2
   }
+  console.log(width);
+  console.log(d);
 
   const center = width - d
   let x = center + r * 2
