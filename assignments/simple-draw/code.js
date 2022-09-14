@@ -177,7 +177,6 @@ const szeting = (r) => {
   let x = center + r * 2  - (center / 2);
   console.log(x);
   while (x < width - (center / 2)) {
-    console.log(x);
     drawFilledCircle(x, height / 2, r, 'red')
     x += r * 2;
   }
