@@ -31,9 +31,7 @@
 //
 // Feel free to play around in the REPL to make sure you understand how this operator works.
 
-// Luke's code.
-function advancedPigLatin(str){
-  var volu1 = str.search(/[aeiou]/)
-  return str.substring(volu1) + str.substring(0, volu1) + String.fromCharCode(119*(volu1.toString().replace(volu1, (2*volu1).toString()))).replace("\u0000", "w").replace("î", "") + "ay" 
-  
-}
+// Riley's code
+const advancedPigLatin =(s) => {
+  return s.substring(s.search(/[aeiou]/)) + s.substring(0, s.search(/[aeiou]/)) + 'w'.substring(s.search(/[aeiou]/)) + 'ay';
+  }
