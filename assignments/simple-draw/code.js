@@ -16,17 +16,17 @@ while (rect >= 2 * height / 3) {
 var rays = 500
 while (rays >= width - 2 * width / 7) {
   drawLine(0, 0, rays, height, 'rgba(242,242,37,.1', 1)
-  var rays = rays - 1
+  rays = rays - 1
 }
 var rays2 = 125
 while (rays2 >= width * 0) {
   drawLine(0, 0, rays2, height, 'rgba(242,242,37,.1', 1)
-  var rays2 = rays2 - 1
+  rays2 = rays2 - 1
 }
 var rays3 = 3000
 while (rays3 >= 3 * width) {
   drawLine(0, 0, rays3, height, 'rgba(242,242,37,.1', 1)
-  var rays3 = rays3 - 6
+  rays3 = rays3 - 6
 }
 drawFilledCircle(0, 0, 100, 'rgba(250,220,15,1)')
 
