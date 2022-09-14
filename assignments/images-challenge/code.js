@@ -25,3 +25,4 @@
  */
 
 drawCircle(100, 100, 100, 'blue');
+drawCircle(width, height, 100, 'red');
