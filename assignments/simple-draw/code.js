@@ -170,9 +170,10 @@ const checkerBoard = (dim) => {
 const szeting = () => {
 
   const r = 24
-  const foo = (Math.floor(width / (r * 2)) + 1) * r * 2;
+  const totalWidth = (Math.floor(width / (r * 2)) + 1) * r * 2;
 
-  const center = width - foo;
+  const center = width - totalWidth;
+  console.log(center);
   let x = center + r * 2
   while (x < width) {
     drawFilledCircle(x - center / 2, height / 2, r, 'red')
