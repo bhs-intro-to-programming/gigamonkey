@@ -28,3 +28,4 @@
 //drawCircle(width - 100, height - 100, 100, 'red');
 
 drawCircle(50, height/2, 25, 'red');
+drawCircle(50 + 50, height/2, 25, 'red');
