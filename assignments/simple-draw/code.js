@@ -167,7 +167,7 @@ const checkerBoard = (dim) => {
 //sierpinski(0, BOTTOM, MAX, 1);
 
 
-const szeting () => {
+const szeting = () => {
 
   const bigness = 100
   let dist = bigness * 2
