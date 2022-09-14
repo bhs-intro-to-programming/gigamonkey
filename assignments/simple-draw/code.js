@@ -169,7 +169,7 @@ const checkerBoard = (dim) => {
 
 const szeting = () => {
 
-  const bigness = 100
+  const bigness = 24
   let dist = bigness * 2
   while (dist < width) {
     dist = dist + bigness * 2
