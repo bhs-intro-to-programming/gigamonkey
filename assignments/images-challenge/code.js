@@ -30,3 +30,5 @@
 drawCircle(50, height/2, 25, 'red');
 drawCircle(50 + 50, height/2, 25, 'red');
 drawCircle(50 + 50 + 50, height/2, 25, 'red');
+
+drawLine(0, 0, width/2, height/2, 'black');
