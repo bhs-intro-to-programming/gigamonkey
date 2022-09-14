@@ -173,11 +173,11 @@ const szeting = (r) => {
   const totalWidth = Math.ceil(width / d) * d;
   const center = width - totalWidth;
 
-  let x = center + r * 2  - (center / 2);
+  let x = center + d - (center / 2);
   console.log(x);
   while (x < width - (center / 2)) {
     drawFilledCircle(x, height / 2, r, 'red')
-    x += r * 2;
+    x += d;
   }
 
 };
