@@ -25,4 +25,4 @@
  */
 
 drawCircle(100, 100, 100, 'blue');
-drawCircle(width - 100, height, 100, 'red');
+drawCircle(width - 100, height - 100, 100, 'red');
