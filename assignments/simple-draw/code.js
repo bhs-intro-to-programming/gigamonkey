@@ -181,7 +181,7 @@ const szeting = () => {
   console.log(d/(r * 2));
   console.log(foo);
 
-  const center = width - d
+  const center = width - foo;
   let x = center + r * 2
   while (x < width) {
     drawFilledCircle(x - center / 2, height / 2, r, 'red')
