@@ -19,5 +19,12 @@
     "answer": "'foo'[0]",
     "correct": true,
     "timestamp": 1663278890207
+  },
+  {
+    "name": "Length",
+    "canonical": "3",
+    "answer": "3",
+    "correct": true,
+    "timestamp": 1663278920533
   }
 ]
