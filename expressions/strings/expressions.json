@@ -117,5 +117,12 @@
     "answer": "'foo'[0]",
     "correct": true,
     "timestamp": 1663275565284
+  },
+  {
+    "name": "Length",
+    "canonical": "3",
+    "answer": "3",
+    "correct": true,
+    "timestamp": 1663275567542
   }
 ]
