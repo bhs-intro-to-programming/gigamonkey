@@ -103,5 +103,12 @@
     "answer": "s.substring(0, 3).toUpperCase() + s.substring(3).toLowerCase()",
     "correct": true,
     "timestamp": 1663108140986
+  },
+  {
+    "name": "Concatenate (smoosh) strings",
+    "canonical": "'foobar'",
+    "answer": "'foo' + 'bar'",
+    "correct": true,
+    "timestamp": 1663275560755
   }
 ]
