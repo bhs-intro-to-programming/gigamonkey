@@ -110,5 +110,12 @@
     "answer": "'foo' + 'bar'",
     "correct": true,
     "timestamp": 1663275560755
+  },
+  {
+    "name": "Indexing",
+    "canonical": "'f'",
+    "answer": "'foo'[0]",
+    "correct": true,
+    "timestamp": 1663275565284
   }
 ]
