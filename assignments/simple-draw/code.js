@@ -182,25 +182,4 @@ const szeting = (r) => {
 
 };
 
-//szeting(13);
-
-drawLine(0, 0, width, height, 'red');
-
-drawCircle(width / 2, height / 2, 10, 'blue');
-
-drawRect(50, 50, 60, 40, 'black');
-
-drawFilledCircle(width - 50, height - 50, 50, 'red');
-
-drawFilledRect(5, height - 20, 45, 15, 'purple');
-
-drawTriangle(width * 0.25, 10, width * 0.75, 20, width * 0.5, 80, 'blue');
-
-drawFilledTriangle(
-  width * 0.25, 
-  height - 10, 
-  width * 0.75, 
-  height - 20, 
-  width * 0.5, 
-  height - 80, 
-  'blue');
+drawCircle(width/2, height/2, 50, 'blue');
