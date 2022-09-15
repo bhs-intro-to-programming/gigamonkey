@@ -182,7 +182,7 @@ const szeting = (r) => {
 
 };
 
-if (false) {
+if (true) {
 drawFilledCircle(width/2, height/2, 50, 'blue');
 drawRect(width * 0.25, 50, width * 0.5, 100, 'red');
 
