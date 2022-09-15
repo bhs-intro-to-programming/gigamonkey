@@ -187,3 +187,4 @@ drawRect(width * 0.25, 50, width * 0.5, 100, 'red');
 
 drawCircle(35, height - 50, 30, 'blue');
 drawCircle(width - 70, height - 50, 30, 'blue');
+drawLine(35, height - 50, width - 70, heigt - 50, 'black');
