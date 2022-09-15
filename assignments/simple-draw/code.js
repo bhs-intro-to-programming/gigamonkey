@@ -185,4 +185,4 @@ const szeting = (r) => {
 drawFilledCircle(width/2, height/2, 50, 'blue');
 drawRect(width * 0.25, 50, width * 0.5, 100, 'red');
 
-drawCircle(25, height - 50, 30, 'blue');
+drawCircle(35, height - 50, 30, 'blue');
