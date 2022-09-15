@@ -185,6 +185,6 @@ const szeting = (r) => {
 drawFilledCircle(width/2, height/2, 50, 'blue');
 drawRect(width * 0.25, 50, width * 0.5, 100, 'red');
 
-drawCircle(35, height - 50, 30, 'blue');
+drawCircle(55, height - 50, 30, 'blue');
 drawCircle(width - 70, height - 150, 30, 'blue');
-drawLine(35, height - 50, width - 70, height - 150, 'black');
+drawLine(55, height - 50, width - 70, height - 150, 'black');
