@@ -24,11 +24,52 @@
  *  clear()
  */
 
-//drawCircle(100, 200, 100, 'blue');
-//drawCircle(width - 100, height - 100, 100, 'red');
+const drawCircleLine = (y, r, color) => {
+  for (let n = 0; r * n < width - (r * 2); n = n + 2) {
+    let x = 0 + r * 2
+    drawFilledCircle(x + r * n, y, r, color)
+  }
+}
+//drawCircleLine(280, 10, 'red')
 
-drawCircle(50, height/2, 25, 'red');
-drawCircle(50 + 50, height/2, 25, 'red');
-drawCircle(50 + 50 + 50, height/2, 25, 'red');
+const drawSpicyCircleLine = (y, r, color) => {
+  for (let n = 0; r * n < width - (r * 2); n = n + 2) {
+    let x = 0 + r * 2
+    drawFilledCircle(x + r * n, y, r, color)
+    if (n % 4 === 0) {
+      color = 'blue'
+    } else {
+      color = 'red'
+    }
+  }
+}
+//drawSpicyCircleLine(280, 10, 'red')
 
-drawLine(0, 0, width/2, height/2, 'black');
+const drawSpicyCircles = (c, color) => {
+  for (let r = width / 2; c === c; r = r - width / 2 / c) {
+    drawFilledCircle(width / 2, height / 2, r, color)
+    if (color === 'red') {
+      color = 'blue'
+    } else {
+      color = 'red'
+    }
+  }
+}
+//drawSpicyCircles(11, 'blue')
+
+const drawSpicyCheckers = (n) => {
+  for (let x = 0, ; x === width; x = x + width / n) {
+    for (let y = 0; y === height; y = y + width / n) {
+      drawFilledRect(x, y, width / n, width / n, 'blue')
+      if (color === 'red') {
+        color = 'blue'
+      } else {
+        color = 'red'
+      }
+    }
+  }
+}
+drawSpicyCheckers(8)
+
+ //drawFilledRect(0, 0, width, height, 'blue')
+ //drawFilledRect(x, 0, width/ n, height/ n, 'red')
