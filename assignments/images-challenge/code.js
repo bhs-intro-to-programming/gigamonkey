@@ -24,52 +24,45 @@
  *  clear()
  */
 
-const drawCircleLine = (y, r, color) => {
-  for (let n = 0; r * n < width - (r * 2); n = n + 2) {
-    let x = 0 + r * 2
-    drawFilledCircle(x + r * n, y, r, color)
-  }
-}
-//drawCircleLine(280, 10, 'red')
 
-const drawSpicyCircleLine = (y, r, color) => {
-  for (let n = 0; r * n < width - (r * 2); n = n + 2) {
-    let x = 0 + r * 2
-    drawFilledCircle(x + r * n, y, r, color)
-    if (n % 4 === 0) {
-      color = 'blue'
-    } else {
-      color = 'red'
+
+const concentricCircle = (x) => {
+  for (let x = 0; x < 45; x++)
+    if (x * 5.5 % 2 == 0) {
+      drawCircle(width / 2, height / 2, x * 5.5, 'red', 15)
     }
-  }
-}
-//drawSpicyCircleLine(280, 10, 'red')
-
-const drawSpicyCircles = (c, color) => {
-  for (let r = width / 2; c === c; r = r - width / 2 / c) {
-    drawFilledCircle(width / 2, height / 2, r, color)
-    if (color === 'red') {
-      color = 'blue'
-    } else {
-      color = 'red'
+    else {
+      drawCircle(width / 2, height / 2, x * 5.5, 'blue', 6)
     }
+  if (width > x * 10) {
+    drawCircle(width / 2, height / 2, x * 5.5, 'red', 6)
   }
 }
-//drawSpicyCircles(11, 'blue')
 
-const drawSpicyCheckers = (n) => {
-  for (let x = 0, ; x === width; x = x + width / n) {
-    for (let y = 0; y === height; y = y + width / n) {
-      drawFilledRect(x, y, width / n, width / n, 'blue')
-      if (color === 'red') {
-        color = 'blue'
-      } else {
-        color = 'red'
-      }
+concentricCircle();
+
+const lineOfCircles = () => {
+
+  for (let x = 0; x < 49.5; x++)
+    if (x > length)
+      drawFilledCircle(x * 10, height / 2, 5, 'red')
+}
+
+//lineOfCircles();
+
+
+const lineOfCirclesAlternatingColors = (x) => {
+
+  for (let x = 0; x < 49.5; x++)
+    if (x += 1) {
+      if (x > length)
+      drawFilledCircle(x * 10, height / 2, 5, 'blue')
     }
-  }
+    else {
+      if (x > length)
+      drawFilledCircle(x * 10, height / 2, 5, 'red')
+    }
+  
 }
-drawSpicyCheckers(8)
 
- //drawFilledRect(0, 0, width, height, 'blue')
- //drawFilledRect(x, 0, width/ n, height/ n, 'red')
+//lineOfCirclesAlternatingColors()
