@@ -13,6 +13,10 @@ const fib2 = (n) => {
   return a;
 };
 
+const x = { a: 1, b: 2, c: 3 };
+const y = [ 'a', 'b', 'c'];
+
+
 const add=(a,b)=>a+b;
 
 const MAX_FIB_N = 1476;
