@@ -13,7 +13,7 @@ const fib2 = (n) => {
   return a;
 };
 
-const add = (a, b) => a + b;
+const add=(a,b)=>a+b;
 
 const MAX_FIB_N = 1476;
 
