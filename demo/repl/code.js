@@ -26,7 +26,7 @@ const MAX_FIB = fib2(MAX_FIB_N);
 const foo = () => { console.log(this.value); };
 
 const bar = function () { console.log(this.value); };
-
+/*
 const x = { 
   value: 10, 
   baz: () => console.log(this),
@@ -35,3 +35,4 @@ const x = {
 };
 x.foo = foo;
 x.bar = bar;
+*/
