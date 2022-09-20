@@ -58,7 +58,7 @@ const drawTarget = (numRing) => {
 
 const drawCheckers = (edgeNum) => {
   var checkWidth = Math.min(width, height);
-  var sqrWidth = checkWidth / edgeNum / 2;
+  var sqrWidth = checkWidth / edgeNum;
   var color;
   for (let i = 0; i < edgeNum; i++) {
     for (let j = 0; j < edgeNum + 1; j++) {
@@ -119,11 +119,11 @@ const drawSqrCrc = (r) => {
   }
 }
 
-//drawLineCircle(10);
-//drawLineCircleAlternating(10);
+// drawLineCircle(10);
+// drawLineCircleAlternating(10);
 // drawTarget(12);
-drawCheckers(10);
+// drawCheckers(10);
 // drawLineyCurve(150);
-// drawRectCircle(20);
+drawRectCircle(20);
 // drawRanCircle(10, 0.1);
 // drawSqrCrc(20);
