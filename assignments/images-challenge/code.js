@@ -58,7 +58,7 @@ const drawTarget = (numRing) => {
 
 const drawCheckers = (edgeNum) => {
   var checkWidth = Math.min(width, height);
-  var sqrWidth = checkWidth / edgeNum;
+  var sqrWidth = checkWidth / edgeNum / 2;
   var color;
   for (let i = 0; i < edgeNum; i++) {
     for (let j = 0; j < edgeNum + 1; j++) {
