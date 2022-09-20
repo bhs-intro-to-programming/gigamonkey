@@ -25,15 +25,14 @@
  */
 
 const drawLineCircle = (r) => {
-  for(let i = 0; r * 2 * i < width; i++) {
+  for (let i = 0; r * 2 * i < width; i++) {
     drawFilledCircle(r * 2 * i, 200, r, 'red');
   }
 }
 
-//drawLineCircle(10);
 
 const drawLineCircleAlternating = (r) => {
-  for(let i = 0; r * 2 * i < width; i++) {
+  for (let i = 0; r * 2 * i < width; i++) {
     let color;
     if (i % 2 === 1) {
       color = 'red';
@@ -44,7 +43,6 @@ const drawLineCircleAlternating = (r) => {
   }
 }
 
-// drawLineCircleAlternating(10);
 
 const drawTarget = (numRing) => {
   for (let i = 0; i < numRing; i++) {
@@ -58,7 +56,6 @@ const drawTarget = (numRing) => {
   }
 }
 
-//drawTarget(12);
 
 const drawCheckers = (edgeNum) => {
   var checkWidth = Math.min(width, height);
@@ -80,7 +77,6 @@ const drawCheckers = (edgeNum) => {
   }
 }
 
-//drawCheckers(10);
 
 const drawLineyCurve = (numLines) => {
   let heightDist;
@@ -92,16 +88,13 @@ const drawLineyCurve = (numLines) => {
   }
 }
 
-//drawLineyCurve(150);
 
 const drawRectCircle = (r) => {
-  for(let i = 0; r * 2 * i < width; i++) {
-    for(let j = 0; r * 2 * j < height; j++)
-    drawCircle(r * 2 * i, r * 2 * j, r, 'red', 1);
+  for (let i = 0; r * 2 * i < width; i++) {
+    for (let j = 0; r * 2 * j < height; j++)
+      drawCircle(r * 2 * i, r * 2 * j, r, 'red', 1);
   }
 }
-
-//drawRectCircle(20);
 
 const drawRanCircle = (r, prob) => {
   for (let i = 0; r * 2 * i < width; i++) {
@@ -116,11 +109,10 @@ const drawRanCircle = (r, prob) => {
   }
 }
 
-// drawRanCircle(10, 0.1);
 
 const drawSqrCrc = (r) => {
   var checkLength = Math.min(width, height) - 1 * (r * 2);
-  for(let i = 0; r * 2 * i < checkLength; i++) {
+  for (let i = 0; r * 2 * i < checkLength; i++) {
     drawCircle(r * 2 * i + r * 2, height / 2 - checkLength / 2, r, 'red', 1);
     drawCircle(r * 2 * i + r * 2, height / 2 + checkLength / 2 - 20, r, 'red', 1);
     drawCircle(width / 2 + checkLength / 2, r * 2 * i + 70, r, 'red', 1);
@@ -128,4 +120,11 @@ const drawSqrCrc = (r) => {
   }
 }
 
-drawSqrCrc(20);
+// drawLineCircle(10);
+// drawLineCircleAlternating(10);
+// drawTarget(12);
+// drawCheckers(10);
+// drawLineyCurve(150);
+// drawRectCircle(20);
+drawRanCircle(10, 0.1);
+// drawSqrCrc(20);
