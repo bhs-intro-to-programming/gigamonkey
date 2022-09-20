@@ -125,5 +125,5 @@ const drawSqrCrc = (r) => {
 // drawCheckers(10);
 // drawLineyCurve(150);
 // drawRectCircle(20);
-drawRanCircle(10, 1.0);
+drawRanCircle(10, 0.0);
 // drawSqrCrc(20);
