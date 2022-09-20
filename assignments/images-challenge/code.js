@@ -120,8 +120,8 @@ const drawSqrCrc = (r) => {
   }
 }
 
-// drawLineCircle(10);
-drawLineCircleAlternating(10);
+drawLineCircle(10);
+//drawLineCircleAlternating(10);
 // drawTarget(12);
 // drawCheckers(10);
 // drawLineyCurve(150);
