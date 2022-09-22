@@ -38,5 +38,5 @@ const xadvancedPigLatin = (s) => {
 
 const pigLatin = (s) => {
   const i = s.search(/[aeiou]/);
-  return s.substring(i) + s.substring(0, i) + ay;
+  return s.substring(i) + s.substring(0, i) + 'ay';
 };
