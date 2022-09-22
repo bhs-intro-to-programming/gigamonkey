@@ -31,17 +31,3 @@
 //
 // Feel free to play around in the REPL to make sure you understand how this operator works.
 
-// Riley's code
-const xadvancedPigLatin = (s) => {
-  return s.substring(s.search(/[aeiou]/)) + s.substring(0, s.search(/[aeiou]/)) + 'w'.substring(s.search(/[aeiou]/)) + 'ay';
-}
-
-const pigLatin = (s) => {
-  const i = s.search(/[aeiou]/);
-  return s.substring(i) + s.substring(0, i) + 'ay';
-};
-
-// A "wamazing" way to do advanced Pig Latin.
-const advancedPigLatin = (s) => {
-  return pigLatin(s.search(/[aeiou]/) === 0 ? 'w' + s : s);
-}
