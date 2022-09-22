@@ -53,3 +53,5 @@
 const fillWithCircles = (r) => {
   drawCircle(100, 100, r, 'blue');
 };
+
+fillWithCircles(23);
