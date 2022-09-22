@@ -37,6 +37,5 @@ const pigLatin = (word) => {
 };
 
 const advancedPigLatin = (word) => {
-  const i = word.search(/[aeiou]/);
-  return i === 0  ? word + 'way' : pigLatin(word);
+  return pigLatin(word.search(/[aeiou]/) === 0 ? 'w' + word : word);
 };
