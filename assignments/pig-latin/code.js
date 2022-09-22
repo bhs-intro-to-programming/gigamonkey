@@ -41,6 +41,7 @@ const pigLatin = (s) => {
   return s.substring(i) + s.substring(0, i) + 'ay';
 };
 
+// A "wamazing" way to do advanced Pig Latin.
 const advancedPigLatin = (s) => {
   return pigLatin(s.search(/[aeiou]/) === 0 ? 'w' + s : s);
 }
