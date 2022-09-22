@@ -48,3 +48,8 @@
    Note that the coordinate system goes from 0,0 at the top left corner to
    width,height at the bottom right corner.
  */
+
+
+const fillWithCircles = (r) => {
+  drawCircle(100, 100, r, 'blue');
+};
