@@ -48,9 +48,3 @@
    Note that the coordinate system goes from 0,0 at the top left corner to
    width,height at the bottom right corner.
  */
-drawFilledCircle(width/2, height/2, 50, 'blue')
-drawRect(width/4, 50, width/2, 100, 'red')
-drawCircle(55, height-50, 30, 'blue')
-drawCircle(width-70, height-150, 30, 'blue')
-drawLine(55, height-50, width-70, height-150, 'black')
-drawTriangle(width/4+5, 145, width/2, 55, width*0.75-5, 145, 'blue')
