@@ -57,7 +57,7 @@ const fillWithCircles = (r) => {
   const inRow = (width - extraWidth) / d;
   const inColumn = (height - extraHeight) / d;
   for (let row = 0; row < inRow; row++) {
-    for (let col = 0; col < inCol; col++) {
+    for (let col = 0; col < inColumn; col++) {
       drawCircle(extraWidth / 2 + row * d, extraHeight / 2 + col * d, r, 'blue');
     }
   }
