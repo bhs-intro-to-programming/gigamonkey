@@ -116,22 +116,6 @@ const fillWithCirclesRandomFill = (radius, p) => {
   }
 };
 
-const OLDsquareOfCircles = (radius) => {
-  const d = radius * 2;
-  const num = Math.floor(Math.min(width, height) / d);
-  const xOffset = (width % (num * d)) / 2 + radius;
-  const yOffset = (height % (num * d)) / 2 + radius;
-  for (let r = 0; r < num; r++) {
-    for (let c = 0; c < num; c++) {
-      const topOrBottom = r === 0 || r === (num - 1);
-      const side = c === 0 || c === (num - 1);
-      if (topOrBottom || side) {
-        drawCircle(xOffset + r * d, yOffset + c * d, radius, 'blue');
-      }
-    }
-  }
-};
-
 const squareOfCircles = (radius) => {
   const d = radius * 2;
   const num = Math.floor(Math.min(width, height) / d);
@@ -139,6 +123,8 @@ const squareOfCircles = (radius) => {
   const yOffset = (height % (num * d)) / 2 + radius;
   for (let r = 0; r < num; r++) {
     for (let c = 0; c < num; c++) {
+      // We only want to draw the circle if we're in the 0th or
+      // the (num - 1)th row or column.
       if ((r % (num - 1)) * (c % (num - 1)) === 0) {
         drawCircle(xOffset + r * d, yOffset + c * d, radius, 'blue');
       }
