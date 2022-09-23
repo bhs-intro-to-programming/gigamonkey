@@ -116,7 +116,7 @@ const fillWithCirclesRandomFill = (radius, p) => {
   }
 };
 
-const squareOfCircles = (radius) => {
+const OLDsquareOfCircles = (radius) => {
   const d = radius * 2;
   const num = Math.floor(Math.min(width, height) / d);
   const xOffset = (width % (num * d)) / 2 + radius;
@@ -132,6 +132,20 @@ const squareOfCircles = (radius) => {
   }
 };
 
+const squareOfCircles = (radius) => {
+  const d = radius * 2;
+  const num = Math.floor(Math.min(width, height) / d);
+  const xOffset = (width % (num * d)) / 2 + radius;
+  const yOffset = (height % (num * d)) / 2 + radius;
+  for (let r = 0; r < num; r++) {
+    for (let c = 0; c < num; c++) {
+      if ((r % (num - 1)) * (c % (num - 1)) === 0) {
+        drawCircle(xOffset + r * d, yOffset + c * d, radius, 'blue');
+      }
+    }
+  }
+};
+
 const concentricCircles = (num) => {
   const radius = Math.min(width, height) / 2;
   const step = radius / num;
@@ -140,7 +154,7 @@ const concentricCircles = (num) => {
     drawFilledCircle(width / 2, height / 2, r, color);
     color = color === 'red' ? 'blue' : 'red';
   }
-}
+};
 
 const checkerBoard = (dim) => {
   const size = Math.min(width, height);
@@ -161,7 +175,7 @@ const checkerBoard = (dim) => {
 //concentricCircles(11);
 //fillWithCircles(17);
 //fillWithCirclesRandomFill(17, 0.19);
-//squareOfCircles(27);
+squareOfCircles(27);
 //checkerBoard(13);
 
 //sierpinski(0, BOTTOM, MAX, 1);
