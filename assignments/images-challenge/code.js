@@ -33,4 +33,4 @@ const drawmandel = (iterations) => {
   }
 }
 
-drawmandel(2)
+drawmandel(3)
