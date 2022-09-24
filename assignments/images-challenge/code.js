@@ -69,14 +69,4 @@ const fillWithCircles = (r) => {
   }
 };
 
-//fillWithCircles(23);
-
-const theoFillwithcircles = (r) => {
-  const d = r * 2
-  const numCircles = Math.floor(width / d);
-  for (let x = 1; x < numCircles; x++) {
-    drawFilledCircle(x * r * 2, 300, r, 'red')
-
-  }
-}
-theoFillwithcircles(12);
+fillWithCircles(23);
