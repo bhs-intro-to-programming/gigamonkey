@@ -22,7 +22,7 @@ const drawmandel = (iterations) => {
   let xmath = 0
   let ymath = 0
   for (let x = 0; x < width; x++) {
-    for (let y = 0; y < width; y++) {
+    for (let y = 0; y < height; y++) {
       //console.log(isPixelInSet([xmath, ymath], iterations))
       if (isPixelInSet([xmath, ymath], iterations)) {
         drawFilledRect(x, y, 1, 1, 'black')
