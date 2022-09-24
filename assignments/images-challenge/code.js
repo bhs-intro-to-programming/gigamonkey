@@ -59,14 +59,24 @@ const fillWithCircles = (r) => {
   for (let row = 0; row < inRow; row++) {
     for (let col = 0; col < inColumn; col++) {
       if (Math.random() < 0.3) {
-      drawFilledCircle(extraWidth / 2 + row * d + r, extraHeight / 2 + col * d + r, r, 'blue');
+        drawFilledCircle(extraWidth / 2 + row * d + r, extraHeight / 2 + col * d + r, r, 'blue');
 
       } else {
-              drawCircle(extraWidth / 2 + row * d + r, extraHeight / 2 + col * d + r, r, 'blue');
+        drawCircle(extraWidth / 2 + row * d + r, extraHeight / 2 + col * d + r, r, 'blue');
 
       }
     }
   }
 };
 
-fillWithCircles(23);
+//fillWithCircles(23);
+
+const theoFillwithcircles = (r) => {
+  const d = r * 2
+  const numCircles = Math.Floor(width / d);
+  for (let x = 1; x < numCircles; x++) {
+    drawFilledCircle(x * r * 2, 300, r, 'red')
+
+  }
+}
+theoFillwithcircles(12);
