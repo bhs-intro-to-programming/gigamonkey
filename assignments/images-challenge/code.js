@@ -34,9 +34,7 @@ const drawMandel = (iterations) => {
       if (isPixelInSet(coord(x, y), iterations)) {
         drawFilledRect(x, y, 1, 1, 'black')
       }
-      xmath += 2 / width
     }
-    ymath += 2 / height
   }
 }
 
