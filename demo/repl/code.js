@@ -36,3 +36,4 @@ const x = {
 x.foo = foo;
 x.bar = bar;
 */
+aoeuaoeu
