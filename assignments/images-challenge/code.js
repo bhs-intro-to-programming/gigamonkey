@@ -8,7 +8,7 @@ const f = (z, c) => {
   return [i1 + i2, j1 + j2];
 }
 const isPixelInSet = (c, iterations) => {
-  let z = 0;
+  let z = [0, 0];
   for (let i = 0; i < iterations; i++) {
     z = f(z, c);
     if (z[0] === Infinity || z[1] === Infinity) {
