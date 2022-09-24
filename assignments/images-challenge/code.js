@@ -1,24 +1,24 @@
-const z_sqr = (x, y) => {
+const z_sqr = ([x, y]) => {
   return [x ** 2 - y ** 2, 2 * x * y];
 }
-const f = (z) => {
-  const z_sqr1 = z_sqr(z[0], z[1])
-  return [z_sqr1[0] + z[0], z_sqr1[1] + z[1]];
+const f = (z, c) => {
+  // z_n+1 = z_n^2 + c
+  const [i1, j1] = z_sqr(z);
+  const [i2, j2] = c;
+  return [i1 + i2, j1 + j2];
 }
 const isPixelInSet = (c, iterations) => {
-  let z = c;
+  let z = 0;
   for (let i = 0; i < iterations; i++) {
-    z = f(z);
-    //console.log(z)
-    if (z[1] === Infinity || z[0] === Infinity) {
-      return false
+    z = f(z, c);
+    if (z[1st 0] === Infinity || z[1] === Infinity) {
+      return false;
     }
-
   }
-  return true
-
+  return true;
 }
-const drawmandel = (iterations) => {
+
+const drawMandel = (iterations) => {
   let xmath = 0
   let ymath = 0
   for (let x = 0; x < width; x++) {
@@ -33,4 +33,4 @@ const drawmandel = (iterations) => {
   }
 }
 
-drawmandel(5)
+drawMandel(5)
