@@ -1,6 +1,6 @@
 const cx = width / 2;
 const cy = height / 2;
-const zoom = 0.001;
+const zoom = 0.005;
 
 const z_sqr = ([x, y]) => {
   return [x ** 2 - y ** 2, 2 * x * y];
