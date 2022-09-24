@@ -69,4 +69,4 @@ const fillWithCircles = (r) => {
   }
 };
 
-fillWithCircles(23);
+fillWithCircles(7);
