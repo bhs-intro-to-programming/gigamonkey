@@ -1,4 +1,4 @@
-xxx/*
+/*
    This code is running in an environment with five functions defined:
 
     drawLine(x1, y1, x2, y2, color, lineWidth)
