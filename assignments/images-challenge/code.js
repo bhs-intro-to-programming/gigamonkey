@@ -1,72 +1,44 @@
-/*
-   This code is running in an environment with five functions defined:
-
-    drawLine(x1, y1, x2, y2, color, lineWidth)
-
-      Draws a line from x1,y1 to x2,y2 using the give color. The fifth argument,
-      lineWidth, is optional and defaults to 1.
-
-    drawCircle(x, y, r, color, lineWidth=1)
-
-      Draws a circle centered at x,y with radius r using the given color. The
-      fith argument, lineWidth, is optional and defaults to 1.
-
-    drawRect(x, y, width, height, color, lineWidth=1)
-
-      Draws a rectangle starting at x,y with the given width, height, and color.
-      Positive widths go to the right and negative to the left; positive heights
-      go down and negative heights go up. The sixth argument, lineWidth, is
-      optional and defaults to 1.
-
-    drawTriangle(x1, y1, x2, y2, x3, y3, color, lineWidth = 1)
-
-      Draws a triangle connecting points x1,y1, x2,y2, and x3,y3 with lines of
-      the given color. The last argument, lineWidth, is optional and defaults to
-      1.
-
-    drawFilledRect(x, y, width, height, color)
-
-      Draws a filled rectangle starting at x,y with the given width, height, and
-      color. Positive widths go to the right and negative to the left; positive
-      heights go down and negative heights go up.
-
-    drawFilledCircle(x, y, r, color)
-
-      Draws a filled circle centered at x,y with radius r using the given color.
-
-    drawFilledTriangle(x1, y1, x2, y2, x3, y3, color)
-
-      Draws a triangle connecting points x1,y1, x2,y2, and x3,y3 with filled
-      with the given color.
-
-   There are also a couple use variables.
-
-    width - the width of the drawing area.
-
-    height - the height of the drawing area.
-
-   Note that the coordinate system goes from 0,0 at the top left corner to
-   width,height at the bottom right corner.
- */
-
-
-const fillWithCircles = (r) => {
-  const d = r * 2;
-  const extraWidth = width % d;
-  const extraHeight = height % d;
-  const inRow = (width - extraWidth) / d;
-  const inColumn = (height - extraHeight) / d;
-  for (let row = 0; row < inRow; row++) {
-    for (let col = 0; col < inColumn; col++) {
-      if (Math.random() < 0.3) {
-        drawFilledCircle(extraWidth / 2 + row * d + r, extraHeight / 2 + col * d + r, r, 'blue');
-
-      } else {
-        drawCircle(extraWidth / 2 + row * d + r, extraHeight / 2 + col * d + r, r, 'blue');
-
-      }
+const z_sqr = (x, y) => {
+  return [x ** 2 - y ** 2, 2 * x * y];
+}
+const f = (z) => {
+  const z_sqr1 = z_sqr(z[0], z[1])
+  return [z_sqr1[0] + z[0], z_sqr1[1] + z[1]];
+}
+const isPixelInSet = (c, iterations) => {
+  let z = c;
+  for (let i = 0; i < iterations; i++) {
+    z = f(z);
+    //console.log(z)
+    if (z[1] === Infinity || z[0] === Infinity) {
+      return false
     }
-  }
-};
 
-fillWithCircles(13);
+  }
+  return true
+
+}
+const drawmandel = (iterations) => {
+  const startx = width / 2
+  const starty = height / 2
+  let pixelschecked = 0
+  let xmath = 0
+  let ymath = 0
+  let x = 0
+  let y = 0
+  for (let a = 0; a < height; a++) {
+    for (let i = 0; i < width; i++) {
+      //console.log(isPixelInSet([xmath, ymath], iterations))
+      if (isPixelInSet([xmath, ymath], iterations)) {
+        drawFilledRect(x, y, 1, 1, 'black')
+      }
+      x++
+      xmath += 2 / width
+      pixelschecked++
+    }
+    y++
+    ymath += 2 / height
+  }
+}
+
+drawmandel(1)
