@@ -11,7 +11,7 @@ const isPixelInSet = (c, iterations) => {
   let z = 0;
   for (let i = 0; i < iterations; i++) {
     z = f(z, c);
-    if (z[1st 0] === Infinity || z[1] === Infinity) {
+    if (z[0] === Infinity || z[1] === Infinity) {
       return false;
     }
   }
