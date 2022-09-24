@@ -1,3 +1,6 @@
+const cx = width / 2;
+const cy = height / 2;
+
 const z_sqr = ([x, y]) => {
   return [x ** 2 - y ** 2, 2 * x * y];
 };
@@ -20,11 +23,9 @@ const isPixelInSet = (c, iterations) => {
   return true;
 };
 
-const cx = width / 2;
-const cy = height / 2;
 
 const coord = (gx, gy) => {
-  return [gx - cx, cy - gy];
+  return [(gx - cx) * 0.01, (cy - gy) * 0.01];
 };
 
 const drawMandel = (iterations) => {
