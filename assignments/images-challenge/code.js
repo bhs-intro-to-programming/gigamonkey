@@ -68,5 +68,5 @@ const fillWithCircles = (r) => {
     }
   }
 };
-aouaoeu
+
 fillWithCircles(23);
