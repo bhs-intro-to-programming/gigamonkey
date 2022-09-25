@@ -45,4 +45,4 @@ const drawMandel = (iterations) => {
   }
 }
 
-drawMandel(2000)
+drawMandel(5000)
