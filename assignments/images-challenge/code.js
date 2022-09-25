@@ -3,14 +3,12 @@ const cy = height / 2;
 const zoom = 0.005;
 const cZero = [0, 0];
 
-const square = ([i, j]) => {
-  return [i ** 2 - j ** 2, 2 * i * j];
-};
+// The main function F is used to iterate from z_0 = 0 via the
+// recurrance: z_n+1 = z_n^2 + c
 
-const f = (z, c) => {
-  // z_n+1 = z_n^2 + c
-  return square(z).map((n, i) => n + c[i]);
-};
+const f = (z, c) => square(z).map((n, i) => n + c[i]);
+
+const square = ([i, j]) => [i ** 2 - j ** 2, 2 * i * j];
 
 const escapeVelocity = (c, iterations) => {
   let z = cZero;
@@ -37,14 +35,12 @@ const drawMandel = (iterations) => {
   for (let x = 0; x < width; x++) {
     for (let y = 0; y < height; y++) {
       const e = escapeVelocity(coord(x, y), iterations);
-      if (e === 0) {
-        drawFilledRect(x, y, 1, 1, 'black')
-      } else {
-        drawFilledRect(x, y, 1, 1, color(e, iterations));
-      }
+      const color = e === 0 ? 'black' : color(e, iterations);
+      drawFilledRect(x, y, 1, 1, color);
     }
   }
-  console.log(`Rendered in ${performance.now() - start} milliseconds.`);
+  const t = Math.round(performance.now() - start);
+  console.log(`Rendered in ${t/1000} seconds.`);
 };
 
-drawMandel(1000)
+drawMandel(5000)
