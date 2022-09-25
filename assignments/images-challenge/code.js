@@ -1,11 +1,10 @@
 const cx = width / 2;
 const cy = height / 2;
-const cZero = [0, 0];
 
 /* 
  * The main function F is used to iterate from z_0 = 0 via the
  * recurrance: z_n+1 = z_n ^ 2 + c
-*/
+ */
 const f = (z, c) => square(z).map((n, i) => n + c[i]);
 
 /*
@@ -24,7 +23,7 @@ const coord = (gx, gy, zoom) => [(gx - cx) / zoom, (cy - gy) / zoom];
  * or negative infinity?
  */
 const escapeVelocity = (c, iterations) => {
-  let z = cZero;
+  let z = [0, 0];
   for (let i = 0; i < iterations; i++) {
     z = f(z, c);
     if (z.some((x) => !isFinite(x))) {
