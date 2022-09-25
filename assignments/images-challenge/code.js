@@ -1,6 +1,5 @@
 const cx = width / 2;
 const cy = height / 2;
-const zoom = 0.005;
 const cZero = [0, 0];
 
 /* 
@@ -18,7 +17,7 @@ const square = ([i, j]) => [i ** 2 - j ** 2, 2 * i * j];
  * Translate graphical coordinates to zoomed coordinates with 0,0 in
  * the center of the drawing area.
  */
-const coord = (gx, gy) => [(gx - cx) * zoom, (cy - gy) * zoom];
+const coord = (gx, gy, zoom) => [(gx - cx) * zoom, (cy - gy) * zoom];
 
 /*
  * How fast (if at all) does the iteration of f head toward positive
@@ -47,11 +46,11 @@ const color = (n) => {
 /*
  * Draw the Mandelbrot set using a given number of iterations.
  */
-const drawMandelbrot = (iterations) => {
+const drawMandelbrot = (iterations, zoom) => {
   const start = performance.now();
   for (let x = 0; x < width; x++) {
     for (let y = 0; y < height; y++) {
-      const e = escapeVelocity(coord(x, y), iterations);
+      const e = escapeVelocity(coord(x, y, zoom), iterations);
       const c = e === 0 ? 'black' : color(e / iterations);
       drawFilledRect(x, y, 1, 1, c);
     }
@@ -60,4 +59,4 @@ const drawMandelbrot = (iterations) => {
   console.log(`Rendered in ${t/1000} seconds.`);
 };
 
-drawMandelbrot(5000);
+drawMandelbrot(500, 0.005);
