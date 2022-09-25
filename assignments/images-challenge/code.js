@@ -39,10 +39,10 @@ const drawMandel = (iterations) => {
       if (e === 0) {
         drawFilledRect(x, y, 1, 1, 'black')
       } else {
-        drawFilledRect(x, y, 1, 1, color(e, 2000));
+        drawFilledRect(x, y, 1, 1, color(e, 20000));
       }
     }
   }
 }
 
-drawMandel(2000)
+drawMandel(1000)
