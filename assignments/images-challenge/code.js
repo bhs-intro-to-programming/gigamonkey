@@ -1,6 +1,7 @@
 const cx = width / 2;
 const cy = height / 2;
 const zoom = 0.005;
+const cZero = [0, 0];
 
 const square = ([i, j]) => {
   return [i ** 2 - j ** 2, 2 * i * j];
@@ -12,10 +13,10 @@ const f = (z, c) => {
 };
 
 const isPixelInSet = (c, iterations) => {
-  let z = [0, 0];
+  let z = cZero;
   for (let i = 0; i < iterations; i++) {
     z = f(z, c);
-    if (z[0] === Infinity || z[1] === Infinity) {
+    if (z.some((x) => !Math.isFinite(x))) {
       return false;
     }
   }
