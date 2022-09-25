@@ -1,4 +1,4 @@
-const cx = width / 2 + 50;
+const cx = width / 2;
 const cy = height / 2;
 const cZero = [0, 0];
 
@@ -59,4 +59,4 @@ const drawMandelbrot = (iterations, zoom) => {
   console.log(`Rendered in ${t/1000} seconds.`);
 };
 
-drawMandelbrot(500, 0.005);
+drawMandelbrot(500, 0.01);
