@@ -2,15 +2,13 @@ const cx = width / 2;
 const cy = height / 2;
 const zoom = 0.005;
 
-const z_sqr = ([x, y]) => {
-  return [x ** 2 - y ** 2, 2 * x * y];
+const square = ([i, j]) => {
+  return [i ** 2 - j ** 2, 2 * i * j];
 };
 
 const f = (z, c) => {
   // z_n+1 = z_n^2 + c
-  const [i1, j1] = z_sqr(z);
-  const [i2, j2] = c;
-  return [i1 + i2, j1 + j2];
+  return square(z).map((n, i) => n + c[i]);
 };
 
 const isPixelInSet = (c, iterations) => {
