@@ -17,7 +17,7 @@ const escapeVelocity = (c, iterations) => {
   for (let i = 0; i < iterations; i++) {
     z = f(z, c);
     if (z.some((x) => !isFinite(x))) {
-      return iterations;
+      return i;
     }
   }
   return 0;
