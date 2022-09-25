@@ -28,8 +28,8 @@ const coord = (gx, gy) => {
 };
 
 const color = (n, max) => {
-  const c = Math.round(255 * n / max).toString(16).padStart(0);
-  return `rgb(${c}, ${c}, ${c})`;
+  const c = Math.round((n / max) * 2 ** 16);
+  return `#${c.toString(16).padStart(6, 0)}`;
 }
 
 const drawMandel = (iterations) => {
