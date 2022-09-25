@@ -4,14 +4,14 @@ const cZero = [0, 0];
 
 /* 
  * The main function F is used to iterate from z_0 = 0 via the
- * recurrance: z_n+1 = z_n^2 + c
+ * recurrance: z_n+1 = z_n ^ 2 + c
 */
 const f = (z, c) => square(z).map((n, i) => n + c[i]);
 
 /*
  * Square a complex number.
  */
-const square = ([i, j]) => [i ** 2 - j ** 2, 2 * i * j];
+const square = ([a, b]) => [a ** 2 - b ** 2, 2 * a * b];
 
 /*
  * Translate graphical coordinates to zoomed coordinates with 0,0 in
