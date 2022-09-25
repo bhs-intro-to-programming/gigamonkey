@@ -10,6 +10,8 @@ const f = (z, c) => square(z).map((n, i) => n + c[i]);
 
 const square = ([i, j]) => [i ** 2 - j ** 2, 2 * i * j];
 
+const coord = (gx, gy) => [(gx - cx) * zoom, (cy - gy) * zoom];
+
 const escapeVelocity = (c, iterations) => {
   let z = cZero;
   for (let i = 0; i < iterations; i++) {
@@ -21,14 +23,12 @@ const escapeVelocity = (c, iterations) => {
   return 0;
 };
 
-const coord = (gx, gy) => {
-  return [(gx - cx) * zoom, (cy - gy) * zoom];
-};
-
 const color = (n, max) => {
   const c = Math.round((n / max) * ((2 ** 24) - 1));
-  return `#${c.toString(16).padStart(6, 0)}`;
-}
+  const [r, g, b] = Array(3).fill().map((_, i) => (c >> ((3 - i) * 8)) & 0xff);
+  const n = (r << 16) | (b << 8) | g;
+  return `#${n.toString(16).padStart(6, 0)}`;
+};
 
 const drawMandel = (iterations) => {
   const start = performance.now();
@@ -43,4 +43,4 @@ const drawMandel = (iterations) => {
   console.log(`Rendered in ${t/1000} seconds.`);
 };
 
-drawMandel(5000)
+drawMandel(5000);
