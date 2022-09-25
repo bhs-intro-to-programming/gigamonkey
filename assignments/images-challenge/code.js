@@ -29,7 +29,7 @@ const coord = (gx, gy) => {
 
 const color = (n, max) => {
   const c = Math.round(255 * n / max).toString(16).padStart(0);
-  return `rgb(255, 0, ${c})`;
+  return `rgb(${c}, ${c}, ${c})`;
 }
 
 const drawMandel = (iterations) => {
@@ -39,7 +39,7 @@ const drawMandel = (iterations) => {
       if (e === 0) {
         drawFilledRect(x, y, 1, 1, 'black')
       } else {
-        drawFilledRect(x, y, 1, 1, color(e, 20000));
+        drawFilledRect(x, y, 1, 1, color(e, iterations));
       }
     }
   }
