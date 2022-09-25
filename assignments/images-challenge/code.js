@@ -25,7 +25,7 @@ const escapeVelocity = (c, iterations) => {
 
 const color = (n, max) => {
   const c = Math.round((n / max) * ((2 ** 24) - 1));
-  const [r, g, b] = Array(3).fill().map((_, i) => (c >> ((3 - i) * 8)) & 0xff);
+  const [r, g, b] = Array(3).fill().map((_, i) => (c >> ((2 - i) * 8)) & 0xff);
   const x = (r << 16) | (b << 8) | g;
   return `#${x.toString(16).padStart(6, 0)}`;
 };
