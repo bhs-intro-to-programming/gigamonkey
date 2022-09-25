@@ -47,4 +47,4 @@ const drawMandel = (iterations) => {
   console.log(`Rendered in ${performance.now() - start} milliseconds.`);
 };
 
-drawMandel(5000)
+drawMandel(100)
