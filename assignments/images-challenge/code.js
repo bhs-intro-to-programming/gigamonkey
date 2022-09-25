@@ -3,7 +3,7 @@ const cy = height / 2;
 
 /* 
  * The main function F is used to iterate from z_0 = 0 via the
- * recurrance: z_n+1 = z_n ^ 2 + c
+ * recurrence relation: z_n+1 = z_n ^ 2 + c
  */
 const f = (z, c) => square(z).map((n, i) => n + c[i]);
 
@@ -55,7 +55,7 @@ const drawMandelbrot = (iterations, zoom) => {
     }
   }
   const t = Math.round(performance.now() - start);
-  console.log(`Rendered in ${t/1000} seconds.`);
+  console.log(`Rendered in ${t / 1000} seconds.`);
 };
 
 drawMandelbrot(5000, 200);
