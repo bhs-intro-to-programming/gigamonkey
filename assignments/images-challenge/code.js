@@ -20,7 +20,7 @@ const escapeVelocity = (c, iterations) => {
       return iterations;
     }
   }
-  return iterations;
+  return 0;
 };
 
 const coord = (gx, gy) => {
