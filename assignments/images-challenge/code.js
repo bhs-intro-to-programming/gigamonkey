@@ -33,6 +33,7 @@ const color = (n, max) => {
 }
 
 const drawMandel = (iterations) => {
+  const start = performance.now();
   for (let x = 0; x < width; x++) {
     for (let y = 0; y < height; y++) {
       const e = escapeVelocity(coord(x, y), iterations);
@@ -43,6 +44,7 @@ const drawMandel = (iterations) => {
       }
     }
   }
-}
+  console.log(`Rendered in ${performance.now() - start} milliseconds.`);
+};
 
 drawMandel(5000)
