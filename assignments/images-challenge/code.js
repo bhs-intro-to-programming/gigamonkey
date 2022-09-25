@@ -1,7 +1,7 @@
 //const cx = width / 2;
 //const cy = height / 2;
 
-const [cx, cy] = [Math.E/7, -Math.E/20];
+const [cx, cy] = [-Math.E/7, -Math.E/20];
 
 const cZero = [0, 0];
 
