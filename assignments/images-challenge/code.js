@@ -35,8 +35,8 @@ const drawMandel = (iterations) => {
   for (let x = 0; x < width; x++) {
     for (let y = 0; y < height; y++) {
       const e = escapeVelocity(coord(x, y), iterations);
-      const color = e === 0 ? 'black' : color(e, iterations);
-      drawFilledRect(x, y, 1, 1, color);
+      const c = e === 0 ? 'black' : color(e, iterations);
+      drawFilledRect(x, y, 1, 1, c);
     }
   }
   const t = Math.round(performance.now() - start);
