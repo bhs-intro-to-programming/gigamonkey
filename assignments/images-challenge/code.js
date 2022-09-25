@@ -16,7 +16,7 @@ const isPixelInSet = (c, iterations) => {
   let z = cZero;
   for (let i = 0; i < iterations; i++) {
     z = f(z, c);
-    if (z.some((x) => !Math.isFinite(x))) {
+    if (z.some((x) => !isFinite(x))) {
       return false;
     }
   }
