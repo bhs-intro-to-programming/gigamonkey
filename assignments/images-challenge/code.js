@@ -28,7 +28,7 @@ const coord = (gx, gy) => {
 };
 
 const color = (n, max) => {
-  const c = Math.round((n / max) * 2 ** 16);
+  const c = Math.round((n / max) * ((2 ** 24) - 1));
   return `#${c.toString(16).padStart(6, 0)}`;
 }
 
@@ -47,4 +47,4 @@ const drawMandel = (iterations) => {
   console.log(`Rendered in ${performance.now() - start} milliseconds.`);
 };
 
-drawMandel(100)
+drawMandel(1000)
