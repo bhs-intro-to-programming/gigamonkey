@@ -27,12 +27,19 @@ const coord = (gx, gy) => {
   return [(gx - cx) * zoom, (cy - gy) * zoom];
 };
 
+const color = (n, max) => {
+  const c = Math.round(255 * n / max).toString(16).padStart(0);
+  return `#${c}${c}${c}`;
+}
+
 const drawMandel = (iterations) => {
   for (let x = 0; x < width; x++) {
     for (let y = 0; y < height; y++) {
       const e = escapeVelocity(coord(x, y), iterations);
       if (e === 0) {
         drawFilledRect(x, y, 1, 1, 'black')
+      } else {
+        drawFilledRect(x, y, 1, 1, color(e, 2000));
       }
     }
   }
