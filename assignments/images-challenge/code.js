@@ -1,4 +1,4 @@
-const cx = width / 2;
+const cx = width / 2 + 50;
 const cy = height / 2;
 const cZero = [0, 0];
 
