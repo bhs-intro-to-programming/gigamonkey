@@ -37,7 +37,7 @@ const escapeVelocity = (c, iterations) => {
  * Translate a number from 0 to 1 into an RGB color. Bias toward blue.
  */
 const color = (n) => {
-  const c = Math.round(n * ((2 ** 24) - 1));
+  const c = Math.round(n * (2 ** 24 - 1));
   const [r, g, b] = Array(3).fill().map((_, i) => (c >> ((2 - i) * 8)) & 0xff);
   return `rgb(${r}, ${b}, ${g})`;
 };
