@@ -29,7 +29,7 @@ const coord = (gx, gy) => {
 
 const color = (n, max) => {
   const c = Math.round(255 * n / max).toString(16).padStart(0);
-  return `#${c}${c}${c}`;
+  return `rgb(255, 0, c)`;
 }
 
 const drawMandel = (iterations) => {
