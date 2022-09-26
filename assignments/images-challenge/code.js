@@ -1,5 +1,5 @@
-const cx = width / 2;
-const cy = height / 2;
+const cx = width / 2 + 100;
+const cy = height / 2 + 50;
 
 /* 
  * The main function F is used to iterate from z_0 = 0 via the
