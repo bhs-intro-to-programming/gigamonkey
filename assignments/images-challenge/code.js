@@ -55,4 +55,4 @@ const drawMandelbrot = (iterations, cx, cy, zoom) => {
   console.log(`Rendered in ${t / 1000} seconds.`);
 };
 
-drawMandelbrot(5000, 0, 0, 200);
+drawMandelbrot(5000, width/2, height/2, 200);
