@@ -1,6 +1,3 @@
-const cx = width / 2 + 100;
-const cy = height / 2 + 50;
-
 /* 
  * The main function F is used to iterate from z_0 = 0 via the
  * recurrence relation: z_n+1 = z_n ^ 2 + c
@@ -13,10 +10,10 @@ const f = (z, c) => square(z).map((n, i) => n + c[i]);
 const square = ([a, b]) => [a ** 2 - b ** 2, 2 * a * b];
 
 /*
- * Translate graphical coordinates to zoomed coordinates with 0,0 in
+ * Translate graphical coordinates to zoomed coordinates with cx, cy in
  * the center of the drawing area.
  */
-const coord = (gx, gy, zoom) => [(gx - cx) / zoom, (cy - gy) / zoom];
+const coord = (gx, gy, cx, cy, zoom) => [(gx - cx) / zoom, (cy - gy) / zoom];
 
 /*
  * How fast (if at all) does the iteration of f head toward positive
@@ -45,11 +42,11 @@ const color = (n) => {
 /*
  * Draw the Mandelbrot set using a given number of iterations.
  */
-const drawMandelbrot = (iterations, zoom) => {
+const drawMandelbrot = (iterations, cx, cy, zoom) => {
   const start = performance.now();
   for (let x = 0; x < width; x++) {
     for (let y = 0; y < height; y++) {
-      const e = escapeVelocity(coord(x, y, zoom), iterations);
+      const e = escapeVelocity(coord(x, y, cx, cy, zoom), iterations);
       const c = e === 0 ? 'black' : color(e / iterations);
       drawFilledRect(x, y, 1, 1, c);
     }
@@ -58,4 +55,4 @@ const drawMandelbrot = (iterations, zoom) => {
   console.log(`Rendered in ${t / 1000} seconds.`);
 };
 
-drawMandelbrot(5000, 500);
+drawMandelbrot(5000, 0, 0, 200);
