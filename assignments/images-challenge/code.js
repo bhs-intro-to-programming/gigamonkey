@@ -52,7 +52,6 @@ const color = (n) => {
  * by the given amount.  
  */
 const drawMandelbrot = (iterations, cx, cy, zoom) => {
-  console.log(JSON.stringify(coord(width/2, height/2, cx, cy, zoom)));
   const start = performance.now();
   for (let gx = 0; gx < width; gx++) {
     for (let gy = 0; gy < height; gy++) {
