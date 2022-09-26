@@ -65,4 +65,4 @@ const drawMandelbrot = (iterations, cx, cy, zoom) => {
 };
 
 // drawMandelbrot(5000, -Math.E / 7, -Math.E / 20, 200);
-drawMandelbrot(5000, 0, -100, 200);
+drawMandelbrot(5000, 0, -5, 200);
