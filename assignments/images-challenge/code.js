@@ -18,7 +18,7 @@ const square = ([a, b]) => [a ** 2 - b ** 2, 2 * a * b];
  */
 //const coord = (gx, gy, x, y, zoom) => [(gx - (cx - (x * zoom))) / zoom, ((cy - (y * zoom)) - gy) / zoom];
 
-const adjust = (g, c, zoom, offset) => ((g - c) / zoom) + offset;
+const adjust = (g, c, zoom, offset) => ((g - c) / zoom) + offset * zoom;
 
 const coord = (gx, gy, x, y, zoom) => [adjust(gx, cx, zoom, x), adjust(gy, cy, zoom, y)];
 
