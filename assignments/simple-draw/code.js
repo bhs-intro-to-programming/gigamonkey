@@ -7,7 +7,7 @@ const BOTTOM = height - (height - MAX * RISE) * 0.75;
  * x,y and a given side length and color.
  */
 const upTriangle = (x, y, side, color) => {
-  drawFilledTriangle(x, y, side / 2, y - side * RISE, x + side, y, color);
+  drawFilledTriangle(x, y, x + side / 2, y - side * RISE, x + side, y, color);
 };
 
 /*
