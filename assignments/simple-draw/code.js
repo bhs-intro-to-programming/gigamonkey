@@ -35,7 +35,7 @@ const cutHoles = (x, y, side, smallest) => {
  * Cut the big hole out of the middle of the given triangle.
  */
 const cutBigHole = (x, y, side) => {
-  downTriangle(x + side * 0.25, y - (side / 2 * RISE), side / 2, '#eeeeef');
+  downTriangle(x + side * 0.25, y - (side / 2 * RISE), side / 2, '#ffffff');
 };
 
 /*
