@@ -16,7 +16,7 @@ const square = ([a, b]) => [a ** 2 - b ** 2, 2 * a * b];
  * Translate graphical coordinates to zoomed coordinates with cx, cy in
  * the center of the drawing area.
  */
-const coord = (gx, gy, x, y, zoom) => [(gx - (cx - x)) / zoom, ((cy - y) - gy) / zoom];
+const coord = (gx, gy, x, y, zoom) => [(gx - (cx - (x * zoom))) / zoom, ((cy - (y * zoom)) - gy) / zoom];
 
 /*
  * How fast (if at all) does the iteration of f head toward positive
