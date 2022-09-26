@@ -43,7 +43,9 @@ const color = (n) => {
 };
 
 /*
- * Draw the Mandelbrot set using a given number of iterations.
+ * Draw the Mandelbrot set using a given number of iterations
+ * with point cx, cy at the center of the drawing area and zoomed
+ * by the given amount.  
  */
 const drawMandelbrot = (iterations, cx, cy, zoom) => {
   const start = performance.now();
@@ -58,4 +60,4 @@ const drawMandelbrot = (iterations, cx, cy, zoom) => {
   console.log(`Rendered in ${t / 1000} seconds.`);
 };
 
-drawMandelbrot(5000, -100, -20, 200);
+drawMandelbrot(5000, -Math.E / 7, -Math.E / 21, 200);
