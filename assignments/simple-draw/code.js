@@ -161,7 +161,7 @@ const checkerBoard = (dim) => {
 //concentricCircles(11);
 //fillWithCircles(17);
 //fillWithCirclesRandomFill(17, 0.19);
-squareOfCircles(27);
+//squareOfCircles(27);
 //checkerBoard(13);
 
 sierpinski(0, BOTTOM, MAX, 1);
