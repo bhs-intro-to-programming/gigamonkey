@@ -16,7 +16,11 @@ const square = ([a, b]) => [a ** 2 - b ** 2, 2 * a * b];
  * Translate graphical coordinates to zoomed coordinates with cx, cy in
  * the center of the drawing area.
  */
-const coord = (gx, gy, x, y, zoom) => [(gx - (cx - (x * zoom))) / zoom, ((cy - (y * zoom)) - gy) / zoom];
+//const coord = (gx, gy, x, y, zoom) => [(gx - (cx - (x * zoom))) / zoom, ((cy - (y * zoom)) - gy) / zoom];
+
+const adjust = (g, c, zoom, offset) = ((g - c) / zoom) + offset;
+
+const coord = (gx, gy, x, y, zoom) => [adjust(gx, cx, zoom, x), adjust(gy, cy, zoom, y)];
 
 /*
  * How fast (if at all) does the iteration of f head toward positive
@@ -60,5 +64,5 @@ const drawMandelbrot = (iterations, cx, cy, zoom) => {
   console.log(`Rendered in ${t / 1000} seconds.`);
 };
 
-//drawMandelbrot(5000, -Math.E / 7, -Math.E / 20, 400);
-drawMandelbrot(5000, 0, 0, 200);
+drawMandelbrot(5000, -Math.E / 7, -Math.E / 20, 200);
+// drawMandelbrot(5000, 0, 0, 200);
