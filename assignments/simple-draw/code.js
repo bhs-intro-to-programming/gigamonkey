@@ -164,7 +164,7 @@ const checkerBoard = (dim) => {
 //squareOfCircles(27);
 //checkerBoard(13);
 
-sierpinski(0, BOTTOM, MAX, 1);
+sierpinski((width % MAX) / 2, BOTTOM, MAX, 1);
 
 
 const szeting = (r) => {
