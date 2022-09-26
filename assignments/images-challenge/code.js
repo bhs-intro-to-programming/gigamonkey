@@ -52,12 +52,13 @@ const color = (n) => {
  * by the given amount.  
  */
 const drawMandelbrot = (iterations, cx, cy, zoom) => {
+  console.log(JSON.stringify(coord(width/2, height/2, cx, cy, zoom)));
   const start = performance.now();
-  for (let x = 0; x < width; x++) {
-    for (let y = 0; y < height; y++) {
-      const e = escapeVelocity(coord(x, y, cx, cy, zoom), iterations);
+  for (let gx = 0; gx < width; gx++) {
+    for (let gy = 0; gy < height; gy++) {
+      const e = escapeVelocity(coord(gx, gy, cx, cy, zoom), iterations);
       const c = e === 0 ? 'black' : color(e / iterations);
-      drawFilledRect(x, y, 1, 1, c);
+      drawFilledRect(gx, gy, 1, 1, c);
     }
   }
   const t = Math.round(performance.now() - start);
