@@ -1,3 +1,6 @@
+const cx = width / 2;
+const cy = height / 2;
+
 /* 
  * The main function F is used to iterate from z_0 = 0 via the
  * recurrence relation: z_n+1 = z_n ^ 2 + c
@@ -13,7 +16,7 @@ const square = ([a, b]) => [a ** 2 - b ** 2, 2 * a * b];
  * Translate graphical coordinates to zoomed coordinates with cx, cy in
  * the center of the drawing area.
  */
-const coord = (gx, gy, cx, cy, zoom) => [(gx - cx) / zoom, (cy - gy) / zoom];
+const coord = (gx, gy, x, y, zoom) => [(gx - (cx - x)) / zoom, ((cy - y) - gy) / zoom];
 
 /*
  * How fast (if at all) does the iteration of f head toward positive
@@ -55,4 +58,4 @@ const drawMandelbrot = (iterations, cx, cy, zoom) => {
   console.log(`Rendered in ${t / 1000} seconds.`);
 };
 
-drawMandelbrot(5000, width/2, height/2, 200);
+drawMandelbrot(5000, 0, 0, 200);
