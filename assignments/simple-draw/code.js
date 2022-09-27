@@ -22,205 +22,153 @@
  *  drawFilledTriangle(x1, y1, x2, y2, x3, y3, color)
  *
  *  clear()
- * 
- *
  */
 
+const lineOfCircles = (radius) => {
+  const diameter = 2 * radius
+  const dist = Math.floor(width / diameter) * diameter
+  const extra = width - dist
+  let x = 0
+  while (x < width - extra) {
+    drawFilledCircle(x + radius + extra / 2, height / 2, radius, 'red')
+    x += diameter
+  }
+}
+//lineOfCircles (23);
 
+const lineOfAltCircles = (radius) => {
+  const diameter = 2 * radius
+  const dist = Math.floor(width / diameter) * diameter
+  const extra = width - dist
+  let color = 'blue'
+  let x = 0
+  while (x < width - extra) {
+    if (color === 'red') {
+      color = 'blue'
+    } else {
+      color = 'red'
+    }
+    drawFilledCircle(x + radius + extra / 2, height / 2, radius, color)
+    x += diameter
+  }
+}
+//lineOfAltCircles (23);
 
-const notreallycurved =(num, base, rside)=>{
-  for(let linesD = 0; linesD!=num; linesD++){
-    drawLine(rside/num*linesD, base, 0, base/num*linesD, "black", 0.5)
+const fillWithCircles = (radius) => {
+  const diameter = 2 * radius
+  const xdist = Math.floor(width / diameter) * diameter
+  const xextra = width - xdist
+  const ydist = Math.floor(height / diameter) * diameter
+  const yextra = height - ydist
+  let y = 0
+  while (y < height - yextra) {
+    let x = 0
+    while (x < width - xextra) {
+      drawCircle(x + radius + xextra / 2, y + radius + yextra / 2, radius, 'blue')
+      x += diameter
+    }
+    y += diameter
   }
+}
+//fillWithCircles (23);
 
-}
-const lineOfCircles = (r) =>{
-  const d = r*2
-  const num = Math.floor(width/d)
-  const offset = (width-num*d)/2
-  for (let i = 0; num>i; i++){
-    drawFilledCircle(offset + r + d*i, height/2, r, 'black')
-  }
-}
-const lineOfCirclesColor = (r, color1, color2) =>{
-  const d = r*2
-  const num = Math.floor(width/d)
-  const offset = (width-num*d)/2
-  for (let i = 0; num>i; i++){
-    if(i%2===0){
-      drawFilledCircle(offset + r + d*i, height/2, r, color1)
-    }
-    else{
-      drawFilledCircle(offset + r + d*i, height/2, r, color2)
-    }
-  }
-}
-const concentricCircles = (num, color1, color2) =>{
-  const inc = width/num/2
-  for (let i = 0; num>i; i++){
-    if(i%2===0){
-      drawFilledCircle(width/2, height/2, width/2-inc*i, color1)
-    }
-    else{
-      drawFilledCircle(width/2, height/2, width/2-inc*i, color2)
-    }
-  }
-}
-const checkerBoard = (num, color1, color2) =>{
-  const size = Math.min(width, height)/num
-  let color11 = color1;
-  let color22 = color2; 
-  let y = 50;
-  for (let a = 0; num>a; a++){
-    for (let i = 0; num>i; i++){
-      if(i%2===0){
-        drawFilledRect(size*i, y, size, size, color11)
+const fillWithCirclesRand = (radius, probability) => {
+  const diameter = 2 * radius
+  const xdist = Math.floor(width / diameter) * diameter
+  const xextra = width - xdist
+  const ydist = Math.floor(height / diameter) * diameter
+  const yextra = height - ydist
+  let y = 0
+  while (y < height - yextra) {
+    let x = 0
+    while (x < width - xextra) {
+      let rand = Math.random()
+      if (rand > probability) {
+        drawCircle(x + radius + xextra / 2, y + radius + yextra / 2, radius, 'blue')
+      } else {
+        drawFilledCircle(x + radius + xextra / 2, y + radius + yextra / 2, radius, 'blue')
       }
-      else{
-        drawFilledRect(size*i, y, size, size, color22)
-      }
+      x += diameter
     }
-    y+=size
-    let temp = color11;
-    color11 = color22; 
-    color22 = temp 
+    y += diameter
   }
 }
-const fillWithCircles = (r, color) =>{
-  const d = r*2
-  const numx = Math.floor(width/d)
-  const numy = Math.floor(height/d)
-  const offsetx = (width-(numx*d))/2
-  const offsety = (height-(numy*d))/2
-  let y = r;
-  for (let a = 0; numy>a; a++){
-    for (let i = 0; numx>i; i++){
-      drawCircle(offsetx + r + d*i, offsety + y, r, color)
-    }
-    y+=d
-  }
-}
-const fillWithCirclesRandomlyFilled = (r, prob, color) =>{
-  const d = r*2
-  const numx = Math.floor(width/d)
-  const numy = Math.floor(height/d)
-  const offsetx = (width-(numx*d))/2
-  const offsety = (height-(numy*d))/2
-  let numfilled = 0;
-  let y = r;
-  for (let a = 0; numy>a; a++){
-    for (let i = 0; numx>i; i++){
-      if (Math.random()<=prob){
-        drawFilledCircle(offsetx + r + d*i, offsety + y, r, color)
-        numfilled++
-      }
-      else{ 
-        drawCircle(offsetx + r + d*i, offsety + y, r, color)
-        
-      }
-    }
-    y+=d
-  }
-  console.log("num circles:"+numx*numy)
-  console.log("num filled:"+numfilled)
-}
+//fillWithCirclesRand (23, 0.2);
 
-const squareOfCircles = (r, color) =>{
-  const d = r*2
-  const num = Math.floor(width/d)
-  const offset = (width-num*d)/2
-  let cy = r;
-  let e = 1;
-  for (let i = 0; i<=num*2; i++){
-    if(i===26){
-      cy=-r
-      e = 0
+const concentricCircles = (amountCircles) => {
+  if (height <= width) {
+    drawFilledCircle(width / 2, height / 2, height / 2, 'blue')
+    const radiuses = (height / 2) / (amountCircles)
+    let p = 0
+    let color = 'red'
+    let x = 0
+    while (x < height / 2) {
+      if (color === 'red') {
+        color = 'blue'
+      } else {
+        color = 'red'
+      }
+      drawFilledCircle(width / 2, height / 2, height / 2 - p, color)
+      p += radiuses
     }
-    drawCircle(offset + r + d*i, e*height-cy, r, color)
-    //not done
+  } else {
+    drawFilledCircle(width / 2, height / 2, width / 2, 'blue')
+    const radiuses = (width / 2) / (amountCircles)
+    let p = 0
+    let color = 'red'
+    let x = 0
+    while (x < width / 2) {
+      if (color === 'red') {
+        color = 'blue'
+      } else {
+        color = 'red'
+      }
+      drawFilledCircle(width / 2, height / 2, width / 2 - p, color)
+      p += radiuses
+    }
   }
 }
- 
+//concentricCircles(13);
 
-//madnelstart
-function rgb(red, green, blue) {
-    return (red & 0xF0 ? '#' : '#0') + (red << 16 | green << 8 | blue).toString(16)
-}
-const z_sqr = (x,y) =>{
-  return [x**2 - y**2, 2*x*y];
-}
-const f = (z, c) =>{
-  return [z_sqr(z[0], z[1])[0] + c[0], z_sqr(z[0], z[1])[1] + c[1]]
-}
-const isPixelInSet = (z, c, iterations) =>{
-  let i=0
-  for(i; i<iterations; i++){
-    z=f(z, c);
-    
-    if(z[0]===Infinity||z[1]===Infinity||z[0]===-Infinity||z[1]===-Infinity){
-    //console.log("z: "+z)
-    return i
+const checkerboard = (n) => {
+  if (height <= width) {
+    const squareSide = height / n
+    const widthextra = (width - height) / 2
+    drawFilledRect(widthextra, 0, height, height, 'red')
+    let startpos = 0
+    for (let x = 0; x < height - squareSide / (squareSide + 1); x += squareSide) {
+      for (let y = startpos; y < height; y += 2 * squareSide) {
+        drawFilledRect(x + widthextra, y, squareSide, squareSide, 'blue')
+      }
+      if (startpos == 0) {
+        startpos += squareSide
+      } else {
+        startpos -= squareSide
+      }
     }
-  }
-  if(z[0]>2||z[1]>2){
-    return i
-  }
-  return 0
-}
-const drawmandel = (iterations, border, zoomx, zoomy) =>{
-  const color = 'black';
-  const xbasedoz = border*(zoomx/600);
-  const ybasedoz = border*(zoomy/600);
-  
-  let offsetx;
-  let offsety;
-  if(border===600){
-    offsetx=zoomx-width/2;
-    offsety=zoomy-height/2;
-  }
-  else{
-    offsetx = xbasedoz-250;
-    offsety = ybasedoz-300;
-  }
-  let xmath = 0;
-  let ymath = 0;
-  let count = 0;
-  drawLine(width/2, 0, width/2, height, 'black')
-  drawLine(0, height/2, width, height/2, 'black')
-  for(let y = 0; y<=border+offsety; y++){
-    for(let x= 0; x<=border+offsetx; x++){
-      if(x<=width+offsetx&&y<=height+offsety&&x-offsetx>=0&&y-offsety>=0){
-        xmath=-2+(4/border)*x
-        ymath=2-(4/border)*y
-        let pixelinset = isPixelInSet([0,0], [xmath, ymath], iterations)
-        
-        if(pixelinset===0){
-          drawLine(x-offsetx, y-offsety, x+1-offsetx, y-offsety, color)
-          count++
-        }
-        else if(pixelinset>0){
-          drawLine(x-offsetx, y-offsety, x+1-offsetx, y-offsety, 'hsl(' + 2+(pixelinset*2) + ', 100%, 50%)')
-          count++
-        }
+  } else {
+    const squareSide = width / n;
+    const heightextra = (height - width) / 2
+    drawFilledRect(0, heightextra + 0, width, width, 'red')
+    let startpos = 0
+    for (let y = 0; y < width - squareSide / (squareSide + 1); y += squareSide) {
+      for (let x = startpos; x < width; x += 2 * squareSide) {
+        drawFilledRect(x, y + heightextra, squareSide, squareSide, 'blue')
+      }
+      if (startpos == 0) {
+        startpos += squareSide
+      } else {
+        startpos -= squareSide
       }
     }
   }
-  console.log(count)
-  
 }
-//mandel_end
+checkerboard(110);
 
-
-
-
-//notreallycurved(10, height, width/2)
-lineOfCircles(43)
-//lineOfCirclesColor(12, 'pink', 'teal')
-//concentricCircles(11, 'teal', 'pink')
-//checkerBoard(5, 'black', 'red')
-//fillWithCircles(30, 'blue')
-//fillWithCirclesRandomlyFilled(30, 0.99, 'blue')
-//squareOfCircles(10, 'blue') //not done 
-const x = 0
-const y = 0
-//drawmandel(1000, 600, x+width/2, y+height/2)
+const notReallyCurved = (lines) => {
+  const draw = width / lines
+  for (let i = (height - width) / 2; i < width; i += draw) {
+    drawLine(width, height - (height - width) / 2, 0, i - draw)
+  }
+}
+//notReallyCurved (20);
