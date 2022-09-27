@@ -168,7 +168,8 @@ const checkerBoard = (dim) => {
 
 
 
-const drawSpicyCircles = (c, color) => {
+const drawSpicyCircles = (c) => {
+  let color = 'red';
   for (let r = MAX / 2; r > 0; r = r - MAX / 2 / c) {
     drawFilledCircle(width / 2, height / 2, r, color)
     if (color === 'red') {
