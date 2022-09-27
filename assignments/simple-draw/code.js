@@ -176,4 +176,4 @@ const drawSpicyCircles = (c) => {
   }
 }
 
-drawSpicyCircles(10, 'red');
+drawSpicyCircles(10);
