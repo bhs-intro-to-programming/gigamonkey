@@ -164,4 +164,17 @@ const checkerBoard = (dim) => {
 //squareOfCircles(27);
 //checkerBoard(13);
 
-sierpinski((width % MAX) / 2, BOTTOM, MAX, 1);
+//sierpinski((width % MAX) / 2, BOTTOM, MAX, 1);
+
+const drawSpicyCircles = (c, color) => {
+  for (let r = width / 2; ; r = r - width / 2 / c) {
+    drawFilledCircle(width / 2, height / 2, r, color)
+    if (color === 'red') {
+      color = 'blue'
+    } else {
+      color = 'red'
+    }
+  }
+}
+
+drawSpicyCircles(10, 'red');
