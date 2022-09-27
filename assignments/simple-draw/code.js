@@ -67,7 +67,7 @@ const concentricCircles = (num, color1, color2) =>{
   }
 }
 const checkerBoard = (num, color1, color2) =>{
-  const size = width/num
+  const size = Math.min(width, height)/num
   let color11 = color1;
   let color22 = color2; 
   let y = 50;
@@ -214,7 +214,7 @@ const drawmandel = (iterations, border, zoomx, zoomy) =>{
 
 
 //notreallycurved(10, height, width/2)
-lineOfCircles(23)
+lineOfCircles(43)
 //lineOfCirclesColor(12, 'pink', 'teal')
 //concentricCircles(11, 'teal', 'pink')
 //checkerBoard(5, 'black', 'red')
