@@ -16,11 +16,10 @@ const square = ([a, b]) => [a ** 2 - b ** 2, 2 * a * b];
  * Translate graphical coordinates to zoomed coordinates with cx, cy in
  * the center of the drawing area.
  */
-//const coord = (gx, gy, x, y, zoom) => [(gx - (cx - (x * zoom))) / zoom, ((cy - (y * zoom)) - gy) / zoom];
+const coord = (gx, gy, x, y, zoom) => [adjust(gx, cx, zoom, x), adjust(gy, cy, zoom, y)];
 
 const adjust = (g, c, zoom, offset) => ((g - c) / zoom) + offset;
 
-const coord = (gx, gy, x, y, zoom) => [adjust(gx, cx, zoom, x), adjust(gy, cy, zoom, y)];
 
 /*
  * How fast (if at all) does the iteration of f head toward positive
@@ -51,11 +50,11 @@ const color = (n) => {
  * with point cx, cy at the center of the drawing area and zoomed
  * by the given amount.  
  */
-const drawMandelbrot = (iterations, cx, cy, zoom) => {
+const drawMandelbrot = (iterations, x, y, zoom) => {
   const start = performance.now();
   for (let gx = 0; gx < width; gx++) {
     for (let gy = 0; gy < height; gy++) {
-      const e = escapeVelocity(coord(gx, gy, cx, cy, zoom), iterations);
+      const e = escapeVelocity(coord(gx, gy, x, y, zoom), iterations);
       const c = e === 0 ? 'black' : color(e / iterations);
       drawFilledRect(gx, gy, 1, 1, c);
     }
