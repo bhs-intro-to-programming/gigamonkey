@@ -42,7 +42,8 @@ const monkeyTrouble = (m1, m2) => m1 !== m2;
 const add = (a, b) => a + b;
 
 const test = () => {
-  if (add(2,2) !== 4) console.log("bad!")
+  if (add(2,2) !== 4) console.log("bad!");
+  console.log("Tests ran");
 };
 
 test();
