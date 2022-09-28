@@ -56,4 +56,4 @@ const sierpinski = (x, y, size, smallest) => {
   console.log(`${t} triangles.`);
 };
 
-sierpinski((MAX - width) / 2, BOTTOM, MAX, 1);
+sierpinski((width % MAX) / 2, BOTTOM, MAX, 1);
