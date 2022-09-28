@@ -52,7 +52,7 @@ const cutSmallerHoles = (x, y, side, smallest) => {
 
 /*
  * Draw the Sierpinski Gasket with the bottom left corner at x, y and side of size,
- * recursing down to cut down triangles 
+ * recursing down until we cut out triangles of size smallest. 
  */
 const sierpinski = (x, y, size, smallest) => {
   upTriangle(x, y, size, 'blue');
