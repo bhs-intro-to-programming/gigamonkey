@@ -38,5 +38,3 @@ x.bar = bar;
 */
 
 const monkeyTrouble = (m1, m2) => m1 !== m2;
-
-console.log('hello');
