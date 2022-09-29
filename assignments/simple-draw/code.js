@@ -60,18 +60,4 @@ const sierpinski = (x, y, size, smallest) => {
   console.log(`${t} triangles.`);
 };
 
-//sierpinski((width - MAX_SIDE) / 2, BOTTOM, MAX_SIDE, 1);
-
-const drawStrangePictureFrame = (d, color) => {
-  for (let j = 1; d * j < height - (d); j++) {
-    for (let i = 0; d * i < width - (d + d); i++) {
-      let x = i * d + d
-      let y = j * d
-      if (i === 0 || i === 37 || j === 16 || j === 1) {
-        drawCircle(x, y, d / 2, color)
-      }
-    }
-  }
-}
-
-drawStrangePictureFrame(17, 'blue') 
+sierpinski((width - MAX_SIDE) / 2, BOTTOM, MAX_SIDE, 1);
