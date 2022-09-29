@@ -22,28 +22,3 @@ const MAX_FIB_N = 1476;
 
 const MAX_FIB = fib2(MAX_FIB_N);
 
-const foo = () => { console.log(this.value); };
-
-const bar = function () { console.log(this.value); };
-/*
-const x = { 
-  value: 10, 
-  baz: () => console.log(this),
-  quux: function () { console.log(this) },
-  biff() { console.log(this.value); }
-};
-x.foo = foo;
-x.bar = bar;
-*/
-
-const monkeyTrouble = (m1, m2) => m1 !== m2;
-
-
-const add = (a, b) => a + b;
-
-const test = () => {
-  if (add(2,2) !== 4) console.log("bad!");
-  console.log("Tests ran");
-};
-
-test();
