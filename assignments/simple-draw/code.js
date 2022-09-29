@@ -24,12 +24,10 @@ const downTriangle = (x, y, side, color) => {
  * given side length. Also returns total number of triangles cut.
  */
 const cutHoles = (x, y, side, smallest) => {
-  let t = 1;
   cutBigHole(x, y, side);
   if (side >= smallest) {
-    t += cutSmallerHoles(x, y, side, smallest);
+    cutSmallerHoles(x, y, side, smallest);
   }
-  return t;
 };
 
 /*
@@ -44,11 +42,9 @@ const cutBigHole = (x, y, side) => {
  * big hole.
  */
 const cutSmallerHoles = (x, y, side, smallest) => {
-  let t = 0;
-  t += cutHoles(x, y, side / 2, smallest);
-  t += cutHoles(x + side / 2, y, side / 2, smallest);
-  t += cutHoles(x + side / 4, y - side / 2 * RISE, side / 2, smallest);
-  return t;
+  cutHoles(x, y, side / 2, smallest);
+  cutHoles(x + side / 2, y, side / 2, smallest);
+  cutHoles(x + side / 4, y - side / 2 * RISE, side / 2, smallest);
 };
 
 /*
@@ -57,8 +53,7 @@ const cutSmallerHoles = (x, y, side, smallest) => {
  */
 const sierpinski = (x, y, size, smallest) => {
   upTriangle(x, y, size, 'blue');
-  const t = cutHoles(x, y, size, smallest);
-  console.log(`${t} triangles.`);
+  cutHoles(x, y, size, smallest);
 };
 
 sierpinski((width - MAX_SIDE) / 2, BOTTOM, MAX_SIDE, 1);
