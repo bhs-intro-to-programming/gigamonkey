@@ -1,4 +1,5 @@
-const RISE = Math.sin(60 * Math.PI / 180);
+// Could also figure this out with Pythagorean theorem
+const RISE = Math.sin(60 * Math.PI / 180); 
 const MAX_SIDE = Math.min(width, height);
 const BOTTOM = height - (height - MAX_SIDE * RISE) * 0.75;
 
