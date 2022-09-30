@@ -5,3 +5,5 @@ const emit = (a, b, product) => {
 };
 
 // Write your code here ...
+
+const foo = (a, b) => a * b;
