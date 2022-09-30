@@ -60,8 +60,8 @@ const sierpinski = (x, y, size, smallest) => {
 
 const notReallyCurved = (lines) => {
   const gap = height / lines;
-  for (let i = 0; i != lines + 1; i++) {
-    const shift = height - i * gap;
+  for (let p = 0; p != lines + 1; p++) {
+    const shift = height - p * gap;
     drawLine(0, shift, shift, height, 'black')
   }
 }
