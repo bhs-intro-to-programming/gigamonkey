@@ -56,13 +56,4 @@ const sierpinski = (x, y, size, smallest) => {
   cutHoles(x, y, size, smallest);
 };
 
-//sierpinski((width - MAX_SIDE) / 2, BOTTOM, MAX_SIDE, 1);
-
-const notReallyCurved = (lines) => {
-  const gap = height / lines;
-  for (let p = 0; p != lines + 1; p++) {
-    const shift = height - p * gap;
-    drawLine(0, shift, shift, height, 'black')
-  }
-}
-notReallyCurved(25);
+sierpinski((width - MAX_SIDE) / 2, BOTTOM, MAX_SIDE, 1);
