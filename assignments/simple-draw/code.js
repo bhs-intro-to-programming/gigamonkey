@@ -80,7 +80,7 @@ const cutCarpetHoles = (x, y, size, smallest) => {
   }
 };
 
-carpet((width - MAX_SIDE) / 2, (height - MAX_SIDE) / 2, MAX_SIDE, 1);
+carpet((width - MAX_SIDE) / 2, (height - MAX_SIDE) / 2, MAX_SIDE, MAX_SIDE / 3);
 
 
 // Sadie's code
