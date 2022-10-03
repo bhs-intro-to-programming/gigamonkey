@@ -66,7 +66,7 @@ const carpet = (x, y, size, smallest) => {
 const cutCarpetHoles = (x, y, size, smallest) => {
   const third = size / 3;
   drawFilledRect(x + third, y + third, third, third, 'white');
-  gasket(x + third, y + third, third, 1);
+  gasket(x + third, y + 2 * third, third, 1);
   if (size >= smallest) {
     for (let row = 0; row < 3; row++) {
       for (let col = 0; col < 3; col++) {
