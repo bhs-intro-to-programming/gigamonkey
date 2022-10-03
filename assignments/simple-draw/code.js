@@ -64,7 +64,7 @@ const carpet = (x, y, size, smallest) => {
 };
 
 const cutCarpetHoles = (x, y, size, smallest) => {
-  drawFilledRect(x + size / 3, y + size / 3, size / 3, 'white');
+  drawFilledRect(x + size / 3, y + size / 3, size / 3, size / 3, 'white');
 };
 
 carpet((width - MAX_SIDE) / 2, (height - MAX_SIDE) / 2, MAX_SIDE, 1);
