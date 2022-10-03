@@ -66,8 +66,6 @@ const carpet = (x, y, size, smallest) => {
 const cutCarpetHoles = (x, y, size, smallest) => {
   const third = size / 3;
 
-  // Cut the big hole
-  //drawFilledRect(x + third, y + third, third, third, 'white');
   cutBigCarpetHole(x, y, size);
 
   // Draw a gasket inside the big hole
@@ -76,15 +74,7 @@ const cutCarpetHoles = (x, y, size, smallest) => {
 
   // Cut the smaller holes, recursively
   if (size >= smallest) {
-    for (let row = 0; row < 3; row++) {
-      for (let col = 0; col < 3; col++) {
-        if (row != 1 || col != 1) {
-          const nx = x + (third * col);
-          const ny = y + (third * row);
-          cutCarpetHoles(nx, ny, third, smallest);
-        }
-      }
-    }
+    cutSmallCarpetHoles(x, y, size);
   }
 };
 
@@ -92,6 +82,18 @@ const cutBigCarpetHole = (x, y, size) => {
   drawFilledRect(x + size / 3, y + size / 3, size / 3, size / 3, 'white');
 };
 
+const cutSmallCarpetHoles = (x, y, size) => {
+  const third = size / 3;
+  for (let row = 0; row < 3; row++) {
+    for (let col = 0; col < 3; col++) {
+      if (row != 1 || col != 1) {
+        const nx = x + (third * col);
+        const ny = y + (third * row);
+        cutCarpetHoles(nx, ny, third, smallest);
+      }
+    }
+  }
+};
 carpet((width - MAX_SIDE) / 2, (height - MAX_SIDE) / 2, MAX_SIDE, 1);
 
 
