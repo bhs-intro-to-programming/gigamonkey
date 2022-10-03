@@ -56,7 +56,7 @@ const gasket = (x, y, size, smallest) => {
   cutHoles(x, y, size, smallest);
 };
 
-gasket((width - MAX_SIDE) / 2, BOTTOM, MAX_SIDE, 1);
+//gasket((width - MAX_SIDE) / 2, BOTTOM, MAX_SIDE, 1);
 
 const carpet = (x, y, size, smallest) => {
   drawFilledRect(x, y, size, size, 'blue');
@@ -79,7 +79,7 @@ const cutCarpetHoles = (x, y, size, smallest) => {
   }
 };
 
-//carpet((width - MAX_SIDE) / 2, (height - MAX_SIDE) / 2, MAX_SIDE, 1);
+carpet((width - MAX_SIDE) / 2, (height - MAX_SIDE) / 2, MAX_SIDE, 1);
 
 
 // Sadie's code
