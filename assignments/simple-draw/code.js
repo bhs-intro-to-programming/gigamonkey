@@ -56,11 +56,18 @@ const gasket = (x, y, size, smallest) => {
   cutHoles(x, y, size, smallest);
 };
 
+/*
+ * Draw the Sierpinki Carpet with the top left corner at x, y and the side of size,
+ * recursing down until we cut out squares of the size smallest.
+ */
 const carpet = (x, y, size, smallest, extra=() => {}) => {
   drawFilledRect(x, y, size, size, 'blue');
   cutCarpetHoles(x, y, size, smallest, extra);
 };
 
+/*
+ * Draw a Sierpinski Carpet with each big hole decorated with a Sierpinski Gasket.
+ */
 const garpet = (x, y, size, smallest) => carpet(x, y, size, smallest, embedGasket);
 
 const cutCarpetHoles = (x, y, size, smallest, decorateBigHole) => {
