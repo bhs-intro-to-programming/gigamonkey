@@ -65,8 +65,6 @@ const carpet = (x, y, size, smallest) => {
 
 const cutCarpetHoles = (x, y, size, smallest) => {
   cutBigCarpetHole(x, y, size);
-  embedGasket(x, y, size);
-
   if (size >= smallest) {
     cutSmallCarpetHoles(x, y, size, smallest);
   }
@@ -75,7 +73,7 @@ const cutCarpetHoles = (x, y, size, smallest) => {
 const cutBigCarpetHole = (x, y, size) => {
   const third = size / 3;
   drawFilledRect(x + third, y + third, third, third, 'white');
-  embedGasket(x, y, third)
+  embedGasket(x + third, y + third, third)
 };
 
 const embedGasket = (x, y, size) => {
