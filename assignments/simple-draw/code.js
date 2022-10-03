@@ -59,7 +59,7 @@ const sierpinski = (x, y, size, smallest) => {
 // sierpinski((width - MAX_SIDE) / 2, BOTTOM, MAX_SIDE, 1);
 
 const carpet = (x, y, size, smallest) => {
-  drawFilledRectangle(x, y, size, size, 'blue');
+  drawFilledRect(x, y, size, size, 'blue');
 };
 
 carpet((width - MAX_SIDE) / 2, (height - MAX_SIDE) / 2, MAX_SIDE, 1);
