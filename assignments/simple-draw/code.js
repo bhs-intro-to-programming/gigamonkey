@@ -56,8 +56,6 @@ const gasket = (x, y, size, smallest) => {
   cutHoles(x, y, size, smallest);
 };
 
-//gasket((width - MAX_SIDE) / 2, BOTTOM, MAX_SIDE, 1);
-
 const carpet = (x, y, size, smallest, extra=() => {}) => {
   drawFilledRect(x, y, size, size, 'blue');
   cutCarpetHoles(x, y, size, smallest, extra);
@@ -65,19 +63,17 @@ const carpet = (x, y, size, smallest, extra=() => {}) => {
 
 const garpet = (x, y, size, smallest) => carpet(x, y, size, smallest, embedGasket);
 
-const cutCarpetHoles = (x, y, size, smallest, extra) => {
-  cutBigCarpetHole(x, y, size, extra);
+const cutCarpetHoles = (x, y, size, smallest, decorateBigHole) => {
+  cutBigCarpetHole(x, y, size, decorateBigHole);
   if (size >= smallest) {
-    cutSmallCarpetHoles(x, y, size, smallest, extra);
+    cutSmallCarpetHoles(x, y, size, smallest, decorateBigHole);
   }
 };
 
-const cutBigCarpetHole = (x, y, size, extra) => {
+const cutBigCarpetHole = (x, y, size, decorateBigHole) => {
   const third = size / 3;
   drawFilledRect(x + third, y + third, third, third, 'white');
-  if (extra) {
-    extra(x + third, y + third, third);
-  }
+  decorateBigHole(x + third, y + third, third);
 };
 
 const embedGasket = (x, y, size) => {
@@ -85,19 +81,21 @@ const embedGasket = (x, y, size) => {
   gasket(x, (y + size) - ((size - h) / 2), size, 1);
 };
 
-const cutSmallCarpetHoles = (x, y, size, smallest, extra) => {
+const cutSmallCarpetHoles = (x, y, size, smallest, decorateBigHole) => {
   const third = size / 3;
   for (let row = 0; row < 3; row++) {
     for (let col = 0; col < 3; col++) {
       if (row != 1 || col != 1) {
         const nx = x + (third * col);
         const ny = y + (third * row);
-        cutCarpetHoles(nx, ny, third, smallest, extra);
+        cutCarpetHoles(nx, ny, third, smallest, decorateBigHole);
       }
     }
   }
 };
-//carpet((width - MAX_SIDE) / 2, (height - MAX_SIDE) / 2, MAX_SIDE, 1);
+
+// gasket((width - MAX_SIDE) / 2, BOTTOM, MAX_SIDE, 1);
+// carpet((width - MAX_SIDE) / 2, (height - MAX_SIDE) / 2, MAX_SIDE, 1);
 garpet((width - MAX_SIDE) / 2, (height - MAX_SIDE) / 2, MAX_SIDE, 1);
 
 
