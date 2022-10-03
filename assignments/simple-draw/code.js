@@ -68,7 +68,7 @@ const garpet = (x, y, size, smallest) => carpet(x, y, size, smallest, embedGaske
 const cutCarpetHoles = (x, y, size, smallest, extra) => {
   cutBigCarpetHole(x, y, size, extra);
   if (size >= smallest) {
-    cutSmallCarpetHoles(x, y, size, smallest);
+    cutSmallCarpetHoles(x, y, size, smallest, extra);
   }
 };
 
@@ -85,14 +85,14 @@ const embedGasket = (x, y, size) => {
   gasket(x, (y + size) - ((size - h) / 2), size, 1);
 };
 
-const cutSmallCarpetHoles = (x, y, size, smallest) => {
+const cutSmallCarpetHoles = (x, y, size, smallest, extra) => {
   const third = size / 3;
   for (let row = 0; row < 3; row++) {
     for (let col = 0; col < 3; col++) {
       if (row != 1 || col != 1) {
         const nx = x + (third * col);
         const ny = y + (third * row);
-        cutCarpetHoles(nx, ny, third, smallest);
+        cutCarpetHoles(nx, ny, third, smallest, extra);
       }
     }
   }
