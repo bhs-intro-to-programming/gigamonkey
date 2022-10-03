@@ -1,5 +1,5 @@
 // Could also figure this out with Pythagorean theorem
-const RISE = Math.sin(60 * Math.PI / 180); 
+const RISE = Math.sin(60 * Math.PI / 180);
 const MAX_SIDE = Math.min(width, height);
 const BOTTOM = height - (height - MAX_SIDE * RISE) * 0.75;
 
@@ -74,6 +74,7 @@ const cutCarpetHoles = (x, y, size, smallest) => {
           const nx = x + third * col + ninth;
           const ny = y + third * row + ninth;
           cutCarpetHoles(nx, ny, third, smallest);
+        }
       }
     }
   }
@@ -91,11 +92,11 @@ const carp = (x, y, widX, widY, depth) => {
   if (depth > 0) {
     for (let exe = 0; exe < 4; exe++) {
       for (let wiy = 0; wiy < 4; wiy++) {
-        if (exe === 3 || wiy === 2|| exe === 0 || wiy === 0){
+        if (exe === 3 || wiy === 2 || exe === 0 || wiy === 0) {
         } else {
-        let opX = exe === 1 || exe === 4 ? add(x, widX, exe) : sub(x, widX, exe);
-        let opY = wiy === 1 || wiy === 4 ? add(x, widY, wiy) : sub(x, widY, wiy);
-        carp(opX, opY, widX / 3, widY / 3, depth - 1)
+          let opX = exe === 1 || exe === 4 ? add(x, widX, exe) : sub(x, widX, exe);
+          let opY = wiy === 1 || wiy === 4 ? add(x, widY, wiy) : sub(x, widY, wiy);
+          carp(opX, opY, widX / 3, widY / 3, depth - 1)
         }
       }
     }
