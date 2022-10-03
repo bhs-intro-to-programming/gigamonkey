@@ -58,15 +58,12 @@ const gasket = (x, y, size, smallest) => {
 
 //gasket((width - MAX_SIDE) / 2, BOTTOM, MAX_SIDE, 1);
 
-const carpet = (x, y, size, smallest) => {
+const carpet = (x, y, size, smallest, extra=() => {}) => {
   drawFilledRect(x, y, size, size, 'blue');
   cutCarpetHoles(x, y, size, smallest);
 };
 
-const garpet = (x, y, size, smallest) => {
-  drawFilledRect(x, y, size, size, 'blue');
-  cutCarpetHoles(x, y, size, smallest);
-};
+const garpet = (x, y, size, smallest) => carpet(x, y, size, smallest, embedGasket);
 
 const cutCarpetHoles = (x, y, size, smallest, extra) => {
   cutBigCarpetHole(x, y, size, extra);
@@ -100,7 +97,8 @@ const cutSmallCarpetHoles = (x, y, size, smallest) => {
     }
   }
 };
-carpet((width - MAX_SIDE) / 2, (height - MAX_SIDE) / 2, MAX_SIDE, 1);
+//carpet((width - MAX_SIDE) / 2, (height - MAX_SIDE) / 2, MAX_SIDE, 1);
+garpet((width - MAX_SIDE) / 2, (height - MAX_SIDE) / 2, MAX_SIDE, 1);
 
 
 // Sadie's code
