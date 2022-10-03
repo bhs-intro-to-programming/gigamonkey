@@ -60,7 +60,7 @@ const gasket = (x, y, size, smallest) => {
 
 const carpet = (x, y, size, smallest, extra=() => {}) => {
   drawFilledRect(x, y, size, size, 'blue');
-  cutCarpetHoles(x, y, size, smallest);
+  cutCarpetHoles(x, y, size, smallest, extra);
 };
 
 const garpet = (x, y, size, smallest) => carpet(x, y, size, smallest, embedGasket);
