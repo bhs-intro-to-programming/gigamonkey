@@ -74,7 +74,7 @@ const cutCarpetHoles = (x, y, size, smallest) => {
 
   // Cut the smaller holes, recursively
   if (size >= smallest) {
-    cutSmallCarpetHoles(x, y, size);
+    cutSmallCarpetHoles(x, y, size, smallest);
   }
 };
 
@@ -82,7 +82,7 @@ const cutBigCarpetHole = (x, y, size) => {
   drawFilledRect(x + size / 3, y + size / 3, size / 3, size / 3, 'white');
 };
 
-const cutSmallCarpetHoles = (x, y, size) => {
+const cutSmallCarpetHoles = (x, y, size, smallest) => {
   const third = size / 3;
   for (let row = 0; row < 3; row++) {
     for (let col = 0; col < 3; col++) {
