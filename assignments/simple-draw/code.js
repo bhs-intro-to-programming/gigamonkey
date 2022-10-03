@@ -68,8 +68,8 @@ const cutCarpetHoles = (x, y, size, smallest) => {
   cutBigCarpetHole(x, y, size);
 
   // Draw a gasket inside the big hole
-  const h = RISE * third;
   const third = size / 3;
+  const h = RISE * third;
   gasket(x + third, (y + 2 * third) - ((third - h) / 2), third, 1);
 
   if (size >= smallest) {
