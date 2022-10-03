@@ -56,4 +56,27 @@ const sierpinski = (x, y, size, smallest) => {
   cutHoles(x, y, size, smallest);
 };
 
-sierpinski((width - MAX_SIDE) / 2, BOTTOM, MAX_SIDE, 1);
+// sierpinski((width - MAX_SIDE) / 2, BOTTOM, MAX_SIDE, 1);
+
+
+// Sadie's code
+const add = (num1, num2, num3) => num1 + num2 * num3 / 3;
+const sub = (num1, num2, num3) => num1 - num2 * num3 / 3;
+
+const carp = (x, y, widX, widY, depth) => {
+  drawFilledRect(x, y, widX, widY)
+  if (depth > 0) {
+    for (let exe = 0; exe < 4; exe++) {
+      for (let wiy = 0; wiy < 4; wiy++) {
+        if (exe === 3 || wiy === 2|| exe === 0 || wiy === 0){
+        } else {
+        let opX = exe === 1 || exe === 4 ? add(x, widX, exe) : sub(x, widX, exe);
+        let opY = wiy === 1 || wiy === 4 ? add(x, widY, wiy) : sub(x, widY, wiy);
+        carp(opX, opY, widX / 3, widY / 3, depth - 1)
+        }
+      }
+    }
+  }
+}
+
+carp(width / 3, height / 3, width / 3, height / 3, 3);
