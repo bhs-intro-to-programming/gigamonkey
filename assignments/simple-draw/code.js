@@ -70,9 +70,9 @@ const cutCarpetHoles = (x, y, size, smallest) => {
     const ninth = size / 9;
     for (let row = 0; row < 3; row++) {
       for (let col = 0; col < 3; col++) {
-        if (row != 1 || row != 1) {
-          const nx = x + third * col + ninth;
-          const ny = y + third * row + ninth;
+        if (row != 1 || col != 1) {
+          const nx = x + (third * col) + ninth;
+          const ny = y + (third * row) + ninth;
           cutCarpetHoles(nx, ny, third, smallest);
         }
       }
