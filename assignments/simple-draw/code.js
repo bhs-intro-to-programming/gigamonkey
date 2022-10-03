@@ -64,13 +64,8 @@ const carpet = (x, y, size, smallest) => {
 };
 
 const cutCarpetHoles = (x, y, size, smallest) => {
-
   cutBigCarpetHole(x, y, size);
-
-  // Draw a gasket inside the big hole
-  const third = size / 3;
-  const h = RISE * third;
-  gasket(x + third, (y + 2 * third) - ((third - h) / 2), third, 1);
+  embedGasket(x, y, size);
 
   if (size >= smallest) {
     cutSmallCarpetHoles(x, y, size, smallest);
@@ -79,6 +74,12 @@ const cutCarpetHoles = (x, y, size, smallest) => {
 
 const cutBigCarpetHole = (x, y, size) => {
   drawFilledRect(x + size / 3, y + size / 3, size / 3, size / 3, 'white');
+};
+
+const embedGasket = (x, y, size) => {
+  const third = size / 3;
+  const h = RISE * third;
+  gasket(x + third, (y + 2 * third) - ((third - h) / 2), third, 1);
 };
 
 const cutSmallCarpetHoles = (x, y, size, smallest) => {
