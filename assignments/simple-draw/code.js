@@ -69,7 +69,7 @@ const cutCarpetHoles = (x, y, size, smallest) => {
 
   const h = RISE * third;
 
-  gasket(x + third, (y + 2 * third) - ((size - h) / 2), third, 1);
+  gasket(x + third, (y + 2 * third) - ((third - h) / 2), third, 1);
   if (size >= smallest) {
     for (let row = 0; row < 3; row++) {
       for (let col = 0; col < 3; col++) {
