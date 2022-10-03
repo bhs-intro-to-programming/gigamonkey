@@ -64,15 +64,14 @@ const carpet = (x, y, size, smallest) => {
 };
 
 const cutCarpetHoles = (x, y, size, smallest) => {
-  const third = size / 3;
 
   cutBigCarpetHole(x, y, size);
 
   // Draw a gasket inside the big hole
   const h = RISE * third;
-  //gasket(x + third, (y + 2 * third) - ((third - h) / 2), third, 1);
+  const third = size / 3;
+  gasket(x + third, (y + 2 * third) - ((third - h) / 2), third, 1);
 
-  // Cut the smaller holes, recursively
   if (size >= smallest) {
     cutSmallCarpetHoles(x, y, size, smallest);
   }
