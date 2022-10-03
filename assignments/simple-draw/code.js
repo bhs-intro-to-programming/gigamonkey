@@ -78,7 +78,7 @@ const cutBigCarpetHole = (x, y, size) => {
 
 const embedGasket = (x, y, size) => {
   const h = RISE * size;
-  gasket(x, y - ((size - h) / 2), size, 1);
+  gasket(x, (y + size) - ((size - h) / 2), size, 1);
 };
 
 const cutSmallCarpetHoles = (x, y, size, smallest) => {
