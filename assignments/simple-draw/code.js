@@ -62,7 +62,7 @@ const carpet = (x, y, size, smallest) => {
   drawFilledRectangle(x, y, size, size, 'blue');
 };
 
-carpet((width - MAX_SIDE) / 2, (height - MAX_SIZE) / 2, MAX_SIDE, 1);
+carpet((width - MAX_SIDE) / 2, (height - MAX_SIDE) / 2, MAX_SIDE, 1);
 
 
 // Sadie's code
