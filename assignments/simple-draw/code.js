@@ -51,12 +51,12 @@ const cutSmallerHoles = (x, y, side, smallest) => {
  * Draw the Sierpinski Gasket with the bottom left corner at x, y and side of size,
  * recursing down until we cut out triangles of size smallest. 
  */
-const sierpinski = (x, y, size, smallest) => {
+const gasket = (x, y, size, smallest) => {
   upTriangle(x, y, size, 'blue');
   cutHoles(x, y, size, smallest);
 };
 
-// sierpinski((width - MAX_SIDE) / 2, BOTTOM, MAX_SIDE, 1);
+gasket((width - MAX_SIDE) / 2, BOTTOM, MAX_SIDE, 1);
 
 const carpet = (x, y, size, smallest) => {
   drawFilledRect(x, y, size, size, 'blue');
@@ -79,7 +79,7 @@ const cutCarpetHoles = (x, y, size, smallest) => {
   }
 };
 
-carpet((width - MAX_SIDE) / 2, (height - MAX_SIDE) / 2, MAX_SIDE, 1);
+//carpet((width - MAX_SIDE) / 2, (height - MAX_SIDE) / 2, MAX_SIDE, 1);
 
 
 // Sadie's code
