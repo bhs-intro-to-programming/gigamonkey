@@ -65,6 +65,18 @@ const carpet = (x, y, size, smallest) => {
 
 const cutCarpetHoles = (x, y, size, smallest) => {
   drawFilledRect(x + size / 3, y + size / 3, size / 3, size / 3, 'white');
+  if (size > smallest) {
+    const third = size / 3;
+    const ninth = size / 9;
+    for (let row = 0; row < 3; row++) {
+      for (let col = 0; col < 3; col++) {
+        if (i != 1 || j != 1) {
+          const nx = x + third * col + ninth;
+          const ny = y + third * row + ninth;
+          cutCarpetHoles(nx, ny, third, smallest);
+      }
+    }
+  }
 };
 
 carpet((width - MAX_SIDE) / 2, (height - MAX_SIDE) / 2, MAX_SIDE, 1);
