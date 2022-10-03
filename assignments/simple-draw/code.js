@@ -67,7 +67,7 @@ const cutCarpetHoles = (x, y, size, smallest) => {
   const third = size / 3;
   drawFilledRect(x + third, y + third, third, third, 'white');
 
-  const h = RISE * size;
+  const h = RISE * third;
 
   gasket(x + third, (y + 2 * third) - ((size - h) / 2), third, 1);
   if (size >= smallest) {
