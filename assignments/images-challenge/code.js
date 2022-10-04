@@ -141,7 +141,7 @@ const checkerBoard = (num, color1, color2) => {
   let color22 = color2;
   for (let y = 0; y < num * size; y += size) {
     for (let x = 0; x < num * size; x += size) {
-      console.log(x + y)
+      //console.log(x + y)
       drawFilledRect(x, y, size, size, color11)
       //swap
       let temp = color11;
@@ -204,8 +204,8 @@ const squareOfCircles = (radius, color) => {
 //lineOfCircles(23)
 //lineOfCirclesColor(12, 'pink', 'teal')
 //concentricCircles(13, 'teal', 'pink')
-checkerBoard(14, 'black', 'red')
-//fillWithCircles(30, 'blue') //FIX
+//checkerBoard(14, 'black', 'red')
+fillWithCircles(30, 'blue') //FIX
 //fillWithCirclesRandomlyFilled(30, 0.99, 'blue')
 //squareOfCircles(10, 'blue') //not done 
 
