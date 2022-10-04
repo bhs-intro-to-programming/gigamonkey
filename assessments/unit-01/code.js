@@ -27,3 +27,14 @@ const offset = (width, figureWidth) => {
   return (width - figureWidth) / 2;
 };
 
+const canSleepIn = (weekday, vacation) => {
+  return !weekday || vacation;
+};
+
+const canGoToProm = (senior, invited, excluded) => {
+  return (senior || invited) && !excluded;
+};
+
+const getsSpeedingTicket = (mph, grouchy) => {
+  return mph > 70 || grouchy && mph > 65; 
+};
