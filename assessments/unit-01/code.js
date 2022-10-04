@@ -38,3 +38,7 @@ const canGoToProm = (senior, invited, excluded) => {
 const getsSpeedingTicket = (mph, grouchy) => {
   return mph > 70 || grouchy && mph > 65; 
 };
+
+const moreThanTwiceAsLong = (s1, s2) => {
+  return s1.length > s2.length * 2;
+};
