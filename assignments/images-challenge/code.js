@@ -209,6 +209,7 @@ const mySquareOfCircles = (radius) => {
       // the (num - 1)th row or column.
       console.log(`r: ${r}; c: ${c}`);
       if ((r % (num - 1)) * (c % (num - 1)) === 0) {
+        console.log('drawing at ${xOffset + r * d},${yOffset + c * d}')
         drawCircle(xOffset + r * d, yOffset + c * d, radius, 'blue');
       }
     }
