@@ -5,6 +5,3 @@ const emit = (a, b, product) => {
 };
 
 // Write your code here ...
-const averageWeight = (weight, numItems) => {
-  return weight / numItems;
-};
