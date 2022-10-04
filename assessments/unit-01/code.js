@@ -4,6 +4,8 @@ const emit = (a, b, product) => {
   console.log(`${a} times ${b} is ${product}`);
 };
 
+// Numeric functions
+
 // Write your code here ...
 const averageWeight = (weight, items) => {
   return weight / items;
@@ -18,7 +20,7 @@ const maxRadius = (width, height) => {
 };
 
 const numCircles = (radius, width) => {
-  return Math.floor(width / (r * 2));
+  return Math.floor(width / (radius * 2));
 };
 
 const offset = (width, figureWidth) => {
