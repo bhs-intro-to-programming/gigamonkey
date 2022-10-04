@@ -201,8 +201,8 @@ const squareOfCircles = (radius, color) => {
 
 
 //notreallycurved(20, height, width/2)
-lineOfCircles(23)
-//lineOfCirclesColor(12, 'pink', 'teal')
+//lineOfCircles(23)
+lineOfCirclesColor(12, 'pink', 'teal')
 //concentricCircles(11, 'teal', 'pink')
 //checkerBoard(5, 'black', 'red')
 //fillWithCircles(30, 'blue') //FIX
