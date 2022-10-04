@@ -56,5 +56,5 @@ const secondHalf = (s) => {
 };
 
 const upDown = (s) => {
-  return s.toUpperCase() + s;
+  return s.toUpperCase() + s.toLowerCase();
 };
