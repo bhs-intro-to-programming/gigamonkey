@@ -204,7 +204,7 @@ const squareOfCircles = (radius, color) => {
 //lineOfCircles(23)
 //lineOfCirclesColor(12, 'pink', 'teal')
 //concentricCircles(13, 'teal', 'pink')
-checkerBoard(10, 'black', 'red')
+checkerBoard(7, 'black', 'red')
 //fillWithCircles(30, 'blue') //FIX
 //fillWithCirclesRandomlyFilled(30, 0.99, 'blue')
 //squareOfCircles(10, 'blue') //not done 
