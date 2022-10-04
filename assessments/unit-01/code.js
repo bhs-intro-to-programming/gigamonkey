@@ -20,3 +20,8 @@ const maxRadius = (width, height) => {
 const numCircles = (radius, width) => {
   return Math.floor(width / (r * 2));
 };
+
+const offset = (width, figureWidth) => {
+  return (width - figureWidth) / 2;
+};
+
