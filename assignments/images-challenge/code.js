@@ -197,7 +197,21 @@ const squareOfCircles = (radius, color) => {
   }
 }
 
-
+const mySquareOfCircles = (radius) => {
+  const d = radius * 2;
+  const num = Math.floor(Math.min(width, height) / d);
+  const xOffset = (width % (num * d)) / 2 + radius;
+  const yOffset = (height % (num * d)) / 2 + radius;
+  for (let r = 0; r < num; r++) {
+    for (let c = 0; c < num; c++) {
+      // We only want to draw the circle if we're in the 0th or
+      // the (num - 1)th row or column.
+      if ((r % (num - 1)) * (c % (num - 1)) === 0) {
+        drawCircle(xOffset + r * d, yOffset + c * d, radius, 'blue');
+      }
+    }
+  }
+};
 
 
 //notreallycurved(20, height, width/2)
@@ -205,7 +219,7 @@ const squareOfCircles = (radius, color) => {
 //lineOfCirclesColor(12, 'pink', 'teal')
 //concentricCircles(13, 'teal', 'pink')
 //checkerBoard(14, 'black', 'red')
-fillWithCircles(30, 'blue') //FIX
+//fillWithCircles(30, 'blue') //FIX
 //fillWithCirclesRandomlyFilled(30, 0.99, 'blue')
 //squareOfCircles(10, 'blue') //not done 
 
