@@ -43,6 +43,6 @@ const moreThanTwiceAsLong = (s1, s2) => {
   return s1.length > s2.length * 2;
 };
 
-const aFartherThanB = () => {
-
-};
+const aFartherThanB = (a, b, c) => {
+  return Math.abs(a - c) > Math.abs(b - c);
+};   
