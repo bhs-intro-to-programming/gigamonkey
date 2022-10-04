@@ -207,6 +207,7 @@ const mySquareOfCircles = (radius) => {
     for (let c = 0; c < num; c++) {
       // We only want to draw the circle if we're in the 0th or
       // the (num - 1)th row or column.
+      console.log(`r: ${r}; c: ${c}`);
       if ((r % (num - 1)) * (c % (num - 1)) === 0) {
         drawCircle(xOffset + r * d, yOffset + c * d, radius, 'blue');
       }
