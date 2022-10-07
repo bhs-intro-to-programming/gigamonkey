@@ -237,12 +237,15 @@ const checkerboard = (n, color1, color2) => {
   const heightExtra = (height - smallerValue) / 2
   drawFilledRect(Math.max(widthExtra, heightExtra), 0, smallerValue, smallerValue, color1)
   let startpos = 0
+  let count = 0;
   for (let i = 0; i < smallerValue - squareSide / (squareSide - 1); i += squareSide) {
     for (let j = startpos; j < largerValue; j += 2 * squareSide) {
+      count++;
       drawFilledRect(i + widthExtra, j + heightExtra, squareSide, squareSide, color2)
     }
     startpos = startpos === 0 ? squareSide : 0
   }
+  console.log(`Drew ${count} small squares; expected ${n ** 2 / 2}`);
 }
 
 checkerboard(8, 'red', 'blue');
