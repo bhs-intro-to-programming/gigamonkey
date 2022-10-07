@@ -229,7 +229,7 @@ const checkerboard = (n, scale=1) => {
   }
 };
 
-checkerboard(15);
+checkerboard(15, 0.5);
 
 const xcheckerboard = (n, color1, color2) => {
   const smallerValue = Math.min(width, height) / 2;
