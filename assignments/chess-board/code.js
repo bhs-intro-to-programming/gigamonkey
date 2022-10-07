@@ -10,3 +10,5 @@ const BLACK_ROOK   = '♜';
 const BLACK_BISHOP = '♝';
 const BLACK_KNIGHT = '♞';
 const BLACK_PAWN   = '♟';
+
+// test
