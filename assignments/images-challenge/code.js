@@ -220,7 +220,13 @@ const checkerboard = (n) => {
   const dim = Math.min(width, height);
   const xOffset = (width - dim) / 2;
   const yOffset = (height - dim) / 2;
+  const small = dim / n;
   drawFilledRect(xOffset, yOffset, dim, dim, 'red');
+  for (let row = 0; row < n; row++) {
+    for (let col = row % 2; col < n; col += 2) {
+      drawFilledRect(xOffset + col * small, yOffset + row * small, small, small, 'blue');
+    }
+  }
 };
 
 checkerboard(8);
