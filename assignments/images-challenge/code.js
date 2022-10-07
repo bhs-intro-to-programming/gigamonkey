@@ -216,6 +216,14 @@ const mySquareOfCircles = (radius) => {
   }
 };
 
+const checkerboard = (n) => {
+  const dim = Math.min(width, height);
+  const xOffset = (width - dim) / 2;
+  const yOffset = (height - dim) / 2;
+  drawFilledRectangle(xOffset, yOffset, dim, dim, 'red');
+};
+
+checkerboard(8);
 
 //notreallycurved(20, height, width/2)
 //lineOfCircles(23)
