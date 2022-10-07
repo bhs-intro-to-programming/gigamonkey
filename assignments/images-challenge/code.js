@@ -216,7 +216,7 @@ const mySquareOfCircles = (radius) => {
   }
 };
 
-const checkerboard = (n) => {
+const mycheckerboard = (n) => {
   const dim = Math.min(width, height);
   const xOffset = (width - dim) / 2;
   const yOffset = (height - dim) / 2;
@@ -229,7 +229,23 @@ const checkerboard = (n) => {
   }
 };
 
-checkerboard(8);
+const checkerboard = (n, color1, color2) => {
+  const smallerValue = Math.min(width, height)
+  const largerValue = Math.max(width, height)
+  const squareSide = smallerValue / n
+  const widthExtra = (width - smallerValue) / 2
+  const heightExtra = (height - smallerValue) / 2
+  drawFilledRect(Math.max(widthExtra, heightExtra), 0, smallerValue, smallerValue, color1)
+  let startpos = 0
+  for (let i = 0; i < smallerValue - squareSide / (squareSide - 1); i += squareSide) {
+    for (let j = startpos; j < largerValue; j += 2 * squareSide) {
+      drawFilledRect(i + widthExtra, j + heightExtra, squareSide, squareSide, color2)
+    }
+    startpos = startpos === 0 ? squareSide : 0
+  }
+}
+
+checkerboard(8, 'red', 'blue');
 
 //notreallycurved(20, height, width/2)
 //lineOfCircles(23)
