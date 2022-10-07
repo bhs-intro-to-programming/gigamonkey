@@ -10,3 +10,5 @@ const BLACK_ROOK   = '♜';
 const BLACK_BISHOP = '♝';
 const BLACK_KNIGHT = '♞';
 const BLACK_PAWN   = '♟';
+
+drawText(WHITE_KING, width/2, height/2, 'black', 64);
