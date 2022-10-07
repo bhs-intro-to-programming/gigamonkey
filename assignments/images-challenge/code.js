@@ -230,7 +230,7 @@ const mycheckerboard = (n) => {
 };
 
 const checkerboard = (n, color1, color2) => {
-  const smallerValue = Math.min(width, height)
+  const smallerValue = Math.min(width, height) / 2;
   const largerValue = Math.max(width, height)
   const squareSide = smallerValue / n
   const widthExtra = (width - smallerValue) / 2
