@@ -216,12 +216,12 @@ const mySquareOfCircles = (radius) => {
   }
 };
 
-const mycheckerboard = (n) => {
-  const dim = Math.min(width, height) * 0.8
-  const xOffset = (width - dim) / 2;
-  const yOffset = (height - dim) / 2;
-  const small = dim / n;
-  drawFilledRect(xOffset, yOffset, dim, dim, 'red');
+const checkerboard = (n) => {
+  const big = Math.min(width, height);
+  const xOffset = (width - big) / 2;
+  const yOffset = (height - big) / 2;
+  const small = big / n;
+  drawFilledRect(xOffset, yOffset, big, big, 'red');
   for (let row = 0; row < n; row++) {
     for (let col = row % 2; col < n; col += 2) {
       drawFilledRect(xOffset + col * small, yOffset + row * small, small, small, 'blue');
@@ -229,7 +229,7 @@ const mycheckerboard = (n) => {
   }
 };
 
-mycheckerboard(15);
+checkerboard(15);
 
 const checkerboard = (n, color1, color2) => {
   const smallerValue = Math.min(width, height) / 2;
