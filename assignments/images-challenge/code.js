@@ -248,7 +248,7 @@ const checkerboard = (n, color1, color2) => {
   console.log(`Drew ${count} small squares; expected ${n ** 2 / 2}`);
 }
 
-checkerboard(8, 'red', 'blue');
+checkerboard(15, 'red', 'blue');
 
 //notreallycurved(20, height, width/2)
 //lineOfCircles(23)
