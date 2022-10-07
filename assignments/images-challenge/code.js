@@ -217,7 +217,7 @@ const mySquareOfCircles = (radius) => {
 };
 
 const checkerboard = (n, scale=1) => {
-  const big = Math.min(width, height);
+  const big = Math.min(width, height) * scale;
   const xOffset = (width - big) / 2;
   const yOffset = (height - big) / 2;
   const small = big / n;
