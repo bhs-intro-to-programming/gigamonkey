@@ -217,7 +217,7 @@ const mySquareOfCircles = (radius) => {
 };
 
 const mycheckerboard = (n) => {
-  const dim = Math.min(width, height);
+  const dim = Math.min(width, height) / 2;
   const xOffset = (width - dim) / 2;
   const yOffset = (height - dim) / 2;
   const small = dim / n;
@@ -228,6 +228,8 @@ const mycheckerboard = (n) => {
     }
   }
 };
+
+mycheckerboard(15);
 
 const checkerboard = (n, color1, color2) => {
   const smallerValue = Math.min(width, height) / 2;
@@ -248,7 +250,7 @@ const checkerboard = (n, color1, color2) => {
   console.log(`Drew ${count} small squares; expected ${n ** 2 / 2}`);
 }
 
-checkerboard(15, 'red', 'blue');
+//checkerboard(15, 'red', 'blue');
 
 //notreallycurved(20, height, width/2)
 //lineOfCircles(23)
