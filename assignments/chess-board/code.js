@@ -14,5 +14,5 @@ const BLACK_PAWN   = '♟';
 drawText(WHITE_KING, width/2, height/2, 'black', 64);
 
 canvas.onclick = (e) => { 
-  console.log(e.getX());
+  console.log(`${e.offsetX}, ${e.offsetY}`);
 };
