@@ -13,6 +13,3 @@ const BLACK_PAWN   = '♟';
 
 drawText(WHITE_KING, width/2, height/2, 'black', 64);
 
-// Making more changes.
-
-// After deleting branch.
