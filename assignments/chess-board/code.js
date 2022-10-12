@@ -14,5 +14,5 @@ const BLACK_PAWN   = '♟';
 //drawText(WHITE_KING, width/2, height/2, 'black', 64);
 
 onclick = (x, y) => { 
-  drawText(WHITE_KING, x, y, 'black', 64);
+  drawText(WHITE_KING, x, y, 'black', Math.min(width, height) / 8);
 };
