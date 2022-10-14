@@ -16,6 +16,7 @@ const randomStart = (p) => {
     }
     grid.push(row);
   }
+  return grid;
 };
 
 const render = (grid) => {
