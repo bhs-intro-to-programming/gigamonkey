@@ -20,6 +20,7 @@ const randomStart = (p) => {
 };
 
 const render = (grid) => {
+  drawFilledRect(0, 0, width, height, 'white');
   for (let r = 0; r < grid.length; r++) {
     for (let c = 0; c < grid[r].length; c++) {
       if (grid[r][c]) {
