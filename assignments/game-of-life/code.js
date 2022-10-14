@@ -57,10 +57,13 @@ const alive = (grid, r, c) => {
 const nextGeneraton = (grid) => {
   const next = [];
   for (let r = 0; r < grid.length; r++) {
+    const row = [];
     for (let c = 0; c < grid[r].length; c++) {
-      next[r][c] = alive(grid, r, c);
+      row.push(alive(grid, r, c));
     }
+    next.push(row);
   }
+  return next;
 };
 
 let state = randomStart(0.2);
