@@ -38,7 +38,7 @@ const neighborsAlive = (grid, r, c) => {
     for (let dy = -1; dy <= 1; dy++) {
       if (!(dx === 0 && dy === 0)) {
         const nr = r + dx;
-        const nc = r + dy;
+        const nc = c + dy;
         if (inBounds(nr, grid) && inBounds(nc, grid[nr])) {
           if (grid[nr][nc]) {
             count++
