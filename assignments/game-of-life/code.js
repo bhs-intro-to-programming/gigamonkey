@@ -27,7 +27,7 @@ const render = (grid) => {
       }
     }
   }
-}
+};
 
 const inBounds = (index, array) => 0 <= index && index < array.length;
 
@@ -47,6 +47,11 @@ const neighborsAlive = (grid, r, c) => {
     }
   }
   return count;
-}
+};
+
+const alive = (grid, r, c) => {
+  const n = neighborsAlive(grid, r, c);
+  return n === 3 || grid[r][c] && n == 2;
+};
 
 render(randomStart(0.2));
