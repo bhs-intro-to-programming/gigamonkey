@@ -55,7 +55,7 @@ const alive = (grid, r, c) => {
   return n === 3 || grid[r][c] && n == 2;
 };
 
-const nextGeneraton = (grid) => {
+const nextGeneration = (grid) => {
   const next = [];
   for (let r = 0; r < grid.length; r++) {
     const row = [];
@@ -70,3 +70,8 @@ const nextGeneraton = (grid) => {
 let state = randomStart(0.2);
 
 render(state);
+
+const step = () => {
+  state = nextGeneration(state);
+  render(state);
+}
