@@ -4,7 +4,7 @@ const columns = Math.floor(width / size);
 const rows = Math.floor(height / size);
 
 const fill = (r, c) => {
-  drawFilledRect(c * size, r * size, size, size, 'green');
+  drawFilledRect(c * size, r * size, size, size, 'rgb(0, 255, 0)');
 };
 
 const randomStart = (p) => {
@@ -20,7 +20,7 @@ const randomStart = (p) => {
 };
 
 const render = (grid) => {
-  drawFilledRect(0, 0, width, height, 'white');
+  drawFilledRect(0, 0, width, height, 'black');
   for (let r = 0; r < grid.length; r++) {
     for (let c = 0; c < grid[r].length; c++) {
       if (grid[r][c]) {
