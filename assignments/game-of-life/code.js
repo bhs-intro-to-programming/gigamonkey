@@ -29,4 +29,24 @@ const render = (grid) => {
   }
 }
 
+const inBounds = (index, array) => 0 <= index && index < array.length;
+
+const neighborsAlive = (grid, r, c) => {
+  let count = 0;
+  for (let dx = -1; dx <= 1; dx++) {
+    for (let dy = -1; dy <= 1; dy++) {
+      if (!(dx === 0 && dy === 0)) {
+        const nr = r + dx;
+        const nc = r + dy;
+        if (inBounds(nr, grid) && inBounds(nc, grid[nr])) {
+          if (grid[nr][nc]) {
+            count++
+          }
+        }
+      }
+    }
+  }
+  return count;
+}
+
 render(randomStart(0.2));
