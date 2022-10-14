@@ -54,4 +54,15 @@ const alive = (grid, r, c) => {
   return n === 3 || grid[r][c] && n == 2;
 };
 
-render(randomStart(0.2));
+const nextGeneraton = (grid) => {
+  const next = [];
+  for (let r = 0; r < grid.length; r++) {
+    for (let c = 0; c < grid[r].length; c++) {
+      next[r][c] = alive(grid, r, c);
+    }
+  }
+};
+
+let state = randomStart(0.2);
+
+render(state);
