@@ -1,6 +1,6 @@
 const SIZE = 4;
 const P = 0.2;
-const RATE = 500;
+const RATE = 0;
 
 const GOSPER_GG = `
 ........................#...........
