@@ -4,13 +4,21 @@ const RATE = 500;
 
 const columns = Math.floor(width / SIZE);
 const rows = Math.floor(height / SIZE);
+const xoffset = (width - columns * SIZE) / 2;
+const yoffset = (height - rows * SIZE) / 2;
 
 const render = (grid) => {
   drawFilledRect(0, 0, width, height, 'black');
   for (let r = 0; r < grid.length; r++) {
     for (let c = 0; c < grid[r].length; c++) {
       if (grid[r][c]) {
-        drawFilledRect(c * SIZE, r * SIZE, SIZE, SIZE, 'rgb(0, 255, 0)');
+        drawFilledRect(
+          xoffset + c * SIZE,
+          yoffset + r * SIZE,
+          SIZE,
+          SIZE,
+          'rgb(0, 255, 0)'
+        );
       }
     }
   }
