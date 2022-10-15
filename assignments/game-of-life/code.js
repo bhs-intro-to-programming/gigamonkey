@@ -1,6 +1,6 @@
 const SIZE = 12;
 const P = 0.2;
-let RATE = 0;
+let RATE = 200;
 
 const GLIDER = `
 #..
