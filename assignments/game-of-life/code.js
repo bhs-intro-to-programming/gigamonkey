@@ -24,19 +24,22 @@ const render = (grid) => {
   }
 };
 
-const randomStart = (p) => {
-  const grid = [];
-  for (let r = 0; r < rows; r++) {
+const nextGeneration = (grid) => {
+  const next = [];
+  for (let r = 0; r < grid.length; r++) {
     const row = [];
-    for (let c = 0; c < columns; c++) {
-      row.push(Math.random() < p);
+    for (let c = 0; c < grid[r].length; c++) {
+      row.push(isAlive(grid, r, c));
     }
-    grid.push(row);
+    next.push(row);
   }
-  return grid;
+  return next;
 };
 
-const inBounds = (index, array) => 0 <= index && index < array.length;
+const isAlive = (grid, r, c) => {
+  const n = neighborsAlive(grid, r, c);
+  return n === 3 || grid[r][c] && n == 2;
+};
 
 const neighborsAlive = (grid, r, c) => {
   let count = 0;
@@ -54,24 +57,21 @@ const neighborsAlive = (grid, r, c) => {
   return count;
 };
 
-const isAlive = (grid, r, c) => {
-  const n = neighborsAlive(grid, r, c);
-  return n === 3 || grid[r][c] && n == 2;
-};
+const inBounds = (index, array) => 0 <= index && index < array.length;
 
-const nextGeneration = (grid) => {
-  const next = [];
-  for (let r = 0; r < grid.length; r++) {
+const randomState = (p) => {
+  const grid = [];
+  for (let r = 0; r < rows; r++) {
     const row = [];
-    for (let c = 0; c < grid[r].length; c++) {
-      row.push(isAlive(grid, r, c));
+    for (let c = 0; c < columns; c++) {
+      row.push(Math.random() < p);
     }
-    next.push(row);
+    grid.push(row);
   }
-  return next;
+  return grid;
 };
 
-let state = randomStart(P);
+let state = randomState(P);
 let next = now();
 
 const drawFrame = (t) => {
