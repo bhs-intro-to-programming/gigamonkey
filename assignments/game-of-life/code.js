@@ -65,14 +65,14 @@ const nextGeneration = (grid) => {
   return next;
 };
 
-let state = randomStart(0.2);
+let state = randomStart(0.1);
 let next = now();
 
 const drawFrame = (t) => {
   if (t > next) {
     render(state);
     state = nextGeneration(state);
-    next += 1000;
+    next += 500;
   }
 };
 
