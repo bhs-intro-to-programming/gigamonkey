@@ -2,6 +2,8 @@ const SIZE = 12;
 const P = 0.2;
 let RATE = 200;
 
+const BLINKER = `###`;
+
 const GLIDER = `
 #..
 .##
@@ -111,6 +113,7 @@ const randomState = (p) => {
 //let state = randomState(P);
 let state = newGrid();
 addPattern(state, 1, 1, GOSPER_GG);
+addPattern(state, 3, columns - 5, BLINKER);
 let next = now();
 
 const drawFrame = (t) => {
