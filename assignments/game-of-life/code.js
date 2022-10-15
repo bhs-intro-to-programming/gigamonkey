@@ -1,4 +1,4 @@
-const SIZE = 4;
+const SIZE = 12;
 const P = 0.15;
 const RATE = 200;
 
