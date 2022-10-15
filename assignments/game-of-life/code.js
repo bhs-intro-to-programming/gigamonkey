@@ -25,11 +25,6 @@ const render = (grid) => {
 };
 
 const nextGeneration = (grid) => {
-  return grid.map((row, r) => row.map((_, c) => isAlive(grid, r, c)));
-};
-
-
-const nextGenerationX = (grid) => {
   const next = [];
   for (let r = 0; r < grid.length; r++) {
     const row = [];
