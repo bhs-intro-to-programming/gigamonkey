@@ -143,6 +143,12 @@ const pulsar = (r, c) => {
   addPattern(grid, r, c, PULSAR);
 };
 
+const foo = () => {
+  pulsar(5, columns - 20);
+  pulsar(Math.floor(rows/2), Math.floor(columns/2));
+  gun(20, 50);
+};
+
 const drawFrame = (t) => {
   if (t > next) {
     render(grid);
@@ -150,8 +156,6 @@ const drawFrame = (t) => {
     next += RATE;
   }
 };
-
-
 
 
 animate(drawFrame);
