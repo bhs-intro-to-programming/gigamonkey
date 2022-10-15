@@ -1,6 +1,6 @@
-const SIZE = 50;
+const SIZE = 4;
 const P = 0.2;
-const RATE = 1500;
+const RATE = 500;
 
 const columns = Math.floor(width / SIZE);
 const rows = Math.floor(height / SIZE);
