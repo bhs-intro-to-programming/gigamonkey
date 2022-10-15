@@ -10,6 +10,22 @@ const GLIDER = `
 ##.
 `;
 
+const PULSAR = `
+..OOO...OOO..
+.............
+O....O.O....O
+O....O.O....O
+O....O.O....O
+..OOO...OOO..
+.............
+..OOO...OOO..
+O....O.O....O
+O....O.O....O
+O....O.O....O
+.............
+..OOO...OOO..
+`;
+
 const GOSPER_GG = `
 ........................#...........
 ......................#.#...........
@@ -95,7 +111,7 @@ const addPattern = (grid, top, left, pattern) => {
   const p = pattern.trim().split('\n');
   for (let r = 0; r < p.length; r++) {
     for (let c = 0; c < p[r].length; c++) {
-      grid[top + r][left + c] = p[r][c] === '#';
+      grid[top + r][left + c] = p[r][c] !== '.';
     }
   }
 }
@@ -114,6 +130,7 @@ const randomState = (p) => {
 let state = newGrid();
 addPattern(state, 1, 1, GOSPER_GG);
 addPattern(state, 3, columns - 5, BLINKER);
+addPattern(state, 5, columns - 20, PULSAR);
 let next = now();
 
 const drawFrame = (t) => {
