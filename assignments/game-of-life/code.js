@@ -61,13 +61,11 @@ const render = (grid) => {
 };
 
 const nextGeneration = (grid) => {
-  const next = [];
+  const next = newGrid();
   for (let r = 0; r < grid.length; r++) {
-    const row = [];
     for (let c = 0; c < grid[r].length; c++) {
-      row.push(isAlive(grid, r, c));
+      grid[r][c] = isAlive(grid, r, c);
     }
-    next.push(row);
   }
   return next;
 };
