@@ -127,7 +127,7 @@ const gun = (grid) => {
   animate(animator(grid));
 };
 
-const clear = (grid) => {
+const clearGrid = (grid) => {
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < columns; c++) {
       grid[r][c] = false;
