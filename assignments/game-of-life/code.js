@@ -67,7 +67,7 @@ const nextGeneration = (grid) => {
   return next;
 };
 
-let state = randomStart(P));
+let state = randomStart(P);
 let next = now();
 
 const drawFrame = (t) => {
