@@ -3,6 +3,17 @@ const size = 4;
 const columns = Math.floor(width / size);
 const rows = Math.floor(height / size);
 
+const render = (grid) => {
+  drawFilledRect(0, 0, width, height, 'black');
+  for (let r = 0; r < grid.length; r++) {
+    for (let c = 0; c < grid[r].length; c++) {
+      if (grid[r][c]) {
+        fill(r, c);
+      }
+    }
+  }
+};
+
 const fill = (r, c) => {
   drawFilledRect(c * size, r * size, size, size, 'rgb(0, 255, 0)');
 };
@@ -19,17 +30,6 @@ const randomStart = (p) => {
   return grid;
 };
 
-const render = (grid) => {
-  drawFilledRect(0, 0, width, height, 'black');
-  for (let r = 0; r < grid.length; r++) {
-    for (let c = 0; c < grid[r].length; c++) {
-      if (grid[r][c]) {
-        fill(r, c);
-      }
-    }
-  }
-};
-
 const inBounds = (index, array) => 0 <= index && index < array.length;
 
 const neighborsAlive = (grid, r, c) => {
@@ -39,10 +39,8 @@ const neighborsAlive = (grid, r, c) => {
       if (!(dx === 0 && dy === 0)) {
         const nr = r + dx;
         const nc = c + dy;
-        if (inBounds(nr, grid) && inBounds(nc, grid[nr])) {
-          if (grid[nr][nc]) {
-            count++
-          }
+        if (inBounds(nr, grid) && inBounds(nc, grid[nr]) && grid[nr][nc]) {
+          count++
         }
       }
     }
