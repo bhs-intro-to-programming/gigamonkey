@@ -71,14 +71,24 @@ const neighborsAlive = (grid, r, c) => {
 
 const inBounds = (index, array) => 0 <= index && index < array.length;
 
-const randomState = (p) => {
+const newGrid = () => {
   const grid = [];
   for (let r = 0; r < rows; r++) {
     const row = [];
     for (let c = 0; c < columns; c++) {
-      row.push(Math.random() < p);
+      row.push(false);
     }
     grid.push(row);
+  }
+  return grid;
+}
+
+const randomState = (p) => {
+  const grid = newGrid();
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < columns; c++) {
+      grid[r][c] = Math.random() < p;
+    }
   }
   return grid;
 };
