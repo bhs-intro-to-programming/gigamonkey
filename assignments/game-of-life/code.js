@@ -112,21 +112,10 @@ const addPattern = (grid, top, left, pattern) => {
   }
 }
 
-const randomize = (grid, p) => {
-  for (let r = 0; r < rows; r++) {
-    for (let c = 0; c < columns; c++) {
-      grid[r][c] = Math.random() < p;
-    }
-  }
-};
+let next = now();
+let grid = newGrid();
 
-const gun = (grid) => {
-  addPattern(grid, 1, 1, GOSPER_GG);
-  addPattern(grid, 3, columns - 5, BLINKER);
-  addPattern(grid, 5, columns - 20, PULSAR);
-};
-
-const clearGrid = (grid) => {
+const clearGrid = () => {
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < columns; c++) {
       grid[r][c] = false;
@@ -134,16 +123,36 @@ const clearGrid = (grid) => {
   }
 };
 
-let next = now();
-let state = newGrid();
+const randomize = (p) => {
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < columns; c++) {
+      grid[r][c] = Math.random() < p;
+    }
+  }
+};
+
+const gun = (r, c) => {
+  addPattern(grid, r, c, GOSPER_GG);
+};
+
+const blinker = (r, c) => {
+  addPattern(grid, r, c, BLINKER);
+}
+
+const pulsar = (r, c) => {
+  addPattern(grid, r, c, PULSAR);
+};
 
 const drawFrame = (t) => {
   if (t > next) {
-    render(state);
-    state = nextGeneration(state);
+    render(grid);
+    grid = nextGeneration(grid);
     next += RATE;
   }
 };
+
+
+
 
 animate(drawFrame);
 
