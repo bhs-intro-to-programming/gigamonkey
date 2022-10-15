@@ -1,7 +1,9 @@
-const size = 4;
+const SIZE = 4;
+const P = 0.15;
+const RATE = 200;
 
-const columns = Math.floor(width / size);
-const rows = Math.floor(height / size);
+const columns = Math.floor(width / SIZE);
+const rows = Math.floor(height / SIZE);
 
 const render = (grid) => {
   drawFilledRect(0, 0, width, height, 'black');
@@ -15,7 +17,7 @@ const render = (grid) => {
 };
 
 const fill = (r, c) => {
-  drawFilledRect(c * size, r * size, size, size, 'rgb(0, 255, 0)');
+  drawFilledRect(c * SIZE, r * SIZE, SIZE, SIZE, 'rgb(0, 255, 0)');
 };
 
 const randomStart = (p) => {
@@ -65,14 +67,14 @@ const nextGeneration = (grid) => {
   return next;
 };
 
-let state = randomStart(0.1);
+let state = randomStart(P));
 let next = now();
 
 const drawFrame = (t) => {
   if (t > next) {
     render(state);
     state = nextGeneration(state);
-    next += 500;
+    next += RATE;
   }
 };
 
