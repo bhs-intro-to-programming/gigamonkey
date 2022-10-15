@@ -110,7 +110,7 @@ const randomState = (p) => {
 
 //let state = randomState(P);
 let state = newGrid();
-addPattern(state, 1, 1, GLIDER);
+addPattern(state, 1, 1, GOSPER_GG);
 let next = now();
 
 const drawFrame = (t) => {
