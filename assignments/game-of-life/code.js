@@ -145,7 +145,7 @@ const pulsar = (r, c) => {
 
 // Try foo(12, 42) with SIZE = 4
 const foo = (r, c) => {
-  pulsar(5, columns - 20);
+  pulsar(5, columns - 25);
   pulsar(Math.floor(rows/2), Math.floor(columns/2));
   gun(r, c);
 };
@@ -158,7 +158,4 @@ const drawFrame = (t) => {
   }
 };
 
-
 animate(drawFrame);
-
-
