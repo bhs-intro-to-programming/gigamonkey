@@ -10,14 +10,10 @@ const render = (grid) => {
   for (let r = 0; r < grid.length; r++) {
     for (let c = 0; c < grid[r].length; c++) {
       if (grid[r][c]) {
-        fill(r, c);
+        drawFilledRect(c * SIZE, r * SIZE, SIZE, SIZE, 'rgb(0, 255, 0)');
       }
     }
   }
-};
-
-const fill = (r, c) => {
-  drawFilledRect(c * SIZE, r * SIZE, SIZE, SIZE, 'rgb(0, 255, 0)');
 };
 
 const randomStart = (p) => {
