@@ -133,12 +133,17 @@ addPattern(state, 3, columns - 5, BLINKER);
 addPattern(state, 5, columns - 20, PULSAR);
 let next = now();
 
-const drawFrame = (t) => {
-  if (t > next) {
-    render(state);
-    state = nextGeneration(state);
-    next += RATE;
+const animator = (state) => {
+  let next = now();
+  return (t) => {
+    if (t > next) {
+      render(state);
+      state = nextGeneration(state);
+      next += RATE;
+    }
   }
 };
 
-animate(drawFrame);
+const random = (p) => {
+  animate(animator(randomState(p)));
+};
