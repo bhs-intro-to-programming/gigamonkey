@@ -81,6 +81,15 @@ const newGrid = () => {
     grid.push(row);
   }
   return grid;
+};
+
+const addPattern = (grid, top, left, pattern) => {
+  const p = pattern.trim().split('\n');
+  for (let r = 0; r < p.length; r++) {
+    for (let c = 0; c < p[r].length; c++) {
+      grid[top + r][left + c] = p[r][c] === '#';
+    }
+  }
 }
 
 const randomState = (p) => {
@@ -93,7 +102,9 @@ const randomState = (p) => {
   return grid;
 };
 
-let state = randomState(P);
+//let state = randomState(P);
+let state = newGrid();
+addPattern(state, 1, 1, GOSPER_GG);
 let next = now();
 
 const drawFrame = (t) => {
