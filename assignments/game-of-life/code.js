@@ -46,7 +46,7 @@ const neighborsAlive = (grid, r, c) => {
   return count;
 };
 
-const alive = (grid, r, c) => {
+const isAlive = (grid, r, c) => {
   const n = neighborsAlive(grid, r, c);
   return n === 3 || grid[r][c] && n == 2;
 };
@@ -56,7 +56,7 @@ const nextGeneration = (grid) => {
   for (let r = 0; r < grid.length; r++) {
     const row = [];
     for (let c = 0; c < grid[r].length; c++) {
-      row.push(alive(grid, r, c));
+      row.push(isAlive(grid, r, c));
     }
     next.push(row);
   }
