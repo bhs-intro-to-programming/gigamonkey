@@ -146,7 +146,7 @@ const pulsar = (r, c) => {
 const foo = () => {
   pulsar(5, columns - 20);
   pulsar(Math.floor(rows/2), Math.floor(columns/2));
-  gun(20, 50);
+  gun(15, 50);
 };
 
 const drawFrame = (t) => {
