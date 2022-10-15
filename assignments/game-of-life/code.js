@@ -64,7 +64,7 @@ const nextGeneration = (grid) => {
   const next = newGrid();
   for (let r = 0; r < grid.length; r++) {
     for (let c = 0; c < grid[r].length; c++) {
-      grid[r][c] = isAlive(grid, r, c);
+      next[r][c] = isAlive(grid, r, c);
     }
   }
   return next;
