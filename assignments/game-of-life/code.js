@@ -1,5 +1,5 @@
-const SIZE = 1;
-const P = 0.8;
+const SIZE = 4;
+const P = 0.2;
 const RATE = 1000;
 
 const columns = Math.floor(width / SIZE);
