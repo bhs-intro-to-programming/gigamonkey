@@ -1,6 +1,6 @@
 const SIZE = 4;
 const P = 0.2;
-let RATE = 200;
+let RATE = 2000;
 
 const BLINKER = `###`;
 
@@ -139,12 +139,10 @@ let next = now();
 let state = newGrid();
 
 const drawFrame = (t) => {
-  return (t) => {
-    if (t > next) {
-      render(state);
-      state = nextGeneration(state);
-      next += RATE;
-    }
+  if (t > next) {
+    render(state);
+    state = nextGeneration(state);
+    next += RATE;
   }
 };
 
