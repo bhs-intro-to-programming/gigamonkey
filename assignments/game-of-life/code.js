@@ -1,6 +1,6 @@
 const SIZE = 4;
 const P = 0.2;
-let RATE = 2000;
+let RATE = 0;
 
 const BLINKER = `###`;
 
@@ -143,10 +143,10 @@ const pulsar = (r, c) => {
   addPattern(grid, r, c, PULSAR);
 };
 
-const foo = () => {
+const foo = (r, c) => {
   pulsar(5, columns - 20);
   pulsar(Math.floor(rows/2), Math.floor(columns/2));
-  gun(10, 40);
+  gun(r, c);
 };
 
 const drawFrame = (t) => {
