@@ -5,8 +5,8 @@ let RATE = 0;
 const GLIDER = `
 #..
 .##
-
-`
+##.
+`;
 
 const GOSPER_GG = `
 ........................#...........
@@ -110,7 +110,7 @@ const randomState = (p) => {
 
 //let state = randomState(P);
 let state = newGrid();
-addPattern(state, 1, 1, GOSPER_GG);
+addPattern(state, 1, 1, GLIDER);
 let next = now();
 
 const drawFrame = (t) => {
