@@ -126,13 +126,6 @@ const randomState = (p) => {
   return grid;
 };
 
-//let state = randomState(P);
-let state = newGrid();
-addPattern(state, 1, 1, GOSPER_GG);
-addPattern(state, 3, columns - 5, BLINKER);
-addPattern(state, 5, columns - 20, PULSAR);
-let next = now();
-
 const animator = (state) => {
   let next = now();
   return (t) => {
@@ -146,4 +139,12 @@ const animator = (state) => {
 
 const random = (p) => {
   animate(animator(randomState(p)));
+};
+
+const gun = () => {
+  let state = newGrid();
+  addPattern(state, 1, 1, GOSPER_GG);
+  addPattern(state, 3, columns - 5, BLINKER);
+  addPattern(state, 5, columns - 20, PULSAR);
+  animate(animator(state));
 };
