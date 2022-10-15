@@ -124,7 +124,6 @@ const gun = (grid) => {
   addPattern(grid, 1, 1, GOSPER_GG);
   addPattern(grid, 3, columns - 5, BLINKER);
   addPattern(grid, 5, columns - 20, PULSAR);
-  animate(animator(grid));
 };
 
 const clearGrid = (grid) => {
