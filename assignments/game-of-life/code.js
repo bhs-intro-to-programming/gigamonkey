@@ -66,10 +66,19 @@ const nextGeneration = (grid) => {
 };
 
 let state = randomStart(0.2);
+let next = now();
 
-render(state);
+const drawFrame = (t) => {
+  if (t > next) {
+    render(state);
+    state = nextGeneration(state);
+    next += 1000;
+  }
+};
 
 const step = () => {
   state = nextGeneration(state);
   render(state);
-}
+};
+
+animate(drawFrame);
