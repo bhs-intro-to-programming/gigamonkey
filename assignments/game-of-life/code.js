@@ -112,18 +112,33 @@ const addPattern = (grid, top, left, pattern) => {
   }
 }
 
-const randomState = (p) => {
-  const grid = newGrid();
+const randomize = (grid, p) => {
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < columns; c++) {
       grid[r][c] = Math.random() < p;
     }
   }
-  return grid;
 };
 
-const animator = (state) => {
-  let next = now();
+const gun = (grid) => {
+  addPattern(grid, 1, 1, GOSPER_GG);
+  addPattern(grid, 3, columns - 5, BLINKER);
+  addPattern(grid, 5, columns - 20, PULSAR);
+  animate(animator(grid));
+};
+
+const clear = (grid) => {
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < columns; c++) {
+      grid[r][c] = false;
+    }
+  }
+};
+
+let next = now();
+let state = newGrid();
+
+const drawFrame = (t) => {
   return (t) => {
     if (t > next) {
       render(state);
@@ -133,14 +148,6 @@ const animator = (state) => {
   }
 };
 
-const random = (p) => {
-  animate(animator(randomState(p)));
-};
+animate(drawFrame);
 
-const gun = () => {
-  let state = newGrid();
-  addPattern(state, 1, 1, GOSPER_GG);
-  addPattern(state, 3, columns - 5, BLINKER);
-  addPattern(state, 5, columns - 20, PULSAR);
-  animate(animator(state));
-};
+
