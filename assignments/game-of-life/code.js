@@ -1,6 +1,6 @@
-const SIZE = 1;
+const SIZE = 4;
 const P = 0.2;
-const RATE = 1;
+const RATE = 500;
 
 const columns = Math.floor(width / SIZE);
 const rows = Math.floor(height / SIZE);
@@ -72,11 +72,6 @@ const drawFrame = (t) => {
     state = nextGeneration(state);
     next += RATE;
   }
-};
-
-const step = () => {
-  state = nextGeneration(state);
-  render(state);
 };
 
 animate(drawFrame);
