@@ -110,7 +110,7 @@ const addPattern = (grid, top, left, pattern) => {
       grid[top + r][left + c] = p[r][c] !== '.';
     }
   }
-}
+};
 
 let next = now();
 let grid = newGrid();
@@ -141,7 +141,7 @@ const gun = (r, c) => {
 
 const blinker = (r, c) => {
   addPattern(grid, r, c, BLINKER);
-}
+};
 
 const pulsar = (r, c) => {
   addPattern(grid, r, c, PULSAR);
@@ -164,7 +164,7 @@ const makeExplosion = () => {
   const midCol = Math.floor(columns/2);
   addPattern(grid, midRow, midCol, '##\n##');
   glider(0, midCol - (midRow - 4));
-}
+};
 
 const drawFrame = (t) => {
   if (t > next) {
