@@ -131,6 +131,10 @@ const randomize = (p) => {
   }
 };
 
+const glider = (r, c) => {
+  addPattern(grid, r, c, GLIDER);
+};
+
 const gun = (r, c) => {
   addPattern(grid, r, c, GOSPER_GG);
 };
