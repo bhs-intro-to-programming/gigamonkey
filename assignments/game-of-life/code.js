@@ -155,7 +155,7 @@ const foo = (r, c) => {
 };
 
 const bar = () => {
-  glider(0, 20);
+  glider(10, 30);
   glider(0, 25);
 }
 
