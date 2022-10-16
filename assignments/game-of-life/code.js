@@ -159,8 +159,9 @@ const makePulsar = () => {
   glider(0, 25);
 };
 
-const makePulsar2 = () => {
+const makeExplosion = () => {
   addPattern(grid, Math.floor(rows/2), Math.floor(columns/2), '##\n##');
+  glider(midX-14, midY-10)
 }
 
 const drawFrame = (t) => {
