@@ -160,7 +160,7 @@ const makePulsar = () => {
 };
 
 const makePulsar2 = () => {
-  addPattern(Math.floor(rows/2), Math.floor(columns/2), '##\n##');
+  addPattern(grid, Math.floor(rows/2), Math.floor(columns/2), '##\n##');
 }
 
 const drawFrame = (t) => {
