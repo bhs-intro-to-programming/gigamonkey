@@ -154,6 +154,11 @@ const foo = (r, c) => {
   gun(r, c);
 };
 
+const bar = () => {
+  glider(0, 20);
+  glider(0, 25);
+}
+
 const drawFrame = (t) => {
   if (t > next) {
     render(grid);
