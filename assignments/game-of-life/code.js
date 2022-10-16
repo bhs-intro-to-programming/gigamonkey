@@ -69,11 +69,11 @@ const nextGeneration = (grid) => {
 };
 
 const isAlive = (grid, r, c) => {
-  const n = neighborsAlive(grid, r, c);
+  const n = livingNeighbors(grid, r, c);
   return n === 3 || grid[r][c] && n == 2;
 };
 
-const neighborsAlive = (grid, r, c) => {
+const livingNeighbors = (grid, r, c) => {
   let count = 0;
   for (let dx = -1; dx <= 1; dx++) {
     for (let dy = -1; dy <= 1; dy++) {
