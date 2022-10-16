@@ -154,9 +154,13 @@ const foo = (r, c) => {
   gun(r, c);
 };
 
-const bar = () => {
+const makePulsar = () => {
   glider(10, 30);
   glider(0, 25);
+};
+
+const makePulsar2 = () => {
+  addPattern(Math.floor(rows/2), Math.floor(columns/2), '##\n##');
 }
 
 const drawFrame = (t) => {
