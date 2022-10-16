@@ -163,7 +163,7 @@ const makeExplosion = () => {
   const midRow = Math.floor(rows/2);
   const midCol = Math.floor(columns/2);
   addPattern(grid, midRow, midCol, '##\n##');
-  glider(midRow - 14, midCol - 10);
+  glider(midRow - 24, midCol - 20);
 }
 
 const drawFrame = (t) => {
