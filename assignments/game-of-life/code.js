@@ -160,8 +160,10 @@ const makePulsar = () => {
 };
 
 const makeExplosion = () => {
-  addPattern(grid, Math.floor(rows/2), Math.floor(columns/2), '##\n##');
-  glider(midX-14, midY-10)
+  const midRow = Math.floor(rows/2);
+  const midCol = Math.floor(columns/2);
+  addPattern(grid, midRow, midCol, '##\n##');
+  glider(midRow - 14, midCol - 10);
 }
 
 const drawFrame = (t) => {
