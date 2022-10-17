@@ -147,7 +147,7 @@ const pulsar = (r, c) => {
   addPattern(grid, r, c, PULSAR);
 };
 
-// Try foo(12, 42) with SIZE = 4
+// Try foo(12, 42) with SIZE = 4. Or foo(12, 64) on big screen
 const foo = (r, c) => {
   pulsar(5, columns - 22);
   pulsar(Math.floor(rows/2), Math.floor(columns/2));
