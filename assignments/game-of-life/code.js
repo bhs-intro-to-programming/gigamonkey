@@ -160,7 +160,7 @@ const bar = () => {
   pulsar(mr - 42, mc + 73)
   pulsar(mr, mc);
   gun(mr - 45, mc - 62);
-}
+};
 
 const makePulsar = () => {
   glider(10, 30);
