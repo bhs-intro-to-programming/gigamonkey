@@ -157,6 +157,7 @@ const foo = (r, c) => {
 const bar = () => {
   const mr = Math.floor(rows/2);
   const mc = Math.floor(columns/2);
+  pulsar(mr - 52, mc + 83)
   pulsar(mr, mc);
   gun(mr - 45, mc - 62);
 }
