@@ -158,6 +158,7 @@ const bar = () => {
   const mr = Math.floor(rows/2);
   const mc = Math.floor(columns/2);
   pulsar(mr, mc);
+  gun(mr - 45, mc - 62);
 }
 
 const makePulsar = () => {
