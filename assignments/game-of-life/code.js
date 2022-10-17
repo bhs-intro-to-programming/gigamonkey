@@ -154,6 +154,12 @@ const foo = (r, c) => {
   gun(r, c);
 };
 
+const bar = () => {
+  const mr = Math.floor(rows/2);
+  const mc = Math.floor(columns/2);
+  pulsar(mr, mc);
+}
+
 const makePulsar = () => {
   glider(10, 30);
   glider(0, 25);
