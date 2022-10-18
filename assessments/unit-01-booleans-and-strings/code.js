@@ -40,3 +40,16 @@ const simplePigLatin = (s, firstVowel) => {
 const randomCharacter = (s) => {
   return s[rand(s.length)];
 };
+
+const randomCharacterUpDown = (s) => {
+  const i = rand(s.length);
+  return s[i].toUpperCase() + s[i].toLowerCase();
+};
+
+const isAllUpperCase = (s) => {
+  return s === s.toUpperCase();
+};
+
+const sameIgnoringCase = (s1, s2) => {
+  return s1.toLowerCase() === s2.toLowerCase();
+};
