@@ -4,9 +4,6 @@ const emit = (a, b, product) => {
   console.log(`${a} times ${b} is ${product}`);
 };
 
-// Numeric functions
-
-// Write your code here ...
 const averageWeight = (weight, items) => {
   return weight / items;
 };
