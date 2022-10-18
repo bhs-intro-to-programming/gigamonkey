@@ -36,7 +36,7 @@ const canGoToProm = (senior, invited, excluded) => {
 };
 
 const getsSpeedingTicket = (mph, grouchy) => {
-  return mph > 70 || grouchy && mph > 65; 
+  return mph > 70 || grouchy && mph > 65;
 };
 
 const moreThanTwiceAsLong = (s1, s2) => {
@@ -48,7 +48,7 @@ const aFartherThanB = (a, b, c) => {
 };
 
 const firstHalf = (s) => {
-  return s.substring(0, s.length / 2);   
+  return s.substring(0, s.length / 2);
 };
 
 const secondHalf = (s) => {
@@ -67,12 +67,48 @@ const upDownLastCharacter = (s) => {
   return s[s.length - 1].toUpperCase() + s[s.length - 1].toLowerCase();
 };
 
+const yesIfEven = (n) => {
+  if (n % 2 === 0) {
+    return 'yes';
+  } else {
+    return 'no';
+  }
+};
 
+const countXs = (s) => {
+  let count = 0;
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === 'x') {
+      count++;
+    }
+  }
+  return count;
+};
 
+const timesTable = (n) => {
+  for (let i = 1; i <= n; i++) {
+    for (let j = 1; j <= n; j++) {
+      emit(i, j, i * j);
+    }
+  }
+};
 
+const containsX = (s) => {
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === 'x') {
+      return true;
+    }
+  }
+  return false;
+};
 
-
-
+const sumSquares = (n) => {
+  let sum = 0;
+  for (let i = 1; i < n; i++) {
+    sum = sum + i ** 2;
+  }
+  return sum;
+};
 
 
 
