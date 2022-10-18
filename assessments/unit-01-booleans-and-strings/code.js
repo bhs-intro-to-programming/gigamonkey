@@ -24,3 +24,19 @@ const evenGreaterThanZero = (n) => {
 const isLeapYear = (year) => {
   return year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
 };
+
+const firstAndLast = (s) => {
+  return s[0] + s[s.length - 1];
+};
+
+const swapFrontAndBack = (s) => {
+  return s.substring(s.length / 2) + s.substring(0, s.length / 2);
+};
+
+const simplePigLatin = (s, firstVowel) => {
+  return s.substring(firstVowel) + s.substring(0, firstVowel) + 'ay';
+};
+
+const randomCharacter = (s) => {
+  return s[rand(s.length)];
+};
