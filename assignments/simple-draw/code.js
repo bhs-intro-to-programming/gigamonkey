@@ -112,7 +112,8 @@ const cutSmallCarpetHoles = (x, y, size, smallest, decorateBigHole) => {
     const colors = ['violet', 'red', 'orange', 'yellow', 'green', 'blue', 'indigo'];
     for (let y = 0; y < a; y++) {
       for (let x = 0; x < a; x++) {
-        drawLine(0, y * s, y * s, height - 1, colors[y % colors.length], 1)
+        const color = colors[y % colors.length];
+        drawLine(0, y * s, y * s, height - 1, color, 1)
       }
     }
   }
