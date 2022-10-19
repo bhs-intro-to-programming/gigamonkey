@@ -182,4 +182,4 @@ const drawFrame = (t) => {
   }
 };
 
-animate(undefined);
+animate(drawFrame);
