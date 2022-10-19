@@ -109,22 +109,10 @@ const cutSmallCarpetHoles = (x, y, size, smallest, decorateBigHole) => {
   const colorfulCurve = () => {
     const a = 25
     const s = 15
+    const colors = ['violet', 'red', 'orange', 'yellow', 'green', 'blue', 'indigo'];
     for (let y = 0; y < a; y++) {
       for (let x = 0; x < a; x++) {
-        let color = (y % 7 === 1)
-          ? 'red'
-          : (y % 7 == 2)
-            ? 'orange'
-            : (y % 7 == 3)
-              ? 'yellow'
-              : (y % 7 == 4)
-                ? 'green'
-                : (y % 7 == 5)
-                  ? 'blue'
-                  : (y % 7 == 6)
-                    ? 'indigo'
-                    : 'violet';
-        drawLine(0, y * s, y * s, height - 1, color, 1)
+        drawLine(0, y * s, y * s, height - 1, colors[y % colors.length], 1)
       }
     }
   }
