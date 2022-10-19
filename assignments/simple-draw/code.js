@@ -103,27 +103,31 @@ const cutSmallCarpetHoles = (x, y, size, smallest, decorateBigHole) => {
 
 // gasket((width - MAX_SIDE) / 2, BOTTOM, MAX_SIDE, 1);
 // carpet((width - MAX_SIDE) / 2, (height - MAX_SIDE) / 2, MAX_SIDE, 1);
-garpet((width - MAX_SIDE) / 2, (height - MAX_SIDE) / 2, MAX_SIDE, 1);
+//garpet((width - MAX_SIDE) / 2, (height - MAX_SIDE) / 2, MAX_SIDE, 1);
 
 
-// Sadie's code
-const add = (num1, num2, num3) => num1 + num2 * num3 / 3;
-const sub = (num1, num2, num3) => num1 - num2 * num3 / 3;
-
-const carp = (x, y, widX, widY, depth) => {
-  drawFilledRect(x, y, widX, widY)
-  if (depth > 0) {
-    for (let exe = 0; exe < 4; exe++) {
-      for (let wiy = 0; wiy < 4; wiy++) {
-        if (exe === 3 || wiy === 2 || exe === 0 || wiy === 0) {
-        } else {
-          let opX = exe === 1 || exe === 4 ? add(x, widX, exe) : sub(x, widX, exe);
-          let opY = wiy === 1 || wiy === 4 ? add(x, widY, wiy) : sub(x, widY, wiy);
-          carp(opX, opY, widX / 3, widY / 3, depth - 1)
-        }
+  const colorfulCurve = () => {
+    let a = 25
+    let s = 15
+    for (let y = 0; y < a; y++) {
+      for (let x = 0; x < a; x++) {
+        let color = (y % 7 === 1)
+          ? 'red'
+          : (y % 7 == 2)
+            ? 'orange'
+            : (y % 7 == 3)
+              ? 'yellow'
+              : (y % 7 == 4)
+                ? 'green'
+                : (y % 7 == 5)
+                  ? 'blue'
+                  : (y % 7 == 6)
+                    ? 'indigo'
+                    : 'violet';
+        drawLine(0, y * s, y * s, height - 1, color, 1)
       }
     }
-  }
-}
 
-//carp(width / 3, height / 3, width / 3, height / 3, 3);
+  }
+
+  
