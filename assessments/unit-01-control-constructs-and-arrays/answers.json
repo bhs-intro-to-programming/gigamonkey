@@ -9,5 +9,15 @@
   null,
   null,
   null,
-  "xs[xs.length - 1]"
+  "xs[xs.length - 1]",
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  "It makes a new array that is the original xs reversed."
 ]
