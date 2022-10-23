@@ -106,6 +106,3 @@ const sumSquares = (n) => {
   }
   return sum;
 };
-
-
-
