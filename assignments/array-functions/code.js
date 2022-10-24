@@ -1,11 +1,4 @@
-const pyramid1 = (n) => {
-  const r = [];
-  for (let i = 0; i <= n; i++) {
-    for (let j = 0; j < i; j++) {
-      r.push(i);
-    }
-  }
-  return r;
-}
+const countTens = (ns) => ns.reduce((acc, n) => acc + n === 10 ? 1 : 0, 0);
+
 
 const pyramid = (n) => Array(n).fill().flatMap((_, i) => Array(i+1).fill(i+1));
