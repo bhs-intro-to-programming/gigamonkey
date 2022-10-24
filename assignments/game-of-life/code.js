@@ -150,8 +150,8 @@ const blinker = (r, c) => {
 const multiBlinker = (r, c) => {
   addPattern(grid, r, c, BLINKER);
   addPattern(grid, r, c + 4, BLINKER);
-  addPattern(grid, r - 4, c + 3, BLINKER2);
-  addPattern(grid, r + 4, c + 3, BLINKER2);
+  addPattern(grid, r - 6, c + 3, BLINKER2);
+  addPattern(grid, r + 2, c + 3, BLINKER2);
 };
 
 const block = (r, c) => {
