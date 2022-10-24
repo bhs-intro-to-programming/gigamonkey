@@ -194,7 +194,7 @@ const drawFrame = (t) => {
     render(grid);
     const iters = RATE < 0 ? -RATE : 1;
     for (let i = 0; i < iters; i++) {
-      grid = nextGeneration()
+      grid = nextGeneration(grid)
     }
     next += Math.max(0, RATE);
   }
