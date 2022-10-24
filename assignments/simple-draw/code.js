@@ -254,4 +254,4 @@ const drawStrangePictureFrame = (d, color) => {
     }
   }
 }
-drawStrangePictureFrame(57, 'blue') 
+drawStrangePictureFrame(height/3, 'blue') 
