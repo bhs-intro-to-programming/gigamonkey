@@ -1,4 +1,11 @@
-const numbers = (end) => Array(end).fill().map((_, i) => i);
+const numbers = (start, end) => {
+  if (end === undefined) {
+    end = start;
+    start = 0;
+  }
+  const len = end - start;
+  return Array(len).fill().map((_, i) => start + i);
+};
 
 const countTens = (ns) => ns.reduce((acc, n) => acc + (n === 10 ? 1 : 0), 0);
 
