@@ -2,9 +2,9 @@ let SIZE = 4;
 let P = 0.2;
 let RATE = 0;
 
-const BLINKER = `###`;
+const H_BLINKER = `###`;
 
-const BLINKER2 = '#\n#\n#';
+const V_BLINKER = '#\n#\n#';
 
 const BLOCK = '##\n##';
 
@@ -144,14 +144,14 @@ const gun = (r, c) => {
 };
 
 const blinker = (r, c) => {
-  addPattern(grid, r, c, BLINKER);
+  addPattern(grid, r, c, H_BLINKER);
 };
 
 const multiBlinker = (r, c) => {
-  addPattern(grid, r, c, BLINKER);
-  addPattern(grid, r, c + 6, BLINKER);
-  addPattern(grid, r - 4, c + 4, BLINKER2);
-  addPattern(grid, r + 2, c + 4, BLINKER2);
+  addPattern(grid, r, c, H_BLINKER);
+  addPattern(grid, r, c + 6, H_BLINKER);
+  addPattern(grid, r - 4, c + 4, V_BLINKER);
+  addPattern(grid, r + 2, c + 4, V_BLINKER);
 };
 
 const block = (r, c) => {
