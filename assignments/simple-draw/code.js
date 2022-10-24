@@ -238,15 +238,17 @@ const drawSomeFunnyCircles = (r, p, color) => {
 //drawSomeFunnyCircles(17, .23, 'blue')
 
 const drawStrangePictureFrame = (d, color) => {
-  const verticalCircles = Math.floor(height / d)
-  const horizontleCircles = Math.floor(width / d)
-  const xOffset = d/2+ (width - horizontleCircles * d) / 2;
-  const yOffset = d/2 + (height - verticalCircles * d) / 2;
-  for (let j = 0; j < verticalCircles; j++) {
-    for (let i = 0; i < horizontleCircles; i++) {
+  const horizontalCircles = Math.floor(width / d);
+  const verticalCircles = Math.floor(height / d);
+
+  const xOffset = d / 2 + (width - horizontalCircles * d) / 2;
+  const yOffset = d / 2 + (height - verticalCircles * d) / 2;
+
+  for (let i = 0; i < horizontalCircles; i++) {
+    for (let j = 0; j < verticalCircles; j++) {
 
       if (i === 0 ||
-        i === horizontleCircles - 1 ||
+        i === horizontalCircles - 1 ||
         j === verticalCircles - 1 ||
         j === 0) {
         const x = xOffset + d * i
