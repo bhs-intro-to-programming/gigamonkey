@@ -4,6 +4,8 @@ let RATE = 0;
 
 const BLINKER = `###`;
 
+const BLOCK = '##\n##';
+
 const GLIDER = `
 #..
 .##
@@ -141,6 +143,10 @@ const gun = (r, c) => {
 
 const blinker = (r, c) => {
   addPattern(grid, r, c, BLINKER);
+};
+
+const block = (r, c) => {
+  addPattern(grid, r, c, BLOCK);
 };
 
 const pulsar = (r, c) => {
