@@ -165,13 +165,13 @@ const pulsar = (r, c) => {
 // Try foo(12, 42) with SIZE = 4. Or foo(12, 64) on big screen
 const foo = (r, c) => {
   pulsar(5, columns - 22);
-  pulsar(Math.floor(rows/2), Math.floor(columns/2));
+  pulsar(Math.floor(rows / 2), Math.floor(columns / 2));
   gun(r, c);
 };
 
 const bar = () => {
-  const mr = Math.floor(rows/2);
-  const mc = Math.floor(columns/2);
+  const mr = Math.floor(rows / 2);
+  const mc = Math.floor(columns / 2);
   pulsar(mr - 42, mc + 72)
   pulsar(mr, mc);
   gun(mr - 45, mc - 62);
@@ -183,8 +183,8 @@ const makePulsar = () => {
 };
 
 const makeExplosion = () => {
-  const midRow = Math.floor(rows/2);
-  const midCol = Math.floor(columns/2);
+  const midRow = Math.floor(rows / 2);
+  const midCol = Math.floor(columns / 2);
   addPattern(grid, midRow, midCol, '##\n##');
   glider(0, midCol - (midRow - 4));
 };
@@ -192,8 +192,11 @@ const makeExplosion = () => {
 const drawFrame = (t) => {
   if (t > next) {
     render(grid);
-    grid = nextGeneration(grid);
-    next += RATE;
+    const iters = RATE < 0 ? -RATE : 1;
+    for (let i = 0; i < iters; i++) {
+      grid = nextGeneration()
+    }
+    next += Math.max(0, RATE);
   }
 };
 
