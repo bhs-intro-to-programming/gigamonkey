@@ -3,7 +3,7 @@ const numbers = (start, end, step = 1) => {
     end = start;
     start = 0;
   }
-  const len = Math.ceil((end - start) / step);
+  const len = Math.ceil((end - start) / Math.abs(step));
   return Array(len).fill().map((_, i) => start + (i * step));
 };
 
