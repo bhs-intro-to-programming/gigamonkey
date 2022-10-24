@@ -246,7 +246,7 @@ const drawStrangePictureFrame = (d, color) => {
 
   for (let i = 0; i < across; i++) {
     for (let j = 0; j < down; j++) {
-      if (i % (across - 1) * j % (down - 1) === 0) {
+      if ((i % (across - 1)) * (j % (down - 1)) === 0) {
         const x = xOffset + d * i
         const y = yOffset + d * j
         drawCircle(x, y, d / 2, color)
