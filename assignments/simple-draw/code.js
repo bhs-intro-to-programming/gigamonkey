@@ -254,4 +254,4 @@ const drawStrangePictureFrame = (d, color) => {
     }
   }
 }
-drawStrangePictureFrame(height * Math.random(), 'blue') 
+drawStrangePictureFrame(height / (Math.random() * 20), 'blue') 
