@@ -8,4 +8,4 @@ const pyramid1 = (n) => {
   return r;
 }
 
-const pyramid = (n) => Array(n).fill().flatMap((_, i) => Array(i).fill(i));
+const pyramid = (n) => Array(n).fill().flatMap((_, i) => Array(i+1).fill(i+1));
