@@ -60,7 +60,7 @@ const gasket = (x, y, size, smallest) => {
  * Draw the Sierpinki Carpet with the top left corner at x, y and the side of size,
  * recursing down until we cut out squares of the size smallest.
  */
-const carpet = (x, y, size, smallest, extra=() => {}) => {
+const carpet = (x, y, size, smallest, extra = () => { }) => {
   drawFilledRect(x, y, size, size, 'blue');
   cutCarpetHoles(x, y, size, smallest, extra);
 };
@@ -106,45 +106,45 @@ const cutSmallCarpetHoles = (x, y, size, smallest, decorateBigHole) => {
 //garpet((width - MAX_SIDE) / 2, (height - MAX_SIDE) / 2, MAX_SIDE, 1);
 
 
-  const colorfulCurve = () => {
-    const a = 25
-    const s = 15
-    const colors = ['violet', 'red', 'orange', 'yellow', 'green', 'blue', 'indigo'];
-    for (let y = 0; y < a; y++) {
-      for (let x = 0; x < a; x++) {
-        const color = colors[y % colors.length];
-        drawLine(0, y * s, y * s, height - 1, color, 1)
-      }
+const colorfulCurve = () => {
+  const a = 25
+  const s = 15
+  const colors = ['violet', 'red', 'orange', 'yellow', 'green', 'blue', 'indigo'];
+  for (let y = 0; y < a; y++) {
+    for (let x = 0; x < a; x++) {
+      const color = colors[y % colors.length];
+      drawLine(0, y * s, y * s, height - 1, color, 1)
     }
   }
+}
 
-  
 
-  /*
- * This code is running in an environment the same as simple-draw. Thus you have
- * two variables that will be helpful.
- *
- *  width - the width of the drawing area.
- *  height - the height of the drawing area.
- *
- * And these methods which do the same thing as in simple-draw.
- *
- *  drawLine(x1, y1, x2, y2, color, lineWidth)
- *
- *  drawCircle(x, y, radius, color, lineWidth=1)
- *
- *  drawRect(x, y, w, h, color, lineWidth=1)
- *
- *  drawTriangle(x1, y1, x2, y2, x3, y3, color, lineWidth=1)
- *
- *  drawFilledCircle(x, y, r, color)
- *
- *  drawFilledRect(x, y, width, height, color)
- *
- *  drawFilledTriangle(x1, y1, x2, y2, x3, y3, color)
- *
- *  clear()
- */
+
+/*
+* This code is running in an environment the same as simple-draw. Thus you have
+* two variables that will be helpful.
+*
+*  width - the width of the drawing area.
+*  height - the height of the drawing area.
+*
+* And these methods which do the same thing as in simple-draw.
+*
+*  drawLine(x1, y1, x2, y2, color, lineWidth)
+*
+*  drawCircle(x, y, radius, color, lineWidth=1)
+*
+*  drawRect(x, y, w, h, color, lineWidth=1)
+*
+*  drawTriangle(x1, y1, x2, y2, x3, y3, color, lineWidth=1)
+*
+*  drawFilledCircle(x, y, r, color)
+*
+*  drawFilledRect(x, y, width, height, color)
+*
+*  drawFilledTriangle(x1, y1, x2, y2, x3, y3, color)
+*
+*  clear()
+*/
 
 
 
@@ -185,8 +185,8 @@ const drawSpicyCircles = (c, color) => {
 
 const drawSpicyCheckers = (n, color) => {
   if (n % 2 === 0) {
-          n = n + 0.0000000000001
-        }
+    n = n + 0.0000000000001
+  }
   for (let y = 0; y < height; y = y + width / n) {
     for (let x = 0; x < width; x = x + width / n) {
       let a = width / n
@@ -240,11 +240,17 @@ const drawSomeFunnyCircles = (r, p, color) => {
 const drawStrangePictureFrame = (d, color) => {
   const verticalCircles = Math.floor(height / d)
   const horizontleCircles = Math.floor(width / d)
+  const xOffset = d + (width - horizontleCircles * d) / 2;
+  const yOffseh = d + (height - verticalCircles * d) / 2;
   for (let j = 0; j < verticalCircles; j++) {
     for (let i = 0; i < horizontleCircles; i++) {
-      let x = d + d * i
-      let y = d + d * j
-      if (i === 0 || i === horizontleCircles - 1 || j === verticalCircles - 1 || j === 0) {
+
+      if (i === 0 ||
+        i === horizontleCircles - 1 ||
+        j === verticalCircles - 1 ||
+        j === 0) {
+        const x = xOffset + d * i
+        const y = yOffset + d * j
         drawCircle(x, y, d / 2, color)
       }
     }
