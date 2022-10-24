@@ -240,8 +240,8 @@ const drawSomeFunnyCircles = (r, p, color) => {
 const drawStrangePictureFrame = (d, color) => {
   const verticalCircles = Math.floor(height / d)
   const horizontleCircles = Math.floor(width / d)
-  const xOffset = 0 + (width - horizontleCircles * d) / 2;
-  const yOffset = 0 + (height - verticalCircles * d) / 2;
+  const xOffset = d/2+ (width - horizontleCircles * d) / 2;
+  const yOffset = d/2 + (height - verticalCircles * d) / 2;
   for (let j = 0; j < verticalCircles; j++) {
     for (let i = 0; i < horizontleCircles; i++) {
 
