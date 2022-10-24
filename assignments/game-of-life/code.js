@@ -1,5 +1,5 @@
-const SIZE = 4;
-const P = 0.2;
+let SIZE = 4;
+let P = 0.2;
 let RATE = 0;
 
 const BLINKER = `###`;
