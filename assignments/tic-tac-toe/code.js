@@ -129,5 +129,4 @@ const reset = () => {
 }
 
 registerOnclick(clickToCell);
-
 reset();
