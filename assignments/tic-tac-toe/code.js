@@ -46,6 +46,7 @@ const clickToCell = (x, y) => {
           gameOver = true;
         }
       }
+      if (move == 9) gameOver = true;
     }
   } else {
     reset();
