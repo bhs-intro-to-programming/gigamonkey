@@ -14,22 +14,26 @@ const board = [
 ];
 
 const boardSize = Math.min(width, height) - 20;
+const boxSize = boardSize / 3;
 const boardX = (width - boardSize) / 2
 const boardY = (height - boardSize) / 2;
+const fontSize = boardSze / 3;
 
 const clickToCell = (x, y) => {
-  const cellX = Math.floor(3 * (x - boardX) / boardSize);
-  const cellY = Math.floor(3 * (y - boardY) / boardSize);
-  if (0 <= cellX && cellX < 3 && 0 <= cellY && cellY < 3) {
-    console.log(`${cellX},${cellY}`);
+  const column = Math.floor(3 * (x - boardX) / boardSize);
+  const row = Math.floor(3 * (y - boardY) / boardSize);
+  if (0 <= row && row < 3 && 0 <= column && column < 3) {
     const m = move % 2 === 0 ? 'X' : 'O';
-    board[cellX][cellY] = m;
+    board[column][row] = m;
     move++;
-    drawText(m, textX(cellX), textY(cellY), 'black', boardSize/3);
+    drawText(m, textX(column), textY(row), 'black', fontSize);
   }
 };
 
-const textX = (c) => boardX + c * boardSize / 3 + boardSize / 24;
+const centerX = (c) = boardX + boxSize / 2 + (c * boxSize);
+const centerY = (r) = boardY + boxSize / 2 + (r * boxSize);
+
+const textX = (c) => centerX(c) - boxSize / 2;
 const textY = (r) => boardY + (r + 1) * boardSize / 3 - boardSize / 24;
 
 const drawBoard = (size) => {
