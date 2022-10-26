@@ -68,9 +68,10 @@ const winnerLine = (line) => {
   const m = (endY - startY) / (endX - startX);
 
   const [dx, dy] = extend(endX, endY, m, boxSize);
+  const [sdx, sdy] = extend(startX, startY, m, boxSize);
   console.log(m);
 
-  drawLine(startX, startY, endX + dx, endY + dy, 'red', 16);
+  drawLine(startX - sdx, startY - sdy, endX + dx, endY + dy, 'red', 16);
 };
 
 const extend = (x, y, m, d) => {
