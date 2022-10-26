@@ -9,7 +9,7 @@ registerOnclick((x, y) => {
   drawText('X', x, y, 'black', Math.min(width, height) * 0.3);
 });
 
-const boardSize = Math.min(width, height) - 10;
+const boardSize = Math.min(width, height) - 20;
 const boardX = (width - boardSize) / 2
 const boardY = (height - boardSize) / 2;
 
