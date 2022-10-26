@@ -36,7 +36,7 @@ const clickToCell = (x, y) => {
         board[row][column] = m;
         move++;
         drawText(m, textX(column), textY(row), 'black', fontSize);
-        if (isWon(board) !== nulll) {
+        if (isWon(board) !== null) {
           console.log('Winner!');
           gameOver = true;
         }
