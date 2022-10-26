@@ -14,7 +14,7 @@ const boardX = (width - boardSize) / 2
 const boardY = (height - boardSize) / 2;
 
 const drawBoard = (size) => {
-  for (int i = 0; i < 2; i++) {
+  for (let i = 0; i < 2; i++) {
     const x = boardX + (boardSize / 3) * (i + 1);
     drawLine(x, boardY, x, boardY + boardSize, 'black', 3);
   }
