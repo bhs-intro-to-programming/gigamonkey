@@ -5,6 +5,13 @@
 // is called an anonymous function. We'll discuss this in more detail in a few
 // weeks but for now you can just adapt this code.
 
+let move = 0;
+
+const board = [
+  ['', '', ''],
+  ['', '', ''],
+  ['', '', ''],
+];
 
 const boardSize = Math.min(width, height) - 20;
 const boardX = (width - boardSize) / 2
@@ -13,8 +20,18 @@ const boardY = (height - boardSize) / 2;
 const clickToCell = (x, y) => {
   const cellX = Math.floor(3 * (x - boardX) / boardSize);
   const cellY = Math.floor(3 * (y - boardY) / boardSize);
-  console.log(`${cellX},${cellY}`);
+  if (0 <= cellX && cellX < 3 && 0 <= cellY && cellY < 3) {
+    console.log(`${cellX},${cellY}`);
+    const m = move % 2 === 0 ? 'X' : 'O';
+    board[cellX][cellY] = m;
+    move++;
+    drawText(m, cellCenterX(cellX), cellCenterY(cellY), 'black', boardSize/3);
+  }
+
 };
+
+const cellCenterX = (c) => boardX + boardSize / 6 + c * boardSize / 3;
+const cellCenterY = (r) => boardY + boardSize / 6 + c * boardSize / 3;
 
 const drawBoard = (size) => {
   for (let i = 0; i < 2; i++) {
