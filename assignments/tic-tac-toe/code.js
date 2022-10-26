@@ -68,7 +68,7 @@ const winnerLine = (line) => {
   endY += 0.1 * (endY - startY);
   endX += 0.1 * (endX - startX);
 
-  drawLine(startX - sdx, startY - sdy, endX + dx, endY + dy, 'red', 16);
+  drawLine(startX, startY, endX, endY, 'red', 16);
 };
 
 const extend = (x, y, m, d) => {
