@@ -47,6 +47,9 @@ const clickToCell = (x, y) => {
   }
 };
 
+const row = (n) => Math.floor(n / 3);
+const col = (n) => n % 3;
+
 const findWinner = (board) => {
   for (let i = 0; i < lines.length; i++) {
     if (winner(extractLine(lines[i], board))) return lines[i];
@@ -60,8 +63,17 @@ const winnerLine = (line) => {
   const endR = Math.floor(line[line.length - 1] / 3);
   const endC = line[line.length - 1] % 3;
 
+  const start = line[0];
+  const end = line[line.length - 1];
+  const startX = centerX(col(start));
+  const startY = centerY(row(start));
+  const endX = centerX(col(end));
+  const endY = centerY(row(end));
 
-  drawLine(centerX(startC), centerY(startR), centerX(endC), centerY(endR), 'red', 16);
+  const m = (endY - startY) / (endX - startX);
+  console.log(m);
+
+  drawLine(startX, startY, endX, endY, 'red', 16);
 }
 
 const extractLine = (spec, board) => {
