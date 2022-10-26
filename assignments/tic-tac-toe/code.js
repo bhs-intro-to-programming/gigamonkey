@@ -28,21 +28,20 @@ const clickToCell = (x, y) => {
       board[row][column] = m;
       move++;
       drawText(m, textX(column), textY(row), 'black', fontSize);
+      if (isWon(board)) {
+        console.log('Winner!');
+      }
     }
   }
 };
 
 const isWon = (board) => {
-  let won = false;
-  for (let r = 0; r < board.length; r++) {
-    let rowSame = true;
-    const p = row[0];
-    if (p !== '') {
-      for (let c = 1; c < board[r].length; c++) {
-        if (p !== row[c]) rowSame = false;
-      }
-    }
+  for (let i = 0; i < board.length; i++) {
+    if (winner(row(board, i))) return true;
+    if (winner(column(board, i))) return true;
+    if (i < 3 && winner(diagonal(board, i))) return true;
   }
+  return false;
 };
 
 const winner = (line) => {
@@ -56,6 +55,25 @@ const winner = (line) => {
   return true;
 };
 
+const row = (board, r) => {
+  return board[r];
+};
+
+const column = (board, c) => {
+  const col = [];
+  for (let r = 0; r < board.length; r++) {
+    col.push(board[r][c]);
+  }
+  return col;
+};
+
+const diagonal = (board, d) => {
+  if (d === 0) {
+    return [board[0][0], board[1][1], board[2][2]];
+  } else {
+    return [board[0][2], board[1][1], board[2][0]];
+  }
+}
 
 const centerX = (c) => boardX + boxSize / 2 + (c * boxSize);
 const centerY = (r) => boardY + boxSize / 2 + (r * boxSize);
