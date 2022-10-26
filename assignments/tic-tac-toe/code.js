@@ -12,8 +12,9 @@ const boardY = (height - boardSize) / 2;
 
 const clickToCell = (x, y) => {
   const cellX = Math.floor(3 * (x - boardX) / boardSize);
-  console.log(cellX);
-}
+  const cellY = Math.floor(3 * (y - boardY) / boardSize);
+  console.log(`${cellX},${cellY}`);
+};
 
 const drawBoard = (size) => {
   for (let i = 0; i < 2; i++) {
