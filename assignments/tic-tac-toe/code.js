@@ -34,7 +34,7 @@ const centerX = (c) => boardX + boxSize / 2 + (c * boxSize);
 const centerY = (r) => boardY + boxSize / 2 + (r * boxSize);
 
 const textX = (c) => centerX(c) - boxSize / 3;
-const textY = (r) => centerY(r);
+const textY = (r) => centerY(r) + boxSize / 3;
 
 const drawBoard = (size) => {
   for (let i = 0; i < 2; i++) {
