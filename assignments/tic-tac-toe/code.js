@@ -5,6 +5,10 @@
 // is called an anonymous function. We'll discuss this in more detail in a few
 // weeks but for now you can just adapt this code.
 
+const BOARD_COLOR = 'grey';
+const MARK_COLOR = 'black';
+const LINE_COLOR = 'red';
+
 let move = 0;
 let gameOver = false;
 
@@ -13,10 +17,6 @@ const board = [
   ['', '', ''],
   ['', '', ''],
 ];
-
-const BOARD_COLOR = 'grey';
-const MARK_COLOR = 'black';
-const LINE_COLOR = 'red';
 
 const rows = [[0, 1, 2], [3, 4, 5], [6, 7, 8]];
 const cols = [[0, 3, 6], [1, 4, 7], [2, 5, 8]];
@@ -34,21 +34,27 @@ const click = (x, y) => {
   if (!gameOver) {
     const column = Math.floor((x - boardX) / boxSize);
     const row = Math.floor((y - boardY) / boxSize);
-    if (0 <= row && row < 3 && 0 <= column && column < 3) {
-      if (board[row][column] === '') {
-        const m = move++ % 2 === 0 ? 'X' : 'O';
-        board[row][column] = m;
-        drawText(m, textX(column), textY(row), MARK_COLOR, fontSize);
-        const w = findWinner(board);
-        if (w !== null) {
-          winnerLine(w);
-          gameOver = true;
-        }
-        if (move == 9) gameOver = true;
-      }
+    if (valid(row) && valid(column)) {
+      makeMove(row, column);
     }
   } else {
     reset();
+  }
+};
+
+const valid = (coord) => 0 <= coord && coord < 3;
+
+const makeMove = (row, column) => {
+  if (board[row][column] === '') {
+    const mark = move++ % 2 === 0 ? 'X' : 'O';
+    board[row][column] = mark;
+    drawText(mark, textX(column), textY(row), MARK_COLOR, fontSize);
+    const w = findWinner(board);
+    if (w !== null) {
+      winnerLine(w);
+      gameOver = true;
+    }
+    if (move === 9) gameOver = true;
   }
 };
 
@@ -57,11 +63,10 @@ const col = (n) => n % 3;
 
 const findWinner = (board) => {
   for (let i = 0; i < lines.length; i++) {
-    if (winner(extractLine(lines[i], board))) return lines[i];
+    if (isWinner(extractLine(lines[i], board))) return lines[i];
   }
   return null;
 };
-
 
 const extractLine = (spec, board) => {
   let line = [];
@@ -71,7 +76,7 @@ const extractLine = (spec, board) => {
   return line;
 };
 
-const winner = (line) => {
+const isWinner = (line) => {
   if (line[0] === '') return false;
 
   for (let i = 1; i < line.length; i++) {
@@ -104,6 +109,7 @@ const drawBoard = (size) => {
 const winnerLine = (line) => {
   const start = line[0];
   const end = line[line.length - 1];
+
   let startX = centerX(col(start));
   let startY = centerY(row(start));
   let endX = centerX(col(end));
@@ -125,6 +131,7 @@ const reset = () => {
   }
   clear();
   drawBoard();
+  move = 0;
   gameOver = false;
 }
 
