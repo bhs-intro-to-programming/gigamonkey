@@ -42,12 +42,13 @@ const clickToCell = (x, y) => {
         drawText(m, textX(column), textY(row), MARK_COLOR, fontSize);
         const w = findWinner(board);
         if (w !== null) {
-          console.log('Winner! ' + w);
-          gameOver = true;
           winnerLine(w);
+          gameOver = true;
         }
       }
     }
+  } else {
+    reset();
   }
 };
 
@@ -115,6 +116,16 @@ const drawBoard = (size) => {
   }
 };
 
+const reset = () => {
+  for (let r = 0; r < board.length; r++) {
+    for (let c = 0; c < board[r].length; c++) {
+      board[r][c] = '';
+    }
+  }
+  clear();
+  drawBoard();
+}
+
 registerOnclick(clickToCell);
 
-drawBoard();
+reset();
