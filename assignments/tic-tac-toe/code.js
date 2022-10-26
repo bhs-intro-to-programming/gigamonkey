@@ -6,12 +6,18 @@
 // weeks but for now you can just adapt this code.
 
 let move = 0;
+let gameOver = false;
 
 const board = [
   ['', '', ''],
   ['', '', ''],
   ['', '', ''],
 ];
+
+const rows = [[0, 1, 2], [3, 4, 5], [6, 7, 8]];
+const cols = [[0, 3, 6], [1, 4, 7], [2, 5, 8]];
+const diags = [[0, 4, 8], [6, 4, 2]];
+
 
 const boardSize = Math.min(width, height) - 20;
 const boxSize = boardSize / 3;
@@ -20,16 +26,19 @@ const boardY = (height - boardSize) / 2;
 const fontSize = boardSize / 3;
 
 const clickToCell = (x, y) => {
-  const column = Math.floor(3 * (x - boardX) / boardSize);
-  const row = Math.floor(3 * (y - boardY) / boardSize);
-  if (0 <= row && row < 3 && 0 <= column && column < 3) {
-    if (board[row][column] === '') {
-      const m = move % 2 === 0 ? 'X' : 'O';
-      board[row][column] = m;
-      move++;
-      drawText(m, textX(column), textY(row), 'black', fontSize);
-      if (isWon(board)) {
-        console.log('Winner!');
+  if (!gameOver) {
+    const column = Math.floor(3 * (x - boardX) / boardSize);
+    const row = Math.floor(3 * (y - boardY) / boardSize);
+    if (0 <= row && row < 3 && 0 <= column && column < 3) {
+      if (board[row][column] === '') {
+        const m = move % 2 === 0 ? 'X' : 'O';
+        board[row][column] = m;
+        move++;
+        drawText(m, textX(column), textY(row), 'black', fontSize);
+        if (isWon(board)) {
+          console.log('Winner!');
+          gameOver = true;
+        }
       }
     }
   }
@@ -42,6 +51,15 @@ const isWon = (board) => {
     if (i < 3 && winner(diagonal(board, i))) return true;
   }
   return false;
+};
+
+const extractLine = (line, board) => {
+  let line = [];
+  for (let i = 0; i < line.length; i++) {
+    const r = Math.floor(line[i] / 3);
+    const c = line[i] % 3;
+    line.push(board[r][c]);
+  }
 };
 
 const winner = (line) => {
