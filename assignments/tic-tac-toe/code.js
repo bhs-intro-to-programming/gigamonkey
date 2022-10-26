@@ -62,28 +62,11 @@ const findWinner = (board) => {
   return null;
 };
 
-const winnerLine = (line) => {
-  const start = line[0];
-  const end = line[line.length - 1];
-  let startX = centerX(col(start));
-  let startY = centerY(row(start));
-  let endX = centerX(col(end));
-  let endY = centerY(row(end));
-
-  startY -= 0.25 * (endY - startY);
-  startX -= 0.25 * (endX - startX);
-  endY += 0.25 * (endY - startY);
-  endX += 0.25 * (endX - startX);
-
-  drawLine(startX, startY, endX, endY, LINE_COLOR, 16);
-};
 
 const extractLine = (spec, board) => {
   let line = [];
   for (let i = 0; i < spec.length; i++) {
-    const r = Math.floor(spec[i] / 3);
-    const c = spec[i] % 3;
-    line.push(board[r][c]);
+    line.push(board[row(i)][col(i)]);
   }
   return line;
 };
@@ -105,6 +88,7 @@ const centerY = (r) => boardY + boxSize / 2 + (r * boxSize);
 const textX = (c) => centerX(c) - boxSize / 3;
 const textY = (r) => centerY(r) + boxSize / 3;
 
+// Draw the empty board
 const drawBoard = (size) => {
   for (let i = 0; i < 2; i++) {
     const x = boardX + (boardSize / 3) * (i + 1);
@@ -114,6 +98,23 @@ const drawBoard = (size) => {
     const y = boardY + (boardSize / 3) * (i + 1);
     drawLine(boardX, y, boardX + boardSize, y, BOARD_COLOR, 3);
   }
+};
+
+// Draw the fat line through the winning three-in-a-row
+const winnerLine = (line) => {
+  const start = line[0];
+  const end = line[line.length - 1];
+  let startX = centerX(col(start));
+  let startY = centerY(row(start));
+  let endX = centerX(col(end));
+  let endY = centerY(row(end));
+
+  startY -= 0.25 * (endY - startY);
+  startX -= 0.25 * (endX - startX);
+  endY += 0.25 * (endY - startY);
+  endX += 0.25 * (endX - startX);
+
+  drawLine(startX, startY, endX, endY, LINE_COLOR, 16);
 };
 
 const reset = () => {
