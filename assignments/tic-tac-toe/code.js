@@ -5,13 +5,15 @@
 // is called an anonymous function. We'll discuss this in more detail in a few
 // weeks but for now you can just adapt this code.
 
-registerOnclick((x, y) => {
-  drawText('X', x, y, 'black', Math.min(width, height) * 0.3);
-});
 
 const boardSize = Math.min(width, height) - 20;
 const boardX = (width - boardSize) / 2
 const boardY = (height - boardSize) / 2;
+
+const clickToCell = (x, y) => {
+  const cellX = Math.floor(3 * (x - boardX) / boardSize);
+  console.log(cellX);
+}
 
 const drawBoard = (size) => {
   for (let i = 0; i < 2; i++) {
@@ -23,5 +25,12 @@ const drawBoard = (size) => {
     drawLine(boardX, y, boardX + boardSize, y, 'black', 3);
   }
 };
+
+/*
+registerOnclick((x, y) => {
+  drawText('X', x, y, 'black', Math.min(width, height) * 0.3);
+});
+*/
+registerOnClick(clickToCell);
 
 drawBoard();
