@@ -30,36 +30,54 @@ const boardX = (width - boardSize) / 2
 const boardY = (height - boardSize) / 2;
 const fontSize = boardSize / 3;
 
+// Translate from 0-2 rows and column x and y on the canvas at the center
+// of the corresponding box on the board
+const centerX = (c) => boardX + boxSize / 2 + (c * boxSize);
+const centerY = (r) => boardY + boxSize / 2 + (r * boxSize);
+
+// Translate graphical x, y points on the canvas to 0-2 rows and columns.
+// Note: may generate values outside the 0-2 range.
+const xToColumn = (x) => Math.floor((x - boardX) / boxSize);
+const yToRow = (y) => Math.floor((y - boardY) / boxSize);
+
+// Check whether a coordinate returned by xToColumn and yToRow is 
+// actually valid.
+const valid = (coord) => 0 <= coord && coord < 3;
+
+// Translate from the 0-2 rows and columns to the x, y point on the canvas
+// where we should draw the text marker.
+const textX = (c) => centerX(c) - boxSize / 3;
+const textY = (r) => centerY(r) + boxSize / 3;
+
+// Translate from the single numbers used in lines to row and column 
+// coordinates used in board. Probably would be better to just use all
+// 1-d arrays but I want to show how to represent the board in 2d.
+const row = (n) => Math.floor(n / 3);
+const col = (n) => n % 3;
+
 const click = (x, y) => {
   if (!gameOver) {
-    const column = Math.floor((x - boardX) / boxSize);
-    const row = Math.floor((y - boardY) / boxSize);
-    if (valid(row) && valid(column)) {
-      makeMove(row, column);
-    }
+    const column = xToColumn(x);
+    const row = yToRow(y);
+    maybeMakeMove(row, column);
   } else {
     reset();
   }
 };
 
-const valid = (coord) => 0 <= coord && coord < 3;
-
-const makeMove = (row, column) => {
-  if (board[row][column] === '') {
+const maybeMakeMove = (row, column) => {
+  if (valid(row) && valid(column) && board[row][column] === '') {
     const mark = move++ % 2 === 0 ? 'X' : 'O';
     board[row][column] = mark;
     drawText(mark, textX(column), textY(row), MARK_COLOR, fontSize);
     const w = findWinner(board);
     if (w !== null) {
-      winnerLine(w);
+      markThreeInARow(w);
       gameOver = true;
     }
     if (move === 9) gameOver = true;
   }
 };
-
-const row = (n) => Math.floor(n / 3);
-const col = (n) => n % 3;
 
 const findWinner = (board) => {
   for (let i = 0; i < lines.length; i++) {
@@ -77,22 +95,16 @@ const extractLine = (spec, board) => {
   return line;
 };
 
-const isWinner = (line) => {
-  if (line[0] === '') return false;
+const isWinner = (markers) => {
+  if (markers[0] === '') return false;
 
-  for (let i = 1; i < line.length; i++) {
-    if (line[i] !== line[0]) {
+  for (let i = 1; i < markers.length; i++) {
+    if (markers[i] !== markers[0]) {
       return false;
     }
   }
   return true;
 };
-
-const centerX = (c) => boardX + boxSize / 2 + (c * boxSize);
-const centerY = (r) => boardY + boxSize / 2 + (r * boxSize);
-
-const textX = (c) => centerX(c) - boxSize / 3;
-const textY = (r) => centerY(r) + boxSize / 3;
 
 // Draw the empty board
 const drawBoard = (size) => {
@@ -106,8 +118,10 @@ const drawBoard = (size) => {
   }
 };
 
-// Draw the fat line through the winning three-in-a-row
-const winnerLine = (line) => {
+// Draw the fat line through the winning three-in-a-row. Slightly
+// complex because we to extend the line a bit beyond the center of the
+// start and end square.
+const markThreeInARow = (line) => {
   const start = line[0];
   const end = line[line.length - 1];
 
