@@ -124,6 +124,7 @@ const reset = () => {
   }
   clear();
   drawBoard();
+  gameOver = false;
 }
 
 registerOnclick(clickToCell);
