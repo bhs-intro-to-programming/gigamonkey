@@ -31,7 +31,7 @@ const clickToCell = (x, y) => {
 };
 
 const cellCenterX = (c) => boardX + c * boardSize / 3;
-const cellCenterY = (r) => boardY + r * boardSize / 3;
+const cellCenterY = (r) => boardY + (r + 1) * boardSize / 3;
 
 const drawBoard = (size) => {
   for (let i = 0; i < 2; i++) {
