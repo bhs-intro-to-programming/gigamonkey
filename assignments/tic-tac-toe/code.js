@@ -40,6 +40,7 @@ const clickToCell = (x, y) => {
         if (w !== null) {
           console.log('Winner! ' + w);
           gameOver = true;
+          winnerLine(w);
         }
       }
     }
@@ -52,6 +53,14 @@ const findWinner = (board) => {
   }
   return null;
 };
+
+const winnerLine = (line) => {
+  const startR = Math.floor(line[0] / 3);
+  const startC = line[0] % 3;
+  const endR = Math.floor(line[line.length - 1] / 3);
+  const endC = line[line.length - 1] % 3;
+  drawLine(centerX(startC), centerY(startR), centerX(endC), centerY(endR), 'red', 6);
+}
 
 const extractLine = (spec, board) => {
   let line = [];
