@@ -30,7 +30,7 @@ const boardX = (width - boardSize) / 2
 const boardY = (height - boardSize) / 2;
 const fontSize = boardSize / 3;
 
-const clickToCell = (x, y) => {
+const click = (x, y) => {
   if (!gameOver) {
     const column = Math.floor((x - boardX) / boxSize);
     const row = Math.floor((y - boardY) / boxSize);
@@ -127,5 +127,5 @@ const reset = () => {
   gameOver = false;
 }
 
-registerOnclick(clickToCell);
+registerOnclick(click);
 reset();
