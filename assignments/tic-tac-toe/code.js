@@ -32,6 +32,34 @@ const clickToCell = (x, y) => {
   }
 };
 
+const isWon = (board) => {
+  let won = false;
+  for (let r = 0; r < board.length; r++) {
+    let rowSame = true;
+    const p = row[0];
+    if (p !== '') {
+      for (let c = 1; c < board[r].length; c++) {
+        if (p !== row[c]) rowSame = false;
+      }
+    }
+  }
+};
+
+const winner = (line) => {
+  if (line[0] !== '') {
+    let allSame = true;
+    for (let i = 1; i < line.length; i++) {
+      if (line[i] !== line[0]) {
+        allSame = false;
+      }
+    }
+    return allSame
+  } else {
+    return false;
+  }
+};
+
+
 const centerX = (c) => boardX + boxSize / 2 + (c * boxSize);
 const centerY = (r) => boardY + boxSize / 2 + (r * boxSize);
 
