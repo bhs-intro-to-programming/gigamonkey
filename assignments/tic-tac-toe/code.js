@@ -71,7 +71,8 @@ const findWinner = (board) => {
 const extractLine = (spec, board) => {
   let line = [];
   for (let i = 0; i < spec.length; i++) {
-    line.push(board[row(i)][col(i)]);
+    const n = spec[i];
+    line.push(board[row(n)][col(n)]);
   }
   return line;
 };
