@@ -25,12 +25,12 @@ const clickToCell = (x, y) => {
     const m = move % 2 === 0 ? 'X' : 'O';
     board[cellX][cellY] = m;
     move++;
-    drawText(m, cellCenterX(cellX), cellCenterY(cellY), 'black', boardSize/3);
+    drawText(m, textX(cellX), textY(cellY), 'black', boardSize/3);
   }
 };
 
-const cellCenterX = (c) => boardX + c * boardSize / 3 + boardSize / 24;
-const cellCenterY = (r) => boardY + (r + 1) * boardSize / 3 - boardSize / 24;
+const textX = (c) => boardX + c * boardSize / 3 + boardSize / 24;
+const textY = (r) => boardY + (r + 1) * boardSize / 3 - boardSize / 24;
 
 const drawBoard = (size) => {
   for (let i = 0; i < 2; i++) {
