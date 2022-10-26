@@ -18,6 +18,7 @@ const rows = [[0, 1, 2], [3, 4, 5], [6, 7, 8]];
 const cols = [[0, 3, 6], [1, 4, 7], [2, 5, 8]];
 const diags = [[0, 4, 8], [6, 4, 2]];
 
+const lines = [...rows, ...cols, ...diags];
 
 const boardSize = Math.min(width, height) - 20;
 const boxSize = boardSize / 3;
@@ -35,7 +36,7 @@ const clickToCell = (x, y) => {
         board[row][column] = m;
         move++;
         drawText(m, textX(column), textY(row), 'black', fontSize);
-        if (isWon(board)) {
+        if (isWon(board) !== nulll) {
           console.log('Winner!');
           gameOver = true;
         }
@@ -45,12 +46,10 @@ const clickToCell = (x, y) => {
 };
 
 const isWon = (board) => {
-  for (let i = 0; i < board.length; i++) {
-    if (winner(row(board, i))) return true;
-    if (winner(column(board, i))) return true;
-    if (i < 3 && winner(diagonal(board, i))) return true;
+  for (let i = 0; i < lines.length; i++) {
+    if (winner(extractLine(lines[i], board))) return lines[i];
   }
-  return false;
+  return null;
 };
 
 const extractLine = (spec, board) => {
