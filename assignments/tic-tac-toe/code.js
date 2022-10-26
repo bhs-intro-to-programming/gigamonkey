@@ -73,12 +73,6 @@ const winnerLine = (line) => {
   drawLine(startX, startY, endX, endY, 'red', 16);
 };
 
-const extend = (x, y, m, d) => {
-  const dx = Math.sqrt((d ** 2 - m ** 2) / 2);
-  const dy = dx * m;
-  return [dx, dy];
-}
-
 const extractLine = (spec, board) => {
   let line = [];
   for (let i = 0; i < spec.length; i++) {
