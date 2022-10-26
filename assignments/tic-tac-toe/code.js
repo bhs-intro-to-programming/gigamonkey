@@ -65,10 +65,10 @@ const winnerLine = (line) => {
   let endX = centerX(col(end));
   let endY = centerY(row(end));
 
-  startY -= 0.2 * (endY - startY);
-  startX -= 0.2 * (endX - startX);
-  endY += 0.2 * (endY - startY);
-  endX += 0.2 * (endX - startX);
+  startY -= 0.25 * (endY - startY);
+  startX -= 0.25 * (endX - startX);
+  endY += 0.25 * (endY - startY);
+  endX += 0.25 * (endX - startX);
 
   drawLine(startX, startY, endX, endY, 'red', 16);
 };
