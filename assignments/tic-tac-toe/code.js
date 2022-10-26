@@ -46,17 +46,14 @@ const isWon = (board) => {
 };
 
 const winner = (line) => {
-  if (line[0] !== '') {
-    let allSame = true;
-    for (let i = 1; i < line.length; i++) {
-      if (line[i] !== line[0]) {
-        allSame = false;
-      }
+  if (line[0] !== '') return false;
+
+  for (let i = 1; i < line.length; i++) {
+    if (line[i] !== line[0]) {
+      return false;
     }
-    return allSame
-  } else {
-    return false;
   }
+  return true;
 };
 
 
