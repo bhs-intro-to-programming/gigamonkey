@@ -36,8 +36,9 @@ const clickToCell = (x, y) => {
         board[row][column] = m;
         move++;
         drawText(m, textX(column), textY(row), 'black', fontSize);
-        if (isWon(board) !== null) {
-          console.log('Winner!');
+        const w = findWinner(board);
+        if (w !== null) {
+          console.log('Winner! ' + w);
           gameOver = true;
         }
       }
@@ -45,7 +46,7 @@ const clickToCell = (x, y) => {
   }
 };
 
-const isWon = (board) => {
+const findWinner = (board) => {
   for (let i = 0; i < lines.length; i++) {
     if (winner(extractLine(lines[i], board))) return lines[i];
   }
