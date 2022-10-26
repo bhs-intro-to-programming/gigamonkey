@@ -60,11 +60,13 @@ const findWinner = (board) => {
 const winnerLine = (line) => {
   const start = line[0];
   const end = line[line.length - 1];
-  const startX = centerX(col(start));
-  const startY = centerY(row(start));
+  let startX = centerX(col(start));
+  let startY = centerY(row(start));
   let endX = centerX(col(end));
   let endY = centerY(row(end));
 
+  startY -= 0.2 * (endY - startY);
+  startX -= 0.2 * (endX - startX);
   endY += 0.2 * (endY - startY);
   endX += 0.2 * (endX - startX);
 
