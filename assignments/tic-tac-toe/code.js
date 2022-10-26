@@ -32,7 +32,7 @@ const fontSize = boardSize / 3;
 
 const clickToCell = (x, y) => {
   if (!gameOver) {
-    const column = Math.floor(3 * (x - boardX) / boardSize);
+    const column = Math.floor((x - boardX) / boxSize);
     const row = Math.floor(3 * (y - boardY) / boardSize);
     if (0 <= row && row < 3 && 0 <= column && column < 3) {
       if (board[row][column] === '') {
