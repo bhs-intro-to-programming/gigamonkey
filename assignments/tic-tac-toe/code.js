@@ -18,6 +18,10 @@ const drawBoard = (size) => {
     const x = boardX + (boardSize / 3) * (i + 1);
     drawLine(x, boardY, x, boardY + boardSize, 'black', 3);
   }
+  for (let i = 0; i < 2; i++) {
+    const y = boardY + (boardSize / 3) * (i + 1);
+    drawLine(boardX, y, boardX + boardSize, y, 'black', 3);
+  }
 };
 
 drawBoard();
