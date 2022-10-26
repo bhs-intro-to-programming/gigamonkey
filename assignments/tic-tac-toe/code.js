@@ -62,8 +62,8 @@ const winnerLine = (line) => {
   const end = line[line.length - 1];
   const startX = centerX(col(start));
   const startY = centerY(row(start));
-  const endX = centerX(col(end));
-  const endY = centerY(row(end));
+  let endX = centerX(col(end));
+  let endY = centerY(row(end));
 
   endY += 0.1 * (endY - startY);
   endX += 0.1 * (endX - startX);
