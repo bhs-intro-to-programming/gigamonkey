@@ -53,13 +53,14 @@ const isWon = (board) => {
   return false;
 };
 
-const extractLine = (line, board) => {
+const extractLine = (spec, board) => {
   let line = [];
-  for (let i = 0; i < line.length; i++) {
-    const r = Math.floor(line[i] / 3);
-    const c = line[i] % 3;
+  for (let i = 0; i < spec.length; i++) {
+    const r = Math.floor(spec[i] / 3);
+    const c = spec[i] % 3;
     line.push(board[r][c]);
   }
+  return line;
 };
 
 const winner = (line) => {
