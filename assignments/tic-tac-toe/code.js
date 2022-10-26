@@ -36,17 +36,16 @@ const clickToCell = (x, y) => {
     const row = Math.floor((y - boardY) / boxSize);
     if (0 <= row && row < 3 && 0 <= column && column < 3) {
       if (board[row][column] === '') {
-        const m = move % 2 === 0 ? 'X' : 'O';
+        const m = move++ % 2 === 0 ? 'X' : 'O';
         board[row][column] = m;
-        move++;
         drawText(m, textX(column), textY(row), MARK_COLOR, fontSize);
         const w = findWinner(board);
         if (w !== null) {
           winnerLine(w);
           gameOver = true;
         }
+        if (move == 9) gameOver = true;
       }
-      if (move == 9) gameOver = true;
     }
   } else {
     reset();
