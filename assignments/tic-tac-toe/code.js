@@ -59,6 +59,8 @@ const winnerLine = (line) => {
   const startC = line[0] % 3;
   const endR = Math.floor(line[line.length - 1] / 3);
   const endC = line[line.length - 1] % 3;
+
+
   drawLine(centerX(startC), centerY(startR), centerX(endC), centerY(endR), 'red', 16);
 }
 
@@ -83,25 +85,7 @@ const winner = (line) => {
   return true;
 };
 
-const row = (board, r) => {
-  return board[r];
-};
 
-const column = (board, c) => {
-  const col = [];
-  for (let r = 0; r < board.length; r++) {
-    col.push(board[r][c]);
-  }
-  return col;
-};
-
-const diagonal = (board, d) => {
-  if (d === 0) {
-    return [board[0][0], board[1][1], board[2][2]];
-  } else {
-    return [board[0][2], board[1][1], board[2][0]];
-  }
-}
 
 const centerX = (c) => boardX + boxSize / 2 + (c * boxSize);
 const centerY = (r) => boardY + boxSize / 2 + (r * boxSize);
