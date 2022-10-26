@@ -23,17 +23,19 @@ const clickToCell = (x, y) => {
   const column = Math.floor(3 * (x - boardX) / boardSize);
   const row = Math.floor(3 * (y - boardY) / boardSize);
   if (0 <= row && row < 3 && 0 <= column && column < 3) {
-    const m = move % 2 === 0 ? 'X' : 'O';
-    board[column][row] = m;
-    move++;
-    drawText(m, textX(column), textY(row), 'black', fontSize);
+    if (board[row][column] === '') {
+      const m = move % 2 === 0 ? 'X' : 'O';
+      board[row][column] = m;
+      move++;
+      drawText(m, textX(column), textY(row), 'black', fontSize);
+    }
   }
 };
 
 const centerX = (c) => boardX + boxSize / 2 + (c * boxSize);
 const centerY = (r) => boardY + boxSize / 2 + (r * boxSize);
 
-const textX = (c) => centerX(c) - boxSize * 3/9;
+const textX = (c) => centerX(c) - boxSize / 3;
 const textY = (r) => centerY(r) + boxSize / 3;
 
 const drawBoard = (size) => {
