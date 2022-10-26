@@ -27,10 +27,9 @@ const clickToCell = (x, y) => {
     move++;
     drawText(m, cellCenterX(cellX), cellCenterY(cellY), 'black', boardSize/3);
   }
-
 };
 
-const cellCenterX = (c) => boardX + c * boardSize / 3;
+const cellCenterX = (c) => boardX + c * boardSize / 3 + boardSize / 12;
 const cellCenterY = (r) => boardY + (r + 1) * boardSize / 3;
 
 const drawBoard = (size) => {
@@ -44,11 +43,6 @@ const drawBoard = (size) => {
   }
 };
 
-/*
-registerOnclick((x, y) => {
-  drawText('X', x, y, 'black', Math.min(width, height) * 0.3);
-});
-*/
 registerOnclick(clickToCell);
 
 drawBoard();
