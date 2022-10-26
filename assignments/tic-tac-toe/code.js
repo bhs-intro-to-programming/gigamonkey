@@ -58,11 +58,6 @@ const findWinner = (board) => {
 };
 
 const winnerLine = (line) => {
-  const startR = Math.floor(line[0] / 3);
-  const startC = line[0] % 3;
-  const endR = Math.floor(line[line.length - 1] / 3);
-  const endC = line[line.length - 1] % 3;
-
   const start = line[0];
   const end = line[line.length - 1];
   const startX = centerX(col(start));
@@ -71,9 +66,17 @@ const winnerLine = (line) => {
   const endY = centerY(row(end));
 
   const m = (endY - startY) / (endX - startX);
+
+  const [dx, dy] = extend(endX, endY, m, boxSize);
   console.log(m);
 
-  drawLine(startX, startY, endX, endY, 'red', 16);
+  drawLine(startX, startY, endX + dx, endY + dy, 'red', 16);
+};
+
+const extend = (x, y, m, d) => {
+  const dx = Math.sqrt ((d ** 2 - m ** 2) / 2;
+  const dy = dx * m;
+  return [dx, dy];
 }
 
 const extractLine = (spec, board) => {
