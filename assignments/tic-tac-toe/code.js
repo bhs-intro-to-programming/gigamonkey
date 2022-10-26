@@ -14,6 +14,8 @@ const board = [
   ['', '', ''],
 ];
 
+const BOARD_COLOR = 'grey';
+
 const rows = [[0, 1, 2], [3, 4, 5], [6, 7, 8]];
 const cols = [[0, 3, 6], [1, 4, 7], [2, 5, 8]];
 const diags = [[0, 4, 8], [6, 4, 2]];
@@ -105,11 +107,11 @@ const textY = (r) => centerY(r) + boxSize / 3;
 const drawBoard = (size) => {
   for (let i = 0; i < 2; i++) {
     const x = boardX + (boardSize / 3) * (i + 1);
-    drawLine(x, boardY, x, boardY + boardSize, 'black', 3);
+    drawLine(x, boardY, x, boardY + boardSize, BOARD_COLOR, 3);
   }
   for (let i = 0; i < 2; i++) {
     const y = boardY + (boardSize / 3) * (i + 1);
-    drawLine(boardX, y, boardX + boardSize, y, 'black', 3);
+    drawLine(boardX, y, boardX + boardSize, y, BOARD_COLOR, 3);
   }
 };
 
