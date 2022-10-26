@@ -46,7 +46,7 @@ const isWon = (board) => {
 };
 
 const winner = (line) => {
-  if (line[0] !== '') return false;
+  if (line[0] === '') return false;
 
   for (let i = 1; i < line.length; i++) {
     if (line[i] !== line[0]) {
