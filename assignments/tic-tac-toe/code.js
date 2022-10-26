@@ -98,8 +98,6 @@ const winner = (line) => {
   return true;
 };
 
-
-
 const centerX = (c) => boardX + boxSize / 2 + (c * boxSize);
 const centerY = (r) => boardY + boxSize / 2 + (r * boxSize);
 
