@@ -17,7 +17,7 @@ const boardSize = Math.min(width, height) - 20;
 const boxSize = boardSize / 3;
 const boardX = (width - boardSize) / 2
 const boardY = (height - boardSize) / 2;
-const fontSize = boardSze / 3;
+const fontSize = boardSize / 3;
 
 const clickToCell = (x, y) => {
   const column = Math.floor(3 * (x - boardX) / boardSize);
