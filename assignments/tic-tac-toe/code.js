@@ -59,7 +59,7 @@ const winnerLine = (line) => {
   const startC = line[0] % 3;
   const endR = Math.floor(line[line.length - 1] / 3);
   const endC = line[line.length - 1] % 3;
-  drawLine(centerX(startC), centerY(startR), centerX(endC), centerY(endR), 'red', 6);
+  drawLine(centerX(startC), centerY(startR), centerX(endC), centerY(endR), 'red', 16);
 }
 
 const extractLine = (spec, board) => {
