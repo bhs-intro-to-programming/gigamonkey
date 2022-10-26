@@ -15,6 +15,8 @@ const board = [
 ];
 
 const BOARD_COLOR = 'grey';
+const MARK_COLOR = 'black';
+const LINE_COLOR = 'red';
 
 const rows = [[0, 1, 2], [3, 4, 5], [6, 7, 8]];
 const cols = [[0, 3, 6], [1, 4, 7], [2, 5, 8]];
@@ -37,7 +39,7 @@ const clickToCell = (x, y) => {
         const m = move % 2 === 0 ? 'X' : 'O';
         board[row][column] = m;
         move++;
-        drawText(m, textX(column), textY(row), 'black', fontSize);
+        drawText(m, textX(column), textY(row), MARK_COLOR, fontSize);
         const w = findWinner(board);
         if (w !== null) {
           console.log('Winner! ' + w);
@@ -72,7 +74,7 @@ const winnerLine = (line) => {
   endY += 0.25 * (endY - startY);
   endX += 0.25 * (endX - startX);
 
-  drawLine(startX, startY, endX, endY, 'red', 16);
+  drawLine(startX, startY, endX, endY, LINE_COLOR, 16);
 };
 
 const extractLine = (spec, board) => {
