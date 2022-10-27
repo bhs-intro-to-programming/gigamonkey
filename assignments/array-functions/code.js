@@ -8,12 +8,13 @@ const anyOverOneHundred = (ns) => ns.some(n => n > 100);
 
 //const pyramid = (n) => Array(n).fill().flatMap((_, i) => Array(i + 1).fill(i + 1));
 
-const pyramid = (n) => {
-  let list = [];
-  for (let x = 0; x < n+1; x++) {
-    for (let y = 0; y < x; y++) {
-      list.push(x)
+const pyramid = (number) => {
+  let theMid = []
+  for (let i = 0; i < number; i++) {
+    for (let j = -1; j < i; j++) {
+      console.log(j)
+      theMid.push(i+1)
     }
   }
-  return list;
+  return theMid
 };
