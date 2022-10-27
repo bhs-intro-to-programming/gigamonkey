@@ -51,3 +51,5 @@ const everyOther = (s) => {
 const upDownLastCharacter = (s) => {
   return upDown(s[s.length - 1]);
 };
+
+const firstName = (name) => name.substring(0, name.indexOf(' '));
