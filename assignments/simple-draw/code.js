@@ -127,4 +127,4 @@ for (let i = 1; i < points.length; i++) {
   drawLine(prev.x, prev.y, p.x, p.y, 'black');
 }
 
-console.log(JSON.stringify(xs.map((x, i) => ({ x, y: ys[i] }))));
+//console.log(JSON.stringify(xs.map((x, i) => ({ x, y: ys[i] }))));
