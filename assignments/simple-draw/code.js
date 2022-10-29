@@ -126,7 +126,7 @@ const drawConnectedPoints1 = (xs, ys) => {
     const x = xs[i];
     const y = ys[i]
     const nextX = xs[i + 1];
-    const nextY = xs[i + 1];
+    const nextY = ys[i + 1];
     drawLine(x, y, nextX, nextY, 'black');
   }
 };
