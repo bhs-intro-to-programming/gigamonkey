@@ -111,3 +111,5 @@ let ys = [10, 20, 10, 20, 10, 20];
 for (let i = 1; i < xs.length; i++) {
   drawLine(xs[i-1], ys[i-1], xs[i], ys[i], 'black');
 }
+
+console.log(JSON.stringify(xs.map((x, i) => ({ x, y: ys[i] } ))));
