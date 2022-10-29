@@ -105,8 +105,8 @@ const cutSmallCarpetHoles = (x, y, size, smallest, decorateBigHole) => {
 // carpet((width - MAX_SIDE) / 2, (height - MAX_SIDE) / 2, MAX_SIDE, 1);
 //garpet((width - MAX_SIDE) / 2, (height - MAX_SIDE) / 2, MAX_SIDE, 1);
 
-let xs = [50, 20, 40, 20, 50];
-let ys = [10, 20, 30, 20, 10];
+let xs = [50, 60, 70, 80, 90, 100];
+let ys = [10, 20, 10, 20, 10, 20];
 
 for (let i = 1; i < xs.length; i++) {
   drawLine(xs[i-1], ys[i-1], xs[i], ys[i], 'black');
