@@ -118,13 +118,35 @@ let points = [
   { x: 70, y: 10 },
   { x: 80, y: 20 },
   { x: 90, y: 10 },
-  { x: 100, y: 20 }
+  { x: 100, y: 20 },
 ];
 
-for (let i = 1; i < points.length; i++) {
-  const prev = points[i - 1];
-  const p = points[i];
-  drawLine(prev.x, prev.y, p.x, p.y, 'black');
-}
+const drawConnectedPoints1 = (xs, ys) => {
+  for (let i = 1; i < xs.length; i++) {
+    const prevX = xs[i - 1];
+    const prevY = ys[i - 1];
+    const x = xs[i];
+    const y = ys[i]
+    drawLine(prevX, prevY, x, y, 'black');
+  }
+};
+
+const drawConnectedPoints2 = (points) => {
+  for (let i = 1; i < points.length; i++) {
+    const prev = points[i - 1];
+    const p = points[i];
+    drawLine(prev.x, prev.y, p.x, p.y, 'black');
+  }
+};
+
+
+const drawConnectedPoints = (points) => {
+  for (let i = 0; i < points.length - 1; i++) {
+    const p = points[i];
+    const next = points[i + 1];
+    drawLine(p.x, p.y, next.x, next.y, 'black');
+  }
+};
+
 
 //console.log(JSON.stringify(xs.map((x, i) => ({ x, y: ys[i] }))));
