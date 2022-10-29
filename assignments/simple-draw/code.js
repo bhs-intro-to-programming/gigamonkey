@@ -122,12 +122,12 @@ let points = [
 ];
 
 const drawConnectedPoints1 = (xs, ys) => {
-  for (let i = 1; i < xs.length; i++) {
-    const prevX = xs[i - 1];
-    const prevY = ys[i - 1];
+  for (let i = 0; i < xs.length - 1; i++) {
     const x = xs[i];
     const y = ys[i]
-    drawLine(prevX, prevY, x, y, 'black');
+    const nextX = xs[i + 1];
+    const nextY = xs[i + 1];
+    drawLine(x, y, nextX, nextY, 'black');
   }
 };
 
