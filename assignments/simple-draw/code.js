@@ -109,7 +109,22 @@ let xs = [50, 60, 70, 80, 90, 100];
 let ys = [10, 20, 10, 20, 10, 20];
 
 for (let i = 1; i < xs.length; i++) {
-  drawLine(xs[i-1], ys[i-1], xs[i], ys[i], 'black');
+  //drawLine(xs[i - 1], ys[i - 1], xs[i], ys[i], 'black');
 }
 
-console.log(JSON.stringify(xs.map((x, i) => ({ x, y: ys[i] } ))));
+let points = [
+  { x: 50, y: 10 },
+  { x: 60, y: 20 },
+  { x: 70, y: 10 },
+  { x: 80, y: 20 },
+  { x: 90, y: 10 },
+  { x: 100, y: 20 }
+];
+
+for (let i = 1; i < points.length; i++) {
+  const prev = points[i - 1];
+  const p = points[i];
+  drawLine(prev.x, prev.y, p.x, p.y, 'black');
+}
+
+console.log(JSON.stringify(xs.map((x, i) => ({ x, y: ys[i] }))));
