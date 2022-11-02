@@ -1,5 +1,5 @@
-const current = [];
-const next = [];
+let current = [];
+let next = [];
 
 const gameOfLifeStart = () => {
   for (let j = 0; j < height; j++) {
