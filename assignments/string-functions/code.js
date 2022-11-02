@@ -1,6 +1,8 @@
 const findFnord = (s) => s.indexOf('fnord');
 
-const stringContains = (s, ss) => s.indexOf(ss) > -1;
+//const stringContains = (s, ss) => s.indexOf(ss) > -1;
+//
+const stringContains = (string1, string2) => string2 === string1.substring(string1.indexOf(string2));
 
 const firstAndLast = (s) => s[0] + s[s.length - 1];
 
