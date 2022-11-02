@@ -23,7 +23,7 @@ const neighbors = (i, j) => {
   for (let xOffset = -1; xOffset < 2; xOffset++) {
     for (let yOffset = -1; yOffset < 2; yOffset++) {
       const nj = (j + yOffset + height) % height;
-      const ni = (i + xOffset + weidth) % width;
+      const ni = (i + xOffset + width) % width;
       if (current[nj][ni]) count++;
     }
   }
