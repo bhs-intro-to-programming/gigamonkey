@@ -1,3 +1,5 @@
+// Based on Sadie's code.
+
 let current = [];
 let next = [];
 
