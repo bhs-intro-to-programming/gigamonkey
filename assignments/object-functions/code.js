@@ -1,3 +1,3 @@
 const getX = (o) => o.x;
 
-const point = (x, y) => { return { y: y, x: x }; };
+const point = (x, y) => { return { x: x, y: y }; };
