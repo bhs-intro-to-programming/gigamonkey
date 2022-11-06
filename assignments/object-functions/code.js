@@ -17,3 +17,11 @@ const sumSalaries = (staff) => {
   }
   return sum;
 };
+
+const newHighScore = (high, players) => {
+  let max = high;
+  for (let i = 0; i players.length; i++) {
+    max = Math.max(players[i].score, max);
+  }
+  return max;
+}
