@@ -24,4 +24,14 @@ const newHighScore = (high, players) => {
     max = Math.max(players[i].score, max);
   }
   return max;
-}
+};
+
+const summarizeBooks = (books) => {
+  let titles = [];
+  let pages = 0;
+  for (let i = 0; i < books.length; i++) {
+    titles.push(books[i].title);
+    pages += books[i].pages;
+  }
+  return { titles, pages };
+};
