@@ -33,5 +33,5 @@ const summarizeBooks = (books) => {
     titles.push(books[i].title);
     pages += books[i].pages;
   }
-  return { titles, pages };
+  return { pages, titles };
 };
