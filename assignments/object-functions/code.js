@@ -9,3 +9,11 @@ const distance = (p1, p2) => {
 }
 
 const midpoint = (p1, p2) => point((p1.x + p2.x) / 2, (p1.y + p2.y) / 2);
+
+const sumSalaries = (staff) => {
+  let sum = 0;
+  for (let i = 0; i < staff.length; i++) {
+    sum += staff[i].salary;
+  }
+  return sum;
+};
