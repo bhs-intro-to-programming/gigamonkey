@@ -210,7 +210,7 @@ const drawFrame = (t) => {
       grid = nextGeneration(grid)
     }
     next += Math.max(0, RATE);
-    if (next < now()) next = now();
+    next = Math.max(next, now());
   }
 };
 
