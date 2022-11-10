@@ -39,3 +39,15 @@ const newHighScore = (currentHighScore, players) => {
   return high
 }
 
+const summarizeBooks = (books) => {
+  const summary = { titles: [], pages: 0 }
+  for (let i = 0; i < books.length; i++) {
+    summary.titles.push(books[i].title)
+    summary.pages = summary.pages + books[i].pages
+  }
+  return summary
+}
+
+
+
+
