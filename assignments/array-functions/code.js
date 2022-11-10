@@ -6,4 +6,14 @@ const evens = (ns) => ns.filter(n => n % 2 === 0);
 
 const anyOverOneHundred = (ns) => ns.some(n => n > 100);
 
-const pyramid = (n) => Array(n).fill().flatMap((_, i) => Array(i + 1).fill(i + 1));
+const xpyramid = (n) => Array(n).fill().flatMap((_, i) => Array(i + 1).fill(i + 1));
+
+
+const pyramid = (int) => {
+ const array = [];
+ for (let pos = 1; pos <= int; pos++){
+   for (let ipos = 1; ipos <= pos; ipos++){
+   array.push(pos)
+ }}
+ return array
+}
