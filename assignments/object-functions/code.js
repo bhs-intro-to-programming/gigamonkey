@@ -15,7 +15,7 @@ const distance = (p1, p2) => {
 }
 
 const midpoint = (p1, p2) => {
-  return { 
+  return {
     x: (p1.x + p2.x) / 2,
     y: (p1.y + p2.y) / 2
   }
@@ -50,4 +50,11 @@ const summarizeBooks = (books) => {
 
 
 
+
+const books = [
+  { "title": "Flobby Bird Flies Again", "pages": 67 },
+  { "title": "Off by One", "pages": 110 },
+  { "title": "Nerd Jokes and Puns", "pages": 120 },
+  { "title": "Intro to Programming", "pages": 33 }
+]
 
