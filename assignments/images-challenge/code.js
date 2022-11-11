@@ -147,7 +147,7 @@ const circleLine = (radius) => {
 }
 //circleLine(12)
 
-const dartboard = (howManyCircles) => {
+const xdartboard = (howManyCircles) => {
   let radius = height / 2
   let c = 'red'
   while (radius > width / 6 / howManyCircles) {
@@ -158,6 +158,23 @@ const dartboard = (howManyCircles) => {
     } else { c = 'red' }
   }
 }
+
+const dartboard = (howManyCircles) => {
+  const max = Math.min(width, height) / 2
+  let radius = max
+  let c = 'red'
+  for (let i = 0; i < howManyCircles; i++) {
+    drawFilledCircle(width / 2, height / 2, radius, c)
+    radius = radius - (max / howManyCircles);
+    if (c == 'red') {
+      c = 'blue'
+    } else {
+      c = 'red'
+    }
+  }
+}
+
+
 //dartboard(12);
 
 /*
