@@ -160,12 +160,11 @@ const xdartboard = (howManyCircles) => {
 }
 
 const dartboard = (howManyCircles) => {
-  const max = Math.min(width, height) / 2
-  let radius = max
+  const max = Math.min(width, height) / 2;
+  const band = max / howManyCircles;
   let c = 'red'
   for (let i = 0; i < howManyCircles; i++) {
-    drawFilledCircle(width / 2, height / 2, radius, c)
-    radius = radius - (max / howManyCircles);
+    drawFilledCircle(width / 2, height / 2, (howManyCircles - i) * band, c)
     if (c == 'red') {
       c = 'blue'
     } else {
