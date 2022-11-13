@@ -7,9 +7,12 @@ const drawBoard1st = () => {
     const thick = i % 3 === 0 ? 3 : 1
     drawLine(edgeSize, height / 9 * i, width - edgeSize, height / 9 * i, 'black', thick)
     drawLine(edgeSize + height / 9 * i, 0, edgeSize + height / 9 * i, height, 'black', thick)
-    if (i !== 9) {
-      drawText(i + 1, edgeSize / 10 * i, 20, 'black', 20)
-    }
+  }
+}
+
+const drawNumberMenu = () => {
+  for (let i = 0; i < 9; i++) {
+    drawText(i + 1, edgeSize / 10 * i, 20, 'black', 20)
   }
 }
 
@@ -29,6 +32,7 @@ registerOnclick((x, y) => {
 })
 
 drawBoard1st()
+drawNumberMenu()
 
 const lineNine = () => {
   for (let i = 0; i < 9; i++) {
