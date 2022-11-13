@@ -31,7 +31,7 @@ registerOnclick((x, y) => {
   }
 })
 
-//drawBoard1st()
+drawBoard1st()
 drawNumberMenu()
 
 const lineNine = () => {
