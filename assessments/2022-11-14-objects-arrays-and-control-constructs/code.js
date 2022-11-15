@@ -29,8 +29,8 @@ const sums = (n) => {
   const r = [];
   let tot = 0;
   for (let i = 0; i < n + 1; i++) {
-    r[i] = tot;
     tot += i;
+    r[i] = tot;
   }
   return r;
 };
