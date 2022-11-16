@@ -38,3 +38,5 @@ const sameIgnoringCase = (s1, s2) => s1.toUpperCase() === s2.toUpperCase();
 const firstName = (name) => name.substring(0, name.indexOf(' '));
 
 const lastName = (name) => name.substring(name.indexOf(' ') + 1);
+
+const initials = (name) => name[0] + name[name.indexOf(' ') + 1];
