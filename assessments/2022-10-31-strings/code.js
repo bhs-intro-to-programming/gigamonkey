@@ -21,7 +21,7 @@ const firstFewEveryOther = (s) => s[0] + s[2] + s[4];
 
 const upDownLastCharacter = (s) => upDown(s[s.length - 1]);
 
-const firstAndLast = (s) = s[0] + s[s.length - 1];
+const firstAndLast = (s) => s[0] + s[s.length - 1];
 
 const swapFrontAndBack = (s) => secondHalf(s) + firstHalf(s);
 
