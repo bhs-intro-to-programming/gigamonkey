@@ -1,5 +1,5 @@
 const getX = (obj) => {
-  return 19;
+  return obj.x;
 }
 
 const point = (x, y) => {
