@@ -1,68 +1,38 @@
 // For a change of pace, I'm providing you with all the function skeletons. This
 // should save you some time.
 
-const area = (rect) => {
-  return rect.width * rect.height;
-};
+const area = (rect) => rect.width * rect.height;
 
-const higherPaid = (e1, e2) => {
-  if (e1.salary > e2.salary) {
-    return e1;
-  } else {
-    return e2;
-  }
-};
+const higherPaid = (e1, e2) => e1.salary > e2.salary ? e1 : e2;
 
-const isSamePoint = (p1, p2) => {
-  return p1.x === p2.x && p1.y === p2.y;
-};
+const isSamePoint = (p1, p2) => p1.x === p2.x && p1.y === p2.y;
 
 const totalWithTip = (bill, tipPercentage) => {
+  const subtotal = bill.subtotal;
   const tip = bill.subtotal * tipPercentage;
-  return {
-    subtotal: bill.subtotal,
-    tip: tip,
-    total: bill.subtotal + tip,
-  };
+  const total = subtotal + tip;
+  return { subtotal, tip, total };
 };
 
-const isWinner = (player) => {
-  return player.score > 100;
-};
+const isWinner = (player) => player.score > 100;
 
 const updateWins = (players) => {
-  for (let i = 0; i < players.length; i++) {
-    if (isWinner(players[i])) {
-      players[i].wins++;
-    }
-  }
+  players.forEach((p) => {
+    if (isWinner(p)) p.wins++;
+  });
 };
 
-const bigWinners = (players) => {
-  let big = [];
-  for (let i = 0; i < players.length; i++) {
-    if (players[i].wins > 10) {
-      big.push(players[i]);
-    }
-  }
-  return big;
-};
+const bigWinners = (players) => players.filter((p) => p.wins > 10);
 
 const fillTimesTable = (table) => {
-  for (let i = 0; i < table.length; i++) {
-    for (let j = 0; j < table.length; j++) {
-      table[i][j] = (i + 1) * (j + 1);
-    }
-  }
+  table.forEach((row, i) => {
+    row.forEach((_, j) => {
+      row[i][j] = (i + 1) * (j + 1);
+    });
+  });
 };
 
-const sums = (n) => {
-  const result = [0];
-  for (let i = 1; i < n + 1; i++) {
-    result[i] = i + result[i - 1];
-  }
-  return result;
-};
+const sums = (n) => Array(n + 1).fill().map((_, i) => (i * (i + 1)) / 2);
 
 const rule110 = (cells) => {
   let next = [];
