@@ -35,30 +35,13 @@ const fillTimesTable = (table) => {
 const sums = (n) => Array(n + 1).fill().map((_, i) => (i * (i + 1)) / 2);
 
 const rule110 = (cells) => {
-  let next = [];
-  for (let i = 0; i < cells.length; i++) {
-    let left;
-    let right;
-    const center = cells[i];
-    if (i === 0) {
-      left = 0;
-    } else {
-      left = cells[i - 1];
-    }
-    if (i === cells.length - 1) {
-      right = 0;
-    } else {
-      right = cells[i + 1];
-    }
+  return cells.map((center, i) => {
+    const left = i === 0 ? 0 : cells[i - 1];
+    const right = i === cells.length - 1 ? 0 : cells[i + 1];
 
     const allZeros = (left === 0 && center === 0 && right === 0);
     const oneAndSame = (left === 1 && center === right);
 
-    if (allZeros || oneAndSame) {
-      next.push(0);
-    } else {
-      next.push(1);
-    }
-  }
-  return next;
+    return allZeros || oneAndSame ? 0 : 1;
+  });
 };
