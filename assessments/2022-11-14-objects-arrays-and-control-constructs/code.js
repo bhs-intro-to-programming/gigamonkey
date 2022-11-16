@@ -57,13 +57,11 @@ const fillTimesTable = (table) => {
 };
 
 const sums = (n) => {
-  const r = [];
-  let tot = 0;
-  for (let i = 0; i < n + 1; i++) {
-    tot += i;
-    r[i] = tot;
+  const result = [0];
+  for (let i = 1; i < n + 1; i++) {
+    result[i] = i + r[i - 1];
   }
-  return r;
+  return result;
 };
 
 const rule110 = (cells) => {
