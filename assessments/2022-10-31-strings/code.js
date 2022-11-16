@@ -26,3 +26,7 @@ const firstAndLast = (s) => s[0] + s[s.length - 1];
 const swapFrontAndBack = (s) => secondHalf(s) + firstHalf(s);
 
 const simplePigLatin = (word, v) => word.substring(v) + word.substring(0, v) + 'ay';
+
+const randomCharacter = (s) => s[rand(s.length)];
+
+const randomCharacterUpDown = (s) => upDown(randomCharacter(s));
