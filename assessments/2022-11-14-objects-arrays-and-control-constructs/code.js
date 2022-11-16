@@ -1,5 +1,6 @@
-// For a change of pace, I'm providing you with all the function skeletons. This
-// should save you some time.
+// Advanced solutions using various features I've shown some of you (plus maybe even a couple that )
+
+
 
 const area = (rect) => rect.width * rect.height;
 
