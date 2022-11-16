@@ -27,7 +27,7 @@ const bigWinners = (players) => players.filter((p) => p.wins > 10);
 const fillTimesTable = (table) => {
   table.forEach((row, i) => {
     row.forEach((_, j) => {
-      row[i][j] = (i + 1) * (j + 1);
+      table[i][j] = (i + 1) * (j + 1);
     });
   });
 };
