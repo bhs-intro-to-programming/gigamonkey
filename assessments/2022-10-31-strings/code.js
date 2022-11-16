@@ -30,3 +30,11 @@ const simplePigLatin = (word, v) => word.substring(v) + word.substring(0, v) + '
 const randomCharacter = (s) => s[rand(s.length)];
 
 const randomCharacterUpDown = (s) => upDown(randomCharacter(s));
+
+const isAllUpperCase = (s) => s.toUpperCase() === s;
+
+const sameIgnoringCase = (s1, s2) => s1.toUpperCase() === s2.toUpperCase();
+
+const firstName = (name) => name.substring(0, name.indexOf(' '));
+
+const lastName = (name) => name.substrig(name.indexOf(' ') + 1);
