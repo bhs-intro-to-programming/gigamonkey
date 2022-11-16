@@ -59,3 +59,5 @@ const books = [
   { "title": "Intro to Programming", "pages": 33 }
 ]
 
+
+const timesTen = (x) => x * 10;
