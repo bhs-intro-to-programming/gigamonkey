@@ -27,15 +27,33 @@ const totalWithTip = (bill, tipPercentage) => {
 };
 
 const isWinner = (player) => {
+  return player.score > 100;
 };
 
 const updateWins = (players) => {
+  for (let i = 0; i < players.length; i++) {
+    if (isWinner(players[i])) {
+      players[i].wins++;
+    }
+  }
 };
 
 const bigWinners = (players) => {
+  let big = [];
+  for (let i = 0; i < players.length; i++) {
+    if (players[i].wins > 10) {
+      big.push(players[i]);
+    }
+  }
+  return big;
 };
 
 const fillTimesTable = (table) => {
+  for (let i = 0; i < table.length; i++) {
+    for (let j = 0; j < table.length; j++) {
+      table[i][j] = (i + 1) * (j + 1);
+    }
+  }
 };
 
 const sums = (n) => {
