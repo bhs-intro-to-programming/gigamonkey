@@ -45,21 +45,11 @@ const xpyramid = (n) => {
   return p;
 };
 
-const xxpyramid = (integer) => {
+const pyramid = (integer) => {
   let product = []
   for (let i = 0; i < integer; i++) {
     for (let j = 0; j < i + 1; j++) {
       product.push(i + 1)
-    }
-  }
-  return product
-};
-
-const pyramid = (integer) => {
-  let product = []
-  for (let i = 1; i < integer + 1; i++) {
-    for (let j = 0; j < i; j++) {
-      product.push(i)
     }
   }
   return product
