@@ -50,9 +50,9 @@ const capitalize = (s) => s[0].toUpperCase() + s.substring(1).toLowerCase();
 const capitalizeFirstThree = (s) => s.substring(0, 3).toUpperCase() + s.substring(3).toLowerCase();
 */
 
-const indexing = (string, string2) => {
-  string.indexOf(string2);
-}
+//const indexing = (string, string2) => {
+// string.indexOf(string2);
+//}
  
 const findFnord = (string) => {
   return string.indexOf("fnord");
