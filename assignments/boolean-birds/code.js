@@ -33,15 +33,10 @@ const eatsFish = (red, spotted) => !red || spotted
 
 const eatsMice = (red, spotted) => !red || !spotted
 
-const isRed = (s1) => {
-  return s1 === 'Flobby' || s1 === 'Bloggy'
-}
-const isSpotted = (s1) => {
-  return s1 === 'Flobby' || s1 === 'Flibble'
-}
-const isNotRed = (s1) => {
-  return s1 === 'Globby' || s1 === 'Flibble'
-}
-const isNotSpotted = (s1) => {
-  return s1 === 'Bloggy' || s1 === 'Globby'
-}
+const isRed = (name) => name === 'Flobby' || name === 'Bloggy';
+
+const isSpotted = (name) => name === 'Flobby' || name === 'Flibble';
+
+const isNotRed = (name) => name === 'Globby' || name === 'Flibble';
+
+const isNotSpotted = (name) => name === 'Bloggy' || name === 'Globby';
