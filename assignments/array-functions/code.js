@@ -34,3 +34,13 @@ const anyOverOneHundred = (ns) => {
   }
   return false;
 };
+
+const pyramid = (n) => {
+  const p = [];
+  for (let i = 0; i < n + 1; i++) {
+    for (let j = 0; j < i; j++) {
+      p.push(i);
+    }
+  }
+  return p;
+};
