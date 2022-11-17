@@ -57,7 +57,7 @@ const xxpyramid = (integer) => {
 
 const pyramid = (integer) => {
   let product = []
-  for (let i = 0; i < integer; i++) {
+  for (let i = 1; i < integer; i++) {
     for (let j = 0; j < i; j++) {
       product.push(i)
     }
