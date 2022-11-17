@@ -7,3 +7,21 @@ const countTens = (ns) => {
   }
   return count;
 };
+
+const sum = (ns) => {
+  let total = 0;
+  for (let i = 0; i < ns.length; i++) {
+    total = total + ns[i];
+  }
+  return total;
+};
+
+const evens = (ns) => {
+  const even = [];
+  for (let i = 0; i < ns.length; i++) {
+    if (ns[i] % 2 === 0) {
+      even.push(ns[i]);
+    }
+  }
+  return even;
+}
