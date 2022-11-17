@@ -48,16 +48,3 @@ const summarizeBooks = (books) => {
   }
   return summary
 }
-
-
-
-
-const books = [
-  { "title": "Flobby Bird Flies Again", "pages": 67 },
-  { "title": "Off by One", "pages": 110 },
-  { "title": "Nerd Jokes and Puns", "pages": 120 },
-  { "title": "Intro to Programming", "pages": 33 }
-]
-
-
-const timesTen = (x) => x * 10;
