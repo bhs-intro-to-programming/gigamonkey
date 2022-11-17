@@ -24,4 +24,13 @@ const evens = (ns) => {
     }
   }
   return even;
-}
+};
+
+const anyOverOneHundred = (ns) => {
+  for (let i = 0; i < ns.length; i++) {
+    if (ns[i] > 100) {
+      return true;
+    }
+  }
+  return false;
+};
