@@ -9,8 +9,7 @@ const distance = (p1, p2) => Math.sqrt((p1.x - p2.x) ** 2 + (p1.y - p2.y) ** 2);
 const midpoint = (p1, p2) => ({
     x: (p1.x + p2.x) / 2,
     y: (p1.y + p2.y) / 2
-  }
-});
+  });
 
 const sumSalaries = (objs) => objs.reduce((acc, o) => acc + o.salary, 0);
 
