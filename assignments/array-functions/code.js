@@ -54,3 +54,13 @@ const pyramid = (integer) => {
   }
   return product
 };
+
+const sums = (n) => {
+  let list = []
+  let add = 0
+  for (let i = 0; i < n + 1; i++) {
+    list.push(add)
+    add = add + list.length
+  }
+  return list
+};
