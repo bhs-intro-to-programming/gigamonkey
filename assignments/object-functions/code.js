@@ -13,12 +13,9 @@ const midpoint = (p1, p2) => ({
 
 const sumSalaries = (objs) => objs.reduce((acc, o) => acc + o.salary, 0);
 
-const newHighScore = (high, players) =>
-  players.reduce((h, p) => Math.max(h, p.score), high);
+const newHighScore = (high, ps) => ps.reduce((h, p) => Math.max(h, p.score), high);
 
-const summarizeBooks = (books) => {
-  return {
-    titles: books.map((b) => b.title),
-    pages: books.reduce((tot, b) => tot + b.pages, 0)
-  };
-};
+const summarizeBooks = (books) => ({
+  titles: books.map((b) => b.title),
+  pages: books.reduce((tot, b) => tot + b.pages, 0)
+});
