@@ -13,15 +13,8 @@ const midpoint = (p1, p2) => ({
 
 const sumSalaries = (objs) => objs.reduce((acc, o) => acc + o.salary, 0);
 
-const newHighScore = (currentHighScore, players) => {
-  let high = currentHighScore
-  for (let i = 0; i < players.length; i++) {
-    if (players[i].score > high) {
-      high = players[i].score
-    }
-  }
-  return high
-}
+const newHighScore = (current, players) => 
+  players.reduce((high, p) => Math.max(high, p.score), current);
 
 const summarizeBooks = (books) => {
   const summary = { titles: [], pages: 0 }
