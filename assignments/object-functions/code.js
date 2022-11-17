@@ -19,6 +19,6 @@ const newHighScore = (high, players) =>
 const summarizeBooks = (books) => {
   return {
     titles: books.map((b) => b.title),
-    pages: books.reduce((tot, b) => tot + b.pages, 0);
+    pages: books.reduce((tot, b) => tot + b.pages, 0)
   };
 };
