@@ -1,1 +1,1 @@
-const foo = (a, b) => a * b / 10;
+const foo = (a, b) => (a + b) / 2;
