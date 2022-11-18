@@ -33,7 +33,7 @@ const fillTimesTable = (table) => {
   });
 };
 
-const sums = (n) => Array(n + 1).fill().map((_, i) => (i * (i + 1)) / 2);
+const xsums = (n) => Array(n + 1).fill().map((_, i) => (i * (i + 1)) / 2);
 
 const rule110 = (cells) => {
   return cells.map((center, i) => {
@@ -45,4 +45,14 @@ const rule110 = (cells) => {
 
     return allZeros || oneAndSame ? 0 : 1;
   });
+};
+
+const sums = (n) => {
+  let array = []
+  let before = 0
+  for (let i = 0; i < n + 1; i++) {
+    array.push(i + before)
+    before = before + i
+  }
+  return array
 };
