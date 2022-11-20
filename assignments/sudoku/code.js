@@ -68,7 +68,13 @@ const possibleDigits = (row, col) => {
   return possible;
 };
 
+const drawPuzzle = () => {
+  placeSelectedNumber(1, 3, 4, 'blue');
+};
+
 drawBoard()
+drawPuzzle();
+
 
 registerOnclick((x, y) => {
   if (x < edgeSize && y < 20) {
