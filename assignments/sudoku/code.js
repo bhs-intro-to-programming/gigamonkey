@@ -25,8 +25,10 @@ const getSelected = (x) => Math.floor(x / (edgeSize / 10)) + 1;
 
 const rowAndCol = (x, y) => [ Math.floor(y / (height / 9)), Math.floor((x - edgeSize) / (height / 9)) ];
 
-const placeSelectedNumber = (x, y) => {
-  const [row, col] = rowAndCol(x, y);
+////////////////////////////////////////////////////////////////////////
+// Board state management
+
+const placeSelectedNumber = (row, col) => {
   recordPlacement(selected, row, col);
   drawNumber(selected, row, col, 'black');
 };
@@ -74,6 +76,8 @@ registerOnclick((x, y) => {
   if (x < edgeSize && y < 20) {
     selected = getSelected(x);
   } else if (x > edgeSize && x < width - edgeSize) {
-    placeSelectedNumber(x, y);
+    const [row, col] = rowAndCol(x, y);
+    placeSelectedNumber(row, col);
+    fillLastPossibility();
   }
 })
