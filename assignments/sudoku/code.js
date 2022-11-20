@@ -13,35 +13,32 @@ const drawBoard1st = () => {
   }
 }
 
+const drawNumber = (number, row, col, color) => {
+  drawText(number, edgeSize + col * (height / 9) + height / 64, row * (height / 9) + height * 6 / 64, color, height / 9);
+};
+
 const getSelected = (x) => Math.floor(x / (edgeSize / 10)) + 1;
 
 
-registerOnclick((x, y) => {
-  if (x < edgeSize && y < 20) {
-    selected = getSelected(x);
-  } else if (x > edgeSize && x < width - edgeSize) {
-    placeSelectedNumber(x, y);
-  }
-})
+
 
 const placeSelectedNumber = (x, y) => {
-    const row = Math.floor(y / (height / 9))
-    const col = Math.floor((x - edgeSize) / (height / 9))
-    b[row][col][0] = selected
-    b[row][col][selected] = selected
-    drawText(selected, edgeSize + col * (height / 9) + height / 64, row * (height / 9) + height * 6 / 64, 'black', height / 9)
-    for (let i = 0; i < 9; i++) {
-      b[row][i][selected] = selected
-      b[i][col][selected] = selected
+  const row = Math.floor(y / (height / 9))
+  const col = Math.floor((x - edgeSize) / (height / 9))
+  b[row][col][0] = selected
+  b[row][col][selected] = selected
+  drawNumber(select, row, col, 'black');
+  for (let i = 0; i < 9; i++) {
+    b[row][i][selected] = selected
+    b[i][col][selected] = selected
+  }
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+      b[Math.floor(row / 3) * 3 + j][Math.floor(col / 3) * 3 + i][selected] = selected
     }
-    for (let i = 0; i < 3; i++) {
-      for (let j = 0; j < 3; j++) {
-        b[Math.floor(row / 3) * 3 + j][Math.floor(col / 3) * 3 + i][selected] = selected
-      }
-    }
+  }
 };
 
-drawBoard1st()
 
 const lineNine = () => {
 
@@ -56,7 +53,7 @@ const lineNine = () => {
         } else index = c
       }
       if (indilen === 8 && b[j][i][0] === '') {
-        drawText(index, edgeSize + i * (height / 9) + height / 64, j * (height / 9) + height * 6 / 64, 'gray', height / 9)
+        drawNumber(index, j, i, 'gray');
         b[j][i][0] = index
         for (let l = 0; l < 9; l++) {
           b[j][l][index] = index
@@ -71,3 +68,13 @@ const lineNine = () => {
     }
   }
 }
+
+drawBoard1st()
+
+registerOnclick((x, y) => {
+  if (x < edgeSize && y < 20) {
+    selected = getSelected(x);
+  } else if (x > edgeSize && x < width - edgeSize) {
+    placeSelectedNumber(x, y);
+  }
+})
