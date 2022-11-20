@@ -27,7 +27,7 @@ const rowAndCol = (x, y) => [Math.floor(y / (height / 9)), Math.floor((x - edgeS
 ////////////////////////////////////////////////////////////////////////
 // Board state management
 
-const placeSelectedNumber = (number, row, col, color) => {
+const placeNumber = (number, row, col, color) => {
   recordPlacement(number, row, col);
   drawNumber(number, row, col, color);
 };
@@ -51,7 +51,7 @@ const fillLastPossibility = () => {
       if (board[row][col][0] === '') {
         const possible = possibleDigits(row, col);
         if (possible.length === 1) {
-          placeSelectedNumber(possible[0], row, col, 'grey');
+          placeNumber(possible[0], row, col, 'grey');
         }
       }
     }
@@ -69,19 +69,19 @@ const possibleDigits = (row, col) => {
 };
 
 const drawPuzzle = () => {
-  placeSelectedNumber(1, 3, 4, 'blue');
+  placeNumber(1, 3, 4, 'blue');
+  // more givens
 };
 
 drawBoard()
 drawPuzzle();
-
 
 registerOnclick((x, y) => {
   if (x < edgeSize && y < 20) {
     selected = getSelected(x);
   } else if (x > edgeSize && x < width - edgeSize) {
     const [row, col] = rowAndCol(x, y);
-    placeSelectedNumber(selected, row, col, 'black');
+    placeNumber(selected, row, col, 'black');
     fillLastPossibility();
   }
 })
