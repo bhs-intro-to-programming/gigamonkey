@@ -1,8 +1,7 @@
 const edgeSize = (width - height) / 2
 const b = Array(9).fill().map(() => Array(9).fill().map(() => Array(1).fill('')))
 let selected = 1;
-let indilen = 0
-let index = 1
+
 
 const drawBoard1st = () => {
   for (let i = 0; i < 10; i++) {
@@ -39,8 +38,12 @@ registerOnclick((x, y) => {
 drawBoard1st()
 
 const lineNine = () => {
+
   for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
+      let indilen = 0
+      let index = 1
+
       for (let c = 1; c < 10; c++) {
         if (b[j][i][c] === c) {
           indilen++
@@ -59,7 +62,6 @@ const lineNine = () => {
           }
         }
       }
-      indilen = 0
     }
   }
 }
