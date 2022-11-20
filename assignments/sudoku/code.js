@@ -27,7 +27,7 @@ const placeSelectedNumber = (x, y) => {
   const col = Math.floor((x - edgeSize) / (height / 9))
   b[row][col][0] = selected
   b[row][col][selected] = selected
-  drawNumber(select, row, col, 'black');
+  drawNumber(selected, row, col, 'black');
   for (let i = 0; i < 9; i++) {
     b[row][i][selected] = selected
     b[i][col][selected] = selected
