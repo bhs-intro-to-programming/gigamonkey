@@ -2,6 +2,10 @@ const edgeSize = (width - height) / 2
 const b = Array(9).fill().map(() => Array(9).fill().map(() => Array(1).fill('')))
 let selected = 1;
 
+
+////////////////////////////////////////////////////////////////////////
+// Graphics -- drawing and translating graphical coordinates
+
 const drawBoard1st = () => {
   for (let i = 0; i < 10; i++) {
     const thick = i % 3 === 0 ? 3 : 1
@@ -19,9 +23,10 @@ const drawNumber = (number, row, col, color) => {
 
 const getSelected = (x) => Math.floor(x / (edgeSize / 10)) + 1;
 
+const rowAndCol = (x, y) => [ Math.floor(y / (height / 9)), Math.floor((x - edgeSize) / (height / 9)) ];
+
 const placeSelectedNumber = (x, y) => {
-  const row = Math.floor(y / (height / 9))
-  const col = Math.floor((x - edgeSize) / (height / 9))
+  const [row, col] = rowAndCol(x, y);
   recordPlacement(selected, row, col);
   drawNumber(selected, row, col, 'black');
 };
@@ -39,28 +44,28 @@ const recordPlacement = (number, row, col) => {
   }
 };
 
-const lineNine = () => {
+const fillLastPossibility = () => {
   for (let row = 0; row < 9; row++) {
     for (let col = 0; col < 9; col++) {
       if (b[row][col][0] === '') {
-
-        let unavailable = 0;
-        let possible = 1;
-
-        for (let n = 1; n <= 9; n++) {
-          if (b[row][col][n] === n) {
-            unavailable++;
-          } else {
-            possible = n;
-          }
-        }
-        if (unavailable === 8) {
-          recordPlacement(possible, row, col);
-          drawNumber(possible, row, col, 'gray');
+        const possible = possibleDigits(row, col);
+        if (possible.length === 1) {
+          recordPlacement(possible[0], row, col);
+          drawNumber(possible[0], row, col, 'gray');
         }
       }
     }
   }
+};
+
+const possibleDigits = (row, col) => {
+  const possible = [];
+  for (let n = 1; n <= 9; n++) {
+    if (b[row][col][n] !== n) {
+      possible.push(n);
+    }
+  }
+  return possible;
 };
 
 drawBoard1st()
