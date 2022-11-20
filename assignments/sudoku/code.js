@@ -1,12 +1,11 @@
 const edgeSize = (width - height) / 2
-const b = Array(9).fill().map(() => Array(9).fill().map(() => Array(1).fill('')))
+const board = Array(9).fill().map(() => Array(9).fill().map(() => Array(1).fill('')))
 let selected = 1;
-
 
 ////////////////////////////////////////////////////////////////////////
 // Graphics -- drawing and translating graphical coordinates
 
-const drawBoard1st = () => {
+const drawBoard = () => {
   for (let i = 0; i < 10; i++) {
     const thick = i % 3 === 0 ? 3 : 1
     drawLine(edgeSize, height / 9 * i, width - edgeSize, height / 9 * i, 'black', thick)
@@ -23,25 +22,25 @@ const drawNumber = (number, row, col, color) => {
 
 const getSelected = (x) => Math.floor(x / (edgeSize / 10)) + 1;
 
-const rowAndCol = (x, y) => [ Math.floor(y / (height / 9)), Math.floor((x - edgeSize) / (height / 9)) ];
+const rowAndCol = (x, y) => [Math.floor(y / (height / 9)), Math.floor((x - edgeSize) / (height / 9))];
 
 ////////////////////////////////////////////////////////////////////////
 // Board state management
 
-const placeSelectedNumber = (row, col) => {
-  recordPlacement(selected, row, col);
-  drawNumber(selected, row, col, 'black');
+const placeSelectedNumber = (number, row, col, color) => {
+  recordPlacement(number, row, col);
+  drawNumber(number, row, col, color);
 };
 
 const recordPlacement = (number, row, col) => {
-  b[row][col][0] = number
+  board[row][col][0] = number
   for (let i = 0; i < 9; i++) {
-    b[row][i][number] = number
-    b[i][col][number] = number
+    board[row][i][number] = number
+    board[i][col][number] = number
   }
   for (let i = 0; i < 3; i++) {
     for (let j = 0; j < 3; j++) {
-      b[Math.floor(row / 3) * 3 + j][Math.floor(col / 3) * 3 + i][number] = number
+      board[Math.floor(row / 3) * 3 + j][Math.floor(col / 3) * 3 + i][number] = number
     }
   }
 };
@@ -49,11 +48,10 @@ const recordPlacement = (number, row, col) => {
 const fillLastPossibility = () => {
   for (let row = 0; row < 9; row++) {
     for (let col = 0; col < 9; col++) {
-      if (b[row][col][0] === '') {
+      if (board[row][col][0] === '') {
         const possible = possibleDigits(row, col);
         if (possible.length === 1) {
-          recordPlacement(possible[0], row, col);
-          drawNumber(possible[0], row, col, 'gray');
+          placeSelectedNumber(possible[0], row, col, 'grey');
         }
       }
     }
@@ -63,21 +61,21 @@ const fillLastPossibility = () => {
 const possibleDigits = (row, col) => {
   const possible = [];
   for (let n = 1; n <= 9; n++) {
-    if (b[row][col][n] !== n) {
+    if (board[row][col][n] !== n) {
       possible.push(n);
     }
   }
   return possible;
 };
 
-drawBoard1st()
+drawBoard()
 
 registerOnclick((x, y) => {
   if (x < edgeSize && y < 20) {
     selected = getSelected(x);
   } else if (x > edgeSize && x < width - edgeSize) {
     const [row, col] = rowAndCol(x, y);
-    placeSelectedNumber(row, col);
+    placeSelectedNumber(selected, row, col, 'black');
     fillLastPossibility();
   }
 })
