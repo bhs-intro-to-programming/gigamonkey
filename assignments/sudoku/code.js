@@ -19,51 +19,40 @@ const drawNumber = (number, row, col, color) => {
 
 const getSelected = (x) => Math.floor(x / (edgeSize / 10)) + 1;
 
-
-
-
 const placeSelectedNumber = (x, y) => {
   const row = Math.floor(y / (height / 9))
   const col = Math.floor((x - edgeSize) / (height / 9))
-  b[row][col][0] = selected
-  b[row][col][selected] = selected
+  recordPlacement(selected, row, col);
   drawNumber(selected, row, col, 'black');
+};
+
+const recordPlacement = (number, row, col) => {
+  b[row][col][0] = number
   for (let i = 0; i < 9; i++) {
-    b[row][i][selected] = selected
-    b[i][col][selected] = selected
+    b[row][i][number] = number
+    b[i][col][number] = number
   }
   for (let i = 0; i < 3; i++) {
     for (let j = 0; j < 3; j++) {
-      b[Math.floor(row / 3) * 3 + j][Math.floor(col / 3) * 3 + i][selected] = selected
+      b[Math.floor(row / 3) * 3 + j][Math.floor(col / 3) * 3 + i][number] = number
     }
   }
 };
 
-
 const lineNine = () => {
-
-  for (let i = 0; i < 9; i++) {
-    for (let j = 0; j < 9; j++) {
+  for (let col = 0; col < 9; col++) {
+    for (let row = 0; row < 9; row++) {
       let indilen = 0
       let index = 1
 
       for (let c = 1; c < 10; c++) {
-        if (b[j][i][c] === c) {
+        if (b[row][col][c] === c) {
           indilen++
         } else index = c
       }
-      if (indilen === 8 && b[j][i][0] === '') {
-        drawNumber(index, j, i, 'gray');
-        b[j][i][0] = index
-        for (let l = 0; l < 9; l++) {
-          b[j][l][index] = index
-          b[l][i][index] = index
-        }
-        for (let a = 0; a < 3; a++) {
-          for (let o = 0; o < 3; o++) {
-            b[Math.floor(j / 3) * 3 + o][Math.floor(i / 3) * 3 + a][index] = index
-          }
-        }
+      if (indilen === 8 && b[row][col][0] === '') {
+        recordPlacement(index, row, col);
+        drawNumber(index, row, col, 'gray');
       }
     }
   }
