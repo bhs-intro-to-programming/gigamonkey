@@ -2,7 +2,6 @@ const edgeSize = (width - height) / 2
 const b = Array(9).fill().map(() => Array(9).fill().map(() => Array(1).fill('')))
 let selected = 1;
 
-
 const drawBoard1st = () => {
   for (let i = 0; i < 10; i++) {
     const thick = i % 3 === 0 ? 3 : 1
@@ -14,12 +13,20 @@ const drawBoard1st = () => {
   }
 }
 
+const getSelected = (x) => Math.floor(x / (edgeSize / 10)) + 1;
+
+
 registerOnclick((x, y) => {
   if (x < edgeSize && y < 20) {
-    selected = Math.floor(x / (edgeSize / 10)) + 1
+    selected = getSelected(x);
   } else if (x > edgeSize && x < width - edgeSize) {
-    const col = Math.floor((x - edgeSize) / (height / 9))
+    placeSelectedNumber(x, y);
+  }
+})
+
+const placeSelectedNumber = (x, y) => {
     const row = Math.floor(y / (height / 9))
+    const col = Math.floor((x - edgeSize) / (height / 9))
     b[row][col][0] = selected
     b[row][col][selected] = selected
     drawText(selected, edgeSize + col * (height / 9) + height / 64, row * (height / 9) + height * 6 / 64, 'black', height / 9)
@@ -32,8 +39,7 @@ registerOnclick((x, y) => {
         b[Math.floor(row / 3) * 3 + j][Math.floor(col / 3) * 3 + i][selected] = selected
       }
     }
-  }
-})
+};
 
 drawBoard1st()
 
