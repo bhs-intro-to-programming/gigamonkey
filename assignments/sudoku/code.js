@@ -11,7 +11,7 @@ const drawBoard1st = () => {
       drawText(i + 1, edgeSize / 10 * i, 20, 'black', 20)
     }
   }
-}
+};
 
 const drawNumber = (number, row, col, color) => {
   drawText(number, edgeSize + col * (height / 9) + height / 64, row * (height / 9) + height * 6 / 64, color, height / 9);
@@ -40,23 +40,28 @@ const recordPlacement = (number, row, col) => {
 };
 
 const lineNine = () => {
-  for (let col = 0; col < 9; col++) {
-    for (let row = 0; row < 9; row++) {
-      let indilen = 0
-      let index = 1
+  for (let row = 0; row < 9; row++) {
+    for (let col = 0; col < 9; col++) {
+      if (b[row][col][0] === '') {
 
-      for (let c = 1; c < 10; c++) {
-        if (b[row][col][c] === c) {
-          indilen++
-        } else index = c
-      }
-      if (indilen === 8 && b[row][col][0] === '') {
-        recordPlacement(index, row, col);
-        drawNumber(index, row, col, 'gray');
+        let unavailable = 0;
+        let possible = 1;
+
+        for (let n = 1; n <= 9; n++) {
+          if (b[row][col][n] === n) {
+            unavailable++;
+          } else {
+            possible = n;
+          }
+        }
+        if (unavailable === 8) {
+          recordPlacement(possible, row, col);
+          drawNumber(possible, row, col, 'gray');
+        }
       }
     }
   }
-}
+};
 
 drawBoard1st()
 
