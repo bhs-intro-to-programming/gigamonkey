@@ -37,10 +37,10 @@ registerOnclick((x, y) => {
       drawText(marker, 490, 140, color, Math.min(width, height) * 0.3);
     }
   }
-}
 
-move++;
+  move++;
 });
+
 const board = () => {
   for (let i = 0; i < 2; i++) {
     const x = (i + 1) * width / 3
