@@ -1,5 +1,5 @@
 let move = 0;
-let fontSize = Math.min(width, height) * 0.3);
+let fontSize = Math.min(width, height) * 0.3;
 
 registerOnclick((x, y) => {
 
