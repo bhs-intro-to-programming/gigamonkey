@@ -1,7 +1,7 @@
 let move = 0;
 let fontSize = Math.min(width, height) * 0.3;
 
-const board = Array(3).fill().map(() => Array(3).fill(''));
+const boar = Array(3).fill().map(() => Array(3).fill(''));
 
 registerOnclick((x, y) => {
 
@@ -19,7 +19,7 @@ registerOnclick((x, y) => {
   }
 });
 
-const board = () => {
+const drawBoard = () => {
   for (let i = 0; i < 2; i++) {
     const x = (i + 1) * width / 3
     drawLine(x, 0, x, height, 'black', 5);
@@ -31,4 +31,4 @@ const board = () => {
 
 }
 
-board()
+drawBoard()
