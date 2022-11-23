@@ -9,7 +9,7 @@ registerOnclick((x, y) => {
   const col = Math.floor(x / (width / 3));
 
   const xPos = col * width / 3 + width / 9;
-  const yPos = row * height / 3 - height / 9 + height / 18;
+  const yPos = (row + 1) * height / 3 - height / 9 + height / 18;
 
   drawText(marker, xPos, yPos, color, fontSize);
 
