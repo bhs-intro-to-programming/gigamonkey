@@ -1,7 +1,7 @@
 let move = 0;
 let fontSize = Math.min(width, height) * 0.3;
 
-const boar = Array(3).fill().map(() => Array(3).fill(''));
+const board = Array(3).fill().map(() => Array(3).fill(''));
 
 registerOnclick((x, y) => {
 
