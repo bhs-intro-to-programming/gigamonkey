@@ -23,7 +23,7 @@ registerOnclick((x, y) => {
   }
 
   if (y < height / 3) {
-    yPos = 40;
+    yPos = height / 3;
   } else if (y < height * 2 / 3 && y > height * 1 / 3) {
     yPos = 90;
   } else if (y > height * 2 / 3) {
