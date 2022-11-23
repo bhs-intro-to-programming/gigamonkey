@@ -11,7 +11,7 @@ registerOnclick((x, y) => {
   const col = Math.floor(x / (width / 3));
 
   if (board[row][col] === '') {
-    board[row, col] = marker;
+    board[row][col] = marker;
     const xPos = col * width / 3 + width / 9;
     const yPos = (row + 1) * height / 3 - height / 9 + height / 18;
     drawText(marker, xPos, yPos, color, fontSize);
