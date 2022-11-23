@@ -15,7 +15,7 @@ registerOnclick((x, y) => {
   }
 
   if (x < width / 3) {
-    xPos = 75;
+    xPos = width / 3;
   } else if (x > width / 3 && x < width * 2 / 3) {
     xPos = 280;
   } else if (x > width * 2 / 3) {
