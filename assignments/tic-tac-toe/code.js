@@ -3,8 +3,6 @@ let move = 0;
 registerOnclick((x, y) => {
   let marker;
   let color;
-  let xPos;
-  let yPos;
 
   if (move % 2 === 0) {
     marker = 'X';
@@ -14,25 +12,11 @@ registerOnclick((x, y) => {
     color = 'blue';
   }
 
-  let col;
+  const col = Math.floor(x / (width / 3));
+  const xPos = (col * width / 3) + width / 9;
 
-  if (x < width / 3) {
-    col = 0;
-  } else if (x > width / 3 && x < width * 2 / 3) {
-    col = 1;
-  } else if (x > width * 2 / 3) {
-    col = 2;
-  }
-
-  xPos = (col * width / 3) + width / 9;
-
-  if (y < height / 3) {
-    yPos = (1 * height / 3) - (height / 9);
-  } else if (y < height * 2 / 3 && y > height * 1 / 3) {
-    yPos = (2 * height / 3) - (height / 9);
-  } else if (y > height * 2 / 3) {
-    yPos = (3 * height / 3) - (height / 9);
-  }
+  const row = 1 + Math.floor(y / (height / 3));
+  const yPos = (row * height / 3) - (height / 9);
 
   drawText(marker, xPos, yPos, color, Math.min(width, height) * 0.3);
 
