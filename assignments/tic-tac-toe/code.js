@@ -14,13 +14,17 @@ registerOnclick((x, y) => {
     color = 'blue';
   }
 
+  let col;
+
   if (x < width / 3) {
-    xPos = (0 * width / 3) + (width / 9);
+    col = 0;
   } else if (x > width / 3 && x < width * 2 / 3) {
-    xPos = (1 * width / 3) + width / 9;
+    col = 1;
   } else if (x > width * 2 / 3) {
-    xPos = (2 * width / 3) + width / 9;
+    col = 2;
   }
+
+  xPos = (col * width / 3) + width / 9;
 
   if (y < height / 3) {
     yPos = (1 * height / 3) - (height / 9);
