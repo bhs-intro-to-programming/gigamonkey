@@ -23,11 +23,11 @@ registerOnclick((x, y) => {
   }
 
   if (y < height / 3) {
-    yPos = height / 3 - (height / 9);
+    yPos = (1 * height / 3) - (height / 9);
   } else if (y < height * 2 / 3 && y > height * 1 / 3) {
-    yPos = 90;
+    yPos = (2 * height / 3) - (height / 9);
   } else if (y > height * 2 / 3) {
-    yPos = 140;
+    yPos = (3 * height / 3) - (height / 9);
   }
 
   drawText(marker, xPos, yPos, color, Math.min(width, height) * 0.3);
