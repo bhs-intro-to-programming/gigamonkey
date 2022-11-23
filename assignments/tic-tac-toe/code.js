@@ -3,6 +3,8 @@ let move = 0;
 registerOnclick((x, y) => {
   let marker;
   let color;
+  let xPos;
+  let yPos;
 
   if (move % 2 === 0) {
     marker = 'X';
@@ -13,30 +15,22 @@ registerOnclick((x, y) => {
   }
 
   if (x < width / 3) {
-    if (y < height / 3) {
-      drawText(marker, 75, 40, color, Math.min(width, height) * 0.3);
-    } else if (y < height * 2 / 3 && y > height * 1 / 3) {
-      drawText(marker, 75, 90, color, Math.min(width, height) * 0.3);
-    } else if (y > height * 2 / 3) {
-      drawText(marker, 75, 140, color, Math.min(width, height) * 0.3);
-    }
+    xPos = 75;
   } else if (x > width / 3 && x < width * 2 / 3) {
-    if (y < height * 1 / 3) {
-      drawText(marker, 280, 40, color, Math.min(width, height) * 0.3);
-    } else if (y < height * 2 / 3 && y > height * 1 / 3) {
-      drawText(marker, 280, 90, color, Math.min(width, height) * 0.3);
-    } else if (y > height * 2 / 3) {
-      drawText(marker, 280, 140, color, Math.min(width, height) * 0.3);
-    }
+    xPos = 280;
   } else if (x > width * 2 / 3) {
-    if (y < height * 1 / 3) {
-      drawText(marker, 490, 40, color, Math.min(width, height) * 0.3);
-    } else if (y < height * 2 / 3 && y > height * 1 / 3) {
-      drawText(marker, 490, 90, color, Math.min(width, height) * 0.3);
-    } else if (y > height * 2 / 3) {
-      drawText(marker, 490, 140, color, Math.min(width, height) * 0.3);
-    }
+    xPos = 490;
   }
+
+  if (y < height / 3) {
+    yPos = 40;
+  } else if (y < height * 2 / 3 && y > height * 1 / 3) {
+    yPos = 90;
+  } else if (y > height * 2 / 3) {
+    yPos = 140;
+  }
+
+  drawText(marker, xPos, yPos, color, Math.min(width, height) * 0.3);
 
   move++;
 });
