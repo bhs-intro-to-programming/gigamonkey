@@ -24,7 +24,7 @@ const diags = [[0, 4, 8], [6, 4, 2]];
 
 const lines = [...rows, ...cols, ...diags];
 
-const boardSize = Math.min(width, height) /2 ;
+const boardSize = Math.min(width, height) * 0.75;
 const boxSize = boardSize / 3;
 const boardX = (width - boardSize) / 2
 const boardY = (height - boardSize) / 2;
