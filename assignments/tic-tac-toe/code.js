@@ -3,6 +3,7 @@ const boardLeft = (width - boardSize) / 2;
 const boardTop = (height - boardSize) / 2;
 const cellSize = boardSize / 3;
 const fontSize = boardSize / 3;
+const lineEndAdjustment = cellSize * 0.7;
 
 let move = 0;
 
@@ -109,17 +110,16 @@ const drawThreeInARow = (winner) => {
   let adjY1 = y1;
   let adjY2 = y2;
 
-  const adjustment = cellSize * 0.7;
 
   if (y1 === y2 || x1 !== x2) {
-    adjX1 -= adjustment;
-    adjX2 += adjustment;
+    adjX1 -= lineEndAdjustment;
+    adjX2 += lineEndAdjustment;
   }
 
   if (x1 === x2 || y1 !== y2) {
     const slope = y1 <= y2 ? 1 : -1;
-    adjY1 -= (slope * adjustment);
-    adjY2 += (slope * adjustment);
+    adjY1 -= (slope * lineEndAdjustment);
+    adjY2 += (slope * lineEndAdjustment);
   }
 
   drawLine(adjX1, adjY1, adjX2, adjY2, 'red', 15);
