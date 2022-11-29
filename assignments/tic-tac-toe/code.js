@@ -111,20 +111,18 @@ const drawThreeInARow = (winner) => {
   if (y1 === y2) { // horizontal
     adjX1 = x1 - cellSize * 0.6;
     adjX2 = x2 + cellSize * 0.6;
+
   } else if (x1 === x2) { // vertical
     adjY1 = y1 - cellSize * 0.6;
     adjY2 = y2 + cellSize * 0.6;
+
   } else { // diagonal
     adjX1 = x1 - cellSize * 0.6;
     adjX2 = x2 + cellSize * 0.6;
 
-    if (y1 < y2) {
-      adjY1 = y1 - cellSize * 0.6;
-      adjY2 = y2 + cellSize * 0.6;
-    } else {
-      adjY1 = y1 + cellSize * 0.6;
-      adjY2 = y2 - cellSize * 0.6;
-    }
+    const slope = y1 < y2 ? 1 : -1;
+    adjY1 = y1 - (slope * cellSize * 0.6);
+    adjY2 = y2 + (slope * cellSize * 0.6);
   }
   console.log(`drawing line: ${adjX1},${adjY1} to ${adjX2},${adjY2}`);
   drawLine(adjX1, adjY1, adjX2, adjY2, 'red', 15);
