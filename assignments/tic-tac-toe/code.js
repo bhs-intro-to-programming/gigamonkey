@@ -100,6 +100,7 @@ const markerAt = (coord) => {
 const drawThreeInARow = (winner) => {
   const [r1, c1] = winner[0];
   const [r2, c2] = winner[winner.length - 1];
+
   const [x1, y1] = cellCenter(r1, c1);
   const [x2, y2] = cellCenter(r2, c2);
 
@@ -109,17 +110,16 @@ const drawThreeInARow = (winner) => {
   let adjY2 = y2;
 
   if (y1 === y2 || x1 !== x2) {
-    adjX1 = x1 - cellSize * 0.6;
-    adjX2 = x2 + cellSize * 0.6;
+    adjX1 -= cellSize * 0.6;
+    adjX2 -= cellSize * 0.6;
   }
 
   if (x1 === x2 || y1 !== y2) {
     const slope = y1 <= y2 ? 1 : -1;
-    adjY1 = y1 - (slope * cellSize * 0.6);
-    adjY2 = y2 + (slope * cellSize * 0.6);
+    adjY1 -= (slope * cellSize * 0.6);
+    adjY2 += (slope * cellSize * 0.6);
   }
-  
-  console.log(`drawing line: ${adjX1},${adjY1} to ${adjX2},${adjY2}`);
+
   drawLine(adjX1, adjY1, adjX2, adjY2, 'red', 15);
 };
 
