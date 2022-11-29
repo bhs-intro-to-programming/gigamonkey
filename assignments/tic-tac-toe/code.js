@@ -14,9 +14,13 @@ const drawBoard = () => {
   drawLine(boardX, y2, boardX + boardSize, y2, 'grey', 2);
 };
 
+const row = (y) => {
+
+};
+
 
 registerOnclick((x, y) => {
-  //console.log(`x: ${x}; y: ${x}`);
+  console.log(`x: ${x}; y: ${x}`);
 });
 
 
