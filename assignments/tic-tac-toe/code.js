@@ -21,6 +21,9 @@ const drawBoard = () => {
 const drawMarker = (marker, r, c) => {
   const x = boardX + c * cellSize + cellSize / 2;
   const y = boardY + r * cellSize + cellSize / 2;
+  if (marker === 'O') {
+    x -= cellSize / 8;
+  }
   drawText(marker, x - fontSize * 0.3, y + fontSize * 0.3, 'black', fontSize);
 };
 
