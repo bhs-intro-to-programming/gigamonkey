@@ -36,6 +36,11 @@ registerOnclick((x, y) => {
   console.log(`x: ${x}; y: ${y}; row: ${r}; column: ${c}`);
   if (valid(r) && valid(c)) {
     drawMarker(marker, r, c);
+    if (marker === 'X') {
+      marker = 'O';
+    } else {
+      marker = 'X';
+    }
   }
 });
 
