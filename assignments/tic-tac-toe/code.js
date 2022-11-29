@@ -109,15 +109,17 @@ const drawThreeInARow = (winner) => {
   let adjY1 = y1;
   let adjY2 = y2;
 
+  const adjustment = cellSize * 0.7;
+
   if (y1 === y2 || x1 !== x2) {
-    adjX1 -= cellSize * 0.6;
-    adjX2 += cellSize * 0.6;
+    adjX1 -= adjustment;
+    adjX2 += adjustment;
   }
 
   if (x1 === x2 || y1 !== y2) {
     const slope = y1 <= y2 ? 1 : -1;
-    adjY1 -= (slope * cellSize * 0.6);
-    adjY2 += (slope * cellSize * 0.6);
+    adjY1 -= (slope * adjustment);
+    adjY2 += (slope * adjustment);
   }
 
   drawLine(adjX1, adjY1, adjX2, adjY2, 'red', 15);
