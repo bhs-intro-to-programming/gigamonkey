@@ -3,7 +3,7 @@ const boardSize = Math.min(width, height);
 
 
 const drawBoard = () => {
-  drawLine()
+  drawLine(width / 2, 0, width / 2, boardSize, 'grey');
 };
 
 
