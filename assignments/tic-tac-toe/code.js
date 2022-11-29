@@ -25,10 +25,16 @@ const drawMarker = (marker, r, c) => {
 const row = (y) => Math.floor((y - boardY) / (boardSize / 3));
 const column = (x) => Math.floor((x - boardX) / (boardSize / 3));
 
+const valid = (c) => 0 <= c && c < 3;
+
 
 registerOnclick((x, y) => {
-  console.log(`x: ${x}; y: ${y}; row: ${row(y)}; column: ${column(x)}`);
-  drawMarker('X', row(y), column(x));
+  const r = row(y);
+  const c = column(x);
+  console.log(`x: ${x}; y: ${y}; row: ${r}; column: ${c}`);
+  if (valid(r) && valid(c)) {
+    drawMarker('X', r, c);
+  }
 });
 
 
