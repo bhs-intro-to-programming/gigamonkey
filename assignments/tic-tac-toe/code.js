@@ -72,7 +72,9 @@ const makeMove = (r, c) => {
   move++;
 }
 
-const isWinner = () => {
+const isWinner = () => findWinner() !== null;
+
+const findWinner = () => {
   for (let i = 0; i < lines.length; i++) {
     if (isWinningLine(lines[i])) {
       return lines[i];
@@ -97,18 +99,15 @@ const markerAt = (coord) => {
 
 registerOnclick((x, y) => {
   const [r, c] = coordinates(x, y);
-  if (isWinner() === null && validMove(r, c)) {
+  if (!isWinner() && validMove(r, c)) {
     makeMove(r, c);
-    const winner = isWinner();
+    const winner = findWinner();
     if (winner !== null) {
-      console.log("Winner!");
       const [r1, c1] = winner[0];
       const [r2, c2] = winner[winner.length - 1];
       const [x1, y1] = cellCenter(r1, c1);
       const [x2, y2] = cellCenter(r2, c2);
       drawLine(x1, y1, x2, y2, 'red', 15);
-    } else {
-      console.log("No winner yet.");
     }
   }
 });
