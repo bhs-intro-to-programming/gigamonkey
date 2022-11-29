@@ -13,6 +13,23 @@ const board = [
   ['', '', ''],
 ];
 
+const lines = [
+  // Rows
+  [[0, 0], [0, 1], [0, 2]],
+  [[1, 0], [1, 1], [1, 2]],
+  [[2, 0], [2, 1], [2, 2]],
+
+  // Cols
+  [[0, 0], [1, 0], [2, 0]],
+  [[0, 1], [1, 1], [2, 1]],
+  [[0, 2], [1, 2], [2, 2]],
+
+  // Diagonals
+  [[0, 0], [1, 1], [2, 2]],
+  [[2, 0], [1, 1], [0, 2]],
+];
+
+
 const drawBoard = () => {
   const x1 = boardX + cellSize;
   const x2 = boardX + 2 * cellSize;
@@ -50,10 +67,32 @@ const makeMove = (r, c) => {
   move++;
 }
 
+const isWinner = () => {
+  for (let i = 0; i < lines.length; i++) {
+    if (isWinningLine(lines[i])) {
+      return true;
+    }
+  }
+  return false;
+};
+
+const isWinningLine = (line) => {
+  const marker = markerAt(line[0]);
+  if (marker !== '') {
+    return marker === markerAt(line[1]) && marker === markerAt(line[2]);
+  } else {
+    return false;
+  }
+};
+
+const markerAt = (coordinates) => {
+  const [r, c] = coordinates; // e.g. [0, 0]
+  return board[r][c];
+}
+
 registerOnclick((x, y) => {
   const r = row(y);
   const c = column(x);
-  console.log(`x: ${x}; y: ${y}; row: ${r}; column: ${c}; move: ${move}`);
   if (validMove(r, c)) {
     makeMove(r, c);
   }
