@@ -16,7 +16,7 @@ const drawBoard = () => {
 };
 
 const drawMarker = (marker, r, c) => {
-  drawText(marker, width/2 - fontSize * 0.3, height/2, 'black', fontSize);
+  drawText(marker, width/2 - fontSize * 0.3, height/2 - fontSize * 0.3, 'black', fontSize);
 };
 
 const row = (y) => Math.floor((y - boardY) / (boardSize / 3));
