@@ -110,14 +110,13 @@ const drawThreeInARow = (winner) => {
   let adjY1 = y1;
   let adjY2 = y2;
 
-
   if (y1 === y2 || x1 !== x2) {
     adjX1 -= lineEndAdjustment;
     adjX2 += lineEndAdjustment;
   }
 
   if (x1 === x2 || y1 !== y2) {
-    const slope = y1 <= y2 ? 1 : -1;
+    const slope = y1 < y2 ? 1 : -1;
     adjY1 -= (slope * lineEndAdjustment);
     adjY2 += (slope * lineEndAdjustment);
   }
