@@ -104,10 +104,12 @@ const drawThreeInARow = (winner) => {
   const [x2, y2] = cellCenter(r2, c2);
 
   let adjX1;
+  let adjX2;
   let adjY1;
 
   if (y1 === y2) { // horizontal
     adjX1 = x1 - cellSize * 0.6;
+    adjX2 = x2 + cellSize * 0.6;
   }
 
   drawLine(adjX1, y1, x2, y2, 'red', 15);
