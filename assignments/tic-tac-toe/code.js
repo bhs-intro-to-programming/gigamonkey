@@ -2,13 +2,14 @@
 const boardSize = Math.min(width, height) * 0.75;
 const boardX = (width - boardSize) / 2;
 const boardY = (height - boardSize) / 2;
+const cellSize = boardSize / 3;
 const fontSize = boardSize / 3;
 
 const drawBoard = () => {
-  const x1 = boardX + boardSize / 3;
-  const x2 = boardX + boardSize * 2 / 3;
-  const y1 = boardY + boardSize / 3;
-  const y2 = boardY + boardSize * 2 / 3;
+  const x1 = boardX + cellSize;
+  const x2 = boardX + 2 * cellSize;
+  const y1 = boardY + cellSize;
+  const y2 = boardY + 2 * cellSize;;
   drawLine(x1, boardY, x1, boardY + boardSize, 'grey', 2);
   drawLine(x2, boardY, x2, boardY + boardSize, 'grey', 2);
   drawLine(boardX, y1, boardX + boardSize, y1, 'grey', 2);
@@ -16,7 +17,7 @@ const drawBoard = () => {
 };
 
 const drawMarker = (marker, r, c) => {
-  const x = width / 2;
+  const x = boardSize + c * cellSize + cellSize / 2;
   const y = height / 2;
   drawText(marker, x - fontSize * 0.3, y + fontSize * 0.3, 'black', fontSize);
 };
