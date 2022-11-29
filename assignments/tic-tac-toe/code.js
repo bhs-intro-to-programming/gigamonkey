@@ -19,7 +19,7 @@ const drawBoard = () => {
 };
 
 const drawMarker = (marker, r, c) => {
-  const x = boardX + c * cellSize + cellSize / 2;
+  let x = boardX + c * cellSize + cellSize / 2;
   const y = boardY + r * cellSize + cellSize / 2;
   if (marker === 'O') {
     x -= cellSize / 8;
