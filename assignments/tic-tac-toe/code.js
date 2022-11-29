@@ -4,6 +4,7 @@ const boardX = (width - boardSize) / 2;
 
 const drawBoard = () => {
   drawLine(boardX, 0, boardX, boardSize, 'grey');
+  drawLine(boardX + boardSize, 0, boardX + boardSize, boardSize, 'grey');
 };
 
 
