@@ -103,10 +103,10 @@ const drawThreeInARow = (winner) => {
   const [x1, y1] = cellCenter(r1, c1);
   const [x2, y2] = cellCenter(r2, c2);
 
-  let adjX1;
-  let adjX2;
-  let adjY1;
-  let adjY2;
+  let adjX1 = x1;
+  let adjX2 = x2;
+  let adjY1 = y1;
+  let adjY2 = y2;
 
   if (y1 === y2) { // horizontal
     adjX1 = x1 - cellSize * 0.6;
