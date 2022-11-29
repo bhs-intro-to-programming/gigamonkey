@@ -111,9 +111,12 @@ const drawThreeInARow = (winner) => {
   if (y1 === y2) { // horizontal
     adjX1 = x1 - cellSize * 0.6;
     adjX2 = x2 + cellSize * 0.6;
-  }
-
-  if (x1 === x2) { // vertical
+  } else if (x1 === x2) { // vertical
+    adjY1 = y1 - cellSize * 0.6;
+    adjY2 = y2 + cellSize * 0.6;
+  } else { // diagonal
+    adjX1 = x1 - cellSize * 0.6;
+    adjX2 = x2 + cellSize * 0.6;
     adjY1 = y1 - cellSize * 0.6;
     adjY2 = y2 + cellSize * 0.6;
   }
