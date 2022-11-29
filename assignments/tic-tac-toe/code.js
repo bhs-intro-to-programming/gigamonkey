@@ -8,8 +8,8 @@ const drawBoard = () => {
   const x2 = boardX + boardSize * 2 / 3;
   const y1 = boardY + boardSize / 3;
   const y2 = boardY + boardSize * 2 /3;
-  drawLine(x1, 0, x1, boardSize, 'grey');
-  drawLine(x2, 0, x2, boardSize, 'grey');
+  drawLine(x1, boardY, x1, boardSize, 'grey');
+  drawLine(x2, boardY, x2, boardSize, 'grey');
   drawLine(boardX, y1, boardX + boardSize, y1, 'grey');
   drawLine(boardX, y2, boardX + boardSize, y2, 'grey');
 };
