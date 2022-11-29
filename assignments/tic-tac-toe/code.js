@@ -8,7 +8,7 @@ const drawBoard = () => {
   const x1 = boardX + boardSize / 3;
   const x2 = boardX + boardSize * 2 / 3;
   const y1 = boardY + boardSize / 3;
-  const y2 = boardY + boardSize * 2 /3;
+  const y2 = boardY + boardSize * 2 / 3;
   drawLine(x1, boardY, x1, boardY + boardSize, 'grey', 2);
   drawLine(x2, boardY, x2, boardY + boardSize, 'grey', 2);
   drawLine(boardX, y1, boardX + boardSize, y1, 'grey', 2);
@@ -16,7 +16,9 @@ const drawBoard = () => {
 };
 
 const drawMarker = (marker, r, c) => {
-  drawText(marker, width/2 - fontSize * 0.3, height/2 + fontSize * 0.3, 'black', fontSize);
+  const x = width / 2;
+  const y = height / 2;
+  drawText(marker, x - fontSize * 0.3, y + fontSize * 0.3, 'black', fontSize);
 };
 
 const row = (y) => Math.floor((y - boardY) / (boardSize / 3));
