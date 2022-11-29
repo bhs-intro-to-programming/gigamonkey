@@ -2,6 +2,7 @@
 const boardSize = Math.min(width, height) * 0.75;
 const boardX = (width - boardSize) / 2;
 const boardY = (height - boardSize) / 2;
+const fontSize = boardSize / 3;
 
 const drawBoard = () => {
   const x1 = boardX + boardSize / 3;
@@ -14,13 +15,17 @@ const drawBoard = () => {
   drawLine(boardX, y2, boardX + boardSize, y2, 'grey', 2);
 };
 
+const drawMarker = (marker, r, c) => {
+  drawText(marker, width/2, height/2, 'black', fontSize);
+};
+
 const row = (y) => Math.floor((y - boardY) / (boardSize / 3));
 const column = (x) => Math.floor((x - boardX) / (boardSize / 3));
 
 
 registerOnclick((x, y) => {
-  console.log(`x: ${x}; y: ${y}`);
-  console.log(`row: ${row(y)}; column: ${column(x)}`);
+  console.log(`x: ${x}; y: ${y}; row: ${row(y)}; column: ${column(x)}`);
+  drawMarker('X', row(y), column(x));
 });
 
 
