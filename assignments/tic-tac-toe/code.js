@@ -1,9 +1,9 @@
 
 const boardSize = Math.min(width, height);
-
+const boardX = (width - boardSize) / 2;
 
 const drawBoard = () => {
-  drawLine(width / 2, 0, width / 2, boardSize, 'grey');
+  drawLine(boardX, 0, boardX, boardSize, 'grey');
 };
 
 
