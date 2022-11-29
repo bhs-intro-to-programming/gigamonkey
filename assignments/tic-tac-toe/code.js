@@ -1,5 +1,5 @@
 
-const boardSize = Math.min(width, height);
+const boardSize = Math.min(width, height) * 0.75;
 const boardX = (width - boardSize) / 2;
 const boardY = (height - boardSize) / 2;
 
