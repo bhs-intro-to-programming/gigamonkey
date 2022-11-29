@@ -117,8 +117,14 @@ const drawThreeInARow = (winner) => {
   } else { // diagonal
     adjX1 = x1 - cellSize * 0.6;
     adjX2 = x2 + cellSize * 0.6;
-    adjY1 = y1 - cellSize * 0.6;
-    adjY2 = y2 + cellSize * 0.6;
+
+    if (y1 < y2) {
+      adjY1 = y1 - cellSize * 0.6;
+      adjY2 = y2 + cellSize * 0.6;
+    } else {
+      adjY1 = y1 + cellSize * 0.6;
+      adjY2 = y2 - cellSize * 0.6;
+    }
   }
   console.log(`drawing line: ${adjX1},${adjY1} to ${adjX2},${adjY2}`);
   drawLine(adjX1, adjY1, adjX2, adjY2, 'red', 15);
