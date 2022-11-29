@@ -15,11 +15,12 @@ const drawBoard = () => {
 };
 
 const row = (y) => Math.floor((y - boardY) / (boardSize / 3));
+const column = (x) => Math.floor((x - boardX) / (boardSize / 3));
 
 
 registerOnclick((x, y) => {
   console.log(`x: ${x}; y: ${y}`);
-  console.log(`row: ${row(y)}`);
+  console.log(`row: ${row(y)}; column: ${column(x)}`);
 });
 
 
