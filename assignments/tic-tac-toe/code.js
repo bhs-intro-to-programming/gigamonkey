@@ -37,7 +37,11 @@ const row = (y) => Math.floor((y - boardY) / (boardSize / 3));
 
 const column = (x) => Math.floor((x - boardX) / (boardSize / 3));
 
-const valid = (c) => 0 <= c && c < 3;
+const validCoordinate = (c) => 0 <= c && c < 3;
+
+const validMove = (r, c) => {
+  return validCoordinate(r) && validCoordinate(c) && board[r][c] === '';
+}
 
 const makeMove = (r, c) => {
   const marker = move % 2 === 0 ? 'X' : 'O';
@@ -50,7 +54,7 @@ registerOnclick((x, y) => {
   const r = row(y);
   const c = column(x);
   console.log(`x: ${x}; y: ${y}; row: ${r}; column: ${c}; move: ${move}`);
-  if (valid(r) && valid(c)) {
+  if (validMove(r, c)) {
     makeMove(r, c);
   }
 });
