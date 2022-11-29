@@ -41,12 +41,9 @@ const drawBoard = () => {
 };
 
 const drawMarker = (marker, r, c) => {
-  let x = boardLeft + c * cellSize + cellSize / 2;
-  const y = boardTop + r * cellSize + cellSize / 2;
-  if (marker === 'O') {
-    x -= cellSize / 9;
-  }
-  drawText(marker, x - fontSize * 0.3, y + fontSize * 0.3, 'black', fontSize);
+  const [x, y] = cellCenter(r, c);
+  const nudge = marker === 'O' ? cellSize / 9 : 0;
+  drawText(marker, x - (fontSize * 0.3 + nudge), y + fontSize * 0.3, 'black', fontSize);
 };
 
 const cellCenter = (r, c) => {
