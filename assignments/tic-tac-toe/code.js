@@ -106,7 +106,7 @@ registerOnclick((x, y) => {
       const [r2, c2] = winner[winner.length - 1];
       const [x1, y1] = cellCenter(r1, c1);
       const [x2, y2] = cellCenter(r2, c2);
-      drawLine(x1, y1, x2, y2, 'red', 5);
+      drawLine(x1, y1, x2, y2, 'red', 15);
     } else {
       console.log("No winner yet.");
     }
