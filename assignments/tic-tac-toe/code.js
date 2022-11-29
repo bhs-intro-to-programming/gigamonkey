@@ -1,0 +1,1 @@
+registerOnclick((x, y) => {});
