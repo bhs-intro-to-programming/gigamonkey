@@ -49,6 +49,12 @@ const drawMarker = (marker, r, c) => {
   drawText(marker, x - fontSize * 0.3, y + fontSize * 0.3, 'black', fontSize);
 };
 
+const cellCenter = (r, c) => {
+  return [
+    boardLeft + c * cellSize + cellSize / 2,
+    boardTop + r * cellSize + cellSize / 2
+  ];
+}
 const coordinates = (x, y) => {
   return [
     Math.floor((y - boardTop) / cellSize),
