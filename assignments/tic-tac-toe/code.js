@@ -20,7 +20,7 @@ const row = (y) => {
 
 
 registerOnclick((x, y) => {
-  console.log(`x: ${x}; y: ${x}`);
+  console.log(`x: ${x}; y: ${y}`);
 });
 
 
