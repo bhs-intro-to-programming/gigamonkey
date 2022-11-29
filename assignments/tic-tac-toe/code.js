@@ -5,7 +5,7 @@ const boardY = (height - boardSize) / 2;
 const cellSize = boardSize / 3;
 const fontSize = boardSize / 3;
 
-let marker = 'X';
+let move = 0;
 
 const drawBoard = () => {
   const x1 = boardX + cellSize;
@@ -36,14 +36,11 @@ const valid = (c) => 0 <= c && c < 3;
 registerOnclick((x, y) => {
   const r = row(y);
   const c = column(x);
-  console.log(`x: ${x}; y: ${y}; row: ${r}; column: ${c}`);
+  console.log(`x: ${x}; y: ${y}; row: ${r}; column: ${c}; move: ${move}`);
   if (valid(r) && valid(c)) {
+    const marker = move % 2 === 0 ? 'X' : 'O';
     drawMarker(marker, r, c);
-    if (marker === 'X') {
-      marker = 'O';
-    } else {
-      marker = 'X';
-    }
+    move++;
   }
 });
 
