@@ -118,7 +118,7 @@ const drawThreeInARow = (winner) => {
     adjY2 = y2 + cellSize * 0.6;
   }
 
-  drawLine(adjX1, y1, adjX2, y2, 'red', 15);
+  drawLine(adjX1, adjY1, adjX2, adjY2, 'red', 15);
 };
 
 registerOnclick((x, y) => {
