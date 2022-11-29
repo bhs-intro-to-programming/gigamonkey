@@ -1,7 +1,6 @@
-
 const boardSize = Math.min(width, height) * 0.75;
-const boardX = (width - boardSize) / 2;
-const boardY = (height - boardSize) / 2;
+const boardLeft = (width - boardSize) / 2;
+const boardTop = (height - boardSize) / 2;
 const cellSize = boardSize / 3;
 const fontSize = boardSize / 3;
 
@@ -31,28 +30,31 @@ const lines = [
 
 
 const drawBoard = () => {
-  const x1 = boardX + cellSize;
-  const x2 = boardX + 2 * cellSize;
-  const y1 = boardY + cellSize;
-  const y2 = boardY + 2 * cellSize;;
-  drawLine(x1, boardY, x1, boardY + boardSize, 'grey', 2);
-  drawLine(x2, boardY, x2, boardY + boardSize, 'grey', 2);
-  drawLine(boardX, y1, boardX + boardSize, y1, 'grey', 2);
-  drawLine(boardX, y2, boardX + boardSize, y2, 'grey', 2);
+  const x1 = boardLeft + cellSize;
+  const x2 = boardLeft + 2 * cellSize;
+  const y1 = boardTop + cellSize;
+  const y2 = boardTop + 2 * cellSize;;
+  drawLine(x1, boardTop, x1, boardTop + boardSize, 'grey', 2);
+  drawLine(x2, boardTop, x2, boardTop + boardSize, 'grey', 2);
+  drawLine(boardLeft, y1, boardLeft + boardSize, y1, 'grey', 2);
+  drawLine(boardLeft, y2, boardLeft + boardSize, y2, 'grey', 2);
 };
 
 const drawMarker = (marker, r, c) => {
-  let x = boardX + c * cellSize + cellSize / 2;
-  const y = boardY + r * cellSize + cellSize / 2;
+  let x = boardLeft + c * cellSize + cellSize / 2;
+  const y = boardTop + r * cellSize + cellSize / 2;
   if (marker === 'O') {
     x -= cellSize / 9;
   }
   drawText(marker, x - fontSize * 0.3, y + fontSize * 0.3, 'black', fontSize);
 };
 
-const row = (y) => Math.floor((y - boardY) / (boardSize / 3));
-
-const column = (x) => Math.floor((x - boardX) / (boardSize / 3));
+const coordinates = (x, y) => {
+  return [
+    Math.floor((y - boardTop) / cellSize),
+    Math.floor((x - boardLeft) / cellSize)
+  ];
+}
 
 const validCoordinate = (c) => 0 <= c && c < 3;
 
@@ -85,14 +87,13 @@ const isWinningLine = (line) => {
   }
 };
 
-const markerAt = (coordinates) => {
-  const [r, c] = coordinates; // e.g. [0, 0]
+const markerAt = (coord) => {
+  const [r, c] = coord; // e.g. [0, 0]
   return board[r][c];
 }
 
 registerOnclick((x, y) => {
-  const r = row(y);
-  const c = column(x);
+  const [r, c] = coordinates(x, y);
   if (!isWinner() && validMove(r, c)) {
     makeMove(r, c);
     if (isWinner()) {
