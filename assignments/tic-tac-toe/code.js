@@ -75,10 +75,10 @@ const makeMove = (r, c) => {
 const isWinner = () => {
   for (let i = 0; i < lines.length; i++) {
     if (isWinningLine(lines[i])) {
-      return true;
+      return lines[i];
     }
   }
-  return false;
+  return null;
 };
 
 const isWinningLine = (line) => {
@@ -97,7 +97,7 @@ const markerAt = (coord) => {
 
 registerOnclick((x, y) => {
   const [r, c] = coordinates(x, y);
-  if (!isWinner() && validMove(r, c)) {
+  if (isWinner() === null && validMove(r, c)) {
     makeMove(r, c);
     if (isWinner()) {
       console.log("Winner!");
