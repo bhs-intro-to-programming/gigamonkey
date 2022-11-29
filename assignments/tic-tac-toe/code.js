@@ -93,7 +93,7 @@ const markerAt = (coordinates) => {
 registerOnclick((x, y) => {
   const r = row(y);
   const c = column(x);
-  if (validMove(r, c)) {
+  if (!isWinner() && validMove(r, c)) {
     makeMove(r, c);
     if (isWinner()) {
       console.log("Winner!");
