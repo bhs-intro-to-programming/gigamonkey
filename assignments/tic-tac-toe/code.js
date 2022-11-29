@@ -5,7 +5,7 @@ const boardY = (height - boardSize) / 2;
 const cellSize = boardSize / 3;
 const fontSize = boardSize / 3;
 
-const marker = 'X';
+let marker = 'X';
 
 const drawBoard = () => {
   const x1 = boardX + cellSize;
