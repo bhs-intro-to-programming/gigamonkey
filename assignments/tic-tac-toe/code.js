@@ -99,8 +99,10 @@ registerOnclick((x, y) => {
   const [r, c] = coordinates(x, y);
   if (isWinner() === null && validMove(r, c)) {
     makeMove(r, c);
-    if (isWinner()) {
+    const winner = isWinner();
+    if (winner !== null) {
       console.log("Winner!");
+      console.log(winner);
     } else {
       console.log("No winner yet.");
     }
