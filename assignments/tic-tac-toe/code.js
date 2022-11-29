@@ -95,6 +95,11 @@ registerOnclick((x, y) => {
   const c = column(x);
   if (validMove(r, c)) {
     makeMove(r, c);
+    if (isWinner()) {
+      console.log("Winner!");
+    } else {
+      console.log("No winner yet.");
+    }
   }
 });
 
