@@ -14,13 +14,12 @@ const drawBoard = () => {
   drawLine(boardX, y2, boardX + boardSize, y2, 'grey', 2);
 };
 
-const row = (y) => {
-
-};
+const row = (y) => Math.floor((y - boardY) / (boardSize / 3));
 
 
 registerOnclick((x, y) => {
   console.log(`x: ${x}; y: ${y}`);
+  console.log(`row: ${row(y)}`);
 });
 
 
