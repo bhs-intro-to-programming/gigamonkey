@@ -6,7 +6,7 @@
 // below 1000.
 
 const euler1 = (n) => {
-  for (let i = 1; < n; i++) {
+  for (let i = 1; i < n; i++) {
     console.log(i);
   }
 }
