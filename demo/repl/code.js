@@ -1,1 +1,8 @@
-const foo = (a, b) => (a + b) / 2;
+const euler1 = (n) => {
+  for (let i = 1; i < n; i++) {
+    if (i % 3 === 0) {
+      console.log(i);
+    }
+  }
+};
+
