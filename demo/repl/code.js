@@ -12,4 +12,5 @@ const euler1 = (n) => {
       sum += i;
     }
   }
+  return sum;
 }
