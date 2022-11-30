@@ -3,6 +3,8 @@ const euler1 = (n) => {
     if (i % 3 === 0) {
       console.log(i);
     }
-  }
+    if (i % 5 === 0) {
+      console.log(i);
+    }
 };
 
