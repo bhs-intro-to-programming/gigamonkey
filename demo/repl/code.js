@@ -7,6 +7,8 @@
 
 const euler1 = (n) => {
   for (let i = 1; i < n; i++) {
-    console.log(i);
+    if (i % 3 === 0) {
+      console.log(i);
+    }
   }
 }
