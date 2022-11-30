@@ -1,0 +1,1 @@
+const chocolatesPerPerson = (c, p) => c / p;
