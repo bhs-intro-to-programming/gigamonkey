@@ -37,12 +37,10 @@ let logs = { total: 0, jackpots: 0, highAnomalies: 0, lowAnomalies: 0, anomalies
 const commify = (n) => {
   let s = '';
   let left = n;
-  while (left > 999) {
-    console.log(left);
+  while (left >= 1000) {
     s = ',' + (left % 1000).toString().padStart(3, '0') + s;
     left = Math.floor(left / 1000);
   }
-  console.log(left);
   return left > 0 ? left + s : s;
 }
 
