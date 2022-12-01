@@ -5,6 +5,7 @@ const foo = (s) => {
   for (const line of lines) {
     if (line === '') {
       max = Math.max(max, elf);
+      elf = 0;
     } else {
       elf += Number.parseInt(line, 10);
     }
