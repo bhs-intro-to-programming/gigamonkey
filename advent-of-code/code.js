@@ -1,5 +1,6 @@
 const foo = (s) => {
-  return s.length * 3;
+  const lines = s.split('\n');
+  return lines.length;
 };
 
 run('gigamonkey', 'day_01.test', foo);
