@@ -1,8 +1,4 @@
-// Set this variable to your Github handle.
-
-const USER = 'gigamonkey';
-
-// Then write your code here. To run a function on a given test file you need to
+// Write your code here. To run a function on a given test file you need to
 // create a file in your github repo in the advent-of-code branch and in the
 // advent-of-code directory. Then you can use a function `run` to run a
 // particular function on the contents of the file, which will be passed to your
