@@ -1,5 +1,5 @@
 const foo = (s) => {
-  return s.length;
+  return s.length * 3;
 };
 
 run('gigamonkey', 'code.js', foo);
