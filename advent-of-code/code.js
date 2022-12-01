@@ -2,7 +2,7 @@
 // create a file in your github repo in the advent-of-code branch and in the
 // advent-of-code directory. Then you can use the
 
-const USER = 'xgigamonkey';
+const USER = 'gigamonkey';
 
 const day01Part1 = (s) => {
   let elf = 0;
