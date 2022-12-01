@@ -32,45 +32,56 @@
 const attempts = 1000000
 const multiplier = 1 //this should not exceed a few million or things WILL break (also breaks with negatives)
 const mode = 'trunc' //'sci', 'power', 'trunc', 'avg', 'commas', 'shithead', 'page.Crash()' (this will not do anything)
-let logs = {total: 0, jackpots: 0, highAnomalies: 0, lowAnomalies: 0, anomalies: 0, array: []} 
+let logs = { total: 0, jackpots: 0, highAnomalies: 0, lowAnomalies: 0, anomalies: 0, array: [] }
+
+const commify = (n) => {
+  let s = '';
+  let left = n;
+  while (left > 999) {
+    s = (left % 1000) + (s === '' ? '' : ',' + s);
+    left = Math.floor(left / 1000);
+  }
+  return left > 0 ? left + s : s;
+}
 
 // Notation functions
-const commas = (num) =>{
+const commas = (num) => {
   let returnString = num;
-  for (let x = 4 - (4-num.length % 3); x< num.length; x+= 3){
-    returnString = returnString.substring(0,x*4/3) + ',' + returnString.substring(x*4/3)
+  for (let x = 4 - (4 - num.length % 3); x < num.length; x += 3) {
+    returnString = returnString.substring(0, x * 4 / 3) + ',' + returnString.substring(x * 4 / 3)
   }
   if (returnString[0] == ',') returnString = returnString.substring(1)
   return returnString;
 }
 const sciNote = (acc) => {
- return (acc[0] + '.' + acc.substring(1,6) + ' · ' + '10' + '^' + (acc.length - 1)).toString()
+  return (acc[0] + '.' + acc.substring(1, 6) + ' · ' + '10' + '^' + (acc.length - 1)).toString()
 }
-const truncate = (acc) =>{
-  if (acc.length <4) return acc
-for (let i = 0; i< 100; i+=3){
-  if (acc.length < 4 + i) return acc.substring(0, acc.length - i) + '.' + acc[acc.length - i] + (i/3 == 1 ? 'k' : i/3 == 2 ? 'm' : i/3 == 3 ? 'b' : i/3 == 4 ? 't' : '😵')
-}}
-const averageResults = (array) =>{
+const truncate = (acc) => {
+  if (acc.length < 4) return acc
+  for (let i = 0; i < 100; i += 3) {
+    if (acc.length < 4 + i) return acc.substring(0, acc.length - i) + '.' + acc[acc.length - i] + (i / 3 == 1 ? 'k' : i / 3 == 2 ? 'm' : i / 3 == 3 ? 'b' : i / 3 == 4 ? 't' : '😵')
+  }
+}
+const averageResults = (array) => {
   let avg = 0;
-  for(const element of array){
+  for (const element of array) {
     avg += element
   }
-  return Math.round(avg/array.length)
+  return Math.round(avg / array.length)
 }
 
 //Check for anomaly
-const checkIfAnomaly = (acc)=>{
-  if (acc.length-1 >= (attempts.toString().length)) {
+const checkIfAnomaly = (acc) => {
+  if (acc.length - 1 >= (attempts.toString().length)) {
     logs.highAnomalies++
     logs.anomalies++
-    if (acc.length-2 >= (attempts.toString().length)){ 
-      drawText('Jackpot with ' + (mode == 'sci' ? sciNote(acc) : mode == 'power' ? acc.length-1 : mode == 'commas' ? commas(acc): truncate(acc)) + '!', Math.random()*width - height, Math.random()*height, 'blue', height/8)
+    if (acc.length - 2 >= (attempts.toString().length)) {
+      drawText('Jackpot with ' + (mode == 'sci' ? sciNote(acc) : mode == 'power' ? acc.length - 1 : mode == 'commas' ? commas(acc) : truncate(acc)) + '!', Math.random() * width - height, Math.random() * height, 'blue', height / 8)
       logs.jackpots++
       return 'blue'
     }
-      return 'green'
-  } else if (acc.length < (attempts.toString().length-1)){
+    return 'green'
+  } else if (acc.length < (attempts.toString().length - 1)) {
     logs.lowAnomalies++
     logs.anomalies++
     return 'red'
@@ -79,36 +90,21 @@ const checkIfAnomaly = (acc)=>{
   }
 }
 if (mode == 'shithead') {
-for (let shithead = 1000; shithead >-190000; shithead += -4) {
+  for (let shithead = 1000; shithead > -190000; shithead += -4) {
     drawLine(0, shithead, width, height, 'maroon');
-}}
+  }
+}
 
-registerOnclick((x,y) => {
+registerOnclick((x, y) => {
   let acc = 0;
-  for (let e=0; e < attempts; e++){
-    const l = Math.round(Math.random()/Math.random())
-    if (acc<l* multiplier) acc=l*multiplier;
+  for (let e = 0; e < attempts; e++) {
+    const l = Math.round(Math.random() / Math.random())
+    if (acc < l * multiplier) acc = l * multiplier;
   }
   logs.array.push(acc)
   acc = acc.toString()
   logs.total++
-  console.log(mode == 'sci' ? sciNote(acc) : mode == 'power' ? acc.length-1 : mode == 'trunc' ? truncate(acc) : mode == 'avg' ? averageResults(logs.array) : mode == 'commas' ? commas(acc): acc, '/', acc, '/ from', commas(attempts.toString()), 'attempts')
+  console.log(mode == 'sci' ? sciNote(acc) : mode == 'power' ? acc.length - 1 : mode == 'trunc' ? truncate(acc) : mode == 'avg' ? averageResults(logs.array) : mode == 'commas' ? commas(acc) : acc, '/', acc, '/ from', commas(attempts.toString()), 'attempts')
   console.log('current avg:', averageResults(logs.array))
-  drawText(mode == 'sci' ? sciNote(acc) : mode == 'power' ? acc.length-1 : mode == 'trunc' ? truncate(acc) : mode == 'avg' ? averageResults(logs.array) : mode == 'commas' ? commas(acc): acc, x, y, checkIfAnomaly(acc),25)
+  drawText(mode == 'sci' ? sciNote(acc) : mode == 'power' ? acc.length - 1 : mode == 'trunc' ? truncate(acc) : mode == 'avg' ? averageResults(logs.array) : mode == 'commas' ? commas(acc) : acc, x, y, checkIfAnomaly(acc), 25)
 });
-
-
-
-
-const test = (colour) =>{
-  return drawText('test', width/2, height/2, colour, 40)
-}
-const sudokuBoard =()=>{
-  for (let editVar = 0; editVar < 10/9; editVar += 1/9){
-    drawLine(width/2-height/2 + height*editVar, height, width/2-height/2 + height*editVar, 0, 'grey', 2)
-    drawLine(width/2-height/2, height*editVar, width/2+height/2, height*editVar, 'gray', 2)
-  }
-  for (let editVar = 0; editVar <= 1; editVar += 1/3){
-    drawLine(width/2-height/2 + height*editVar, height, width/2-height/2 + height*editVar, 0, 'black', 4)
-    drawLine(width/2-height/2, height*editVar, width/2+height/2, height*editVar, 'black', 4)
-}}
