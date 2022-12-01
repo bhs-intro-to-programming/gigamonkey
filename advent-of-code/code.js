@@ -27,6 +27,7 @@ const day01Part2 = (s) => {
   for (const line of lines(s)) {
     if (line === '') {
       elves.push(elf);
+      elf = 0;
     } else {
       elf += Number.parseInt(line, 10);
     }
