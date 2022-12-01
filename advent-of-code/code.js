@@ -32,7 +32,7 @@ const day01Part2 = (s) => {
     }
   }
   elves.push(elf);
-  elves.sort();
+  elves.sort((a, b) => b - a);
   return elves.slice(0, 3).reduce((acc, n) => acc + n, 0);
 }
 
