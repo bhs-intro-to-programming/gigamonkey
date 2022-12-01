@@ -1,4 +1,4 @@
-const foo = (s) => {
+const day01Part1 = (s) => {
   let elf = 0;
   let max = 0;
   for (const line of s.split('\n')) {
@@ -9,8 +9,7 @@ const foo = (s) => {
       elf += Number.parseInt(line, 10);
     }
   }
-  max = Math.max(max, elf);
-  return max;
+  return Math.max(max, elf);
 };
 
-run('gigamonkey', 'day_01.problem', foo);
+run('gigamonkey', 'day_01.problem', day01Part1); // 74394
