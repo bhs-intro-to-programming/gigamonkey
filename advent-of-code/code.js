@@ -46,5 +46,5 @@ const day01Part2 = (s) => {
 }
 
 
-//run('day_01.problem', day01Part1); // 74394
+run('day_01.problem', day01Part1); // 74394
 run('day_01.problem', day01Part2);
