@@ -13,4 +13,4 @@ const foo = (s) => {
   return max;
 };
 
-run('gigamonkey', 'day_01.test', foo);
+run('gigamonkey', 'day_01.problem', foo);
