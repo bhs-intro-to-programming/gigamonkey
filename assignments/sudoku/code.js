@@ -42,6 +42,7 @@ const commify = (n) => {
     s = (left % 1000).toString().padStart(4, '0') + (s === '' ? '' : ',' + s);
     left = Math.floor(left / 1000);
   }
+  console.log(left);
   return left > 0 ? left + s : s;
 }
 
