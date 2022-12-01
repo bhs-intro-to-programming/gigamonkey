@@ -1,8 +1,7 @@
 const foo = (s) => {
-  const lines = s.split('\n');
   let elf = 0;
   let max = 0;
-  for (const line of lines) {
+  for (const line of s.split('\n')) {
     if (line === '') {
       max = Math.max(max, elf);
       elf = 0;
