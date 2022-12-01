@@ -38,7 +38,7 @@ const commify = (n) => {
   let s = '';
   let left = n;
   while (left > 999) {
-    s = (left % 1000) + (s === '' ? '' : ',' + s);
+    s = (left % 1000).toString().padStart(4, '0') + (s === '' ? '' : ',' + s);
     left = Math.floor(left / 1000);
   }
   return left > 0 ? left + s : s;
