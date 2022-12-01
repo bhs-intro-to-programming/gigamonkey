@@ -1,3 +1,3 @@
 const foo = (s) => {
-  console.log(s);
+  s.then(t => console.log(t));
 }
