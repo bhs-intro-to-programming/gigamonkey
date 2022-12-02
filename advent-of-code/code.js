@@ -13,6 +13,9 @@
 // Which will load the file and pass them to your function and then print the
 // return value in the REPL.
 
+
+// Utility functions
+
 const lines = (s) => s.trim().split('\n');
 
 const nums = (s) => lines(s).map(t => Number.parseInt(t));
@@ -36,14 +39,14 @@ const day1 = () => {
   const part2 = (s) => {
     const elves = [];
     let elf = 0;
-    for (const line of lines(s)) {
-      if (line === '') {
+    numbers(s).forEach((n) => {
+      if (Number.isNaN(n)) {
         elves.push(elf);
         elf = 0;
       } else {
-        elf += Number.parseInt(line, 10);
+        elf += n;
       }
-    }
+    });
     elves.push(elf);
     elves.sort((a, b) => b - a);
     return elves.slice(0, 3).reduce((acc, n) => acc + n, 0);
@@ -74,6 +77,6 @@ const day2 = () => {
 
 
 run('day_01.problem', day1().part1); // 74394
-//run('day_01.problem', day1().part2); // 212836
+run('day_01.problem', day1().part2); // 212836
 //run('day_02.problem', day2().part1); // 9241
 //run('day_02.problem', day2().part2); // 14610
