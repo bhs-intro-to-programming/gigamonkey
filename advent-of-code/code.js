@@ -37,23 +37,9 @@ const day1 = () => {
     return elves.sort((a, b) => b - a);
   }
 
-  const part1 = (s) => elves(s).reduce((max, elf) => Math.max(max, elf), 0);
+  const part1 = (s) => elves(s)[0];
 
-  const part2 = (s) => {
-    const elves = [];
-    let elf = 0;
-    numbers(s).forEach((n) => {
-      if (Number.isNaN(n)) {
-        elves.push(elf);
-        elf = 0;
-      } else {
-        elf += n;
-      }
-    });
-    elves.push(elf);
-    elves.sort((a, b) => b - a);
-    return elves.slice(0, 3).reduce((acc, n) => acc + n, 0);
-  }
+  const part2 = (s) => elves(s).slice(0, 3).reduce((acc, n) => acc + n, 0);
 
   return { part1, part2 };
 }
