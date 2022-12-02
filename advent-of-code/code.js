@@ -64,6 +64,7 @@ const day2 = () => {
     for (const round of lines(s)) {
       total += score('ABC'.indexOf(round[0]), 'XYZ'.indexOf(round[2]));
     }
+    console.log(total);
     return total;
   };
 
