@@ -15,17 +15,19 @@
 
 const lines = (s) => s.trim().split('\n');
 
+const nums = (s) => lines(s).map(t => Number.parseInt(t));
+
 const day1 = () => {
 
   const part1 = (s) => {
     let elf = 0;
     let max = 0;
-    for (const line of lines(s)) {
-      if (line === '') {
+    for (const num of nums(s)) {
+      if (Number.isNaN(num)) {
         max = Math.max(max, elf);
         elf = 0;
       } else {
-        elf += Number.parseInt(line, 10);
+        elf += num;
       }
     }
     return Math.max(max, elf);
@@ -53,7 +55,7 @@ const day1 = () => {
 const day2 = () => {
 
   // Rock, Paper, Scissors
-  
+
   const score = (them, me) => (((me - them) + 4) % 3) * 3 + (me + 1);
 
   // goal 0: lose: them + 2 % 3
@@ -72,6 +74,6 @@ const day2 = () => {
 
 
 run('day_01.problem', day1().part1); // 74394
-run('day_01.problem', day1().part2); // 212836
-run('day_02.problem', day2().part1); // 9241
-run('day_02.problem', day2().part2); // 14610
+//run('day_01.problem', day1().part2); // 212836
+//run('day_02.problem', day2().part1); // 9241
+//run('day_02.problem', day2().part2); // 14610
