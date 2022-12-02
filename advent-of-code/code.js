@@ -59,7 +59,7 @@ const day2 = () => {
   };
 
   const part1 = (s) => {
-    console.log('here');
+    console.log(s);
     const total = 0;
     for (const round of lines(s)) {
       total += score('ABC'.indexOf(round[0]), 'XYZ'.indexOf(round[2]));
