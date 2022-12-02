@@ -55,21 +55,23 @@ const day2 = () => {
   // Rock, Paper, Scissors
 
   const score = (them, me) => {
+    return (((me - them) + 4) % 3) * 3 + (me + 1);
+  }
+  /*
     const forShape = me + 1;
     if (them === me) {
       return 3 + forShape;
-    } else if ((me + 1) % 3 === them) {
-      return forShape;
-    } else {
+    } else if ((them + 1) % 3 === me) {
       return 6 + forShape;
+    } else {
+      return 0 + forShape;
     }
   };
-
+*/
   const outcome = (them, goal) => {
-    // goal: 0 - lose; 1 - draw; 2 - win
-    // 0: lose: them + 2 % 3
-    // 1: draw: them + 0 % 3  
-    // 2: win:  them + 1 % 3
+    // goal 0: lose: them + 2 % 3
+    // goal 1: draw: them + 0 % 3  
+    // goal 2: win:  them + 1 % 3
     const me = (them + goal + 2) % 3;
     return score(them, me);
   }
@@ -85,7 +87,7 @@ const day2 = () => {
 };
 
 
-// run('day_01.problem', day1().part1); // 74394
-// run('day_01.problem', day1().part2); // 212836
-run('day_02.problem', day2().part1); // 9241
-run('day_02.problem', day2().part2); // 14610
+run('day_01.problem', day1().part1); // 74394
+run('day_01.problem', day1().part2); // 212836
+// run('day_02.problem', day2().part1); // 9241
+// run('day_02.problem', day2().part2); // 14610
