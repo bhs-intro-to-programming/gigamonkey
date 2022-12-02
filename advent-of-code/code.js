@@ -51,7 +51,7 @@ const day2 = () => {
     const forShape = me + 1;
     if (them === me) {
       return 3 + forShape;
-    } else if ((them + 1) % 3 === me) {
+    } else if ((me + 1) % 3 === them) {
       return forShape;
     } else {
       return 6 + forShape;
