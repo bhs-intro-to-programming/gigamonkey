@@ -22,19 +22,22 @@ const numbers = (s) => lines(s).map(t => Number.parseInt(t));
 
 const day1 = () => {
 
-  const part1 = (s) => {
+  const elves = (s) => {
+    const elves = [];
     let elf = 0;
-    let max = 0;
-    for (const num of numbers(s)) {
-      if (Number.isNaN(num)) {
-        max = Math.max(max, elf);
+    numbers(s).forEach((n) => {
+      if (Number.isNaN(n)) {
+        elves.push(elf);
         elf = 0;
       } else {
-        elf += num;
+        elf += n;
       }
-    }
-    return Math.max(max, elf);
-  };
+    });
+    elves.push(elf);
+    return elves.sort((a, b) => b - a);
+  }
+
+  const part1 = (s) => elves(s).reduce((max, elf) => Math.max(max, elf), 0);
 
   const part2 = (s) => {
     const elves = [];
@@ -74,7 +77,6 @@ const day2 = () => {
 
   return { part1, part2 };
 };
-
 
 run('day_01.problem', day1().part1); // 74394
 run('day_01.problem', day1().part2); // 212836
