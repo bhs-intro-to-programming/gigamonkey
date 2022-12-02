@@ -62,18 +62,18 @@ const day2 = () => {
 
   const outcome = (them, goal) => {
     // goal: 0 - lose; 1 - draw; 2 - win
-
-
-
+    // 0: lose: them + 2 % 3
+    // 1: draw: them + 0 % 3  
+    // 2: win:  them + 1 % 3
+    const me = (them + goal + 2) % 3;
+    return score(them, me);
   }
 
   const numbers = (r) => [ 'ABC'.indexOf(r[0]), 'XYZ'.indexOf(r[2]) ];
 
   const part1 = (s) => lines(s).reduce((acc, r) => acc + score(...numbers(r)), 0);
 
-  const part2 = (s) => {
-
-  };
+  const part2 = (s) => lines(s).reduce((acc, r) => acc + outcome(...numbers(r)), 0);
 
   return { part1, part2 };
 
@@ -83,4 +83,4 @@ const day2 = () => {
 // run('day_01.problem', day01Part1); // 74394
 // run('day_01.problem', day01Part2); // 212836
 
-run('day_02.problem', day2().part1); // 9241
+run('day_02.test', day2().part2); // 9241
