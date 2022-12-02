@@ -59,7 +59,7 @@ const day2 = () => {
     };
 
     const part1 = (s) => {
-      
+
     };
 
     const part2 = (s) => {
@@ -71,4 +71,4 @@ const day2 = () => {
 
 
 // run('day_01.problem', day01Part1); // 74394
-run('day_01.problem', day01Part2);
+// run('day_01.problem', day01Part2); // 212836
