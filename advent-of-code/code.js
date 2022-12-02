@@ -78,4 +78,4 @@ const day2 = () => {
 // run('day_01.problem', day01Part1); // 74394
 // run('day_01.problem', day01Part2); // 212836
 
-run('day_02.test', day2().part1);
+run('day_02.problem', day2().part1);
