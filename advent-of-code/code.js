@@ -69,7 +69,7 @@ const day2 = () => {
 
   const numbers = (r) => [ 'ABC'.indexOf(r[0]), 'XYZ'.indexOf(r[2]) ];
 
-  const part1 = (s) => lines(s).reduce((acc, r) => score(...numbers(r)), 0);
+  const part1 = (s) => lines(s).reduce((acc, r) => acc + score(...numbers(r)), 0);
 
   const part2 = (s) => {
 
