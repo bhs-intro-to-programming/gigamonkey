@@ -60,7 +60,7 @@ const day2 = () => {
   };
 
   const part1 = (s) => {
-    console.log(s);
+    console.log(JSON.stringify(lines(s)));
     let total = 0;
     for (const round of lines(s)) {
       total += score('ABC'.indexOf(round[0]), 'XYZ'.indexOf(round[2]));
