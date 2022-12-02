@@ -65,7 +65,7 @@ const day2 = () => {
 };
 
 // N.B. These won't necessarily output in order due to async fetch.
-run('day_01.problem', day1().part1);
+run('day_01.problem', day1().part1, 74394);
 run('day_01.problem', day1().part2, 212836);
 run('day_02.problem', day2().part1, 9241);
 run('day_02.problem', day2().part2, 14610);
