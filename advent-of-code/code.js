@@ -45,6 +45,31 @@ const day01Part2 = (s) => {
   return elves.slice(0, 3).reduce((acc, n) => acc + n, 0);
 }
 
+const day2 = () => {
+
+    const order = ['rock', 'scissors', 'paper'];
+
+    const score = (them, me) => {
+      if (them === me) {
+        return 3;
+      } else {
+        const beats = order[(order.indexOf(them) + 1) % 3];
+        return me === beats ? 0 : 6;
+      }
+    };
+
+    const part1 = (s) => {
+      
+
+    };
+
+    const part2 = (s) => {
+
+    };
+
+
+};
+
 
 // run('day_01.problem', day01Part1); // 74394
 run('day_01.problem', day01Part2);
