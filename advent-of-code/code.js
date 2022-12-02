@@ -53,7 +53,7 @@ const day1 = () => {
 const day2 = () => {
 
   // Rock, Paper, Scissors
-
+  
   const score = (them, me) => (((me - them) + 4) % 3) * 3 + (me + 1);
 
   // goal 0: lose: them + 2 % 3
@@ -68,7 +68,6 @@ const day2 = () => {
   const part2 = (s) => lines(s).reduce((acc, r) => acc + outcome(...numbers(r)), 0);
 
   return { part1, part2 };
-
 };
 
 
