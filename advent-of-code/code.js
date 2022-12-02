@@ -18,14 +18,14 @@
 
 const lines = (s) => s.trim().split('\n');
 
-const nums = (s) => lines(s).map(t => Number.parseInt(t));
+const numbers = (s) => lines(s).map(t => Number.parseInt(t));
 
 const day1 = () => {
 
   const part1 = (s) => {
     let elf = 0;
     let max = 0;
-    for (const num of nums(s)) {
+    for (const num of numbers(s)) {
       if (Number.isNaN(num)) {
         max = Math.max(max, elf);
         elf = 0;
