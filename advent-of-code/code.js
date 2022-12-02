@@ -48,6 +48,7 @@ const day01Part2 = (s) => {
 const day2 = () => {
 
   const score = (them, me) => {
+    console.log(`them: ${them}; me: ${me}`);
     const forShape = me + 1;
     if (them === me) {
       return 3 + forShape;
