@@ -46,7 +46,7 @@ const day1 = () => {
 
 const day2 = () => {
 
-  // Rock, Paper, Scissors
+  // Order: Rock, Paper, Scissors
 
   const score = (them, me) => (((me - them) + 4) % 3) * 3 + (me + 1);
 
