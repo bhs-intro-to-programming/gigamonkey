@@ -15,39 +15,44 @@
 
 const lines = (s) => s.trim().split('\n');
 
-const day01Part1 = (s) => {
-  let elf = 0;
-  let max = 0;
-  for (const line of lines(s)) {
-    if (line === '') {
-      max = Math.max(max, elf);
-      elf = 0;
-    } else {
-      elf += Number.parseInt(line, 10);
-    }
-  }
-  return Math.max(max, elf);
-};
+const day1 = () => {
 
-const day01Part2 = (s) => {
-  const elves = [];
-  let elf = 0;
-  for (const line of lines(s)) {
-    if (line === '') {
-      elves.push(elf);
-      elf = 0;
-    } else {
-      elf += Number.parseInt(line, 10);
+  const part1 = (s) => {
+    let elf = 0;
+    let max = 0;
+    for (const line of lines(s)) {
+      if (line === '') {
+        max = Math.max(max, elf);
+        elf = 0;
+      } else {
+        elf += Number.parseInt(line, 10);
+      }
     }
+    return Math.max(max, elf);
+  };
+
+  const part2 = (s) => {
+    const elves = [];
+    let elf = 0;
+    for (const line of lines(s)) {
+      if (line === '') {
+        elves.push(elf);
+        elf = 0;
+      } else {
+        elf += Number.parseInt(line, 10);
+      }
+    }
+    elves.push(elf);
+    elves.sort((a, b) => b - a);
+    return elves.slice(0, 3).reduce((acc, n) => acc + n, 0);
   }
-  elves.push(elf);
-  elves.sort((a, b) => b - a);
-  return elves.slice(0, 3).reduce((acc, n) => acc + n, 0);
+
+  return { part1, part2 };
 }
 
 const day2 = () => {
 
-    // Rock, Paper, Scissors
+  // Rock, Paper, Scissors
 
   const score = (them, me) => {
     const forShape = me + 1;
@@ -69,7 +74,7 @@ const day2 = () => {
     return score(them, me);
   }
 
-  const numbers = (r) => [ 'ABC'.indexOf(r[0]), 'XYZ'.indexOf(r[2]) ];
+  const numbers = (r) => ['ABC'.indexOf(r[0]), 'XYZ'.indexOf(r[2])];
 
   const part1 = (s) => lines(s).reduce((acc, r) => acc + score(...numbers(r)), 0);
 
@@ -80,7 +85,7 @@ const day2 = () => {
 };
 
 
-// run('day_01.problem', day01Part1); // 74394
-// run('day_01.problem', day01Part2); // 212836
+run('day_01.problem', day1().part2); // 74394
+run('day_01.problem', day1().part2); // 212836
 // run('day_02.problem', day2().part1); // 9241
-run('day_02.problem', day2().part2); 
+// run('day_02.problem', day2().part2); // 14610
