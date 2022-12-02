@@ -55,16 +55,16 @@ const day2 = () => {
   // goal 2: win:  them + 1 % 3
   const outcome = (them, goal) => score(them, (them + goal + 2) % 3);
 
-  const numbers = (r) => ['ABC'.indexOf(r[0]), 'XYZ'.indexOf(r[2])];
+  const moves = (r) => ['ABC'.indexOf(r[0]), 'XYZ'.indexOf(r[2])];
 
-  const part1 = (s) => lines(s).reduce((acc, r) => acc + score(...numbers(r)), 0);
+  const part1 = (s) => lines(s).reduce((acc, r) => acc + score(...moves(r)), 0);
 
-  const part2 = (s) => lines(s).reduce((acc, r) => acc + outcome(...numbers(r)), 0);
+  const part2 = (s) => lines(s).reduce((acc, r) => acc + outcome(...moves(r)), 0);
 
   return { part1, part2 };
 };
 
 run('day_01.problem', day1().part1); // 74394
 run('day_01.problem', day1().part2); // 212836
-//run('day_02.problem', day2().part1); // 9241
-//run('day_02.problem', day2().part2); // 14610
+run('day_02.problem', day2().part1); // 9241
+run('day_02.problem', day2().part2); // 14610
