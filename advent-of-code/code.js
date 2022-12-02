@@ -47,6 +47,8 @@ const day01Part2 = (s) => {
 
 const day2 = () => {
 
+    // Rock, Paper, Scissors
+
   const score = (them, me) => {
     const forShape = me + 1;
     if (them === me) {
@@ -58,13 +60,16 @@ const day2 = () => {
     }
   };
 
-  const part1 = (s) => {
-    let total = 0;
-    for (const round of lines(s)) {
-      total += score('ABC'.indexOf(round[0]), 'XYZ'.indexOf(round[2]));
-    }
-    return total;
-  };
+  const outcome = (them, goal) => {
+    // goal: 0 - lose; 1 - draw; 2 - win
+
+
+
+  }
+
+  const numbers = (r) => [ 'ABC'.indexOf(r[0]), 'XYZ'.indexOf(r[2]) ];
+
+  const part1 = (s) => lines(s).reduce((acc, r) => score(...numbers(r)), 0);
 
   const part2 = (s) => {
 
@@ -78,4 +83,4 @@ const day2 = () => {
 // run('day_01.problem', day01Part1); // 74394
 // run('day_01.problem', day01Part2); // 212836
 
-run('day_02.problem', day2().part1);
+//run('day_02.problem', day2().part1); // 9241
