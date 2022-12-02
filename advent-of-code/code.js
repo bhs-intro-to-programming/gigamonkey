@@ -60,7 +60,6 @@ const day2 = () => {
 
     const part1 = (s) => {
       
-
     };
 
     const part2 = (s) => {
