@@ -54,27 +54,12 @@ const day2 = () => {
 
   // Rock, Paper, Scissors
 
-  const score = (them, me) => {
-    return (((me - them) + 4) % 3) * 3 + (me + 1);
-  }
-  /*
-    const forShape = me + 1;
-    if (them === me) {
-      return 3 + forShape;
-    } else if ((them + 1) % 3 === me) {
-      return 6 + forShape;
-    } else {
-      return 0 + forShape;
-    }
-  };
-*/
-  const outcome = (them, goal) => {
-    // goal 0: lose: them + 2 % 3
-    // goal 1: draw: them + 0 % 3  
-    // goal 2: win:  them + 1 % 3
-    const me = (them + goal + 2) % 3;
-    return score(them, me);
-  }
+  const score = (them, me) => (((me - them) + 4) % 3) * 3 + (me + 1);
+
+  // goal 0: lose: them + 2 % 3
+  // goal 1: draw: them + 0 % 3  
+  // goal 2: win:  them + 1 % 3
+  const outcome = (them, goal) => score(them, (them + goal + 2) % 3);
 
   const numbers = (r) => ['ABC'.indexOf(r[0]), 'XYZ'.indexOf(r[2])];
 
