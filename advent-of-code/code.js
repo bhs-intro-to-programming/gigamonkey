@@ -13,7 +13,7 @@
 // Which will load the file and pass them to your function and then print the
 // return value in the REPL.
 
-const lines = (s) => s.split('\n');
+const lines = (s) => s.trim().split('\n');
 
 const day01Part1 = (s) => {
   let elf = 0;
