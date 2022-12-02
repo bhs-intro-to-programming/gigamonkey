@@ -47,28 +47,35 @@ const day01Part2 = (s) => {
 
 const day2 = () => {
 
-    const order = ['rock', 'scissors', 'paper'];
+  const score = (them, me) => {
+    const forShape = me + 1;
+    if (them === me) {
+      return 3 + forShape;
+    } else if ((them + 1) % 3 === me) {
+      return forShape;
+    } else {
+      return 6 + forShape;
+    }
+  };
 
-    const score = (them, me) => {
-      if (them === me) {
-        return 3;
-      } else {
-        const beats = order[(order.indexOf(them) + 1) % 3];
-        return me === beats ? 0 : 6;
-      }
-    };
+  const part1 = (s) => {
+    const total = 0;
+    for (const round of lines(s)) {
+      total += score('ABC'.indexOf(round[0]), 'XYZ'.indexOf(round[2]));
+    }
+    return total;
+  };
 
-    const part1 = (s) => {
+  const part2 = (s) => {
 
-    };
+  };
 
-    const part2 = (s) => {
-
-    };
-
+  return { part1, part2 };
 
 };
 
 
 // run('day_01.problem', day01Part1); // 74394
 // run('day_01.problem', day01Part2); // 212836
+
+run('day_01.test', day2().part1);
