@@ -103,7 +103,7 @@ const day3 = () => {
   };
 
   const part2 = (s) => {
-    const sum = 0;
+    let sum = 0;
     for (const g of groups(lines(s), 3)) {
       for (const c of g.slice(2).reduce((i, g) => intersection(i, g), g[0])) {
         sum += priority(c);
@@ -123,5 +123,5 @@ run('day_02.problem', day2().part1, 9241);
 run('day_02.problem', day2().part2, 14610);
 */
 
-run('day_03.test', day3().part1, 8185);
-run('day_03.test', day3().part2, 2817);
+run('day_03.problem', day3().part1, 8185);
+run('day_03.problem', day3().part2, 2817);
