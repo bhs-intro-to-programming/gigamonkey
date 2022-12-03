@@ -33,7 +33,7 @@ const intersection = (...args) => {
     return i === 0 
     ? new Set(xs) 
     : new Set([...xs].filter(x => acc.has(x)))
-  }    );
+  }, null);
 };
 /*
   const inB = new Set(b);
