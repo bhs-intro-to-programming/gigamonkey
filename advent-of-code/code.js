@@ -110,7 +110,7 @@ const day3 = () => {
   const part2 = (s) => {
     let sum = 0;
     console.log(JSON.stringify(groups(lines(s), 3)));
-    for (const g in groups(lines(s), 3)) {
+    for (const g of groups(lines(s), 3)) {
       console.log(JSON.stringify(g));
       for (const c of intersection(intersection(g[0], g[1]), g[2])) {
         sum += priority(c);
