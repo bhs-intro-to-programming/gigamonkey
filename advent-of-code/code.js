@@ -88,7 +88,7 @@ const day3 = () => {
     let sum = 0;
     for (const [a, b] of compartments(s)) {
       for (const c of inBoth(a, b)) {
-        console.log(c);
+        console.log(`${c} priority: ${priority(c)}`);
         sum += priority(c);
       }
     }
