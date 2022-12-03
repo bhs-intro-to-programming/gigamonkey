@@ -35,11 +35,7 @@ const intersection = (...args) => {
     : new Set([...xs].filter(x => acc.has(x)))
   }, null);
 };
-/*
-  const inB = new Set(b);
-  return new Set([...a].filter(x => inB.has(x)));
-};
-*/
+
 const show = (s) => s;
 
 const day1 = () => {
