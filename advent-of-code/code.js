@@ -28,12 +28,9 @@ const groups = (xs, n) => {
   return r;
 };
 
-const intersection = (...args) => {
-  return args.reduce((acc, xs, i) => {
-    return i === 0 
-    ? new Set(xs) 
-    : new Set([...xs].filter(x => acc.has(x)))
-  }, null);
+const intersection = (a, b) => {
+  const inB = new Set(b);
+  return new Set([...a].filter(x => inB.has(x)));
 };
 
 const show = (s) => s;
@@ -106,9 +103,9 @@ const day3 = () => {
   };
 
   const part2 = (s) => {
-    let sum = 0;
+    const sum = 0;
     for (const g of groups(lines(s), 3)) {
-      for (const c of intersection(...g)) {
+      for (const c of g.slice(2).reduce((i, g) => intersection(i, g), g[0])) {
         sum += priority(c);
       }
     }
@@ -124,6 +121,7 @@ run('day_01.problem', day1().part1, 74394);
 run('day_01.problem', day1().part2, 212836);
 run('day_02.problem', day2().part1, 9241);
 run('day_02.problem', day2().part2, 14610);
+*/
+
 run('day_03.problem', day3().part1, 8185);
 run('day_03.problem', day3().part2, 2817);
-*/
