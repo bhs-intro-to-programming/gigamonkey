@@ -76,7 +76,7 @@ const day3 = () => {
 
   const inBoth = (a, b) => {
     const inB = new Set(b);
-    return [...a].filter(c => inB.has(c));
+    return new Set([...a].filter(c => inB.has(c)));
   };
 
   const priority = (c) => {
