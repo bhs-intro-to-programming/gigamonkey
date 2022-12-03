@@ -28,6 +28,11 @@ const groups = (xs, n) => {
   return r;
 };
 
+const intersection = (a, b) => {
+  const inB = new Set(b);
+  return new Set([...a].filter(x => inB.has(x)));
+};
+
 const show = (s) => s;
 
 const day1 = () => {
@@ -104,7 +109,9 @@ const day3 = () => {
 
   const part2 = (s) => {
     let sum = 0;
-    const threesomes = groups(lines(s), 3);
+    for (const g in groups(lines(s), 3)) {
+
+    }
   }
 
   return { part1, part2 };
