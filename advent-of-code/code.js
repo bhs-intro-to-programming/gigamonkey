@@ -20,6 +20,8 @@ const lines = (s) => s.trim().split('\n');
 
 const numbers = (s) => lines(s).map(t => Number.parseInt(t));
 
+const show = (s) => s;
+
 const day1 = () => {
 
   const elves = (s) => {
@@ -102,4 +104,4 @@ run('day_01.problem', day1().part2, 212836);
 run('day_02.problem', day2().part1, 9241);
 run('day_02.problem', day2().part2, 14610);
 */
-run('day_03.test', day3().part1);
+run('day_03.test', show);
