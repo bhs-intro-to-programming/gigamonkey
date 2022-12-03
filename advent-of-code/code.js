@@ -123,5 +123,5 @@ run('day_02.problem', day2().part1, 9241);
 run('day_02.problem', day2().part2, 14610);
 */
 
-run('day_03.problem', day3().part1, 8185);
-run('day_03.problem', day3().part2, 2817);
+run('day_03.test', day3().part1, 8185);
+run('day_03.test', day3().part2, 2817);
