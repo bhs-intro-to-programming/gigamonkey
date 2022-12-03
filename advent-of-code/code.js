@@ -104,4 +104,4 @@ run('day_01.problem', day1().part2, 212836);
 run('day_02.problem', day2().part1, 9241);
 run('day_02.problem', day2().part2, 14610);
 */
-run('day_03.problem', day3().part1);
+run('day_03.problem', day3().part1, 8185);
