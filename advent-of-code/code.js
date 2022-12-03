@@ -20,6 +20,14 @@ const lines = (s) => s.trim().split('\n');
 
 const numbers = (s) => lines(s).map(t => Number.parseInt(t));
 
+const groups = (xs, n) => {
+  let r = [];
+  for (let i = 0; i < xs.length / 3; i++) {
+    r.push(xs.slice(i * 3, (i + 1) * 3));
+  }
+  return r;
+};
+
 const show = (s) => s;
 
 const day1 = () => {
@@ -71,8 +79,8 @@ const day3 = () => {
   const lowerBase = 'a'.codePointAt(0) - 1;
   const upperBase = 'A'.codePointAt(0) - 1;
 
-  const compartments = (s) => 
-    lines(s).map(t => [t.substring(0, t.length/2), t.substring(t.length / 2)]);
+  const compartments = (s) =>
+    lines(s).map(t => [t.substring(0, t.length / 2), t.substring(t.length / 2)]);
 
   const inBoth = (a, b) => {
     const inB = new Set(b);
@@ -81,8 +89,8 @@ const day3 = () => {
 
   const priority = (c) => {
     const cp = c.codePointAt(0);
-    return cp > lowerBase ? cp - lowerBase : 26  + cp - upperBase;
-  }
+    return cp > lowerBase ? cp - lowerBase : 26 + cp - upperBase;
+  };
 
   const part1 = (s) => {
     let sum = 0;
@@ -92,9 +100,14 @@ const day3 = () => {
       }
     }
     return sum;
+  };
+
+  const part2 = (s) => {
+    let sum = 0;
+    const threesomes = groups(lines(s), 3);
   }
 
-  return { part1, compartments };
+  return { part1, part2 };
 };
 
 // N.B. These won't necessarily output in order due to async fetch.
