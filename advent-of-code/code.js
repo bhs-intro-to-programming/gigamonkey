@@ -114,7 +114,7 @@ const day3 = () => {
         sum += priority(c);
       }
     }
-    return c;
+    return sum;
   }
 
   return { part1, part2 };
