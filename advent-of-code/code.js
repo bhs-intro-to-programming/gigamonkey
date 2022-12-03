@@ -94,7 +94,7 @@ const day3 = () => {
     return sum;
   }
 
-  return { part1 };
+  return { part1, compartments };
 };
 
 // N.B. These won't necessarily output in order due to async fetch.
@@ -104,4 +104,4 @@ run('day_01.problem', day1().part2, 212836);
 run('day_02.problem', day2().part1, 9241);
 run('day_02.problem', day2().part2, 14610);
 */
-run('day_03.test', day3().part1);
+run('day_03.test', day3().compartments);
