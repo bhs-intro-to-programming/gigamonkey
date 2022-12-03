@@ -87,11 +87,6 @@ const day3 = () => {
   const compartments = (s) =>
     lines(s).map(t => [t.substring(0, t.length / 2), t.substring(t.length / 2)]);
 
-  const inBoth = (a, b) => {
-    const inB = new Set(b);
-    return new Set([...a].filter(c => inB.has(c)));
-  };
-
   const priority = (c) => {
     const cp = c.codePointAt(0);
     return cp > lowerBase ? cp - lowerBase : 26 + cp - upperBase;
@@ -110,7 +105,7 @@ const day3 = () => {
   const part2 = (s) => {
     let sum = 0;
     for (const g of groups(lines(s), 3)) {
-      for (const c of intersection(intersection(g[0], g[1]), g[2])) {
+      for (const c of g.reduce((i, g) => intersection(i, g), g[0])) {
         sum += priority(c);
       }
     }
