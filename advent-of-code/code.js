@@ -42,7 +42,7 @@ const day1 = () => {
   const part2 = (s) => elves(s).slice(0, 3).reduce((acc, n) => acc + n, 0);
 
   return { part1, part2 };
-}
+};
 
 const day2 = () => {
 
@@ -64,8 +64,42 @@ const day2 = () => {
   return { part1, part2 };
 };
 
+const day3 = () => {
+
+  const lowerBase = 'a'.codePointAt(0) - 1;
+  const upperbase = 'A'.codePointAt(0) - 1;
+
+  const compartments = (s) => 
+    lines(s).map(t => [t.substring(0, t.length/2), t.substring(t.length / 2)]);
+
+  const inBoth = (a, b) => {
+    const inB = new Set(b);
+    return [...a].filter(c => inB.has(c));
+  };
+
+  const priority = (c) => {
+    const cp = c.codePointAt(0);
+    return cp > lowerBase ? cp - lowerBase : cp - upperBase;
+  }
+
+  const part1 = (s) => {
+    let sum = 0;
+    for (const [a, b] of compartments(s)) {
+      for (const c of inBoth(a, b)) {
+        sum += priority(c);
+      }
+    }
+    return sum;
+  }
+
+  return { part1 };
+};
+
 // N.B. These won't necessarily output in order due to async fetch.
+/*
 run('day_01.problem', day1().part1, 74394);
 run('day_01.problem', day1().part2, 212836);
 run('day_02.problem', day2().part1, 9241);
 run('day_02.problem', day2().part2, 14610);
+*/
+run('day_03.test', day3().part1);
