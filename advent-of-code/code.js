@@ -100,7 +100,7 @@ const day3 = () => {
   const part1 = (s) => {
     let sum = 0;
     for (const [a, b] of compartments(s)) {
-      for (const c of inBoth(a, b)) {
+      for (const c of intersection(a, b)) {
         sum += priority(c);
       }
     }
