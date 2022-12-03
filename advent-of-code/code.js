@@ -69,7 +69,7 @@ const day2 = () => {
 const day3 = () => {
 
   const lowerBase = 'a'.codePointAt(0) - 1;
-  const upperbase = 'A'.codePointAt(0) - 1;
+  const upperBase = 'A'.codePointAt(0) - 1;
 
   const compartments = (s) => 
     lines(s).map(t => [t.substring(0, t.length/2), t.substring(t.length / 2)]);
