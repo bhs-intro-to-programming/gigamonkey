@@ -81,7 +81,7 @@ const day3 = () => {
 
   const priority = (c) => {
     const cp = c.codePointAt(0);
-    return cp > lowerBase ? cp - lowerBase : cp - upperBase;
+    return cp > lowerBase ? cp - lowerBase : 26  + cp - upperBase;
   }
 
   const part1 = (s) => {
