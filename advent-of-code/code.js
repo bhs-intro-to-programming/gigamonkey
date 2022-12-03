@@ -106,7 +106,7 @@ const day3 = () => {
   };
 
   const part2 = (s) => {
-    const sum = 0;
+    let sum = 0;
     for (const g of groups(lines(s), 3)) {
       for (const c of intersection(...g)) {
         sum += priority(c);
