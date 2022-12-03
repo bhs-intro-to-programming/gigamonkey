@@ -28,11 +28,18 @@ const groups = (xs, n) => {
   return r;
 };
 
-const intersection = (a, b) => {
+const intersection = (...args) => {
+  return args.reduce((acc, xs, i) => {
+    return i === 0 
+    ? new Set(acc) 
+    : new Set([...xs].filter(x => acc.has(x)));
+  }    
+};
+/*
   const inB = new Set(b);
   return new Set([...a].filter(x => inB.has(x)));
 };
-
+*/
 const show = (s) => s;
 
 const day1 = () => {
