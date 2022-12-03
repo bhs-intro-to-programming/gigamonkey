@@ -32,8 +32,8 @@ const intersection = (...args) => {
   return args.reduce((acc, xs, i) => {
     return i === 0 
     ? new Set(acc) 
-    : new Set([...xs].filter(x => acc.has(x)));
-  }    
+    : new Set([...xs].filter(x => acc.has(x)))
+  }    );
 };
 /*
   const inB = new Set(b);
