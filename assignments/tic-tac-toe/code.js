@@ -34,6 +34,7 @@ const gameWin = (winner) => {
 };
 
 const winSearch = (p) => {
+  console.log('here');
   let winner = {};
   for (let c = 0; c <= 2; c++) {
     if (board[c][0] === p && board[c][1] === p && board[c][2] === p) {
