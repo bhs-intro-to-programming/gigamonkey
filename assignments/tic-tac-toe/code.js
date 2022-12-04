@@ -20,22 +20,11 @@ const drawBoard = (borders) => {
 const gameWin = (winner) => {
   if (winner.winType == 'h') {
     const y = topY + boardSize / 6 + boardSize * (winner.winLoc / 3);
+    return drawLine(leftX, y, rightX, y, 'grey', 8);
 
-    return drawLine(
-      leftX,
-      y,
-      rightX,
-      y,
-      'grey',
-      8);
   } else if (winner.winType == 'v') {
-    return drawLine(
-      width / 2 - height / 3 + height * (winner.winLoc / 3),
-      topY,
-      width / 2 - height / 3 + height * (winner.winLoc / 3),
-      bottomY,
-      'gray',
-      8)
+    const x = leftX + boardSize / 6 + boardSize * (winner.winLoc / 3);
+    return drawLine(x, topY, x, bottomY, 'gray', 8);
   } else if (winner.winType == 'd') {
     return drawLine(
       width / 2 - height / (winner.winLoc == 1 ? -2 : 2),
