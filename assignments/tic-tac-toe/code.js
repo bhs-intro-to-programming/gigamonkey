@@ -1,17 +1,21 @@
-const max = Math.max(width, height)
-const min = Math.min(width, height)
-const leftX = max / 2 - min / 2;
-const rightX = max / 2 + min / 2;
+const min = Math.min(width, height);
+
+const boardSize = min;
+
+const leftX = width / 2 - boardSize / 2;
+const rightX = width / 2 + boardSize / 2;
+const topY = height / 2 - boardSize / 2;
+const bottomY = height / 2 + boardSize / 2;
 
 const drawBoard = (borders) => {
   const start = borders ? 0 : 1;
   const end = borders ? 3 : 2;
 
   for (let i = start; i <= end; i++) {
-    const verticalX = leftX + min * (i / 3);
-    const horizontalY = height * (i / 3);
-    drawLine(verticalX, height, verticalX, 0, 'grey', 2)
-    drawLine(leftX, horizontalY, rightX, horizontalY, 'gray', 2)
+    const verticalX = leftX + boardSize * (i / 3);
+    const horizontalY = topY + boardSize * (i / 3);
+    drawLine(verticalX, topY, verticalX, bottomY, 'grey', 2);
+    drawLine(leftX, horizontalY, rightX, horizontalY, 'gray', 2);
   }
 };
 
@@ -39,13 +43,12 @@ const winSearch = (player) => {
 
 registerOnclick((x, y) => {
 
-  const yPos = Math.floor(y / (height / 3));
-  const xPos = Math.floor((x - leftX) / (min / 3));
+  const yPos = Math.floor((y - topY) / (boardSize / 3));
+  const xPos = Math.floor((x - leftX) / (boardSize / 3));
 
   if (xPos < 0 || xPos > 2) {
     drawText(xPos > 2 ? '⇦' : '⇨', x - height / 12, y + height / 12, 'black', height / 3)
   } else {
-
     if (coordArray[yPos][xPos] == '' && winSearch(player) == undefined) {
       coordArray[yPos][xPos] = player
       drawText(player, leftX - min * 0.1 + min / 6 + (min * xPos / 3), min * 0.1 + min / 6 + min * yPos / 3, 'black', min * 0.3)
@@ -56,7 +59,6 @@ registerOnclick((x, y) => {
     }
   }
 });
-
 
 const player1 = 'X' //will go first
 const player2 = 'O'
