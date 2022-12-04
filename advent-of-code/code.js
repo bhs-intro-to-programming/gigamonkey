@@ -115,7 +115,7 @@ const day4 = () => {
   const part1 = (s) => 
     lines(s)
     .map(parsePair)
-    .reduce((acc, [a,b]) => acc + subset(a, b) || subset(b, a) ? 1 : 0, 0);
+    .reduce((acc, [a,b]) => acc + (subset(a, b) || subset(b, a) ? 1 : 0), 0);
 
   return { part1 };
 
