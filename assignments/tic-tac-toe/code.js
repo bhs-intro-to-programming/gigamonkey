@@ -42,7 +42,7 @@ registerOnclick((x, y) => {
   const yPos = Math.floor(y / (height / 3));
   const xPos = Math.floor((x - leftX) / (min / 3));
 
-  if (xPos < 0 || x > 2) {
+  if (xPos < 0 || xPos > 2) {
     drawText(xPos > 2 ? '⇦' : '⇨', x - height / 12, y + height / 12, 'black', height / 3)
   } else {
 
