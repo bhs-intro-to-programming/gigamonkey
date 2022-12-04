@@ -3,14 +3,19 @@ const max = Math.max(width, height)
 const min = Math.min(width, height)
 
 const drawBoard = (borders) => {
-  const extra = borders ? 1 : 0;
-  for (let editVar = 1 - borders; editVar <= 2 + extra; editVar += 1) {
-    drawLine(max / 2 - min / 2 + min * (editVar / 3), height, max / 2 - min / 2 + min * (editVar / 3), 0, 'grey', 2)
-    drawLine(max / 2 - min / 2, height * (editVar / 3), max / 2 + min / 2, height * (editVar / 3), 'gray', 2)
+  const start = borders ? 0 : 1;
+  const end = borders ? 3 : 2;
+  const leftX = max / 2 - min / 2;
+
+  for (let i = start; i <= end; i++) {
+    const verticalLineX = leftX + min * (i / 3);
+    const horizontalY = height * (i / 3);
+    drawLine(verticalLineX, height, verticalLineX, 0, 'grey', 2)
+    drawLine(leftX, horizontalY, leftX + min, horizontalY, 'gray', 2)
   }
 }
 
-drawBoard(true) //set 1 for borders and 0 for no borders
+drawBoard(false) //set 1 for borders and 0 for no borders
 
 const coordArray = [
   [[''], [''], ['']],
@@ -57,8 +62,8 @@ registerOnclick((x, y) => {
   } else if (y < height) {
     yPos = 2
   }
-  if (x < max / 2 - min / 2 || x > max / 2 + min / 2) {
-    drawText(x > max / 2 - min / 2 ? '⇦' : '⇨', x - height / 12, y + height / 12, 'black', height / 3)
+  if (x < leftX || x > max / 2 + min / 2) {
+    drawText(x > leftX ? '⇦' : '⇨', x - height / 12, y + height / 12, 'black', height / 3)
   } else {
     if (x < max / 2 - min / 6) {
       xPos = 0
@@ -69,11 +74,11 @@ registerOnclick((x, y) => {
     }
     if (coordArray[yPos][xPos] == '' && winSearch(player) == undefined) {
       coordArray[yPos][xPos] = player
-      drawText(player, max / 2 - min / 2 - min * 0.1 + min / 6 + (min * xPos / 3), min * 0.1 + min / 6 + min * yPos / 3, 'black', min * 0.3)
+      drawText(player, leftX - min * 0.1 + min / 6 + (min * xPos / 3), min * 0.1 + min / 6 + min * yPos / 3, 'black', min * 0.3)
       console.log(coordArray, 'recent: ', xPos, yPos, 'winner: ', winSearch(player))
       player = player === player1 ? player2 : player1
       turns++
-      if (turns == 9 && winSearch(player) == undefined) drawText('◯', max / 2 - min / 2, 8 / 9 * height, 'grey', height);
+      if (turns == 9 && winSearch(player) == undefined) drawText('◯', leftX, 8 / 9 * height, 'grey', height);
     }
   }
 });
