@@ -56,7 +56,7 @@ const winSearch = (p) => {
 };
 
 registerOnclick((x, y) => {
-
+  console.log(`click: ${x},${y}`);
   const yPos = Math.floor((y - topY) / (boardSize / 3));
   const xPos = Math.floor((x - leftX) / (boardSize / 3));
 
