@@ -18,39 +18,29 @@ const drawBoard = (borders) => {
 };
 
 const gameWin = (winner) => {
-  if (winner.winType === 'h') {
+  if (winner.winType == 'h') {
     const y = topY + boardSize / 6 + boardSize * (winner.winLoc / 3);
     return drawLine(leftX, y, rightX, y, 'grey', 8);
 
-  } else if (winner.winType === 'v') {
+  } else if (winner.winType == 'v') {
     const x = leftX + boardSize / 6 + boardSize * (winner.winLoc / 3);
     return drawLine(x, topY, x, bottomY, 'gray', 8);
 
-  } else if (winner.winType === 'd') {
+  } else if (winner.winType == 'd') {
     const x1 = winner.winLoc === 0 ? leftX : rightX;
     const x2 = winner.winLoc === 0 ? rightX : leftX;
     return drawLine(x1, topY, x2, bottomY, 'gray', 8);
   }
 };
 
-const winSearch = (p) => {
+const winSearch = (player) => {
   let winner = {};
   for (let c = 0; c <= 2; c++) {
-    if (board[c][0] === p && board[c][1] === p && board[c][2] === p) {
-      winner = { winner: p, winType: 'h', winLoc: c };
-    }
-    if (board[0][c] === p && board[1][c] === p && board[2][c] === p) {
-      winner = { winner: p, winType: 'v', winLoc: c };
-    }
+    if ((coordArray[c][0] == player) && (coordArray[c][1] == player) && (coordArray[c][2] == player)) winner = { winner: player, winType: 'h', winLoc: c };
+    if ((coordArray[0][c] == player) && (coordArray[1][c] == player) && (coordArray[2][c] == player)) winner = { winner: player, winType: 'v', winLoc: c };
   }
-
-  if (board[0][0] === p && board[1][1] === p && board[2][2] === p) {
-    winner = { winner: p, winType: 'd', winLoc: 0 };
-  }
-  if (board[2][0] === p && board[1][1] === p && board[0][2] === p) {
-    winner = { winner: p, winType: 'd', winLoc: 1 };
-  }
-
+  if ((coordArray[0][0] == player) && (coordArray[1][1] == player) && (coordArray[2][2] == player)) winner = { winner: player, winType: 'd', winLoc: 0 };
+  if ((coordArray[2][0] == player) && (coordArray[1][1] == player) && (coordArray[0][2] == player)) winner = { winner: player, winType: 'd', winLoc: 1 };
   gameWin(winner)
   return winner.winner
 };
@@ -63,13 +53,13 @@ registerOnclick((x, y) => {
   if (xPos < 0 || xPos > 2) {
     drawText(xPos > 2 ? '⇦' : '⇨', x - boardSize / 12, y + boardSize / 12, 'black', boardSize / 3)
   } else {
-    if (board[yPos][xPos] === '' && winSearch(player) === undefined) {
-      board[yPos][xPos] = player
+    if (coordArray[yPos][xPos] == '' && winSearch(player) == undefined) {
+      coordArray[yPos][xPos] = player
       drawText(player, leftX - boardSize * 0.1 + boardSize / 6 + (boardSize * xPos / 3), boardSize * 0.1 + boardSize / 6 + boardSize * yPos / 3, 'black', boardSize * 0.3)
-      console.log(board, 'recent: ', xPos, yPos, 'winner: ', winSearch(player))
+      console.log(coordArray, 'recent: ', xPos, yPos, 'winner: ', winSearch(player))
       player = player === player1 ? player2 : player1
       turns++
-      if (turns === 9 && winSearch(player) === undefined) drawText('◯', leftX, 8 / 9 * height, 'grey', height);
+      if (turns == 9 && winSearch(player) == undefined) drawText('◯', leftX, 8 / 9 * height, 'grey', height);
     }
   }
 });
@@ -77,7 +67,7 @@ registerOnclick((x, y) => {
 const player1 = 'X' //will go first
 const player2 = 'O'
 
-const board = [
+const coordArray = [
   [[''], [''], ['']],
   [[''], [''], ['']],
   [[''], [''], ['']],
