@@ -42,8 +42,8 @@ registerOnclick((x, y) => {
   const yPos = Math.floor(y / (height / 3));
   const xPos = Math.floor((x - leftX) / (min / 3));
 
-  if (x < leftX || x > rightX) {
-    drawText(x > leftX ? '⇦' : '⇨', x - height / 12, y + height / 12, 'black', height / 3)
+  if (xPos < 0 || x > 2) {
+    drawText(x > 2 ? '⇦' : '⇨', x - height / 12, y + height / 12, 'black', height / 3)
   } else {
 
     if (coordArray[yPos][xPos] == '' && winSearch(player) == undefined) {
