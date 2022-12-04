@@ -19,7 +19,7 @@ const drawBoard = (borders) => {
 
 const gameWin = (winner) => {
   if (winner.winType == 'h') {
-    return drawLine(width / 2 - height / 2, height / 6 + height * (winner.winLoc / 3), width / 2 + height / 2, height / 6 + height * (winner.winLoc / 3), 'grey', 8)
+    return drawLine(leftX, height / 6 + height * (winner.winLoc / 3), rightX, height / 6 + height * (winner.winLoc / 3), 'grey', 8)
   } else if (winner.winType == 'v') {
     return drawLine(width / 2 - height / 3 + height * (winner.winLoc / 3), height, width / 2 - height / 3 + height * (winner.winLoc / 3), 0, 'gray', 8)
   } else if (winner.winType == 'd') {
