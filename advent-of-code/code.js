@@ -110,7 +110,7 @@ const day4 = () => {
 
   const parsePair = (line) => line.split(',').map((x) => x.split('-').map(Number));
 
-  const pairs = (s) => lines.map(parsePair);
+  const pairs = (s) => lines(s).map(parsePair);
 
   const subset = (a, b) => a[0] >= b[0] && a[1] <= b[1];
 
