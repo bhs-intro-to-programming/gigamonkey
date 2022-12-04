@@ -25,14 +25,11 @@ const gameWin = (winner) => {
   } else if (winner.winType == 'v') {
     const x = leftX + boardSize / 6 + boardSize * (winner.winLoc / 3);
     return drawLine(x, topY, x, bottomY, 'gray', 8);
+
   } else if (winner.winType == 'd') {
-    return drawLine(
-      width / 2 - height / (winner.winLoc == 1 ? -2 : 2),
-      topY,
-      width / 2 + height / (winner.winLoc == 0 ? 2 : -2),
-      bottomY,
-      'gray',
-      8);
+    const x1 = width / 2 - boardSize / (winner.winLoc == 1 ? -2 : 2);
+    const x2 = width / 2 + boardSize / (winner.winLoc == 0 ? 2 : -2);
+    return drawLine(x1, topY, x2, bottomY, 'gray', 8);
   }
 };
 
