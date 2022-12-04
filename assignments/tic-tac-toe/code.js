@@ -45,13 +45,7 @@ registerOnclick((x, y) => {
   if (x < leftX || x > rightX) {
     drawText(x > leftX ? '⇦' : '⇨', x - height / 12, y + height / 12, 'black', height / 3)
   } else {
-    if (x < max / 2 - min / 6) {
-      xPos = 0
-    } else if (x < max / 2 + min / 6) {
-      xPos = 1
-    } else if (x < rightX) {
-      xPos = 2
-    }
+
     if (coordArray[yPos][xPos] == '' && winSearch(player) == undefined) {
       coordArray[yPos][xPos] = player
       drawText(player, leftX - min * 0.1 + min / 6 + (min * xPos / 3), min * 0.1 + min / 6 + min * yPos / 3, 'black', min * 0.3)
