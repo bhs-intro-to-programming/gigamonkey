@@ -110,9 +110,12 @@ const day4 = () => {
 
   const parsePair = (line) => line.split(',').map((x) => x.split('-').map(Number));
 
-  const part1 = (s) => {
-    return JSON.stringify(lines(s).map(parsePair));
-  };
+  const subset = (a, b) => a[0] >= b[0] && a[1] <= b[1];
+
+  const part1 = (s) => 
+    lines(s)
+    .map(parsePair)
+    .reduce((acc, [a,b]) => acc + subset(a, b) || subset(b, a) ? 1 : 0, 0);
 
   return { part1 };
 
