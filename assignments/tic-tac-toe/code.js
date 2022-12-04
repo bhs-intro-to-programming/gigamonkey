@@ -10,7 +10,7 @@ const drawBoard = (borders) => {
   }
 }
 
-drawBoard(false) //set 1 for borders and 0 for no borders
+drawBoard(true) //set 1 for borders and 0 for no borders
 
 const coordArray = [
   [[''], [''], ['']],
