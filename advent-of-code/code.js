@@ -111,7 +111,7 @@ const day4 = () => {
   const parsePair = (line) => line.split(',').map((x) => x.split('-').map(Number));
 
   const part1 = (s) => {
-    return lines(s).map(parsePair);
+    return JSON.stringify(lines(s).map(parsePair));
   };
 
   return { part1 };
@@ -119,7 +119,7 @@ const day4 = () => {
 };
 
 // N.B. These won't necessarily output in order due to async fetch.
-if (true) {
+if (false) {
   run('day_01.problem', day1().part1, 74394);
   run('day_01.problem', day1().part2, 212836);
   run('day_02.problem', day2().part1, 9241);
