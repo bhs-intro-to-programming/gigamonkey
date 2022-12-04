@@ -65,7 +65,7 @@ registerOnclick((x, y) => {
     drawText(xPos > 2 ? '⇦' : '⇨', x - boardSize / 12, y + boardSize / 12, 'black', boardSize / 3)
   } else {
     console.log(`yPos: ${yPos}; xPos: ${xPos}`);
-    if (board[yPos][xPos] === '' && winSearch(player) === undefined) {
+    if (board[yPos][xPos] == '' && winSearch(player) === undefined) {
       board[yPos][xPos] = player
       drawText(player, leftX - boardSize * 0.1 + boardSize / 6 + (boardSize * xPos / 3), boardSize * 0.1 + boardSize / 6 + boardSize * yPos / 3, 'black', boardSize * 0.3)
       console.log(board, 'recent: ', xPos, yPos, 'winner: ', winSearch(player))
