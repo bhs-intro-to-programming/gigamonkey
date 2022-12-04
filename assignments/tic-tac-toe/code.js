@@ -38,8 +38,6 @@ const winSearch = (player) => {
 };
 
 registerOnclick((x, y) => {
-  let xPos;
-  let yPos;
 
   const yPos = Math.floor(y / (height / 3));
   const xPos = Math.floor((x - leftX) / (min / 3));
