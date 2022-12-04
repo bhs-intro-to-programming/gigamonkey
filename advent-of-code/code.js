@@ -114,9 +114,10 @@ const day4 = () => {
     return lines(s).map(parsePair);
   };
 
-  return { part1; }
+  return { part1 };
 
 };
+
 // N.B. These won't necessarily output in order due to async fetch.
 if (true) {
   run('day_01.problem', day1().part1, 74394);
