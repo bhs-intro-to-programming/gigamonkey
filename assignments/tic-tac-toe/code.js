@@ -47,7 +47,7 @@ registerOnclick((x, y) => {
   const xPos = Math.floor((x - leftX) / (boardSize / 3));
 
   if (xPos < 0 || xPos > 2) {
-    drawText(xPos > 2 ? '⇦' : '⇨', x - height / 12, y + height / 12, 'black', height / 3)
+    drawText(xPos > 2 ? '⇦' : '⇨', x - boardSize / 12, y + boardSize / 12, 'black', boardSize / 3)
   } else {
     if (coordArray[yPos][xPos] == '' && winSearch(player) == undefined) {
       coordArray[yPos][xPos] = player
