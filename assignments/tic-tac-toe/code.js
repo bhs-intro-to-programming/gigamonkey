@@ -43,7 +43,7 @@ registerOnclick((x, y) => {
   const xPos = Math.floor((x - leftX) / (min / 3));
 
   if (xPos < 0 || x > 2) {
-    drawText(x > 2 ? '⇦' : '⇨', x - height / 12, y + height / 12, 'black', height / 3)
+    drawText(xPos > 2 ? '⇦' : '⇨', x - height / 12, y + height / 12, 'black', height / 3)
   } else {
 
     if (coordArray[yPos][xPos] == '' && winSearch(player) == undefined) {
