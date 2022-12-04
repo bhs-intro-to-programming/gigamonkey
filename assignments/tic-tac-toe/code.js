@@ -1,6 +1,4 @@
-const min = Math.min(width, height);
-
-const boardSize = min;
+const boardSize = Math.min(width, height);
 
 const leftX = width / 2 - boardSize / 2;
 const rightX = width / 2 + boardSize / 2;
@@ -51,7 +49,7 @@ registerOnclick((x, y) => {
   } else {
     if (coordArray[yPos][xPos] == '' && winSearch(player) == undefined) {
       coordArray[yPos][xPos] = player
-      drawText(player, leftX - min * 0.1 + min / 6 + (min * xPos / 3), min * 0.1 + min / 6 + min * yPos / 3, 'black', min * 0.3)
+      drawText(player, leftX - boardSize * 0.1 + boardSize / 6 + (boardSize * xPos / 3), boardSize * 0.1 + boardSize / 6 + boardSize * yPos / 3, 'black', boardSize * 0.3)
       console.log(coordArray, 'recent: ', xPos, yPos, 'winner: ', winSearch(player))
       player = player === player1 ? player2 : player1
       turns++
