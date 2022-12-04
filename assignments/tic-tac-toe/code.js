@@ -27,8 +27,8 @@ const gameWin = (winner) => {
     return drawLine(x, topY, x, bottomY, 'gray', 8);
 
   } else if (winner.winType == 'd') {
-    const x1 = width / 2 - boardSize / (winner.winLoc == 1 ? -2 : 2);
-    const x2 = width / 2 + boardSize / (winner.winLoc == 0 ? 2 : -2);
+    const x1 = winner.winLoc === 0 ? leftX : rightX;
+    const x2 = winner.winLoc === 0 ? rightX : leftX;
     return drawLine(x1, topY, x2, bottomY, 'gray', 8);
   }
 };
