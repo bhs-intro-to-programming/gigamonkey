@@ -106,6 +106,17 @@ const day3 = () => {
   return { part1, part2 };
 };
 
+const day4 = () => {
+
+  const parsePair = (line) => line.split(',').map((x) => x.split('-').map(Number));
+
+  const part1 = (s) => {
+    return lines(s).map(parsePair);
+  };
+
+  return { part1; }
+
+};
 // N.B. These won't necessarily output in order due to async fetch.
 if (true) {
   run('day_01.problem', day1().part1, 74394);
@@ -115,3 +126,5 @@ if (true) {
   run('day_03.problem', day3().part1, 8185);
   run('day_03.problem', day3().part2, 2817);
 }
+
+run('day_04.test', day4().part1);
