@@ -127,6 +127,19 @@ const day4 = () => {
 
 };
 
+const day5 = () => {
+  const stackPat = /^(\s+)(\[\w\]\s?)+$/;
+  const numPat = /^(?:\s*\d+\s*)+$/;
+  const movePat = /^move (\d+) from (\d+) to (\d+)$/;
+
+  const part1 = (s) => {
+    
+  };
+
+  return { part1 };
+
+};
+
 // N.B. These won't necessarily output in order due to async fetch.
 if (false) {
   run('day_01.problem', day1().part1, 74394);
