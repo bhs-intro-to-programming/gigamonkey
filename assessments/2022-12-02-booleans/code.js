@@ -25,3 +25,9 @@ const twiceAsExpensive = (item1, item2) => {
 const winningRecord = (wins, losses, ties) => {
   return wins > losses + ties;
 };
+
+const isMagicNumber = (n) => {
+  // 42 the answer to life the universe and everything
+  // 17 is "the most random number" according to MIT lore.
+  return n === 42 || n === 17;
+};
