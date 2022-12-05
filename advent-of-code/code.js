@@ -128,7 +128,7 @@ const day4 = () => {
 };
 
 const day5 = () => {
-  const stackPat = /^(\s*)(\[[A-Z]\]\s?)+$/;
+  const stackPat = /^\s*(?:\[[A-Z]\]\s*)*$/;
   const numPat = /^(?:\s*\d+\s*)+$/;
   const movePat = /^move (\d+) from (\d+) to (\d+)$/;
 
@@ -140,9 +140,9 @@ const day5 = () => {
     for (const line of lines(s)) {
       const m = line.match(stackPat);
       if (m) {
-        r += `Stack: 1: ${m[1]}; 2: ${m[2]}`;
+        r += `Stack: 1: ${m[1]}; 2: ${m[2]}\n`;
       } else {
-        r += `Unmatched: ${line}`;
+        r += `Unmatched: ${line}\n`;
       }
     }
     return r;
