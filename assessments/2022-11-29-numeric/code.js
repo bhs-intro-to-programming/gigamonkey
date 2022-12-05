@@ -13,3 +13,7 @@ const extraChocolates = (chocolates, people) => {
 const leftOut = (chocolates, people) => {
   return Math.max(people - chocolates, 0);
 };
+
+const probabilityAllHeads = (flips) => {
+  return 0.5 ** flips;
+};
