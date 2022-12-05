@@ -141,6 +141,8 @@ const day5 = () => {
       const m = line.match(stackPat);
       if (m) {
         r += `Stack: 1: ${m[1]}; 2: ${m[2]}`;
+      } else {
+        r += `Unmatched: ${line}`;
       }
     }
     return r;
