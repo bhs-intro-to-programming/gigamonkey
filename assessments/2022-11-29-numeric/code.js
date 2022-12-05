@@ -30,7 +30,7 @@ const perPresent = (budget, presents) => {
   return budget / presents;
 };
 
-const wrapingCombos = (paper, ribbons, bows) => {
+const wrappingCombos = (paper, ribbons, bows) => {
   return paper * ribbons * bows;
 };
 
