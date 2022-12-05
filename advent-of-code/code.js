@@ -137,13 +137,13 @@ const day5 = () => {
 
   const parseRow = (line) => [...line.matchAll(rowPat)].map(x => x[1]);
 
-  const move = (num, from, to, stacks) => {
+  const crane1 = (num, from, to, stacks) => {
     for (let i = 0; i < num; i++) {
       stacks[to - 1].push(stacks[from - 1].pop());
     }
   };
 
-  const part1 = (s) => {
+  const foo = (s, move) => {
     const stacks = [];
     for (const line of lines(s)) {
       if (line.trim() === '') continue;
@@ -167,6 +167,8 @@ const day5 = () => {
     }
     return stacks.map(s => s[s.length - 1]).join('');
   };
+
+  const part1 = (s) => foo(s, crane1);
 
   return { part1 };
 
