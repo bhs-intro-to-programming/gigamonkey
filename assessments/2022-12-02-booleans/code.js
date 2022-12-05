@@ -15,5 +15,5 @@ const isisVenomous = (striped, blueHeaded) => {
 };
 
 const okaySpeed = (limit, speed) => {
-  return Math.abs(speed - limit) < 10;
+  return Math.abs(speed - limit) <= 10;
 };
