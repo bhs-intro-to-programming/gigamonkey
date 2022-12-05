@@ -149,7 +149,8 @@ const day5 = () => {
       const m = line.match(stackPat);
       if (m) {
         parseRow(line).forEach((e, i) => {
-          if (e !== null) {
+          console.log(e);
+          if (e) {
             if (!stacks[i]) stacks[i] = [];
             stacks[i].unshift(e);
           }
