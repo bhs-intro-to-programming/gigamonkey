@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Utility functions
 
-const lines = (s) => s.trim().split('\n');
+const lines = (s) => s.split('\n');
 
 const numbers = (s) => lines(s).map(t => Number.parseInt(t));
 
@@ -76,7 +76,7 @@ const day3 = () => {
   const upperBase = 'A'.codePointAt(0) - 1;
 
   const compartments = (s) =>
-    lines(s).map(t => [t.substring(0, t.length / 2), t.substring(t.length / 2)]);
+    lines(s.trim()).map(t => [t.substring(0, t.length / 2), t.substring(t.length / 2)]);
 
   const priority = (c) => {
     const cp = c.codePointAt(0);
@@ -95,7 +95,7 @@ const day3 = () => {
 
   const part2 = (s) => {
     let sum = 0;
-    for (const g of groups(lines(s), 3)) {
+    for (const g of groups(lines(s.trim()), 3)) {
       for (const c of intersection(...g)) {
         sum += priority(c);
       }
