@@ -148,8 +148,15 @@ const day5 = () => {
       if (m) {
         const parts = parseRow(line);
         r += `Stack: ${JSON.stringify(parts)}\n`;
+      } else if (line.match(numPat)) {
       } else {
-        r += `Unmatched: ${line}\n`;
+        const m = line.match(movePat);
+        if (m) {
+          const [_, num, source, dest] = m;
+          r += `move: ${num} ${source} -> ${dest}`;
+        } else {
+          r += `Unmatched: ${line}\n`;
+        }
       }
     }
     return r;
