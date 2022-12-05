@@ -1,7 +1,9 @@
 ////////////////////////////////////////////////////////////////
 // Utility functions
 
-const trimmedLines = (s) => s.trim().split('\n');
+const lines = (s) => s.split('\n');
+
+const trimmedLines = (s) => lines(s.trim());
 
 const numbers = (s) => trimmedLines(s).map(t => Number.parseInt(t));
 
