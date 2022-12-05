@@ -166,7 +166,7 @@ const day5 = () => {
         }
       }
     }
-    return JSON.stringify(stacks);
+    return JSON.stringify(stacks) + '\n' + r;
   };
 
   return { part1 };
