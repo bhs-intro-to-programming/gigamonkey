@@ -142,7 +142,9 @@ const day5 = () => {
     for (const line of lines(s)) {
       const m = line.match(stackPat);
       if (m) {
-        r += `Stack: ${line}\n`;
+        const parts = [...line.matchAll(/(?:( {4})|\[([A-Z])\] ?)/g)].map(x => x[1] || x[2]);
+
+        r += `Stack: ${JSON.stringify(parts)}\n`;
       } else {
         r += `Unmatched: ${line}\n`;
       }
