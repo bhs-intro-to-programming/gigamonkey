@@ -136,7 +136,7 @@ const day5 = () => {
     console.log('here');
     const stacks = [];
     const moves = [];
-    const r = '';
+    let r = '';
     for (const line of lines(s)) {
       const m = line.match(stackPat);
       if (m) {
