@@ -140,7 +140,7 @@ const day5 = () => {
     for (const line of lines(s)) {
       const m = line.match(stackPat);
       if (m) {
-        r += `Stack: ${m[0]}\n`;
+        r += `Stack: ${line}\n`;
       } else {
         r += `Unmatched: ${line}\n`;
       }
