@@ -188,4 +188,4 @@ if (false) {
   run('day_04.problem', day4().part2, 938);
 }
 
-run('day_05.test', day5().part1);
+run('day_05.problem', day5().part1);
