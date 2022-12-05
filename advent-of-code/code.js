@@ -139,17 +139,20 @@ const day5 = () => {
 
 
   const part1 = (s) => {
-    console.log('here');
     const stacks = [];
     const moves = [];
     let r = '';
+
     for (const line of lines(s)) {
       if (line.trim() === '') continue;
 
       const m = line.match(stackPat);
       if (m) {
-        const parts = parseRow(line);
-        r += `Stack: ${JSON.stringify(parts)}\n`;
+        parseRow(line).forEach((e, i) => {
+          if (e !== null) {
+            stacks[i].unshift(e);
+          }
+        });
       } else if (line.match(numPat)) {
         r += `Numbers: ${line}\n`;
       } else {
@@ -162,7 +165,7 @@ const day5 = () => {
         }
       }
     }
-    return r;
+    return JSON.stringify(stacks);
   };
 
   return { part1 };
