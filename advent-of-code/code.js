@@ -154,7 +154,7 @@ const day5 = () => {
   };
 
 
-  const foo = (s, move) => {
+  const mover = (s, move) => {
     const stacks = [];
     for (const line of lines(s)) {
       if (line.trim() === '') continue;
@@ -179,8 +179,8 @@ const day5 = () => {
     return stacks.map(s => s[s.length - 1]).join('');
   };
 
-  const part1 = (s) => foo(s, crane1);
-  const part2 = (s) => foo(s, crane2);
+  const part1 = (s) => mover(s, crane1);
+  const part2 = (s) => mover(s, crane2);
 
   return { part1, part2 };
 
@@ -199,5 +199,5 @@ if (false) {
 }
 
 run('day_05.problem', day5().part1, 'QNHWJVJZW');
-run('day_05.test', day5().part2);
+run('day_05.problem', day5().part2);
 
