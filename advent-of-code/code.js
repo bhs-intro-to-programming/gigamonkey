@@ -133,6 +133,7 @@ const day5 = () => {
   const movePat = /^move (\d+) from (\d+) to (\d+)$/;
 
   const part1 = (s) => {
+    console.log('here');
     const stacks = [];
     const moves = [];
     const r = '';
