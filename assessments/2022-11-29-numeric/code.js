@@ -1,3 +1,8 @@
-const chocolatesPerPerson = (c, p) => Math.floor(c / p);
+const totalEggs = (hard, soft) => {
+  return hard + soft;
+};
 
-const leftOut = (c, p) =>   p - c;
+const chocolatesPerPerson = (chocolates, people) => {
+  return Math.floor(chocolates / people);
+};
+
