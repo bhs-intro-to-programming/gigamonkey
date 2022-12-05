@@ -169,7 +169,7 @@ const day5 = () => {
         }
       }
     }
-    return JSON.stringify(stacks) + '\n' + r;
+    return stacks.map(s => s[s.length - 1]).join('');
   };
 
   return { part1 };
