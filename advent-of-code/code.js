@@ -141,13 +141,10 @@ const day5 = () => {
     for (let i = 0; i < num; i++) {
       stacks[to - 1].push(stacks[from - 1].pop());
     }
-  }
+  };
 
   const part1 = (s) => {
     const stacks = [];
-    const moves = [];
-    let r = '';
-
     for (const line of lines(s)) {
       if (line.trim() === '') continue;
 
@@ -160,7 +157,6 @@ const day5 = () => {
           }
         });
       } else if (line.match(numPat)) {
-        r += `Numbers: ${line}\n`;
       } else {
         const m = line.match(movePat);
         if (m) {
@@ -188,4 +184,4 @@ if (false) {
   run('day_04.problem', day4().part2, 938);
 }
 
-run('day_05.problem', day5().part1);
+run('day_05.problem', day5().part1, 'QNHWJVJZW');
