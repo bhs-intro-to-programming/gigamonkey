@@ -128,7 +128,7 @@ const day4 = () => {
 };
 
 const day5 = () => {
-  const stackPat = /^(\s+)(\[\w\]\s?)+$/;
+  const stackPat = /^(\s*)(\[[A-Z]\]\s?)+$/;
   const numPat = /^(?:\s*\d+\s*)+$/;
   const movePat = /^move (\d+) from (\d+) to (\d+)$/;
 
