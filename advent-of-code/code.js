@@ -135,14 +135,14 @@ const day5 = () => {
   const part1 = (s) => {
     const stacks = [];
     const moves = [];
-    const s = '';
+    const r = '';
     for (const line of lines(s)) {
       const m = line.match(stackPat);
       if (m) {
-        s += `Stack: 1: ${m[1]}; 2: ${m[2]}`;
+        r += `Stack: 1: ${m[1]}; 2: ${m[2]}`;
       }
     }
-    return s;
+    return r;
   };
 
   return { part1 };
