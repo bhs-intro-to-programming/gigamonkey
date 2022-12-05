@@ -17,3 +17,11 @@ const isisVenomous = (striped, blueHeaded) => {
 const okaySpeed = (limit, speed) => {
   return Math.abs(speed - limit) <= 10;
 };
+
+const twiceAsExpensive = (item1, item2) => {
+  return item1 > item2 * 2;
+};
+
+const winningRecord = (wins, losses, ties) => {
+  return wins > losses + ties;
+};
