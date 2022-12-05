@@ -133,7 +133,16 @@ const day5 = () => {
   const movePat = /^move (\d+) from (\d+) to (\d+)$/;
 
   const part1 = (s) => {
-    
+    const stacks = [];
+    const moves = [];
+    const s = '';
+    for (const line of lines(s)) {
+      const m = line.match(stackPat);
+      if (m) {
+        s += `Stack: 1: ${m[1]}; 2: ${m[2]}`;
+      }
+    }
+    return s;
   };
 
   return { part1 };
@@ -152,3 +161,4 @@ if (false) {
   run('day_04.problem', day4().part2, 938);
 }
 
+run('day_05.test', day5(). part1);
