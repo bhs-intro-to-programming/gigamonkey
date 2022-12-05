@@ -1,9 +1,9 @@
 ////////////////////////////////////////////////////////////////
 // Utility functions
 
-const lines = (s) => s.split('\n');
+const trimmedLines = (s) => s.trim().split('\n');
 
-const numbers = (s) => lines(s).map(t => Number.parseInt(t));
+const numbers = (s) => trimmedLines(s).map(t => Number.parseInt(t));
 
 const groups = (xs, n) => {
   let r = [];
@@ -63,9 +63,9 @@ const day2 = () => {
 
   const moves = (r) => ['ABC'.indexOf(r[0]), 'XYZ'.indexOf(r[2])];
 
-  const part1 = (s) => lines(s).reduce((acc, r) => acc + score(...moves(r)), 0);
+  const part1 = (s) => trimmedLines(s).reduce((acc, r) => acc + score(...moves(r)), 0);
 
-  const part2 = (s) => lines(s).reduce((acc, r) => acc + outcome(...moves(r)), 0);
+  const part2 = (s) => trimmedLines(s).reduce((acc, r) => acc + outcome(...moves(r)), 0);
 
   return { part1, part2 };
 };
@@ -76,7 +76,7 @@ const day3 = () => {
   const upperBase = 'A'.codePointAt(0) - 1;
 
   const compartments = (s) =>
-    lines(s.trim()).map(t => [t.substring(0, t.length / 2), t.substring(t.length / 2)]);
+    trimmedLines(s).map(t => [t.substring(0, t.length / 2), t.substring(t.length / 2)]);
 
   const priority = (c) => {
     const cp = c.codePointAt(0);
@@ -95,7 +95,7 @@ const day3 = () => {
 
   const part2 = (s) => {
     let sum = 0;
-    for (const g of groups(lines(s.trim()), 3)) {
+    for (const g of groups(trimmedLines(s), 3)) {
       for (const c of intersection(...g)) {
         sum += priority(c);
       }
@@ -110,7 +110,7 @@ const day4 = () => {
 
   const parsePair = (line) => line.split(',').map((x) => x.split('-').map(Number));
 
-  const pairs = (s) => lines(s).map(parsePair);
+  const pairs = (s) => trimmedLines(s).map(parsePair);
 
   const subset = (a, b) => a[0] >= b[0] && a[1] <= b[1];
 
@@ -137,7 +137,7 @@ const day5 = () => {
     const stacks = [];
     const moves = [];
     let r = '';
-    for (const line of lines(s)) {
+    for (const line of trimmedLines(s)) {
       const m = line.match(stackPat);
       if (m) {
         r += `Stack: ${line}\n`;
