@@ -17,3 +17,7 @@ const leftOut = (chocolates, people) => {
 const probabilityAllHeads = (flips) => {
   return 0.5 ** flips;
 };
+
+const futureHour = (now, hours) => {
+  return (now + hours) % 24;
+};
