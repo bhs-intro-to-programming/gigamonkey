@@ -153,7 +153,7 @@ const day5 = () => {
         const m = line.match(movePat);
         if (m) {
           const [_, num, source, dest] = m;
-          r += `move: ${num} ${source} -> ${dest}`;
+          r += `move: ${num} ${source} -> ${dest}\n`;
         } else {
           r += `Unmatched: ${line}\n`;
         }
