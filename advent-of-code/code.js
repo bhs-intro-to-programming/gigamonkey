@@ -145,13 +145,13 @@ const day5 = () => {
     let r = '';
     for (const line of lines(s)) {
       if (line.trim() === '') continue;
-      
+
       const m = line.match(stackPat);
       if (m) {
         const parts = parseRow(line);
         r += `Stack: ${JSON.stringify(parts)}\n`;
       } else if (line.match(numPat)) {
-        r += `Numbers: ${line}`;
+        r += `Numbers: ${line}\n`;
       } else {
         const m = line.match(movePat);
         if (m) {
