@@ -150,6 +150,7 @@ const day5 = () => {
       if (m) {
         parseRow(line).forEach((e, i) => {
           if (e !== null) {
+            if (!stacks[i]) stacks[i] = [];
             stacks[i].unshift(e);
           }
         });
