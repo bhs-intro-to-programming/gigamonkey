@@ -143,6 +143,17 @@ const day5 = () => {
     }
   };
 
+  const crane2 = (num, from, to, stacks) => {
+    for (let i = 0; i < num; i++) {
+      const source = stacks[from - 1];
+      const dest = stacks[to - 1];
+
+      dest.splice(dest.length, 0, ...source.slice(source.length - num));
+      source.splice(source.length - num, num);
+    }
+  };
+
+
   const foo = (s, move) => {
     const stacks = [];
     for (const line of lines(s)) {
@@ -169,8 +180,9 @@ const day5 = () => {
   };
 
   const part1 = (s) => foo(s, crane1);
+  const part2 = (s) => foo(s, crane2);
 
-  return { part1 };
+  return { part1, part2 };
 
 };
 
@@ -187,3 +199,5 @@ if (false) {
 }
 
 run('day_05.problem', day5().part1, 'QNHWJVJZW');
+run('day_05.test', day5().part2);
+
