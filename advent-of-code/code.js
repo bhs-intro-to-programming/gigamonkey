@@ -133,6 +133,10 @@ const day5 = () => {
   const stackPat = /^\s*(?:\[[A-Z]\]\s*)*$/;
   const numPat = /^(?:\s*\d+\s*)+$/;
   const movePat = /^move (\d+) from (\d+) to (\d+)$/;
+  const rowPat = /(?:( {4})|\[([A-Z])\] ?)/g;
+
+  const parseRow = (line) => [...line.matchAll(rowPat)].map(x => x[1] || x[2]);
+
 
   const part1 = (s) => {
     console.log('here');
@@ -142,8 +146,7 @@ const day5 = () => {
     for (const line of lines(s)) {
       const m = line.match(stackPat);
       if (m) {
-        const parts = [...line.matchAll(/(?:( {4})|\[([A-Z])\] ?)/g)].map(x => x[1] || x[2]);
-
+        const parts = parseRow(line);
         r += `Stack: ${JSON.stringify(parts)}\n`;
       } else {
         r += `Unmatched: ${line}\n`;
