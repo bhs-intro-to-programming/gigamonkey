@@ -149,6 +149,7 @@ const day5 = () => {
         const parts = parseRow(line);
         r += `Stack: ${JSON.stringify(parts)}\n`;
       } else if (line.match(numPat)) {
+        r += `Numbers: ${line}`;
       } else {
         const m = line.match(movePat);
         if (m) {
