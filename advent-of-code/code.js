@@ -133,9 +133,9 @@ const day5 = () => {
   const stackPat = /^\s*(?:\[[A-Z]\]\s*)*$/;
   const numPat = /^(?:\s*\d+\s*)+$/;
   const movePat = /^move (\d+) from (\d+) to (\d+)$/;
-  const rowPat = /(?:( {4})|\[([A-Z])\] ?)/g;
+  const rowPat = /(?: {4}|\[([A-Z])\] ?)/g;
 
-  const parseRow = (line) => [...line.matchAll(rowPat)].map(x => x[1] || x[2]);
+  const parseRow = (line) => [...line.matchAll(rowPat)].map(x => x[1]);
 
 
   const part1 = (s) => {
