@@ -144,6 +144,8 @@ const day5 = () => {
     const moves = [];
     let r = '';
     for (const line of lines(s)) {
+      if (line.trim() === '') continue;
+      
       const m = line.match(stackPat);
       if (m) {
         const parts = parseRow(line);
