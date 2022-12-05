@@ -137,6 +137,11 @@ const day5 = () => {
 
   const parseRow = (line) => [...line.matchAll(rowPat)].map(x => x[1]);
 
+  const move = (num, from, to, stacks) => {
+    for (let i = 0; i < num; i++) {
+      stacks[to - 1].push(stacks[from - 1].pop());
+    }
+  }
 
   const part1 = (s) => {
     const stacks = [];
@@ -159,10 +164,8 @@ const day5 = () => {
       } else {
         const m = line.match(movePat);
         if (m) {
-          const [_, num, source, dest] = m;
-          r += `move: ${num} ${source} -> ${dest}\n`;
-        } else {
-          r += `Unmatched: ${line}\n`;
+          const [_, num, from, to] = m;
+          move(Number(num), Number(from), Number(to), stacks);
         }
       }
     }
