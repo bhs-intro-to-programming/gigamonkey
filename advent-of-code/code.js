@@ -139,7 +139,7 @@ const day5 = () => {
     const stacks = [];
     const moves = [];
     let r = '';
-    for (const line of trimmedLines(s)) {
+    for (const line of lines(s)) {
       const m = line.match(stackPat);
       if (m) {
         r += `Stack: ${line}\n`;
