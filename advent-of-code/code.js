@@ -178,6 +178,23 @@ const day5 = () => {
 
 };
 
+const day6 = () => {
+  
+  const one = 'mjqjpqmgbljsphdztnvjfqwrcgsmlb';
+
+  const part1 = (s) => {
+    for (let i = 0; i < s.length - 4; i++) {
+      if (new Set(s.substring(i, i + 4)).size === 4) {
+        return i;
+      }
+    }
+    return -1;
+  };
+
+  return { part1 };
+
+};
+
 // N.B. These won't necessarily output in order due to async fetch.
 if (true) {
   run('day_01.problem', day1().part1, 74394);
@@ -192,5 +209,4 @@ if (true) {
   run('day_05.problem', day5().part2, 'BPCZJLFJW');
 }
 
-
-
+console.log(day().part1('mjqjpqmgbljsphdztnvjfqwrcgsmlb'));
