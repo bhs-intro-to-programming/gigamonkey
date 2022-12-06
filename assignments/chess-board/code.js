@@ -47,7 +47,7 @@ const emptyBoard = (gui) => {
 const drawPiece = (gui, piece, rank, file) => {
   const text = PIECES[piece.color][piece.type];
   const sq = gui.size / 8;
-  const [x, y] = xy(rank, file);
+  const [x, y] = xy(gui, rank, file);
   drawText(text, x + sq * 0.2, y + sq * 0.75, 'black', gui.size / 8);
 };
 
