@@ -184,7 +184,7 @@ const day6 = () => {
     const unique = new Set(s.substring(0, length));
     if (unique.size === length) return length;
     for (let i = length; i < s.length; i++) {
-      //console.log(JSON.stringify([...unique]));
+      console.log(JSON.stringify([...unique]));
       //console.log(`deleting ${s[i - length]}; adding: ${s[i]}`);
       unique.delete(s[i - length]);
       unique.add(s[i]);
@@ -216,7 +216,7 @@ if (false) {
   run('day_06.problem', day6().part2, 2178);
 }
 
-run('day_06.problem', day6().part1, 1578);
+//run('day_06.problem', day6().part1, 1578);
 run('day_06.problem', day6().part2, 2178);
 
 
