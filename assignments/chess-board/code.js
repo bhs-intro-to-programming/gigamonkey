@@ -20,6 +20,8 @@ const xy = (row, col) => [
   boardY + row * boardSize / 8
 ];
 
+// GUI
+
 const emptyBoard = () => {
   const sq = boardSize / 8;
   for (let i = 0; i < 8; i++) {
@@ -38,6 +40,15 @@ const drawPiece = (text, rank, file) => {
   drawText(text, x + sq * 0.2, y + sq * 0.75, 'black', boardSize / 8);
 };
 
+
+
+
+
+// Actual runtime
+
+const board = Array(8).fill().map(() => Array(8).fill(null));
+
 emptyBoard();
+
 drawPiece(WHITE_KING, 7, 4);
 drawPiece(WHITE_QUEEN, 7, 3);
