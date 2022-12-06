@@ -25,7 +25,7 @@ const emptyBoard = (size, left, top) => {
 };
 
 
-const board = Array(8).fill().map(() => Array(8).fill(null);
+const board = Array(8).fill().map(() => Array(8).fill(null));
 
 const boardSize = Math.min(width, height) * 0.80;
 emptyBoard(boardSize, (width - boardSize) / 2, (height - boardSize) / 2);
