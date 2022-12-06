@@ -184,11 +184,14 @@ const day6 = () => {
     const unique = new Set(s.substring(0, length));
     if (unique.size === length) return length;
     for (let i = length; i < s.length; i++) {
-      console.log(unique.size + ': ' + JSON.stringify([...unique]));
+  
       //console.log(`deleting ${s[i - length]}; adding: ${s[i]}`);
       unique.delete(s[i - length]);
       unique.add(s[i]);
-      if (unique.size === length) return i - 1;
+      if (unique.size > (length - 2)) {
+      console.log(unique.size + ': ' + JSON.stringify([...unique]));
+      }
+          if (unique.size === length) return i - 1;
     }
   };
 
