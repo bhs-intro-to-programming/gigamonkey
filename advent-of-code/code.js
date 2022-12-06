@@ -137,20 +137,18 @@ const day5 = () => {
 
   const parseRow = (line) => [...line.matchAll(rowPat)].map(x => x[1]);
 
-  const crane1 = (num, from, to, stacks) => {
+  const crateMover9000 = (num, from, to, stacks) => {
     for (let i = 0; i < num; i++) {
       stacks[to - 1].push(stacks[from - 1].pop());
     }
   };
 
-  const crane2 = (num, from, to, stacks) => {
+  const crateMover9001 = (num, from, to, stacks) => {
     const source = stacks[from - 1];
     const dest = stacks[to - 1];
     dest.splice(dest.length, 0, ...source.slice(source.length - num));
     source.splice(source.length - num, num);
   };
-
-
 
   const mover = (s, move) => {
     const stacks = [];
@@ -177,8 +175,8 @@ const day5 = () => {
     return stacks.map(s => s[s.length - 1]).join('');
   };
 
-  const part1 = (s) => mover(s, crane1);
-  const part2 = (s) => mover(s, crane2);
+  const part1 = (s) => mover(s, crateMover9000);
+  const part2 = (s) => mover(s, crateMover9001);
 
   return { part1, part2 };
 
