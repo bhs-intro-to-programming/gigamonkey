@@ -3,8 +3,6 @@
 
 const lines = (s) => s.trimEnd().split('\n');
 
-const trimmedLines = (s) => lines(s.trim());
-
 const numbers = (s) => lines(s).map(t => Number.parseInt(t));
 
 const groups = (xs, n) => {
