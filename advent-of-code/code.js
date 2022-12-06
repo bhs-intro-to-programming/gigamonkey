@@ -183,13 +183,14 @@ const day6 = () => {
   const findMarker = (s, length) => {
     const unique = new Set();
     for (let i = 0; i < s.length; i++) {
-      if (i >= length) {
-        console.log(`deleting ${s[i - length]}; size before: ${unique.size}`);
-        unique.delete(s[i - length]);
-        console.log(`deleting ${s[i - length]}; size after: ${unique.size}`);
+      let toDelete = i > length ? s[i-length] : undefined;
+      if (toDelete) {
+        console.log(`deleting ${toDelete}; size before: ${unique.size}`);
+        unique.delete(toDelete);
+        console.log(`deleting ${toDelete}; size after: ${unique.size}`);
       }
       unique.add(s[i]);
-      console.log(`i: ${i}; deleting ${s[i - length] || ''}; adding: ${s[i]}; size: ${unique.size} : ${JSON.stringify([...unique])}`);
+      console.log(`i: ${i}; deleting ${toDelete || ''}; adding: ${s[i]}; size: ${unique.size} : ${JSON.stringify([...unique])}`);
       if (unique.size === length) return i - 1;
     }
   };
