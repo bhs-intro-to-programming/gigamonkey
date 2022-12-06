@@ -22,3 +22,5 @@ const emptyBoard = (size, x, y) => {
     }
   }
 }
+
+emptyBoard(Math.min(width, height), 0, 0);
