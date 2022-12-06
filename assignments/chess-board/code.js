@@ -14,11 +14,14 @@ const BLACK_PAWN = '♟';
 // Example of drawing one of the pieces
 //drawText(WHITE_KING, width/2, height/2, 'black', 64);
 
-const emptyBoard = (size, x, y) => {
+const emptyBoard = (size, left, top) => {
   const sq = size/8;
   for (let i = 0; i < 8; i++) {
     for (let j = 0; j < 8; j++) {
-      drawFilledRect(x + i * sq, y + j * sq, sq, sq, (i + j) % 2 === 0 ? 'white' : 'grey');
+      const x = left + i * sq;
+      const y = top + i * sq;
+      const color = (i + j) % 2 === 0 ? 'white' : 'grey';
+      drawFilledRect(x, y, sq, sq, color);
     }
   }
   drawRect(x, y, sq * 8, sq * 8, 'grey', 1);
