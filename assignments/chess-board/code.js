@@ -11,13 +11,10 @@ const BLACK_BISHOP = '♝';
 const BLACK_KNIGHT = '♞';
 const BLACK_PAWN = '♟';
 
-// Example of drawing one of the pieces
-//drawText(WHITE_KING, width/2, height/2, 'black', 64);
-
 const emptyBoard = (size, left, top) => {
   const sq = size/8;
-  for (let i = 0; i < 8; i++) {
-    for (let j = 0; j < 8; j++) {
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
       const x = left + i * sq;
       const y = top + j * sq;
       const color = (i + j) % 2 === 0 ? 'white' : 'grey';
@@ -25,7 +22,7 @@ const emptyBoard = (size, left, top) => {
     }
   }
   drawRect(left, top, size, size, 'grey', 1);
-}
+};
 
 const boardSize = Math.min(width, height) * 0.80;
 emptyBoard(boardSize, (width - boardSize) / 2, (height - boardSize) / 2);
