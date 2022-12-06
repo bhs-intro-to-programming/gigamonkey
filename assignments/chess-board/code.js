@@ -17,7 +17,7 @@ const boardY = (height - boardSize) / 2;
 
 const xy = (rank, file) => [
   boardX + file * boardSize / 8,
-  boardY + rank * boardSize / 8
+  boardY + (8 - rank) * boardSize / 8
 ];
 
 const emptyBoard = () => {
