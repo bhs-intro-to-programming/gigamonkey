@@ -18,7 +18,7 @@ const emptyBoard = (size, x, y) => {
   const sq = size/8;
   for (let i = 0; i < 8; i++) {
     for (let j = 0; j < 8; j++) {
-      drawFilledRect(x + i * sq, y + j * sq, sq, sq, (i + j) % 2 === 0 ? 'grey' : 'white');
+      drawFilledRect(x + i * sq, y + j * sq, sq, sq, (i + j) % 2 === 0 ? 'white' : 'grey');
     }
   }
 }
