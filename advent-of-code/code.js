@@ -185,7 +185,7 @@ const day5 = () => {
 };
 
 // N.B. These won't necessarily output in order due to async fetch.
-if (false) {
+if (true) {
   run('day_01.problem', day1().part1, 74394);
   run('day_01.problem', day1().part2, 212836);
   run('day_02.problem', day2().part1, 9241);
@@ -194,8 +194,9 @@ if (false) {
   run('day_03.problem', day3().part2, 2817);
   run('day_04.problem', day4().part1, 657);
   run('day_04.problem', day4().part2, 938);
+  run('day_05.problem', day5().part1, 'QNHWJVJZW');
+  run('day_05.problem', day5().part2, 'BPCZJLFJW');
 }
 
-run('day_05.problem', day5().part1, 'QNHWJVJZW');
-run('day_05.problem', day5().part2, 'BPCZJLFJW');
+
 
