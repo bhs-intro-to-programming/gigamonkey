@@ -29,7 +29,7 @@ const emptyBoard = () => {
       drawFilledRect(x, y, sq, sq, color);
     }
   }
-  drawRect(boardX, boardY, size, size, 'grey', 1);
+  drawRect(boardX, boardY, boardSize, boardSize, 'grey', 1);
 };
 
 
