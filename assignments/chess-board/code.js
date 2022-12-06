@@ -32,12 +32,11 @@ const emptyBoard = () => {
   drawRect(boardX, boardY, boardSize, boardSize, 'grey', 1);
 };
 
-
 const drawPiece = (text, rank, file) => {
   const sq = boardSize / 8;
   const [x, y] = xy(rank, file);
   drawText(text, x + sq * 0.2, y + sq * 0.75, 'black', boardSize / 8);
-}
+};
 
 emptyBoard();
-drawPiece(WHITE_KING, 0, 0);
+drawPiece(WHITE_KING, 4, 7);
