@@ -191,6 +191,7 @@ const day6 = () => {
       }
       unique.add(s[i]);
       console.log(`i: ${i}; deleting ${toDelete || ''}; adding: ${s[i]}; size: ${unique.size} : ${JSON.stringify([...unique])}`);
+      console.log(s.substring(i - 14, i));
       if (unique.size === length) return i - 1;
     }
   };
