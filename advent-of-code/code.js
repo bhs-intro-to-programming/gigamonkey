@@ -181,6 +181,7 @@ const day5 = () => {
 const day6 = () => {
 
   const findMarker = (s, length) => {
+    const unique = new Set();
     for (let i = 0; i < s.length; i++) {
       //console.log(`deleting ${s[i - length]}; adding: ${s[i]}`);
       if (i > length) {
