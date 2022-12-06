@@ -153,8 +153,7 @@ const day5 = () => {
     for (const line of lines(s)) {
       if (line.trim() === '' || line.match(numPat)) continue;
 
-      const m = line.match(stackPat);
-      if (m) {
+      if (line.match(stackPat)) {
         parseRow(line).forEach((e, i) => {
           if (e) {
             if (!stacks[i]) stacks[i] = [];
@@ -162,8 +161,8 @@ const day5 = () => {
           }
         });
       } else {
-        const m = line.match(movePat);
-        if (m) {
+        let m;
+        if (m = line.match(movePat)) {
           const [_, num, from, to] = m;
           move(Number(num), Number(from), Number(to), stacks);
         }
