@@ -39,5 +39,5 @@ const drawPiece = (text, rank, file) => {
   drawText(text, x + sq * 0.2, y + sq * 0.75, 'black', boardSize / 8);
 }
 
-emptyBoard(boardSize, boardX, boardY);
+emptyBoard();
 drawPiece(WHITE_KING, 0, 0);
