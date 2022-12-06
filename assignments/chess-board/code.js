@@ -27,7 +27,7 @@ const emptyBoard = (size, left, top) => {
   drawRect(left, top, size, size, 'grey', 1);
 };
 
-const xy = (rank, file) => [ boardX + file * boardSize / 8, top + rank * boardSize / 8 ];
+const xy = (rank, file) => [ boardX + file * boardSize / 8, boardY + rank * boardSize / 8 ];
 
 const drawPiece = (text, rank, file) => {
   drawText(text, )
