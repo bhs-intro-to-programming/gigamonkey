@@ -151,7 +151,7 @@ const day5 = () => {
   const move = (s, move) => {
     const stacks = [];
     for (const line of lines(s)) {
-      if (line.trim() === '') continue;
+      if (line.trim() === '' || line.match(numPat)) continue;
 
       const m = line.match(stackPat);
       if (m) {
@@ -161,7 +161,6 @@ const day5 = () => {
             stacks[i].unshift(e);
           }
         });
-      } else if (line.match(numPat)) {
       } else {
         const m = line.match(movePat);
         if (m) {
