@@ -197,5 +197,5 @@ if (false) {
 }
 
 run('day_05.problem', day5().part1, 'QNHWJVJZW');
-run('day_05.test', day5().part2);
+run('day_05.problem', day5().part2);
 
