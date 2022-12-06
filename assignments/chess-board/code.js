@@ -40,6 +40,27 @@ const drawPiece = (text, rank, file) => {
   drawText(text, x + sq * 0.2, y + sq * 0.75, 'black', boardSize / 8);
 };
 
+const drawBoard = (board) => {
+  emptyBoard();
+  for (let row = 0; row < 8; row++) {
+    for (let col = 0; col < 8; col++) {
+      const piece = board[row][col];
+      if (piece !== null) {
+        drawPiece(piece.text, row, col);
+      }
+    }
+  }
+}
+
+// STATE MANIPULATION
+
+const placePiece = (board, piece, row, col) => {
+  board[row][col] = piece;
+};
+
+const piece = (color, type, text) => {
+  return { color, type, text };
+}
 
 
 
@@ -48,7 +69,10 @@ const drawPiece = (text, rank, file) => {
 
 const board = Array(8).fill().map(() => Array(8).fill(null));
 
-emptyBoard();
 
-drawPiece(WHITE_KING, 7, 4);
-drawPiece(WHITE_QUEEN, 7, 3);
+placePiece(board, piece('white', 'king', WHITE_KING), 7, 4);
+placePiece(board, piece('white', 'queen', WHITE_QUEEN), 7, 3);
+
+drawBoard();
+//drawPiece(WHITE_KING, 7, 4);
+//drawPiece(WHITE_QUEEN, 7, 3);
