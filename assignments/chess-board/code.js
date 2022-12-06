@@ -15,6 +15,11 @@ const boardSize = Math.min(width, height) * 0.80;
 const boardX = (width - boardSize) / 2;
 const boardY = (height - boardSize) / 2;
 
+const xy = (rank, file) => [
+  boardX + file * boardSize / 8,
+  boardY + rank * boardSize / 8
+];
+
 const emptyBoard = (size, left, top) => {
   const sq = size / 8;
   for (let i = 0; i < 8; i++) {
@@ -27,7 +32,6 @@ const emptyBoard = (size, left, top) => {
   drawRect(left, top, size, size, 'grey', 1);
 };
 
-const xy = (rank, file) => [ boardX + file * boardSize / 8, boardY + rank * boardSize / 8 ];
 
 const drawPiece = (text, rank, file) => {
   const sq = boardSize / 8;
