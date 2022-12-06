@@ -224,3 +224,4 @@ run('day_06.problem', day6().part2, 2178);
 
 
 
+console.log(day6().part2('mjqjpqmgbljsphdztnvjfqwrcgsmlb'));
