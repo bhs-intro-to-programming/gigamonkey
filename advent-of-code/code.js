@@ -78,7 +78,7 @@ const day3 = () => {
   const upperBase = 'A'.codePointAt(0) - 1;
 
   const compartments = (s) =>
-    trimmedLines(s).map(t => [t.substring(0, t.length / 2), t.substring(t.length / 2)]);
+    lines(s).map(t => [t.substring(0, t.length / 2), t.substring(t.length / 2)]);
 
   const priority = (c) => {
     const cp = c.codePointAt(0);
