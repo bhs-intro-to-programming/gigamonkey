@@ -27,5 +27,5 @@ const emptyBoard = (size, left, top) => {
   drawRect(left, top, size, size, 'grey', 1);
 }
 
-const boardSize = Math.min(width, height) * 0.75;
+const boardSize = Math.min(width, height) * 0.80;
 emptyBoard(boardSize, (width - boardSize) / 2, (height - boardSize) / 2);
