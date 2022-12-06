@@ -182,17 +182,21 @@ const day6 = () => {
   
   const one = 'mjqjpqmgbljsphdztnvjfqwrcgsmlb';
 
-  const part1 = (s) => {
-    for (let i = 0; i < s.length - 4; i++) {
-      if (new Set(s.substring(i, i + 4)).size === 4) {
-        console.log(s.substring(i, i + 4));
-        return i + 4;
+  const findMarker = (s, length) => {
+    for (let i = 0; i < s.length - length; i++) {
+      if (new Set(s.substring(i, i + length)).size === 4) {
+        console.log(s.substring(i, i + length));
+        return i + length;
       }
     }
     return -1;
   };
 
-  return { part1 };
+  const part1 = (s) => findMarker(s, 4);
+
+  const part2 = (s) => findMarker(s, 14);
+
+  return { part1, part2 };
 
 };
 
@@ -211,3 +215,4 @@ if (false) {
 }
 
 run('day_06.problem', day6().part1);
+run('day_06.problem', day6().part2);
