@@ -181,9 +181,9 @@ const day5 = () => {
 const day6 = () => {
 
   const findMarker = (s, length) => {
-    for (let i = 0; i < s.length - length; i++) {
-      if (new Set(s.substring(i, i + length)).size === length) {
-        return i + length;
+    for (let i = length; i < s.length ; i++) {
+      if (new Set(s.substring(i - length, i)).size === length) {
+        return i;
       }
     }
   };
