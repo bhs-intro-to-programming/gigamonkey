@@ -220,7 +220,7 @@ if (false) {
 }
 
 //run('day_06.problem', day6().part1, 1578);
-run('day_06.problem', day6().part2, 2178);
+//run('day_06.problem', day6().part2, 2178);
 
 
 
