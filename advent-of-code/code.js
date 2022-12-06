@@ -197,21 +197,19 @@ const day6 = () => {
 };
 
 // N.B. These won't necessarily output in order due to async fetch.
-const x = async () => {
-  await run('day_01.problem', day1().part1, 74394);
-  await run('day_01.problem', day1().part2, 212836);
-  await run('day_02.problem', day2().part1, 9241);
-  await run('day_02.problem', day2().part2, 14610);
-  await run('day_03.problem', day3().part1, 8185);
-  await run('day_03.problem', day3().part2, 2817);
-  await run('day_04.problem', day4().part1, 657);
-  await run('day_04.problem', day4().part2, 938);
-  await run('day_05.problem', day5().part1, 'QNHWJVJZW');
-  await run('day_05.problem', day5().part2, 'BPCZJLFJW');
-  await run('day_06.problem', day6().part1, 1578);
-  await run('day_06.problem', day6().part2, 2178);
-};
-
-x();
+if (true) {
+  run('day_01.problem', day1().part1, 74394);
+  run('day_01.problem', day1().part2, 212836);
+  run('day_02.problem', day2().part1, 9241);
+  run('day_02.problem', day2().part2, 14610);
+  run('day_03.problem', day3().part1, 8185);
+  run('day_03.problem', day3().part2, 2817);
+  run('day_04.problem', day4().part1, 657);
+  run('day_04.problem', day4().part2, 938);
+  run('day_05.problem', day5().part1, 'QNHWJVJZW');
+  run('day_05.problem', day5().part2, 'BPCZJLFJW');
+  run('day_06.problem', day6().part1, 1578);
+  run('day_06.problem', day6().part2, 2178);
+}
 
 
