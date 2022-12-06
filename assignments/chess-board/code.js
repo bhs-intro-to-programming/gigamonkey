@@ -42,6 +42,7 @@ const emptyBoard = () => {
 };
 
 const drawPiece = (piece, rank, file) => {
+  console.log(JSON.stringify(piece));
   const text = PIECES[piece.color][piece.type];
   const sq = boardSize / 8;
   const [x, y] = xy(rank, file);
@@ -66,8 +67,8 @@ const placePiece = (board, piece, row, col) => {
   board[row][col] = piece;
 };
 
-const piece = (color, type, text) => {
-  return { color, type, text };
+const piece = (color, type ) => {
+  return { color, type };
 }
 
 
@@ -78,8 +79,8 @@ const piece = (color, type, text) => {
 const board = Array(8).fill().map(() => Array(8).fill(null));
 
 
-placePiece(board, piece('white', 'king', ''), 7, 4);
-placePiece(board, piece('white', 'queen', ''), 7, 3);
+placePiece(board, piece('white', 'king'), 7, 4);
+placePiece(board, piece('white', 'queen'), 7, 3);
 
 drawBoard(board);
 //drawPiece(WHITE_KING, 7, 4);
