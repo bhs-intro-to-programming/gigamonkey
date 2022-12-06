@@ -208,8 +208,8 @@ if (true) {
   run('day_04.problem', day4().part2, 938);
   run('day_05.problem', day5().part1, 'QNHWJVJZW');
   run('day_05.problem', day5().part2, 'BPCZJLFJW');
-  run('day_06.problem', day6().part1);
-  run('day_06.problem', day6().part2);
+  run('day_06.problem', day6().part1, 1578);
+  run('day_06.problem', day6().part2, 2178);
 }
 
 
