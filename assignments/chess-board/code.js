@@ -11,6 +11,10 @@ const BLACK_BISHOP = '♝';
 const BLACK_KNIGHT = '♞';
 const BLACK_PAWN = '♟';
 
+const boardSize = Math.min(width, height) * 0.80;
+const left = (width - boardSize) / 2;
+const top = (height - boardSize) / 2;
+
 const emptyBoard = (size, left, top) => {
   const sq = size / 8;
   for (let i = 0; i < 8; i++) {
@@ -24,5 +28,10 @@ const emptyBoard = (size, left, top) => {
   drawRect(left, top, size, size, 'grey', 1);
 };
 
-const boardSize = Math.min(width, height) * 0.80;
-emptyBoard(boardSize, (width - boardSize) / 2, (height - boardSize) / 2);
+const xy = (rank, file) => [ left + file * boardSize / 8, top + rank * boardSize / 8 ];
+
+const drawPiece = (text, rank, file) => {
+  drawText(text, )
+}
+
+emptyBoard(boardSize, );
