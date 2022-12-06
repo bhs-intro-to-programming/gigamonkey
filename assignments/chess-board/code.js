@@ -15,9 +15,9 @@ const boardSize = Math.min(width, height) * 0.80;
 const boardX = (width - boardSize) / 2;
 const boardY = (height - boardSize) / 2;
 
-const xy = (rank, file) => [
-  boardX + file * boardSize / 8,
-  boardY + rank * boardSize / 8
+const xy = (row, col) => [
+  boardX + col * boardSize / 8,
+  boardY + row * boardSize / 8
 ];
 
 const emptyBoard = () => {
