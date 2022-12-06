@@ -1,15 +1,22 @@
-const WHITE_KING = '♔';
-const WHITE_QUEEN = '♕';
-const WHITE_ROOK = '♖';
-const WHITE_BISHOP = '♗';
-const WHITE_KNIGHT = '♘';
-const WHITE_PAWN = '♙';
-const BLACK_KING = '♚';
-const BLACK_QUEEN = '♛';
-const BLACK_ROOK = '♜';
-const BLACK_BISHOP = '♝';
-const BLACK_KNIGHT = '♞';
-const BLACK_PAWN = '♟';
+const PIECES = {
+  black: {
+    king: '♚',
+    queen: '♛',
+    rook: '♜',
+    bishop: '♝',
+    knight: '♞',
+    pawn: '♟',
+  },
+  white: {
+    king: '♔',
+    queen: '♕',
+    rook: '♖',
+    bishop: '♗',
+    knight: '♘',
+    pawn: '♙',
+  }
+};
+
 
 const boardSize = Math.min(width, height) * 0.80;
 const boardX = (width - boardSize) / 2;
@@ -34,7 +41,8 @@ const emptyBoard = () => {
   drawRect(boardX, boardY, boardSize, boardSize, 'grey', 1);
 };
 
-const drawPiece = (text, rank, file) => {
+const drawPiece = (piece, rank, file) => {
+  const text = PIECES[piece.color][piece.type];
   const sq = boardSize / 8;
   const [x, y] = xy(rank, file);
   drawText(text, x + sq * 0.2, y + sq * 0.75, 'black', boardSize / 8);
