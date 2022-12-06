@@ -12,8 +12,8 @@ const BLACK_KNIGHT = '♞';
 const BLACK_PAWN = '♟';
 
 const boardSize = Math.min(width, height) * 0.80;
-const left = (width - boardSize) / 2;
-const top = (height - boardSize) / 2;
+const boardX = (width - boardSize) / 2;
+const boardY = (height - boardSize) / 2;
 
 const emptyBoard = (size, left, top) => {
   const sq = size / 8;
@@ -28,10 +28,10 @@ const emptyBoard = (size, left, top) => {
   drawRect(left, top, size, size, 'grey', 1);
 };
 
-const xy = (rank, file) => [ left + file * boardSize / 8, top + rank * boardSize / 8 ];
+const xy = (rank, file) => [ boardX + file * boardSize / 8, top + rank * boardSize / 8 ];
 
 const drawPiece = (text, rank, file) => {
   drawText(text, )
 }
 
-emptyBoard(boardSize, );
+emptyBoard(boardSize, boardX, boardY);
