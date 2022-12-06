@@ -144,14 +144,12 @@ const day5 = () => {
   };
 
   const crane2 = (num, from, to, stacks) => {
-    for (let i = 0; i < num; i++) {
-      const source = stacks[from - 1];
-      const dest = stacks[to - 1];
-
-      dest.splice(dest.length, 0, ...source.slice(source.length - num));
-      source.splice(source.length - num, num);
-    }
+    const source = stacks[from - 1];
+    const dest = stacks[to - 1];
+    dest.splice(dest.length, 0, ...source.slice(source.length - num));
+    source.splice(source.length - num, num);
   };
+
 
 
   const mover = (s, move) => {
