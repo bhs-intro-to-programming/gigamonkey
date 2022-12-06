@@ -150,7 +150,7 @@ const day5 = () => {
     source.splice(source.length - num, num);
   };
 
-  const mover = (s, move) => {
+  const move = (s, move) => {
     const stacks = [];
     for (const line of lines(s)) {
       if (line.trim() === '') continue;
@@ -175,15 +175,15 @@ const day5 = () => {
     return stacks.map(s => s[s.length - 1]).join('');
   };
 
-  const part1 = (s) => mover(s, crateMover9000);
-  const part2 = (s) => mover(s, crateMover9001);
+  const part1 = (s) => move(s, crateMover9000);
+  const part2 = (s) => move(s, crateMover9001);
 
   return { part1, part2 };
 
 };
 
 // N.B. These won't necessarily output in order due to async fetch.
-if (false) {
+if (true) {
   run('day_01.problem', day1().part1, 74394);
   run('day_01.problem', day1().part2, 212836);
   run('day_02.problem', day2().part1, 9241);
