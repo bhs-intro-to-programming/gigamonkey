@@ -35,7 +35,7 @@ const emptyBoard = () => {
 const drawPiece = (text, rank, file) => {
   const sq = boardSize / 8;
   const [x, y] = xy(rank, file);
-  drawText(text, x + sq * 0.2, y + sq * 0.75, 'black', boardSize / 8);
+  drawText(text, x + sq * 0.2, y + sq * 0.75, 'white', boardSize / 8);
 };
 
 emptyBoard();
