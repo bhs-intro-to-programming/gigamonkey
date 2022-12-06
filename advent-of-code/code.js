@@ -65,9 +65,9 @@ const day2 = () => {
 
   const moves = (r) => ['ABC'.indexOf(r[0]), 'XYZ'.indexOf(r[2])];
 
-  const part1 = (s) => trimmedLines(s).reduce((acc, r) => acc + score(...moves(r)), 0);
+  const part1 = (s) => lines(s).reduce((acc, r) => acc + score(...moves(r)), 0);
 
-  const part2 = (s) => trimmedLines(s).reduce((acc, r) => acc + outcome(...moves(r)), 0);
+  const part2 = (s) => lines(s).reduce((acc, r) => acc + outcome(...moves(r)), 0);
 
   return { part1, part2 };
 };
