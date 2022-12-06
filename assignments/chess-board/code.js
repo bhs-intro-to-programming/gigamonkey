@@ -39,4 +39,4 @@ const drawPiece = (text, rank, file) => {
 };
 
 emptyBoard();
-drawPiece(WHITE_KING, 4, 7);
+drawPiece(WHITE_KING, 7, 4);
