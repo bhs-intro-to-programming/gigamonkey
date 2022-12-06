@@ -97,7 +97,7 @@ const day3 = () => {
 
   const part2 = (s) => {
     let sum = 0;
-    for (const g of groups(trimmedLines(s), 3)) {
+    for (const g of groups(lines(s), 3)) {
       for (const c of intersection(...g)) {
         sum += priority(c);
       }
@@ -112,7 +112,7 @@ const day4 = () => {
 
   const parsePair = (line) => line.split(',').map((x) => x.split('-').map(Number));
 
-  const pairs = (s) => trimmedLines(s).map(parsePair);
+  const pairs = (s) => lines(s).map(parsePair);
 
   const subset = (a, b) => a[0] >= b[0] && a[1] <= b[1];
 
