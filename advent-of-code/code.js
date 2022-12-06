@@ -225,4 +225,4 @@ if (false) {
 
 
 
-console.log(day6().part2('mjqjpqmgbljsphdztnvjfqwrcgsmlb'));
+console.log(day6().part1('mjqjpqmgbljsphdztnvjfqwrcgsmlb'));
