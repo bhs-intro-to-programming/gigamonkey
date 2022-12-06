@@ -185,6 +185,7 @@ const day6 = () => {
   const part1 = (s) => {
     for (let i = 0; i < s.length - 4; i++) {
       if (new Set(s.substring(i, i + 4)).size === 4) {
+        console.log(s.substring(i, i + 4));
         return i;
       }
     }
