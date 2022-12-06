@@ -20,8 +20,8 @@ const xy = (rank, file) => [
   boardY + rank * boardSize / 8
 ];
 
-const emptyBoard = (size, left, top) => {
-  const sq = size / 8;
+const emptyBoard = () => {
+  const sq = boardSize / 8;
   for (let i = 0; i < 8; i++) {
     for (let j = 0; j < 8; j++) {
       const [x, y] = xy(i, j);
@@ -29,7 +29,7 @@ const emptyBoard = (size, left, top) => {
       drawFilledRect(x, y, sq, sq, color);
     }
   }
-  drawRect(left, top, size, size, 'grey', 1);
+  drawRect(boardX, boardY, size, size, 'grey', 1);
 };
 
 
