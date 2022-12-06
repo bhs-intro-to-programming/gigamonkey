@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Utility functions
 
-const lines = (s) => s.split('\n');
+const lines = (s) => s.trimEnd().split('\n');
 
 const trimmedLines = (s) => lines(s.trim());
 
