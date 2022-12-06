@@ -78,8 +78,8 @@ const piece = (color, type, text) => {
 const board = Array(8).fill().map(() => Array(8).fill(null));
 
 
-placePiece(board, piece('white', 'king', WHITE_KING), 7, 4);
-placePiece(board, piece('white', 'queen', WHITE_QUEEN), 7, 3);
+placePiece(board, piece('white', 'king', ''), 7, 4);
+placePiece(board, piece('white', 'queen', ''), 7, 3);
 
 drawBoard(board);
 //drawPiece(WHITE_KING, 7, 4);
