@@ -30,7 +30,9 @@ const emptyBoard = (size, left, top) => {
 const xy = (rank, file) => [ boardX + file * boardSize / 8, boardY + rank * boardSize / 8 ];
 
 const drawPiece = (text, rank, file) => {
-  drawText(text, )
+  const [x, y] = xy(rank, file);
+  drawText(text, x, y, 'black', boardSize / 8);
 }
 
 emptyBoard(boardSize, boardX, boardY);
+drawPiece(WHITE_KING, 0, 0);
