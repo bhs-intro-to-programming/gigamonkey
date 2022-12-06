@@ -55,7 +55,7 @@ const drawBoard = (board) => {
     for (let col = 0; col < 8; col++) {
       const piece = board[row][col];
       if (piece !== null) {
-        drawPiece(piece.text, row, col);
+        drawPiece(piece, row, col);
       }
     }
   }
@@ -67,7 +67,7 @@ const placePiece = (board, piece, row, col) => {
   board[row][col] = piece;
 };
 
-const piece = (color, type ) => {
+const piece = (color, type) => {
   return { color, type };
 }
 
