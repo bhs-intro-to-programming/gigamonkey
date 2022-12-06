@@ -44,20 +44,20 @@ const emptyBoard = (gui) => {
   drawRect(gui.x, gui.y, gui.size, gui.size, 'grey', 1);
 };
 
-const drawPiece = (piece, rank, file) => {
+const drawPiece = (gui, piece, rank, file) => {
   const text = PIECES[piece.color][piece.type];
   const sq = gui.size / 8;
   const [x, y] = xy(rank, file);
   drawText(text, x + sq * 0.2, y + sq * 0.75, 'black', gui.size / 8);
 };
 
-const drawBoard = (board) => {
-  emptyBoard();
+const drawBoard = (board, gui) => {
+  emptyBoard(gui);
   for (let row = 0; row < 8; row++) {
     for (let col = 0; col < 8; col++) {
       const piece = board[row][col];
       if (piece !== null) {
-        drawPiece(piece, row, col);
+        drawPiece(gui, piece, row, col);
       }
     }
   }
