@@ -7,8 +7,8 @@ const numbers = (s) => lines(s).map(t => Number.parseInt(t));
 
 const groups = (xs, n) => {
   let r = [];
-  for (let i = 0; i < xs.length / 3; i++) {
-    r.push(xs.slice(i * 3, (i + 1) * 3));
+  for (let i = 0; i < xs.length / n; i++) {
+    r.push(xs.slice(i * n, (i + 1) * n));
   }
   return r;
 };
