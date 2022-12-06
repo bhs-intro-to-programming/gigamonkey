@@ -184,9 +184,9 @@ const day6 = () => {
     const unique = new Set();
     for (let i = 0; i < s.length; i++) {
       if (i > length) {
-        console.log(`deleting ${s[i - length}; size before: ${unique.size}`);
+        console.log(`deleting ${s[i - length]}; size before: ${unique.size}`);
         unique.delete(s[i - length]);
-        console.log(`deleting ${s[i - length}; size after: ${unique.size}`);
+        console.log(`deleting ${s[i - length]}; size after: ${unique.size}`);
       }
       unique.add(s[i]);
       console.log(`i: ${i}; deleting ${s[i - length] || ''}; adding: ${s[i]}; size: ${unique.size} : ${JSON.stringify([...unique])}`);
