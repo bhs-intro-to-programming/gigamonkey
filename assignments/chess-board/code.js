@@ -21,7 +21,7 @@ const emptyBoard = (size, x, y) => {
       drawFilledRect(x + i * sq, y + j * sq, sq, sq, (i + j) % 2 === 0 ? 'white' : 'grey');
     }
   }
-  drawRect(x, y, sq * 8, sq * 8, 'black', 1);
+  drawRect(x, y, sq * 8, sq * 8, 'grey', 1);
 }
 
 const boardSize = Math.min(width, height) * 0.75;
