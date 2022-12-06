@@ -12,9 +12,9 @@ const BLACK_KNIGHT = '♞';
 const BLACK_PAWN = '♟';
 
 const emptyBoard = (size, left, top) => {
-  const sq = size/10;
-  for (let i = 0; i < 10; i++) {
-    for (let j = 0; j < 10; j++) {
+  const sq = size/8;
+  for (let i = 0; i < 8; i++) {
+    for (let j = 0; j < 8; j++) {
       const x = left + i * sq;
       const y = top + j * sq;
       const color = (i + j) % 2 === 0 ? 'white' : 'grey';
