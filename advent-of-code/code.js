@@ -216,3 +216,5 @@ if (false) {
 
 run('day_06.problem', day6().part1);
 run('day_06.problem', day6().part2);
+
+console.log(day6().part2('mjqjpqmgbljsphdztnvjfqwrcgsmlb'));
