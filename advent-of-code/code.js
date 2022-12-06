@@ -182,7 +182,7 @@ const day6 = () => {
 
   const findMarker = (s, length) => {
     const unique = new Set(s.substring(0, length));
-    for (let i = length; i < length; i++) {
+    for (let i = length; i < s.length; i++) {
       if (unique.size === length) return i;
       unique.delete(s[i - 1]);
       unique.add(s[i]);
