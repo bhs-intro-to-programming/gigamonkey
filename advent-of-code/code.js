@@ -210,4 +210,4 @@ if (false) {
   run('day_05.problem', day5().part2, 'BPCZJLFJW');
 }
 
-console.log(day6().part1('mjqjpqmgbljsphdztnvjfqwrcgsmlb'));
+console.log(day6().part1('bvwbjplbgvbhsrlpgdmjqwftvncz'));
