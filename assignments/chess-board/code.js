@@ -84,6 +84,6 @@ const board = Array(8).fill().map(() => Array(8).fill(null));
 placePiece(board, piece('white', 'king'), 7, 4);
 placePiece(board, piece('white', 'queen'), 7, 3);
 
-drawBoard(board);
+drawBoard(board, gui);
 //drawPiece(WHITE_KING, 7, 4);
 //drawPiece(WHITE_QUEEN, 7, 3);
