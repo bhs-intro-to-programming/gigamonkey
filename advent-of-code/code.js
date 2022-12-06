@@ -181,10 +181,17 @@ const day5 = () => {
 const day6 = () => {
 
   const findMarker = (s, length) => {
-    for (let i = 0; i < s.length - length; i++) {
-      if (new Set(s.substring(i, i + length)).size === length) {
-        return i + length;
+    const unique = new Set();
+    for (let i = 0; i < s.length; i++) {
+      //console.log(`deleting ${s[i - length]}; adding: ${s[i]}`);
+      if (i > length) {
+        unique.delete(s[i - length]);
       }
+      unique.add(s[i]);
+      if (unique.size > (length - length)) {
+        console.log(unique.size + ': ' + JSON.stringify([...unique]));
+      }
+      if (unique.size === length) return i - 1;
     }
   };
 
@@ -197,7 +204,7 @@ const day6 = () => {
 };
 
 // N.B. These won't necessarily output in order due to async fetch.
-if (true) {
+if (false) {
   run('day_01.problem', day1().part1, 74394);
   run('day_01.problem', day1().part2, 212836);
   run('day_02.problem', day2().part1, 9241);
@@ -211,5 +218,9 @@ if (true) {
   run('day_06.problem', day6().part1, 1578);
   run('day_06.problem', day6().part2, 2178);
 }
+
+//run('day_06.problem', day6().part1, 1578);
+run('day_06.problem', day6().part2, 2178);
+
 
 
