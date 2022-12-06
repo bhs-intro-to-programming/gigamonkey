@@ -40,3 +40,4 @@ const drawPiece = (text, rank, file) => {
 
 emptyBoard();
 drawPiece(WHITE_KING, 7, 4);
+drawPiece(WHITE_QUEEN, 7, 3);
