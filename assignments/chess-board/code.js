@@ -18,7 +18,7 @@ const emptyBoard = (size, x, y) => {
   const sq = size/8;
   for (let i = 0; i < 8; i++) {
     for (let j = 0; j < 8; j++) {
-      drawRectangle(x + i * sq, y + j * sq, x + (i + 1) * sq, y + (j + 1) * sq, 'red');
+      drawFilledRect(x + i * sq, y + j * sq, sq, sq, 'red');
     }
   }
 }
