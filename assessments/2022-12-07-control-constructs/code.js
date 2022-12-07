@@ -78,3 +78,11 @@ const pair = (a, b) => {
 
 ////////////////////////////////////////////////////////////////////////
 // Write your code here ...
+
+// if, for, while, function calls
+
+const logIfOk = (x) => {
+  if (isOK(x)) {
+    log(x);
+  }
+}
