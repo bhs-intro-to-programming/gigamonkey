@@ -82,7 +82,7 @@ const pair = (a, b) => {
 // if, for, while, function calls
 
 const logIfOk = (x) => {
-  if (isOK(x)) {
+  if (isOk(x)) {
     log(x);
   }
 }
