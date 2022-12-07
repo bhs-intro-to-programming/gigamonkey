@@ -43,7 +43,7 @@ const sumOfSquares = (n) => {
 }
 
 const pair = (a, b) => {
-  log(`pair: ${a},${b}`);
+  console.log(`pair: ${a},${b}`);
 };
 
 
