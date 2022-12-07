@@ -24,4 +24,4 @@ const isOk = (x) => hash(x) % 2 == 0;
 
 const nextNumber = (n) => hash(n); 
 
-const leet = (n) = n % 1337 === 0;
+const leet = (n) => n % 1337 === 0;
