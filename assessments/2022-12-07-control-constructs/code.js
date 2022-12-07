@@ -126,4 +126,12 @@ const sumOfSquares = (limit) => {
     sum += n ** 2;
   }
   return sum;
+};
+
+const pairs = (n) => {
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < n; j++) {
+      pair(i, j);
+    }
+  }
 }
