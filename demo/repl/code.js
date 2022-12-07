@@ -30,6 +30,6 @@ const random = () => Math.floor(Math.random() * 10000);
 
 const foo = () => {
   let c = 0;
-  while (isOk(random())) { c++ };
+  while (!isLeet(random())) { c++ };
   return c;
 }
