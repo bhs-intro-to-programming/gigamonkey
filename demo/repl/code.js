@@ -33,3 +33,11 @@ const foo = () => {
   while (!isLeet(random())) { c++ };
   return c;
 }
+
+const sumOfSquares = (n) => {
+  let sum = 0;
+  for (let i = 0; i < n; i++){
+    sum += i ** 2;
+  }
+  return sum;
+}
