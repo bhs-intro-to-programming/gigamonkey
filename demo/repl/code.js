@@ -24,12 +24,12 @@ const isOk = (x) => hash(x) % 2 == 0;
 
 const nextNumber = (n) => hash(n); 
 
-const leet = (n) => n % 1337 === 0;
+const isLeet = (n) => n % 1337 === 0;
 
 const random = () => Math.floor(Math.random() * 10000);
 
 const foo = () => {
   let c = 0;
-  while (!leet(random())) { c++ };
+  while (isOk(random())) { c++ };
   return c;
 }
