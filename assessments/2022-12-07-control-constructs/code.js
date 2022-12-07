@@ -89,7 +89,14 @@ const logIfOk = (x) => {
 
 const firstOk = (limit) => {
   for (let n = 0; n < limit; n++) {
-    console.log(n);
     if (isOk(n)) { return n; }
   }
+}
+
+const timeToLeet = () => {
+  let count = 0;
+  while (!isLeet(random10k())) {
+    count++;
+  }
+  return count;
 }
