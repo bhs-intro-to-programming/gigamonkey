@@ -20,4 +20,4 @@ const hash = (o) => {
   return [...s].reduce((hash, c) => ((hash << 5) + hash) + c.codePointAt(0), 5381);
 }
 
-const isGood = (x) => hash(x) % 2 == 0;
+const isOk = (x) => hash(x) % 2 == 0;
