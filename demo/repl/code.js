@@ -14,3 +14,8 @@ const euler1 = (n) => {
   }
   return sum;
 }
+
+const hash = (o) => {
+  const s = JSON.stringify(o);
+  return [...s].reduce((hash, c) => ((hash << 5) + hash) + c.codePointAt(0), 5381);
+}
