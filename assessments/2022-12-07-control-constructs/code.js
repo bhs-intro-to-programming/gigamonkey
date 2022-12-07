@@ -85,13 +85,13 @@ const logIfOk = (x) => {
   if (isOk(x)) {
     log(x);
   }
-}
+};
 
 const firstOk = (limit) => {
   for (let n = 0; n < limit; n++) {
     if (isOk(n)) { return n; }
   }
-}
+};
 
 const timeToLeet = () => {
   let count = 0;
@@ -107,7 +107,7 @@ const classify = (x) => {
   } else {
     recordNotOk(x);
   }
-}
+};
 
 const threewayClassify = (x) => {
   if (isOk(x)) {
@@ -116,4 +116,14 @@ const threewayClassify = (x) => {
     recordMeh(x);
   } else {
     recordNotOk(x);
-  }}
+  }
+};
+
+const sumOfSquares = (limit) => {
+  let sum = 0;
+  for (let n = 0; n < limit; n++) {
+    //sum = sum + n ** 2;
+    sum += n ** 2;
+  }
+  return sum;
+}
