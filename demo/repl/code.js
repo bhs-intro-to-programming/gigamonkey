@@ -27,3 +27,9 @@ const nextNumber = (n) => hash(n);
 const leet = (n) => n % 1337 === 0;
 
 const random = (n) => Math.floor(Math.random() * n);
+
+const foo = () => {
+  let c = 0;
+  while (!leet(random(10000))) { c++ };
+  return c;
+}
