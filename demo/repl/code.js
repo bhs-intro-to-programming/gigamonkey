@@ -42,8 +42,21 @@ const sumOfSquares = (n) => {
   return sum;
 }
 
+
+const log = (x) => {
+  console.log(x);
+}
+
+const recordOk = (x) => {
+  log(`OK: ${x}`);
+}
+
+const recordNotOk = (x) => {
+  log(`NOT OK: ${x}`);
+}
+
 const pair = (a, b) => {
-  console.log(`pair: ${a},${b}`);
+  log(`pair: ${a},${b}`);
 };
 
 
