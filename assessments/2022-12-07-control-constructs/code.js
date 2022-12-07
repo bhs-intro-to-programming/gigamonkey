@@ -99,4 +99,12 @@ const timeToLeet = () => {
     count++;
   }
   return count;
+};
+
+const classify = (x) => {
+  if (isOk(x)) {
+    recordOk(x);
+  } else {
+    recordNotOk(x);
+  }
 }
