@@ -198,10 +198,7 @@ const day6 = () => {
 
 const day7 = () => {
 
-  const dir = (name, parent) => {
-    const d = { name, dirs: {}, files: {}, type: 'dir', parent };
-    return d;
-  };
+  const dir = (name, parent) => ({ name, dirs: {}, files: {}, type: 'dir', parent });
 
   const file = (size, name) => ({ name, size, type: 'file' });
 
