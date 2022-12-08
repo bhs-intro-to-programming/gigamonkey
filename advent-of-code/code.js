@@ -312,7 +312,7 @@ const day8 = () => {
 
   const col = (j, start, end) => range(start, end).map(i => [i, j]);
 
-  const visibility = (tree) => {
+  const visibility = (trees) => {
     const visible = trees.map((row) => Array(row.length).fill(false));
     updateRows(trees, visible);
     updateColumns(trees, visible);
