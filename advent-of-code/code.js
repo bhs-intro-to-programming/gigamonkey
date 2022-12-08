@@ -312,15 +312,12 @@ const day8 = () => {
 
   const col = (j, start, end) => range(start, end).map(i => [i, j]);
 
-  const updateLine = (trees, visible, indices) => {
-    let tallest = -1;
-    indices.forEach(([i, j]) => {
-      if (trees[i][j] > tallest) {
-        tallest = trees[i][j];
-        visible[i][j] = true;
-      }
-    });
-  };
+  const visibility = (tree) => {
+    const visible = trees.map((row) => Array(row.length).fill(false));
+    updateRows(trees, visible);
+    updateColumns(trees, visible);
+    return visible;
+  }
 
   const updateRows = (trees, visible) => {
     for (let i = 0; i < trees.length; i++) {
@@ -336,13 +333,18 @@ const day8 = () => {
     }
   };
 
-  const part1 = (s) => {
-    const trees = forest(s);
-    const visible = trees.map((row) => Array(row.length).fill(false));
-    updateRows(trees, visible);
-    updateColumns(trees, visible);
-    return visible.reduce((a1, row) => a1 + row.reduce((a2, v) => a2 + (v ? 1 : 0), 0), 0);
+  const updateLine = (trees, visible, indices) => {
+    let tallest = -1;
+    indices.forEach(([i, j]) => {
+      if (trees[i][j] > tallest) {
+        tallest = trees[i][j];
+        visible[i][j] = true;
+      }
+    });
   };
+
+  const part1 = (s) => visibility(forest(s)).reduce((a1, row) => a1 + row.reduce((a2, v) => a2 + (v ? 1 : 0), 0), 0);
+  
 
   return { part1 };
 };
