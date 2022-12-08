@@ -282,19 +282,15 @@ const day7 = () => {
   };
 
   const smallestAbove = (d, minimum) => {
-    console.log(`checking size of ${d.name}: ${d.size}; minimum: ${minimum}`);
     return Object.values(d.dirs).reduce((best, x) => {
       if (x.size >= minimum) {
         const b = smallestAbove(x, minimum);
         return b.size < best.size ? b : best;
       } else {
-        console.log(`${x.name} size too small: ${x.size}; sticking with ${best.name}`);
         return best;
       }
     }, d);
   };
-
-  // 25,874,010
 
   const part1 = (s) => sumAtMost100k(loadFS(s));
 
