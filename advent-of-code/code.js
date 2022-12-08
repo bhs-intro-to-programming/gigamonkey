@@ -303,11 +303,11 @@ const day8 = () => {
     trees.map((row) => Array(row.length).fill(false));
 
   const updateRows = (trees, visible) => {
-    trees.forEach((row, i) => {
+    for (let i = 0; i < trees.length; i++) {
       // Left to right
       let tallest = 0;
-      for (let j = 0; j < row.length; j++) {
-        const tree = row[j];
+      for (let j = 0; j < trees[i].length; j++) {
+        const tree = trees[i][j];
         if (tree > tallest) {
           tallest = tree;
           visible[i][j] = true;
@@ -315,8 +315,8 @@ const day8 = () => {
       }
       // Right to left
       tallest = 0;
-      for (let j = row.length - 1; j >= 0; j--) {
-        const tree = row[j];
+      for (let j = trees[i].length - 1; j >= 0; j--) {
+        const tree = trees[i][j];
         if (tree > tallest) {
           tallest = tree;
           visible[i][j] = true;
