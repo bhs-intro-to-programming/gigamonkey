@@ -322,7 +322,7 @@ const day8 = () => {
           visible[i][j] = true;
         }
       }
-    });
+    }
   };
 
   const updateColumns = (trees, visible) => {
