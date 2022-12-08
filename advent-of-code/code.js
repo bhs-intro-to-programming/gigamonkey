@@ -181,7 +181,7 @@ const day5 = () => {
 const day6 = () => {
 
   const findMarker = (s, length) => {
-    for (let i = length; i < s.length ; i++) {
+    for (let i = length; i < s.length; i++) {
       if (new Set(s.substring(i - length, i)).size === length) {
         return i;
       }
@@ -204,7 +204,7 @@ const day7 = () => {
     return d;
   };
 
-  const file = (size, name) => ({name, size, type: 'file'});
+  const file = (size, name) => ({ name, size, type: 'file' });
 
   const toAction = (line) => {
     let m;
@@ -251,6 +251,8 @@ const day7 = () => {
     const root = dir("/", null);
     let current = root;
     actions(s).forEach((a) => {
+      console.log(`Current ${JSON.stringify(current)}`);
+
       current = a(current);
     });
     return root.dirs.map((d) => d.name).join(', ');
