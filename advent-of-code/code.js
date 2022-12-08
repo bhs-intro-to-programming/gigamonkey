@@ -399,4 +399,4 @@ if (false) {
 }
 
 run('day_08.problem', day8().part1, 1690);
-run('day_08.problem', day8().part2);
+run('day_08.problem', day8().part2, 535680);
