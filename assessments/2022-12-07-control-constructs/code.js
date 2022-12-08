@@ -145,7 +145,7 @@ const r = () => {
         if (!(n in ns)) ns[n] = [];
         ns[n].push([i, j, k]);
         if (ns[n].length > 2) {
-          console.log(ns[n]);
+          console.log(`${n}: ${JSON.stringify(ns[n]));
         }
       }
     }
