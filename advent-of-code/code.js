@@ -250,10 +250,10 @@ const day7 = () => {
   const part1 = (s) => {
     const root = dir("/", null);
     let current = root;
-    actions(s).forEach((a) => {
-      console.log(`Current ${JSON.stringify(current)}`);
+    actions(s).forEach((action) => {
+      console.log(`Current ${JSON.stringify(current)}; action: ${action.name}`);
 
-      current = a(current);
+      current = action(current);
     });
     return root.dirs.map((d) => d.name).join(', ');
   };
