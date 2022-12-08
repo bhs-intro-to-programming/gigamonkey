@@ -134,3 +134,19 @@ const pairs = (n) => {
     }
   }
 };
+
+
+const r = () => {
+  const ns = [];
+  for (let i = 0; i < 200; i++) {
+    for (let j = 0; j < 200; j++) {
+      for (let k = 0; k < 200; k++) {
+        const n = i ** 3 + j ** ] + k ** 2;
+        if (n in ns) {
+          console.log(n);
+        }
+        ns[n] = true;
+      }
+    }
+  }
+}
