@@ -373,10 +373,10 @@ const day8 = () => {
 
   const part2 = (s) => {
     const trees = forest(s);
-    return    indices(trees.length, trees[0].length).reduce((max, [i,j]) => 
+    return indices(trees.length, trees[0].length).reduce((max, [i, j]) =>
       Math.max(max, scenic(trees, i, j)), 0);
   };
-  
+
   return { part1, part2 };
 };
 
@@ -396,7 +396,6 @@ if (false) {
   run('day_06.problem', day6().part2, 2178);
   run('day_07.problem', day7().part1, 2061777);
   run('day_07.problem', day7().part2, 4473403);
+  run('day_08.problem', day8().part1, 1690);
+  run('day_08.problem', day8().part2, 535680);
 }
-
-run('day_08.problem', day8().part1, 1690);
-run('day_08.problem', day8().part2, 535680);
