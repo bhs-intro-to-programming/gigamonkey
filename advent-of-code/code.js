@@ -200,7 +200,6 @@ const day7 = () => {
 
   const dir = (name, parent) => {
     const d = { name, dirs: {}, files: {}, type: 'dir', parent };
-    console.log(`Making ${JSON.stringify(d)}`);
     return d;
   };
 
@@ -259,7 +258,6 @@ const day7 = () => {
     let current = root;
     actions(s).forEach((action) => {
       console.log(`Action: ${action}`);
-
       current = action(current, root);
     });
     return root.dirs.map((d) => d.name).join(', ');
