@@ -295,9 +295,28 @@ const day7 = () => {
   return { part1, part2 };
 };
 
+  const row = (i, start, end) => {
+    Array(Math.abs(end - start)).fill().map((_, x) => [i, x + Math.sign(end - start)]);
+  };
+
+
 const day8 = () => {
 
   const forest = (s) => lines(s).map(line => line.split('').map(Number));
+
+  const row = (i, start, end) => {
+    Array(Math.abs(end - start)).fill().map((_, x) => [i, x + Math.sign(end - start)]);
+  };
+
+  const updateLine = (trees, visible, indices) => {
+    let tallest = -1;
+    indices.forEach((i, j) => {
+      if (trees[i][j] > tallest) {
+        tallest = tree;
+        visible[i][j] = true;
+      }
+    });
+  };
 
   const updateRows = (trees, visible) => {
     for (let i = 0; i < trees.length; i++) {
