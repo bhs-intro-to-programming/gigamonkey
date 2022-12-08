@@ -266,10 +266,9 @@ const day7 = () => {
 
   const loadFS = (s) => {
     const root = dir("/", null);
-    let current = root;
-    actions(s).forEach((action) => {
-      current = action(current);
-    });
+    //let current = root;
+    actions(s).reduce((current, action) => action(current), root);
+    //actions(s).forEach((action) => { current = action(current); });
     sizeDirs(root);
     return root;
   };
@@ -317,5 +316,5 @@ if (false) {
 
 }
 
-  run('day_07.problem', day7().part1, 2061777);
-  run('day_07.problem', day7().part2, 4473403);
+run('day_07.problem', day7().part1, 2061777);
+run('day_07.problem', day7().part2, 4473403);
