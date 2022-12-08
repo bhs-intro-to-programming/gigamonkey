@@ -282,8 +282,7 @@ const day7 = () => {
   };
 
   const smallestAbove = (d, minimum) => {
-    console.log(`minimum: ${minimum}`);
-    console.log(`checking size of ${d.name}: ${d.size}`);
+    console.log(`checking size of ${d.name}: ${d.size}; minimum: ${minimum}`);
     return Object.values(d.dirs).reduce((best, x) => {
       if (x.size >= minimum) {
         const b = smallestAbove(x, minimum);
