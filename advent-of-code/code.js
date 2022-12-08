@@ -295,9 +295,7 @@ const day7 = () => {
   return { part1, part2 };
 };
 
-  const row = (i, start, end) => {
-    return Array(Math.abs(end - start)).fill().map((_, x) => [i, start + x * Math.sign(end - start)]);
-  };
+
 
 
 const day8 = () => {
@@ -305,7 +303,7 @@ const day8 = () => {
   const forest = (s) => lines(s).map(line => line.split('').map(Number));
 
   const row = (i, start, end) => {
-    Array(Math.abs(end - start)).fill().map((_, x) => [i, start + x * Math.sign(end - start)]);
+    return Array(Math.abs(end - start)).fill().map((_, x) => [i, start + x * Math.sign(end - start)]);
   };
 
   const updateLine = (trees, visible, indices) => {
@@ -320,24 +318,8 @@ const day8 = () => {
 
   const updateRows = (trees, visible) => {
     for (let i = 0; i < trees.length; i++) {
-      // Left to right
-      let tallest = -1;
-      for (let j = 0; j < trees[i].length; j++) {
-        const tree = trees[i][j];
-        if (tree > tallest) {
-          tallest = tree;
-          visible[i][j] = true;
-        }
-      }
-      // Right to left
-      tallest = -1;
-      for (let j = trees[i].length - 1; j >= 0; j--) {
-        const tree = trees[i][j];
-        if (tree > tallest) {
-          tallest = tree;
-          visible[i][j] = true;
-        }
-      }
+      updateLine(trees, visible, row(i, 0, trees[i].length));
+      updateLine(trees, visible, row(i, trees[i].length - 1, -1));
     }
   };
 
