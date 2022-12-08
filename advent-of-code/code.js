@@ -225,7 +225,7 @@ const day7 = () => {
     }
   };
 
-  const ls = (c) => void 0;
+  const ls = (c) => c;
 
   const direr = (name) => (c) => {
     if (!(name in c.dirs)) {
