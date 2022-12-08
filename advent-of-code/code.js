@@ -257,7 +257,6 @@ const day7 = () => {
     const root = dir("/", null);
     let current = root;
     actions(s).forEach((action) => {
-      console.log(`Action: ${action}`);
       current = action(current, root);
     });
     return Object.keys(root.dirs).map((d) => d.name).join(', ');
