@@ -374,4 +374,4 @@ if (false) {
   run('day_07.problem', day7().part2, 4473403);
 }
 
-run('day_08.test', day8().part1);
+run('day_08.problem', day8().part1);
