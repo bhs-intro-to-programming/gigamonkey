@@ -79,8 +79,6 @@ const pair = (a, b) => {
 ////////////////////////////////////////////////////////////////////////
 // Write your code here ...
 
-// if, for, while, function calls
-
 const logIfOk = (x) => {
   if (isOk(x)) {
     log(x);
@@ -134,4 +132,4 @@ const pairs = (n) => {
       pair(i, j);
     }
   }
-}
+};
