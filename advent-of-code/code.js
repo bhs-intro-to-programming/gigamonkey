@@ -212,6 +212,8 @@ const day7 = () => {
       return direr(m[1]);
     } else if (m = line.match(/^(\d+) (.*)$/)) {
       return filer(Number.parseInt(m[1]), m[2]);
+    } else {
+      return (c) => { console.log(`huh? line: '${line}'`); };
     }
   }
 
