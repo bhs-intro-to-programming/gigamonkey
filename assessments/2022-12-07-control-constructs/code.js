@@ -142,7 +142,7 @@ const r = () => {
     for (let j = i; j < 100; j++) {
       const n = i ** 3 + j ** 3;
       if (!(n in ns)) ns[n] = [];
-      ns[n].push([i, j, k]);
+      ns[n].push([i, j]);
       if (ns[n].length > 1) {
         console.log(`${n}: ${JSON.stringify(ns[n])}`);
         return;
