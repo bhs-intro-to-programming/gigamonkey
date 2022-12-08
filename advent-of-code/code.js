@@ -306,6 +306,10 @@ const day8 = () => {
     return Array(Math.abs(end - start)).fill().map((_, x) => [i, start + x * Math.sign(end - start)]);
   };
 
+  const col = (j, start, end) => {
+    return Array(Math.abs(end - start)).fill().map((_, x) => [start + x * Math.sign(end - start), j]);
+  };
+
   const updateLine = (trees, visible, indices) => {
     let tallest = -1;
     indices.forEach(([i, j]) => {
@@ -325,24 +329,8 @@ const day8 = () => {
 
   const updateColumns = (trees, visible) => {
     for (let j = 0; j < trees[0].length; j++) {
-      // top to bottom
-      let tallest = -1;
-      for (let i = 0; i < trees.length; i++) {
-        const tree = trees[i][j];
-        if (tree > tallest) {
-          tallest = tree;
-          visible[i][j] = true;
-        }
-      }
-      // bottom to top
-      tallest = -1;
-      for (let i = trees.length - 1; i >= 0; i--) {
-        const tree = trees[i][j];
-        if (tree > tallest) {
-          tallest = tree;
-          visible[i][j] = true;
-        }
-      }
+      updateLine(trees, visible, col(j, 0, trees.length));
+      updateLine(trees, visible, col(j, trees.length - 1, -1));
     }
   };
 
