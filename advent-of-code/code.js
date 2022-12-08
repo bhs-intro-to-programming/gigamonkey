@@ -318,6 +318,7 @@ if (false) {
 }
 
 run('day_07.problem', day7().part1, 2061777);
+run('day_07.test', day7().part2, 24933642);
 run('day_07.problem', day7().part2);
 
 
