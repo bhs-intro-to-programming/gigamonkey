@@ -300,7 +300,7 @@ const day8 = () => {
   const forest = (s) => lines(s).map(line => line.split('').map(Number));
 
   const initialVisible = (trees) =>
-    trees.map((row) => Array(row.length).fill().map(false));
+    trees.map((row) => Array(row.length).fill(false));
 
   const updateRows = (trees, visible) => {
     trees.forEach((row, i) => {
