@@ -308,7 +308,7 @@ const day8 = () => {
 
   const updateLine = (trees, visible, indices) => {
     let tallest = -1;
-    indices.forEach((i, j) => {
+    indices.forEach(([i, j]) => {
       if (trees[i][j] > tallest) {
         tallest = tree;
         visible[i][j] = true;
