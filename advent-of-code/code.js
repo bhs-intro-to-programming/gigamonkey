@@ -336,7 +336,7 @@ const day8 = () => {
         }
       }
       // bottom to top
-      let tallest = 0;
+       tallest = 0;
       for (let i = trees.length - 1; i >=0; i--) {
         if (tree > tallest) {
           tallest = tree;
