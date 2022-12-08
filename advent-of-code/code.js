@@ -298,7 +298,7 @@ const day7 = () => {
 
   const part1 = (s) => sumAtMost100k(loadFS(s));
 
-  const part2 = (s) => smallestAbove(root, FS_SIZE - root.size).size;
+  const part2 = (s) => smallestAbove(loadFS(s), FS_SIZE - root.size).size;
 
   return { part1, part2 };
 }
