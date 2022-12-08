@@ -198,6 +198,10 @@ const day6 = () => {
 
 const day7 = () => {
 
+  const dir = (name, parent) => ({ name, dirs: [], files: [], type: 'dir'});
+
+  const file = (size, name) => ({name, size, type: 'file'});
+
   const toAction = (line) => {
     let m;
     if (m = line.match(/^cd (.*)$/)) {
@@ -207,23 +211,50 @@ const day7 = () => {
     } else if (m = line.match(/^dir (.*)$/)) {
       return direr(m[1]);
     } else if (m = line.match(/^(\d+) (.*)$/)) {
-      return filer(m[1], m[2]);
+      return filer(Number.parseInt(m[1]), m[2]);
     }
   }
 
-  const cder = (name) => {}
+  const cder = (name) => {
+    if (name === "..") {
+      return (c) => c.parent;
+    } else {
+      return (c) => c[name];
+    }
+  };
+
+  const ls = (c) => void 0;
+
+  const direr = (name) => (c) => {
+    if (!(name in c)) {
+      c[name] = dir(name, c);
+    }
+    return c;
+  };
+
+  const filer = (size, name) => (c) => {
+    if (!(name in c)) {
+      c[name] = file(size, name);
+    }
+    return c;
+  };
 
   const actions = (s) => lines(s).map(toAction);
 
   const part1 = (s) => {
-    
+    const root = dir("/", null);
+    const current = root;
+    actions(s).forEach((a) => {
+      current = a(current);
+    });
+    return root.dirs.map((d) => d.name).join(', ');
   };
 
   return { part1 };
 }
 
 // N.B. These won't necessarily output in order due to async fetch.
-if (true) {
+if (false) {
   run('day_01.problem', day1().part1, 74394);
   run('day_01.problem', day1().part2, 212836);
   run('day_02.problem', day2().part1, 9241);
@@ -237,5 +268,7 @@ if (true) {
   run('day_06.problem', day6().part1, 1578);
   run('day_06.problem', day6().part2, 2178);
 }
+
+run('day_07.problem', day7().part1);
 
 
