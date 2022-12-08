@@ -292,13 +292,14 @@ const day7 = () => {
       },
       d);
     };
-
-
   };
 
   const part1 = (s) => sumAtMost100k(loadFS(s));
 
-  const part2 = (s) => smallestAbove(loadFS(s), FS_SIZE - root.size).size;
+  const part2 = (s) => {
+    const root = loadFS(s);
+    return smallestAbove(root, FS_SIZE - root.size).size;
+  };
 
   return { part1, part2 };
 }
