@@ -283,8 +283,9 @@ const day7 = () => {
 
   const smallestAbove = (d, minimum) => {
     return Object.values(d.dirs).reduce((best, x) => {
-      if (x.size >= minimum && x.size < best.size) {
-        return smallestAbove(x, minimum);
+      if (x.size >= minimum) {
+        const b = smallestAbove(x, minimum);
+        return b.size < best.size ? b : best;
       } else {
         return best;
       }
