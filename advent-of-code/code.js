@@ -294,11 +294,13 @@ const day7 = () => {
     }, d);
   };
 
+  // 25,874,010
+
   const part1 = (s) => sumAtMost100k(loadFS(s));
 
   const part2 = (s) => {
     const root = loadFS(s);
-    return smallestAbove(root, FS_SIZE - root.size).size;
+    return smallestAbove(root, NEEDED - (FS_SIZE - root.size)).size;
   };
 
   return { part1, part2 };
