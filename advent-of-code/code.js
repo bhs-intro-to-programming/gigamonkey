@@ -255,13 +255,30 @@ const day7 = () => {
 
   const actions = (s) => lines(s).map(toAction);
 
+  const sizeDirs = (dir) => {
+    let size = dir.files.reduce((acc, f) => acc + f.size, 0);
+    dir.dirs.forEach((d) => {
+      if (!('size' in d)) {
+        sizeDirs(d);
+      }
+      size += d.size;
+    });
+    dir.size = size;
+  };
+
+  const dirsAbove = (d, max, dirs) => {
+    
+
+  }
+
   const part1 = (s) => {
     const root = dir("/", null);
     let current = root;
     actions(s).forEach((action) => {
       current = action(current, root);
     });
-    return Object.keys(root.dirs).join(', ');
+    sizeDirs(root);
+    return Object.values(root.dirs).map(d => d.size);;
   };
 
   return { part1 };
