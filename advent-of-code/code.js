@@ -299,15 +299,8 @@ const day8 = () => {
 
   const forest = (s) => lines(s).map(line => line.split('').map(Number));
 
-  const initialVisible = (trees) => {
-    return trees.map((row, i) => {
-      if (i === 0 || i === trees.length - 1) {
-        return row.map(() => true);
-      } else {
-        return row.map((_, j) => j === 0 || j === row.length - 1 ? true : false);
-      }
-    });
-  }
+  const initialVisible = (trees) =>
+    Array(trees.length).fill().map((row) => Array(row.length).fill().map(false));
 
   const updateRows = (trees, visible) => {
     trees.forEach((row, i) => {
@@ -336,7 +329,8 @@ const day8 = () => {
   const part1 = (s) => {
     const trees = forest(s);
     const visible = initialVisible(trees);
-    return JSON.stringify(trees, null, 2);
+    updateRows(visible);
+    return JSON.stringify(visible);
 
   };
 
