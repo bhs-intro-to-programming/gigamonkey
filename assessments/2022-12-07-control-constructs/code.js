@@ -140,14 +140,14 @@ const r = () => {
   const ns = [];
   for (let i = 0; i < 100; i++) {
     for (let j = i; j < 100; j++) {
-        const n = i ** 3 + j ** 3;
-        if (!(n in ns)) ns[n] = [];
-        ns[n].push([i, j, k]);
-        if (ns[n].length > 1) {
-          console.log(`${n}: ${JSON.stringify(ns[n])}`);
-          return;
-        }
+      const n = i ** 3 + j ** 3;
+      if (!(n in ns)) ns[n] = [];
+      ns[n].push([i, j, k]);
+      if (ns[n].length > 1) {
+        console.log(`${n}: ${JSON.stringify(ns[n])}`);
+        return;
       }
     }
+
   }
 }
