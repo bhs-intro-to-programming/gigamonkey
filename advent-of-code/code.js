@@ -297,11 +297,11 @@ const day7 = () => {
 
 const day8 = () => {
 
-  const trees = (s) => lines(s).map(line => line.split('').map(Number));
+  const forest = (s) => lines(s).map(line => line.split('').map(Number));
 
-  const initialVisible = (forest) => {
-    return forest.map((row, i) => {
-      if (i === 0 || i === forest.length - 1) {
+  const initialVisible = (trees) => {
+    return trees.map((row, i) => {
+      if (i === 0 || i === trees.length - 1) {
         return row.map(() => true);
       } else {
         return row.map((_, j) => j === 0 || j === row.length - 1 ? true : false);
@@ -309,10 +309,34 @@ const day8 = () => {
     });
   }
 
+  const updateRows = (trees, visible) => {
+    trees.forEach((row, i) => {
+      // Left to right
+      let tallest = 0;
+      for (let j = 0; j < row.length; j++) {
+        const tree = row[j];
+        if (tree > leftTallest) {
+          tallest = tree;
+          visible[i][j] = true;
+        }
+      }
+      // Right to left
+      tallest = 0;
+      for (let j = row.length - 1; j >= 0; j--) {
+        const tree = row[j];
+        if (tree > tallest) {
+          tallest = tree;
+          visible[i][j] = true;
+        }
+      }
+    }
+  }
+
+
   const part1 = (s) => {
-    const forest = trees(s);
-    const visible = initialVisible(forest);
-    return JSON.stringify(forest, null, 2);
+    const trees = trees(s);
+    const visible = initialVisible(trees);
+    return JSON.stringify(trees, null, 2);
 
   };
 
