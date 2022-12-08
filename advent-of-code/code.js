@@ -343,10 +343,21 @@ const day8 = () => {
     });
   };
 
+  const lookNorth = (trees, i, j) => {
+    const h = trees[i][j];
+    let count = 0;
+    for (const [r, c] of col(j, i - 1, -1)) {
+      if (trees[r][c] <= h) count++;
+      if (trees[r][c] >= h) break;
+    }
+    return count;
+  };
+
   const part1 = (s) => visibility(forest(s)).reduce((a1, row) => a1 + row.reduce((a2, v) => a2 + (v ? 1 : 0), 0), 0);
   
+  const part2 = (s) => lookNorth(forest(s)[1][2]);
 
-  return { part1 };
+  return { part1, part2 };
 };
 
 // N.B. These won't necessarily output in order due to async fetch.
@@ -368,3 +379,4 @@ if (false) {
 }
 
 run('day_08.problem', day8().part1, 1690);
+run('day_08.test', day8().part2);
