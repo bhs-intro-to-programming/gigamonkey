@@ -317,7 +317,7 @@ const day8 = () => {
     updateRows(trees, visible);
     updateColumns(trees, visible);
     return visible;
-  }
+  };
 
   const updateRows = (trees, visible) => {
     for (let i = 0; i < trees.length; i++) {
@@ -366,7 +366,8 @@ const day8 = () => {
   const scenic = (trees, i, j) =>
     [north, south, east, west].reduce((acc, f) => acc * f(trees, i, j), 1);
 
-  const part1 = (s) => visibility(forest(s)).reduce((a1, row) => a1 + row.reduce((a2, v) => a2 + (v ? 1 : 0), 0), 0);
+  const part1 = (s) =>
+    visibility(forest(s)).reduce((a1, row) => a1 + row.reduce((a2, v) => a2 + (v ? 1 : 0), 0), 0);
 
   const part2 = (s) => {
     const trees = forest(s);
