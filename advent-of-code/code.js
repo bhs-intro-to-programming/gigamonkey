@@ -293,7 +293,30 @@ const day7 = () => {
   };
 
   return { part1, part2 };
-}
+};
+
+const day8 = () => {
+
+  const trees = (s) => lines(s).map(line => line.split(''));
+
+  const initialVisible = (forest) => {
+    return trees.map((row, i) => {
+      if (i === 0 || i === trees.length - 1) {
+        return row.map(() => true);
+      } else {
+        return row.map((tree, j) => j === 0 || j === row.length - 1 ? true : false);
+      }
+    });
+  }
+
+  const part1 = (s) => {
+    const forest = trees(s);
+    return initialVisible(forest);
+
+  };
+
+  return { part1 };
+};
 
 // N.B. These won't necessarily output in order due to async fetch.
 if (false) {
@@ -312,3 +335,5 @@ if (false) {
   run('day_07.problem', day7().part1, 2061777);
   run('day_07.problem', day7().part2, 4473403);
 }
+
+run('day_08.test', day8().part1);
