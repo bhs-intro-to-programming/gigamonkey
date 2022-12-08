@@ -239,6 +239,7 @@ const day7 = () => {
 
   const direr = (name) => (c) => {
     if (!(name in c.dirs)) {
+      console.log(`adding dir ${name} to ${c.name}`);
       c.dirs[name] = dir(name, c);
     }
     return c;
@@ -246,7 +247,7 @@ const day7 = () => {
 
   const filer = (size, name) => (c) => {
     if (!(name in c)) {
-      console.log(`adding ${name} to ${c.name}`);
+      console.log(`adding file ${name} to ${c.name}`);
       c.files[name] = file(size, name);
     }
     return c;
