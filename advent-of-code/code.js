@@ -297,7 +297,7 @@ const day7 = () => {
 
 const day8 = () => {
 
-  const trees = (s) => lines(s).map(line => line.split(''));
+  const trees = (s) => lines(s).map(line => line.split('').map(Number));
 
   const initialVisible = (forest) => {
     return forest.map((row, i) => {
@@ -311,7 +311,8 @@ const day8 = () => {
 
   const part1 = (s) => {
     const forest = trees(s);
-    return JSON.stringify(initialVisible(forest));
+    const visible = initialVisible(forest);
+    return JSON.stringify(forest);
 
   };
 
