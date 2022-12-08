@@ -349,7 +349,7 @@ const day8 = () => {
     const h = trees[r][c];
     let count = 0;
     for (const [r, c] of rest) {
-      if (trees[r][c] <= h) count++;
+      count++;
       if (trees[r][c] >= h) break;
     }
     return count;
