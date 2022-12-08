@@ -224,6 +224,13 @@ const day7 = () => {
   const cder = (name) => {
     if (name === "..") {
       return (c) => c.parent;
+    } else if (name === "/") {
+      return (c) => {
+        while (c.parent !== null) {
+          c = c.parent;
+        }
+        return c;
+      }
     } else {
       return (c) => c.dirs[name];
     }
@@ -253,7 +260,7 @@ const day7 = () => {
     actions(s).forEach((action) => {
       console.log(`Current ${JSON.stringify(current)}; action: ${action.name}`);
 
-      current = action(current);
+      current = action(current, root);
     });
     return root.dirs.map((d) => d.name).join(', ');
   };
