@@ -266,9 +266,9 @@ const day7 = () => {
     dir.size = size;
   };
 
-  const dirsAbove = (d, max, dirs) => {
-    
-
+  const sumAtMost100k = (d) => {
+    const below = Object.values(d.dirs).reduce((acc, d) => acc + sumAtMost100k(d), 0);
+    return below + (d.size <= 100_000 ? d.size : 0);
   }
 
   const part1 = (s) => {
@@ -278,7 +278,7 @@ const day7 = () => {
       current = action(current, root);
     });
     sizeDirs(root);
-    return Object.values(root.dirs).map(d => d.size);;
+    return sumAtMost100k(root);
   };
 
   return { part1 };
