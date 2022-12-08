@@ -323,13 +323,34 @@ const day8 = () => {
         }
       }
     });
-  }
+  };
 
+  const updateColumns = (trees, visible) => {
+    for (let j = 0; j < trees[0].length; j++) {
+      // top to bottom
+      let tallest = 0;
+      for (let i = 0; i < trees.length; i++) {
+        if (tree > tallest) {
+          tallest = tree;
+          visible[i][j] = true;
+        }
+      }
+      // bottom to top
+      let tallest = 0;
+      for (let i = trees.length - 1; i >=0; i--) {
+        if (tree > tallest) {
+          tallest = tree;
+          visible[i][j] = true;
+        }
+      }
+    }
+  };
 
   const part1 = (s) => {
     const trees = forest(s);
     const visible = initialVisible(trees);
     updateRows(trees, visible);
+    updateColumns(trees, visible);
     return JSON.stringify(visible);
 
   };
