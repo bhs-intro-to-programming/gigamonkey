@@ -355,32 +355,21 @@ const day8 = () => {
     return count;
   };
 
-  const lookNorth = (trees, i, j) => look(trees, col(j, i, -1));
+  const north = (trees, i, j) => look(trees, col(j, i, -1));
 
-  const lookSouth = (trees, i, j) => look(trees, col(j, i, trees.length));
+  const south = (trees, i, j) => look(trees, col(j, i, trees.length));
 
-  const lookWest = (trees, i, j) => look(trees, row(i, j, -1));
+  const west = (trees, i, j) => look(trees, row(i, j, -1));
 
-  const lookEast = (trees, i, j) => look(trees, row(i, j, trees[i].length));
+  const east = (trees, i, j) => look(trees, row(i, j, trees[i].length));
 
-  const XlookNorth = (trees, i, j) => {
-    const h = trees[i][j];
-    let count = 0;
-    for (const [r, c] of col(j, i - 1, -1)) {
-      if (trees[r][c] <= h) count++;
-      if (trees[r][c] >= h) break;
-    }
-    return count;
-  };
+  const scenic = (trees, i, j) =
+    [north, south, east, west].reduce((acc, f) = acc + f(trees, i, j), 0);
 
   const part1 = (s) => visibility(forest(s)).reduce((a1, row) => a1 + row.reduce((a2, v) => a2 + (v ? 1 : 0), 0), 0);
-  
-  const part2 = (s) => [
-    lookNorth(forest(s), 1, 2),
-    lookSouth(forest(s), 1, 2),
-    lookEast(forest(s), 1, 2),
-    lookWest(forest(s), 1, 2),
-  ];
+
+  const part2 = (s) => scenic(trees, 1, 2);
+
   return { part1, part2 };
 };
 
