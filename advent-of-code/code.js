@@ -22,7 +22,7 @@ const intersection = (...args) => {
 };
 
 const indices = (rows, cols) =>
-  Array(rows).fill().map((_, i) => Array(cols).fill().map((_, j) => [i, j]));
+  Array(rows).fill().flatMap((_, i) => Array(cols).fill().map((_, j) => [i, j]));
 
 const show = (s) => s;
 
