@@ -296,7 +296,7 @@ const day7 = () => {
 };
 
   const row = (i, start, end) => {
-    Array(Math.abs(end - start)).fill().map((_, x) => [i, x + Math.sign(end - start)]);
+    return Array(Math.abs(end - start)).fill().map((_, x) => [i, x + Math.sign(end - start)]);
   };
 
 
