@@ -239,7 +239,6 @@ const day7 = () => {
 
   const direr = (name) => (c) => {
     if (!(name in c.dirs)) {
-      //console.log(`adding dir ${name} to ${c.name}`);
       c.dirs[name] = dir(name, c);
     }
     return c;
@@ -247,7 +246,6 @@ const day7 = () => {
 
   const filer = (size, name) => (c) => {
     if (!(name in c)) {
-      //console.log(`adding file ${name} to ${c.name}`);
       c.files[name] = file(size, name);
     }
     return c;
@@ -270,7 +268,7 @@ const day7 = () => {
     const root = dir("/", null);
     let current = root;
     actions(s).forEach((action) => {
-      current = action(current, root);
+      current = action(current);
     });
     sizeDirs(root);
     return root;
@@ -303,7 +301,7 @@ const day7 = () => {
 }
 
 // N.B. These won't necessarily output in order due to async fetch.
-if (true) {
+if (false) {
   run('day_01.problem', day1().part1, 74394);
   run('day_01.problem', day1().part2, 212836);
   run('day_02.problem', day2().part1, 9241);
@@ -316,8 +314,8 @@ if (true) {
   run('day_05.problem', day5().part2, 'BPCZJLFJW');
   run('day_06.problem', day6().part1, 1578);
   run('day_06.problem', day6().part2, 2178);
-  run('day_07.problem', day7().part1, 2061777);
-  run('day_07.problem', day7().part2, 4473403);
+
 }
 
-
+  run('day_07.problem', day7().part1, 2061777);
+  run('day_07.problem', day7().part2, 4473403);
