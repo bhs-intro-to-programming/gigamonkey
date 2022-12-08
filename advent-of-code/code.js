@@ -289,7 +289,7 @@ const day7 = () => {
         const b = smallestAbove(x, minimum);
         return b.size < best.size ? b : best;
       } else {
-        console.log(`${x.name} size too small: ${x.size}; sticking with ${best.name}`);
+        console.log(`${x.name} size too small: ${minimum - x.size}; sticking with ${best.name}`);
         return best;
       }
     }, d);
