@@ -139,8 +139,8 @@ const pairs = (n) => {
 const r = () => {
   const ns = [];
   for (let i = 0; i < 10; i++) {
-    for (let j = 0; j < 10; j++) {
-      for (let k = 0; k < 10; k++) {
+    for (let j = i; j < 10; j++) {
+      for (let k = j; k < 10; k++) {
         const n = i ** 3 + j ** 3 + k ** 3;
         if (!(n in ns)) ns[n] = [];
         ns[n].push([i, j, k]);
