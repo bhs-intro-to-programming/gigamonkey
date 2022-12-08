@@ -257,7 +257,7 @@ const day7 = () => {
 
   const sizeDirs = (dir) => {
     let size = Object.values(dir.files).reduce((acc, f) => acc + f.size, 0);
-    dir.dirs.forEach((d) => {
+    Object.values(dir.dirs).forEach((d) => {
       if (!('size' in d)) {
         sizeDirs(d);
       }
