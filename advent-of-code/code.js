@@ -355,9 +355,10 @@ const day8 = () => {
     return count;
   };
 
-  const lookNorth = (trees, i, j) => {
-    return look(trees, col(j, i, -1));
-  }
+  const lookNorth = (trees, i, j) => look(trees, col(j, i, -1));
+
+  const lookSouth = (trees, i, j) => look(trees, col(j, i, trees.length));
+
 
   const XlookNorth = (trees, i, j) => {
     const h = trees[i][j];
@@ -371,7 +372,7 @@ const day8 = () => {
 
   const part1 = (s) => visibility(forest(s)).reduce((a1, row) => a1 + row.reduce((a2, v) => a2 + (v ? 1 : 0), 0), 0);
   
-  const part2 = (s) => lookNorth(forest(s), 1, 2);
+  const part2 = (s) => lookSouth(forest(s), 1, 2);
 
   return { part1, part2 };
 };
