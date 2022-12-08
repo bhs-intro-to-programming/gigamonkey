@@ -245,7 +245,7 @@ const day7 = () => {
 
   const part1 = (s) => {
     const root = dir("/", null);
-    const current = root;
+    let current = root;
     actions(s).forEach((a) => {
       current = a(current);
     });
