@@ -253,24 +253,22 @@ const day7 = () => {
 
   const actions = (s) => lines(s).map(toAction);
 
-  const sizeDirs = (dir) => {
+  const sized = (dir) => {
     let size = Object.values(dir.files).reduce((acc, f) => acc + f.size, 0);
     Object.values(dir.dirs).forEach((d) => {
       if (!('size' in d)) {
-        sizeDirs(d);
+        sized(d);
       }
       size += d.size;
     });
     dir.size = size;
+    return dir;
   };
 
   const loadFS = (s) => {
     const root = dir("/", null);
-    //let current = root;
     actions(s).reduce((current, action) => action(current), root);
-    //actions(s).forEach((action) => { current = action(current); });
-    sizeDirs(root);
-    return root;
+    return sized(root);
   };
 
   const sumAtMost100k = (d) => {
