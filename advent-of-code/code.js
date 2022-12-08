@@ -269,6 +269,6 @@ if (false) {
   run('day_06.problem', day6().part2, 2178);
 }
 
-run('day_07.problem', day7().part1);
+run('day_07.test', day7().part1);
 
 
