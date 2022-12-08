@@ -353,7 +353,7 @@ const day8 = () => {
     const visible = initialVisible(trees);
     updateRows(trees, visible);
     updateColumns(trees, visible);
-    return visible.reduce((a1, row) => a1 + row.reduce((a2, v) => a2 + v ? 1 : 0, 0), 0);
+    return visible.reduce((a1, row) => a1 + row.reduce((a2, v) => a2 + (v ? 1 : 0), 0), 0);
   };
 
   return { part1 };
