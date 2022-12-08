@@ -254,14 +254,13 @@ const day7 = () => {
   const actions = (s) => lines(s).map(toAction);
 
   const sized = (dir) => {
-    let size = Object.values(dir.files).reduce((acc, f) => acc + f.size, 0);
+    dir.size = Object.values(dir.files).reduce((acc, f) => acc + f.size, 0);
     Object.values(dir.dirs).forEach((d) => {
       if (!('size' in d)) {
         sized(d);
       }
-      size += d.size;
+      dir.size += d.size;
     });
-    dir.size = size;
     return dir;
   };
 
