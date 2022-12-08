@@ -142,6 +142,7 @@ const r = () => {
     for (let j = 0; j < 10; j++) {
       for (let k = 0; k < 10; k++) {
         const n = i ** 3 + j ** 3 + k ** 3;
+        if (!(n in ns)) ns[n] = [];
         ns[n].push([i, j, k]);
         if (ns[n].length > 2) {
           console.log(ns[n]);
