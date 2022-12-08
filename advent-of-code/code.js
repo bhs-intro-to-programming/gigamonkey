@@ -364,7 +364,7 @@ const day8 = () => {
   const east = (trees, i, j) => look(trees, row(i, j, trees[i].length));
 
   const scenic = (trees, i, j) =>
-    [north, south, east, west].reduce((acc, f) = acc + f(trees, i, j), 0);
+    [north, south, east, west].reduce((acc, f) => acc + f(trees, i, j), 0);
 
   const part1 = (s) => visibility(forest(s)).reduce((a1, row) => a1 + row.reduce((a2, v) => a2 + (v ? 1 : 0), 0), 0);
 
