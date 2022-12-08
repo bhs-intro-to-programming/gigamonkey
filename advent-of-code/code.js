@@ -308,7 +308,7 @@ const day8 = () => {
       let tallest = 0;
       for (let j = 0; j < row.length; j++) {
         const tree = row[j];
-        if (tree > leftTallest) {
+        if (tree > tallest) {
           tallest = tree;
           visible[i][j] = true;
         }
