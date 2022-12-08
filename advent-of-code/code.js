@@ -260,7 +260,7 @@ const day7 = () => {
       console.log(`Action: ${action}`);
       current = action(current, root);
     });
-    return root.dirs.map((d) => d.name).join(', ');
+    return Object.keys(root.dirs).map((d) => d.name).join(', ');
   };
 
   return { part1 };
