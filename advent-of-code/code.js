@@ -371,9 +371,11 @@ const day8 = () => {
 
   const part1 = (s) => visibility(forest(s)).reduce((a1, row) => a1 + row.reduce((a2, v) => a2 + (v ? 1 : 0), 0), 0);
 
-  const part2 = (s) => 
-    forest(s).reduce((max, row, i, trees) => 
-      Math.max(max, row.reduce((max, _, j) => Math.max(max, scenic(trees, i, j)), 0)), 0);
+  const part2 = (s) => {
+    const trees = forest(s);
+    return    indices(trees.length, trees[0].length).reduce((max, [i,j]) => 
+      Math.max(max, scenic(trees, i, j)), 0);
+  };
   
   return { part1, part2 };
 };
