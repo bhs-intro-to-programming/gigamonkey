@@ -258,7 +258,7 @@ const day7 = () => {
     const root = dir("/", null);
     let current = root;
     actions(s).forEach((action) => {
-      console.log(`Current ${JSON.stringify(current)}; action: ${action}`);
+      console.log(`Action: ${action}`);
 
       current = action(current, root);
     });
