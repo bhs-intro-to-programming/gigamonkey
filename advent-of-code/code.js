@@ -198,7 +198,11 @@ const day6 = () => {
 
 const day7 = () => {
 
-  const dir = (name, parent) => ({ name, dirs: {}, files: {}, type: 'dir', parent });
+  const dir = (name, parent) => {
+    const d = { name, dirs: {}, files: {}, type: 'dir', parent };
+    console.log(`Making ${JSON.stringify(d)}`);
+    return d;
+  };
 
   const file = (size, name) => ({name, size, type: 'file'});
 
