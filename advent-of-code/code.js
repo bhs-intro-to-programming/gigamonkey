@@ -330,14 +330,16 @@ const day8 = () => {
       // top to bottom
       let tallest = 0;
       for (let i = 0; i < trees.length; i++) {
+        const tree = trees[i][j];
         if (tree > tallest) {
           tallest = tree;
           visible[i][j] = true;
         }
       }
       // bottom to top
-       tallest = 0;
-      for (let i = trees.length - 1; i >=0; i--) {
+      tallest = 0;
+      for (let i = trees.length - 1; i >= 0; i--) {
+        const tree = trees[i][j];
         if (tree > tallest) {
           tallest = tree;
           visible[i][j] = true;
