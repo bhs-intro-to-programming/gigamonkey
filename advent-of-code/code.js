@@ -299,9 +299,6 @@ const day8 = () => {
 
   const forest = (s) => lines(s).map(line => line.split('').map(Number));
 
-  const initialVisible = (trees) =>
-    trees.map((row) => Array(row.length).fill(false));
-
   const updateRows = (trees, visible) => {
     for (let i = 0; i < trees.length; i++) {
       // Left to right
@@ -350,7 +347,7 @@ const day8 = () => {
 
   const part1 = (s) => {
     const trees = forest(s);
-    const visible = initialVisible(trees);
+    const visible = trees.map((row) => Array(row.length).fill(false));
     updateRows(trees, visible);
     updateColumns(trees, visible);
     return visible.reduce((a1, row) => a1 + row.reduce((a2, v) => a2 + (v ? 1 : 0), 0), 0);
