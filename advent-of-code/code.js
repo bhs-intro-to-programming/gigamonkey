@@ -204,9 +204,9 @@ const day7 = () => {
 
   const toAction = (line) => {
     let m;
-    if (m = line.match(/^cd (.*)$/)) {
+    if (m = line.match(/^\$ cd (.*)$/)) {
       return cder(m[1]);
-    } else if (line === 'ls') {
+    } else if (line === '$ ls') {
       return ls;
     } else if (m = line.match(/^dir (.*)$/)) {
       return direr(m[1]);
