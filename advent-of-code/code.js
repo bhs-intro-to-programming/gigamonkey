@@ -284,7 +284,7 @@ const day7 = () => {
   const smallestAbove = (d, minimum) => {
     return Object.values(d.dirs).reduce((best, x) => {
       if (x.size >= minimum && x.size < best.size) {
-        return x;
+        return smallestAbove(x, minimum);
       } else {
         return best;
       }
@@ -315,9 +315,9 @@ if (false) {
   run('day_05.problem', day5().part2, 'BPCZJLFJW');
   run('day_06.problem', day6().part1, 1578);
   run('day_06.problem', day6().part2, 2178);
+  run('day_07.problem', day7().part1, 2061777);
 }
 
-run('day_07.problem', day7().part1, 2061777);
 run('day_07.test', day7().part2, 24933642);
 run('day_07.problem', day7().part2);
 
