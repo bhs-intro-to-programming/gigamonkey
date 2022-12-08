@@ -198,7 +198,7 @@ const day6 = () => {
 
 const day7 = () => {
 
-  const dir = (name, parent) => ({ name, dirs: [], files: [], type: 'dir'});
+  const dir = (name, parent) => ({ name, dirs: {}, files: {}, type: 'dir'});
 
   const file = (size, name) => ({name, size, type: 'file'});
 
@@ -221,22 +221,22 @@ const day7 = () => {
     if (name === "..") {
       return (c) => c.parent;
     } else {
-      return (c) => c[name];
+      return (c) => c.dirs[name];
     }
   };
 
   const ls = (c) => void 0;
 
   const direr = (name) => (c) => {
-    if (!(name in c)) {
-      c[name] = dir(name, c);
+    if (!(name in c.dirs)) {
+      c.dirs[name] = dir(name, c);
     }
     return c;
   };
 
   const filer = (size, name) => (c) => {
     if (!(name in c)) {
-      c[name] = file(size, name);
+      c.files[name] = file(size, name);
     }
     return c;
   };
