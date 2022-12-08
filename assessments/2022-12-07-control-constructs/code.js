@@ -87,7 +87,9 @@ const logIfOk = (x) => {
 
 const firstOk = (limit) => {
   for (let n = 0; n < limit; n++) {
-    if (isOk(n)) { return n; }
+    if (isOk(n)) {
+      return n;
+    }
   }
 };
 
@@ -120,15 +122,14 @@ const threewayClassify = (x) => {
 const sumOfSquares = (limit) => {
   let sum = 0;
   for (let n = 0; n < limit; n++) {
-    //sum = sum + n ** 2;
-    sum += n ** 2;
+    sum = sum + n ** 2;
   }
   return sum;
 };
 
 const pairs = (n) => {
-  for (let i = 1; i < n; i++) {
-    for (let j = 1; j <  n; j++) {
+  for (let i = 1; i <= n; i++) {
+    for (let j = 1; j <= n; j++) {
       pair(i, j);
     }
   }
