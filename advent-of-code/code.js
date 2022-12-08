@@ -196,6 +196,32 @@ const day6 = () => {
 
 };
 
+const day7 = () => {
+
+  const toAction = (line) => {
+    let m;
+    if (m = line.match(/^cd (.*)$/)) {
+      return cder(m[1]);
+    } else if (line === 'ls') {
+      return ls;
+    } else if (m = line.match(/^dir (.*)$/)) {
+      return direr(m[1]);
+    } else if (m = line.match(/^(\d+) (.*)$/)) {
+      return filer(m[1], m[2]);
+    }
+  }
+
+  const cder = (name) => {}
+
+  const actions = (s) => lines(s).map(toAction);
+
+  const part1 = (s) => {
+    
+  };
+
+  return { part1 };
+}
+
 // N.B. These won't necessarily output in order due to async fetch.
 if (true) {
   run('day_01.problem', day1().part1, 74394);
