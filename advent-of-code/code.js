@@ -300,11 +300,11 @@ const day8 = () => {
   const trees = (s) => lines(s).map(line => line.split(''));
 
   const initialVisible = (forest) => {
-    return trees.map((row, i) => {
-      if (i === 0 || i === trees.length - 1) {
+    return forest.map((row, i) => {
+      if (i === 0 || i === forest.length - 1) {
         return row.map(() => true);
       } else {
-        return row.map((tree, j) => j === 0 || j === row.length - 1 ? true : false);
+        return row.map((_, j) => j === 0 || j === row.length - 1 ? true : false);
       }
     });
   }
