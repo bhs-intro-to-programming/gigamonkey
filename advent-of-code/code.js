@@ -309,8 +309,6 @@ if (false) {
   run('day_05.problem', day5().part2, 'BPCZJLFJW');
   run('day_06.problem', day6().part1, 1578);
   run('day_06.problem', day6().part2, 2178);
-
+  run('day_07.problem', day7().part1, 2061777);
+  run('day_07.problem', day7().part2, 4473403);
 }
-
-run('day_07.problem', day7().part1, 2061777);
-run('day_07.problem', day7().part2, 4473403);
