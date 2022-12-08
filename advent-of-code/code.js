@@ -310,7 +310,7 @@ const day8 = () => {
     let tallest = -1;
     indices.forEach(([i, j]) => {
       if (trees[i][j] > tallest) {
-        tallest = tree;
+        tallest = trees[i][j];
         visible[i][j] = true;
       }
     });
