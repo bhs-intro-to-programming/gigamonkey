@@ -312,7 +312,7 @@ const day8 = () => {
   const part1 = (s) => {
     const forest = trees(s);
     const visible = initialVisible(forest);
-    return JSON.stringify(forest);
+    return JSON.stringify(forest, null, 2);
 
   };
 
