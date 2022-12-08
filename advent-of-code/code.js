@@ -305,7 +305,7 @@ const day8 = () => {
   const updateRows = (trees, visible) => {
     for (let i = 0; i < trees.length; i++) {
       // Left to right
-      let tallest = 0;
+      let tallest = -1;
       for (let j = 0; j < trees[i].length; j++) {
         const tree = trees[i][j];
         if (tree > tallest) {
@@ -314,7 +314,7 @@ const day8 = () => {
         }
       }
       // Right to left
-      tallest = 0;
+      tallest = -1;
       for (let j = trees[i].length - 1; j >= 0; j--) {
         const tree = trees[i][j];
         if (tree > tallest) {
@@ -328,7 +328,7 @@ const day8 = () => {
   const updateColumns = (trees, visible) => {
     for (let j = 0; j < trees[0].length; j++) {
       // top to bottom
-      let tallest = 0;
+      let tallest = -1;
       for (let i = 0; i < trees.length; i++) {
         const tree = trees[i][j];
         if (tree > tallest) {
@@ -337,7 +337,7 @@ const day8 = () => {
         }
       }
       // bottom to top
-      tallest = 0;
+      tallest = -1;
       for (let i = trees.length - 1; i >= 0; i--) {
         const tree = trees[i][j];
         if (tree > tallest) {
