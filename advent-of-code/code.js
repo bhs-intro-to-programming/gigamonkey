@@ -296,7 +296,7 @@ const day7 = () => {
 };
 
   const row = (i, start, end) => {
-    return Array(Math.abs(end - start)).fill().map((_, x) => [i, x + Math.sign(end - start)]);
+    return Array(Math.abs(end - start)).fill().map((_, x) => [i, start + x * Math.sign(end - start)]);
   };
 
 
@@ -305,7 +305,7 @@ const day8 = () => {
   const forest = (s) => lines(s).map(line => line.split('').map(Number));
 
   const row = (i, start, end) => {
-    Array(Math.abs(end - start)).fill().map((_, x) => [i, x + Math.sign(end - start)]);
+    Array(Math.abs(end - start)).fill().map((_, x) => [i, start + x * Math.sign(end - start)]);
   };
 
   const updateLine = (trees, visible, indices) => {
