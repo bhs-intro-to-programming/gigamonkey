@@ -246,6 +246,7 @@ const day7 = () => {
 
   const filer = (size, name) => (c) => {
     if (!(name in c)) {
+      console.log(`adding ${name} to ${c.name}`);
       c.files[name] = file(size, name);
     }
     return c;
