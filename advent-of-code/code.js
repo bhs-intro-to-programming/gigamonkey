@@ -282,16 +282,13 @@ const day7 = () => {
   };
 
   const smallestAbove = (d, minimum) => {
-    if (d.size >= minimum) {
-      return Object.values(d.dirs).reduce((best, x) => {
-        if (x.size >= minimum && x.size < best.size) {
-          return x;
-        } else {
-          return best;
-        }
-      },
-      d);
-    };
+    return Object.values(d.dirs).reduce((best, x) => {
+      if (x.size >= minimum && x.size < best.size) {
+        return x;
+      } else {
+        return best;
+      }
+    }, d);
   };
 
   const part1 = (s) => sumAtMost100k(loadFS(s));
