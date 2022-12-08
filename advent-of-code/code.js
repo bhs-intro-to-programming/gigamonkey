@@ -298,9 +298,6 @@ const day7 = () => {
   return { part1, part2 };
 };
 
-
-
-
 const day8 = () => {
 
   const forest = (s) => lines(s).map(line => line.split('').map(Number));
