@@ -302,13 +302,15 @@ const day8 = () => {
 
   const forest = (s) => lines(s).map(line => line.split('').map(Number));
 
-  const row = (i, start, end) => {
-    return Array(Math.abs(end - start)).fill().map((_, x) => [i, start + x * Math.sign(end - start)]);
-  };
+  const range = (start, end) => {
+    const len = Math.abs(end - start);
+    const sign = Math.sign(end - start);
+    return Array(len).fill().map((_, x) => start + x * sign);
+  }
 
-  const col = (j, start, end) => {
-    return Array(Math.abs(end - start)).fill().map((_, x) => [start + x * Math.sign(end - start), j]);
-  };
+  const row = (i, start, end) => range(start, end).map(j => [i, j]);
+
+  const col = (j, start, end) => range(start, end).map(i => [i, j]);
 
   const updateLine = (trees, visible, indices) => {
     let tallest = -1;
