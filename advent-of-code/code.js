@@ -198,6 +198,9 @@ const day6 = () => {
 
 const day7 = () => {
 
+  const FS_SIZE = 70_000_000;
+  const NEEDED = 30_000_000;
+
   const dir = (name, parent) => ({ name, dirs: {}, files: {}, type: 'dir', parent });
 
   const file = (size, name) => ({ name, size, type: 'file' });
@@ -276,11 +279,28 @@ const day7 = () => {
   const sumAtMost100k = (d) => {
     const below = Object.values(d.dirs).reduce((acc, d) => acc + sumAtMost100k(d), 0);
     return below + (d.size <= 100_000 ? d.size : 0);
-  }
+  };
+
+  const smallestAbove = (d, minimum) => {
+    if (d.size >= minimum) {
+      return Object.values(d.dirs).reduce((best, x) => {
+        if (x.size >= minimum && x.size < best.size) {
+          return x;
+        } else {
+          return best;
+        }
+      },
+      d);
+    };
+
+
+  };
 
   const part1 = (s) => sumAtMost100k(loadFS(s));
 
-  return { part1 };
+  const part2 = (s) => smallestAbove(root, FS_SIZE - root.size).size;
+
+  return { part1, part2 };
 }
 
 // N.B. These won't necessarily output in order due to async fetch.
@@ -300,5 +320,6 @@ if (false) {
 }
 
 run('day_07.problem', day7().part1);
+run('day_07.problem', day7().part2);
 
 
