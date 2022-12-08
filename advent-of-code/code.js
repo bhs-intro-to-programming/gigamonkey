@@ -343,7 +343,23 @@ const day8 = () => {
     });
   };
 
+  const look = (trees, line) => {
+    const [r, c] = line[0];
+    const rest = line.slice(1);
+    const h = trees[r][c];
+    let count = 0;
+    for (const [r, c] of rest) {
+      if (trees[r][c] <= h) count++;
+      if (trees[r][c] >= h) break;
+    }
+    return count;
+  };
+
   const lookNorth = (trees, i, j) => {
+    return look(trees, col(j, i, -1));
+  }
+
+  const XlookNorth = (trees, i, j) => {
     const h = trees[i][j];
     let count = 0;
     for (const [r, c] of col(j, i - 1, -1)) {
