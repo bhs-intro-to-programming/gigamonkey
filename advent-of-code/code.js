@@ -261,7 +261,7 @@ const day7 = () => {
     actions(s).forEach((action) => {
       current = action(current, root);
     });
-    return Object.keys(root.dirs).map((d) => d.name).join(', ');
+    return Object.keys(root.dirs).join(', ');
   };
 
   return { part1 };
