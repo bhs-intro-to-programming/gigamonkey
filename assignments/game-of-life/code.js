@@ -66,7 +66,7 @@ let board = makeArray(Math.floor(height / cellsize), Math.floor(width / cellsize
 
 const redraw = (t) => {
   if (Math.floor(t) % 500 === 0) {
-    console.log(`redrawing ${t}`);
+    //console.log(`redrawing ${t}`);
     clear()
     board = whatLives(board)
     drawTheThings(board, cellsize)
