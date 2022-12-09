@@ -213,18 +213,17 @@ const day7 = () => {
       return current.parent;
     } else if (m = line.match(/^\$ cd (.*)$/)) {
       return current.dirs[m[1]];
-    } else if (line === '$ ls') {
-      return current;
-    } else if (m = line.match(/^dir (.*)$/)) {
-      const name = m[1];
-      if (!(name in current.dirs)) {
-        current.dirs[name] = dir(name, current);
-      }
-      return current;
-    } else if (m = line.match(/^(\d+) (.*)$/)) {
-      const [size, name] = [Number(m[1]), m[2]];
-      if (!(name in current)) {
-        current.files[name] = file(size, name);
+    } else {
+      if (m = line.match(/^dir (.*)$/)) {
+        const name = m[1];
+        if (!(name in current.dirs)) {
+          current.dirs[name] = dir(name, current);
+        }
+      } else if (m = line.match(/^(\d+) (.*)$/)) {
+        const [size, name] = [Number(m[1]), m[2]];
+        if (!(name in current)) {
+          current.files[name] = file(size, name);
+        }
       }
       return current;
     }
@@ -430,5 +429,5 @@ if (false) {
   run('day_09.problem', day9().part2, 2653);
 }
 
-  run('day_07.problem', day7().part1, 2061777);
-  run('day_07.problem', day7().part2, 4473403);
+run('day_07.problem', day7().part1, 2061777);
+run('day_07.problem', day7().part2, 4473403);
