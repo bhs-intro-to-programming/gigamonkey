@@ -429,7 +429,7 @@ const day9 = () => {
   const part2 = (s) => execute(s, 10);
 
   return { part1, part2 };
-}
+};
 
 // N.B. These won't necessarily output in order due to async fetch.
 if (true) {
