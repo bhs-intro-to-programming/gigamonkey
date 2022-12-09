@@ -80,3 +80,8 @@ const pair = (a, b) => {
 // Write your code here ...
 
 
+const logIfOk = (x) => {
+  if (isOk(x)) {
+    log(x);
+  }
+};
