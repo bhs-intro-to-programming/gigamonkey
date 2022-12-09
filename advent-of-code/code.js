@@ -422,11 +422,11 @@ const day9 = () => {
         visited.add(`${tail.x},${tail.y}`);
       }
     });
-    console.log(JSON.stringify(knots));
     return visited.size;
   };
 
   const part1 = (s) => execute(s, 2);
+  const part2 = (s) => execute(s, 10);
 
   return { part1 };
 }
@@ -453,3 +453,5 @@ if (false) {
 
 run('day_09.test', day9().part1, 13);
 run('day_09.problem', day9().part1, 6563);
+run('day_09.test', day9().part2);
+run('day_09.problem', day9().part2);
