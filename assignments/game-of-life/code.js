@@ -53,7 +53,7 @@ const whatLives = (b) => {
     newboard[i] = [];
     for (let j = 0; j < b[i].length; j++) {
       const n = neighbors(b, i, j);
-      console.log(n);
+      //console.log(n);
       const alive = b[i][j] === 1 ? (n === 2 || n === 3) : n === 3;
       newboard[i][j] = alive ? 1 : 0;
     }
@@ -65,7 +65,7 @@ const whatLives = (b) => {
 let board = makeArray(Math.floor(height / cellsize), Math.floor(width / cellsize));
 
 const redraw = (t) => {
-  if (Math.floor(t) % 1000 === 0) {
+  if (Math.floor(t) % 500 === 0) {
     console.log(`redrawing ${t}`);
     clear()
     board = whatLives(board)
