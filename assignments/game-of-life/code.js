@@ -65,6 +65,7 @@ drawTheThings(board, cellsize);
 
 const redraw = (t) => {
   if (t % 1000 === 0) {
+    console.log('redrawing');
     clear()
     board = whatLives(board)
     drawTheThings(board, cellsize)
