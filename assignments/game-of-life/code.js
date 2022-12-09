@@ -1,4 +1,3 @@
-drawFilledRect(0, 0, width, height, 'black')
 const cellsize = 5
 
 const makeArrayRow = (columns) => {
@@ -21,6 +20,8 @@ const makeArray = (rows, columns) => {
 }
 
 const drawTheThings = (b, cellsize) => {
+  drawFilledRect(0, 0, width, height, 'black')
+
   for (let i = 0; i < b.length; i++) {
     for (let j = 0; j < b[i].length; j++) {
       if (b[i][j] === 1) {
