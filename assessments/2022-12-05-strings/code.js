@@ -27,6 +27,6 @@ const capitalize = (s) => {
 };
 
 const capitalizeName = (name) => {
-  const space = s.indexOf(' ');
-  return capitalize(s.substring(0, space)) + ' ' + capitalize(s.substring(space + 1));
+  const space = name.indexOf(' ');
+  return capitalize(name.substring(0, space)) + ' ' + capitalize(name.substring(space + 1));
 };
