@@ -48,9 +48,9 @@ const neighbors = (b, y, x) => {
 
 const whatLives = (b) => {
   const newboard = [];
-  for (let i = 0; i < board.length; i++) {
+  for (let i = 0; i < b.length; i++) {
     newboard.push([]);
-    for (let j = 0; j < board[i].length; j++) {
+    for (let j = 0; j < b[i].length; j++) {
       const n = neighbors(b, i, j);
       const alive = b[i][j] === 1 ? (n === 2 || n === 3) : n === 3;
       newboard.push(alive ? 1 : 0);
