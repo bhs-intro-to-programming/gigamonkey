@@ -64,14 +64,17 @@ const whatLives = (b) => {
 
 let board = makeArray(Math.floor(height / cellsize), Math.floor(width / cellsize));
 
+let next = 0;
+
 const redraw = (t) => {
-  if (Math.floor(t) % 500 === 0) {
+  if (t > next) {
     //console.log(`redrawing ${t}`);
     clear()
     board = whatLives(board)
     drawTheThings(board, cellsize)
+    next += 1000;
   } else {
-    console.log(`not redrawing ${t}`);
+    //console.log(`not redrawing ${t}`);
 
   }
 }
