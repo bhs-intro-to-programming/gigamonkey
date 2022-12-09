@@ -376,7 +376,22 @@ const day8 = () => {
 };
 
 const day9 = () => {
-  return {};
+
+  const movers = {
+    L: (knot) => { knot.y++; },
+    R: (knot) => { knot.x++; },
+    U: (knot) => { knot.y++; },
+    D: (knot) => { knot.y--; },
+  };
+
+  const doLine = (line, current) => {
+    const m = line.match(/^([LRUD]) (\d+)$/);
+    const [ mover, steps ] = [movers[m[1]], Number(m[2])];
+  }
+
+  const part1 = (s) => {};
+
+  return { part1 };
 }
 
 // N.B. These won't necessarily output in order due to async fetch.
