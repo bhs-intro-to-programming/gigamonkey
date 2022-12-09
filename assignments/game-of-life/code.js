@@ -4,7 +4,7 @@ const cellsize = 5
 const makeArrayRow = (columns) => {
   let row = []
   for (let i = 0; i < columns; i++) {
-    if (Math.random() < .2) {
+    if (Math.random() < 0.2) {
       row.push(1)
     } else {
       row.push(0)
@@ -64,9 +64,11 @@ let board = makeArray(Math.floor(height / cellsize), Math.floor(width / cellsize
 drawTheThings(board, cellsize);
 
 const redraw = (t) => {
-  clear()
-  board = whatLives(board)
-  drawTheThings(board, cellsize)
+  if (t % 1000 === 0) {
+    clear()
+    board = whatLives(board)
+    drawTheThings(board, cellsize)
+  }
 }
 
 animate(redraw)
