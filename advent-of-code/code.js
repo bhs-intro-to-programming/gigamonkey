@@ -400,21 +400,32 @@ const day9 = () => {
     }
   };
 
-  const execute = (line, knots) => {
+  const parseLine = (line) => {
     const m = line.match(/^([LRUD]) (\d+)$/);
-    const [ mover, steps ] = [movers[m[1]], Number(m[2])];
-    for (let i = 0; i < steps; i++) {
-      knots.forEach((k, i) => {
-        if (i === 0) {
-          mover(k);
-        } else {
-          follow(knots[i - 1], k);
-        }
-      });
-    }
-  }
+    return [movers[m[1]], Number(m[2])];
+  };
 
-  const part1 = (s) => {};
+  const execute = (s, n) => {
+    const knots = Array(n).fill().map(() => ({ x: 0, y: 0 }));
+    const tail = knots[n - 1];
+
+    const visited = new Set();
+    lines(s).map(parseLine).forEach(([mover, steps]) => {
+      for (let i = 0; i < steps; i++) {
+        knots.forEach((k, i) => {
+          if (i === 0) {
+            mover(k);
+          } else {
+            follow(knots[i - 1], k);
+          }
+        })
+        visited.add(`${tail.x},${tail.y}`);
+      }
+    });
+    return visited.size;
+  };
+
+  const part1 = (s) => execute(s, n);
 
   return { part1 };
 }
