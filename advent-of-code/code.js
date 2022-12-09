@@ -451,5 +451,5 @@ if (false) {
   run('day_08.problem', day8().part2, 535680);
 }
 
-run('day_09.test', day9().part1);
-run('day_09.problem', day9().part1);
+run('day_09.test', day9().part1, 13);
+run('day_09.problem', day9().part1, 6563);
