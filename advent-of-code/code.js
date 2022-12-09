@@ -412,13 +412,13 @@ const day9 = () => {
     const visited = new Set(['0,0']);
     lines(s).map(parseLine).forEach(([mover, steps]) => {
       for (let i = 0; i < steps; i++) {
-        knots.forEach((k, j) => {
-          if (j === 0) {
+        knots.forEach((k, i) => {
+          if (i === 0) {
             mover(k);
           } else {
-            follow(knots[j - 1], k);
+            follow(knots[i - 1], k);
           }
-        })
+        });
         visited.add(`${tail.x},${tail.y}`);
       }
     });
