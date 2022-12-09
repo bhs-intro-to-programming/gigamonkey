@@ -425,7 +425,7 @@ const day9 = () => {
     return visited.size;
   };
 
-  const part1 = (s) => execute(s, n);
+  const part1 = (s) => execute(s, 2);
 
   return { part1 };
 }
