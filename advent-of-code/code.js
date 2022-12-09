@@ -201,9 +201,9 @@ const day7 = () => {
   const FS_SIZE = 70_000_000;
   const NEEDED = 30_000_000;
 
-  const dir = (name, parent) => ({ name, dirs: {}, files: {}, type: 'dir', parent });
+  const dir = (name, parent) => ({ name, dirs: {}, files: {}, parent });
 
-  const file = (size, name) => ({ name, size, type: 'file' });
+  const file = (size, name) => ({ name, size });
 
   const doLine = (line, current, root) => {
     let m;
