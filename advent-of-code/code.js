@@ -384,9 +384,34 @@ const day9 = () => {
     D: (knot) => { knot.y--; },
   };
 
-  const doLine = (line, current) => {
+  const follow = (k1, k2) => {
+    const xdist = Math.abs(k1.x - k2.x);
+    const ydist = Math.abs(k1.y - k2.y);
+    if (xdist === 2) {
+      k2.x += Math.sign(xdist);
+      if (ydist > 0) {
+        k2.y += Math.sign(ydist);
+      }
+    } else if (ydist === 2) {
+      k2.y += Math.sign(ydist);
+      if (xdist > 0) {
+        k2.x += Math.sign(xdist);
+      }
+    }
+  };
+
+  const execute = (line, knots) => {
     const m = line.match(/^([LRUD]) (\d+)$/);
     const [ mover, steps ] = [movers[m[1]], Number(m[2])];
+    for (let i = 0; i < steps; i++) {
+      knots.forEach((k, i) => {
+        if (i === 0) {
+          mover(k);
+        } else {
+          follow(knots[i - 1], k);
+        }
+      });
+    }
   }
 
   const part1 = (s) => {};
