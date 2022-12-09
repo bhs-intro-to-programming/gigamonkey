@@ -230,54 +230,6 @@ const day7 = () => {
     }
   };
 
-  const toAction = (line) => {
-    let m;
-    if (m = line.match(/^\$ cd (.*)$/)) {
-      return cder(m[1]);
-    } else if (line === '$ ls') {
-      return ls;
-    } else if (m = line.match(/^dir (.*)$/)) {
-      return direr(m[1]);
-    } else if (m = line.match(/^(\d+) (.*)$/)) {
-      return filer(Number.parseInt(m[1]), m[2]);
-    } else {
-      return (c) => { console.log(`huh? line: '${line}'`); };
-    }
-  };
-
-  const cder = (name) => {
-    if (name === "..") {
-      return (c) => c.parent;
-    } else if (name === "/") {
-      return (c) => {
-        while (c.parent !== null) {
-          c = c.parent;
-        }
-        return c;
-      }
-    } else {
-      return (c) => c.dirs[name];
-    }
-  };
-
-  const ls = (c) => c;
-
-  const direr = (name) => (c) => {
-    if (!(name in c.dirs)) {
-      c.dirs[name] = dir(name, c);
-    }
-    return c;
-  };
-
-  const filer = (size, name) => (c) => {
-    if (!(name in c)) {
-      c.files[name] = file(size, name);
-    }
-    return c;
-  };
-
-  const actions = (s) => lines(s).map(toAction);
-
   const sized = (dir) => {
     if (!('size' in dir)) {
       dir.size = Object.values(dir.files).reduce((acc, f) => acc + f.size, 0);
@@ -291,7 +243,6 @@ const day7 = () => {
   const loadFS = (s) => {
     const root = dir("/", null);
     lines(s).reduce((current, line) => doLine(line, current, root), root);
-    //actions(s).reduce((current, action) => action(current), root);
     return sized(root);
   };
 
