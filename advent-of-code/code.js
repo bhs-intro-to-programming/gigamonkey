@@ -378,7 +378,7 @@ const day8 = () => {
 const day9 = () => {
 
   const movers = {
-    L: (knot) => { knot.y++; },
+    L: (knot) => { knot.x--; },
     R: (knot) => { knot.x++; },
     U: (knot) => { knot.y++; },
     D: (knot) => { knot.y--; },
