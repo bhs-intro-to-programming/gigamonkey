@@ -409,7 +409,7 @@ const day9 = () => {
     const knots = Array(n).fill().map(() => ({ x: 0, y: 0 }));
     const tail = knots[n - 1];
 
-    const visited = new Set();
+    const visited = new Set(['0,0']);
     lines(s).map(parseLine).forEach(([mover, steps]) => {
       for (let i = 0; i < steps; i++) {
         knots.forEach((k, i) => {
