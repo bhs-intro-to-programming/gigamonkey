@@ -393,9 +393,9 @@ const day9 = () => {
         k2.y += Math.sign(dy);
       }
     } else if (Math.abs(dy) === 2) {
-      k2.y += Math.sign(dx);
+      k2.y += Math.sign(dy);
       if (Math.abs(dx) > 0) {
-        k2.x += Math.sign(dy);
+        k2.x += Math.sign(dx);
       }
     }
   };
