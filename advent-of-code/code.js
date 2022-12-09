@@ -389,12 +389,12 @@ const day9 = () => {
     const dy = k1.y - k2.y;
     if (Math.abs(dx) === 2) {
       k2.x += Math.sign(dx);
-      if (ydist > 0) {
+      if (Math.abs(dy) > 0) {
         k2.y += Math.sign(dy);
       }
     } else if (Math.abs(dy) === 2) {
       k2.y += Math.sign(dx);
-      if (xdist > 0) {
+      if (Math.abs(dx) > 0) {
         k2.x += Math.sign(dy);
       }
     }
