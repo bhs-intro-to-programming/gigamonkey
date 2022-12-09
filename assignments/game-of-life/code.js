@@ -46,9 +46,9 @@ const neighbors = (b, y, x) => {
   return n
 }
 
-const whatLives = (b, cellsize) => {
-  for (let i = 0; i < height / cellsize; i++) {
-    for (let j = 0; j < width / cellsize; j++) {
+const whatLives = (b) => {
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
       if (neighbors(b, i, j) > 2) {
         b[i][j] = 1
       } else {
@@ -67,7 +67,7 @@ drawTheThings(board, cellsize);
 
 const redraw = (t) => {
   clear()
-  whatLives(board, cellsize)
+  whatLives(board)
   drawTheThings(board, cellsize)
 }
 
