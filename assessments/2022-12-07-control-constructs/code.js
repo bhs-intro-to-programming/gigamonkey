@@ -94,3 +94,10 @@ const firstOk = (limit) => {
   }
 };
 
+const timeToLeet = () => {
+  let count = 0;
+  while (!isLeet(random10k())) {
+    count++;
+  }
+  return count;
+}
