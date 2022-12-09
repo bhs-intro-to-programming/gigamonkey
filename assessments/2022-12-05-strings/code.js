@@ -10,10 +10,14 @@ const middle = (s) => {
   return s.substring(s.length * 0.25, s.length * 0.75);
 };
 
-const pair = (a, b) => {
-  return a + ' and ' + b;
+const pair = (s1, s2) => {
+  return s1 + ' and ' + s2;
 };
 
 const containsX = (s) => {
   return s.indexOf('x') !== -1;
+};
+
+const slug = (s1, s2, s3) => {
+  return (s1 + '-' + s2 + '-' + s3).toLowerCase();
 };
