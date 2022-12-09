@@ -388,14 +388,14 @@ const day9 = () => {
     const dx = k1.x - k2.x;
     const dy = k1.y - k2.y;
     if (Math.abs(dx) === 2) {
-      k2.x += Math.sign(xdist);
+      k2.x += Math.sign(dx);
       if (ydist > 0) {
-        k2.y += Math.sign(ydist);
+        k2.y += Math.sign(dy);
       }
     } else if (Math.abs(dy) === 2) {
-      k2.y += Math.sign(ydist);
+      k2.y += Math.sign(dx);
       if (xdist > 0) {
-        k2.x += Math.sign(xdist);
+        k2.x += Math.sign(dy);
       }
     }
   };
