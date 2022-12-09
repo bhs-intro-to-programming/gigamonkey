@@ -385,14 +385,14 @@ const day9 = () => {
   };
 
   const follow = (k1, k2) => {
-    const xdist = Math.abs(k1.x - k2.x);
-    const ydist = Math.abs(k1.y - k2.y);
-    if (xdist === 2) {
+    const dx = k1.x - k2.x;
+    const dy = k1.y - k2.y;
+    if (Math.abs(dx) === 2) {
       k2.x += Math.sign(xdist);
       if (ydist > 0) {
         k2.y += Math.sign(ydist);
       }
-    } else if (ydist === 2) {
+    } else if (Math.abs(dy) === 2) {
       k2.y += Math.sign(ydist);
       if (xdist > 0) {
         k2.x += Math.sign(xdist);
