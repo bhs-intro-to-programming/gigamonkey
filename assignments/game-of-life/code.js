@@ -60,7 +60,7 @@ const whatLives = (b) => {
 }
 
 
-const board = makeArray(Math.floor(height / cellsize), Math.floor(width / cellsize));
+let board = makeArray(Math.floor(height / cellsize), Math.floor(width / cellsize));
 drawTheThings(board, cellsize);
 
 const redraw = (t) => {
