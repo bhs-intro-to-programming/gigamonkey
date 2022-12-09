@@ -222,9 +222,11 @@ const day7 = () => {
       }
       return current;
     } else if (m = line.match(/^(\d+) (.*)$/)) {
-      return filer(Number.parseInt(m[1]), m[2]);
-    } else {
-      return (c) => { console.log(`huh? line: '${line}'`); };
+      const [size, name] = [Number(m[1]), m[2]];
+      if (!(name in current)) {
+        current.files[name] = file(size, name);
+      }
+      return current;
     }
   };
 
@@ -288,7 +290,8 @@ const day7 = () => {
 
   const loadFS = (s) => {
     const root = dir("/", null);
-    actions(s).reduce((current, action) => action(current), root);
+    lines(s).reduce((current, line) => doLine(line, current, root), root);
+    //actions(s).reduce((current, action) => action(current), root);
     return sized(root);
   };
 
@@ -455,7 +458,7 @@ const day9 = () => {
 };
 
 // N.B. These won't necessarily output in order due to async fetch.
-if (true) {
+if (false) {
   run('day_01.problem', day1().part1, 74394);
   run('day_01.problem', day1().part2, 212836);
   run('day_02.problem', day2().part1, 9241);
@@ -476,3 +479,5 @@ if (true) {
   run('day_09.problem', day9().part2, 2653);
 }
 
+  run('day_07.problem', day7().part1, 2061777);
+  run('day_07.problem', day7().part2, 4473403);
