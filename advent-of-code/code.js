@@ -425,7 +425,7 @@ const day9 = () => {
     return visited.size;
   };
 
-  const part1 = (s) => s;
+  const part1 = (s) => execute(s, 2);
 
   return { part1 };
 }
@@ -451,3 +451,4 @@ if (false) {
 }
 
 run('day_09.test', day9().part1);
+run('day_09.problem', day9().part1);
