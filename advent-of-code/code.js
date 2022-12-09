@@ -205,7 +205,7 @@ const day7 = () => {
 
   const file = (size, name) => ({ name, size, type: 'file' });
 
-  const doLine = (line, root, current) => {
+  const doLine = (line, current, root) => {
     let m;
     if (line === '$ cd /') {
       return root;
