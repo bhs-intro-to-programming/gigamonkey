@@ -70,7 +70,7 @@ const redraw = (t) => {
     board = whatLives(board)
     drawTheThings(board, cellsize)
   } else {
-    console.log(`not redrawing ${t}`);
+    //console.log(`not redrawing ${t}`);
 
   }
 }
