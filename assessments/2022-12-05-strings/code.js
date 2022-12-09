@@ -8,4 +8,8 @@ const charactersAround = (s, i) => {
 
 const middle = (s) => {
   return s.substring(s.length * 0.25, s.length * 0.75);
-}
+};
+
+const pair = (a, b) => {
+  return a + ' and ' + b;
+};
