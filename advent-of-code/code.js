@@ -206,7 +206,6 @@ const day7 = () => {
   const file = (size, name) => ({ name, size });
 
   const doLine = (line, current, root) => {
-    let m;
     if (line === '$ cd /') {
       return root;
     } else if (line === '$ cd ..') {
@@ -214,6 +213,7 @@ const day7 = () => {
     } else if (m = line.match(/^\$ cd (.*)$/)) {
       return current.dirs[m[1]];
     } else {
+      let m;
       if (m = line.match(/^dir (.*)$/)) {
         const name = m[1];
         if (!(name in current.dirs)) {
