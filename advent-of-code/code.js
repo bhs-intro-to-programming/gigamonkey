@@ -422,6 +422,7 @@ const day9 = () => {
         visited.add(`${tail.x},${tail.y}`);
       }
     });
+    console.log(JSON.stringify(knots));
     return visited.size;
   };
 
