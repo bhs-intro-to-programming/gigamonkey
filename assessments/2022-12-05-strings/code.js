@@ -13,3 +13,7 @@ const middle = (s) => {
 const pair = (a, b) => {
   return a + ' and ' + b;
 };
+
+const containsX = (s) => {
+  return s.indexOf('x') !== -1;
+};
