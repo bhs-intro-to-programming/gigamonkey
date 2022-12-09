@@ -50,11 +50,12 @@ const neighbors = (b, y, x) => {
 const whatLives = (b) => {
   const newboard = [];
   for (let i = 0; i < b.length; i++) {
-    newboard.push([]);
+    newboard[i] = [];
     for (let j = 0; j < b[i].length; j++) {
       const n = neighbors(b, i, j);
+      console.log(n);
       const alive = b[i][j] === 1 ? (n === 2 || n === 3) : n === 3;
-      newboard[i].push(alive ? 1 : 0);
+      newboard[i][j] = alive ? 1 : 0;
     }
   }
   return newboard;
