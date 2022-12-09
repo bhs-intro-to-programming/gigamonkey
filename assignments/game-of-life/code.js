@@ -47,18 +47,16 @@ const neighbors = (b, y, x) => {
 }
 
 const whatLives = (b) => {
+  const newboard = [];
   for (let i = 0; i < board.length; i++) {
+    newboard.push([]);
     for (let j = 0; j < board[i].length; j++) {
-      if (neighbors(b, i, j) > 2) {
-        b[i][j] = 1
-      } else {
-        if (b[i] === undefined) {
-          console.log(i + ' ' + j)
-        }
-        b[i][j] = 0
-      }
+      const n = neighbors(b, i, j);
+      const alive = b[i][j] === 1 ? (n === 2 || n === 3) : n === 3;
+      newboard.push(alive ? 1 : 0);
     }
   }
+  return newboard;
 }
 
 
@@ -67,7 +65,7 @@ drawTheThings(board, cellsize);
 
 const redraw = (t) => {
   clear()
-  whatLives(board)
+  board = whatLives(board)
   drawTheThings(board, cellsize)
 }
 
