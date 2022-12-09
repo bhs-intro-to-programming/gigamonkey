@@ -221,7 +221,7 @@ const day7 = () => {
         }
       } else if (m = line.match(/^(\d+) (.*)$/)) {
         const [size, name] = [Number(m[1]), m[2]];
-        if (!(name in current)) {
+        if (!(name in current.files)) {
           current.files[name] = file(size, name);
         }
       }
