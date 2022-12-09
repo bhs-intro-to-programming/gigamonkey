@@ -205,6 +205,29 @@ const day7 = () => {
 
   const file = (size, name) => ({ name, size, type: 'file' });
 
+  const doLine = (line, root, current) => {
+    let m;
+    if (line === '$ cd /') {
+      return root;
+    } else if (line === '$ cd ..') {
+      return current.parent;
+    } else if (m = line.match(/^\$ cd (.*)$/)) {
+      return current.dirs[m[1]];
+    } else if (line === '$ ls') {
+      return current;
+    } else if (m = line.match(/^dir (.*)$/)) {
+      const name = m[1];
+      if (!(name in current.dirs)) {
+        current.dirs[name] = dir(name, c);
+      }
+      return current;
+    } else if (m = line.match(/^(\d+) (.*)$/)) {
+      return filer(Number.parseInt(m[1]), m[2]);
+    } else {
+      return (c) => { console.log(`huh? line: '${line}'`); };
+    }
+  };
+
   const toAction = (line) => {
     let m;
     if (m = line.match(/^\$ cd (.*)$/)) {
@@ -218,7 +241,7 @@ const day7 = () => {
     } else {
       return (c) => { console.log(`huh? line: '${line}'`); };
     }
-  }
+  };
 
   const cder = (name) => {
     if (name === "..") {
