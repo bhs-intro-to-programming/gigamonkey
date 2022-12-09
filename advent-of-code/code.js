@@ -218,7 +218,7 @@ const day7 = () => {
     } else if (m = line.match(/^dir (.*)$/)) {
       const name = m[1];
       if (!(name in current.dirs)) {
-        current.dirs[name] = dir(name, c);
+        current.dirs[name] = dir(name, current);
       }
       return current;
     } else if (m = line.match(/^(\d+) (.*)$/)) {
