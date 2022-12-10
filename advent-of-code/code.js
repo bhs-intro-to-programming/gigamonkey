@@ -409,7 +409,28 @@ const day9 = () => {
 
 const day10 = () => {
 
-  const part1 = (s) => s;
+  const exec = (line, cpu) => {
+    let m;
+    if (line === 'noop') {
+      probe(cpu);
+      cpu.cycle++;
+    } else if (m = line.match(/^addx (\d+)$/)) {
+      probe(cpu);
+      cpu.cycle++;
+      probe(cpu);
+      cpu.cycle++;
+      cpu.x += Number(m[1]);
+    }
+  };
+
+  const run = (s, probe) => {
+    let cpu = { cycle: 0, x: 0 };
+    lines(s).forEach((line) => {
+      exec(line, cpu, probe);
+    });
+  }
+
+  const part1 = (s) => run(s, (cpu) => console.log(JSON.stringify(cpu)));
 
   return { part1 };
 
