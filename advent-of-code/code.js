@@ -430,7 +430,7 @@ const day10 = () => {
     });
   }
 
-  const part1 = (s) => run(s, (cpu) => console.log(`${line}: ${JSON.stringify(cpu)}`));
+  const part1 = (s) => run(s, (cpu, line) => console.log(`${line}: ${JSON.stringify(cpu)}`));
 
   return { part1 };
 
