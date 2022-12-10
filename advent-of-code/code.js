@@ -435,7 +435,7 @@ const day10 = () => {
     let sum = 0;
     return (cpu, line) => {
       if ((cpu.cycle - 20) % 40 === 0) {
-        console.log(`${line}: ${JSON.stringify(cpu)}`);
+        //console.log(`${line}: ${JSON.stringify(cpu)}`);
         sum += cpu.cycle * cpu.x;
       }
       return sum;
