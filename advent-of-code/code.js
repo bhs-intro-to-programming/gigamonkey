@@ -446,7 +446,7 @@ const day10 = () => {
   const crt = (state) => {
     state.answer += Math.abs(state.x - ((state.cycle - 1) % 40)) < 2 ? '#' : '.';
     if (state.cycle % 40 === 0) state.answer += '\n';
-  }
+  };
 
   const part1 = (s) => run(s, signalStrength, 0);
   const part2 = (s) => run(s, crt, '');
