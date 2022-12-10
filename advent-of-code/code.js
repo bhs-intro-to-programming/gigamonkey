@@ -425,7 +425,7 @@ const day10 = () => {
 
   const run = (s, probe) => {
     let cpu = { cycle: 1, x: 0 };
-    lines(s).forEach((line) => {
+    lines(s).slice(0,10).forEach((line) => {
       exec(line, cpu, probe);
     });
   }
