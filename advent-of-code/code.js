@@ -465,7 +465,7 @@ const day10part2 = `
 ###..#....#.....#...#....#....#.##.#....
 #.#..#....#....#....#....#....#..#.#....
 #..#.####.####.####.#....####..###.####.
-`;
+`.trimStart();
 
 // N.B. These won't necessarily output in order due to async fetch.
 if (false) {
