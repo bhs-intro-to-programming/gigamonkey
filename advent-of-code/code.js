@@ -424,7 +424,7 @@ const day10 = () => {
   };
 
   const op = (line, state, probe) => {
-    let m = line.match(/^(noop|addx)(?: (\d+))?$/);
+    let m = line.match(/^(noop|addx)(?: (-\d+))?$/);
     if (m) {
     ops[m[1]](state, probe, Number(m[2]));
     return state;
