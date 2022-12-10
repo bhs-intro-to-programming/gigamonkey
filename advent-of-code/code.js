@@ -482,4 +482,4 @@ if (false) {
 
 run('day_10.test', day10().part1, 13140);
 run('day_10.problem', day10().part1, 17020);
-run('day_10.problem', day10().part2);
+run('day_10.problem', day10().part2); // RLEZFLGE
