@@ -414,7 +414,7 @@ const day10 = () => {
     if (line === 'noop') {
       probe(cpu);
       cpu.cycle++;
-    } else if (m = line.match(/^addx (\d+)$/)) {
+    } else if (m = line.match(/^addx (-?\d+)$/)) {
       probe(cpu);
       cpu.cycle++;
       probe(cpu);
