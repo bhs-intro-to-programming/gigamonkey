@@ -412,12 +412,12 @@ const day10 = () => {
   const exec = (line, cpu, probe) => {
     let m;
     if (line === 'noop') {
-      probe(cpu);
+      probe(cpu, line);
       cpu.cycle++;
     } else if (m = line.match(/^addx (-?\d+)$/)) {
-      probe(cpu);
+      probe(cpu, line);
       cpu.cycle++;
-      probe(cpu);
+      probe(cpu, line);
       cpu.cycle++;
       cpu.x += Number(m[1]);
     }
@@ -425,12 +425,12 @@ const day10 = () => {
 
   const run = (s, probe) => {
     let cpu = { cycle: 1, x: 1 };
-    lines(s).slice(0,10).forEach((line) => {
+    lines(s).slice(0,12).forEach((line) => {
       exec(line, cpu, probe);
     });
   }
 
-  const part1 = (s) => run(s, (cpu) => console.log(JSON.stringify(cpu)));
+  const part1 = (s) => run(s, (cpu) => console.log(`${line}: ${JSON.stringify(cpu)}`));
 
   return { part1 };
 
