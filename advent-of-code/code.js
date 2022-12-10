@@ -428,25 +428,31 @@ const day10 = () => {
     lines(s).forEach((line) => {
       op(line, cpu, probe);
     });
-    return probe(cpu);
+    return probe();
   };
 
   const probe1 = () => {
     let sum = 0;
     return (cpu) => {
-      if ((cpu.cycle - 20) % 40 === 0) {
-        sum += cpu.cycle * cpu.x;
+      if (cpu) {
+        if ((cpu.cycle - 20) % 40 === 0) {
+          sum += cpu.cycle * cpu.x;
+        }
+      } else {
+        return sum;
       }
-      return sum;
     }
   };
 
   const probe2 = () => {
     let img = '';
     return (cpu) => {
-      img += Math.abs(cpu.x - ((cpu.cycle - 1) % 40)) < 2 ? '#' : '.';
-      if (cpu.cycle % 40 === 0) img += '\n';
-      return img;
+      if (cpu) {
+        img += Math.abs(cpu.x - ((cpu.cycle - 1) % 40)) < 2 ? '#' : '.';
+        if (cpu.cycle % 40 === 0) img += '\n';
+      } else {
+        return img;
+      }
     };
   }
 
