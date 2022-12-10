@@ -424,7 +424,7 @@ const day10 = () => {
   };
 
   const run = (s, probe) => {
-    let cpu = { cycle: 1, x: 1 };
+    const cpu = { cycle: 1, x: 1 };
     lines(s).forEach((line) => {
       op(line, cpu, probe);
     });
@@ -472,7 +472,7 @@ const day10part2 = `
 `.trimStart();
 
 // N.B. These won't necessarily output in order due to async fetch.
-if (true) {
+if (false) {
   run('day_01.problem', day1().part1, 74394);
   run('day_01.problem', day1().part2, 212836);
   run('day_02.problem', day2().part1, 9241);
@@ -491,6 +491,7 @@ if (true) {
   run('day_08.problem', day8().part2, 535680);
   run('day_09.problem', day9().part1, 6563);
   run('day_09.problem', day9().part2, 2653);
-  run('day_10.problem', day10().part1, 17020);
-  run('day_10.problem', day10().part2, day10part2);
+
 }
+run('day_10.problem', day10().part1, 17020);
+run('day_10.problem', day10().part2, day10part2);
