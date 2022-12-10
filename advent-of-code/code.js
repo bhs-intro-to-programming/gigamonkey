@@ -428,7 +428,7 @@ const day10 = () => {
     lines(s).forEach((line) => {
       exec(line, cpu, probe);
     });
-    probe(cpu, 'FINISH');
+    return probe(cpu, 'FINISH');
   };
 
   const probe1 = () => {
