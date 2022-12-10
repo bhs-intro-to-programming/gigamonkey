@@ -412,11 +412,11 @@ const day10 = () => {
   const op = (line, cpu, probe) => {
     let m;
     if (line === 'noop') {
-      probe(cpu, line);
+      probe(cpu);
       cpu.cycle++;
     } else if (m = line.match(/^addx (-?\d+)$/)) {
       for (let i = 0; i < 2; i++) {
-        probe(cpu, line);
+        probe(cpu);
         cpu.cycle++;
       }
       cpu.x += Number(m[1]);
@@ -428,7 +428,7 @@ const day10 = () => {
     lines(s).forEach((line) => {
       op(line, cpu, probe);
     });
-    return probe(cpu, 'FINISH');
+    return probe(cpu);
   };
 
   const probe1 = () => {
