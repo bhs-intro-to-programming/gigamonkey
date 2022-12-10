@@ -454,7 +454,6 @@ const day10 = () => {
   const part2 = (s) => run(s, probe2()).slice(0, -1);
 
   return { part1, part2 };
-
 };
 
 const day10part2 = `
