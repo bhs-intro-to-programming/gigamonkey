@@ -433,9 +433,8 @@ const day10 = () => {
 
   const probe1 = () => {
     let sum = 0;
-    return (cpu, line) => {
+    return (cpu) => {
       if ((cpu.cycle - 20) % 40 === 0) {
-        //console.log(`${line}: ${JSON.stringify(cpu)}`);
         sum += cpu.cycle * cpu.x;
       }
       return sum;
@@ -444,7 +443,7 @@ const day10 = () => {
 
   const probe2 = () => {
     let img = '';
-    return (cpu, line) => {
+    return (cpu) => {
       img += Math.abs(cpu.x - ((cpu.cycle - 1) % 40)) < 2 ? '#' : '.';
       if (cpu.cycle % 40 === 0) img += '\n';
       return img;
