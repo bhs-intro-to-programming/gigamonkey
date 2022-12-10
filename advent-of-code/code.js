@@ -409,7 +409,7 @@ const day9 = () => {
 
 const day10 = () => {
 
-  const exec = (line, cpu, probe) => {
+  const op = (line, cpu, probe) => {
     let m;
     if (line === 'noop') {
       probe(cpu, line);
@@ -426,7 +426,7 @@ const day10 = () => {
   const run = (s, probe) => {
     let cpu = { cycle: 1, x: 1 };
     lines(s).forEach((line) => {
-      exec(line, cpu, probe);
+      op(line, cpu, probe);
     });
     return probe(cpu, 'FINISH');
   };
