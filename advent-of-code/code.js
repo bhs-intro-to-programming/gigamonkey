@@ -431,7 +431,7 @@ const day10 = () => {
   }
 
   const probe1 = (cpu, line) => {
-    if (cpu.cycle - 20 % 40 === 0) {
+    if ((cpu.cycle - 20) % 40 === 0) {
       console.log(`${line}: ${JSON.stringify(cpu)}`);
     }
   };
