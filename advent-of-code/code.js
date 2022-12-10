@@ -458,6 +458,14 @@ const day10 = () => {
 
 };
 
+const day10part2 = `
+###..#....####.####.####.#.....##..####.
+#..#.#....#.......#.#....#....#..#.#....
+#..#.#....###....#..###..#....#....###..
+###..#....#.....#...#....#....#.##.#....
+#.#..#....#....#....#....#....#..#.#....
+#..#.####.####.####.#....####..###.####.`.trim();
+
 // N.B. These won't necessarily output in order due to async fetch.
 if (false) {
   run('day_01.problem', day1().part1, 74394);
@@ -482,4 +490,4 @@ if (false) {
 
 run('day_10.test', day10().part1, 13140);
 run('day_10.problem', day10().part1, 17020);
-run('day_10.problem', day10().part2); // RLEZFLGE
+run('day_10.problem', day10().part2, day10part2); // RLEZFLGE
