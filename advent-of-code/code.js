@@ -411,36 +411,24 @@ const day10 = () => {
 
   const ops = {
     noop: (state, probe) => {
-      probe(state);
-      state.cycle++;
+      cycles(state, probe, 1);
     },
     addx: (state, probe, n) => {
-      for (let i = 0; i < 2; i++) {
-        probe(state);
-        state.cycle++;
-      }
+      cycles(state, probe, 2);
       state.x += n;
     },
+  };
+
+  const cycles = (state, probe, n) => {
+    for (let i = 0; i < n; i++) {
+      probe(state);
+      state.cycle++;
+    }
   };
 
   const op = (line, state, probe) => {
     let m = line.match(/^(noop|addx)(?: (-?\d+))?$/);
     ops[m[1]](state, probe, Number(m[2]));
-    return state;
-  };
-
-  const Xop = (line, state, probe) => {
-    let m;
-    if (line === 'noop') {
-      probe(state);
-      state.cycle++;
-    } else if (m = line.match(/^addx (-?\d+)$/)) {
-      for (let i = 0; i < 2; i++) {
-        probe(state);
-        state.cycle++;
-      }
-      state.x += Number(m[1]);
-    }
     return state;
   };
 
