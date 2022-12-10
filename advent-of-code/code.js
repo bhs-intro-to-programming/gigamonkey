@@ -439,7 +439,7 @@ const day10 = () => {
       if (m[1] === 'noop') {
         return [noop]
       } else {
-        return [ noop, noop, addx(Nuber(m[2])) ];
+        return [ noop, noop, addx(Number(m[2])) ];
       }
     })
   };
