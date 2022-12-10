@@ -438,8 +438,8 @@ const day10 = () => {
     if (state.cycle % 40 === 0) state.answer += '\n';
   }
 
-  const part1 = (s) => run(s, probe1);
-  const part2 = (s) => run(s, probe2);
+  const part1 = (s) => run(s, probe1, 0);
+  const part2 = (s) => run(s, probe2, '');
 
   return { part1, part2 };
 };
