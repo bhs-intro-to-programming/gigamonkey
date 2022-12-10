@@ -409,6 +409,13 @@ const day9 = () => {
 
 const day10 = () => {
 
+  const noop = (state, probe) => {
+    probe(state);
+    state.cycles++;
+  };
+
+  const addx = (n) => (state, probe) => state.x += n;
+
   const ops = {
     noop: (state, probe) => {
       cycles(state, probe, 1);
@@ -425,6 +432,20 @@ const day10 = () => {
       state.cycle++;
     }
   };
+
+  const compile = (s) => {
+    return lines(s).flatMap((line) => {
+      let m = line.match(/^(noop|addx)(?: (-?\d+))?$/);
+      if (m[1] === 'noop') {
+        return [noop]
+      } else {
+        return [ noop, noop, addx(Nuber(m[2])) ];
+      }
+    })
+  };
+
+  const runx = (s, probe, answer) => 
+    compile(s).reduce((state, fn) => fn(state, probe), { cyclce: 1, x: 1, answer });
 
   const op = (line, state, probe) => {
     let m = line.match(/^(noop|addx)(?: (-?\d+))?$/);
@@ -446,8 +467,8 @@ const day10 = () => {
     if (state.cycle % 40 === 0) state.answer += '\n';
   }
 
-  const part1 = (s) => run(s, signalStrength, 0);
-  const part2 = (s) => run(s, crt, '');
+  const part1 = (s) => runx(s, signalStrength, 0);
+  const part2 = (s) => runx(s, crt, '');
 
   return { part1, part2 };
 };
@@ -462,7 +483,7 @@ const day10part2 = `
 `.trimStart();
 
 // N.B. These won't necessarily output in order due to async fetch.
-if (true) {
+if (false) {
   run('day_01.problem', day1().part1, 74394);
   run('day_01.problem', day1().part2, 212836);
   run('day_02.problem', day2().part1, 9241);
@@ -481,6 +502,7 @@ if (true) {
   run('day_08.problem', day8().part2, 535680);
   run('day_09.problem', day9().part1, 6563);
   run('day_09.problem', day9().part2, 2653);
+
+}
   run('day_10.problem', day10().part1, 17020);
   run('day_10.problem', day10().part2, day10part2);
-}
