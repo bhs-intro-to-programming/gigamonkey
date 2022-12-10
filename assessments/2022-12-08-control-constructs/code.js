@@ -36,3 +36,11 @@ const containsX = (s) => {
   }
   return false;
 };
+
+const sumSquares = (limit) => {
+  let sum = 0;
+  for (let n = 0; n < limit; n++) {
+    sum += n ** 2;
+  }
+  return sum;
+};
