@@ -430,7 +430,13 @@ const day10 = () => {
     });
   }
 
-  const part1 = (s) => run(s, (cpu, line) => console.log(`${line}: ${JSON.stringify(cpu)}`));
+  const probe1 = (cpu, line) => {
+    if (cpu.cycle - 20 % 40 === 0) {
+      console.log(`${line}: ${JSON.stringify(cpu)}`);
+    }
+  };
+
+  const part1 = (s) => run(s, probe1);
 
   return { part1 };
 
