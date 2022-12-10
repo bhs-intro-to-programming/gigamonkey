@@ -425,8 +425,12 @@ const day10 = () => {
 
   const op = (line, state, probe) => {
     let m = line.match(/^(noop|addx)(?: (\d+))?$/);
+    if (m) {
     ops[m[1]](state, probe, Number(m[2]));
     return state;
+    } else {
+      console.log(`Can't parse ${line}`);
+    }
   }
 
   const Xop = (line, state, probe) => {
