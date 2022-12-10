@@ -433,8 +433,8 @@ const day10 = () => {
   };
 
   const probe2 = (state) => {
-    state.answer += Math.abs(cpu.x - ((cpu.cycle - 1) % 40)) < 2 ? '#' : '.';
-    if (cpu.cycle % 40 === 0) state.answer += '\n';
+    state.answer += Math.abs(state.x - ((state.cycle - 1) % 40)) < 2 ? '#' : '.';
+    if (state.cycle % 40 === 0) state.answer += '\n';
   }
 
   const part1 = (s) => run(s, probe1);
