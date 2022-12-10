@@ -427,19 +427,19 @@ const day10 = () => {
   const run = (s, probe, answer) =>
     lines(s).reduce((state, l) => op(l, state, probe), { cycle: 1, x: 1, answer }).answer;
 
-  const probe1 = (state) => {
+  const signalStrength = (state) => {
     if ((state.cycle - 20) % 40 === 0) {
       state.answer += state.cycle * state.x;
     }
   };
 
-  const probe2 = (state) => {
+  const crt = (state) => {
     state.answer += Math.abs(state.x - ((state.cycle - 1) % 40)) < 2 ? '#' : '.';
     if (state.cycle % 40 === 0) state.answer += '\n';
   }
 
-  const part1 = (s) => run(s, probe1, 0);
-  const part2 = (s) => run(s, probe2, '');
+  const part1 = (s) => run(s, signalStrength, 0);
+  const part2 = (s) => run(s, crt, '');
 
   return { part1, part2 };
 };
@@ -454,7 +454,7 @@ const day10part2 = `
 `.trimStart();
 
 // N.B. These won't necessarily output in order due to async fetch.
-if (false) {
+if (true) {
   run('day_01.problem', day1().part1, 74394);
   run('day_01.problem', day1().part2, 212836);
   run('day_02.problem', day2().part1, 9241);
@@ -473,7 +473,6 @@ if (false) {
   run('day_08.problem', day8().part2, 535680);
   run('day_09.problem', day9().part1, 6563);
   run('day_09.problem', day9().part2, 2653);
-
+  run('day_10.problem', day10().part1, 17020);
+  run('day_10.problem', day10().part2, day10part2);
 }
-run('day_10.problem', day10().part1, 17020);
-run('day_10.problem', day10().part2, day10part2);
