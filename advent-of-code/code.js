@@ -409,17 +409,6 @@ const day9 = () => {
 
 const day10 = () => {
 
-  const noop = (state, probe) => {
-    probe(state);
-    state.cycle++;
-    return state;
-  };
-
-  const addx = (n) => (state, probe) => {
-    state.x += n;
-    return state;
-  }
-
   const ops = {
     noop: (state, probe) => {
       cycles(state, probe, 1);
@@ -436,20 +425,6 @@ const day10 = () => {
       state.cycle++;
     }
   };
-
-  const compile = (s) => {
-    return lines(s).flatMap((line) => {
-      let m = line.match(/^(noop|addx)(?: (-?\d+))?$/);
-      if (m[1] === 'noop') {
-        return [noop]
-      } else {
-        return [ noop, noop, addx(Number(m[2])) ];
-      }
-    })
-  };
-
-  const runx = (s, probe, answer) => 
-    compile(s).reduce((state, fn) => fn(state, probe), { cycle: 1, x: 1, answer }).answer;
 
   const op = (line, state, probe) => {
     let m = line.match(/^(noop|addx)(?: (-?\d+))?$/);
@@ -471,8 +446,8 @@ const day10 = () => {
     if (state.cycle % 40 === 0) state.answer += '\n';
   }
 
-  const part1 = (s) => runx(s, signalStrength, 0);
-  const part2 = (s) => runx(s, crt, '');
+  const part1 = (s) => run(s, signalStrength, 0);
+  const part2 = (s) => run(s, crt, '');
 
   return { part1, part2 };
 };
