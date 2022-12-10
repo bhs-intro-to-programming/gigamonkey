@@ -449,7 +449,7 @@ const day10 = () => {
   };
 
   const runx = (s, probe, answer) => 
-    compile(s).reduce((state, fn) => fn(state, probe), { cyclce: 1, x: 1, answer }).answer;
+    compile(s).reduce((state, fn) => fn(state, probe), { cycle: 1, x: 1, answer }).answer;
 
   const op = (line, state, probe) => {
     let m = line.match(/^(noop|addx)(?: (-?\d+))?$/);
