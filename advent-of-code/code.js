@@ -444,7 +444,7 @@ const day10 = () => {
   const probe2 = () => {
     let img = '';
     return (cpu) => {
-      img += Math.abs(cpu.x - ((cpu.cycle - 1) % 40)) < 2 ? '#' : '.';
+      img += Math.abs(cpu.x - ((cpu.cycle - 1) % 40)) < 2 ? '#' : ' ';
       if (cpu.cycle % 40 === 0) img += '\n';
       return img;
     };
@@ -486,5 +486,5 @@ if (true) {
   run('day_09.problem', day9().part1, 6563);
   run('day_09.problem', day9().part2, 2653);
   run('day_10.problem', day10().part1, 17020);
-  run('day_10.problem', day10().part2, day10part2);
+  run('day_10.problem', day10().part2);
 }
