@@ -432,8 +432,10 @@ const day10 = () => {
     return state;
   };
 
-  const run = (s, probe, answer) =>
-    lines(s).reduce((state, l) => op(l, state, probe), { cycle: 1, x: 1, answer }).answer;
+  const run = (s, probe, answer) => {
+    const init = { cycle: 1, x: 1, answer };
+    return lines(s).reduce((state, l) => op(l, state, probe), init).answer;
+  };
 
   const signalStrength = (state) => {
     if ((state.cycle - 20) % 40 === 0) {
