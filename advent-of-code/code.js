@@ -428,15 +428,21 @@ const day10 = () => {
     lines(s).forEach((line) => {
       exec(line, cpu, probe);
     });
-  }
+    probe(cpu, 'FINISH');
+  };
 
-  const probe1 = (cpu, line) => {
-    if ((cpu.cycle - 20) % 40 === 0) {
-      console.log(`${line}: ${JSON.stringify(cpu)}`);
+  const probe1 = () => {
+    let sum = 0;
+    return (cpu, line) => {
+      if ((cpu.cycle - 20) % 40 === 0) {
+        console.log(`${line}: ${JSON.stringify(cpu)}`);
+        sum += cpu.cycle * cpu.x;
+      }
+      return sum;
     }
   };
 
-  const part1 = (s) => run(s, probe1);
+  const part1 = (s) => run(s, probe1());
 
   return { part1 };
 
