@@ -415,10 +415,10 @@ const day10 = () => {
       probe(cpu, line);
       cpu.cycle++;
     } else if (m = line.match(/^addx (-?\d+)$/)) {
-      probe(cpu, line);
-      cpu.cycle++;
-      probe(cpu, line);
-      cpu.cycle++;
+      for (let i = 0; i < 2; i++) {
+        probe(cpu, line);
+        cpu.cycle++;
+      }
       cpu.x += Number(m[1]);
     }
   };
