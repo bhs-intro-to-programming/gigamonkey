@@ -14,4 +14,16 @@ const countXs = (s) => {
     }
   }
   return count;
+};
+
+const emit = (a, b, c) => {
+  console.log(a + ' x ' + b + ' = ' + c);
 }
+
+const timesTable = (n) => {
+  for (let a = 1; a <= n; a++) {
+    for (let b = 1; b <= n; b++) {
+      emit(a, b, a * b);
+    }
+  }
+};
