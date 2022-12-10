@@ -442,9 +442,19 @@ const day10 = () => {
     }
   };
 
-  const part1 = (s) => run(s, probe1());
+  const probe2 = () => {
+    let img = '';
+    return (cpu, line) => {
+      img += Math.abs(cpu.x - ((cpu.cycle - 1) % 40)) < 2 ? '#' : '.';
+      if (cpu.cycle % 40 === 0) img += '\n';
+      return img;
+    };
+  }
 
-  return { part1 };
+  const part1 = (s) => run(s, probe1());
+  const part2 = (s) => run(s, probe2());
+
+  return { part1, part2 };
 
 };
 
@@ -472,3 +482,4 @@ if (false) {
 
 run('day_10.test', day10().part1, 13140);
 run('day_10.problem', day10().part1, 17020);
+run('day_10.problem', day10().part2);
