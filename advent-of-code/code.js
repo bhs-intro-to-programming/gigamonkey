@@ -409,55 +409,36 @@ const day9 = () => {
 
 const day10 = () => {
 
-  const op = (line, cpu, probe) => {
+  const op = (line, state, probe) => {
     let m;
     if (line === 'noop') {
-      probe(cpu);
-      cpu.cycle++;
+      probe(state);
+      state.cycle++;
     } else if (m = line.match(/^addx (-?\d+)$/)) {
       for (let i = 0; i < 2; i++) {
-        probe(cpu);
-        cpu.cycle++;
+        probe(state);
+        state.cycle++;
       }
-      cpu.x += Number(m[1]);
+      state.x += Number(m[1]);
     }
   };
 
-  const run = (s, probe) => {
-    const cpu = { cycle: 1, x: 1 };
-    lines(s).forEach((line) => {
-      op(line, cpu, probe);
-    });
-    return probe();
-  };
+  const run = (s, probe, answer) =>
+    lines(s).reduce((state, l) => op(l, state, probe), { cycle: 1, x: 1, answer }).answer;
 
-  const probe1 = () => {
-    let sum = 0;
-    return (cpu) => {
-      if (cpu) {
-        if ((cpu.cycle - 20) % 40 === 0) {
-          sum += cpu.cycle * cpu.x;
-        }
-      } else {
-        return sum;
-      }
+  const probe1 = (state) => {
+    if ((state.cycle - 20) % 40 === 0) {
+      state.answer += state.cycle * state.x;
     }
   };
 
-  const probe2 = () => {
-    let img = '';
-    return (cpu) => {
-      if (cpu) {
-        img += Math.abs(cpu.x - ((cpu.cycle - 1) % 40)) < 2 ? '#' : '.';
-        if (cpu.cycle % 40 === 0) img += '\n';
-      } else {
-        return img;
-      }
-    };
+  const probe2 = (state) => {
+    state.answer += Math.abs(cpu.x - ((cpu.cycle - 1) % 40)) < 2 ? '#' : '.';
+    if (cpu.cycle % 40 === 0) state.answer += '\n';
   }
 
-  const part1 = (s) => run(s, probe1());
-  const part2 = (s) => run(s, probe2());
+  const part1 = (s) => run(s, probe1);
+  const part2 = (s) => run(s, probe2);
 
   return { part1, part2 };
 };
