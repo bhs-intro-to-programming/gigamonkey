@@ -409,7 +409,27 @@ const day9 = () => {
 
 const day10 = () => {
 
+  const ops = {
+    noop: (state, probe) => {
+      probe(state);
+      state.cycle++;
+    },
+    addx: (state, probe, n) => {
+      for (let i = 0; i < 2; i++) {
+        probe(state);
+        state.cycle++;
+      }
+      state.x += n;
+    },
+  };
+
   const op = (line, state, probe) => {
+    let m = line.match(/^(noop|addx)(?: (\d+))?$/);
+    ops[m[1]](state, probe, Number(m[2]));
+    return state;
+  }
+
+  const Xop = (line, state, probe) => {
     let m;
     if (line === 'noop') {
       probe(state);
@@ -454,7 +474,7 @@ const day10part2 = `
 `.trimStart();
 
 // N.B. These won't necessarily output in order due to async fetch.
-if (true) {
+if (false) {
   run('day_01.problem', day1().part1, 74394);
   run('day_01.problem', day1().part2, 212836);
   run('day_02.problem', day2().part1, 9241);
@@ -473,6 +493,7 @@ if (true) {
   run('day_08.problem', day8().part2, 535680);
   run('day_09.problem', day9().part1, 6563);
   run('day_09.problem', day9().part2, 2653);
+
+}
   run('day_10.problem', day10().part1, 17020);
   run('day_10.problem', day10().part2, day10part2);
-}
