@@ -409,7 +409,7 @@ const day9 = () => {
 
 const day10 = () => {
 
-  const exec = (line, cpu) => {
+  const exec = (line, cpu, probe) => {
     let m;
     if (line === 'noop') {
       probe(cpu);
