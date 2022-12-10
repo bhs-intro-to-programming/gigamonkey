@@ -411,7 +411,7 @@ const day10 = () => {
 
   const noop = (state, probe) => {
     probe(state);
-    state.cycles++;
+    state.cycle++;
     return state;
   };
 
