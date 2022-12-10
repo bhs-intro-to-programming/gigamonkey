@@ -421,6 +421,7 @@ const day10 = () => {
       }
       state.x += Number(m[1]);
     }
+    return state;
   };
 
   const run = (s, probe, answer) =>
