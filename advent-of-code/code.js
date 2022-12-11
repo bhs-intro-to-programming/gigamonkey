@@ -454,6 +454,15 @@ const day10 = () => {
   return { part1, part2 };
 };
 
+const day11 = () => {
+
+  const part1 = (s) => s;
+
+  return { part1 };
+
+};
+
+
 const day10part2 = `
 ###..#....####.####.####.#.....##..####.
 #..#.#....#.......#.#....#....#..#.#....
@@ -486,3 +495,5 @@ if (true) {
   run('day_10.problem', day10().part1, 17020);
   run('day_10.problem', day10().part2, day10part2);
 }
+
+run('day_11.test', day11().part1);
