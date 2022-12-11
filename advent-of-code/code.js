@@ -456,11 +456,11 @@ const day10 = () => {
 
 const day11 = () => {
 
-  const evaluate = (s, old) => s === 'old' ? old : BigInt(s);
+  const evaluate = (s, old, nt) => s === 'old' ? old : nt(s);
 
   const ops = {
-    '+': (old, args) => evaluate(args[0], old) + evaluate(args[1], old),
-    '*': (old, args) => evaluate(args[0], old) * evaluate(args[1], old),
+    '+': (old, args, nt) => evaluate(args[0], old, nt) + evaluate(args[1], old, nt),
+    '*': (old, args, nt) => evaluate(args[0], old, nt) * evaluate(args[1], old, nt),
   };
 
   const monkeys = (s, numberType) => {
@@ -474,7 +474,7 @@ const day11 = () => {
       } else if (m = line.match(/^\s+Operation: new = (\w+) ([+*]) (\w+)$/)) {
         const [arg1, op, arg2] = [...m].slice(1);
         const fn = ops[op];
-        ms[ms.length - 1].op = (old) => fn(old, [arg1, arg2]);
+        ms[ms.length - 1].op = (old) => fn(old, [arg1, arg2], numberType);
       } else if (m = line.match(/^\s+Test: divisible by (\d+)/)) {
         ms[ms.length - 1].divisibleBy = numberType(m[1]);
       } else if (m = line.match(/^\s+If (true|false): throw to monkey (\d+)$/)) {
