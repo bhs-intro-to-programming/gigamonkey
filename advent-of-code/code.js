@@ -512,7 +512,7 @@ const day11 = () => {
       ms.forEach((m) => monkeySeeMonkeyDo(m, ms));
     }
     const busy = ms.map(m => m.inspected).sort((a, b) => b - a);
-    console.log(JSON.stringify(busy, null, 2));
+    //console.log(JSON.stringify(busy, null, 2));
     return busy[0] * busy[1];
   };
 
@@ -565,5 +565,5 @@ if (false) {
 
 run('day_11.test', day11().part1, 10605);
 run('day_11.test', day11().part2);
-run('day_11.problem', day11().part1);
+run('day_11.problem', day11().part1, 102399);
 run('day_11.problem', day11().part2);
