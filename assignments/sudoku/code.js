@@ -15,15 +15,15 @@ const drawBoard = () => {
   drawText('Solve', edgeSize + height + 65, 30, 'black', 25)
 }
 
-const updateBoard = (row, col) => {
-  b[row][col][0] = index
+const updateBoard = (row, col, number) => {
+  b[row][col][0] = number
   for (let l = 0; l < 9; l++) {
-    b[row][l][index] = index
-    b[l][col][index] = index
+    b[row][l][number] = number
+    b[l][col][number] = number
   }
   for (let i = 0; i < 3; i++) {
     for (let j = 0; j < 3; j++) {
-      b[Math.floor(row / 3) * 3 + j][Math.floor(col / 3) * 3 + i][index] = index
+      b[Math.floor(row / 3) * 3 + j][Math.floor(col / 3) * 3 + i][number] = number
     }
   }
   filledSpaces++
@@ -36,7 +36,7 @@ registerOnclick((x, y) => {
     const col = Math.floor((x - edgeSize) / (height / 9))
     const row = Math.floor(y / (height / 9))
     drawText(index, edgeSize + col * (height / 9) + height / 64, row * (height / 9) + height * 6 / 64, 'black', height / 9)
-    updateBoard(row, col)
+    updateBoard(row, col, index)
   } else if (x > edgeSize + height) {
     while (filledSpaces < 81) {
       solveBoard()
@@ -48,17 +48,46 @@ const solveBoard = () => {
   for (let row = 0; row < 9; row++) {
     for (let col = 0; col < 9; col++) {
       let optionsFilled = 0
+      let number = 0
       for (let currentCheck = 1; currentCheck < 10; currentCheck++) {
         if (b[row][col][currentCheck] === currentCheck) {
           optionsFilled++
-        } else index = currentCheck
+        } else {
+          number = currentCheck
+        }
       }
       if (optionsFilled === 8 && b[row][col][0] === '') {
         drawText(index, edgeSize + col * (height / 9) + height / 64, row * (height / 9) + height * 6 / 64, 'gray', height / 9)
-        updateBoard(row, col)
+        updateBoard(row, col, number)
       }
     }
   }
 }
 
+const setupPuzzle = (puzzle) => {
+  puzzle.trim().split('\n').map(row => row.split('')).forEach((row, r) => {
+    row.forEach((s, c) => {
+      const n = Number(s);
+      if (!isNan(n)) {
+        updateBoard(r, c, n);
+      }
+    }
+  }
+};
+
 drawBoard()
+
+const easy = `
+6 . . 3 . 5 8 7 .
+. 8 . . 2 . . . .
+. . 7 8 9 . . 5 6
+. 6 . . 7 . 1 . .
+4 7 3 1 6 2 . . 8
+9 2 1 5 3 8 7 6 4
+. 5 . . . 3 . . 7
+2 3 . 6 . . 9 . .
+7 1 . . 5 4 . . 3
+
+`
+
+setupPuzzle(easy);
