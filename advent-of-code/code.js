@@ -456,7 +456,20 @@ const day10 = () => {
 
 const day11 = () => {
 
-  const part1 = (s) => s;
+  const monkeys = (s) => {
+    const ms = [];
+    line(s).forEach((line) => {
+      let m;
+      if (m = line.match(/^Monkey \d+$/)) {
+        ms.push({ items: [] });
+      } else if (m = line.match(/^Starting items: (.*)$/) {
+        ms[ms.length - 1].items = m[1].match(/(\d+)/g).map(Number);
+      }
+    });
+    return ms;
+  }
+
+  const part1 = (s) => JSON.stringify(monkeys(s));
 
   return { part1 };
 
