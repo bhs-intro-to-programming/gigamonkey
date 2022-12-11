@@ -58,12 +58,11 @@ const copyBoard = (b) => {
   return copy;
 }
 
-const whatLives = (b) => {
+const updateBoard = (b) => {
   const old = copyBoard(b);;
   for (let i = 0; i < b.length; i++) {
     for (let j = 0; j < b[i].length; j++) {
       const n = neighbors(old, i, j);
-      //console.log(n);
       const alive = old[i][j] === 1 ? (n === 2 || n === 3) : n === 3;
       b[i][j] = alive ? 1 : 0;
     }
@@ -75,7 +74,7 @@ let board = makeArray(Math.floor(height / cellsize), Math.floor(width / cellsize
 
 const redraw = (t) => {
   clear()
-  whatLives(board)
+  updateBoard(board)
   drawTheThings(board, cellsize)
 }
 
