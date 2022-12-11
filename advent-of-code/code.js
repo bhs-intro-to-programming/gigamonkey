@@ -459,6 +459,7 @@ const day11 = () => {
   const monkeys = (s) => {
     const ms = [];
     lines(s).forEach((line) => {
+      console.log(line);
       let m;
       if (m = line.match(/^Monkey \d+:$/)) {
         ms.push({ items: [] });
