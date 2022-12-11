@@ -484,11 +484,11 @@ const day11 = () => {
     return ms;
   };
 
-  const monkeySeeMonkeyDo = (monkey, monkeys) => {
+  const monkeySeeMonkeyDo = (monkey, monkeys, mod) => {
     while (monkey.items.length > 0) {
       const item = monkey.items.shift();
       monkey.inspected++;
-      const level = Math.floor(monkey.op(item) / 3);
+      const level = Math.floor(monkey.op(item) / 3) % mod;
       const divisible = level % monkey.divisibleBy === 0;
       const next = divisible ? monkey.iftrue : monkey.iffalse;
       monkeys[next].items.push(level);
@@ -511,7 +511,7 @@ const day11 = () => {
     const mod = ms.reduce((p, m) => p * m.divisibleBy, 1);
     console.log(mod);
     for (let i = 0; i < 20; i++) {
-      ms.forEach((m) => monkeySeeMonkeyDo(m, ms));
+      ms.forEach((m) => monkeySeeMonkeyDo(m, ms, mod));
     }
     const busy = ms.map(m => m.inspected).sort((a, b) => b - a);
     //console.log(JSON.stringify(busy, null, 2));
