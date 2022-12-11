@@ -483,10 +483,24 @@ const day11 = () => {
       }
     });
     return ms;
+  };
+
+  const monkeySeeMonkeyDo = (monkey, monkeys) => {
+    monkey.items.forEach((item) => {
+      const level = Math.floor(monkey.op(item) / 3);
+      const divisible = level % monkey.divisibleBy === 0;
+      const next = monkeys[divisible ? monkey.iftrue : monkey.ifalse];
+      next.push(level);
+    });
   }
 
-  const part1 = (s) => JSON.stringify(monkeys(s), null, 2);
-
+  const part1 = (s) => {  
+    const ms = monkeys(s);
+    console.log(JSON.stringify(ms, null, 2));
+    ms.forEach((m) => monkeySeeMonkeyDo(m, ms));
+    console.log(JSON.stringify(ms, null, 2));
+  };
+  
   return { part1 };
 
 };
