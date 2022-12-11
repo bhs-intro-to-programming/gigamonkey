@@ -68,7 +68,7 @@ const setupPuzzle = (puzzle) => {
   puzzle.trim().split('\n').map(row => row.split('')).forEach((row, r) => {
     row.forEach((s, c) => {
       const n = Number(s);
-      if (!isNan(n)) {
+      if (!isNaN(n)) {
         updateBoard(r, c, n);
       }
     });
