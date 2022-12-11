@@ -44,8 +44,8 @@ registerOnclick((x, y) => {
   } else if (x > edgeSize + height) {
     let rounds = 0;
     while (filledSpaces < 81 && rounds++ < 100) {
-      console.log(filledSpaces);
       solveBoard()
+      console.log(filledSpaces);
     }
   }
 })
