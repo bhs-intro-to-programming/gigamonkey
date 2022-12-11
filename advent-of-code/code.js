@@ -466,7 +466,7 @@ const day11 = () => {
       } else if (m = line.match(/^\s+Starting items: (.*)$/)) {
         ms[ms.length - 1].items = m[1].match(/(\d+)/g).map(Number);
       } else if (m = line.match(/^\s+Operation: new = (\w+) ([+*]) (\w+)$/)) {
-        ms[ms.length - 1].op = m[1] + ' ' + m[2] + ' ' + m[3];
+        ms[ms.length - 1].op = [...m].slice(1);
       } else if (m = line.match(/^\s+Test: divisible by (\d+)/)) {
         ms[ms.length - 1].divisibleBy = Number(m[1]);
       } else if (m = line.match(/^\s+If (true|false): throw to monkey (\d+)$/)) {
