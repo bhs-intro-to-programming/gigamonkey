@@ -71,8 +71,8 @@ const setupPuzzle = (puzzle) => {
       if (!isNan(n)) {
         updateBoard(r, c, n);
       }
-    }
-  }
+    });
+  });
 };
 
 drawBoard()
