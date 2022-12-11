@@ -518,7 +518,7 @@ const day11 = () => {
 
   const part2 = (s) => {
     const ms = monkeys(s);
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 10_000; i++) {
       ms.forEach((m) => monkeySeeMonkeyDeux(m, ms));
     }
     const busy = ms.map(m => m.inspected).sort((a, b) => b - a);
@@ -564,5 +564,6 @@ if (false) {
 }
 
 run('day_11.test', day11().part1, 10605);
+run('day_11.test', day11().part2);
 run('day_11.problem', day11().part1);
 run('day_11.problem', day11().part2);
