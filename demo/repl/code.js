@@ -29,7 +29,7 @@ const makeCaesar = (str, key) => {
     if (alpha.indexOf(str[sNum - 1]) + key > 26) {
       str2 = str2 + alpha[((alpha.indexOf(str[sNum - 1]) + key) - 26) - 1]
     } else {
-      str2 = str2 + alpha[(alpha.indexOf(str[sNum - 1]) + key) -1]
+      str2 = str2 + alpha[(alpha.indexOf(str[sNum - 1]) + key) - 1]
     }
   return str2
 }
@@ -38,3 +38,9 @@ const makeCaesar = (str, key) => {
 
 //Intrstructions: this function takes two arguments, a string and the key you want to use
 //for your caesar cipher and then returns the first sring as a caesar cipher!
+
+const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+
+const caesar = (s, key) => {
+
+};
