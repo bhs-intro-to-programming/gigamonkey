@@ -466,6 +466,8 @@ const day11 = () => {
         ms.push({ items: [] });
       } else if (m = line.match(/^\s+Starting items: (.*)$/)) {
         ms[ms.length - 1].items = m[1].match(/(\d+)/g).map(Number);
+      } else if (m = line.match(/^\s+Operation: new = (.*)$/)) {
+        ms[ms.length - 1].op = m[1];
       }
     });
     return ms;
