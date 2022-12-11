@@ -459,7 +459,6 @@ const day11 = () => {
   const monkeys = (s) => {
     const ms = [];
     lines(s).forEach((line) => {
-      console.log(line);
       let m;
       if (m = line.match(/^Monkey \d+:$/)) {
         console.log('Monkey');
@@ -468,6 +467,8 @@ const day11 = () => {
         ms[ms.length - 1].items = m[1].match(/(\d+)/g).map(Number);
       } else if (m = line.match(/^\s+Operation: new = (.*)$/)) {
         ms[ms.length - 1].op = m[1];
+      } else if (m = line.match(/^\s+Test: divisible by (\d+)/)) {
+        ms[ms.length - 1].divisibleBy = Number(m[1]);
       }
     });
     return ms;
