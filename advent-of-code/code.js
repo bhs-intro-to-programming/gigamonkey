@@ -490,12 +490,9 @@ const day11 = () => {
       monkey.inspected++;
       const level = Math.floor(monkey.op(item) / 3)
       const divisible = level % monkey.divisibleBy === 0;
-      if (divisible) {
-        monkeys[monkey.iftrue].items.push(level / monkey.divisibleBy);
-      } else {
-        monkeys[monkey.iftrue].items.push(level);
-      }
-    };
+      const next = monkeys[divisible ? 'iftrue' : 'iffalse'];
+      next.items.push(level / monkey.divisibleBy);
+    }
   };
 
   const monkeySeeMonkeyDeux = (monkey, monkeys) => {
