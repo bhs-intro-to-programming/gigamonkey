@@ -25,9 +25,9 @@ const totalWithTip = (bill, tipPercent) => {
 }
 
 const sums = (n) => {
-  let result = [0]
+  let result = []
   for (let x = 0; x < n + 1; x++) {
-    result.push(x + result[x])
+    result.push(x + (x === 0 ? 0 : result[x - 1]));
   }
-  return result.shift();
+  return result;
 };
