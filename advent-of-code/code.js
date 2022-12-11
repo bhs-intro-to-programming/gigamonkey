@@ -496,10 +496,15 @@ const day11 = () => {
   };
 
   const monkeySeeMonkeyDeux = (monkey, monkeys) => {
+    const big = 0n;
     while (monkey.items.length > 0) {
       const item = monkey.items.shift();
       monkey.inspected++;
       const level = monkey.op(item);
+      if (level > big) {
+        console.log(level);
+        big = level;
+      }
       const divisible = level % monkey.divisibleBy === 0n;
       const next = divisible ? monkey.iftrue : monkey.iffalse;
       monkeys[next].items.push(level);
