@@ -486,14 +486,15 @@ const day11 = () => {
   };
 
   const monkeySeeMonkeyDo = (monkey, monkeys) => {
-    monkey.items.forEach((item, i) => {
+    while (monkey.items.length > 0) {
+      const item = monkey.items.shift();
       console.log(item);
       const level = Math.floor(monkey.op(item) / 3);
       const divisible = level % monkey.divisibleBy === 0;
       const next = divisible ? monkey.iftrue : monkey.iffalse;
       console.log(`Pushing to ${next}`);
       monkeys[next].items.push(level);
-    });
+    };
   }
 
   const part1 = (s) => {  
