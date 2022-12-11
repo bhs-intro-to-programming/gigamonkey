@@ -478,7 +478,7 @@ const day11 = () => {
       } else if (m = line.match(/^\s+Test: divisible by (\d+)/)) {
         ms[ms.length - 1].divisibleBy = BigInt(m[1]);
       } else if (m = line.match(/^\s+If (true|false): throw to monkey (\d+)$/)) {
-        ms[ms.length - 1][`if${m[1]}`] = BigInt(m[2]);
+        ms[ms.length - 1][`if${m[1]}`] = Number(m[2]);
       }
     });
     return ms;
@@ -519,7 +519,7 @@ const day11 = () => {
 
   const part2 = (s) => {
     const ms = monkeys(s);
-    for (let i = 0; i < 19; i++) {
+    for (let i = 0; i < 20; i++) {
       ms.forEach((m) => monkeySeeMonkeyDeux(m, ms));
     }
     const busy = ms.map(m => m.inspected).sort((a, b) => b - a);
