@@ -1,62 +1,64 @@
-let move = 0;
+// This is a bit of a new thing. registerOnclick is a function provided by the
+// framework. But the argument we're passing to it is *another* function. Notice
+// how the argument here looks like what we normally put on the righthand side
+// of the equals sign in our normal `const foo = ...` function definition. This
+// is called an anonymous function. We'll discuss this in more detail in a few
+// weeks but for now you can just adapt this code.
 
-const board = [
-  ['', '', ''],
-  ['', '', ''],
-  ['', '', ''],
-];
+let currentPos = 
+  [
+    ['', '', ''],
+    ['', '', ''],
+    ['', '', ''],
+  ];
+
+
+let playerOne = 0;
 
 registerOnclick((x, y) => {
-  const marker = move % 2 === 0 ? 'X' : 'O';
-  const color = move % 2 === 0 ? 'red' : 'blue';
 
-  const row = 1 + Math.floor(y / (height / 3));
-  const col = Math.floor(x / (width / 3));
 
-  const xPos = (col * width / 3) + width / 9;
-  const yPos = (row * height / 3) - (height / 9) + (height / 18);
+  if (playerOne % 2 === 0) {
+    drawText('X', x, y, 'red', Math.min(width, height) * 0.3);
+  } else {
+    drawText('O', x, y, 'blue', Math.min(width, height) * 0.3);
+  }
 
-  if (board[row - 1][col] === '') {
-    drawText(marker, xPos, yPos, color, Math.min(width, height) * 0.3);
+  if ((x < width / 3) && (y > height / 3)) {
+    currentPos[1][1] = 'X';
+  } else if ((x > width / 3 && x < width / 3 + 100) && y > height / 3) {
+    currentPos[1][2] = 'O';
+  } 
 
-    board[row - 1][col] = marker;
-    move++;
-    checkWinner()
-  };
+
+  
+  playerOne++
+
+  if ((x < width / 3) && (y > height / 3 - 20)) {
+    currentPos[1][1] = 'X';
+  } else if (x > width / 3 && x < width / 3 + 100 && y > height / 3 - 20 ) {
+    currentPos[1][2] = 'O';
+  } else if (x > width / 3 + 100 && y > height / 3 - 20) {
+    currentPos[1][3] = 'X';
+  } else if (x < width / 3 && y < height / 3 && y > height / 3 + 20) {
+    currentPos[2][1] = 'O';
+  } else if (x > width / 3 && x < width / 3 + 100 && y < height / 3 && y > height / 3 + 20) {
+    currentPos[2][2] = 'X';
+  } else if (x > width / 3 + 100 && y < height / 3 && y > height / 3 + 20) {
+    currentPos[2][3] = 'O';
+  } 
 });
 
-function checkWinner() {
-  //checking horizontally
-  for (let r = 0; r < 3; r++) {
-    if (board[r][0] == board[r][1] && board[r][1] == board[r][2] && board[r][0] != '') {
-      drawLine(0, (height / 6) + (r * height / 3), width, (height / 6) + (r * height / 3), "yellow", 20);
-    }
-  }
-  //checking vertically
-  for (let c = 0; c < 3; c++) {
-    if (board[0][c] == board[1][c] && board[1][c] == board[2][c] && board[0][c] != '') {
-      drawLine((width / 6) + (c * width / 3) - (width/100), 0, (width / 6) + (c * width / 3)- (width/100), height, "yellow", 20);
-    }
-  }
-  //checking diagonally from left to right
-  if (board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[0][0] != '') {
-    drawLine(0, 0, width, height, 'yellow', 20);
-  }
 
-  //checking diagonally from right to left
-  if (board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] != '') {
-    drawLine(0, height, width, 0, 'yellow', 20);
-  }
-}
-const drawBoard = () => {
-  for (let i = 0; i < 2; i++) {
-    const x = (i + 1) * width / 3
-    drawLine(x, 0, x, height, 'black', 5);
-  }
-  for (let i = 0; i < 2; i++) {
-    const x = (i + 1) * height / 3
-    drawLine(0, x, width, x, 'black', 5);
-  }
-}
 
-drawBoard()
+const ticTacToeBoard = () => {
+  drawLine(150, height / 3, 400, height / 3, 'black'); // Top Horizontal
+
+  drawLine(150, height / 3 + 50, 400, height / 3 + 50, 'black'); // Bottom Horizontal
+
+  drawLine(width / 3, 0, width / 3, 200, 'black'); // Left Vertical
+
+  drawLine(width / 3 + 100, 0, width / 3 + 100, 200, 'black'); // Right Vertical
+};
+
+ticTacToeBoard()
