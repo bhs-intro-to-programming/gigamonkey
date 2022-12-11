@@ -508,7 +508,7 @@ const day11 = () => {
 
   const part1 = (s) => {
     const ms = monkeys(s, Number);
-    const mod = ms.reduce((p, m) => p * m.divisibleBy, 1);
+    const mod = ms.reduce((p, m) => p * m.divisibleBy, 1) ** 2;
     console.log(mod);
     for (let i = 0; i < 20; i++) {
       ms.forEach((m) => monkeySeeMonkeyDo(m, ms, mod));
