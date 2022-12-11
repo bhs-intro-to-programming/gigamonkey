@@ -503,7 +503,7 @@ const day11 = () => {
     }
     const busy = ms.map(m => m.inspected).sort((a, b) => b - a);
     console.log(JSON.stringify(busy, null, 2));
-    return m[0] * m[1];
+    return busy[0] * busy[1];
   };
 
   return { part1 };
