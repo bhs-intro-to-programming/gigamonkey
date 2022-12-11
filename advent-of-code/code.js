@@ -496,7 +496,7 @@ const day11 = () => {
   };
 
   const monkeySeeMonkeyDeux = (monkey, monkeys) => {
-    const big = 0n;
+    let big = 0n;
     while (monkey.items.length > 0) {
       const item = monkey.items.shift();
       monkey.inspected++;
