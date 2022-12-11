@@ -461,7 +461,7 @@ const day11 = () => {
     lines(s).forEach((line) => {
       console.log(line);
       let m;
-      if (m = line.match(/^Monkey \d+$/)) {
+      if (m = line.match(/^Monkey \d+:$/)) {
         console.log('Monkey');
         ms.push({ items: [] });
       } else if (m = line.match(/^Starting items: (.*)$/)) {
