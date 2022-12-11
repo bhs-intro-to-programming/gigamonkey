@@ -65,7 +65,7 @@ const solveBoard = () => {
 }
 
 const setupPuzzle = (puzzle) => {
-  puzzle.trim().split('\n').map(row => row.split('')).forEach((row, r) => {
+  puzzle.trim().split('\n').map(row => row.split(' ')).forEach((row, r) => {
     row.forEach((s, c) => {
       const n = Number(s);
       if (!isNaN(n)) {
