@@ -476,9 +476,9 @@ const day11 = () => {
         const fn = ops[op];
         ms[ms.length - 1].op = (old) => fn(old, [arg1, arg2]);
       } else if (m = line.match(/^\s+Test: divisible by (\d+)/)) {
-        ms[ms.length - 1].divisibleBy = Bigint(m[1]);
+        ms[ms.length - 1].divisibleBy = BigInt(m[1]);
       } else if (m = line.match(/^\s+If (true|false): throw to monkey (\d+)$/)) {
-        ms[ms.length - 1][`if${m[1]}`] = Bigint(m[2]);
+        ms[ms.length - 1][`if${m[1]}`] = BigInt(m[2]);
       }
     });
     return ms;
