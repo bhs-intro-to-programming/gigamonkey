@@ -464,7 +464,7 @@ const day11 = () => {
       if (m = line.match(/^Monkey \d+:$/)) {
         console.log('Monkey');
         ms.push({ items: [] });
-      } else if (m = line.match(/^Starting items: (.*)$/)) {
+      } else if (m = line.match(/^\s+Starting items: (.*)$/)) {
         ms[ms.length - 1].items = m[1].match(/(\d+)/g).map(Number);
       }
     });
