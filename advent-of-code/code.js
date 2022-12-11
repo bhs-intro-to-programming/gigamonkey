@@ -455,6 +455,7 @@ const day10 = () => {
 };
 
 const day11 = () => {
+    let big = 0n;
 
   const evaluate = (s, old, nt) => s === 'old' ? old : nt(s);
 
@@ -496,7 +497,6 @@ const day11 = () => {
   };
 
   const monkeySeeMonkeyDeux = (monkey, monkeys) => {
-    let big = 0n;
     while (monkey.items.length > 0) {
       const item = monkey.items.shift();
       monkey.inspected++;
@@ -523,7 +523,7 @@ const day11 = () => {
 
   const part2 = (s) => {
     const ms = monkeys(s, BigInt);
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 100; i++) {
       ms.forEach((m) => monkeySeeMonkeyDeux(m, ms));
     }
     const busy = ms.map(m => m.inspected).sort((a, b) => b - a);
