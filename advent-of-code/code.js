@@ -470,7 +470,7 @@ const day11 = () => {
       if (m = line.match(/^Monkey \d+:$/)) {
         ms.push({ items: [], inspected: 0 });
       } else if (m = line.match(/^\s+Starting items: (.*)$/)) {
-        ms[ms.length - 1].items = m[1].match(/(\d+)/g).map(Number);
+        ms[ms.length - 1].items = m[1].match(/(\d+)/g).map(BigInt);
       } else if (m = line.match(/^\s+Operation: new = (\w+) ([+*]) (\w+)$/)) {
         const [arg1, op, arg2] = [...m].slice(1);
         const fn = ops[op];
