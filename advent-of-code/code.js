@@ -470,7 +470,7 @@ const day11 = () => {
       } else if (m = line.match(/^\s+Test: divisible by (\d+)/)) {
         ms[ms.length - 1].divisibleBy = Number(m[1]);
       } else if (m = line.match(/^\s+If (true|false): throw to monkey (\d+)$/)) {
-        m[ms.length - 1][`if${m[1]}`] = Number(m[2]);
+        ms[ms.length - 1][`if${m[1]}`] = Number(m[2]);
       }
 
     });
