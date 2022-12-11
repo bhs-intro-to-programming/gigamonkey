@@ -107,4 +107,4 @@ const hard = `
 . . . . . 9 7 . .
 `;
 
-setupPuzzle(easy);
+setupPuzzle(hard);
