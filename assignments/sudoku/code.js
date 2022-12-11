@@ -1,3 +1,5 @@
+// SADIE'S CODE (plus some changes by me)
+
 const edgeSize = (width - height) / 2
 const b = Array(9).fill().map(() => Array(9).fill().map(() => Array(1).fill('')))
 let index = 1;
@@ -38,7 +40,6 @@ registerOnclick((x, y) => {
   } else if (x > edgeSize && x < width - edgeSize) {
     const col = Math.floor((x - edgeSize) / (height / 9))
     const row = Math.floor(y / (height / 9))
-    // drawText(index, edgeSize + col * (height / 9) + height / 64, row * (height / 9) + height * 6 / 64, 'black', height / 9)
     updateBoard(row, col, index, black)
   } else if (x > edgeSize + height) {
     while (filledSpaces < 81) {
@@ -50,6 +51,7 @@ registerOnclick((x, y) => {
 const solveBoard = () => {
   for (let row = 0; row < 9; row++) {
     for (let col = 0; col < 9; col++) {
+      console.log(`Trying to fill ${row},${col}`);
       let optionsFilled = 0
       let number = 0
       for (let currentCheck = 1; currentCheck < 10; currentCheck++) {
@@ -60,7 +62,6 @@ const solveBoard = () => {
         }
       }
       if (optionsFilled === 8 && b[row][col][0] === '') {
-        // drawText(index, edgeSize + col * (height / 9) + height / 64, row * (height / 9) + height * 6 / 64, 'gray', height / 9)
         updateBoard(row, col, number, 'grey')
       }
     }
