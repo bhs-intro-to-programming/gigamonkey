@@ -1,69 +1,40 @@
-// If we list all the natural numbers below 
-// 10 that are multiples of 3 or 5, we get 
-// 3, 5, 6 and 9. The sum of these multiples is 23.
+// Warning! Do not call this function with numbers much bigger than 40 unless
+// you want to kill this tab.
+const fib = (n) => (n < 2 ? n : fib(n - 2) + fib(n - 1));
 
-// Find the sum of all the multiples of 3 or 5
-// below 1000.
-
-const euler1 = (n) => {
-  let sum = 0;
-  for (let i = 1; i < n; i++) {
-    if (i % 3 === 0 || i % 5 === 0) {
-      sum += i;
-    }
+// This one you can safely call with as big numbers as you want though after
+// MAX_FIB_N it will return Infinity.
+const fib2 = (n) => {
+  let [a, b] = [0, 1];
+  for (let i = 0; i < n; i++) {
+    [a, b] = [b, a + b];
+    if (!isFinite(a)) break;
   }
-  return sum;
-}
-
-const hash = (o) => {
-  const s = JSON.stringify(o);
-  return [...s].reduce((hash, c) => ((hash << 5) + hash) + c.codePointAt(0), 5381);
-}
-
-const isOk = (x) => hash(x) % 2 == 0;
-
-const nextNumber = (n) => hash(n); 
-
-const isLeet = (n) => n % 1337 === 0;
-
-const random = () => Math.floor(Math.random() * 10000);
-
-const foo = () => {
-  let c = 0;
-  while (!isLeet(random())) { c++ };
-  return c;
-}
-
-const sumOfSquares = (n) => {
-  let sum = 0;
-  for (let i = 0; i < n; i++){
-    sum += i ** 2;
-  }
-  return sum;
-}
-
-
-const log = (x) => {
-  console.log(x);
-}
-
-const recordOk = (x) => {
-  log(`OK: ${x}`);
-}
-
-const recordNotOk = (x) => {
-  log(`NOT OK: ${x}`);
-}
-
-const pair = (a, b) => {
-  log(`pair: ${a},${b}`);
+  return a;
 };
 
+const MAX_FIB_N = 1476;
 
-const pairs = (n) => {
-  for (let i = 1; i <= n; i++) {
-    for (let j = 1; j <= n; j++) {
-      pair(i, j);
+const MAX_FIB = fib2(MAX_FIB_N);
+
+
+let alpha = 'abcdefghijklmnopqrstuvwxyz'
+
+//NOTE TO SELF str = string | cNum = caesar cipher number | sNum is the number point into 
+//the string | str2 = new string
+
+const makeCaesar = (str, key) => {
+  let str2 = ''
+  for (let sNum = 0; sNum < str.length; sNum++)
+    if (alpha.indexOf(str[sNum - 1]) + key > 26) {
+      str2 = str2 + alpha[((alpha.indexOf(str[sNum - 1]) + key) - 26) - 1]
+    } else {
+      str2 = str2 + alpha[(alpha.indexOf(str[sNum - 1]) + key) -1]
     }
-  }
+  return str2
 }
+
+//I DID IT YEEEEAHHHH
+
+//Intrstructions: this function takes two arguments, a string and the key you want to use
+//for your caesar cipher and then returns the first sring as a caesar cipher!
