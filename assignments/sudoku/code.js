@@ -15,8 +15,8 @@ const drawBoard = () => {
   drawText('Solve', edgeSize + height + 65, 30, 'black', 25)
 }
 
-const updateBoard = (row, col, number) => {
-  console.log(`updating ${row}, ${col} with ${number}`);
+const updateBoard = (row, col, number, color) => {
+  //console.log(`updating ${row}, ${col} with ${number}`);
   b[row][col][0] = number
   for (let l = 0; l < 9; l++) {
     b[row][l][number] = number
@@ -27,7 +27,7 @@ const updateBoard = (row, col, number) => {
       b[Math.floor(row / 3) * 3 + j][Math.floor(col / 3) * 3 + i][number] = number
     }
   }
-  drawText(number, edgeSize + col * (height / 9) + height / 64, row * (height / 9) + height * 6 / 64, 'gray', height / 9)
+  drawText(number, edgeSize + col * (height / 9) + height / 64, row * (height / 9) + height * 6 / 64, color, height / 9)
 
   filledSpaces++
 }
@@ -39,7 +39,7 @@ registerOnclick((x, y) => {
     const col = Math.floor((x - edgeSize) / (height / 9))
     const row = Math.floor(y / (height / 9))
     // drawText(index, edgeSize + col * (height / 9) + height / 64, row * (height / 9) + height * 6 / 64, 'black', height / 9)
-    updateBoard(row, col, index)
+    updateBoard(row, col, index, black)
   } else if (x > edgeSize + height) {
     while (filledSpaces < 81) {
       solveBoard()
@@ -61,7 +61,7 @@ const solveBoard = () => {
       }
       if (optionsFilled === 8 && b[row][col][0] === '') {
         // drawText(index, edgeSize + col * (height / 9) + height / 64, row * (height / 9) + height * 6 / 64, 'gray', height / 9)
-        updateBoard(row, col, number)
+        updateBoard(row, col, number, 'grey')
       }
     }
   }
@@ -72,7 +72,7 @@ const setupPuzzle = (puzzle) => {
     row.forEach((s, c) => {
       const n = Number(s);
       if (!isNaN(n)) {
-        updateBoard(r, c, n);
+        updateBoard(r, c, n, 'black');
       }
     });
   });
