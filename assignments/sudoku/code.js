@@ -90,7 +90,6 @@ const easy = `
 . 5 . . . 3 . . 7
 2 3 . 6 . . 9 . .
 7 1 . . 5 4 . . 3
-
-`
+`;
 
 setupPuzzle(easy);
