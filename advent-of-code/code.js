@@ -522,7 +522,7 @@ const day11 = () => {
       ms.forEach((m) => monkeySeeMonkeyDeux(m, ms));
     }
     const busy = ms.map(m => m.inspected).sort((a, b) => b - a);
-    console.log(JSON.stringify(busy, null, 2));
+    //console.log(JSON.stringify(busy, null, 2));
     return busy[0] * busy[1];
   };
   return { part1, part2 };
