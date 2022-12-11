@@ -29,5 +29,5 @@ const sums = (n) => {
   for (let x = 0; x < n + 1; x++) {
     result.push(x + result[x])
   }
-  return result.shift
+  return result;
 };
