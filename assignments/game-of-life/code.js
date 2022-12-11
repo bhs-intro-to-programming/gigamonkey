@@ -47,18 +47,27 @@ const neighbors = (b, y, x) => {
   return n
 }
 
-const whatLives = (b) => {
-  const newboard = [];
+const copyBoard = (b) => {
+  const copy = [];
   for (let i = 0; i < b.length; i++) {
-    newboard[i] = [];
+    copy[i] = [];
     for (let j = 0; j < b[i].length; j++) {
-      const n = neighbors(b, i, j);
-      //console.log(n);
-      const alive = b[i][j] === 1 ? (n === 2 || n === 3) : n === 3;
-      newboard[i][j] = alive ? 1 : 0;
+      copy[i].push(b[i][j]);
     }
   }
-  return newboard;
+  return copy;
+}
+
+const whatLives = (b) => {
+  const old = copyBoard(b);;
+  for (let i = 0; i < b.length; i++) {
+    for (let j = 0; j < b[i].length; j++) {
+      const n = neighbors(old, i, j);
+      //console.log(n);
+      const alive = old[i][j] === 1 ? (n === 2 || n === 3) : n === 3;
+      b[i][j] = alive ? 1 : 0;
+    }
+  }
 }
 
 
@@ -66,7 +75,7 @@ let board = makeArray(Math.floor(height / cellsize), Math.floor(width / cellsize
 
 const redraw = (t) => {
   clear()
-  board = whatLives(board)
+  whatLives(board)
   drawTheThings(board, cellsize)
 }
 
