@@ -488,7 +488,7 @@ const day11 = () => {
     while (monkey.items.length > 0) {
       const item = monkey.items.shift();
       monkey.inspected++;
-      const level = Math.floor(monkey.op(item) / 3) % mod;
+      const level = Math.floor((monkey.op(item) % mod) / 3)
       const divisible = level % monkey.divisibleBy === 0;
       const next = divisible ? monkey.iftrue : monkey.iffalse;
       monkeys[next].items.push(level);
