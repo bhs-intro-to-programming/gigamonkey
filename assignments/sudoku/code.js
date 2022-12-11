@@ -42,7 +42,9 @@ registerOnclick((x, y) => {
     const row = Math.floor(y / (height / 9))
     updateBoard(row, col, index, black)
   } else if (x > edgeSize + height) {
-    while (filledSpaces < 81) {
+    let rounds = 0;
+    while (filledSpaces < 81 && rounds++ < 100) {
+      console.log(filledSpaces);
       solveBoard()
     }
   }
@@ -51,7 +53,7 @@ registerOnclick((x, y) => {
 const solveBoard = () => {
   for (let row = 0; row < 9; row++) {
     for (let col = 0; col < 9; col++) {
-      console.log(`Trying to fill ${row},${col}`);
+      //console.log(`Trying to fill ${row},${col}`);
       let optionsFilled = 0
       let number = 0
       for (let currentCheck = 1; currentCheck < 10; currentCheck++) {
