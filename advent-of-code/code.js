@@ -469,7 +469,7 @@ const day11 = () => {
       console.log(line);
       let m;
       if (m = line.match(/^Monkey \d+:$/)) {
-        ms.push({ items: [] });
+        ms.push({ items: [], inspected: 0 });
       } else if (m = line.match(/^\s+Starting items: (.*)$/)) {
         ms[ms.length - 1].items = m[1].match(/(\d+)/g).map(Number);
       } else if (m = line.match(/^\s+Operation: new = (\w+) ([+*]) (\w+)$/)) {
@@ -488,6 +488,7 @@ const day11 = () => {
   const monkeySeeMonkeyDo = (monkey, monkeys) => {
     while (monkey.items.length > 0) {
       const item = monkey.items.shift();
+      monkey.inspected++;
       console.log(item);
       const level = Math.floor(monkey.op(item) / 3);
       const divisible = level % monkey.divisibleBy === 0;
@@ -497,10 +498,11 @@ const day11 = () => {
     };
   }
 
-  const part1 = (s) => {  
+  const part1 = (s) => {
     const ms = monkeys(s);
-    console.log(JSON.stringify(ms, null, 2));
-    ms.forEach((m) => monkeySeeMonkeyDo(m, ms));
+    for (let i = 0; i < 20; i++) {
+      ms.forEach((m) => monkeySeeMonkeyDo(m, ms));
+    }
     console.log(JSON.stringify(ms, null, 2));
   };
 
