@@ -456,7 +456,7 @@ const day10 = () => {
 
 const day11 = () => {
 
-  const evaluate = (s, old) => s === 'old' ? old : Number(s);
+  const evaluate = (s, old) => s === 'old' ? old : BigInt(s);
 
   const ops = {
     '+': (old, args) => evaluate(args[0], old) + evaluate(args[1], old),
