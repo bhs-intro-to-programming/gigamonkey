@@ -18,7 +18,6 @@ const drawBoard = () => {
 }
 
 const updateBoard = (row, col, number, color) => {
-  //console.log(`updating ${row}, ${col} with ${number}`);
   b[row][col][0] = number
   for (let l = 0; l < 9; l++) {
     b[row][l][number] = number
@@ -107,4 +106,4 @@ const hard = `
 . . . . . 9 7 . .
 `;
 
-setupPuzzle(hard);
+setupPuzzle(easy);
