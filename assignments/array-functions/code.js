@@ -35,7 +35,7 @@ const anyOverOneHundred = (ns) => {
   return false;
 };
 
-const pyramid = (n) => {
+const xpyramid = (n) => {
   const p = [];
   for (let i = 1; i < n + 1; i++) {
     for (let j = 0; j < i; j++) {
@@ -54,6 +54,16 @@ const ypyramid = (integer) => {
   }
   return product
 };
+
+const pyramid = (n) => {
+  let array = []
+  for (let i = 0; i < n + 1; i++) {
+    for (let j = 0; j < i; j++) {
+      array.push(i)
+    }
+  }
+  return array
+}
 
 const sums = (n) => {
   let list = []
