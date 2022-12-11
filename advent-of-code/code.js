@@ -488,10 +488,10 @@ const day11 = () => {
     while (monkey.items.length > 0) {
       const item = monkey.items.shift();
       monkey.inspected++;
-      const level = Math.floor((monkey.op(item) % mod) / 3)
+      const level = Math.floor(monkey.op(item) / 3)
       const divisible = level % monkey.divisibleBy === 0;
       const next = divisible ? monkey.iftrue : monkey.iffalse;
-      monkeys[next].items.push(level);
+      monkeys[next].items.push(level % mod);
     };
   };
 
@@ -508,7 +508,7 @@ const day11 = () => {
 
   const part1 = (s) => {
     const ms = monkeys(s, Number);
-    const mod = ms.reduce((p, m) => p * m.divisibleBy, 1) ** 2;
+    const mod = ms.reduce((p, m) => p * m.divisibleBy, 1);
     console.log(mod);
     for (let i = 0; i < 20; i++) {
       ms.forEach((m) => monkeySeeMonkeyDo(m, ms, mod));
