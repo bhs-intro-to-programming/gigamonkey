@@ -455,7 +455,6 @@ const day10 = () => {
 };
 
 const day11 = () => {
-    let big = 0n;
 
   const evaluate = (s, old, nt) => s === 'old' ? old : nt(s);
 
@@ -501,10 +500,6 @@ const day11 = () => {
       const item = monkey.items.shift();
       monkey.inspected++;
       const level = monkey.op(item);
-      if (level > big) {
-        console.log(level);
-        big = level;
-      }
       const divisible = level % monkey.divisibleBy === 0n;
       const next = divisible ? monkey.iftrue : monkey.iffalse;
       monkeys[next].items.push(level);
@@ -513,6 +508,8 @@ const day11 = () => {
 
   const part1 = (s) => {
     const ms = monkeys(s, Number);
+    const mod = ms.reduce((p, m) => p * m.divisibleBy, 1);
+    console.log(mod);
     for (let i = 0; i < 20; i++) {
       ms.forEach((m) => monkeySeeMonkeyDo(m, ms));
     }
@@ -523,7 +520,7 @@ const day11 = () => {
 
   const part2 = (s) => {
     const ms = monkeys(s, BigInt);
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 500; i++) {
       ms.forEach((m) => monkeySeeMonkeyDeux(m, ms));
     }
     const busy = ms.map(m => m.inspected).sort((a, b) => b - a);
@@ -570,5 +567,5 @@ if (false) {
 
 run('day_11.test', day11().part1, 10605);
 run('day_11.problem', day11().part1, 102399);
-run('day_11.test', day11().part2);
+//run('day_11.test', day11().part2);
 //run('day_11.problem', day11().part2);
