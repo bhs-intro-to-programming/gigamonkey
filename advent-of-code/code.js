@@ -466,7 +466,6 @@ const day11 = () => {
   const monkeys = (s) => {
     const ms = [];
     lines(s).forEach((line) => {
-      console.log(line);
       let m;
       if (m = line.match(/^Monkey \d+:$/)) {
         ms.push({ items: [], inspected: 0 });
@@ -494,7 +493,18 @@ const day11 = () => {
       const next = divisible ? monkey.iftrue : monkey.iffalse;
       monkeys[next].items.push(level);
     };
-  }
+  };
+
+  const monkeySeeMonkeyDeux = (monkey, monkeys) => {
+    while (monkey.items.length > 0) {
+      const item = monkey.items.shift();
+      monkey.inspected++;
+      const level = monkey.op(item);
+      const divisible = level % monkey.divisibleBy === 0;
+      const next = divisible ? monkey.iftrue : monkey.iffalse;
+      monkeys[next].items.push(level);
+    };
+  };
 
   const part1 = (s) => {
     const ms = monkeys(s);
@@ -506,7 +516,16 @@ const day11 = () => {
     return busy[0] * busy[1];
   };
 
-  return { part1 };
+  const part2 = (s) => {
+    const ms = monkeys(s);
+    for (let i = 0; i < 20; i++) {
+      ms.forEach((m) => monkeySeeMonkeyDeux(m, ms));
+    }
+    const busy = ms.map(m => m.inspected).sort((a, b) => b - a);
+    console.log(JSON.stringify(busy, null, 2));
+    return busy[0] * busy[1];
+  };
+  return { part1, part2 };
 
 };
 
@@ -546,3 +565,4 @@ if (false) {
 
 run('day_11.test', day11().part1, 10605);
 run('day_11.problem', day11().part1);
+run('day_11.problem', day11().part2);
