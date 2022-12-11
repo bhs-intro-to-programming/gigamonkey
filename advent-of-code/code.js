@@ -501,7 +501,7 @@ const day11 = () => {
       monkey.inspected++;
       const level = monkey.op(item);
       console.log(level);
-      const divisible = level % monkey.divisibleBy === 0;
+      const divisible = level % monkey.divisibleBy === 0n;
       const next = divisible ? monkey.iftrue : monkey.iffalse;
       monkeys[next].items.push(level);
     };
