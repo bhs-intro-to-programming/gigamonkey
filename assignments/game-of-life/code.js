@@ -68,7 +68,6 @@ const redraw = (t) => {
   clear()
   board = whatLives(board)
   drawTheThings(board, cellsize)
-  next += 1000;
 }
 
 drawTheThings(board, cellsize);
