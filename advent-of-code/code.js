@@ -544,4 +544,5 @@ if (false) {
   run('day_10.problem', day10().part2, day10part2);
 }
 
-run('day_11.test', day11().part1);
+run('day_11.test', day11().part1, 10605);
+run('day_11.problem', day11().part1);
