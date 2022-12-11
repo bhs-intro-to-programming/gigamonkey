@@ -461,8 +461,8 @@ const day11 = () => {
   const ops = {
     '+': (old, args) => evaluate(args[0], old) + evaluate(args[1], old),
     '*': (old, args) => evaluate(args[0], old) * evaluate(args[1], old),
-    }
   };
+
 
 
   const monkeys = (s) => {
@@ -476,7 +476,7 @@ const day11 = () => {
         ms[ms.length - 1].items = m[1].match(/(\d+)/g).map(Number);
       } else if (m = line.match(/^\s+Operation: new = (\w+) ([+*]) (\w+)$/)) {
         const [arg1, op, arg2] = [...m].slice(1);
-        ms[ms.length - 1].op = { op: ops[op], args: [ arg1, arg2 ]};
+        ms[ms.length - 1].op = { op: ops[op], args: [arg1, arg2] };
       } else if (m = line.match(/^\s+Test: divisible by (\d+)/)) {
         ms[ms.length - 1].divisibleBy = Number(m[1]);
       } else if (m = line.match(/^\s+If (true|false): throw to monkey (\d+)$/)) {
