@@ -23,3 +23,11 @@ const totalWithTip = (bill, tipPercent) => {
     total: bill.subtotal + bill.subtotal * tipPercent,
   };
 }
+
+const sums = (n) => {
+  let result = [0]
+  for (let x = 0; x < n + 1; x++) {
+    result.push(x + result[x])
+  }
+  return result.shift
+};
