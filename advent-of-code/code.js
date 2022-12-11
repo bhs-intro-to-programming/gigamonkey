@@ -523,7 +523,7 @@ const day11 = () => {
 
   const part2 = (s) => {
     const ms = monkeys(s, BigInt);
-    for (let i = 0; i < 800; i++) {
+    for (let i = 0; i < 20; i++) {
       ms.forEach((m) => monkeySeeMonkeyDeux(m, ms));
     }
     const busy = ms.map(m => m.inspected).sort((a, b) => b - a);
