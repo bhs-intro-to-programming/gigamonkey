@@ -462,7 +462,7 @@ const day11 = () => {
       let m;
       if (m = line.match(/^Monkey \d+$/)) {
         ms.push({ items: [] });
-      } else if (m = line.match(/^Starting items: (.*)$/) {
+      } else if (m = line.match(/^Starting items: (.*)$/)) {
         ms[ms.length - 1].items = m[1].match(/(\d+)/g).map(Number);
       }
     });
