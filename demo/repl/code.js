@@ -42,5 +42,14 @@ const makeCaesar = (str, key) => {
 const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
 const caesar = (s, key) => {
-
+  let encoded = '';
+  for (let i = 0; i < s.length; i++) {
+    const n = alphabet.indexOf(s[i]);
+    if (n === -1) {
+      encoded += s[i];
+    } else {
+      encoded += alphabet[(n + key) % 26];
+    }
+  }
+  return encoded;
 };
