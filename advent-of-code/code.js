@@ -463,20 +463,20 @@ const day11 = () => {
     '*': (old, args) => evaluate(args[0], old) * evaluate(args[1], old),
   };
 
-  const monkeys = (s) => {
+  const monkeys = (s, numberType) => {
     const ms = [];
     lines(s).forEach((line) => {
       let m;
       if (m = line.match(/^Monkey \d+:$/)) {
         ms.push({ items: [], inspected: 0 });
       } else if (m = line.match(/^\s+Starting items: (.*)$/)) {
-        ms[ms.length - 1].items = m[1].match(/(\d+)/g).map(BigInt);
+        ms[ms.length - 1].items = m[1].match(/(\d+)/g).map(numberType);
       } else if (m = line.match(/^\s+Operation: new = (\w+) ([+*]) (\w+)$/)) {
         const [arg1, op, arg2] = [...m].slice(1);
         const fn = ops[op];
         ms[ms.length - 1].op = (old) => fn(old, [arg1, arg2]);
       } else if (m = line.match(/^\s+Test: divisible by (\d+)/)) {
-        ms[ms.length - 1].divisibleBy = BigInt(m[1]);
+        ms[ms.length - 1].divisibleBy = numberType(m[1]);
       } else if (m = line.match(/^\s+If (true|false): throw to monkey (\d+)$/)) {
         ms[ms.length - 1][`if${m[1]}`] = Number(m[2]);
       }
@@ -508,7 +508,7 @@ const day11 = () => {
   };
 
   const part1 = (s) => {
-    const ms = monkeys(s);
+    const ms = monkeys(s, Number);
     for (let i = 0; i < 20; i++) {
       ms.forEach((m) => monkeySeeMonkeyDo(m, ms));
     }
@@ -518,7 +518,7 @@ const day11 = () => {
   };
 
   const part2 = (s) => {
-    const ms = monkeys(s);
+    const ms = monkeys(s, BigInt);
     for (let i = 0; i < 20; i++) {
       ms.forEach((m) => monkeySeeMonkeyDeux(m, ms));
     }
