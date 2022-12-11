@@ -489,7 +489,7 @@ const day11 = () => {
     monkey.items.forEach((item) => {
       const level = Math.floor(monkey.op(item) / 3);
       const divisible = level % monkey.divisibleBy === 0;
-      const next = monkeys[divisible ? monkey.iftrue : monkey.ifalse];
+      const next = monkeys[divisible ? monkey.iftrue : monkey.iffalse];
       monkeys[next].push(level);
     });
   }
