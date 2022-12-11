@@ -456,11 +456,11 @@ const day10 = () => {
 
 const day11 = () => {
 
-  const eval = (s, old) => s === 'old' ? old : Number(s);
+  const evaluate = (s, old) => s === 'old' ? old : Number(s);
 
   const ops = {
-    '+': (old, args) => eval(args[0], old) + eval(args[1], old),
-    '*': (old, args) => eval(args[0], old) * eval(args[1], old),
+    '+': (old, args) => evaluate(args[0], old) + evaluate(args[1], old),
+    '*': (old, args) => evaluate(args[0], old) * evaluate(args[1], old),
     }
   };
 
