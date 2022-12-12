@@ -572,7 +572,7 @@ const day12 = () => {
 
   const part1 = (s) => {
     const g = grid(s);
-    return g;
+    return JSON.stringify(g);
   }
 
   return { part1 };
