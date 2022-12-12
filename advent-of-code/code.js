@@ -558,7 +558,7 @@ const day11 = () => {
     const ms = monkeys2(s, ops2);
     const mods = ms.map(m => m.divisibleBy);
     ms.forEach((m) => m.items = m.items.map(n => mods.map((m) => n % m)));
-    for (let i = 0; i < 500; i++) {
+    for (let i = 0; i < 10_000; i++) {
       ms.forEach((m) => monkeySeeMonkeyDeux(m, ms, mods));
     }
     const busy = ms.map(m => m.inspected).sort((a, b) => b - a);
