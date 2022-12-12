@@ -409,6 +409,15 @@ const day9 = () => {
 
 const day10 = () => {
 
+  const part2output = `
+###..#....####.####.####.#.....##..####.
+#..#.#....#.......#.#....#....#..#.#....
+#..#.#....###....#..###..#....#....###..
+###..#....#.....#...#....#....#.##.#....
+#.#..#....#....#....#....#....#..#.#....
+#..#.####.####.####.#....####..###.####.
+`.trimStart();
+
   const ops = {
     noop: (state, probe) => {
       cycles(state, probe, 1);
@@ -451,7 +460,7 @@ const day10 = () => {
   const part1 = (s) => run(s, signalStrength, 0);
   const part2 = (s) => run(s, crt, '');
 
-  return { part1, part2 };
+  return { part1, part2, part2output };
 };
 
 const day11 = () => {
@@ -555,14 +564,7 @@ const day11 = () => {
 };
 
 
-const day10part2 = `
-###..#....####.####.####.#.....##..####.
-#..#.#....#.......#.#....#....#..#.#....
-#..#.#....###....#..###..#....#....###..
-###..#....#.....#...#....#....#.##.#....
-#.#..#....#....#....#....#....#..#.#....
-#..#.####.####.####.#....####..###.####.
-`.trimStart();
+
 
 // N.B. These won't necessarily output in order due to async fetch.
 if (false) {
@@ -585,9 +587,9 @@ if (false) {
   run('day_09.problem', day9().part1, 6563);
   run('day_09.problem', day9().part2, 2653);
   run('day_10.problem', day10().part1, 17020);
-  run('day_10.problem', day10().part2, day10part2);
 }
 
+  run('day_10.problem', day10().part2, day10().part2output);
 run('day_11.test', day11().part1, 10605);
 run('day_11.problem', day11().part1, 102399);
 run('day_11.test', day11().part2, 2713310158);
