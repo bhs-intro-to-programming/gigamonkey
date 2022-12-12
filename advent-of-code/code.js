@@ -548,8 +548,9 @@ const day11 = () => {
     return busy[0] * busy[1];
   };
 
+  const part1 = (s) => run(s, 20, makeOp1, (x) => x, monkeySeeMonkeyDo);
 
-  const part1 = (s) => {
+  const part1x = (s) => {
     const ms = monkeys(s, makeOp1);
     for (let i = 0; i < 20; i++) {
       ms.forEach((m) => monkeySeeMonkeyDo(m, ms));
