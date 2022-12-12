@@ -481,13 +481,13 @@ const day11 = () => {
   // Part 2
 
   const ops2 = {
-    '+': (old, [a, b], mods) => {
+    '+': (old, a, b, mods) => {
       return old.map((r, i) => {
         const mod = mods[i];
         return (evaluate(a, r) % mod + evaluate(b, r) %  mod) % mod;
       });
     },
-    '*': (old, [a, b], mods) => {
+    '*': (old, a, b, mods) => {
       return old.map((r, i) => {
         const mod = mods[i];
         return (evaluate(a, r, mod) * evaluate(b, r, mod)) % mod;
@@ -497,7 +497,7 @@ const day11 = () => {
 
   const makeOp2 = (op, arg1, arg2) => {
     const fn = ops2[op];
-    return (old, mods) => fn(old, [arg1, arg2], mods);
+    return (old, mods) => fn(old, arg1, arg2, mods);
   };
 
   const monkeys = (s, makeOp) => {
