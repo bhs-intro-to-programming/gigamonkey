@@ -487,7 +487,7 @@ const day11 = () => {
     '+': (old, a, b, monkeys) => {
       return old.map((r, i) => {
         const mod = monkeys[i].divisibleBy;
-        return (evaluate(a, r) % mod + evaluate(b, r) %  mod) % mod;
+        return (evaluate(a, r) + evaluate(b, r)) % mod;
       });
     },
     '*': (old, a, b, monkeys) => {
