@@ -480,7 +480,7 @@ const day11 = () => {
     },
   };
 
-  const makeOp1 = (fn, arg1, arg2) => (old) => Math.floor((old, [arg1, arg2]) / 3);
+  const makeOp1 = (fn, arg1, arg2) => (old) => Math.floor(fn(old, [arg1, arg2]) / 3);
 
   const monkeys = (s, ops, makeOp) => {
     const ms = [];
