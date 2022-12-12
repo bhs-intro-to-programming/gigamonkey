@@ -456,6 +456,7 @@ const day10 = () => {
 
 const day11 = () => {
 
+  // Part 1
   const evaluate = (s, old) => s === 'old' ? old : Number(s);
 
   const ops1 = {
@@ -463,6 +464,7 @@ const day11 = () => {
     '*': (old, [a, b]) => evaluate(a, old) * evaluate(b, old),
   };
 
+  // Part 2
   const evaluate2 = (s, old, mod) => s === 'old' ? old : Number(s) % mod;
 
   const ops2 = {
@@ -494,8 +496,10 @@ const day11 = () => {
     const ms = [];
     lines(s).forEach((line) => {
       let m;
+      let monkey = null;
       if (m = line.match(/^Monkey \d+:$/)) {
-        ms.push({ items: [], inspected: 0, idx: ms.length });
+        monkey = { items: [], inspected: 0, idx: ms.length };
+        ms.push(monkey);
       } else if (m = line.match(/^\s+Starting items: (.*)$/)) {
         ms[ms.length - 1].items = m[1].match(/(\d+)/g).map(Number);
       } else if (m = line.match(/^\s+Operation: new = (\w+) ([+*]) (\w+)$/)) {
@@ -513,7 +517,7 @@ const day11 = () => {
   const isDivisible1 = (level, monkey) => level % monkey.divisibleBy === 0;
   const isDivisible2 = (level, monkey) => level[monkey.idx] === 0;
 
-  const msmd = (monkey, monkeys, extra, isDivisible) => {
+  const monkeySeeMonkeyDo = (monkey, monkeys, extra, isDivisible) => {
     monkey.inspected += monkey.items.length;
     while (monkey.items.length > 0) {
       const item = monkey.items.shift();
@@ -524,14 +528,6 @@ const day11 = () => {
     }
   };
   
-  const monkeySeeMonkeyDo = (monkey, monkeys) => {
-    return msmd(monkey, monkeys, null, isDivisible1);
-  };
-
-  const monkeySeeMonkeyDeux = (monkey, monkeys, mods) => {
-    return msmd(monkey, monkeys, mods, isDivisible2);
-  }
-
   const fixForPart2 = (monkeys) => {
     const mods = monkeys.map(m => m.divisibleBy);
     monkeys.forEach((m) => m.items = m.items.map(n => mods.map((m) => n % m)));
@@ -542,7 +538,7 @@ const day11 = () => {
     const ms = monkeys(s, makeOp);
     const extra = fixMonkeys(ms);
     for (let i = 0; i < iters; i++) {
-      ms.forEach((m) => msmd(m, ms, extra, isDivisible));
+      ms.forEach((m) => monkeySeeMonkeyDo(m, ms, extra, isDivisible));
     }
     const busy = ms.map(m => m.inspected).sort((a, b) => b - a);
     return busy[0] * busy[1];
