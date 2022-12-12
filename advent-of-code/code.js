@@ -485,11 +485,9 @@ const day11 = () => {
     return (old) => Math.floor(fn(old, [arg1, arg2]) / 3);
   };
 
-  const makeOp2Maker = (mods) => {
-    return (op, arg1, arg2) => {
-      const fn = ops[op];
-      return (old) => fn(old, [arg1, arg2], mods);
-    };
+  const makeOp2 = (op, arg1, arg2) => {
+    const fn = ops2[op];
+    return (old, mods) => fn(old, [arg1, arg2], mods);
   };
 
   const monkeys = (s, ops, makeOp) => {
@@ -512,7 +510,7 @@ const day11 = () => {
     return ms;
   };
 
-  const monkeys2 = (s, ops) => {
+  const monkeys2 = (s, ops, makeOp) => {
     const ms = [];
     lines(s).forEach((line) => {
       let m;
@@ -523,8 +521,10 @@ const day11 = () => {
         ms[ms.length - 1].items = m[1].match(/(\d+)/g).map(Number);
       } else if (m = line.match(/^\s+Operation: new = (\w+) ([+*]) (\w+)$/)) {
         const [arg1, op, arg2] = [...m].slice(1);
-        const fn = ops[op];
-        ms[ms.length - 1].op = (old, mods) => fn(old, [arg1, arg2], mods);
+        //const fn = ops[op];
+        //ms[ms.length - 1].op = (old, mods) => fn(old, [arg1, arg2], mods);
+        ms[ms.length - 1].op = makeOp(op, arg1, arg2);
+
       } else if (m = line.match(/^\s+Test: divisible by (\d+)/)) {
         ms[ms.length - 1].divisibleBy = Number(m[1]);
       } else if (m = line.match(/^\s+If (true|false): throw to monkey (\d+)$/)) {
@@ -566,7 +566,7 @@ const day11 = () => {
   };
 
   const part2 = (s) => {
-    const ms = monkeys2(s, ops2);
+    const ms = monkeys2(s, ops2, makeOp2);
     const mods = ms.map(m => m.divisibleBy);
     ms.forEach((m) => m.items = m.items.map(n => mods.map((m) => n % m)));
     for (let i = 0; i < 10_000; i++) {
