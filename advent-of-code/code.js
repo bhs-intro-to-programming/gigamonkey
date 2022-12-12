@@ -490,13 +490,12 @@ const day11 = () => {
     return (old, mods) => fn(old, [arg1, arg2], mods);
   };
 
-  const monkeys = (s, ops, makeOp) => {
+  const monkeys = (s, makeOp) => {
     const ms = [];
     lines(s).forEach((line) => {
       let m;
       if (m = line.match(/^Monkey \d+:$/)) {
         ms.push({ items: [], inspected: 0, idx: ms.length });
-        //ms[ms.length - 1].idx = ms.length - 1;
       } else if (m = line.match(/^\s+Starting items: (.*)$/)) {
         ms[ms.length - 1].items = m[1].match(/(\d+)/g).map(Number);
       } else if (m = line.match(/^\s+Operation: new = (\w+) ([+*]) (\w+)$/)) {
@@ -534,7 +533,7 @@ const day11 = () => {
   };
 
   const part1 = (s) => {
-    const ms = monkeys(s, ops1, makeOp1);
+    const ms = monkeys(s, makeOp1);
     for (let i = 0; i < 20; i++) {
       ms.forEach((m) => monkeySeeMonkeyDo(m, ms));
     }
@@ -543,7 +542,7 @@ const day11 = () => {
   };
 
   const part2 = (s) => {
-    const ms = monkeys(s, ops2, makeOp2);
+    const ms = monkeys(s, makeOp2);
     const mods = ms.map(m => m.divisibleBy);
     ms.forEach((m) => m.items = m.items.map(n => mods.map((m) => n % m)));
 
