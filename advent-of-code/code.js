@@ -561,7 +561,7 @@ const day11 = () => {
   };
 
   const part1X = (s) => run(s, 20, makeOp1, (x) => null, isDivisible1);
-  const part1 = (s) => run(s, 20, makeOp2, forForPart2, isDivisible2);
+  const part1 = (s) => run(s, 20, makeOp2, fixForPart2, isDivisible2);
 
   const part2 = (s) => run(s, 10_000, makeOp2, fixForPart2, isDivisible2);
 
