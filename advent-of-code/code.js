@@ -466,11 +466,11 @@ const day10 = () => {
 const day11 = () => {
 
   // Part 1
-  const evaluate1 = (s, old) => s === 'old' ? old : Number(s);
+  const evaluate = (s, old) => s === 'old' ? old : Number(s);
 
   const ops1 = {
-    '+': (old, [a, b]) => evaluate1(a, old) + evaluate1(b, old),
-    '*': (old, [a, b]) => evaluate1(a, old) * evaluate1(b, old),
+    '+': (old, [a, b]) => evaluate(a, old) + evaluate(b, old),
+    '*': (old, [a, b]) => evaluate(a, old) * evaluate(b, old),
   };
 
   const makeOp1 = (op, arg1, arg2) => {
@@ -479,19 +479,18 @@ const day11 = () => {
   };
 
   // Part 2
-  const evaluate2 = (s, old) => s === 'old' ? old : Number(s);
-
+  
   const ops2 = {
     '+': (old, [a, b], mods) => {
       return old.map((r, i) => {
         const mod = mods[i];
-        return (evaluate2(a, r) % mod + evaluate2(b, r) %  mod) % mod;
+        return (evaluate(a, r) % mod + evaluate(b, r) %  mod) % mod;
       });
     },
     '*': (old, [a, b], mods) => {
       return old.map((r, i) => {
         const mod = mods[i];
-        return (evaluate2(a, r, mod) * evaluate2(b, r, mod)) % mod;
+        return (evaluate(a, r, mod) * evaluate(b, r, mod)) % mod;
       });
     },
   };
