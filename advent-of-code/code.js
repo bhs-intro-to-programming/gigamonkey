@@ -558,7 +558,7 @@ const day11 = () => {
     return busy[0] * busy[1];
   };
 
-  const part2x = (s) => run(s, makeOp2, fixForPart2, monkeySeeMonkeyDeux);
+  const part2 = (s) => run(s, makeOp2, fixForPart2, monkeySeeMonkeyDeux);
 
   const part2x = (s) => {
     const ms = monkeys(s, makeOp2);
