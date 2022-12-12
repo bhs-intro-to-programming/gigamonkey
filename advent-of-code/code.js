@@ -500,15 +500,20 @@ const day11 = () => {
       if (m = line.match(/^Monkey \d+:$/)) {
         monkey = { items: [], inspected: 0, idx: ms.length };
         ms.push(monkey);
+
       } else if (m = line.match(/^\s+Starting items: (.*)$/)) {
         monkey.items = m[1].match(/(\d+)/g).map(Number);
+
       } else if (m = line.match(/^\s+Operation: new = (\w+) ([+*]) (\w+)$/)) {
         const [arg1, op, arg2] = [...m].slice(1);
         monkey.op = makeOp(op, arg1, arg2);
+
       } else if (m = line.match(/^\s+Test: divisible by (\d+)/)) {
         monkey.divisibleBy = Number(m[1]);
+
       } else if (m = line.match(/^\s+If (true|false): throw to monkey (\d+)$/)) {
-        monkey[`if${m[1]}`] = Number(m[2]);
+        monkey[m[1]] = Number(m[2]);
+
       }
     });
     return ms;
@@ -522,7 +527,7 @@ const day11 = () => {
     while (monkey.items.length > 0) {
       const item = monkey.items.shift();
       const level = monkey.op(item, extra);
-      const next = monkeys[monkey[isDivisible(level, monkey) ? 'iftrue' : 'iffalse']];
+      const next = monkeys[monkey[isDivisible(level, monkey) ? 'true' : 'false']];
       next.items.push(level);
     }
   };
