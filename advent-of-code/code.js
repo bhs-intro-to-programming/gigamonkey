@@ -539,8 +539,8 @@ const day11 = () => {
     while (monkey.items.length > 0) {
       const item = monkey.items.shift();
       const level = monkey.op(item, monkeys);
-      const next = monkeys[monkey[isDivisible(level, monkey) ? 'true' : 'false']];
-      next.items.push(level);
+      const next = isDivisible(level, monkey) ? 'true' : 'false';
+      monkeys[monkey[next]].items.push(level);
     }
   };
 
