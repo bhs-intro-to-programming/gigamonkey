@@ -525,7 +525,7 @@ const day11 = () => {
     const ms = monkeys(s);
     const mods = ms.map(m => m.divisibleBy);
     ms.forEach((m) => m.items.map(n => mods.map((m) => n % m)));
-    JSON.stringify(ms, null, 2);
+    return JSON.stringify(ms, null, 2);
   };
 
   return { part1, part2 };
