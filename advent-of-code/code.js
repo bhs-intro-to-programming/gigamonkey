@@ -532,6 +532,23 @@ const day11 = () => {
     }
   };
 
+  const fixForPart2 = (monkeys) => {
+    const mods = monkeys.map(m => m.divisibleBy);
+    monkeys.forEach((m) => m.items = m.items.map(n => mods.map((m) => n % m)));
+    return mods;
+  }
+ 
+  const run = (s, makeOp, fixMonkeys, doer) => {
+    const ms = monkeys(s, makeOp);
+    const extra = fixMonkeys(ms);
+    for (let i = 0; i < 10_000; i++) {
+      ms.forEach((m) => doer(m, ms, extra));
+    }
+    const busy = ms.map(m => m.inspected).sort((a, b) => b - a);
+    return busy[0] * busy[1];
+  };
+
+
   const part1 = (s) => {
     const ms = monkeys(s, makeOp1);
     for (let i = 0; i < 20; i++) {
@@ -541,7 +558,9 @@ const day11 = () => {
     return busy[0] * busy[1];
   };
 
-  const part2 = (s) => {
+  const part2x = (s) => run(s, makeOp2, fixForPart2, monkeySeeMonkeyDeux);
+
+  const part2x = (s) => {
     const ms = monkeys(s, makeOp2);
     const mods = ms.map(m => m.divisibleBy);
     ms.forEach((m) => m.items = m.items.map(n => mods.map((m) => n % m)));
