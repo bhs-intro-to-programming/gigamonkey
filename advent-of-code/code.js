@@ -566,6 +566,10 @@ const day11 = () => {
   return { part1, part2 };
 };
 
+const day12 = () => {
+
+};
+
 // N.B. These won't necessarily output in order due to async fetch.
 if (false) {
   run('day_01.problem', day1().part1, 74394);
@@ -588,7 +592,7 @@ if (false) {
   run('day_09.problem', day9().part2, 2653);
   run('day_10.problem', day10().part1, 17020);
   run('day_10.problem', day10().part2, day10().part2output);
-
-}
   run('day_11.problem', day11().part1, 102399);
   run('day_11.problem', day11().part2, 23641658401);
+}
+
