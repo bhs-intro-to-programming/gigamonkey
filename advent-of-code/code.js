@@ -525,7 +525,7 @@ const day11 = () => {
   };
   
 
-  const monkeySeeMonkeyDo = (monkey, monkeys) => {
+  const monkeySeeMonkeyDoX = (monkey, monkeys) => {
     monkey.inspected += monkey.items.length;
     while (monkey.items.length > 0) {
       const item = monkey.items.shift();
@@ -536,21 +536,13 @@ const day11 = () => {
     }
   };
 
+  const monkeySeeMonkeyDo = (monkey, monkeys) => {
+    return msmd(monkey, monkeys, null, isDivisible1);
+  };
+
   const monkeySeeMonkeyDeux = (monkey, monkeys, mods) => {
     return msmd(monkey, monkeys, mods, isDivisible2);
   }
-
-
-  const monkeySeeMonkeyDeuxX = (monkey, monkeys, mods) => {
-    monkey.inspected += monkey.items.length;
-    while (monkey.items.length > 0) {
-      const item = monkey.items.shift();
-      const level = monkey.op(item, mods);
-      const divisible = level[monkey.idx] === 0;
-      const next = monkeys[monkey[divisible ? 'iftrue' : 'iffalse']];
-      next.items.push(level);
-    }
-  };
 
   const fixForPart2 = (monkeys) => {
     const mods = monkeys.map(m => m.divisibleBy);
