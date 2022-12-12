@@ -466,6 +466,7 @@ const day10 = () => {
 const day11 = () => {
 
   // Part 1
+
   const evaluate = (s, old) => s === 'old' ? old : Number(s);
 
   const ops1 = {
@@ -477,6 +478,8 @@ const day11 = () => {
     const fn = ops1[op];
     return (old) => Math.floor(fn(old, arg1, arg2) / 3);
   };
+
+  const isDivisible1 = (level, monkey) => level % monkey.divisibleBy === 0;
 
   // Part 2
 
@@ -499,6 +502,10 @@ const day11 = () => {
     const fn = ops2[op];
     return (old, mods) => fn(old, arg1, arg2, mods);
   };
+
+  const isDivisible2 = (level, monkey) => level[monkey.idx] === 0;
+
+  // Generic
 
   const monkeys = (s, makeOp) => {
     const ms = [];
@@ -527,9 +534,6 @@ const day11 = () => {
     return ms;
   };
 
-  const isDivisible1 = (level, monkey) => level % monkey.divisibleBy === 0;
-  const isDivisible2 = (level, monkey) => level[monkey.idx] === 0;
-
   const monkeySeeMonkeyDo = (monkey, monkeys, extra, isDivisible) => {
     monkey.inspected += monkey.items.length;
     while (monkey.items.length > 0) {
@@ -556,7 +560,7 @@ const day11 = () => {
     return busy[0] * busy[1];
   };
 
-  const part1 = (s) => run(s, 20, makeOp1, (x) => x, isDivisible1);
+  const part1 = (s) => run(s, 20, makeOp1, (x) => null, isDivisible1);
   const part2 = (s) => run(s, 10_000, makeOp2, fixForPart2, isDivisible2);
 
   return { part1, part2 };
