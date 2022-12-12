@@ -510,6 +510,21 @@ const day11 = () => {
     return ms;
   };
 
+  const isDivisible1 = (level, monkey) => level % monkey.divisibleBy === 0;
+  const isDivisible2 = (level, monkey) => level[monkey.idx] === 0;
+
+  const msmd = (monkey, monkeys, extra, isDivisible) => {
+    monkey.inspected += monkey.items.length;
+    while (monkey.items.length > 0) {
+      const item = monkey.items.shift();
+      const level = monkey.op(item, extra);
+      const divisible = isDivisible(level, monkey);
+      const next = monkeys[monkey[divisible ? 'iftrue' : 'iffalse']];
+      next.items.push(level);
+    }
+  };
+  }
+
   const monkeySeeMonkeyDo = (monkey, monkeys) => {
     monkey.inspected += monkey.items.length;
     while (monkey.items.length > 0) {
@@ -522,6 +537,11 @@ const day11 = () => {
   };
 
   const monkeySeeMonkeyDeux = (monkey, monkeys, mods) => {
+    return msmd(monkey, monkeys, mods, isDivisible2);
+  }
+
+
+  const monkeySeeMonkeyDeuxX = (monkey, monkeys, mods) => {
     monkey.inspected += monkey.items.length;
     while (monkey.items.length > 0) {
       const item = monkey.items.shift();
@@ -549,16 +569,6 @@ const day11 = () => {
   };
 
   const part1 = (s) => run(s, 20, makeOp1, (x) => x, monkeySeeMonkeyDo);
-
-  const part1x = (s) => {
-    const ms = monkeys(s, makeOp1);
-    for (let i = 0; i < 20; i++) {
-      ms.forEach((m) => monkeySeeMonkeyDo(m, ms));
-    }
-    const busy = ms.map(m => m.inspected).sort((a, b) => b - a);
-    return busy[0] * busy[1];
-  };
-
   const part2 = (s) => run(s, 10_000, makeOp2, fixForPart2, monkeySeeMonkeyDeux);
 
   return { part1, part2 };
