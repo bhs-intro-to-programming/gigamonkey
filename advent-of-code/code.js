@@ -485,6 +485,13 @@ const day11 = () => {
     return (old) => Math.floor(fn(old, [arg1, arg2]) / 3);
   };
 
+  const makeOp2Maker = (mods) => {
+    return (op, arg1, arg2) => {
+      const fn = ops[op];
+      return (old) => fn(old, [arg1, arg2], mods);
+    };
+  };
+
   const monkeys = (s, ops, makeOp) => {
     const ms = [];
     lines(s).forEach((line) => {
