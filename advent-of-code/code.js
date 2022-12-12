@@ -568,10 +568,31 @@ const day11 = () => {
 
 const day12 = () => {
 
-  const grid = (s) => lines(s).map(line => line.split(''));
+  const grid = (s) => {
+    const g = lines(s).map(line => line.split(''));
+    g.forEach((row, i) => {
+      row.forEach((c, j) => {
+        if (g[i][j].match(/[SE]/)) {
+          g[g[i][j]] = [i, j];
+        }
+      });
+    });
+    return g;
+  }
+
+  const bfs = (grid, queue) => {
+    while (queue) {
+      const [j, j] = queue.pop();
+      // push unvisited neighbors.
+      
+      
+    }
+  }
 
   const part1 = (s) => {
     const g = grid(s);
+    bfs(g, [g.S]);
+
     return JSON.stringify(g);
   }
 
