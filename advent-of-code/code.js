@@ -572,7 +572,7 @@ const day12 = () => {
 
   const part1 = (s) => {
     const g = grid(s);
-    return s;
+    return g;
   }
 
   return { part1 };
