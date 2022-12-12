@@ -492,10 +492,11 @@ const day11 = () => {
 
   const monkeys = (s, ops, makeOp) => {
     const ms = [];
-    lines(s).forEach((line, i) => {
+    lines(s).forEach((line) => {
       let m;
       if (m = line.match(/^Monkey \d+:$/)) {
         ms.push({ items: [], inspected: 0, idx: i });
+        ms[ms.length - 1].idx = ms.length - 1;
       } else if (m = line.match(/^\s+Starting items: (.*)$/)) {
         ms[ms.length - 1].items = m[1].match(/(\d+)/g).map(Number);
       } else if (m = line.match(/^\s+Operation: new = (\w+) ([+*]) (\w+)$/)) {
