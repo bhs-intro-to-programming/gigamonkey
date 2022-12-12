@@ -466,21 +466,26 @@ const day10 = () => {
 const day11 = () => {
 
   // Part 1
-  const evaluate = (s, old) => s === 'old' ? old : Number(s);
+  const evaluate1 = (s, old) => s === 'old' ? old : Number(s);
 
   const ops1 = {
-    '+': (old, [a, b]) => evaluate(a, old) + evaluate(b, old),
-    '*': (old, [a, b]) => evaluate(a, old) * evaluate(b, old),
+    '+': (old, [a, b]) => evaluate1(a, old) + evaluate1(b, old),
+    '*': (old, [a, b]) => evaluate1(a, old) * evaluate1(b, old),
+  };
+
+  const makeOp1 = (op, arg1, arg2) => {
+    const fn = ops1[op];
+    return (old) => Math.floor(fn(old, [arg1, arg2]) / 3);
   };
 
   // Part 2
-  const evaluate2 = (s, old, mod) => s === 'old' ? old : Number(s) % mod;
+  const evaluate2 = (s, old) => s === 'old' ? old : Number(s);
 
   const ops2 = {
     '+': (old, [a, b], mods) => {
       return old.map((r, i) => {
         const mod = mods[i];
-        return (evaluate2(a, r, mod) + evaluate2(b, r, mod)) % mod;
+        return (evaluate2(a, r) % mod + evaluate2(b, r) %  mod) % mod;
       });
     },
     '*': (old, [a, b], mods) => {
@@ -489,11 +494,6 @@ const day11 = () => {
         return (evaluate2(a, r, mod) * evaluate2(b, r, mod)) % mod;
       });
     },
-  };
-
-  const makeOp1 = (op, arg1, arg2) => {
-    const fn = ops1[op];
-    return (old) => Math.floor(fn(old, [arg1, arg2]) / 3);
   };
 
   const makeOp2 = (op, arg1, arg2) => {
@@ -587,9 +587,9 @@ if (false) {
   run('day_09.problem', day9().part1, 6563);
   run('day_09.problem', day9().part2, 2653);
   run('day_10.problem', day10().part1, 17020);
+  run('day_10.problem', day10().part2, day10().part2output);
 }
 
-  run('day_10.problem', day10().part2, day10().part2output);
 run('day_11.test', day11().part1, 10605);
 run('day_11.problem', day11().part1, 102399);
 run('day_11.test', day11().part2, 2713310158);
