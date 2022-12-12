@@ -500,7 +500,7 @@ const day11 = () => {
   const part1 = (s) => {
     const ms = monkeys(s);
     for (let i = 0; i < 20; i++) {
-      ms.forEach((m) => monkeySeeMonkeyDo(m, ms, mod));
+      ms.forEach((m) => monkeySeeMonkeyDo(m, ms));
     }
     const busy = ms.map(m => m.inspected).sort((a, b) => b - a);
     return busy[0] * busy[1];
