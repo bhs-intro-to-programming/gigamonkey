@@ -476,7 +476,7 @@ const day11 = () => {
 
   const makeOp1 = (op, arg1, arg2) => {
     const fn = ops1[op];
-    return (old, monkeys) => Math.floor((fn(old, arg1, arg2) % monkeys.mod) / 3);
+    return (old, monkeys) => Math.floor(fn(old, arg1, arg2) / 3);
   };
 
   const isDivisible1 = (level, monkey) => level % monkey.divisibleBy === 0;
