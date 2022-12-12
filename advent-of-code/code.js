@@ -494,7 +494,7 @@ const day11 = () => {
 
   const monkeys = (s, makeOp) => {
     const ms = [];
-      let monkey = null;
+    let monkey = null;
     lines(s).forEach((line) => {
       let m;
       if (m = line.match(/^Monkey \d+:$/)) {
@@ -522,18 +522,17 @@ const day11 = () => {
     while (monkey.items.length > 0) {
       const item = monkey.items.shift();
       const level = monkey.op(item, extra);
-      const divisible = isDivisible(level, monkey);
-      const next = monkeys[monkey[divisible ? 'iftrue' : 'iffalse']];
+      const next = monkeys[monkey[isDivisible(level, monkey) ? 'iftrue' : 'iffalse']];
       next.items.push(level);
     }
   };
-  
+
   const fixForPart2 = (monkeys) => {
     const mods = monkeys.map(m => m.divisibleBy);
     monkeys.forEach((m) => m.items = m.items.map(n => mods.map((m) => n % m)));
     return mods;
   }
- 
+
   const run = (s, iters, makeOp, fixMonkeys, isDivisible) => {
     const ms = monkeys(s, makeOp);
     const extra = fixMonkeys(ms);
