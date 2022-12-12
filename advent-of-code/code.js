@@ -606,4 +606,4 @@ if (false) {
 run('day_11.test', day11().part1, 10605);
 run('day_11.problem', day11().part1, 102399);
 run('day_11.test', day11().part2, 2713310158);
-//run('day_11.problem', day11().part2);
+run('day_11.problem', day11().part2);
