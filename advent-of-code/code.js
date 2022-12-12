@@ -524,18 +524,6 @@ const day11 = () => {
     }
   };
   
-
-  const monkeySeeMonkeyDoX = (monkey, monkeys) => {
-    monkey.inspected += monkey.items.length;
-    while (monkey.items.length > 0) {
-      const item = monkey.items.shift();
-      const level = monkey.op(item);
-      const divisible = level % monkey.divisibleBy === 0;
-      const next = monkeys[monkey[divisible ? 'iftrue' : 'iffalse']];
-      next.items.push(level);
-    }
-  };
-
   const monkeySeeMonkeyDo = (monkey, monkeys) => {
     return msmd(monkey, monkeys, null, isDivisible1);
   };
@@ -550,11 +538,11 @@ const day11 = () => {
     return mods;
   }
  
-  const run = (s, iters, makeOp, fixMonkeys, doer) => {
+  const run = (s, iters, makeOp, fixMonkeys, isDivisible) => {
     const ms = monkeys(s, makeOp);
     const extra = fixMonkeys(ms);
     for (let i = 0; i < iters; i++) {
-      ms.forEach((m) => doer(m, ms, extra));
+      ms.forEach((m) => msmd(m, ms, extra, isDivisible));
     }
     const busy = ms.map(m => m.inspected).sort((a, b) => b - a);
     return busy[0] * busy[1];
