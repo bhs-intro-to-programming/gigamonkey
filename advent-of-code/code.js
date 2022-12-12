@@ -604,3 +604,4 @@ if (false) {
   run('day_11.problem', day11().part2, 23641658401);
 }
 
+run('day_12.test', day12().part1);
