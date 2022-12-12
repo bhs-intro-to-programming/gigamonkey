@@ -549,7 +549,7 @@ const day11 = () => {
   };
 
   const part1 = (s) => {
-    const ms = monkeys(s, ops1);
+    const ms = monkeys(s, ops1, makeOp1);
     for (let i = 0; i < 20; i++) {
       ms.forEach((m) => monkeySeeMonkeyDo(m, ms));
     }
