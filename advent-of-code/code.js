@@ -547,7 +547,6 @@ const day11 = () => {
   const fixForPart2 = (monkeys) => {
     const mods = monkeys.map(m => m.divisibleBy);
     monkeys.forEach((m) => m.items = m.items.map(n => mods.map((m) => n % m)));
-    return mods;
   }
 
   const run = (s, iters, makeOp, fixMonkeys, isDivisible) => {
@@ -560,7 +559,7 @@ const day11 = () => {
     return busy[0] * busy[1];
   };
 
-  const part1 = (s) => run(s, 20, makeOp1, (x) => null, isDivisible1);
+  const part1 = (s) => run(s, 20, makeOp1, (x) => {}, isDivisible1);
   const part2 = (s) => run(s, 10_000, makeOp2, fixForPart2, isDivisible2);
 
   return { part1, part2 };
