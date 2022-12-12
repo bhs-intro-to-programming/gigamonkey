@@ -559,17 +559,15 @@ const day11 = () => {
     return busy[0] * busy[1];
   };
 
-  const part1 = (s) => run(s, 20, makeOp1, (x) => {}, isDivisible1);
+  const part1 = (s) => run(s, 20, makeOp1, (x) => { }, isDivisible1);
   const part2 = (s) => run(s, 10_000, makeOp2, fixForPart2, isDivisible2);
 
   return { part1, part2 };
 };
 
 
-
-
 // N.B. These won't necessarily output in order due to async fetch.
-if (false) {
+if (true) {
   run('day_01.problem', day1().part1, 74394);
   run('day_01.problem', day1().part2, 212836);
   run('day_02.problem', day2().part1, 9241);
@@ -590,9 +588,7 @@ if (false) {
   run('day_09.problem', day9().part2, 2653);
   run('day_10.problem', day10().part1, 17020);
   run('day_10.problem', day10().part2, day10().part2output);
+  run('day_11.problem', day11().part1, 102399);
+  run('day_11.problem', day11().part2, 23641658401);
 }
 
-run('day_11.test', day11().part1, 10605);
-run('day_11.problem', day11().part1, 102399);
-run('day_11.test', day11().part2, 2713310158);
-run('day_11.problem', day11().part2, 23641658401);
