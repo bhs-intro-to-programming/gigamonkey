@@ -476,7 +476,7 @@ const day11 = () => {
 
   const makeOp1 = (op, arg1, arg2) => {
     const fn = ops1[op];
-    return (old) => Math.floor(fn(old, arg1, arg2) / 3);
+    return (old, monkeys) => Math.floor(fn(old, arg1, arg2) / 3) % monkeys.mod;
   };
 
   const isDivisible1 = (level, monkey) => level % monkey.divisibleBy === 0;
@@ -531,6 +531,7 @@ const day11 = () => {
 
       }
     });
+    ms.mod = ms.reduce((p, m) => p * m.divisibleBy, 1);
     return ms;
   };
 
@@ -566,7 +567,7 @@ const day11 = () => {
 };
 
 // N.B. These won't necessarily output in order due to async fetch.
-if (true) {
+if (false) {
   run('day_01.problem', day1().part1, 74394);
   run('day_01.problem', day1().part2, 212836);
   run('day_02.problem', day2().part1, 9241);
@@ -587,7 +588,7 @@ if (true) {
   run('day_09.problem', day9().part2, 2653);
   run('day_10.problem', day10().part1, 17020);
   run('day_10.problem', day10().part2, day10().part2output);
+
+}
   run('day_11.problem', day11().part1, 102399);
   run('day_11.problem', day11().part2, 23641658401);
-}
-
