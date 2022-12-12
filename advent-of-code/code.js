@@ -469,17 +469,17 @@ const day11 = () => {
   const evaluate = (s, old) => s === 'old' ? old : Number(s);
 
   const ops1 = {
-    '+': (old, [a, b]) => evaluate(a, old) + evaluate(b, old),
-    '*': (old, [a, b]) => evaluate(a, old) * evaluate(b, old),
+    '+': (old, a, b) => evaluate(a, old) + evaluate(b, old),
+    '*': (old, a, b) => evaluate(a, old) * evaluate(b, old),
   };
 
   const makeOp1 = (op, arg1, arg2) => {
     const fn = ops1[op];
-    return (old) => Math.floor(fn(old, [arg1, arg2]) / 3);
+    return (old) => Math.floor(fn(old, arg1, arg2) / 3);
   };
 
   // Part 2
-  
+
   const ops2 = {
     '+': (old, [a, b], mods) => {
       return old.map((r, i) => {
