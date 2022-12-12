@@ -532,6 +532,7 @@ const day11 = () => {
       }
     });
     ms.mod = ms.reduce((p, m) => p * m.divisibleBy, 1);
+    console.log(ms.mod);
     return ms;
   };
 
