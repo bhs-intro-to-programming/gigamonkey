@@ -458,9 +458,9 @@ const day11 = () => {
 
   const evaluate = (s, old) => s === 'old' ? old : Number(s);
 
-  const ops = {
-    '+': (old, args) => evaluate(args[0], old) + evaluate(args[1], old),
-    '*': (old, args) => evaluate(args[0], old) * evaluate(args[1], old),
+  const ops1 = {
+    '+': (old, [a, b]) => evaluate(a, old) + evaluate(b, old),
+    '*': (old, [a, b]) => evaluate(a, old) * evaluate(b, old),
   };
 
   const evaluate2 = (s, old, mod) => s === 'old' ? old : Number(s) % mod;
@@ -480,7 +480,7 @@ const day11 = () => {
     },
   };
 
-  const monkeys = (s) => {
+  const monkeys = (s, ops) => {
     const ms = [];
     lines(s).forEach((line) => {
       let m;
@@ -491,7 +491,29 @@ const day11 = () => {
       } else if (m = line.match(/^\s+Operation: new = (\w+) ([+*]) (\w+)$/)) {
         const [arg1, op, arg2] = [...m].slice(1);
         const fn = ops[op];
-        ms[ms.length - 1].op = (old) => fn(old, [arg1, arg2], Number);
+        ms[ms.length - 1].op = (old) => fn(old, [arg1, arg2]);
+      } else if (m = line.match(/^\s+Test: divisible by (\d+)/)) {
+        ms[ms.length - 1].divisibleBy = Number(m[1]);
+      } else if (m = line.match(/^\s+If (true|false): throw to monkey (\d+)$/)) {
+        ms[ms.length - 1][`if${m[1]}`] = Number(m[2]);
+      }
+    });
+    return ms;
+  };
+
+  const monkeys2 = (s, ops) => {
+    const ms = [];
+    lines(s).forEach((line) => {
+      let m;
+      if (m = line.match(/^Monkey \d+:$/)) {
+        ms.push({ items: [], inspected: 0 });
+        ms[ms.length - 1].idx = ms.length - 1;
+      } else if (m = line.match(/^\s+Starting items: (.*)$/)) {
+        ms[ms.length - 1].items = m[1].match(/(\d+)/g).map(Number);
+      } else if (m = line.match(/^\s+Operation: new = (\w+) ([+*]) (\w+)$/)) {
+        const [arg1, op, arg2] = [...m].slice(1);
+        const fn = ops[op];
+        ms[ms.length - 1].op = (old, mods) => fn(old, [arg1, arg2], mods);
       } else if (m = line.match(/^\s+Test: divisible by (\d+)/)) {
         ms[ms.length - 1].divisibleBy = Number(m[1]);
       } else if (m = line.match(/^\s+If (true|false): throw to monkey (\d+)$/)) {
@@ -512,8 +534,19 @@ const day11 = () => {
     }
   };
 
+  const monkeySeeMonkeyDeux = (monkey, monkeys, mods) => {
+    while (monkey.items.length > 0) {
+      const item = monkey.items.shift();
+      monkey.inspected++;
+      const level = monkey.op(item, mods);
+      const divisible = level[monkey.idx] === 0;
+      const next = monkeys[monkey[divisible ? 'iftrue' : 'iffalse']];
+      next.items.push(level);
+    }
+  };
+
   const part1 = (s) => {
-    const ms = monkeys(s);
+    const ms = monkeys(s, ops1);
     for (let i = 0; i < 20; i++) {
       ms.forEach((m) => monkeySeeMonkeyDo(m, ms));
     }
@@ -522,9 +555,14 @@ const day11 = () => {
   };
 
   const part2 = (s) => {
-    const ms = monkeys(s);
+    const ms = monkeys2(s, ops2);
     const mods = ms.map(m => m.divisibleBy);
     ms.forEach((m) => m.items = m.items.map(n => mods.map((m) => n % m)));
+    for (let i = 0; i < 20; i++) {
+      ms.forEach((m) => monkeySeeMonkeyDeux(m, ms, mods));
+    }
+
+
     return JSON.stringify(ms, null, 2);
   };
 
