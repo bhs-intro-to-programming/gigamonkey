@@ -538,10 +538,10 @@ const day11 = () => {
     return mods;
   }
  
-  const run = (s, makeOp, fixMonkeys, doer) => {
+  const run = (s, iters, makeOp, fixMonkeys, doer) => {
     const ms = monkeys(s, makeOp);
     const extra = fixMonkeys(ms);
-    for (let i = 0; i < 10_000; i++) {
+    for (let i = 0; i < iters; i++) {
       ms.forEach((m) => doer(m, ms, extra));
     }
     const busy = ms.map(m => m.inspected).sort((a, b) => b - a);
@@ -558,7 +558,7 @@ const day11 = () => {
     return busy[0] * busy[1];
   };
 
-  const part2 = (s) => run(s, makeOp2, fixForPart2, monkeySeeMonkeyDeux);
+  const part2 = (s) => run(s, 10_000, makeOp2, fixForPart2, monkeySeeMonkeyDeux);
 
   return { part1, part2 };
 };
