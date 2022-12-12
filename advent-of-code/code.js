@@ -568,6 +568,14 @@ const day11 = () => {
 
 const day12 = () => {
 
+  const grid = (s) => lines(s).map(line => line.split(''));
+
+  const part1 = (s) => {
+    const g = grid(s);
+  }
+
+  return { part1 };
+
 };
 
 // N.B. These won't necessarily output in order due to async fetch.
