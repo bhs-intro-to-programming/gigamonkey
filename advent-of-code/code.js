@@ -480,7 +480,9 @@ const day11 = () => {
     },
   };
 
-  const monkeys = (s, ops) => {
+  const makeOp1 = (fn) => (old) => Math.floor(fn(old, [arg1, arg2]) / 3);
+
+  const monkeys = (s, ops, makeOp) => {
     const ms = [];
     lines(s).forEach((line) => {
       let m;
@@ -491,7 +493,8 @@ const day11 = () => {
       } else if (m = line.match(/^\s+Operation: new = (\w+) ([+*]) (\w+)$/)) {
         const [arg1, op, arg2] = [...m].slice(1);
         const fn = ops[op];
-        ms[ms.length - 1].op = (old) => Math.floor(fn(old, [arg1, arg2]) / 3);
+        //ms[ms.length - 1].op = (old) => Math.floor(fn(old, [arg1, arg2]) / 3);
+        ms[ms.length - 1].op = makeOp(fn);
       } else if (m = line.match(/^\s+Test: divisible by (\d+)/)) {
         ms[ms.length - 1].divisibleBy = Number(m[1]);
       } else if (m = line.match(/^\s+If (true|false): throw to monkey (\d+)$/)) {
@@ -527,7 +530,6 @@ const day11 = () => {
     monkey.inspected += monkey.items.length;
     while (monkey.items.length > 0) {
       const item = monkey.items.shift();
-      //const level = Math.floor(monkey.op(item) / 3)
       const level = monkey.op(item);
       const divisible = level % monkey.divisibleBy === 0;
       const next = monkeys[monkey[divisible ? 'iftrue' : 'iffalse']];
