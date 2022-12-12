@@ -459,8 +459,25 @@ const day11 = () => {
   const evaluate = (s, old) => s === 'old' ? old : Number(s);
 
   const ops = {
-    '+': (old, args, nt) => evaluate(args[0], old) + evaluate(args[1], old),
-    '*': (old, args, nt) => evaluate(args[0], old) * evaluate(args[1], old),
+    '+': (old, args) => evaluate(args[0], old) + evaluate(args[1], old),
+    '*': (old, args) => evaluate(args[0], old) * evaluate(args[1], old),
+  };
+
+  const evaluate2 = (s, old, mod) => s === 'old' ? old : Number(s) % mod;
+
+  const ops2 = {
+    '+': (old, [a, b], mods) => {
+      return old.map((r, i) => {
+        const mod = mods[i];
+        return (evaluate2(a, r, mod) + evaluate2(b, r, mod)) % mod;
+      });
+    },
+    '*': (old, [a, b], mods) => {
+      return old.map((r, i) => {
+        const mod = mods[i];
+        return (evaluate2(a, r, mod) * evaluate2(b, r, mod)) % mod;
+      });
+    },
   };
 
   const monkeys = (s) => {
@@ -495,8 +512,6 @@ const day11 = () => {
     }
   };
 
-
-
   const part1 = (s) => {
     const ms = monkeys(s);
     for (let i = 0; i < 20; i++) {
@@ -507,6 +522,10 @@ const day11 = () => {
   };
 
   const part2 = (s) => {
+    const ms = monkeys(s);
+    const mods = ms.map(m => m.divisibleBy);
+    ms.forEach((m) => m.items.map(n => mods.map((m) => n % m));
+    JSON.stringify(ms, null, 2);
   };
 
   return { part1, part2 };
@@ -549,5 +568,5 @@ if (false) {
 
 run('day_11.test', day11().part1, 10605);
 run('day_11.problem', day11().part1, 102399);
-//run('day_11.test', day11().part2);
+run('day_11.test', day11().part2);
 //run('day_11.problem', day11().part2);
