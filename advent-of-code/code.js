@@ -582,9 +582,9 @@ const day12 = () => {
 
   const bfs = (grid, queue) => {
     while (queue) {
-      const [j, j] = queue.pop();
+      const [i, j] = queue.pop();
       // push unvisited neighbors.
-      
+
       
     }
   }
