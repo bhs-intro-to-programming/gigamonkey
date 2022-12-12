@@ -561,9 +561,8 @@ const day11 = () => {
     for (let i = 0; i < 20; i++) {
       ms.forEach((m) => monkeySeeMonkeyDeux(m, ms, mods));
     }
-
-
-    return JSON.stringify(ms, null, 2);
+    const busy = ms.map(m => m.inspected).sort((a, b) => b - a);
+    return busy[0] * busy[1];
   };
 
   return { part1, part2 };
