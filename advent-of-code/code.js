@@ -492,11 +492,10 @@ const day11 = () => {
 
   const monkeys = (s, ops, makeOp) => {
     const ms = [];
-    lines(s).forEach((line) => {
+    lines(s).forEach((line, i) => {
       let m;
       if (m = line.match(/^Monkey \d+:$/)) {
-        ms.push({ items: [], inspected: 0 });
-        ms[ms.length - 1].idx = ms.length - 1;
+        ms.push({ items: [], inspected: 0, idx: i });
       } else if (m = line.match(/^\s+Starting items: (.*)$/)) {
         ms[ms.length - 1].items = m[1].match(/(\d+)/g).map(Number);
       } else if (m = line.match(/^\s+Operation: new = (\w+) ([+*]) (\w+)$/)) {
@@ -546,6 +545,7 @@ const day11 = () => {
     const ms = monkeys(s, ops2, makeOp2);
     const mods = ms.map(m => m.divisibleBy);
     ms.forEach((m) => m.items = m.items.map(n => mods.map((m) => n % m)));
+
     for (let i = 0; i < 10_000; i++) {
       ms.forEach((m) => monkeySeeMonkeyDeux(m, ms, mods));
     }
@@ -554,7 +554,6 @@ const day11 = () => {
   };
 
   return { part1, part2 };
-
 };
 
 
