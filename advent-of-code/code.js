@@ -548,8 +548,8 @@ const day11 = () => {
     return busy[0] * busy[1];
   };
 
-  const part1 = (s) => run(s, 20, makeOp1, (x) => x, monkeySeeMonkeyDo);
-  const part2 = (s) => run(s, 10_000, makeOp2, fixForPart2, monkeySeeMonkeyDeux);
+  const part1 = (s) => run(s, 20, makeOp1, (x) => x, isDivisible1);
+  const part2 = (s) => run(s, 10_000, makeOp2, fixForPart2, isDivisible2);
 
   return { part1, part2 };
 };
