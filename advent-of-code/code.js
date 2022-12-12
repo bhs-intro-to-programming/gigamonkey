@@ -484,15 +484,15 @@ const day11 = () => {
   // Part 2
 
   const ops2 = {
-    '+': (old, a, b, mods) => {
+    '+': (old, a, b, monkeys) => {
       return old.map((r, i) => {
-        const mod = mods[i];
+        const mod = monkeys[i].divisibleBy;
         return (evaluate(a, r) % mod + evaluate(b, r) %  mod) % mod;
       });
     },
-    '*': (old, a, b, mods) => {
+    '*': (old, a, b, monkeys) => {
       return old.map((r, i) => {
-        const mod = mods[i];
+        const mod = monkeys[i].divisibleBy;
         return (evaluate(a, r, mod) * evaluate(b, r, mod)) % mod;
       });
     },
@@ -538,7 +538,7 @@ const day11 = () => {
     monkey.inspected += monkey.items.length;
     while (monkey.items.length > 0) {
       const item = monkey.items.shift();
-      const level = monkey.op(item, extra);
+      const level = monkey.op(item, monkeys);
       const next = monkeys[monkey[isDivisible(level, monkey) ? 'true' : 'false']];
       next.items.push(level);
     }
