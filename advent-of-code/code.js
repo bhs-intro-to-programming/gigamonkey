@@ -480,7 +480,7 @@ const day11 = () => {
     },
   };
 
-  const makeOp1 = (fn) => (old) => Math.floor(fn(old, [arg1, arg2]) / 3);
+  const makeOp1 = (fn, arg1, arg2) => (old) => Math.floor((old, [arg1, arg2]) / 3);
 
   const monkeys = (s, ops, makeOp) => {
     const ms = [];
@@ -494,7 +494,7 @@ const day11 = () => {
         const [arg1, op, arg2] = [...m].slice(1);
         const fn = ops[op];
         //ms[ms.length - 1].op = (old) => Math.floor(fn(old, [arg1, arg2]) / 3);
-        ms[ms.length - 1].op = makeOp(fn);
+        ms[ms.length - 1].op = makeOp(fn, arg1, arg2);
       } else if (m = line.match(/^\s+Test: divisible by (\d+)/)) {
         ms[ms.length - 1].divisibleBy = Number(m[1]);
       } else if (m = line.match(/^\s+If (true|false): throw to monkey (\d+)$/)) {
