@@ -523,7 +523,7 @@ const day11 = () => {
       next.items.push(level);
     }
   };
-  }
+  
 
   const monkeySeeMonkeyDo = (monkey, monkeys) => {
     monkey.inspected += monkey.items.length;
