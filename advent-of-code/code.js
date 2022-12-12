@@ -535,9 +535,9 @@ const day11 = () => {
   };
 
   const monkeySeeMonkeyDeux = (monkey, monkeys, mods) => {
+    monkey.inspected += monkey.items.length;
     while (monkey.items.length > 0) {
       const item = monkey.items.shift();
-      monkey.inspected++;
       const level = monkey.op(item, mods);
       const divisible = level[monkey.idx] === 0;
       const next = monkeys[monkey[divisible ? 'iftrue' : 'iffalse']];
