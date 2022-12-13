@@ -54,9 +54,9 @@ const caesar = (s, key) => {
   return encoded;
 };
 
-const valueOfImprovement = (currentGrade, weight, final) => {
-  const average = (final * 0.75 + currentGrade * 0.25);
-  const afterFinal = Math.max(currentGrade, average)
-  const increase =  afterFinal - currentGrade;
+const valueOfImprovement = (current, final, weight) => {
+  const average = (final * 0.75 + current * 0.25);
+  const afterFinal = Math.max(current, average)
+  const increase =  afterFinal - current;
   return increase * weight / 17;
 }
