@@ -53,3 +53,8 @@ const caesar = (s, key) => {
   }
   return encoded;
 };
+
+const valueOfImprovement = (currentGrade, weight, final) => {
+  const increase = (final * 0.75 + currentGrade * 0.25) - currentGrade;
+  return increase * weight;
+}
