@@ -58,5 +58,5 @@ const valueOfImprovement = (currentGrade, weight, final) => {
   const average = (final * 0.75 + currentGrade * 0.25);
   const afterFinal = Math.max(currentGrade, average)
   const increase =  afterFinal - currentGrade;
-  return (increase * weight) / (17 * 4);
+  return increase * weight;
 }
