@@ -23,8 +23,8 @@ const text = (t) => document.createTextNode(t);
 /*
  * Create a node from literal HTML.
  */
-const html = (t) => {
-  const e = document.createElement('template');
-  e.innerHTML = t;
-  return e.content;
+const html = (html) => {
+  const t = document.createElement('template');
+  t.innerHTML = html;
+  return t.content;
 };
