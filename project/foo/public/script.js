@@ -4,12 +4,8 @@
  * using the argument as a selector.
  */
 const $ = (q) => {
-  let m;
-  if (m = q.match(/^<(\w+)>$/)) {
-    return document.createElement(m[1]);
-  } else {
-    return document.querySelector(q);
-  }
+  const tag = q.match(/^<(\w+)>$/)?.[1];
+  return tag ? document.createElement(tag) : document.querySelector(q);
 };
 
 /*
