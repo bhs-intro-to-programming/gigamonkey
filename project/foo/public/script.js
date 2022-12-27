@@ -1,35 +1,24 @@
-/*
- * Regexp to match a single HTML tag.
- */
-const tagPattern = /^<(\w+)>$/;
+import { $, $$, text, html } from './dom.js';
 
-/*
- * Get or create a single element. If the query is in the form of a tag, e.g.
- * '<p>' it creates an element of that type. Otherwise it queries the document
- * using the argument as a selector.
- */
-const $ = (q) => {
-  const tag = q.match(tagPattern)?.[1];
-  return tag ? document.createElement(tag) : document.querySelector(q);
-};
+const p = $('<p>');
 
-/*
- * Get all elements matching selector.
- */
-const $$ = (q) => document.querySelectorAll(q);
+p.append(text('This paragraph is created dynamically.'));
 
-/*
- * Create a text node.
- */
-const text = (t) => document.createTextNode(t);
+$('body').append(p);
 
-/*
- * Create an element or elements from literal HTML. If the HTML specifies just
- * one element it is returned. Otherwise returns an array of elements.
- */
-const html = (html) => {
-  const t = document.createElement('template');
-  t.innerHTML = html.trim();
-  const children = [...t.content.children];
-  return children.length == 1 ? children[0] : children;
-};
+for (let i = 0; i < 10; i++) {
+  const p = $('<p>');
+  p.append(text(`counting ${i}`));
+  $('body').append(p);
+}
+
+$$('p').forEach(p => {
+  p.append(html('<b><i>Boo!</i></b>'));
+});
+
+html('<p>One</p><p>Two <b>pow</b></p>').forEach(p => {
+  p.onclick = (e) => console.log(`Clicked me: ${e.target.innerText}`);
+  $('body').append(p);
+});
+
+$('body').append(html('<p>Three</p>'));
