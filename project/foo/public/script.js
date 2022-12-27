@@ -1,10 +1,15 @@
 /*
+ * Regexp to match a single HTML tag.
+ */
+const tagPattern = /^<(\w+)>$/;
+
+/*
  * Get or create a single element. If the query is in the form of a tag, e.g.
  * '<p>' it creates an element of that type. Otherwise it queries the document
  * using the argument as a selector.
  */
 const $ = (q) => {
-  const tag = q.match(/^<(\w+)>$/)?.[1];
+  const tag = q.match(tagPattern)?.[1];
   return tag ? document.createElement(tag) : document.querySelector(q);
 };
 
