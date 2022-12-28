@@ -20,9 +20,6 @@ const boardLeft = (width / 2) - (height / 2);
 const boardRight = boardLeft + squareSize * 9;
 
 const drawBoard = () => {
-
-
-
   for (let i = 0; i < 10; i++) {
     const x = boardLeft + squareSize * i;
     drawLine(x, boardTop, x, boardBottom, 'black', 1);
@@ -45,14 +42,14 @@ const drawBoard = () => {
 const drawArray = (b) => {
   for (let j = 0; j < b.length; j++)
     for (let i = 0; i < 10; i++) {
-      drawText(b[j][i], (width / 2) - (height / 2) + (height / 10) * j, height / 9 * i, 'black', 25);
+      drawText(b[j][i], boardLeft + squareSize * j, squareSize * i, 'black', 25);
     }
 }
 
 const draw = (b) => {
   clear()
   drawBoard()
-  //drawArray(b)
+  drawArray(b)
 }
 
 const board = makeArray(9, 10)
