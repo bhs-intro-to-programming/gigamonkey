@@ -57,8 +57,8 @@ const drawArray = (b) => {
     }
 }
 
-const row = (y) => Math.floor((y - boardTop) / squareSize);
-const column = (x) => Math.floor((x - boardLeft) / squareSize);
+const row = (y) => Math.floor((y - boardTop) / square);
+const column = (x) => Math.floor((x - boardLeft) / square);
 
 registerOnclick((x, y) => {
   console.log(`row: ${row(y)}; column: ${column(x)}`);
