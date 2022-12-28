@@ -16,24 +16,25 @@ const makeArray = (rows, columns) => {
 const drawBoard = () => {
   const top = 0;
   const bottom = height;
-  const left = (width / 2) - (height / 2); // - height / 10);
-  const right = (width / 2) + (height / 2) - height / 10;
+  const left = (width / 2) - (height / 2);
+  const right = (width / 2) + (height / 2);
+  const squareSize = height / 10;
 
   for (let i = 0; i < 10; i++) {
-    const x = (width / 2) - (height / 2) + (height / 10) * i;
+    const x = left + squareSize * i;
     drawLine(x, top, x, bottom, 'black', 1);
   }
   for (let j = 0; j < 10; j++) {
-    const y = height / 9 * j;
+    const y = top + squareSize * j;
     drawLine(left, y, right, y, 'black', 1);
   }
 
   for (let i = 0; i < 4; i++) {
-    const x = (width / 2) - (height / 2) + (height / 10) * i * 3;
+    const x = left + squareSize * i * 3;
     drawLine(x, top, x, bottom, 'black', 3);
   }
   for (let j = 0; j < 4; j++) {
-    const y = height / 9 * j * 3;
+    const y = top + squareSize * j * 3;
     drawLine(left, y, right, y, 'black', 3);
   }
 }
