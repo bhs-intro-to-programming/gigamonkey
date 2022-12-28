@@ -1,11 +1,11 @@
 // Riley's code
+const square = height / 10;
+const top = square / 2;
+const bottom = top + square * 9;
+const left = (width / 2) - (height / 2);
+const right = left + square * 9;
 
 const drawBoard = () => {
-  const square = height / 10;
-  const top = square/2;
-  const bottom = top + square * 9;
-  const left = (width / 2) - (height / 2);
-  const right = left + square * 9;
 
   for (let i = 0; i < 10; i++) {
     const x = left + square * i;
