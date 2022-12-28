@@ -12,7 +12,7 @@ const drawBoard = () => {
     drawLine(x, top, x, bottom, 'black', 1);
   }
   for (let j = 0; j < 10; j++) {
-    const y = height / 9 * j;
+    const y = height / 10 * j;
     drawLine(left, y, right, y, 'black', 1);
   }
   for (let i = 0; i < 4; i++) {
@@ -20,7 +20,7 @@ const drawBoard = () => {
     drawLine(x, top, x, bottom, 'black', 3)
   }
   for (let j = 0; j < 4; j++) {
-    const y = height / 9 * j * 3;
+    const y = height / 10 * j * 3;
     drawLine(left, y, right, y, 'black', 3);
   }
 }
