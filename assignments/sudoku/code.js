@@ -9,18 +9,18 @@ const drawBoard = () => {
 
   for (let i = 0; i < 10; i++) {
     const x = left + square * i;
-    drawLine(x, top, x, bottom, 'black', 1);
+    drawLine(x, boardTop, x, bottom, 'black', 1);
   }
   for (let j = 0; j < 10; j++) {
-    const y = top + square * j;
+    const y = boardTop + square * j;
     drawLine(left, y, right, y, 'black', 1);
   }
   for (let i = 0; i < 4; i++) {
     const x = left + square * i * 3;
-    drawLine(x, top, x, bottom, 'black', 3)
+    drawLine(x, boardTop, x, bottom, 'black', 3)
   }
   for (let j = 0; j < 4; j++) {
-    const y = top + square * j * 3;
+    const y = boardTop + square * j * 3;
     drawLine(left, y, right, y, 'black', 3);
   }
 }
