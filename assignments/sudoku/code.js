@@ -49,7 +49,7 @@ const drawArray = (b) => {
 const draw = (b) => {
   clear()
   drawBoard()
-  drawArray(b)
+  //drawArray(b)
 }
 
 const board = makeArray(9, 10)
