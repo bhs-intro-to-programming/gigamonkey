@@ -16,7 +16,7 @@ const makeArray = (rows, columns) => {
 const drawBoard = () => {
   const top = 0;
   const bottom = height;
-  const left = (width / 2) - (height / 2 - height / 10);
+  const left = (width / 2) - (height / 2); // - height / 10);
   const right = (width / 2) + (height / 2);
 
   for (let i = 0; i < 10; i++) {
@@ -29,7 +29,7 @@ const drawBoard = () => {
   }
 
   for (let i = 0; i < 4; i++) {
-    const x = (width / 2) - (height / 2) + (height / 10) * i * 3; // + height / 10;
+    const x = (width / 2) - (height / 2) + (height / 10) * i * 3;
     drawLine(x, top, x, bottom, 'black', 3);
   }
   for (let j = 0; j < 4; j++) {
