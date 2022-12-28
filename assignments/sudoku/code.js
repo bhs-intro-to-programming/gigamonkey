@@ -17,7 +17,7 @@ const drawBoard = () => {
     drawLine(left, y, right, y, 'black', 1);
   }
   for (let i = 0; i < 4; i++) {
-    const x = (width / 2) - (height / 2) + (height / 10) * i * 3 + height / 10;
+    const x = left + square * i * 3;
     drawLine(x, top, x, bottom, 'black', 3)
   }
   for (let j = 0; j < 4; j++) {
