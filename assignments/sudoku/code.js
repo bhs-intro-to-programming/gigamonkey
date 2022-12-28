@@ -19,7 +19,9 @@ const drawBoard = () => {
     drawLine(x, top, x, bottom, 'black', 3)
   }
   for (let j = 0; j < 4; j++) {
-    drawLine((width / 2) - (height / 2 - height / 10), height / 9 * j * 3, (width / 2) + (height / 2), height / 9 * j * 3, 'black', 3)
+    drawLine(
+      left, 
+      height / 9 * j * 3, (width / 2) + (height / 2), height / 9 * j * 3, 'black', 3)
   }
 }
 
