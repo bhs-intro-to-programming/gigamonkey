@@ -1,6 +1,7 @@
 // Riley's code
 
 const drawBoard = () => {
+  const square = height / 10;
   const top = 0;
   const bottom = height;
   //const left = (width / 2) - (height / 2 - height / 10);
@@ -8,7 +9,7 @@ const drawBoard = () => {
   const right = (width / 2) + (height / 2);
 
   for (let i = 0; i < 10; i++) {
-    const x = (width / 2) - (height / 2) + (height / 10) * i;
+    const x = left + square * i;
     drawLine(x, top, x, bottom, 'black', 1);
   }
   for (let j = 0; j < 11; j++) {
