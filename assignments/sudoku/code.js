@@ -13,13 +13,14 @@ const makeArray = (rows, columns) => {
   return b;
 }
 
-
-const drawBoard = () => {
 const squareSize = height / 10;
 const boardTop = 0;
 const boardBottom = boardTop + squareSize * 9;
 const boardLeft = (width / 2) - (height / 2);
 const boardRight = boardLeft + squareSize * 9;
+
+const drawBoard = () => {
+
 
 
   for (let i = 0; i < 10; i++) {
