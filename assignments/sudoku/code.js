@@ -17,7 +17,7 @@ const boardSize = Math.min(width, height) * 0.8;
 const squareSize = boardSize / 9;
 const boardTop = (height - boardSize) / 2;
 const boardBottom = boardTop + squareSize * 9;
-const boardLeft = (width / 2) - (height / 2);
+const boardLeft = (width - boardSize) / 2;
 const boardRight = boardLeft + squareSize * 9;
 
 const drawBoard = () => {
