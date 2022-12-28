@@ -13,7 +13,7 @@ const makeArray = (rows, columns) => {
   return b;
 }
 
-const squareSize = height / 10;
+const squareSize = height / 12;
 const boardTop = squareSize;
 const boardBottom = boardTop + squareSize * 9;
 const boardLeft = (width / 2) - (height / 2);
