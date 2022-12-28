@@ -43,7 +43,7 @@ const drawArray = (b) => {
   for (let j = 0; j < b.length; j++)
     for (let i = 0; i < b[j].length; i++) {
       const x = boardLeft + squareSize * j;
-      const y = boardTop + squareSize * i;
+      const y = boardTop + squareSize * i + squareSize;
       drawText(b[j][i], x, y, 'black', 25);
     }
 }
