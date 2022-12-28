@@ -51,7 +51,9 @@ const addSelect2Array = () => {
 const drawArray = (b) => {
   for (let j = 0; j < b.length; j++)
     for (let i = 0; i < b[j].length; i++) {
-      drawText(b[j][i], left + square * j, boardTop + square * i, 'black', 25);
+      const x = left + square * j + square/2;
+      const y = boardTop + square * i;
+      drawText(b[j][i], x, y, 'black', 25);
     }
 }
 
