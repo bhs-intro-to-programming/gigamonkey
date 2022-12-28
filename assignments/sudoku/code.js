@@ -51,7 +51,7 @@ const addSelect2Array = () => {
 
 const drawArray = (b) => {
   for (let j = 0; j < b.length; j++)
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < b[j].length; i++) {
       drawText(b[j][i], (width / 2) - (height / 2) + (height / 10) * j, height / 9 * i, 'black', 25);
     }
 }
