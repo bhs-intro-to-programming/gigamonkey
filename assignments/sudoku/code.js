@@ -52,6 +52,6 @@ const draw = (b) => {
   drawArray(b)
 }
 
-const board = makeArray(9, 10)
+const board = makeArray(9, 9)
 
 draw(board);
