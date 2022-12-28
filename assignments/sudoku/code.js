@@ -16,7 +16,7 @@ const makeArray = (rows, columns) => {
 const drawBoard = () => {
   const squareSize = height / 10;
   const top = 0;
-  const bottom = height;
+  const bottom = top + squareSize * 9;
   const left = (width / 2) - (height / 2);
   const right = left + squareSize * 9;
 
