@@ -67,11 +67,10 @@ registerOnclick(move);
 
 const board = makeArray(9, 10)
 
-
 const draw = () => {
   clear()
   drawBoard()
-  drawArray(board)
+  //drawArray(board)
 }
 
 draw();
