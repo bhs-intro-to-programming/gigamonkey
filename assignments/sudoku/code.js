@@ -75,7 +75,7 @@ const move = (x, y) => {
 registerOnclick(move);
 */
 
-const board = makeArray(9, 10)
+const board = makeArray(9, 9)
 
 const draw = () => {
   clear()
