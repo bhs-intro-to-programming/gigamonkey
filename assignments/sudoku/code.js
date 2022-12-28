@@ -2,29 +2,28 @@
 const boardSize = Math.min(width, height) * 0.9;
 const square = boardSize / 9;
 const boardTop = (height - boardSize) / 2;
-const bottom = boardTop + square * 9;
-const left = (width - boardSize) / 2;
-const right = left + square * 9;
+const boardBottom = boardTop + square * 9;
+const boardLeft = (width - boardSize) / 2;
+const boardRight = boardLeft + square * 9;
 
 const drawBoard = () => {
-
   for (let i = 0; i < 10; i++) {
-    const x = left + square * i;
-    drawLine(x, boardTop, x, bottom, 'black', 1);
+    const x = boardLeft + square * i;
+    drawLine(x, boardTop, x, boardBottom, 'black', 1);
   }
   for (let j = 0; j < 10; j++) {
     const y = boardTop + square * j;
-    drawLine(left, y, right, y, 'black', 1);
+    drawLine(boardLeft, y, boardRight, y, 'black', 1);
   }
   for (let i = 0; i < 4; i++) {
-    const x = left + square * i * 3;
-    drawLine(x, boardTop, x, bottom, 'black', 3)
+    const x = boardLeft + square * i * 3;
+    drawLine(x, boardTop, x, boardBottom, 'black', 3)
   }
   for (let j = 0; j < 4; j++) {
     const y = boardTop + square * j * 3;
-    drawLine(left, y, right, y, 'black', 3);
+    drawLine(boardLeft, y, boardRight, y, 'black', 3);
   }
-}
+};
 
 const makeArrayRow = (columns) => {
   let row = []
@@ -52,30 +51,18 @@ const addSelect2Array = () => {
 const drawArray = (b) => {
   for (let j = 0; j < b.length; j++)
     for (let i = 0; i < b[j].length; i++) {
-      const x = left + square * j + square * 0.33;
+      const x = boardLeft + square * j + square * 0.33;
       const y = boardTop + square * i + square * 0.75;
       drawText(b[j][i], x, y, 'black', square * 0.75);
     }
 }
 
-const row = (y) => Math.floor(y / (height / 9))
-const column = (x) => Math.floor(x / (width / 9))
+const row = (y) => Math.floor((y - boardTop) / squareSize);
+const column = (x) => Math.floor((x - boardLeft) / squareSize);
 
-/*
-let aSelect = []
-const move = (x, y) => {
-  if (aSelect.length === 1) {
-    drawText(aSelect, width / 9 * column(x), height / 9 * (row(y) + 1), 'black', 20)
-    board[row(y)][column(x)] = aSelect[0]
-    aSelect.pop(board[row(y)][column(x)])
-    draw()
-  } else {
-    drawText(board[column(x)], (198 / 9 - 20) * column(x), 30, 'blue', 30)
-    aSelect.push(board[column(x)])
-  }
-}
-registerOnclick(move);
-*/
+registerOnclick((x, y) => {
+  console.log(`row: ${row(y)}; column: ${column(x)}`);
+});
 
 const board = makeArray(9, 9)
 
