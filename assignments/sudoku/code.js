@@ -6,7 +6,7 @@ const drawBoard = () => {
   const bottom = height;
   //const left = (width / 2) - (height / 2 - height / 10);
   const left = (width / 2) - (height / 2);
-  const right = (width / 2) + (height / 2);
+  const right = left + square * 9;
 
   for (let i = 0; i < 10; i++) {
     const x = left + square * i;
