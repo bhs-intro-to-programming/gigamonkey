@@ -4,7 +4,6 @@ const drawBoard = () => {
   const square = height / 10;
   const top = 0;
   const bottom = height;
-  //const left = (width / 2) - (height / 2 - height / 10);
   const left = (width / 2) - (height / 2);
   const right = left + square * 9;
 
@@ -81,7 +80,7 @@ const board = makeArray(9, 10)
 const draw = () => {
   clear()
   drawBoard()
-  //drawArray(board)
+  drawArray(board)
 }
 
 draw();
