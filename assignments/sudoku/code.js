@@ -13,7 +13,7 @@ const makeArray = (rows, columns) => {
   return b;
 }
 
-const boardSize = Math.min(width, height) * 0.8;
+const boardSize = Math.min(width, height) * 0.7;
 const squareSize = boardSize / 9;
 const boardTop = (height - boardSize) / 2;
 const boardBottom = boardTop + squareSize * 9;
@@ -25,6 +25,7 @@ const drawBoard = () => {
     const x = boardLeft + squareSize * i;
     drawLine(x, boardTop, x, boardBottom, 'black', 1);
   }
+
   for (let j = 0; j < 10; j++) {
     const y = boardTop + squareSize * j;
     drawLine(boardLeft, y, boardRight, y, 'black', 1);
@@ -34,11 +35,12 @@ const drawBoard = () => {
     const x = boardLeft + squareSize * i * 3;
     drawLine(x, boardTop, x, boardBottom, 'black', 3);
   }
+
   for (let j = 0; j < 4; j++) {
     const y = boardTop + squareSize * j * 3;
     drawLine(boardLeft, y, boardRight, y, 'black', 3);
   }
-}
+};
 
 const drawArray = (b) => {
   for (let j = 0; j < b.length; j++) {
@@ -48,7 +50,7 @@ const drawArray = (b) => {
       drawText(b[j][i], x, y, 'black', 25);
     }
   }
-}
+};
 
 const draw = (b) => {
   clear()
@@ -56,6 +58,6 @@ const draw = (b) => {
   drawArray(b)
 }
 
-const board = makeArray(9, 9)
+const board = makeArray(9, 9);
 
 draw(board);
