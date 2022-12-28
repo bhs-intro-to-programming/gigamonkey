@@ -1,8 +1,12 @@
 // Riley's code
 
 const drawBoard = () => {
+  const top = 0;
+  const bottom = height;
+
   for (let i = 0; i < 10; i++) {
-    drawLine((width / 2) - (height / 2) + (height / 10) * i, 0, (width / 2) - (height / 2) + height / 10 * i, height, 'black', 1)
+    const x = (width / 2) - (height / 2) + (height / 10) * i;
+    drawLine(x, top, x, bottom, 'black', 1);
   }
   for (let j = 0; j < 11; j++) {
     drawLine((width / 2) - (height / 2 - height / 10), height / 9 * j, (width / 2) + (height / 2), height / 9 * j, 'black', 1)
