@@ -14,7 +14,6 @@ const drawBoard = () => {
     drawLine((width / 2) - (height / 2 - height / 10), height / 9 * j * 3, (width / 2) + (height / 2), height / 9 * j * 3, 'black', 3)
   }
 }
-drawBoard()
 
 const makeArrayRow = (columns) => {
   let row = []
@@ -23,6 +22,7 @@ const makeArrayRow = (columns) => {
   }
   return row
 }
+
 const makeArray = (rows, columns) => {
   let b = []
   for (let i = 0; i < rows; i++) {
@@ -30,7 +30,6 @@ const makeArray = (rows, columns) => {
   }
   return b;
 }
-const board = makeArray(9, 10)
 
 const addSelect2Array = () => {
   for (let i = 0; i < 9; i++) {
@@ -38,7 +37,7 @@ const addSelect2Array = () => {
   }
   return board
 }
-addSelect2Array()
+//addSelect2Array()
 
 const drawArray = (b) => {
   for (let j = 0; j < b.length; j++)
@@ -46,7 +45,6 @@ const drawArray = (b) => {
       drawText(b[j][i], (width / 2) - (height / 2) + (height / 10) * j, height / 9 * i, 'black', 25);
     }
 }
-drawArray(board)
 
 const row = (y) => Math.floor(y / (height / 9))
 const column = (x) => Math.floor(x / (width / 9))
@@ -67,8 +65,13 @@ const move = (x, y) => {
 registerOnclick(move);
 */
 
+const board = makeArray(9, 10)
+
+
 const draw = () => {
   clear()
   drawBoard()
-  drawArray()
+  drawArray(board)
 }
+
+draw();
