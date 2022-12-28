@@ -47,12 +47,11 @@ const addSelect2Array = () => {
   }
   return board
 }
-//addSelect2Array()
 
 const drawArray = (b) => {
   for (let j = 0; j < b.length; j++)
     for (let i = 0; i < b[j].length; i++) {
-      drawText(b[j][i], (width / 2) - (height / 2) + (height / 10) * j, height / 9 * i, 'black', 25);
+      drawText(b[j][i], (width / 2) - (height / 2) + square * j, square * i, 'black', 25);
     }
 }
 
