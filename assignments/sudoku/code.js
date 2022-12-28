@@ -1,5 +1,5 @@
 // Riley's code
-const boardSize = Math.min(width, height) * 0.8;
+const boardSize = Math.min(width, height) * 0.3;
 const square = boardSize / 9;
 const boardTop = (height - boardSize) / 2;
 const bottom = boardTop + square * 9;
