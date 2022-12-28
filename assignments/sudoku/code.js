@@ -25,14 +25,16 @@ const drawBoard = () => {
   }
   for (let j = 0; j < 10; j++) {
     const y = height / 9 * j;
-    drawLine(left, y, right, y, 'black', 1)
+    drawLine(left, y, right, y, 'black', 1);
   }
-  
+
   for (let i = 0; i < 4; i++) {
-    drawLine((width / 2) - (height / 2) + (height / 10) * i * 3 + height / 10, 0, (width / 2) - (height / 2) + height / 10 * i * 3 + height / 10, height, 'black', 3)
+    const x = (width / 2) - (height / 2) + (height / 10) * i * 3; // + height / 10;
+    drawLine(x, top, x, bottom, 'black', 3);
   }
   for (let j = 0; j < 4; j++) {
-    drawLine((width / 2) - (height / 2 - height / 10), height / 9 * j * 3, (width / 2) + (height / 2), height / 9 * j * 3, 'black', 3)
+    const y = height / 9 * j * 3;
+    drawLine(left, y, right, y, 'black', 3);
   }
 }
 
