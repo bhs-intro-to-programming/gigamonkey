@@ -13,31 +13,31 @@ const makeArray = (rows, columns) => {
   return b;
 }
 
-const squareSize = height / 10;
-const top = 0;
-const bottom = top + squareSize * 9;
-const left = (width / 2) - (height / 2);
-const right = left + squareSize * 9;
 
 const drawBoard = () => {
+const squareSize = height / 10;
+const boardTop = 0;
+const boardBottom = boardTop + squareSize * 9;
+const boardLeft = (width / 2) - (height / 2);
+const boardRight = boardLeft + squareSize * 9;
 
 
   for (let i = 0; i < 10; i++) {
-    const x = left + squareSize * i;
-    drawLine(x, top, x, bottom, 'black', 1);
+    const x = boardLeft + squareSize * i;
+    drawLine(x, boardTop, x, boardBottom, 'black', 1);
   }
   for (let j = 0; j < 10; j++) {
-    const y = top + squareSize * j;
-    drawLine(left, y, right, y, 'black', 1);
+    const y = boardTop + squareSize * j;
+    drawLine(boardLeft, y, boardRight, y, 'black', 1);
   }
 
   for (let i = 0; i < 4; i++) {
-    const x = left + squareSize * i * 3;
-    drawLine(x, top, x, bottom, 'black', 3);
+    const x = boardLeft + squareSize * i * 3;
+    drawLine(x, boardTop, x, boardBottom, 'black', 3);
   }
   for (let j = 0; j < 4; j++) {
-    const y = top + squareSize * j * 3;
-    drawLine(left, y, right, y, 'black', 3);
+    const y = boardTop + squareSize * j * 3;
+    drawLine(boardLeft, y, boardRight, y, 'black', 3);
   }
 }
 
