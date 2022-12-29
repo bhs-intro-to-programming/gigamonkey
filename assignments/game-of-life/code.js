@@ -15,7 +15,7 @@ const originalCells = (rows, cols) => {
   const cells = emptyGrid(rows, cols);
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
-      if (Math.random() > (1 - .23)) {
+      if (Math.random() < 0.23) {
         cells[y][x] = true
       }
     }
