@@ -17,12 +17,12 @@ const originalCells = (rows, cols) => {
 };
 
 const drawWorld = (world) => {
-  for (let y = 0; y < world.length; y++) {
-    for (let x = 0; x < world[0].length; x++) {
-      if (world[y][x]) {
-        drawFilledRect(x * CELLSIZE, y * CELLSIZE, CELLSIZE, CELLSIZE, 'green');
+  for (let r = 0; r < world.length; r++) {
+    for (let c = 0; c < world[0].length; c++) {
+      if (world[r][c]) {
+        drawFilledRect(c * CELLSIZE, r * CELLSIZE, CELLSIZE, CELLSIZE, 'green');
       } else {
-        drawFilledRect(x * CELLSIZE, y * CELLSIZE, CELLSIZE, CELLSIZE, 'black');
+        drawFilledRect(c * CELLSIZE, r * CELLSIZE, CELLSIZE, CELLSIZE, 'black');
       }
     }
   }
