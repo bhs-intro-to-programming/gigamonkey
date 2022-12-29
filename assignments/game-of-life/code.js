@@ -44,7 +44,7 @@ const nextCells = (cells) => {
 }
 
 const getLocationsForCell = (row, column) => {
-  let angles = Array(8).fill().map((_, i) => i * 45);
+  let angles = Array(8).fill().map((_, i) => i / 4 * Math.PI);
   if (row === 0) {
     angles = angles.filter(d => rowOffset(d) >= 0);
   } else if (row === ROWS - 1) {
@@ -60,9 +60,9 @@ const getLocationsForCell = (row, column) => {
 
 const offset = (n) => Math.sign(Math.round(n * 10));
 
-const rowOffset = (d) => offset(Math.sin(d * Math.PI / 180));
+const rowOffset = (r) => offset(Math.sin(r));
 
-const colOffset = (d) => offset(Math.cos(d * Math.PI / 180));
+const colOffset = (r) => offset(Math.cos(r));
 
 const countLivingNeighbors = (angles, i, j) => {
   let count = 0
