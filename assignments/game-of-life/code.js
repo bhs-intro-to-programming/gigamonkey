@@ -62,7 +62,7 @@ const offset = (n) => Math.sign(Math.round(n * 10));
 
 const rowOffset = (d) => offset(Math.sin((d - 90) * Math.PI / 180));
 
-const colOffset = (d) => offset(Math.cos((d - 90) * Math.PI / 180)) * -1;
+const colOffset = (d) => offset(Math.cos((d - 90) * Math.PI / 180));
 
 const countLivingNeighbors = (degrees, i, j) => {
   let count = 0
