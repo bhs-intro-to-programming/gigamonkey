@@ -73,7 +73,7 @@ const countLivingNeighbors = (locations, i, j) => {
         break;
     }
     if (current[row][col]) {
-      livingThings++;
+      livingthings++;
     }
   });
   return livingthings
