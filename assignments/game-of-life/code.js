@@ -45,9 +45,10 @@ const nextCells = (cells) => {
 
 const countLivingNeighbors = (locations, i, j) => {
   let livingthings = 0
-  let row = i;
-  let col = j;
+
   locations.forEach(function (location) {
+    let row = i;
+    let col = j;
     switch (location) {
       case 0:
       case 45:
