@@ -106,32 +106,22 @@ const countLivingNeighbors = (locations, i, j) => {
   return livingthings
 }
 
-const getLocationsForCell = (i, j) => {
+const without = (locations, items) => locations.filter(loc => items.indexOf(loc) != -1);
+
+const getLocationsForCell = (row, column) => {
   let locations = [0, 45, 90, 135, 180, 225, 270, 315];
   let idx;
-  if (i === 0) {
-    locations.splice(locations.indexOf(315), 1)
-    locations.splice(locations.indexOf(0), 1)
-    locations.splice(locations.indexOf(45), 1)
+  if (row === 0) {
+    locations = without(locations, [315, 0, 45]);
   }
-  if (i === rows - 1) {
-    locations.splice(locations.indexOf(225), 1)
-    locations.splice(locations.indexOf(180), 1)
-    locations.splice(locations.indexOf(135), 1)
+  if (row === rows - 1) {
+    locations = without(locations, [225, 180, 135]);
   }
-  if (i === cols - 1) {
-    if (idx = locations.indexOf(45) > 0)
-      locations.splice(idx, 1)
-    locations.splice(locations.indexOf(90), 1)
-    if (idx = locations.indexOf(135) > 0)
-      locations.splice(locations.indexOf(135), 1)
+  if (column === cols - 1) {
+    locations = without(locations, [45, 90, 135]);
   }
-  if (j === 0) {
-    if (idx = locations.indexOf(315) > 0)
-      locations.splice(locations.indexOf(315), 1)//
-    locations.splice(locations.indexOf(270), 1)
-    if (idx = locations.indexOf(225) > 0)
-      locations.splice(locations.indexOf(225), 1) //
+  if (column === 0) {
+    locations = without(locations, [315, 270, 225]);
   }
   return locations;
 }
