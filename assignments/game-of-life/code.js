@@ -62,7 +62,7 @@ const offsets = (d) => {
 const countLivingNeighbors = (locations, i, j) => {
   let livingthings = 0
 
-  locations.forEach(function (location) {
+  locations.forEach((location) => {
     const [r, c] = offsets(location);
     if (current[i + r][j + c]) {
       livingthings++;
