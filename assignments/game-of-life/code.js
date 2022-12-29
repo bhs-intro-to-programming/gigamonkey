@@ -33,7 +33,7 @@ const drawWorld = (world) => {
 };
 
 const doTheyLive = (current) => {
-  const next = emptyGrid(cells.length, cells[0].length)
+  const next = emptyGrid(current.length, current[0].length)
   for (let i = 0; i < next.length; i++) {
     for (let j = 0; j < next[0].length; j++) {
       let currentlyAlive = current[i][j]
