@@ -43,6 +43,22 @@ const nextCells = (cells) => {
   return next;
 }
 
+const offsets = (d) => {
+  let r = 0;
+  let c = 0;
+  if (d < 90 || d > 270) {
+    r++;
+  } else if (90 < d && d < 270) {
+    r--;
+  }
+  if (0 < d && d < 180) {
+    c--;
+  } else if (180 < d && d < 360) {
+    c++;
+  }
+  return [r, c];
+}
+
 const countLivingNeighbors = (locations, i, j) => {
   let livingthings = 0
 
@@ -74,19 +90,18 @@ const countLivingNeighbors = (locations, i, j) => {
 }
 
 const getLocationsForCell = (row, column) => {
-  let locations = new Set(Array(8).fill().map((_, i) => i * 45));
-  const remove = (...xs) => xs.forEach(n => locations.delete(n))
+  let degrees = Array(8).fill().map((_, i) => i * 45);
   if (row === 0) {
-    remove(315, 0, 45);
+    degrees = degrees.filter(d => offsets(d)[0] >= 0;
   } else if (row === ROWS - 1) {
-    remove(225, 180, 135);
+    degrees = degrees.filter(d => offsets(d)[0] <= 0;
   }
   if (column === 0) {
-    remove(315, 270, 225);
+    degrees = degrees.filter(d => offsets(d)[1] >= 0)
   } else if (column === COLS - 1) {
-    remove(45, 90, 135);
+    degrees = degrees.filter(d => offsets(d)[1] <= 0);
   }
-  return locations;
+  return degrees;
 }
 
 const go = () => {
