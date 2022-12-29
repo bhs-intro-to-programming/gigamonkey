@@ -2,9 +2,8 @@ const CELLSIZE = 4;
 const ROWS = Math.floor(height / CELLSIZE)
 const COLS = Math.floor(width / CELLSIZE)
 
-const offset = (n) => Math.sign(Math.round(n * 10));
-
-const allOffsets = Array(8).fill().map((_, i) => i / 4 * Math.PI).map((a) => {
+const ALL_OFFSETS = Array(8).fill().map((_, i) => i / 4 * Math.PI).map((a) => {
+  const offset = (n) => Math.sign(Math.round(n * 10));
   const row = offset(Math.sin(a));
   const col = offset(Math.cos(a));
   return { row, col };
@@ -54,7 +53,7 @@ const nextCells = (cells) => {
 
 
 const getNeighbors = (row, column) => {
-  let offsets = allOffsets;
+  let offsets = ALL_OFFSETS;
   if (row === 0) {
     offsets = offsets.filter(o => o.row >= 0);
   } else if (row === ROWS - 1) {
