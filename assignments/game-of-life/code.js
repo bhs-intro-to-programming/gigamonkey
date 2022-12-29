@@ -58,18 +58,20 @@ const getLocationsForCell = (row, column) => {
   return degrees;
 };
 
-const rowOffset = (d) => Math.sign(Math.round(Math.sin((d - 90) * Math.PI / 180) * 10));
+const offset = (n) => Math.sign(Math.round(n * 10));
 
-const colOffset = (d) => Math.sign(Math.round(Math.cos((d - 90) * Math.PI / 180) * 10)) * -1;
+const rowOffset = (d) => offset(Math.sin((d - 90) * Math.PI / 180));
+
+const colOffset = (d) => offset(Math.cos((d - 90) * Math.PI / 180)) * -1;
 
 const countLivingNeighbors = (degrees, i, j) => {
   let count = 0
-  degrees.forEach((location) => {
-    if (current[i + rowOffset(location)][j + colOffset(location)]) {
+  degrees.forEach((d) => {
+    if (current[i + rowOffset(d)][j + colOffset(d)]) {
       count++;
     }
   });
-  return count
+  return count;
 };
 
 const go = () => {
