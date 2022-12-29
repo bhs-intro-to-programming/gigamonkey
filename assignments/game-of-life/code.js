@@ -47,11 +47,7 @@ const doTheyLive = () => {
         next[i][j] = !(livingNeighborCount <= 1 || livingNeighborCount >= 4); 
       } else {
         // empty
-        if (livingNeighborCount === 3) {
-          next[i][j] = true
-        } else {
-          next[i][j] = false
-        }
+        next[i][j] = livingNeighborCount === 3;
       }
     }
   }
