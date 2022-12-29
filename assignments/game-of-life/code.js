@@ -44,18 +44,18 @@ const nextCells = (cells) => {
 }
 
 const getLocationsForCell = (row, column) => {
-  let degrees = Array(8).fill().map((_, i) => i * 45);
+  let angles = Array(8).fill().map((_, i) => i * 45);
   if (row === 0) {
-    degrees = degrees.filter(d => rowOffset(d) >= 0);
+    angles = angles.filter(d => rowOffset(d) >= 0);
   } else if (row === ROWS - 1) {
-    degrees = degrees.filter(d => rowOffset(d) <= 0);
+    angles = angles.filter(d => rowOffset(d) <= 0);
   }
   if (column === 0) {
-    degrees = degrees.filter(d => colOffset(d) >= 0);
+    angles = angles.filter(d => colOffset(d) >= 0);
   } else if (column === COLS - 1) {
-    degrees = degrees.filter(d => colOffset(d) <= 0);
+    angles = angles.filter(d => colOffset(d) <= 0);
   }
-  return degrees;
+  return angles;
 };
 
 const offset = (n) => Math.sign(Math.round(n * 10));
@@ -64,9 +64,9 @@ const rowOffset = (d) => offset(Math.sin(d * Math.PI / 180));
 
 const colOffset = (d) => offset(Math.cos(d * Math.PI / 180));
 
-const countLivingNeighbors = (degrees, i, j) => {
+const countLivingNeighbors = (angles, i, j) => {
   let count = 0
-  degrees.forEach((d) => {
+  angles.forEach((d) => {
     if (current[i + rowOffset(d)][j + colOffset(d)]) {
       count++;
     }
