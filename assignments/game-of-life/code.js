@@ -2,10 +2,6 @@ const CELLSIZE = 4;
 const rows = Math.floor(height / CELLSIZE)
 const cols = Math.floor(width / CELLSIZE)
 
-let current =
-  Array(rows).fill().map(() =>
-    Array(cols).fill().map(() => (false)));
-
 let next =
   Array(rows).fill().map(() =>
     Array(cols).fill().map(() => (false)));
