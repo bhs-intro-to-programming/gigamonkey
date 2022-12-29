@@ -10,23 +10,24 @@ let next =
   Array(rows).fill().map(() =>
     Array(cols).fill().map(() => (false)));
 
-const originalCells = () => {
+const emptyGrid = (rows, cols) => Array(rows).fill().map(() => Array(cols).fill(false));
+
+const originalCells = (rows, cols) => {
+  const cells = emptyGrid(rows, cols);
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
       if (Math.random() > (1 - .23)) {
-        drawFilledRect(x * CELLSIZE, y * CELLSIZE, CELLSIZE, CELLSIZE, 'green');
-        current[y][x] = true
-      } else {
-        drawFilledRect(x * CELLSIZE, y * CELLSIZE, CELLSIZE, CELLSIZE, 'black');
+        cells[y][x] = true
       }
     }
   }
+  return cells;
 };
 
-const drawNext = (next) => {
+const drawWorld = (world) => {
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
-      if (next[y][x]) {
+      if (world[y][x]) {
         drawFilledRect(x * CELLSIZE, y * CELLSIZE, CELLSIZE, CELLSIZE, 'green');
       } else {
         drawFilledRect(x * CELLSIZE, y * CELLSIZE, CELLSIZE, CELLSIZE, 'black');
@@ -43,7 +44,7 @@ const doTheyLive = () => {
       let livingNeighborCount = countLivingNeighbors(locations, i, j)
 
       if (currentlyAlive) {
-        next[i][j] = !(livingNeighborCount <= 1 || livingNeighborCount >= 4); 
+        next[i][j] = !(livingNeighborCount <= 1 || livingNeighborCount >= 4);
       } else {
         next[i][j] = livingNeighborCount === 3;
       }
@@ -114,12 +115,12 @@ const getLocationsForCell = (row, column) => {
 
 const go = () => {
   doTheyLive()
-  drawNext(next)
+  drawWorld(next)
   current = next
   next = Array(rows).fill().map(() =>
     Array(cols).fill().map(() => (false)));
   setTimeout(go, 100);
 }
 
-originalCells()
+const current = originalCells(rows, cols)
 go();
