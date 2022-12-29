@@ -59,8 +59,8 @@ const getNeighbors = (row, column) => {
 };
 
 const makeOffset = (a) => {
-  const row = offset(Math.sin(r));
-  const col = offset(Math.cos(r));
+  const row = offset(Math.sin(a));
+  const col = offset(Math.cos(a));
   return { row, col };
 };
 
