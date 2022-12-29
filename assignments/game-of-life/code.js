@@ -46,30 +46,26 @@ const nextCells = (cells) => {
 const getLocationsForCell = (row, column) => {
   let degrees = Array(8).fill().map((_, i) => i * 45);
   if (row === 0) {
-    degrees = degrees.filter(d => offsets(d)[0] >= 0);
+    degrees = degrees.filter(d => rowOffset(d) >= 0);
   } else if (row === ROWS - 1) {
-    degrees = degrees.filter(d => offsets(d)[0] <= 0);
+    degrees = degrees.filter(d => rowOffset(d) <= 0);
   }
   if (column === 0) {
-    degrees = degrees.filter(d => offsets(d)[1] >= 0);
+    degrees = degrees.filter(d => colOffset(d) >= 0);
   } else if (column === COLS - 1) {
-    degrees = degrees.filter(d => offsets(d)[1] <= 0);
+    degrees = degrees.filter(d => colOffset(d) <= 0);
   }
   return degrees;
 };
 
-const offsets = (d) => {
-  return [
-    Math.sign(Math.round(Math.sin((d - 90) * Math.PI / 180) * 10)),
-    Math.sign(Math.round(Math.cos((d - 90) * Math.PI / 180) * 10)) * -1
-  ];
-};
+const rowOffset = (d) => Math.sign(Math.round(Math.sin((d - 90) * Math.PI / 180) * 10));
+
+const colOffset = (d) => Math.sign(Math.round(Math.cos((d - 90) * Math.PI / 180) * 10)) * -1;
 
 const countLivingNeighbors = (degrees, i, j) => {
   let count = 0
   degrees.forEach((location) => {
-    const [r, c] = offsets(location);
-    if (current[i + r][j + c]) {
+    if (current[i + rowOffset(location)][j + colOffset(location)]) {
       count++;
     }
   });
