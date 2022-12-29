@@ -68,7 +68,7 @@ const offset = (n) => Math.sign(Math.round(n * 10));
 
 const rowOffset = (o) => o.row;
 
-const colOffset = (c) => o.col;
+const colOffset = (o) => o.col;
 
 const countLivingNeighbors = (angles, i, j) => {
   let count = 0
