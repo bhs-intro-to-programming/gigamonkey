@@ -37,8 +37,7 @@ const nextCells = (cells) => {
   for (let i = 0; i < next.length; i++) {
     for (let j = 0; j < next[0].length; j++) {
       let currentlyAlive = cells[i][j]
-      let neighbors = getNeighbors(i, j)
-      let livingNeighborCount = countLivingNeighbors(neighbors, i, j)
+      let livingNeighborCount = countLivingNeighbors(i, j)
 
       if (currentlyAlive) {
         next[i][j] = 2 <= livingNeighborCount && livingNeighborCount <= 3;
@@ -48,9 +47,7 @@ const nextCells = (cells) => {
     }
   }
   return next;
-}
-
-
+};
 
 const getNeighbors = (row, column) => {
   let offsets = ALL_OFFSETS;
@@ -67,7 +64,8 @@ const getNeighbors = (row, column) => {
   return offsets;
 };
 
-const countLivingNeighbors = (angles, i, j) => {
+const countLivingNeighbors = (i, j) => {
+  const angles = getNeighbors(i, j);
   let count = 0
   angles.forEach((o) => {
     if (current[i + o.row][j + o.col]) {
