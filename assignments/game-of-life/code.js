@@ -2,10 +2,6 @@ const CELLSIZE = 4;
 const rows = Math.floor(height / CELLSIZE)
 const cols = Math.floor(width / CELLSIZE)
 
-let next =
-  Array(rows).fill().map(() =>
-    Array(cols).fill().map(() => (false)));
-
 const emptyGrid = (rows, cols) => Array(rows).fill().map(() => Array(cols).fill(false));
 
 const originalCells = (rows, cols) => {
@@ -32,11 +28,11 @@ const drawWorld = (world) => {
   }
 };
 
-const doTheyLive = (current) => {
-  const next = emptyGrid(current.length, current[0].length)
+const next = (cells) => {
+  const next = emptyGrid(cells.length, cells[0].length)
   for (let i = 0; i < next.length; i++) {
     for (let j = 0; j < next[0].length; j++) {
-      let currentlyAlive = current[i][j]
+      let currentlyAlive = cells[i][j]
       let locations = getLocationsForCell(i, j)
       let livingNeighborCount = countLivingNeighbors(locations, i, j)
 
@@ -113,7 +109,7 @@ const getLocationsForCell = (row, column) => {
 
 const go = () => {
   drawWorld(current)
-  current = doTheyLive(current);
+  current = next(current);
   setTimeout(go, 100);
 }
 
