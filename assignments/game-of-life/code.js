@@ -30,11 +30,11 @@ const nextCells = (cells) => {
   for (let i = 0; i < next.length; i++) {
     for (let j = 0; j < next[0].length; j++) {
       let currentlyAlive = cells[i][j]
-      let locations = getLocationsForCell(i, j)
-      let livingNeighborCount = countLivingNeighbors(locations, i, j)
+      let neighbors = getNeighbors(i, j)
+      let livingNeighborCount = countLivingNeighbors(neighbors, i, j)
 
       if (currentlyAlive) {
-        next[i][j] = !(livingNeighborCount <= 1 || livingNeighborCount >= 4);
+        next[i][j] = livingNeighborCount >= 2 && livingNeighborCount <= 3;
       } else {
         next[i][j] = livingNeighborCount === 3;
       }
@@ -43,17 +43,17 @@ const nextCells = (cells) => {
   return next;
 }
 
-const getLocationsForCell = (row, column) => {
+const getNeighbors = (row, column) => {
   let angles = Array(8).fill().map((_, i) => i / 4 * Math.PI);
   if (row === 0) {
-    angles = angles.filter(d => rowOffset(d) >= 0);
+    angles = angles.filter(r => rowOffset(r) >= 0);
   } else if (row === ROWS - 1) {
-    angles = angles.filter(d => rowOffset(d) <= 0);
+    angles = angles.filter(r => rowOffset(r) <= 0);
   }
   if (column === 0) {
-    angles = angles.filter(d => colOffset(d) >= 0);
+    angles = angles.filter(r => colOffset(r) >= 0);
   } else if (column === COLS - 1) {
-    angles = angles.filter(d => colOffset(d) <= 0);
+    angles = angles.filter(r => colOffset(r) <= 0);
   }
   return angles;
 };
@@ -66,8 +66,8 @@ const colOffset = (r) => offset(Math.cos(r));
 
 const countLivingNeighbors = (angles, i, j) => {
   let count = 0
-  angles.forEach((d) => {
-    if (current[i + rowOffset(d)][j + colOffset(d)]) {
+  angles.forEach((r) => {
+    if (current[i + rowOffset(r)][j + colOffset(r)]) {
       count++;
     }
   });
