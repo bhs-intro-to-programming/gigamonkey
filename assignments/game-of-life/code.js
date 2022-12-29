@@ -63,26 +63,8 @@ const countLivingNeighbors = (locations, i, j) => {
   let livingthings = 0
 
   locations.forEach(function (location) {
-    let row = i;
-    let col = j;
-    switch (location) {
-      case 0:
-      case 45:
-      case 315:
-        row--;
-        break;
-      case 135:
-      case 180:
-      case 225:
-        row++;
-        break;
-    }
-    if (location >= 225) {
-      col--;
-    } else if (45 <= location && location <= 135) {
-      col++;
-    }
-    if (current[row][col]) {
+    const [r, c] = offsets(location);
+    if (current[i + r][j + c]) {
       livingthings++;
     }
   });
