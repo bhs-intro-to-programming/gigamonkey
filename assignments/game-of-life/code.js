@@ -45,45 +45,37 @@ const nextCells = (cells) => {
 
 const countLivingNeighbors = (locations, i, j) => {
   let livingthings = 0
+  let row = i;
+  let col = j;
   locations.forEach(function (location) {
     switch (location) {
       case 0:
-        if (current[i - 1][j])
-          livingthings++
-        break;
       case 45:
-        if (current[i - 1][j + 1])
-          livingthings++
-        break;
-      case 90:
-        if (current[i][j + 1])
-          livingthings++
+      case 315:
+        row--;
         break;
       case 135:
-        if (current[i + 1][j + 1])
-          livingthings++
-        break;
       case 180:
-        if (current[i + 1][j])
-          livingthings++
-        break;
       case 225:
-        if (current[i + 1][j - 1])
-          livingthings++
-        break;
-      case 270:
-        if (current[i][j - 1])
-          livingthings++
-        break;
-      case 315:
-        if (current[i - 1][j - 1])
-          livingthings++
-        break;
-      default:
+        row++;
         break;
     }
-  }
-  )
+    switch (location) {
+      case 225:
+      case 270:
+      case 315:
+        col--;
+        break;
+      case 45:
+      case 90:
+      case 135:
+        col++;
+        break;
+    }
+    if (current[row][col]) {
+      livingThings++;
+    }
+  });
   return livingthings
 }
 
@@ -99,7 +91,7 @@ const getLocationsForCell = (row, column) => {
     remove(315, 270, 225);
   } else if (column === COLS - 1) {
     remove(45, 90, 135);
-  } 
+  }
   return locations;
 }
 
