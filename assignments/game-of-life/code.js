@@ -118,5 +118,5 @@ const go = () => {
   setTimeout(go, 100);
 }
 
-const current = originalCells(rows, cols)
+let current = originalCells(rows, cols)
 go();
