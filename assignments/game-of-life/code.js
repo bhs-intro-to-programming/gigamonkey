@@ -43,9 +43,8 @@ const nextCells = (cells) => {
   return next;
 }
 
-const angles = Array(8).fill().map((_, i) => i * 45);
-
 const getLocationsForCell = (row, column) => {
+  let angles = Array(8).fill().map((_, i) => i * 45);
   if (row === 0) {
     angles = angles.filter(d => rowOffset(d) >= 0);
   } else if (row === ROWS - 1) {
