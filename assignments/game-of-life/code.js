@@ -106,21 +106,18 @@ const countLivingNeighbors = (locations, i, j) => {
   return livingthings
 }
 
-const without = (locations, items) => locations.filter(loc => !items.includes(loc));
+const without = (xs, toRemove) => xs.filter(x => !toRemove.includes(x));
 
 const getLocationsForCell = (row, column) => {
   let locations = [0, 45, 90, 135, 180, 225, 270, 315];
-  let idx;
   if (row === 0) {
     locations = without(locations, [315, 0, 45]);
-  }
-  if (row === rows - 1) {
+  } else if (row === rows - 1) {
     locations = without(locations, [225, 180, 135]);
   }
   if (column === cols - 1) {
     locations = without(locations, [45, 90, 135]);
-  }
-  if (column === 0) {
+  } else if (column === 0) {
     locations = without(locations, [315, 270, 225]);
   }
   return locations;
