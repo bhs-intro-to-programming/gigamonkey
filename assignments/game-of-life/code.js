@@ -56,20 +56,17 @@ const allOffsets = Array(8).fill().map((_, i) => i / 4 * Math.PI).map(makeOffset
 const getNeighbors = (row, column) => {
   let offsets = allOffsets;
   if (row === 0) {
-    offsets = offsets.filter(r => rowOffset(r) >= 0);
+    offsets = offsets.filter(o => o.row >= 0);
   } else if (row === ROWS - 1) {
-    offsets = offsets.filter(r => rowOffset(r) <= 0);
+    offsets = offsets.filter(o => o.row <= 0);
   }
   if (column === 0) {
-    offsets = offsets.filter(r => colOffset(r) >= 0);
+    offsets = offsets.filter(o => o.col >= 0);
   } else if (column === COLS - 1) {
-    offsets = offsets.filter(r => colOffset(r) <= 0);
+    offsets = offsets.filter(o => o.col <= 0);
   }
   return offsets;
 };
-
-
-
 
 const rowOffset = (o) => o.row;
 
@@ -77,8 +74,8 @@ const colOffset = (o) => o.col;
 
 const countLivingNeighbors = (angles, i, j) => {
   let count = 0
-  angles.forEach((r) => {
-    if (current[i + rowOffset(r)][j + colOffset(r)]) {
+  angles.forEach((o) => {
+    if (current[i + o.row][j + o.col]) {
       count++;
     }
   });
