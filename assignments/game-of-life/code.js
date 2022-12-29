@@ -1,6 +1,6 @@
 const CELLSIZE = 4;
-const rows = Math.floor(height / CELLSIZE)
-const cols = Math.floor(width / CELLSIZE)
+const ROWS = Math.floor(height / CELLSIZE)
+const COLS = Math.floor(width / CELLSIZE)
 
 const emptyGrid = (rows, cols) => Array(rows).fill().map(() => Array(cols).fill(false));
 
@@ -25,7 +25,7 @@ const drawCells = (cells) => {
   }
 };
 
-const next = (cells) => {
+const nextCells = (cells) => {
   const next = emptyGrid(cells.length, cells[0].length)
   for (let i = 0; i < next.length; i++) {
     for (let j = 0; j < next[0].length; j++) {
@@ -87,28 +87,27 @@ const countLivingNeighbors = (locations, i, j) => {
   return livingthings
 }
 
-const without = (xs, toRemove) => xs.filter(x => !toRemove.includes(x));
-
 const getLocationsForCell = (row, column) => {
-  let locations = Array(8).fill().map((_, i) => i * 45);
+  let locations = new Set(Array(8).fill().map((_, i) => i * 45));
+  const remove = (...xs) => xs.forEach(n => locations.delete(n))
   if (row === 0) {
-    locations = without(locations, [315, 0, 45]);
-  } else if (row === rows - 1) {
-    locations = without(locations, [225, 180, 135]);
+    remove(315, 0, 45);
+  } else if (row === ROWS - 1) {
+    remove(225, 180, 135);
   }
   if (column === 0) {
-    locations = without(locations, [315, 270, 225]);
-  } else if (column === cols - 1) {
-    locations = without(locations, [45, 90, 135]);
+    remove(315, 270, 225);
+  } else if (column === COLS - 1) {
+    remove(45, 90, 135);
   } 
-  return locations;
+  return [...locations];
 }
 
 const go = () => {
   drawCells(current);
-  current = next(current);
+  current = nextCells(current);
   setTimeout(go, 100);
 };
 
-let current = originalCells(rows, cols);
+let current = originalCells(ROWS, COLS);
 go();
