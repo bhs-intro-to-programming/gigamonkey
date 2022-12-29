@@ -59,13 +59,8 @@ const getLocationsForCell = (row, column) => {
 };
 
 const offsets = (d) => {
-  let r = 0;
+  let r = Math.sign(Math.round(Math.sin((d - 90) * Math.PI / 180) * 10));
   let c = 0;
-  if (d < 90 || d > 270) {
-    r--;
-  } else if (90 < d && d < 270) {
-    r++;
-  }
   if (0 < d && d < 180) {
     c--;
   } else if (180 < d && d < 360) {
