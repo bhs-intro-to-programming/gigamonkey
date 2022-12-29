@@ -47,9 +47,9 @@ const offsets = (d) => {
   let r = 0;
   let c = 0;
   if (d < 90 || d > 270) {
-    r++;
-  } else if (90 < d && d < 270) {
     r--;
+  } else if (90 < d && d < 270) {
+    r++;
   }
   if (0 < d && d < 180) {
     c--;
