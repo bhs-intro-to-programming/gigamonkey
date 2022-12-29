@@ -43,6 +43,21 @@ const nextCells = (cells) => {
   return next;
 }
 
+const getLocationsForCell = (row, column) => {
+  let degrees = Array(8).fill().map((_, i) => i * 45);
+  if (row === 0) {
+    degrees = degrees.filter(d => offsets(d)[0] >= 0);
+  } else if (row === ROWS - 1) {
+    degrees = degrees.filter(d => offsets(d)[0] <= 0);
+  }
+  if (column === 0) {
+    degrees = degrees.filter(d => offsets(d)[1] >= 0);
+  } else if (column === COLS - 1) {
+    degrees = degrees.filter(d => offsets(d)[1] <= 0);
+  }
+  return degrees;
+};
+
 const offsets = (d) => {
   let r = 0;
   let c = 0;
@@ -57,34 +72,18 @@ const offsets = (d) => {
     c++;
   }
   return [r, c];
-}
+};
 
-const countLivingNeighbors = (locations, i, j) => {
-  let livingthings = 0
-
-  locations.forEach((location) => {
+const countLivingNeighbors = (degrees, i, j) => {
+  let count = 0
+  degrees.forEach((location) => {
     const [r, c] = offsets(location);
     if (current[i + r][j + c]) {
-      livingthings++;
+      count++;
     }
   });
-  return livingthings
-}
-
-const getLocationsForCell = (row, column) => {
-  let degrees = Array(8).fill().map((_, i) => i * 45);
-  if (row === 0) {
-    degrees = degrees.filter(d => offsets(d)[0] >= 0);
-  } else if (row === ROWS - 1) {
-    degrees = degrees.filter(d => offsets(d)[0] <= 0);
-  }
-  if (column === 0) {
-    degrees = degrees.filter(d => offsets(d)[1] >= 0);
-  } else if (column === COLS - 1) {
-    degrees = degrees.filter(d => offsets(d)[1] <= 0);
-  }
-  return degrees;
-}
+  return count
+};
 
 const go = () => {
   drawCells(current);
