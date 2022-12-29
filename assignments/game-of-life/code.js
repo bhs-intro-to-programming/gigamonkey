@@ -1,85 +1,149 @@
-// Riley's code plus some changes
+const CELLSIZE = 4;
+const rows = Math.floor(height / CELLSIZE)
+const cols = Math.floor(width / CELLSIZE)
 
-const cellsize = 5
+let current =
+  Array(rows).fill().map(() =>
+    Array(cols).fill().map(() => (false)));
 
-const makeArrayRow = (columns) => {
-  let row = []
-  for (let i = 0; i < columns; i++) {
-    if (Math.random() < 0.2) {
-      row.push(1)
-    } else {
-      row.push(0)
-    }
-  }
-  return row
-}
-const makeArray = (rows, columns) => {
-  let b = []
-  for (let i = 0; i < rows; i++) {
-    b.push(makeArrayRow(columns))
-  }
-  return b;
-}
+let next =
+  Array(rows).fill().map(() =>
+    Array(cols).fill().map(() => (false)));
 
-const drawTheThings = (b, cellsize) => {
-  drawFilledRect(0, 0, width, height, 'black')
-
-  for (let i = 0; i < b.length; i++) {
-    for (let j = 0; j < b[i].length; j++) {
-      if (b[i][j] === 1) {
-        drawFilledRect(j * cellsize, i * cellsize, cellsize, cellsize, 'palevioletred')
+const originalCells = () => {
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      if (Math.random() > (1 - .23)) {
+        drawFilledRect(x * CELLSIZE, y * CELLSIZE, CELLSIZE, CELLSIZE, 'green');
+        current[y][x] = true
+      } else {
+        drawFilledRect(x * CELLSIZE, y * CELLSIZE, CELLSIZE, CELLSIZE, 'black');
       }
     }
   }
-}
+};
 
-const neighbors = (b, y, x) => {
-  let n = 0
-  for (let i = -1; i < 2; i++) {
-    for (let j = -1; j < 2; j++) {
-      if (i !== 0 || j !== 0) {
-        const r = y + i;
-        const c = x + j;
-        if (0 <= r && r < b.length && 0 <= c && c < b[r].length) {
-          if (b[r][c] === 1) n++;
+const drawNext = () => {
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      if (next[y][x]) {
+        drawFilledRect(x * CELLSIZE, y * CELLSIZE, CELLSIZE, CELLSIZE, 'green');
+      } else {
+        drawFilledRect(x * CELLSIZE, y * CELLSIZE, CELLSIZE, CELLSIZE, 'black');
+      }
+    }
+  }
+};
+
+const doTheyLive = () => {
+  for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < cols; j++) {
+      let currentCellState = current[i][j]
+      let locations = getLocationsForCell(i, j)
+      let livingNeighborCount = countLivingNeighbors(locations, i, j)
+
+      if (currentCellState) {
+        // populated
+        if (livingNeighborCount <= 1)
+          next[i][j] = false
+        else if (livingNeighborCount >= 4)
+          next[i][j] = false
+        else
+          next[i][j] = true
+      } else {
+        // empty
+        if (livingNeighborCount === 3) {
+          next[i][j] = true
+        } else {
+          next[i][j] = false
         }
       }
     }
   }
-  return n
 }
 
-const copyBoard = (b) => {
-  const copy = [];
-  for (let i = 0; i < b.length; i++) {
-    copy[i] = [];
-    for (let j = 0; j < b[i].length; j++) {
-      copy[i].push(b[i][j]);
+const countLivingNeighbors = (locations, i, j) => {
+  let livingthings = 0
+  locations.forEach(function (location) {
+    switch (location) {
+      case 0:
+        if (current[i - 1][j])
+          livingthings++
+        break;
+      case 45:
+        if (current[i - 1][j + 1])
+          livingthings++
+        break;
+      case 90:
+        if (current[i][j + 1])
+          livingthings++
+        break;
+      case 135:
+        if (current[i + 1][j + 1])
+          livingthings++
+        break;
+      case 180:
+        if (current[i + 1][j])
+          livingthings++
+        break;
+      case 225:
+        if (current[i + 1][j - 1])
+          livingthings++
+        break;
+      case 270:
+        if (current[i][j - 1])
+          livingthings++
+        break;
+      case 315:
+        if (current[i - 1][j - 1])
+          livingthings++
+        break;
+      default:
+        break;
     }
   }
-  return copy;
+  )
+  return livingthings
 }
 
-const updateBoard = (b) => {
-  const old = copyBoard(b);;
-  for (let i = 0; i < b.length; i++) {
-    for (let j = 0; j < b[i].length; j++) {
-      const n = neighbors(old, i, j);
-      const alive = old[i][j] === 1 ? (n === 2 || n === 3) : n === 3;
-      b[i][j] = alive ? 1 : 0;
-    }
+const getLocationsForCell = (i, j) => {
+  let locations = [0, 45, 90, 135, 180, 225, 270, 315];
+  let idx;
+  if (i === 0) {
+    locations.splice(locations.indexOf(315), 1)
+    locations.splice(locations.indexOf(0), 1)
+    locations.splice(locations.indexOf(45), 1)
   }
+  if (i === rows - 1) {
+    locations.splice(locations.indexOf(225), 1)
+    locations.splice(locations.indexOf(180), 1)
+    locations.splice(locations.indexOf(135), 1)
+  }
+  if (i === cols - 1) {
+    if (idx = locations.indexOf(45) > 0)
+      locations.splice(idx, 1)
+    locations.splice(locations.indexOf(90), 1)
+    if (idx = locations.indexOf(135) > 0)
+      locations.splice(locations.indexOf(135), 1)
+  }
+  if (j === 0) {
+    if (idx = locations.indexOf(315) > 0)
+      locations.splice(locations.indexOf(315), 1)//
+    locations.splice(locations.indexOf(270), 1)
+    if (idx = locations.indexOf(225) > 0)
+      locations.splice(locations.indexOf(225), 1) //
+  }
+  return locations;
 }
 
-
-let board = makeArray(Math.floor(height / cellsize), Math.floor(width / cellsize));
-
-const redraw = (t) => {
-  clear()
-  updateBoard(board)
-  drawTheThings(board, cellsize)
+const go = () => {
+  doTheyLive()
+  drawNext()
+  current = next
+  next = Array(rows).fill().map(() =>
+    Array(cols).fill().map(() => (false)));
+  setTimeout(go, 100);
 }
 
-drawTheThings(board, cellsize);
-
-animate(redraw)
+originalCells()
+go();
