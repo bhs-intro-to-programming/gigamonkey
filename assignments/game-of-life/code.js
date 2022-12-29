@@ -43,8 +43,10 @@ const nextCells = (cells) => {
   return next;
 }
 
+const allOffsets = Array(8).fill().map((_, i) => i / 4 * Math.PI).map(makeOffset);
+
 const getNeighbors = (row, column) => {
-  let offsets = Array(8).fill().map((_, i) => i / 4 * Math.PI).map(makeOffset);
+  let offsets = allOffsets;
   if (row === 0) {
     offsets = offsets.filter(r => rowOffset(r) >= 0);
   } else if (row === ROWS - 1) {
