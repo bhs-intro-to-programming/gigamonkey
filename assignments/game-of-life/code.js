@@ -68,10 +68,6 @@ const getNeighbors = (row, column) => {
   return offsets;
 };
 
-const rowOffset = (o) => o.row;
-
-const colOffset = (o) => o.col;
-
 const countLivingNeighbors = (angles, i, j) => {
   let count = 0
   angles.forEach((o) => {
