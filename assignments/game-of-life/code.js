@@ -16,10 +16,10 @@ const originalCells = (rows, cols) => {
   return cells;
 };
 
-const drawWorld = (world) => {
-  for (let r = 0; r < world.length; r++) {
-    for (let c = 0; c < world[0].length; c++) {
-      const color = world[r][c] ? 'green' : 'black';
+const drawCells = (cells) => {
+  for (let r = 0; r < cells.length; r++) {
+    for (let c = 0; c < cells[0].length; c++) {
+      const color = cells[r][c] ? 'green' : 'black';
       drawFilledRect(c * CELLSIZE, r * CELLSIZE, CELLSIZE, CELLSIZE, color);
     }
   }
@@ -90,25 +90,25 @@ const countLivingNeighbors = (locations, i, j) => {
 const without = (xs, toRemove) => xs.filter(x => !toRemove.includes(x));
 
 const getLocationsForCell = (row, column) => {
-  let locations = [0, 45, 90, 135, 180, 225, 270, 315];
+  let locations = Array(8).fill().map((_, i) => i * 45);
   if (row === 0) {
     locations = without(locations, [315, 0, 45]);
   } else if (row === rows - 1) {
     locations = without(locations, [225, 180, 135]);
   }
-  if (column === cols - 1) {
-    locations = without(locations, [45, 90, 135]);
-  } else if (column === 0) {
+  if (column === 0) {
     locations = without(locations, [315, 270, 225]);
-  }
+  } else if (column === cols - 1) {
+    locations = without(locations, [45, 90, 135]);
+  } 
   return locations;
 }
 
 const go = () => {
-  drawWorld(current)
+  drawCells(current);
   current = next(current);
   setTimeout(go, 100);
-}
+};
 
-let current = originalCells(rows, cols)
+let current = originalCells(rows, cols);
 go();
