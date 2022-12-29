@@ -61,17 +61,10 @@ const countLivingNeighbors = (locations, i, j) => {
         row++;
         break;
     }
-    switch (location) {
-      case 225:
-      case 270:
-      case 315:
-        col--;
-        break;
-      case 45:
-      case 90:
-      case 135:
-        col++;
-        break;
+    if (location >= 225) {
+      col--;
+    } else if (45 <= location && location <= 135) {
+      col++;
     }
     if (current[row][col]) {
       livingthings++;
