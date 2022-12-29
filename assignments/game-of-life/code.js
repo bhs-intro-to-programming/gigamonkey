@@ -92,12 +92,12 @@ const countLivingNeighbors = (locations, i, j) => {
 const getLocationsForCell = (row, column) => {
   let degrees = Array(8).fill().map((_, i) => i * 45);
   if (row === 0) {
-    degrees = degrees.filter(d => offsets(d)[0] >= 0;
+    degrees = degrees.filter(d => offsets(d)[0] >= 0);
   } else if (row === ROWS - 1) {
-    degrees = degrees.filter(d => offsets(d)[0] <= 0;
+    degrees = degrees.filter(d => offsets(d)[0] <= 0);
   }
   if (column === 0) {
-    degrees = degrees.filter(d => offsets(d)[1] >= 0)
+    degrees = degrees.filter(d => offsets(d)[1] >= 0);
   } else if (column === COLS - 1) {
     degrees = degrees.filter(d => offsets(d)[1] <= 0);
   }
