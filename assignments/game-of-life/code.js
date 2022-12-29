@@ -17,8 +17,8 @@ const originalCells = (rows, cols) => {
 };
 
 const drawWorld = (world) => {
-  for (let y = 0; y < rows; y++) {
-    for (let x = 0; x < cols; x++) {
+  for (let y = 0; y < world.length; y++) {
+    for (let x = 0; x < world[0].length; x++) {
       if (world[y][x]) {
         drawFilledRect(x * CELLSIZE, y * CELLSIZE, CELLSIZE, CELLSIZE, 'green');
       } else {
