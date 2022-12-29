@@ -65,8 +65,8 @@ const neighborOffsets = (row, column) => {
 
 const countLivingNeighbors = (i, j) => {
   return neighborOffsets(i, j).reduce((c, o) => {
-    return current[i + o.row][j + o.col] ? c + 1 : c, 0;
-  });
+    return current[i + o.row][j + o.col] ? c + 1 : c;
+  }, 0);
 };
 
 const go = () => {
