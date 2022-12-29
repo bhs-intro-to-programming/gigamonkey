@@ -2,6 +2,14 @@ const CELLSIZE = 4;
 const ROWS = Math.floor(height / CELLSIZE)
 const COLS = Math.floor(width / CELLSIZE)
 
+const offset = (n) => Math.sign(Math.round(n * 10));
+
+const allOffsets = Array(8).fill().map((_, i) => i / 4 * Math.PI).map((a) => {
+  const row = offset(Math.sin(a));
+  const col = offset(Math.cos(a));
+  return { row, col };
+});
+
 const emptyGrid = (rows, cols) => Array(rows).fill().map(() => Array(cols).fill(false));
 
 const originalCells = (rows, cols) => {
@@ -43,15 +51,7 @@ const nextCells = (cells) => {
   return next;
 }
 
-const makeOffset = (a) => {
-  const row = offset(Math.sin(a));
-  const col = offset(Math.cos(a));
-  return { row, col };
-};
 
-const offset = (n) => Math.sign(Math.round(n * 10));
-
-const allOffsets = Array(8).fill().map((_, i) => i / 4 * Math.PI).map(makeOffset);
 
 const getNeighbors = (row, column) => {
   let offsets = allOffsets;
