@@ -23,7 +23,7 @@ const originalCells = () => {
   }
 };
 
-const drawNext = () => {
+const drawNext = (next) => {
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
       if (next[y][x]) {
@@ -114,7 +114,7 @@ const getLocationsForCell = (row, column) => {
 
 const go = () => {
   doTheyLive()
-  drawNext()
+  drawNext(next)
   current = next
   next = Array(rows).fill().map(() =>
     Array(cols).fill().map(() => (false)));
