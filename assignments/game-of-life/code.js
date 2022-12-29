@@ -44,12 +44,7 @@ const doTheyLive = () => {
 
       if (currentCellState) {
         // populated
-        if (livingNeighborCount <= 1)
-          next[i][j] = false
-        else if (livingNeighborCount >= 4)
-          next[i][j] = false
-        else
-          next[i][j] = true
+        next[i][j] = !(livingNeighborCount <= 1 || livingNeighborCount >= 4); 
       } else {
         // empty
         if (livingNeighborCount === 3) {
