@@ -43,6 +43,12 @@ const nextCells = (cells) => {
   return next;
 }
 
+const makeOffset = (a) => {
+  const row = offset(Math.sin(a));
+  const col = offset(Math.cos(a));
+  return { row, col };
+};
+
 const allOffsets = Array(8).fill().map((_, i) => i / 4 * Math.PI).map(makeOffset);
 
 const getNeighbors = (row, column) => {
@@ -60,11 +66,7 @@ const getNeighbors = (row, column) => {
   return offsets;
 };
 
-const makeOffset = (a) => {
-  const row = offset(Math.sin(a));
-  const col = offset(Math.cos(a));
-  return { row, col };
-};
+
 
 const offset = (n) => Math.sign(Math.round(n * 10));
 
