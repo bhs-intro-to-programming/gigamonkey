@@ -36,9 +36,8 @@ const nextCells = (cells) => {
   const next = emptyGrid(cells.length, cells[0].length)
   for (let i = 0; i < next.length; i++) {
     for (let j = 0; j < next[0].length; j++) {
-      let currentlyAlive = cells[i][j]
-      let livingNeighbors = countLivingNeighbors(i, j)
-
+      const currentlyAlive = cells[i][j]
+      const livingNeighbors = countLivingNeighbors(i, j)
       if (currentlyAlive) {
         next[i][j] = 2 <= livingNeighbors && livingNeighbors <= 3;
       } else {
@@ -65,9 +64,8 @@ const neighborOffsets = (row, column) => {
 };
 
 const countLivingNeighbors = (i, j) => {
-  const offsets = neighborOffsets(i, j);
   let count = 0
-  offsets.forEach((o) => {
+  neighborOffsets(i, j).forEach((o) => {
     if (current[i + o.row][j + o.col]) {
       count++;
     }
