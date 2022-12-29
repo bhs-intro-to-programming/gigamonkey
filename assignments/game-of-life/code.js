@@ -100,7 +100,7 @@ const getLocationsForCell = (row, column) => {
   } else if (column === COLS - 1) {
     remove(45, 90, 135);
   } 
-  return [...locations];
+  return locations;
 }
 
 const go = () => {
