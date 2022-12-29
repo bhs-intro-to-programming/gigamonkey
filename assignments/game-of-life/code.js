@@ -49,6 +49,8 @@ const makeOffset = (a) => {
   return { row, col };
 };
 
+const offset = (n) => Math.sign(Math.round(n * 10));
+
 const allOffsets = Array(8).fill().map((_, i) => i / 4 * Math.PI).map(makeOffset);
 
 const getNeighbors = (row, column) => {
@@ -68,7 +70,6 @@ const getNeighbors = (row, column) => {
 
 
 
-const offset = (n) => Math.sign(Math.round(n * 10));
 
 const rowOffset = (o) => o.row;
 
