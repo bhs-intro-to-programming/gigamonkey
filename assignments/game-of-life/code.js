@@ -38,15 +38,13 @@ const drawNext = () => {
 const doTheyLive = () => {
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < cols; j++) {
-      let currentCellState = current[i][j]
+      let currentlyAlive = current[i][j]
       let locations = getLocationsForCell(i, j)
       let livingNeighborCount = countLivingNeighbors(locations, i, j)
 
-      if (currentCellState) {
-        // populated
+      if (currentlyAlive) {
         next[i][j] = !(livingNeighborCount <= 1 || livingNeighborCount >= 4); 
       } else {
-        // empty
         next[i][j] = livingNeighborCount === 3;
       }
     }
