@@ -34,7 +34,7 @@ const nextCells = (cells) => {
       let livingNeighborCount = countLivingNeighbors(neighbors, i, j)
 
       if (currentlyAlive) {
-        next[i][j] = livingNeighborCount >= 2 && livingNeighborCount <= 3;
+        next[i][j] = 2 <= livingNeighborCount && livingNeighborCount <= 3;
       } else {
         next[i][j] = livingNeighborCount === 3;
       }
