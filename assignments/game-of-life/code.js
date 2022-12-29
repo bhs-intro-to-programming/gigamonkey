@@ -44,25 +44,31 @@ const nextCells = (cells) => {
 }
 
 const getNeighbors = (row, column) => {
-  let angles = Array(8).fill().map((_, i) => i / 4 * Math.PI);
+  let offsets = Array(8).fill().map((_, i) => i / 4 * Math.PI).map(makeOffset);
   if (row === 0) {
-    angles = angles.filter(r => rowOffset(r) >= 0);
+    offsets = offsets.filter(r => rowOffset(r) >= 0);
   } else if (row === ROWS - 1) {
-    angles = angles.filter(r => rowOffset(r) <= 0);
+    offsets = offsets.filter(r => rowOffset(r) <= 0);
   }
   if (column === 0) {
-    angles = angles.filter(r => colOffset(r) >= 0);
+    offsets = offsets.filter(r => colOffset(r) >= 0);
   } else if (column === COLS - 1) {
-    angles = angles.filter(r => colOffset(r) <= 0);
+    offsets = offsets.filter(r => colOffset(r) <= 0);
   }
-  return angles;
+  return offsets;
+};
+
+const makeOffset = (a) => {
+  const row = offset(Math.sin(r));
+  const col = offset(Math.cos(r));
+  return { row, col };
 };
 
 const offset = (n) => Math.sign(Math.round(n * 10));
 
-const rowOffset = (r) => offset(Math.sin(r));
+const rowOffset = (o) => o.row;
 
-const colOffset = (r) => offset(Math.cos(r));
+const colOffset = (c) => o.col;
 
 const countLivingNeighbors = (angles, i, j) => {
   let count = 0
