@@ -50,15 +50,9 @@ const nextCells = (cells) => {
 };
 
 const neighborOffsets = (row, column) => {
-  let offsets = ALL_OFFSETS;
   const rowOk = (o) => row === 0 ? o.row >= 0 : row === ROWS - 1 ? o.row <= 0 : true;
-  offsets = offsets.filter(rowOk);
-  if (column === 0) {
-    offsets = offsets.filter(o => o.col >= 0);
-  } else if (column === COLS - 1) {
-    offsets = offsets.filter(o => o.col <= 0);
-  }
-  return offsets;
+  const colOk = (o) => col === 0 ? o.col >= 0 : col === COLS - 1 ? o.col <= 0 : true;
+  return ALL_OFFSETS.filter(o => rowOk(o) && colOk(o));
 };
 
 const countLivingNeighbors = (i, j) => {
