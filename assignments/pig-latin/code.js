@@ -30,3 +30,12 @@
 // will evaluate to either "Zero" or "Not zero" depending on whether x === 0.
 //
 // Feel free to play around in the REPL to make sure you understand how this operator works.
+
+const pigLatin = (word) => {
+  const i = word.search(/[aeiou]/);
+  return word.substring(i) + word.substring(0, i) + 'ay';
+};
+
+const advancedPigLatin = (word) => {
+  return pigLatin(word.search(/[aeiou]/) === 0 ? 'w' + word : word);
+};
