@@ -51,7 +51,7 @@ const nextCells = (cells) => {
 
 const neighborOffsets = (row, column) => {
   const rowOk = (o) => row === 0 ? o.row >= 0 : row === ROWS - 1 ? o.row <= 0 : true;
-  const colOk = (o) => col === 0 ? o.col >= 0 : col === COLS - 1 ? o.col <= 0 : true;
+  const colOk = (o) => column === 0 ? o.col >= 0 : column === COLS - 1 ? o.col <= 0 : true;
   return ALL_OFFSETS.filter(o => rowOk(o) && colOk(o));
 };
 
