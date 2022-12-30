@@ -4,9 +4,10 @@ const COLS = Math.floor(width / CELLSIZE)
 
 const ALL_OFFSETS = Array(8).fill().map((_, i) => i / 4 * Math.PI).map((a) => {
   const offset = (n) => Math.sign(Math.round(n * 10));
-  const row = offset(Math.sin(a));
-  const col = offset(Math.cos(a));
-  return { row, col };
+  return {
+    row: offset(Math.sin(a)),
+    col: offset(Math.cos(a))
+  };
 });
 
 const emptyGrid = (rows, cols) => Array(rows).fill().map(() => Array(cols).fill(false));
