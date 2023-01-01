@@ -177,11 +177,11 @@ const dartboard = (howManyCircles) => {
 const notReallyCurved = (n) => {
   const step = Math.min(width, height) / n
   const frameSide = step * n
-  for (let i = 0; i < n; i++) {
+  for (let i = 0; i <= n; i++) {
     drawLine(0, i * step, i * step, frameSide, 'black', 1)
   }
 }
-notReallyCurved(64)
+notReallyCurved(12)
 
 //dartboard(12);
 
