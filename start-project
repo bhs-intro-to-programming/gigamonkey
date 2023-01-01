@@ -1,0 +1,25 @@
+#!/bin/bash
+
+set -euo pipefail
+
+name="$1"
+kit="$2"
+
+dir="project/$name"
+
+function usage {
+    echo "usage: $0 PROJECT_NAME KIT_NAME"
+    exit 1
+}
+
+if [ -z "$name" -o -z "$kit" ]; then usage; fi
+
+if [ -e "$dir" ]; then
+    echo "$dir already exists!"
+    exit 1
+fi
+
+mkdir -p "$dir"
+cd "$dir"
+curl "https://intro.gigamonkeys.com/starter-kits/$kit.tgz" | tar xzf -
+npm install
