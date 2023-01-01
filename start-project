@@ -3,16 +3,25 @@
 set -euo pipefail
 
 function usage {
-    echo "usage: $0 PROJECT_NAME KIT_NAME"
+    echo "To create a new project, first create a branch with a name that starts with 'project/'."
+    echo "Then run this script with the name of the starter kit you want to use for the project."
+    echo "For example:"
+    echo ""
+    echo "  $0 simple-animation"
+    echo ""
     exit 1
 }
 
-if (($# < 2)); then usage; fi
+if (($# < 1)); then usage; fi
 
-name="$1"
-kit="$2"
+kit="$1"
 
-dir="project/$name"
+dir=$(git branch --show-current)
+
+if [ "${dir:0:8}" != "project/" ]; then
+    echo "Must be on a project/* branch to start a project."
+    exit 1
+fi
 
 if [ -e "$dir" ]; then
     echo "$dir already exists!"
