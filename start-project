@@ -3,34 +3,46 @@
 set -euo pipefail
 
 function usage {
-    echo "To create a new project, first create a branch with a name that starts with 'project/'."
-    echo "Then run this script with the name of the starter kit you want to use for the project."
-    echo "For example:"
+    echo "To create a new project, run this script with two arguments, the name of the project "
+    echo "and the name of the starter kit you want to use. For example:"
     echo ""
-    echo "  $0 simple-animation"
+    echo "  $0 my-first-web-project trivial-web"
     echo ""
     exit 1
 }
 
-if (($# < 1)); then usage; fi
+if (($# < 2)); then usage; fi
 
-kit="$1"
-
-dir=$(git branch --show-current)
-
-if [ "${dir:0:8}" != "project/" ]; then
-    echo "Must be on a project/* branch to start a project."
+if [ "$(git branch --show-current)" != "main" ]; then
+    echo "Must start projects from main branch."
     exit 1
 fi
 
-if [ -e "$dir" ]; then
-    echo "$dir already exists!"
+name="$1"
+kit="$2"
+proj="projects/$name"
+
+if [ -e "$proj" ]; then
+    echo "Project directory $proj already exists!"
     exit 1
 fi
 
+if git show-ref --verify --quiet "refs/heads/$proj"; then
+    echo "Project branch $proj already exists!"
+    exit 1
+fi
+
+# Make the project branch
+git switch -c "$proj"
+
+# Make the project directory
+mkdir -p "$proj"
+
+# Download the starter code
+cd "$proj"
 tmp=$(mktemp)
-mkdir -p "$dir"
-cd "$dir"
 curl --fail "https://intro.gigamonkeys.com/starter-kits/$kit.tgz" > "$tmp"
-cat "$tmp" | tar xzf -
+tar xzf "$tmp"
+
+# Install the libraries
 npm install
