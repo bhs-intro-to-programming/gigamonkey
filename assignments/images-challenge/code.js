@@ -181,7 +181,7 @@ const notReallyCurved = (n) => {
     drawLine(0, 0 + i * difference, 0 + i * difference, frameSide, 'black', 1)
   }
 }
-notReallyCurved(20)
+notReallyCurved(4)
 
 //dartboard(12);
 
