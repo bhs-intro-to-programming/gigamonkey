@@ -29,4 +29,4 @@ const encode = (c, k) => {
  }
 }
 
-const cc = (s, k) => [...cc].map(c => encode(c, k)).join('');
+const cc = (s, k) => [...s].map(c => encode(c, k)).join('');
