@@ -22,7 +22,7 @@ const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 const encode = (c, k) => {
   const n = alphabet.indexOf(c.toLowerCase());
   if (n !== -1) {
-    const encoded = (n + k) % 26;
+    const encoded = alphabet[(n + k) % 26];
     return c.toUpperCase() === c ? encoded.toUpperCase()  : encoded;
  } else {
    return c;
