@@ -19,14 +19,14 @@ const MAX_FIB = fib2(MAX_FIB_N);
 
 const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
-const encode = (c, k) => {
-  const n = alphabet.indexOf(c.toLowerCase());
+const encodeChar = (char, k) => {
+  const n = alphabet.indexOf(char.toLowerCase());
   if (n !== -1) {
     const encoded = alphabet[(n + k) % 26];
-    return c.toUpperCase() === c ? encoded.toUpperCase()  : encoded;
+    return char.toUpperCase() === char ? encoded.toUpperCase() : encoded;
  } else {
-   return c;
+   return char;
  }
 }
 
-const cc = (s, k) => [...s].map(c => encode(c, k)).join('');
+const cc = (s, k) => [...s].map(c => encodeChar(c, k)).join('');
