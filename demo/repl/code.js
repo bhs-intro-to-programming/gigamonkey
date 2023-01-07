@@ -30,3 +30,14 @@ const encodeChar = (char, k) => {
 }
 
 const cc = (s, k) => [...s].map(c => encodeChar(c, k)).join('');
+
+const overRange = (start, end, fn, init) => {
+  let acc = init;
+  for (let n = start; n <= end; n++) {
+    acc = fn(acc, n);
+  };
+  return acc;
+};
+
+const sigma = (start, end, fn) => overRange(start, end, (acc, n) => acc + fn(n), 0);
+const pi = (start, end, fn) => overRange(start, end, (acc, n) => acc * fn(n), 1);
