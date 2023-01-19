@@ -8,6 +8,20 @@ const text = (s) => document.createTextNode(s);
 
 const tagged = (tag, s) => {
   const e = document.createElement(tag);
+  // A note on the next line: I fibbed a bit when I told you that the condition
+  // in an if had to be a boolean value. In fact you can use any value in a
+  // context where you need a boolean and Javascript will convert it to a
+  // boolean using a set of rules that govern what values are "truthy" and which
+  // are "falsey". Basically, the the boolean false, the number 0, the numeric
+  // value NaN ("not a number"), the empty string, the special values null and
+  // undefined, and a handful of others you won't run into for a while are all
+  // falsey and all other values are truthy. If we call a function with fewer
+  // arguments than are listed in the function's argument list, then the left
+  // over arguments take the value undefined which is falsey. So this next
+  // expression means we only try to add a text element if s was actually passed
+  // (and was a truthy value such as a non-empty string). We could make this
+  // more explicit by writing, say s !== undefined but this style is a pretty
+  // common Javascript idiom.
   if (s) e.append(text(s));
   return e;
 };
@@ -18,7 +32,7 @@ const withChildren = (tag, children) => {
   return element;
 };
 
-const withAttribute = (element, attribute, value) => {
+const addAttribute = (element, attribute, value) => {
   element.setAttribute(attribute, value);
   return element;
 }
@@ -27,8 +41,8 @@ const h1 = (s) => tagged('h1', s);
 const p = (s) => tagged('p', s);
 const code = (s) => tagged('code', s);
 const li = (children) => withChildren('li', children);
-const a = (href, text) => withAttribute(tagged('a', text), 'href', href);
-const img = (src, alt) => withAttribute(withAttribute(tagged('img'), 'src', src), 'alt', 'alt');
+const a = (href, text) => addAttribute(tagged('a', text), 'href', href);
+const img = (src, alt) => addAttribute(addAttribute(tagged('img'), 'src', src), 'alt', alt);
 
 // This is a bit fancy. Most of you haven't learned all the pieces needed to
 // understand this function. Basically the first two arguments are functions
@@ -144,7 +158,7 @@ add(p(`
   working on a decentralized web project called Solid.
 `));
 
-add(withAttribute(withChildren('div', [
+add(addAttribute(withChildren('div', [
   withChildren('p', [
     text('Text from 2023-01-14 conversation with '),
     a('https://chat.openai.com/chat', 'ChatGPT')
