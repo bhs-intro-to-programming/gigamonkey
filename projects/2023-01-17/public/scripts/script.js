@@ -30,7 +30,7 @@ const img = (src, alt) => withAttribute(withAttribute(tagged('img'), 'src', src)
 
 const body = document.querySelector('body');
 
-body.append(h1('Can you tell me why HTML was developed?');
+body.append(h1('Can you tell me why HTML was developed?'));
 
 body.append(p(
   `HTML (Hypertext Markup Language) was developed to create a standard way to
