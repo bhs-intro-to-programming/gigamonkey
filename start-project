@@ -56,6 +56,9 @@ cd "$proj"
 tmp=$(mktemp)
 curl --fail "$root/$kit.tgz" > "$tmp"
 tar xzf "$tmp"
+git add .
+git commit -m "Starting $name with starter code from $kit."
+
 
 # Install the libraries
 npm install
