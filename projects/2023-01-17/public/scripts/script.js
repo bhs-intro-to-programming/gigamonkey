@@ -1,4 +1,8 @@
-// Set up some helper functions
+// Set up some helper functions to make things less verbose.
+
+const body = document.querySelector('body');
+
+const add = (e) => body.append(e);
 
 const text = (s) => document.createTextNode(s);
 
@@ -28,35 +32,39 @@ const img = (src, alt) => withAttribute(withAttribute(tagged('img'), 'src', src)
 
 // Now build the page
 
-const body = document.querySelector('body');
+add(h1('Can you tell me why HTML was developed?'));
 
-body.append(h1('Can you tell me why HTML was developed?'));
+add(p(`
+  HTML (Hypertext Markup Language) was developed to create a standard way
+  to create and structure documents on the World Wide Web. It allows
+  developers to create structured documents, including headings,
+  paragraphs, images and links, that can be displayed in a web browser.
+  It was created to simplify the process of creating and sharing
+  documents online, so that anyone can create and view web pages with a
+  consistent look and feel.
+`));
 
-body.append(p(
-  `HTML (Hypertext Markup Language) was developed to create a standard way to
-create and structure documents on the World Wide Web. It allows developers to
-create structured documents, including headings, paragraphs, images and links,
-that can be displayed in a web browser. It was created to simplify the process
-of creating and sharing documents online, so that anyone can create and view
-web pages with a consistent look and feel.`));
+add(h1('What about using HTML for GUIs?'));
 
-body.append(h1('What about using HTML for GUIs?'));
+add(p(`
+  HTML can be used to create user interfaces for web applications, but it
+  is primarily designed as a markup language for creating structured
+  documents to be displayed in web browsers. While it can be used to
+  create basic user interfaces, it is not typically considered a good
+  choice for creating complex, interactive user interfaces. Other
+  technologies such as JavaScript and CSS are typically used in
+  conjunction with HTML to create more advanced user interfaces for web
+  applications. Additionally, there are other technologies such as
+  Electron, React Native and NativeScript that allow to create
+  cross-platform desktop and mobile apps using web technologies such as
+  HTML, CSS, and JavaScript.
+`));
 
-body.append(p(
-  `HTML can be used to create user interfaces for web applications, but it is primarily designed
- as a markup language for creating structured documents to be displayed in web browsers. While
- it can be used to create basic user interfaces, it is not typically considered a good choice
- for creating complex, interactive user interfaces. Other technologies such as JavaScript and
- CSS are typically used in conjunction with HTML to create more advanced user interfaces for
- web applications. Additionally, there are other technologies such as Electron, React Native
- and NativeScript that allow to create cross-platform desktop and mobile apps using web
- technologies such as HTML, CSS, and JavaScript.`));
+add(h1('What are some of the main elements of HTML?'));
 
-body.append(h1('What are some of the main elements of HTML?'));
+add(p('Some of the main elements of HTML include:'));
 
-body.append(p('Some of the main elements of HTML include:'));
-
-body.append(withChildren('ol', [
+add(withChildren('ol', [
   li([
     code('<html>'),
     text(`: This is the root element of an HTML document, and it
@@ -122,7 +130,7 @@ body.append(withChildren('ol', [
   ]),
 ]));
 
-body.append(withChildren('p', [
+add(withChildren('p', [
   text('These are some of the main elements, but there are many more available, like '),
   code('<header>'),
   text(', '),
@@ -140,25 +148,27 @@ body.append(withChildren('p', [
   text(', etc.'),
 ]));
 
-body.append(tagged('h1', 'Can you find a picture of the inventor of the web?'));
+add(tagged('h1', 'Can you find a picture of the inventor of the web?'));
 
-body.append(img('/images/tim-berners-lee.jpg', 'A young Tim Berners-Lee'));
+add(img('/images/tim-berners-lee.jpg', 'A young Tim Berners-Lee'));
 
-body.append(p(
-  `I'm sorry, I am a text based model and I am not able to find or show images.
-However, I can tell you that the inventor of the World Wide Web (WWW) is Sir Tim Berners-Lee. He is
-a British computer scientist and is considered to be the inventor of the World Wide Web. He proposed
-and developed the first successful communication between a Hypertext Transfer Protocol (HTTP) client
-and server via the Internet in 1989. He also created the first web browser, called WorldWideWeb,
-and the first web server, called httpd. He also wrote the first version of the HTML language, which
-provided the structure for web pages. He is currently working on a decentralized web project called
-Solid.`));
+add(p(`
+  I'm sorry, I am a text based model and I am not able to find or show
+  images. However, I can tell you that the inventor of the World Wide Web
+  (WWW) is Sir Tim Berners-Lee. He is a British computer scientist and is
+  considered to be the inventor of the World Wide Web. He proposed and
+  developed the first successful communication between a Hypertext
+  Transfer Protocol (HTTP) client and server via the Internet in 1989. He
+  also created the first web browser, called WorldWideWeb, and the first
+  web server, called httpd. He also wrote the first version of the HTML
+  language, which provided the structure for web pages. He is currently
+  working on a decentralized web project called Solid.
+`));
 
-
-body.append(withAttribute(withChildren('div', [
+add(withAttribute(withChildren('div', [
   withChildren('p', [
     text('Text from 2023-01-14 conversation with '),
-    a('https://chat.openai.com/chat', 'ChatGPT'),
+    a('https://chat.openai.com/chat', 'ChatGPT')
   ]),
   withChildren('p', [
     text('Photo of a young Tim Berners-Lee from '),
