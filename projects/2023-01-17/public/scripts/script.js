@@ -30,6 +30,14 @@ const li = (children) => withChildren('li', children);
 const a = (href, text) => withAttribute(tagged('a', text), 'href', href);
 const img = (src, alt) => withAttribute(withAttribute(tagged('img'), 'src', src), 'alt', 'alt');
 
+// This is a bit fancy. Most of you haven't learned all the pieces needed to
+// understand this function. Basically the first two arguments are functions
+// that take a string and produce and node, e.g. code and text. The third
+// argument is an array of strings and this maps over that array return a new
+// array consisting of the elements by calling the two function arguments in
+// alternating order.
+const alternating = (a, b, items) => items.map((item, i) => (i % 2 === 0 ? a  : b)(item));
+
 // Now build the page
 
 add(h1('Can you tell me why HTML was developed?'));
@@ -65,88 +73,59 @@ add(h1('What are some of the main elements of HTML?'));
 add(p('Some of the main elements of HTML include:'));
 
 add(withChildren('ol', [
-  li([
-    code('<html>'),
-    text(`: This is the root element of an HTML document, and it
-      contains all of the other elements.`),
-  ]),
 
-  li([
-    code('<head>'),
-    text(`: This element contains information about the document,
+  li(alternating(code, text, [
+    '<html>',
+    `: This is the root element of an HTML document, and it contains
+      all of the other elements.`
+  ])),
+
+  li(alternating(code, text, [
+    '<head>',
+    `: This element contains information about the document,
       such as the title of the page, which is displayed in the
-      browser's title bar or tab.`)
-  ]),
+      browser's title bar or tab.`
+  ])),
 
-  li([
-    code('<body>'),
-    text(`: This element contains the content of the document
-      that is displayed in the browser window.`)
-  ]),
+  li(alternating(code, text, [
+    '<body>',
+    `: This element contains the content of the document
+      that is displayed in the browser window.`
+  ])),
 
-  li([
-    code('<h1>'),
-    text(' to '),
-    code('<h6>'),
-    text(`: These elements are used for headings and subheadings.
-      <h1> is the highest level heading, while <h6> is the lowest.`)
-  ]),
+  li(alternating(code, text, [
+    '<h1>', ' to ', '<h6>',
+    `: These elements are used for headings and subheadings.
+      <h1> is the highest level heading, while <h6> is the lowest.`
+  ])),
 
-  li([
-    code('<p>'),
-    text(': This element is used for paragraphs of text.')
-  ]),
+  li(alternating(code, text, ['<p>', ': This element is used for paragraphs of text.'])),
 
-  li([
-    code('<a>'),
-    text(`: This element is used for hyperlinks, which allow
-      users to navigate between pages on the web.`)
-  ]),
+  li(alternating(code, text, [
+    '<a>',
+    `: This element is used for hyperlinks, which allow users to navigate between pages on the web.`
+  ])),
 
-  li([
-    code('<img>'),
-    text(': This element is used to embed images in a web page.')
-  ]),
+  li(alternating(code, text, ['<img>', ': This element is used to embed images in a web page.'])),
 
-  li([
-    code('<ul>'),
-    text(' and '),
-    code('<ol>'),
-    text(`: These elements are used for unordered and ordered
-      lists, respectively.`)
-  ]),
+  li(alternating(code, text, [
+    '<ul>', ' and ', '<ol>',
+    `: These elements are used for unordered and ordered lists, respectively.`
+  ])),
 
-  li([
-    code('<li>'),
-    text(': This element is used for list items.')
-  ]),
+  li(alternating(code, text, ['<li>', ': This element is used for list items.'])),
 
-  li([
-    code('<div>'),
-    text(' and '),
-    code('<span>'),
-    text(`: These elements are used for grouping and
-      applying styles to elements on a web page.`)
-  ]),
+  li(alternating(code, text, [
+    '<div>', ' and ', '<span>',
+    `: These elements are used for grouping and applying styles to elements on a web page.`
+  ])),
 ]));
 
-add(withChildren('p', [
-  text('These are some of the main elements, but there are many more available, like '),
-  code('<header>'),
-  text(', '),
-  code('<nav>'),
-  text(', '),
-  code('<main>'),
-  text(', '),
-  code('<footer>'),
-  text(', '),
-  code('<form>'),
-  text(', '),
-  code('<input>'),
-  text(', '),
-  code('<select>'),
-  text(', etc.'),
-]));
+add(withChildren('p', alternating(text, code, [
+  'These are some of the main elements, but there are many more available, like ',
+  '<header>', ', ', '<nav>', ', ', '<main>', ', ', '<footer>', ', ', '<form>',
+  ', ', '<input>', ', ', '<select>', ', etc.',
+])));
 
 add(tagged('h1', 'Can you find a picture of the inventor of the web?'));
 
