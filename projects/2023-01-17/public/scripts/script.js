@@ -12,12 +12,12 @@ const tagged = (tag, s) => {
   // in an if had to be a boolean value. In fact you can use any value in a
   // context where you need a boolean and Javascript will convert it to a
   // boolean using a set of rules that govern what values are "truthy" and which
-  // are "falsey". Basically, the the boolean false, the number 0, the numeric
+  // are "falsey". Basically, the boolean value false, the number 0, the numeric
   // value NaN ("not a number"), the empty string, the special values null and
   // undefined, and a handful of others you won't run into for a while are all
   // falsey and all other values are truthy. If we call a function with fewer
-  // arguments than are listed in the function's argument list, then the left
-  // over arguments take the value undefined which is falsey. So this next
+  // arguments than are listed in the function's argument list, then the
+  // left-over arguments take the value undefined which is falsey. So this next
   // expression means we only try to add a text element if s was actually passed
   // (and was a truthy value such as a non-empty string). We could make this
   // more explicit by writing, say s !== undefined but this style is a pretty
