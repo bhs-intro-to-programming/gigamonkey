@@ -5,37 +5,17 @@ const body = document.querySelector('body');
 const text = (s) => document.createTextNode(s);
 
 const tagged = (tag, content) => {
-  if (typeof content === 'string') {
-    return taggedText(tag, content);
-  } else {
-    return taggedChildren(tag, content);
-  }
-};
-
-const taggedText = (tag, s) => {
   const e = document.createElement(tag);
-  // A note on the next line: I fibbed a bit when I told you that the condition
-  // in an if had to be a boolean value. In fact you can use any value in a
-  // context where you need a boolean and Javascript will convert it to a
-  // boolean using a set of rules that govern what values are "truthy" and which
-  // are "falsey". Basically, the boolean value false, the number 0, the numeric
-  // value NaN ("not a number"), the empty string, the special values null and
-  // undefined, and a handful of others you won't run into for a while are all
-  // falsey and all other values are truthy. If we call a function with fewer
-  // arguments than are listed in the function's argument list, then the
-  // left-over arguments take the value undefined which is falsey. So this next
-  // expression means we only try to add a text element if s was actually passed
-  // (and was a truthy value such as a non-empty string). We could make this
-  // more explicit by writing, say s !== undefined but this style is a pretty
-  // common Javascript idiom.
-  if (s) e.append(text(s));
+  // Another advanced feature: we can find out what kind of value we have at
+  // runtime. In this case we want to do one thing if it's a string and
+  // otherwise we assume it's an array.
+  if (typeof content === 'string') {
+    e.append(text(content));
+  } else {
+    // If content isn't a string, we assume it's an array.
+    content.forEach(c => element.append(c));
+  }
   return e;
-};
-
-const taggedChildren = (tag, children) => {
-  const element = document.createElement(tag);
-  children.forEach(c => element.append(c));
-  return element;
 };
 
 const addAttribute = (element, attribute, value) => {
