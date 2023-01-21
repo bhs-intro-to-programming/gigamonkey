@@ -11,6 +11,8 @@ const tagged = (tag, content) => {
     // runtime. In this case we want to do one thing if it's a string and
     // otherwise we assume it's an array.
     if (typeof content === 'string') {
+      // If it is a string, we convert it to a one-item array to let the other
+      // case handle it since we have to write the code there anyway.
       return tagged(tag, [content]);
     } else {
       content.forEach(c => {
