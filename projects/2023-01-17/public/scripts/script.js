@@ -33,13 +33,13 @@ const taggedChildren = (tag, children) => {
 const addAttribute = (element, attribute, value) => {
   element.setAttribute(attribute, value);
   return element;
-}
+};
 
 const h1 = (s) => taggedText('h1', s);
 const p = (s) => taggedText('p', s);
 const code = (s) => taggedText('code', s);
 const ol = (children) => taggedChildren('ol', children);
-const li = (children) => taggedChildren('li', children);
+const li = (children) => taggedChildren('li', alternating(code, text, children));
 const a = (href, text) => addAttribute(taggedText('a', text), 'href', href);
 const img = (src, alt) => addAttribute(addAttribute(taggedText('img'), 'src', src), 'alt', alt);
 const div = (children) => taggedChildren('div', children);
@@ -88,51 +88,51 @@ body.append(
   p('Some of the main elements of HTML include:'),
 
   ol([
-    li(alternating(code, text, [
+    li([
       '<html>',
       `: This is the root element of an HTML document, and it contains
       all of the other elements.`
-    ])),
+    ]),
 
-    li(alternating(code, text, [
+    li([
       '<head>',
       `: This element contains information about the document,
       such as the title of the page, which is displayed in the
       browser's title bar or tab.`
-    ])),
+    ]),
 
-    li(alternating(code, text, [
+    li([
       '<body>',
       `: This element contains the content of the document
       that is displayed in the browser window.`
-    ])),
+    ]),
 
-    li(alternating(code, text, [
+    li([
       '<h1>', ' to ', '<h6>',
       `: These elements are used for headings and subheadings.
       <h1> is the highest level heading, while <h6> is the lowest.`
-    ])),
+    ]),
 
-    li(alternating(code, text, ['<p>', ': This element is used for paragraphs of text.'])),
+    li(['<p>', ': This element is used for paragraphs of text.']),
 
-    li(alternating(code, text, [
+    li([
       '<a>',
       `: This element is used for hyperlinks, which allow users to navigate between pages on the web.`
-    ])),
+    ]),
 
-    li(alternating(code, text, ['<img>', ': This element is used to embed images in a web page.'])),
+    li(['<img>', ': This element is used to embed images in a web page.']),
 
-    li(alternating(code, text, [
+    li([
       '<ul>', ' and ', '<ol>',
       `: These elements are used for unordered and ordered lists, respectively.`
-    ])),
+    ]),
 
-    li(alternating(code, text, ['<li>', ': This element is used for list items.'])),
+    li(['<li>', ': This element is used for list items.']),
 
-    li(alternating(code, text, [
+    li([
       '<div>', ' and ', '<span>',
       `: These elements are used for grouping and applying styles to elements on a web page.`
-    ])),
+    ]),
   ]),
 
   taggedChildren('p', alternating(text, code, [
