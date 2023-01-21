@@ -134,16 +134,16 @@ body.append(
   img('/images/tim-berners-lee.jpg', 'A young Tim Berners-Lee'),
 
   p(`
-  I'm sorry, I am a text based model and I am not able to find or show
-  images. However, I can tell you that the inventor of the World Wide Web
-  (WWW) is Sir Tim Berners-Lee. He is a British computer scientist and is
-  considered to be the inventor of the World Wide Web. He proposed and
-  developed the first successful communication between a Hypertext
-  Transfer Protocol (HTTP) client and server via the Internet in 1989. He
-  also created the first web browser, called WorldWideWeb, and the first
-  web server, called httpd. He also wrote the first version of the HTML
-  language, which provided the structure for web pages. He is currently
-  working on a decentralized web project called Solid.
+    I'm sorry, I am a text based model and I am not able to find or show
+    images. However, I can tell you that the inventor of the World Wide Web
+    (WWW) is Sir Tim Berners-Lee. He is a British computer scientist and is
+    considered to be the inventor of the World Wide Web. He proposed and
+    developed the first successful communication between a Hypertext
+    Transfer Protocol (HTTP) client and server via the Internet in 1989. He
+    also created the first web browser, called WorldWideWeb, and the first
+    web server, called httpd. He also wrote the first version of the HTML
+    language, which provided the structure for web pages. He is currently
+    working on a decentralized web project called Solid.
 `),
 
   addAttribute(div([
