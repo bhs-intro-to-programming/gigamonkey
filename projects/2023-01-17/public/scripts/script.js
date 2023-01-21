@@ -7,12 +7,13 @@ const text = (s) => document.createTextNode(s);
 const tagged = (tag, content) => {
   const e = document.createElement(tag);
   if (content !== undefined) {
-    // Another advanced feature: we can find out what kind of value we have at
-    // runtime. In this case we want to do one thing if it's a string and
-    // otherwise we assume it's an array.
+    // Another advanced feature: we can find out what kind of value a variable
+    // holds at runtime. In this case we want to do one thing if it's a string
+    // and otherwise we assume it's an array.
     if (typeof content === 'string') {
       // If it is a string, we convert it to a one-item array to let the other
-      // case handle it since we have to write the code there anyway.
+      // branch of this if/else handle it since we have to write the code for
+      // creating text nodes there anyway.
       return tagged(tag, [content]);
     } else {
       content.forEach(c => {
