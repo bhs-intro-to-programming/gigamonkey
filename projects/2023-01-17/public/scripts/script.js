@@ -4,6 +4,14 @@ const body = document.querySelector('body');
 
 const text = (s) => document.createTextNode(s);
 
+const tagged = (tag, content) => {
+  if (typeof content === 'string') {
+    return taggedText(tag, content);
+  } else {
+    return taggedChildren(tag, content);
+  }
+};
+
 const taggedText = (tag, s) => {
   const e = document.createElement(tag);
   // A note on the next line: I fibbed a bit when I told you that the condition
@@ -35,14 +43,14 @@ const addAttribute = (element, attribute, value) => {
   return element;
 };
 
-const h1 = (s) => taggedText('h1', s);
-const p = (s) => taggedText('p', s);
-const code = (s) => taggedText('code', s);
-const ol = (children) => taggedChildren('ol', children);
-const li = (children) => taggedChildren('li', alternating(code, text, children));
-const a = (href, text) => addAttribute(taggedText('a', text), 'href', href);
-const img = (src, alt) => addAttribute(addAttribute(taggedText('img'), 'src', src), 'alt', alt);
-const div = (children) => taggedChildren('div', children);
+const h1 = (s) => tagged('h1', s);
+const p = (s) => tagged('p', s);
+const code = (s) => tagged('code', s);
+const ol = (children) => tagged('ol', children);
+const li = (children) => tagged('li', alternating(code, text, children));
+const a = (href, text) => addAttribute(tagged('a', text), 'href', href);
+const img = (src, alt) => addAttribute(addAttribute(tagged('img'), 'src', src), 'alt', alt);
+const div = (children) => tagged('div', children);
 
 // This is a bit fancy. Most of you haven't learned all the pieces needed to
 // understand this function. Basically the first two arguments are functions
@@ -135,7 +143,7 @@ body.append(
     ]),
   ]),
 
-  taggedChildren('p', alternating(text, code, [
+  p(alternating(text, code, [
     'These are some of the main elements, but there are many more available, like ',
     '<header>', ', ', '<nav>', ', ', '<main>', ', ', '<footer>', ', ', '<form>',
     ', ', '<input>', ', ', '<select>', ', etc.',
@@ -159,11 +167,11 @@ body.append(
 `),
 
   addAttribute(div([
-    taggedChildren('p', [
+    p([
       text('Text from 2023-01-14 conversation with '),
       a('https://chat.openai.com/chat', 'ChatGPT')
     ]),
-    taggedChildren('p', [
+    p([
       text('Photo of a young Tim Berners-Lee from '),
       a('https://www.flickr.com/photos/itupictures/16662336315', 'Flickr'),
       text(' no thanks to ChatGPT. ('),
