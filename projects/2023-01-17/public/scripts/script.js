@@ -6,14 +6,21 @@ const text = (s) => document.createTextNode(s);
 
 const tagged = (tag, content) => {
   const e = document.createElement(tag);
-  // Another advanced feature: we can find out what kind of value we have at
-  // runtime. In this case we want to do one thing if it's a string and
-  // otherwise we assume it's an array.
-  if (typeof content === 'string') {
-    e.append(text(content));
-  } else {
-    // If content isn't a string, we assume it's an array.
-    content.forEach(c => element.append(c));
+  if (content !== undefined) {
+    // Another advanced feature: we can find out what kind of value we have at
+    // runtime. In this case we want to do one thing if it's a string and
+    // otherwise we assume it's an array.
+    if (typeof content === 'string') {
+      return tagged(tag, [content]);
+    } else {
+      content.forEach(c => {
+        if (typeof c === 'string') {
+          e.append(text(c));
+        } else {
+          e.append(c);
+        }
+      });
+    }
   }
   return e;
 };
