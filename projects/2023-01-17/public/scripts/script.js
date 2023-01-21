@@ -32,14 +32,19 @@ const addAttribute = (element, attribute, value) => {
   return element;
 };
 
-const h1 = (s) => tagged('h1', s);
-const p = (s) => tagged('p', s);
-const code = (s) => tagged('code', s);
-const ol = (children) => tagged('ol', children);
+// General element functions
+const code = (content) => tagged('code', content);
+const div = (content) => tagged('div', content);
+const h1 = (content) => tagged('h1', content);
+const ol = (content) => tagged('ol', content);
+const p = (content) => tagged('p', content);
+
+// Special case since all the li's in this page have the same structure.
 const li = (children) => tagged('li', alternating(code, text, children));
-const a = (href, text) => addAttribute(tagged('a', text), 'href', href);
+
+// Elements with required attributes
+const a = (href, content) => addAttribute(tagged('a', content), 'href', href);
 const img = (src, alt) => addAttribute(addAttribute(tagged('img'), 'src', src), 'alt', alt);
-const div = (children) => tagged('div', children);
 
 // This is a bit fancy. Most of you haven't learned all the pieces needed to
 // understand this function. Basically the first two arguments are functions
