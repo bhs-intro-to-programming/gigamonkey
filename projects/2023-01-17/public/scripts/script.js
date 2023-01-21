@@ -155,13 +155,13 @@ body.append(
 
   addAttribute(div([
     p([
-      text('Text from 2023-01-14 conversation with '),
+      'Text from 2023-01-14 conversation with ',
       a('https://chat.openai.com/chat', 'ChatGPT')
     ]),
     p([
-      text('Photo of a young Tim Berners-Lee from '),
+      'Photo of a young Tim Berners-Lee from ',
       a('https://www.flickr.com/photos/itupictures/16662336315', 'Flickr'),
-      text(' no thanks to ChatGPT. ('),
+      ' no thanks to ChatGPT. (',
       a('https://creativecommons.org/licenses/by/2.0/', 'CC BY 2.0')
     ])
   ]), 'class', 'credits'));
