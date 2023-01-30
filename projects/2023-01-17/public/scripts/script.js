@@ -6,6 +6,12 @@ const text = (s) => document.createTextNode(s);
 
 const tagged = (tag, content) => {
   const e = document.createElement(tag);
+  // This is slightly advanced feature: if a function is called with fewer
+  // arguments than the number of names in the argument list, the extra names
+  // get the value undefined. In this case we can use that fact to distinguish
+  // between a call like tagged('img') and tagged('p', 'some text') where the
+  // former makes an element but doesn't try to add any content and the latter
+  // both makes the element and adds the text, 'some text' to it.
   if (content !== undefined) {
     // Another advanced feature: we can find out what kind of value a variable
     // holds at runtime. In this case we want to do one thing if it's a string
