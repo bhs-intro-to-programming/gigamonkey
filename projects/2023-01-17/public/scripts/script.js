@@ -169,6 +169,7 @@ body.append(
       'Photo of a young Tim Berners-Lee from ',
       a('https://www.flickr.com/photos/itupictures/16662336315', 'Flickr'),
       ' no thanks to ChatGPT. (',
-      a('https://creativecommons.org/licenses/by/2.0/', 'CC BY 2.0')
+      a('https://creativecommons.org/licenses/by/2.0/', 'CC BY 2.0'),
+      ')'
     ])
   ]), 'class', 'credits'));
