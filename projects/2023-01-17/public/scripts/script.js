@@ -52,7 +52,7 @@ const img = (src, alt) => addAttribute(addAttribute(tagged('img'), 'src', src), 
 // argument is an array of strings and this maps over that array returning a
 // new array consisting of the elements created by calling the two function
 // arguments in alternating order.
-const alternating = (a, b, items) => items.map((item, i) => (i % 2 === 0 ? a : b)(item));
+const alternating = (a, b, items) => items.map((item, i) => [a, b][i % 2](item));
 
 // Now build the page
 
