@@ -17,17 +17,10 @@ const tagged = (tag, content) => {
     // holds at runtime. In this case we want to do one thing if it's a string
     // and otherwise we assume it's an array.
     if (typeof content === 'string') {
-      // If it is a string, we convert it to a one-item array to let the other
-      // branch of this if/else handle it since we have to write the code for
-      // creating text nodes there anyway.
-      return tagged(tag, [content]);
+      e.append(text(content));
     } else {
       content.forEach(c => {
-        if (typeof c === 'string') {
-          e.append(text(c));
-        } else {
-          e.append(c);
-        }
+        e.append(typeof c === 'string' ? text(c) : c);
       });
     }
   }
