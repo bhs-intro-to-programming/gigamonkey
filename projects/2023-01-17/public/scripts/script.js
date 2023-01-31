@@ -48,10 +48,10 @@ const img = (src, alt) => addAttribute(addAttribute(tagged('img'), 'src', src), 
 
 // This is a bit fancy. Most of you haven't learned all the pieces needed to
 // understand this function. Basically the first two arguments are functions
-// that take a string and produce and node, e.g. code and text. The third
-// argument is an array of strings and this maps over that array return a new
-// array consisting of the elements by calling the two function arguments in
-// alternating order.
+// that take a string and produce a node, e.g. code and text. The third
+// argument is an array of strings and this maps over that array returning a
+// new array consisting of the elements created by calling the two function
+// arguments in alternating order.
 const alternating = (a, b, items) => items.map((item, i) => (i % 2 === 0 ? a : b)(item));
 
 // Now build the page
