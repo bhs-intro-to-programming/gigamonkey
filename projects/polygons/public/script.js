@@ -1,4 +1,4 @@
-const tau = Math.PI * 2;
+const TAU = Math.PI * 2;
 
 const canvas = document.getElementById('screen');
 const ctx = canvas.getContext('2d');
@@ -10,13 +10,13 @@ ctx.strokeStyle = 'black';
 ctx.lineWidth = 1;
 
 /*
- * Draw an n-sided polygon with it's center at center and it's first vertex at
- * v1. Remaining vertices are added counter clockwise.
+ * Draw an n-sided polygon with its center at center and its first vertex at
+ * v1. Remaining vertices are added going counter-clockwise around the circle.
  */
 const drawPolygon = (sides, center, v1) => {
   const r = Math.hypot(center.x - v1.x, center.y - v1.y);
   const initialAngle = angle(center, v1);
-  const step = tau / sides;
+  const step = TAU / sides;
 
   ctx.beginPath();
   ctx.moveTo(v1.x, v1.y);
@@ -31,11 +31,11 @@ const drawPolygon = (sides, center, v1) => {
 };
 
 /*
- * Get the angle in radians between 0 and 2 * pi around the circle
+ * Get the angle in radians between 0 and TAU around the circle
  * at the given center and a point on the circle.
  */
 const angle = (center, point) => {
-  return (tau + Math.atan2(point.y - center.y, point.x - center.x)) % tau;
+  return (TAU + Math.atan2(point.y - center.y, point.x - center.x)) % TAU;
 }
 
 const offset = (p, dx, dy) => ({x: p.x + dx, y: p.y + dy });
