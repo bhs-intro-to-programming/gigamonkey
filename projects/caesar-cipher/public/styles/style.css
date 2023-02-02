@@ -22,3 +22,8 @@ p {
 #ciphertext {
   border: thin solid black;
 }
+
+input[type="range"] {
+  margin-left: 1em;
+  vertical-align: middle;
+}
