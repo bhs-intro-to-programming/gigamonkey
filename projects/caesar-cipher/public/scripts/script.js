@@ -25,11 +25,13 @@ const showCiphertext = () => {
   ciphertext.innerText = encrypt(plaintext.value, Number(key.value));
 };
 
-plaintext.oninput = showCiphertext;
-
-key.oninput = (e) => {
-  showCiphertext();
+const updateKey = (e) => {
   keyDisplay.innerText = e.target.value;
 };
 
-keyDisplay.innerText = key.value;
+plaintext.addEventListener('input', showCiphertext);
+key.addEventListener('input', showCiphertext);
+key.addEventListener('input', updateKey);
+
+key.value = 13;
+key.dispatchEvent(new Event('input'));
