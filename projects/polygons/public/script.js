@@ -10,8 +10,7 @@ ctx.strokeStyle = 'black';
 ctx.lineWidth = 1;
 
 /*
- * Draw an n-sided polygon with its center at center and its first vertex at
- * v1. Remaining vertices are added going counter-clockwise around the circle.
+ * Draw an n-sided polygon at a given center with one vertex at v1.
  */
 const drawPolygon = (sides, center, v1) => {
   const r = Math.hypot(center.x - v1.x, center.y - v1.y);
