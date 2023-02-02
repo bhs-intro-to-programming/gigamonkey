@@ -1,8 +1,4 @@
-const plaintext = document.getElementById('plaintext');
-const ciphertext = document.getElementById('ciphertext');
-const key = document.getElementById('key');
-const keyDisplay = document.getElementById('show-key');
-
+// The cipher algorithm
 
 const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
@@ -16,16 +12,24 @@ const encodeChar = (char, k) => {
   }
 }
 
-const cc = (s, k) => [...s].map(c => encodeChar(c, k)).join('');
+const encrypt = (s, k) => [...s].map(c => encodeChar(c, k)).join('');
 
-const encrypt = () => {
-  ciphertext.innerText = cc(plaintext.value, Number(key.value));
-}
+// The UI
 
-plaintext.oninput = encrypt;
+const plaintext = document.getElementById('plaintext');
+const ciphertext = document.getElementById('ciphertext');
+const key = document.getElementById('key');
+const keyDisplay = document.getElementById('key-display');
+
+const showCiphertext = () => {
+  ciphertext.innerText = encrypt(plaintext.value, Number(key.value));
+};
+
+plaintext.oninput = showCiphertext;
+
 key.oninput = (e) => {
-  encrypt();
+  showCiphertext();
   keyDisplay.innerText = e.target.value;
-}
+};
 
 keyDisplay.innerText = key.value;
