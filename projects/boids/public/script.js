@@ -27,9 +27,10 @@ const updatePositions = (boids, t) => {
 };
 
 const updatePosition = (b, elapsed) => {
-  //console.log(JSON.stringify(b));
   b.x = clamp(b.x + b.dx/10 * elapsed, 0, width);
   b.y = clamp(b.y + b.dy/10 * elapsed, 0, height);
+  b.dx += -1 + Math.random() * 2;
+  b.dy += -1 + Math.random() * 2;
 };
 
 const clamp = (n, min, max) => (n < min ? min : n > max ? max : n);
