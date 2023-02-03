@@ -1,51 +1,46 @@
 import { setCanvas, drawFilledCircle, clear, width, height, animate, now } from './graphics.js';
 
-const drawBall = (b) => {
-  drawFilledCircle(b.x, b.y, b.size, 'blue');
+const randomInt = (n) => Math.floor(Math.random() * n);
+const randomSign = () => Math.random() < 0.5 ? -1 : 1;
+
+const boid = (x, y, dx, dy) => {
+  return { x, y, dx, dy };
+};
+
+const randomBoid = () => boid(
+  randomInt(width),
+  randomInt(height),
+  (1 + randomInt(5)) * randomSign(),
+  (1 + randomInt(5)) * randomSign())
+
+
+const drawBoid = (b) => {
+  drawFilledCircle(b.x, b.y, 5, 'blue');
 };
 
 let lastFrame = now();
 
-const updatePosition = (b, t) => {
-  maybeBounce(b);
-  b.x = clamp(b.x + b.dx * (t - lastFrame), 0, width);
-  b.y = clamp(b.y + b.dy * (t - lastFrame), 0, height);
+const updatePositions = (boids, t) => {
+  const elapsed = t - lastFrame;
+  boids.forEach(b => updatePosition(b, elapsed));
   lastFrame = t;
 };
 
-const distance = (a, b) => Math.abs(a - b);
+const updatePosition = (b, elapsed) => {
+  //console.log(JSON.stringify(b));
+  b.x = clamp(b.x + b.dx/10 * elapsed, 0, width);
+  b.y = clamp(b.y + b.dy/10 * elapsed, 0, height);
+};
 
 const clamp = (n, min, max) => (n < min ? min : n > max ? max : n);
-
-const maybeBounce = (b) => {
-  if (Math.min(distance(b.x, 0), distance(b.x, width)) < b.size) {
-    b.dx *= -1;
-  }
-  if (Math.min(distance(b.y, 0), distance(b.y, height)) < b.size) {
-    b.dy *= -1;
-  }
-};
-
-const launch = (b, speed, direction) => {
-  b.dx = Math.cos(direction) * speed;
-  b.dy = Math.sin(direction) * speed;
-};
 
 // This has to come early so width and height are set before we use them.
 setCanvas(document.getElementById('screen'));
 
-let ball = {
-  x: width / 2,
-  y: height / 2,
-  size: 10,
-  dx: 0,
-  dy: 0,
-};
-
-launch(ball, 1, Math.random() * Math.PI * 2);
+const boids = Array(100).fill().map(randomBoid);
 
 animate((t) => {
-  updatePosition(ball, t);
+  updatePositions(boids, t);
   clear();
-  drawBall(ball);
+  boids.forEach(b => drawBoid(b));
 });
