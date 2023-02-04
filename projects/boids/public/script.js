@@ -3,22 +3,35 @@ import { setCanvas, drawFilledCircle, clear, width, height, animate, now } from 
 // Utility functions
 
 const randomInt = (n) => Math.floor(Math.random() * n);
+
 const randomSign = () => Math.random() < 0.5 ? -1 : 1;
+
 const clamp = (n, min, max) => (n < min ? min : n > max ? max : n);
+
 const distance = (b1, b2) => Math.hypot(b1.x - b2.x, b1.y - b2.y);
+
+const sumVectors = (vs) => {
+  const sum = { x: 0, y: 0 };
+  vs.forEach(v => {
+    sum.x += v.x;
+    sum.y += v.y;
+  });
+  return sum;
+};
 
 const boid = (x, y, dx, dy) => {
   return { x, y, dx, dy };
 };
 
-const randomBoid = () => boid(
-  randomInt(width),
-  randomInt(height),
-  (1 + randomInt(15)) * randomSign(),
-  (1 + randomInt(15)) * randomSign());
+const randomBoid = () => {
+  return boid(
+    randomInt(width),
+    randomInt(height),
+    (1 + randomInt(15)) * randomSign(),
+    (1 + randomInt(15)) * randomSign());
+};
 
-
-const neighbors = (boid, boids, radius=50) => boids.filter(other => distance(boid, other) <= radius);
+const neighbors = (boid, boids, radius = 50) => boids.filter(other => distance(boid, other) <= radius);
 
 const drawBoid = (b) => {
   drawFilledCircle(b.x, b.y, 5, 'blue');
@@ -30,16 +43,27 @@ const updatePosition = (b, elapsed) => {
   updateVelocity(b);
 };
 
-const updateVelocity = (b) => {
-  // Repulsion - the closer the boid is to the left wall (x=0) the more it is
-  // accelerated in the positive x direction. And so on for the other walls.
-  b.dx += clamp((5 / b.x) - (5 / (width - b.x)), -5, 5);
-  b.dy += clamp((5 / b.y) - (5 / (height - b.y)), -5, 5);
+const sumForces = (b, ...fns) => sumVectors(fns.map(fn => fn(b)));
 
-  // b.dx += 1 * (-1 + Math.random() * 2);
-  // b.dy += 1 * (-1 + Math.random() * 2);
+const updateVelocity = (b) => {
+  const { x, y } = sumForces(b, wallRepulsion, jitter);
+  b.dx += x;
+  b.dy += y;
 };
 
+const wallRepulsion = (b) => {
+  return {
+    x: clamp((5 / b.x) - (5 / (width - b.x)), -5, 5),
+    y: clamp((5 / b.y) - (5 / (height - b.y)), -5, 5),
+  };
+};
+
+const jitter = (b) => {
+  return {
+    x: -1 + Math.random() * 2,
+    y: -1 + Math.random() * 2,
+  };
+}
 
 // This has to come early so width and height are set before we use them.
 const canvas = document.getElementById('screen');
