@@ -82,14 +82,12 @@ const now = () => performance.now();
  */
 const animate = (drawFrame) => {
   let previous = performance.now();
-
-  const step = () => {
-    const t = performance.now();
+  const step = (t) => {
     drawFrame(t - previous, t);
     previous = t;
     requestAnimationFrame(step);
   };
-  step();
+  requestAnimationFrame(step);
 };
 
 export {
