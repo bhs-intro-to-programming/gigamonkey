@@ -1,4 +1,4 @@
-import { setCanvas, drawFilledCircle, clear, width, height, animate, now } from './graphics.js';
+import { setCanvas, drawFilledCircle, drawTriangle, clear, width, height, animate, now } from './graphics.js';
 
 const TAU = Math.PI * 2;
 
@@ -34,6 +34,8 @@ const angle = (p1, p2) => (TAU + Math.atan2(p2.y - p1.y, p2.x - p1.x)) % TAU;
 
 const speed = (boid) => Math.hypot(boid.dx, boid.dy);
 
+const direction = (boid) => angle(ZERO, { x: boid.dx, y: boid.dy });
+
 const vector = (magnitude, direction) => {
   return {
     x: magnitude * Math.cos(direction),
@@ -62,8 +64,16 @@ const center = (boids) => {
   };
 }
 
-const drawBoid = (b) => {
-  drawFilledCircle(b.x, b.y, 5, 'blue');
+const drawBoid = (boid) => {
+  //drawFilledCircle(boid.x, boid.y, 5, 'blue');
+
+  // Draw trangle with center at center and nose pointing in the right direction.
+  const d = direction(boid);
+  const leftTail = sumVectors([boid, vector(5, (d + 180 - 20) % TAU)])
+  const rightTail = sumVectors([boid, vector(5, (d + 180 + 20) % TAU)]);
+  const nose = sumVectors([boid, vector(5, d)]);
+
+  drawTriangle(leftTail.x, leftTail.y, rightTail.x, rightTail.y, nose.x, nose.y, 'black');
 };
 
 const updatePosition = (b, elapsed) => {
