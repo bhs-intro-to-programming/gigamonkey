@@ -40,10 +40,29 @@ const drawBoid = (b) => {
 const updatePosition = (b, elapsed) => {
   b.x = clamp(b.x + 10 * b.dx / elapsed, 0, width);
   b.y = clamp(b.y + 10 * b.dy / elapsed, 0, height);
-  updateVelocity(b);
 };
 
-const sumForces = (b, ...fns) => sumVectors(fns.map(fn => fn(b)));
+const updateVelocities = (boids) => {
+  // Get all new velocities instantaneously, i.e. before any boid changes
+  // position or velocity and then set them all.
+  const newVelocities = boids.map(newVelocity);
+  boids.forEach((b, i) => setVelocity(b, newVelocities[i]));
+};
+
+const newVelocity = (b) => {
+  const { x, y } = sumForces(b, wallRepulsion, jitter);
+  return {
+    dx: b.dx + x,
+    dy: b.dy + y,
+  };
+};
+
+const setVelocity = (b, v) => {
+  b.dx = v.dx;
+  b.dy = v.dy;
+}
+
+const sumForces = (b, ...fns) => sumVectors(fns.map(fn => fn(b, boids)));
 
 const updateVelocity = (b) => {
   const { x, y } = sumForces(b, wallRepulsion, jitter);
@@ -77,4 +96,5 @@ animate((elapsed) => {
   boids.forEach(b => updatePosition(b, elapsed));
   clear();
   boids.forEach(b => drawBoid(b));
+  updateVelocities(boids);
 });
