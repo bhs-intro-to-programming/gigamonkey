@@ -10,8 +10,10 @@ const WALL_REPULSION = 200;
 const JITTER = 10;
 const BOID_REPULSION = 100;
 const SIZE = 5;
-const RADIUS = SIZE * 15;
+const RADIUS = SIZE * 12;
+const MAX_RANDOM_TURN = TAU / 20;
 const RANDOM_TURN_FACTOR = 0.1;
+const ANGLE_OF_VISION = TAU * .3;
 
 // Utility functions
 
@@ -64,7 +66,18 @@ const randomBoid = () => {
     (1 + randomInt(2)) * randomSign());
 };
 
-const neighbors = (boid, boids) => boids.filter(other => boid !== other && distance(boid, other) <= RADIUS);
+const isNeighbor = (boid, other) => {
+  return boid !== other &&
+    distance(boid, other) <= RADIUS &&
+    canSee(boid, other);
+};
+
+const canSee = (boid, other) => {
+  const theta = Math.abs(direction(boid) - angle(boid, other));
+  return Math.min(theta, TAU - theta) < ANGLE_OF_VISION;
+ };
+
+const neighbors = (boid, boids) => boids.filter(other => isNeighbor(boid, other));
 
 const center = (boids) => {
   return {
@@ -74,9 +87,7 @@ const center = (boids) => {
 }
 
 const drawBoid = (boid) => {
-  //drawFilledCircle(boid.x, boid.y, 5, 'blue');
-
-  // Draw trangle with center at center and nose pointing in the right direction.
+  // A trangle with center at center and nose pointing in the right direction.
   const d = direction(boid);
   const x = 0.6;
   const leftTail = sumVectors([boid, vector(SIZE, (d + TAU / 2 - x) % TAU)])
@@ -92,10 +103,11 @@ const updatePosition = (b, elapsed) => {
 };
 
 const updateVelocities = (boids) => {
-  // Get all new velocities instantaneously, i.e. before any boid changes
-  // position or velocity and then set them all.
-  const newVelocities = boids.map(b => newVelocity(b, neighbors(b, boids)));
-  boids.forEach((b, i) => setVelocity(b, newVelocities[i]));
+  // Get all new velocities instantaneously, i.e. compute te new velocity of all
+  // boids based on the current state of all other boids and *then* update them
+  // all.
+  const updated = boids.map(b => newVelocity(b, neighbors(b, boids)));
+  boids.forEach((b, i) => setVelocity(b, updated[i]));
 };
 
 const newVelocity = (b, nearby) => {
@@ -136,7 +148,7 @@ const randomSpeedup = (b) => {
 };
 
 const randomTurn = (b) => {
-  const amt = Math.floor(Math.random() * TAU/20) * randomSign();
+  const amt = Math.floor(Math.random() * MAX_RANDOM_TURN) * randomSign();
   return vector(speed(b) * RANDOM_TURN_FACTOR, direction(b) + amt);
 };
 
