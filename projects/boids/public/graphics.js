@@ -83,7 +83,9 @@ const now = () => performance.now();
 const animate = (drawFrame) => {
   let previous = performance.now();
   const step = (t) => {
-    drawFrame(t - previous, t);
+    if (t > previous) {
+      drawFrame(t - previous, t);
+    }
     previous = t;
     requestAnimationFrame(step);
   };
