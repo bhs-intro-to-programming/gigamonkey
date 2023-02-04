@@ -30,29 +30,32 @@ const updatePositions = (boids, t) => {
 };
 
 const updatePosition = (b, elapsed) => {
-  b.x = clamp(b.x + b.dx/10 * elapsed, 0, width);
-  b.y = clamp(b.y + b.dy/10 * elapsed, 0, height);
+  b.x = clamp(b.x + 10 * b.dx / elapsed, 0, width);
+  b.y = clamp(b.y + 10 * b.dy / elapsed, 0, height);
   updateVelocity(b);
 };
 
 const updateVelocity = (b) => {
-  b.dx -= (b.x - 0) / (10 * width / 2);
-  b.dx += (width - b.x) / (10 * width / 2);
+  // Repulsion - the closer the boid is to the left wall (x=0) the more it is
+  // accelerated in the positive x direction. And so on for the other walls.
+  b.dx += 5 * (b.x < width / 2 ? 1 / b.x : -1 / (width - b.x));
+  b.dy += 5 * (b.y < height / 2 ? 1 / b.y : -1 / (height - b.y));
 
-  b.dy -= b.y / (10 * height / 2);
-  b.dy += (height - b.y) / (10 * height / 2);
-
-  // b.dx += -1 + Math.random() * 2;
-  // b.dy += -1 + Math.random() * 2;
+  //b.dx += 0.25 * (-1 + Math.random() * 2);
+  //b.dy += 0.25 * (-1 + Math.random() * 2);
 };
 
 const clamp = (n, min, max) => (n < min ? min : n > max ? max : n);
 
 // This has to come early so width and height are set before we use them.
-setCanvas(document.getElementById('screen'));
+const canvas = document.getElementById('screen');
+console.log(document.documentElement.offsetWidth);
+canvas.width = document.documentElement.offsetWidth * 0.8;
+canvas.height = document.documentElement.offsetHeight * 0.8;
+setCanvas(canvas);
 
 
-const boids = Array(100).fill().map(randomBoid);
+const boids = Array(50).fill().map(randomBoid);
 
 animate((t) => {
   updatePositions(boids, t);
