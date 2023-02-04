@@ -1,9 +1,11 @@
 import { setCanvas, drawTriangle, clear, width, height, animate } from './graphics.js';
 
+////////////////////////////////////////////////////////////////
 // Mathematical constants
 const TAU = Math.PI * 2;
 const ZERO = { x: 0, y: 0 };
 
+////////////////////////////////////////////////////////////////
 // Parameters
 const SIZE = 5;
 const SPEED_LIMIT = 30;
@@ -14,6 +16,7 @@ const MAX_RANDOM_TURN = TAU / 20;
 const RANDOM_TURN_FACTOR = 0.1;
 const ANGLE_OF_VISION = TAU * 0.3;
 
+////////////////////////////////////////////////////////////////
 // Utility functions
 
 const randomInt = (n) => Math.floor(Math.random() * n);
@@ -42,8 +45,9 @@ const average = (ns) => ns.reduce((acc, n) => acc + n, 0) / ns.length;
  */
 const angle = (p1, p2) => (TAU + Math.atan2(p2.y - p1.y, p2.x - p1.x)) % TAU;
 
-
-
+/*
+ * Vector in x,y form with a given magnitude and direction.
+ */
 const vector = (magnitude, direction) => {
   return {
     x: magnitude * Math.cos(direction),
@@ -51,6 +55,7 @@ const vector = (magnitude, direction) => {
   };
 };
 
+////////////////////////////////////////////////////////////////
 // Boid functions
 
 const boid = (x, y, dx, dy) => {
@@ -105,6 +110,9 @@ const drawBoid = (boid) => {
   drawTriangle(leftTail.x, leftTail.y, rightTail.x, rightTail.y, nose.x, nose.y, 'black');
 };
 
+////////////////////////////////////////////////////////////////
+// Simulation machinery
+
 const updatePosition = (b, elapsed) => {
   b.x = clamp(b.x + 10 * b.dx / elapsed, 0, width);
   b.y = clamp(b.y + 10 * b.dy / elapsed, 0, height);
@@ -127,7 +135,9 @@ const newVelocity = (b, nearby, forces) => {
   return { dx: r.x, dy: r.y };
 };
 
-// Forces pushing the boids around
+////////////////////////////////////////////////////////////////
+// Forces pushing the boids around -- we compute each force separately, sum the
+// vectors and then apply them with some clamping on the speed.
 
 /*
  * Stay away from the walls.
@@ -159,7 +169,7 @@ const randomTurn = (b) => {
 };
 
 /*
- * Head toward the center of mass of your neighbors at your current speed.
+ * Head toward the center of mass of neighbors.
  */
 const cohesion = (boid, nearby) => {
   if (nearby.length === 0) {
