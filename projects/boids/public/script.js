@@ -1,10 +1,17 @@
 import { setCanvas, drawFilledCircle, drawTriangle, clear, width, height, animate, now } from './graphics.js';
 
+// Mathematical constants
+
 const TAU = Math.PI * 2;
-
-const SPEED_LIMIT = 5;
-
 const ZERO = { x: 0, y: 0 };
+
+// Parameters
+const SPEED_LIMIT = 20;
+const WALL_REPULSION = 200;
+const JITTER = 5;
+const BOID_REPULSION = 100;
+const SIZE = 5;
+const RADIUS = SIZE * 15;
 
 // Utility functions
 
@@ -55,7 +62,7 @@ const randomBoid = () => {
     (1 + randomInt(2)) * randomSign());
 };
 
-const neighbors = (boid, boids, radius = 40) => boids.filter(other => boid !== other && distance(boid, other) <= radius);
+const neighbors = (boid, boids) => boids.filter(other => boid !== other && distance(boid, other) <= RADIUS);
 
 const center = (boids) => {
   return {
@@ -69,11 +76,10 @@ const drawBoid = (boid) => {
 
   // Draw trangle with center at center and nose pointing in the right direction.
   const d = direction(boid);
-  const size = 5;
-  const x = 0.75
-  const leftTail = sumVectors([boid, vector(size, (d + TAU / 2 - x) % TAU)])
-  const rightTail = sumVectors([boid, vector(size, (d + TAU / 2 + x) % TAU)]);
-  const nose = sumVectors([boid, vector(size, d)]);
+  const x = 0.6;
+  const leftTail = sumVectors([boid, vector(SIZE, (d + TAU / 2 - x) % TAU)])
+  const rightTail = sumVectors([boid, vector(SIZE, (d + TAU / 2 + x) % TAU)]);
+  const nose = sumVectors([boid, vector(SIZE, d)]);
 
   drawTriangle(leftTail.x, leftTail.y, rightTail.x, rightTail.y, nose.x, nose.y, 'black');
 };
@@ -107,15 +113,15 @@ const sumForces = (b, nearby, ...fns) => sumVectors(fns.map(fn => fn(b, nearby))
 
 const wallRepulsion = (b) => {
   return {
-    x: clamp((5 / b.x) - (5 / (width - b.x)), -5, 5),
-    y: clamp((5 / b.y) - (5 / (height - b.y)), -5, 5),
+    x: clamp((WALL_REPULSION / b.x) - (WALL_REPULSION / (width - b.x)), -WALL_REPULSION, WALL_REPULSION),
+    y: clamp((WALL_REPULSION / b.y) - (WALL_REPULSION / (height - b.y)), -WALL_REPULSION, WALL_REPULSION),
   };
 };
 
 const jitter = (b) => {
   return {
-    x: -1 + Math.random() * 2,
-    y: -1 + Math.random() * 2,
+    x: JITTER * (-1 + Math.random() * 2),
+    y: JITTER * (-1 + Math.random() * 2),
   };
 };
 
@@ -133,7 +139,7 @@ const repulsion = (boid, nearby) => {
   if (nearby.length === 0) {
     return ZERO;
   } else {
-    return sumVectors(nearby.map(n => vector(20 / distance(n, boid), angle(n, boid))));
+    return sumVectors(nearby.map(n => vector(BOID_REPULSION / distance(n, boid), angle(n, boid))));
   }
 };
 
@@ -157,7 +163,7 @@ canvas.width = document.documentElement.offsetWidth * 0.95;
 canvas.height = document.documentElement.offsetHeight * 0.95;
 setCanvas(canvas);
 
-const boids = Array(200).fill().map(randomBoid);
+const boids = Array(1000).fill().map(randomBoid);
 
 animate((elapsed) => {
   boids.forEach(b => updatePosition(b, elapsed));
