@@ -1,17 +1,17 @@
 import { setCanvas, drawFilledCircle, drawTriangle, clear, width, height, animate, now } from './graphics.js';
 
 // Mathematical constants
-
 const TAU = Math.PI * 2;
 const ZERO = { x: 0, y: 0 };
 
 // Parameters
 const SPEED_LIMIT = 20;
 const WALL_REPULSION = 200;
-const JITTER = 5;
+const JITTER = 10;
 const BOID_REPULSION = 100;
 const SIZE = 5;
 const RADIUS = SIZE * 15;
+const RANDOM_TURN_FACTOR = 0.1;
 
 // Utility functions
 
@@ -99,7 +99,7 @@ const updateVelocities = (boids) => {
 };
 
 const newVelocity = (b, nearby) => {
-  const { x, y } = sumForces(b, nearby, wallRepulsion, jitter, cohesion, repulsion, matching);
+  const { x, y } = sumForces(b, nearby, wallRepulsion, randomSpeedup, randomTurn, cohesion, repulsion, matching, randomSpeedup);
   return {
     dx: clampMagnitude(b.dx + x, SPEED_LIMIT),
     dy: clampMagnitude(b.dy + y, SPEED_LIMIT),
@@ -127,7 +127,20 @@ const jitter = (b) => {
   };
 };
 
-// Head toward the center of mass of your neighbors
+const randomSpeedup = (b) => {
+  const amt = Math.random() - 0.5;
+  return {
+    x: b.dx * amt,
+    y: b.dy * amt,
+  };
+};
+
+const randomTurn = (b) => {
+  const amt = Math.floor(Math.random() * TAU/20) * randomSign();
+  return vector(speed(b) * RANDOM_TURN_FACTOR, direction(b) + amt);
+};
+
+// Head toward the center of mass of your neighbors at your current speed.
 const cohesion = (boid, nearby) => {
   if (nearby.length === 0) {
     return ZERO;
