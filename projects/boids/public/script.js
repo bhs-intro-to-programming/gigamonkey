@@ -69,9 +69,11 @@ const drawBoid = (boid) => {
 
   // Draw trangle with center at center and nose pointing in the right direction.
   const d = direction(boid);
-  const leftTail = sumVectors([boid, vector(5, (d + 180 - 20) % TAU)])
-  const rightTail = sumVectors([boid, vector(5, (d + 180 + 20) % TAU)]);
-  const nose = sumVectors([boid, vector(5, d)]);
+  const size = 5;
+  const x = 0.75
+  const leftTail = sumVectors([boid, vector(size, (d + TAU / 2 - x) % TAU)])
+  const rightTail = sumVectors([boid, vector(size, (d + TAU / 2 + x) % TAU)]);
+  const nose = sumVectors([boid, vector(size, d)]);
 
   drawTriangle(leftTail.x, leftTail.y, rightTail.x, rightTail.y, nose.x, nose.y, 'black');
 };
