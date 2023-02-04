@@ -21,6 +21,8 @@ const randomSign = () => Math.random() < 0.5 ? -1 : 1;
 
 const clamp = (n, min, max) => (n < min ? min : n > max ? max : n);
 
+const clampMagnitude = (n, magnitude) => clamp(n, -magnitude, magnitude);
+
 const distance = (b1, b2) => Math.hypot(b1.x - b2.x, b1.y - b2.y);
 
 const sumVectors = (vs) => {
@@ -99,8 +101,8 @@ const updateVelocities = (boids) => {
 const newVelocity = (b, nearby) => {
   const { x, y } = sumForces(b, nearby, wallRepulsion, jitter, cohesion, repulsion, matching);
   return {
-    dx: clamp(b.dx + x, -SPEED_LIMIT, SPEED_LIMIT),
-    dy: clamp(b.dy + y, -SPEED_LIMIT, SPEED_LIMIT),
+    dx: clampMagnitude(b.dx + x, SPEED_LIMIT),
+    dy: clampMagnitude(b.dy + y, SPEED_LIMIT),
   };
 };
 
@@ -113,8 +115,8 @@ const sumForces = (b, nearby, ...fns) => sumVectors(fns.map(fn => fn(b, nearby))
 
 const wallRepulsion = (b) => {
   return {
-    x: clamp((WALL_REPULSION / b.x) - (WALL_REPULSION / (width - b.x)), -WALL_REPULSION, WALL_REPULSION),
-    y: clamp((WALL_REPULSION / b.y) - (WALL_REPULSION / (height - b.y)), -WALL_REPULSION, WALL_REPULSION),
+    x: clampMagnitude((WALL_REPULSION / b.x) - (WALL_REPULSION / (width - b.x)), WALL_REPULSION),
+    y: clampMagnitude((WALL_REPULSION / b.y) - (WALL_REPULSION / (height - b.y)), WALL_REPULSION),
   };
 };
 
