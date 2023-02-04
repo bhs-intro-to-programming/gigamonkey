@@ -49,9 +49,7 @@ const clamp = (n, min, max) => (n < min ? min : n > max ? max : n);
 
 // This has to come early so width and height are set before we use them.
 const canvas = document.getElementById('screen');
-console.log(document.documentElement.offsetWidth);
-canvas.width = document.documentElement.offsetWidth * 0.8;
-canvas.height = document.documentElement.offsetHeight * 0.8;
+canvas.height = document.documentElement.offsetHeight * 0.95;
 setCanvas(canvas);
 
 
