@@ -1,4 +1,4 @@
-import { setCanvas, drawFilledCircle, drawTriangle, clear, width, height, animate, now } from './graphics.js';
+import { setCanvas, drawTriangle, clear, width, height, animate } from './graphics.js';
 
 // Mathematical constants
 const TAU = Math.PI * 2;
@@ -182,8 +182,6 @@ const matching = (boid, nearby) => {
     };
   }
 };
-
-
 
 // This has to come early so width and height are set before we use them.
 const canvas = document.getElementById('screen');
