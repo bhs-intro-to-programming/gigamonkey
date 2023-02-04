@@ -5,7 +5,7 @@ const TAU = Math.PI * 2;
 const ZERO = { x: 0, y: 0 };
 
 // Parameters
-const SPEED_LIMIT = 20;
+const SPEED_LIMIT = 30;
 const WALL_REPULSION = 200;
 const JITTER = 10;
 const BOID_REPULSION = 100;
@@ -112,23 +112,10 @@ const updateVelocities = (boids) => {
 
 const newVelocity = (b, nearby) => {
   const { x, y } = sumForces(b, nearby, wallRepulsion, randomSpeedup, randomTurn, cohesion, repulsion, matching, randomSpeedup);
-  const target = {
-    dx: clampMagnitude(b.dx + x, SPEED_LIMIT),
-    dy: clampMagnitude(b.dy + y, SPEED_LIMIT),
-  };
+  const target = { dx: b.dx + x, dy: b.dy + y };
   const s = speed(b);
-  const d = direction(b);
-  if (isNaN(s)) throw new Error(`s of ${b.dx}, ${b.dy} is NaN`);
-  if (isNaN(d)) throw new Error(`d is NaN`);
   const ds = speed(target) - s;
-  const dd = direction(target) - d;
-  if (isNaN(ds)) throw new Error(`ds of ${JSON.stringify(target)} is NaN`);
-  if (isNaN(dd)) throw new Error(`dd is NaN`);
-  const r = vector(s + ds * 0.5, (TAU + d + dd * 0.5) % TAU);
-  //if (typeof r.x !== 'number') throw new Error(`r.dx not a number ${r.dx}`);
-  //if (typeof r.y !== 'number') throw new Error(`r.dy not a number ${r.dy}`);
-
-  //console.log(r);
+  const r = vector(clampMagnitude(s + ds * 0.5, SPEED_LIMIT), direction(target));
   return { dx: r.x, dy: r.y };
 };
 
