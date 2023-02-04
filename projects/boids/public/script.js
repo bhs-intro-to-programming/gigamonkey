@@ -4,6 +4,8 @@ const TAU = Math.PI * 2;
 
 const SPEED_LIMIT = 2;
 
+const ZERO = { x: 0, y: 0 };
+
 // Utility functions
 
 const randomInt = (n) => Math.floor(Math.random() * n);
@@ -31,6 +33,13 @@ const average = (ns) => ns.reduce((acc, n) => acc + n, 0) / ns.length;
 const angle = (p1, p2) => (TAU + Math.atan2(p2.y - p1.y, p2.x - p1.x)) % TAU;
 
 const speed = (boid) => Math.hypot(boid.dx, boid.dy);
+
+const vector = (magnitude, direction) => {
+  return {
+    x: magnitude * Math.cos(direction),
+    y: magnitude * Math.sin(direction),
+  };
+};
 
 const boid = (x, y, dx, dy) => {
   return { x, y, dx, dy };
@@ -70,7 +79,7 @@ const updateVelocities = (boids) => {
 };
 
 const newVelocity = (b, nearby) => {
-  const { x, y } = sumForces(b, nearby, wallRepulsion, jitter, cohesion);
+  const { x, y } = sumForces(b, nearby, wallRepulsion, jitter, cohesion, repulsion);
   return {
     dx: clamp(b.dx + x, -SPEED_LIMIT, SPEED_LIMIT),
     dy: clamp(b.dy + y, -SPEED_LIMIT, SPEED_LIMIT),
@@ -99,19 +108,21 @@ const jitter = (b) => {
 };
 
 const cohesion = (boid, nearby) => {
-  if (nearby.length > 0) {
-    const c = center(nearby);
-    // Compute new vector with same magnitude but pointing toward the center.
-    const magnitude = speed(boid);
-    const direction = angle(boid, c);
-    return {
-      x: magnitude * Math.cos(direction),
-      y: magnitude * Math.sin(direction),
-    };
+  if (nearby.length === 0) {
+    return ZERO;
   } else {
-    return { x: 0, y: 0 };
+    return vector(speed(boid), angle(boid, center(nearby)));
   }
-}
+};
+
+// Don't get too close to neighbors.
+const repulsion = (boid, nearby) => {
+  if (nearby.length === 0) {
+    return ZERO;
+  } else {
+    return sumVectors(nearby.map(n => vector(20 / distance(n, boid), angle(n, boid))));
+  }
+};
 
 
 
