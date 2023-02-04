@@ -81,28 +81,15 @@ const now = () => performance.now();
  * Called from script.js to kick off the animation.
  */
 const animate = (drawFrame) => {
-  let running = true;
   let previous = performance.now();
 
   const step = () => {
     const t = performance.now();
     drawFrame(t - previous, t);
     previous = t;
-    maybeStep();
+    requestAnimationFrame(step);
   };
-
-  const maybeStep = () => {
-    if (running) {
-      requestAnimationFrame(step);
-    }
-  };
-
-  document.documentElement.onclick = (e) => {
-    running = !running;
-    maybeStep();
-  };
-
-  maybeStep();
+  step();
 };
 
 export {
