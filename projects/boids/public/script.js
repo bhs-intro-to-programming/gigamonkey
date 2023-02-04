@@ -2,7 +2,7 @@ import { setCanvas, drawFilledCircle, clear, width, height, animate, now } from 
 
 const TAU = Math.PI * 2;
 
-const SPEED_LIMIT = 2;
+const SPEED_LIMIT = 5;
 
 const ZERO = { x: 0, y: 0 };
 
@@ -53,7 +53,7 @@ const randomBoid = () => {
     (1 + randomInt(2)) * randomSign());
 };
 
-const neighbors = (boid, boids, radius = 100) => boids.filter(other => boid !== other && distance(boid, other) <= radius);
+const neighbors = (boid, boids, radius = 40) => boids.filter(other => boid !== other && distance(boid, other) <= radius);
 
 const center = (boids) => {
   return {
@@ -79,7 +79,7 @@ const updateVelocities = (boids) => {
 };
 
 const newVelocity = (b, nearby) => {
-  const { x, y } = sumForces(b, nearby, wallRepulsion, jitter, cohesion, repulsion);
+  const { x, y } = sumForces(b, nearby, wallRepulsion, jitter, cohesion, repulsion, matching);
   return {
     dx: clamp(b.dx + x, -SPEED_LIMIT, SPEED_LIMIT),
     dy: clamp(b.dy + y, -SPEED_LIMIT, SPEED_LIMIT),
@@ -107,6 +107,7 @@ const jitter = (b) => {
   };
 };
 
+// Head toward the center of mass of your neighbors
 const cohesion = (boid, nearby) => {
   if (nearby.length === 0) {
     return ZERO;
@@ -115,12 +116,24 @@ const cohesion = (boid, nearby) => {
   }
 };
 
-// Don't get too close to neighbors.
+// But don't get too close to neighbors.
 const repulsion = (boid, nearby) => {
   if (nearby.length === 0) {
     return ZERO;
   } else {
     return sumVectors(nearby.map(n => vector(20 / distance(n, boid), angle(n, boid))));
+  }
+};
+
+// Match velocity
+const matching = (boid, nearby) => {
+  if (nearby.length === 0) {
+    return ZERO;
+  } else {
+    return {
+      x: average(nearby.map(n => n.dx)),
+      y: average(nearby.map(n => n.dy)),
+    };
   }
 };
 
@@ -132,7 +145,7 @@ canvas.width = document.documentElement.offsetWidth * 0.95;
 canvas.height = document.documentElement.offsetHeight * 0.95;
 setCanvas(canvas);
 
-const boids = Array(20).fill().map(randomBoid);
+const boids = Array(200).fill().map(randomBoid);
 
 animate((elapsed) => {
   boids.forEach(b => updatePosition(b, elapsed));
