@@ -5,15 +5,14 @@ const TAU = Math.PI * 2;
 const ZERO = { x: 0, y: 0 };
 
 // Parameters
+const SIZE = 5;
 const SPEED_LIMIT = 30;
 const WALL_REPULSION = 200;
-const JITTER = 10;
 const BOID_REPULSION = 100;
-const SIZE = 5;
-const RADIUS = SIZE * 12;
+const NEARBY_RADIUS = SIZE * 12;
 const MAX_RANDOM_TURN = TAU / 20;
 const RANDOM_TURN_FACTOR = 0.1;
-const ANGLE_OF_VISION = TAU * .3;
+const ANGLE_OF_VISION = TAU * 0.3;
 
 // Utility functions
 
@@ -39,13 +38,11 @@ const sumVectors = (vs) => {
 const average = (ns) => ns.reduce((acc, n) => acc + n, 0) / ns.length;
 
 /*
- * Angle of the line from p1 to p2 from 0 to TAU.
+ * Angle of the line from p1 to p2, expressed in radians from from 0 to TAU.
  */
 const angle = (p1, p2) => (TAU + Math.atan2(p2.y - p1.y, p2.x - p1.x)) % TAU;
 
-const speed = (boid) => Math.hypot(boid.dx, boid.dy);
 
-const direction = (boid) => angle(ZERO, { x: boid.dx, y: boid.dy });
 
 const vector = (magnitude, direction) => {
   return {
@@ -54,8 +51,19 @@ const vector = (magnitude, direction) => {
   };
 };
 
+// Boid functions
+
 const boid = (x, y, dx, dy) => {
   return { x, y, dx, dy };
+};
+
+const speed = (boid) => Math.hypot(boid.dx, boid.dy);
+
+const direction = (boid) => angle(ZERO, { x: boid.dx, y: boid.dy });
+
+const setVelocity = (b, v) => {
+  b.dx = v.dx;
+  b.dy = v.dy;
 };
 
 const randomBoid = () => {
@@ -68,7 +76,7 @@ const randomBoid = () => {
 
 const isNeighbor = (boid, other) => {
   return boid !== other &&
-    distance(boid, other) <= RADIUS &&
+    distance(boid, other) <= NEARBY_RADIUS &&
     canSee(boid, other);
 };
 
@@ -102,16 +110,16 @@ const updatePosition = (b, elapsed) => {
   b.y = clamp(b.y + 10 * b.dy / elapsed, 0, height);
 };
 
-const updateVelocities = (boids) => {
-  // Get all new velocities instantaneously, i.e. compute te new velocity of all
-  // boids based on the current state of all other boids and *then* update them
-  // all.
-  const updated = boids.map(b => newVelocity(b, neighbors(b, boids)));
+const updateVelocities = (boids, forces) => {
+  // Get all new velocities instantaneously, i.e. compute the new velocity of
+  // all boids based on the current state of all other boids and *then* update
+  // them all.
+  const updated = boids.map(b => newVelocity(b, neighbors(b, boids), forces));
   boids.forEach((b, i) => setVelocity(b, updated[i]));
 };
 
-const newVelocity = (b, nearby) => {
-  const { x, y } = sumForces(b, nearby, wallRepulsion, randomSpeedup, randomTurn, cohesion, repulsion, matching, randomSpeedup);
+const newVelocity = (b, nearby, forces) => {
+  const { x, y } = sumVectors(forces.map(f => f(b, nearby)));
   const target = { dx: b.dx + x, dy: b.dy + y };
   const s = speed(b);
   const ds = speed(target) - s;
@@ -119,13 +127,11 @@ const newVelocity = (b, nearby) => {
   return { dx: r.x, dy: r.y };
 };
 
-const setVelocity = (b, v) => {
-  b.dx = v.dx;
-  b.dy = v.dy;
-}
+// Forces pushing the boids around
 
-const sumForces = (b, nearby, ...fns) => sumVectors(fns.map(fn => fn(b, nearby)));
-
+/*
+ * Stay away from the walls.
+ */
 const wallRepulsion = (b) => {
   return {
     x: clampMagnitude((WALL_REPULSION / b.x) - (WALL_REPULSION / (width - b.x)), WALL_REPULSION),
@@ -133,14 +139,10 @@ const wallRepulsion = (b) => {
   };
 };
 
-const jitter = (b) => {
-  return {
-    x: JITTER * (-1 + Math.random() * 2),
-    y: JITTER * (-1 + Math.random() * 2),
-  };
-};
-
-const randomSpeedup = (b) => {
+/*
+ * Randomly speed up or slow down.
+ */
+const randomSpeedChange = (b) => {
   const amt = Math.random() - 0.5;
   return {
     x: b.dx * amt,
@@ -148,12 +150,17 @@ const randomSpeedup = (b) => {
   };
 };
 
+/*
+ * Randomly turn.
+ */
 const randomTurn = (b) => {
   const amt = Math.floor(Math.random() * MAX_RANDOM_TURN) * randomSign();
   return vector(speed(b) * RANDOM_TURN_FACTOR, direction(b) + amt);
 };
 
-// Head toward the center of mass of your neighbors at your current speed.
+/*
+ * Head toward the center of mass of your neighbors at your current speed.
+ */
 const cohesion = (boid, nearby) => {
   if (nearby.length === 0) {
     return ZERO;
@@ -162,7 +169,9 @@ const cohesion = (boid, nearby) => {
   }
 };
 
-// But don't get too close to neighbors.
+/*
+ * Don't get too close to neighbors.
+ */
 const repulsion = (boid, nearby) => {
   if (nearby.length === 0) {
     return ZERO;
@@ -171,7 +180,9 @@ const repulsion = (boid, nearby) => {
   }
 };
 
-// Match velocity
+/*
+ * Match speed and direction of neighbors.
+ */
 const matching = (boid, nearby) => {
   if (nearby.length === 0) {
     return ZERO;
@@ -190,10 +201,18 @@ canvas.height = document.documentElement.offsetHeight * 0.95;
 setCanvas(canvas);
 
 const boids = Array(1000).fill().map(randomBoid);
+const forces = [
+  wallRepulsion,
+  randomSpeedChange,
+  randomTurn,
+  cohesion,
+  repulsion,
+  matching,
+];
 
 animate((elapsed) => {
   boids.forEach(b => updatePosition(b, elapsed));
   clear();
   boids.forEach(b => drawBoid(b));
-  updateVelocities(boids);
+  updateVelocities(boids, forces);
 });
