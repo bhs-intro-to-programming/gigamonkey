@@ -1,5 +1,9 @@
 import { setCanvas, drawFilledCircle, clear, width, height, animate, now } from './graphics.js';
 
+const TAU = Math.PI * 2;
+
+const SPEED_LIMIT = 2;
+
 // Utility functions
 
 const randomInt = (n) => Math.floor(Math.random() * n);
@@ -19,6 +23,15 @@ const sumVectors = (vs) => {
   return sum;
 };
 
+const average = (ns) => ns.reduce((acc, n) => acc + n, 0) / ns.length;
+
+/*
+ * Angle of the line from p1 to p2 from 0 to TAU.
+ */
+const angle = (p1, p2) => (TAU + Math.atan2(p2.y - p1.y, p2.x - p1.x)) % TAU;
+
+const speed = (boid) => Math.hypot(boid.dx, boid.dy);
+
 const boid = (x, y, dx, dy) => {
   return { x, y, dx, dy };
 };
@@ -27,11 +40,18 @@ const randomBoid = () => {
   return boid(
     randomInt(width),
     randomInt(height),
-    (1 + randomInt(15)) * randomSign(),
-    (1 + randomInt(15)) * randomSign());
+    (1 + randomInt(2)) * randomSign(),
+    (1 + randomInt(2)) * randomSign());
 };
 
-const neighbors = (boid, boids, radius = 50) => boids.filter(other => distance(boid, other) <= radius);
+const neighbors = (boid, boids, radius = 100) => boids.filter(other => boid !== other && distance(boid, other) <= radius);
+
+const center = (boids) => {
+  return {
+    x: average(boids.map(b => b.x)),
+    y: average(boids.map(b => b.y))
+  };
+}
 
 const drawBoid = (b) => {
   drawFilledCircle(b.x, b.y, 5, 'blue');
@@ -45,15 +65,15 @@ const updatePosition = (b, elapsed) => {
 const updateVelocities = (boids) => {
   // Get all new velocities instantaneously, i.e. before any boid changes
   // position or velocity and then set them all.
-  const newVelocities = boids.map(newVelocity);
+  const newVelocities = boids.map(b => newVelocity(b, neighbors(b, boids)));
   boids.forEach((b, i) => setVelocity(b, newVelocities[i]));
 };
 
-const newVelocity = (b) => {
-  const { x, y } = sumForces(b, wallRepulsion, jitter);
+const newVelocity = (b, nearby) => {
+  const { x, y } = sumForces(b, nearby, wallRepulsion, jitter, cohesion);
   return {
-    dx: b.dx + x,
-    dy: b.dy + y,
+    dx: clamp(b.dx + x, -SPEED_LIMIT, SPEED_LIMIT),
+    dy: clamp(b.dy + y, -SPEED_LIMIT, SPEED_LIMIT),
   };
 };
 
@@ -62,13 +82,7 @@ const setVelocity = (b, v) => {
   b.dy = v.dy;
 }
 
-const sumForces = (b, ...fns) => sumVectors(fns.map(fn => fn(b, boids)));
-
-const updateVelocity = (b) => {
-  const { x, y } = sumForces(b, wallRepulsion, jitter);
-  b.dx += x;
-  b.dy += y;
-};
+const sumForces = (b, nearby, ...fns) => sumVectors(fns.map(fn => fn(b, nearby)));
 
 const wallRepulsion = (b) => {
   return {
@@ -82,7 +96,24 @@ const jitter = (b) => {
     x: -1 + Math.random() * 2,
     y: -1 + Math.random() * 2,
   };
+};
+
+const cohesion = (boid, nearby) => {
+  if (nearby.length > 0) {
+    const c = center(nearby);
+    // Compute new vector with same magnitude but pointing toward the center.
+    const magnitude = speed(boid);
+    const direction = angle(boid, c);
+    return {
+      x: magnitude * Math.cos(direction),
+      y: magnitude * Math.sin(direction),
+    };
+  } else {
+    return { x: 0, y: 0 };
+  }
 }
+
+
 
 // This has to come early so width and height are set before we use them.
 const canvas = document.getElementById('screen');
