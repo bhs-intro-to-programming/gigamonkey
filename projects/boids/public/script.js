@@ -98,7 +98,17 @@ const canSee = (boid, other) => {
   return Math.min(theta, TAU - theta) < ANGLE_OF_VISION;
 };
 
-const neighbors = (boid, boids) => boids.filter(other => isNeighbor(boid, other));
+const neighbors = (boid, grid) => {
+  const n = [];
+  neighboringGridCells(boid, grid).forEach(cell => {
+    cell.forEach(other => {
+      if (isNeighbor(boid, other)) {
+        n.push(other);
+      }
+    });
+  });
+  return n;
+}
 
 const center = (boids) => {
   return {
@@ -131,7 +141,7 @@ const updateVelocities = (boids, forces, grid) => {
   // Get all new velocities instantaneously, i.e. compute the new velocity of
   // all boids based on the current state of all other boids and *then* update
   // them all.
-  const updated = boids.map(b => newVelocity(b, neighbors(b, boids), forces));
+  const updated = boids.map(b => newVelocity(b, neighbors(b, grid), forces));
   boids.forEach((b, i) => setVelocity(b, updated[i]));
 };
 
@@ -254,7 +264,7 @@ const neighboringGridCells = (boid, grid) => {
       if (r > 0 && distance(boid, { x: left, y: top }) < NEARBY_RADIUS) {
         cells.push(grid[r - 1][c - 1]);
       } else if (r < gridRows - 1 && distance(boid, { x: left, y: bottom }) < NEARBY_RADIUS) {
-        cells.push(grid([r + 1][c - 1]));
+        cells.push(grid[r + 1][c - 1]);
       }
     }
   }
@@ -266,7 +276,7 @@ const neighboringGridCells = (boid, grid) => {
       if (r > 0 && distance(boid, { x: right, y: top }) < NEARBY_RADIUS) {
         cells.push(grid[r - 1][c + 1]);
       } else if (r < gridRows - 1 && distance(boid, { x: right, y: bottom }) < NEARBY_RADIUS) {
-        cells.push(grid([r + 1][c + 1]));
+        cells.push(grid[r + 1][c + 1]);
       }
     }
   }
