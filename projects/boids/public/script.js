@@ -285,14 +285,11 @@ const neighboringGridCells = (boid, grid) => {
   return cells;
 };
 
-
-let grid = null;
-
 const boids = Array(2000).fill().map(randomBoid);
 const forces = [
-  wallRepulsion,
   randomSpeedChange,
   randomTurn,
+  wallRepulsion,
   cohesion,
   repulsion,
   matching,
