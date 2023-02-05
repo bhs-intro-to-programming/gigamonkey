@@ -99,16 +99,10 @@ const canSee = (boid, other) => {
 };
 
 const neighbors = (boid, grid) => {
-  const n = [];
-  neighboringGridCells(boid, grid).forEach(cell => {
-    cell.forEach(other => {
-      if (isNeighbor(boid, other)) {
-        n.push(other);
-      }
-    });
+  return neighboringGridCells(boid, grid).flatMap(cell => {
+    return cell.filter(other => isNeighbor(boid, other));
   });
-  return n;
-}
+};
 
 const center = (boids) => {
   return {
@@ -294,7 +288,7 @@ const neighboringGridCells = (boid, grid) => {
 
 let grid = null;
 
-const boids = Array(1000).fill().map(randomBoid);
+const boids = Array(2000).fill().map(randomBoid);
 const forces = [
   wallRepulsion,
   randomSpeedChange,
