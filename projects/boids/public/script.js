@@ -1,5 +1,13 @@
 import { setCanvas, drawTriangle, clear, width, height, animate } from './graphics.js';
 
+// This has to come early so graphics width and height are set before we use them.
+// Should really reorganize this, probably by totally rejiggering graphics.js
+
+const canvas = document.getElementById('screen');
+canvas.width = document.documentElement.offsetWidth * 0.95;
+canvas.height = document.documentElement.offsetHeight * 0.95;
+setCanvas(canvas);
+
 ////////////////////////////////////////////////////////////////
 // Mathematical constants
 const TAU = Math.PI * 2;
@@ -113,12 +121,13 @@ const drawBoid = (boid) => {
 ////////////////////////////////////////////////////////////////
 // Simulation machinery
 
-const updatePosition = (b, elapsed) => {
+const updatePosition = (b, elapsed, grid) => {
   b.x = clamp(b.x + 10 * b.dx / elapsed, 0, width);
   b.y = clamp(b.y + 10 * b.dy / elapsed, 0, height);
+  addToGrid(b, grid);
 };
 
-const updateVelocities = (boids, forces) => {
+const updateVelocities = (boids, forces, grid) => {
   // Get all new velocities instantaneously, i.e. compute the new velocity of
   // all boids based on the current state of all other boids and *then* update
   // them all.
@@ -207,34 +216,73 @@ const matching = (boid, nearby) => {
 ////////////////////////////////////////////////////////////////
 // Grid for neighbor eficiency
 
-let grid = null; // Initialized after we get width and height
+const GRID_SIZE = NEARBY_RADIUS * 1.25; // just a guess
+const gridRows = Math.ceil(height / GRID_SIZE)
+const gridColumns = Math.ceil(width / GRID_SIZE);
 
-const grid_rows = Math.floor(height / NEARBY_RADIUS)
-const grid_columns = Math.floor(width / NEARBY_RADIUS);
+const row = (y) => Math.floor(y / GRID_SIZE);
+const column = (x) => Math.floor(x / GRID_SIZE);
 
 const emptyGrid = () => {
-  return Array(grid_rows).fill().map(() => Array(grid_columns).fill().map(() => []));
-};
-
-const cellFor = (grid, x, y) => {
-  return grid[Math.floor(x / NEARBY_RADIUS)][Math.floor(y / NEARBY_RADIUS)];
+  return Array(gridRows).fill().map(() => Array(gridColumns).fill().map(() => []));
 };
 
 const addToGrid = (boid, grid) => {
-  cellFor(grid, boid.x, boid.y).append(boid);
+  if (!grid[row(boid.y)]) debugger;
+  const cell = grid[row(boid.y)][column(boid.x)];
+  if (!cell) debugger;
+  cell.push(boid);
 };
 
 const neighboringGridCells = (boid, grid) => {
-  const cells = [cellFor(grid, boid.x, boid.y)];
-  // XXX figure out neighbors
+  const { x, y } = boid;
+  const r = row(y);
+  const c = column(x);
+
+  const left = c * GRID_SIZE;
+  const right = left + GRID_SIZE;
+  const top = r * GRID_SIZE;
+  const bottom = top + GRID_SIZE;
+
+  // Always include the cell we're in
+  const cells = [grid[r][c]];
+
+  // Check cells to left -- directly and two diagonals
+  if (c > 0) {
+    if (x - left < NEARBY_RADIUS) {
+      cells.push(grid[r][c - 1]);
+      if (r > 0 && distance(boid, { x: left, y: top }) < NEARBY_RADIUS) {
+        cells.push(grid[r - 1][c - 1]);
+      } else if (r < gridRows - 1 && distance(boid, { x: left, y: bottom }) < NEARBY_RADIUS) {
+        cells.push(grid([r + 1][c - 1]));
+      }
+    }
+  }
+
+  // Check cells to right -- directly and two diagonals
+  if (c < gridColumns - 1) {
+    if (right - x < NEARBY_RADIUS) {
+      cells.push(grid[r][c + 1]);
+      if (r > 0 && distance(boid, { x: right, y: top }) < NEARBY_RADIUS) {
+        cells.push(grid[r - 1][c + 1]);
+      } else if (r < gridRows - 1 && distance(boid, { x: right, y: bottom }) < NEARBY_RADIUS) {
+        cells.push(grid([r + 1][c + 1]));
+      }
+    }
+  }
+
+  // Check above and below
+  if (r > 0 && y - top < NEARBY_RADIUS) {
+    cells.push(grid[r - 1][c]);
+  } else if (r < gridRows - 1 && bottom - y < NEARBY_RADIUS) {
+    cells.push(grid[r + 1][c]);
+  }
+
+  return cells;
 };
 
 
-// This has to come early so width and height are set before we use them.
-const canvas = document.getElementById('screen');
-canvas.width = document.documentElement.offsetWidth * 0.95;
-canvas.height = document.documentElement.offsetHeight * 0.95;
-setCanvas(canvas);
+let grid = null;
 
 const boids = Array(1000).fill().map(randomBoid);
 const forces = [
@@ -247,8 +295,9 @@ const forces = [
 ];
 
 animate((elapsed) => {
-  boids.forEach(b => updatePosition(b, elapsed));
+  const grid = emptyGrid();
+  boids.forEach(b => updatePosition(b, elapsed, grid));
   clear();
   boids.forEach(b => drawBoid(b));
-  updateVelocities(boids, forces);
+  updateVelocities(boids, forces, grid);
 });
