@@ -204,6 +204,32 @@ const matching = (boid, nearby) => {
   }
 };
 
+////////////////////////////////////////////////////////////////
+// Grid for neighbor eficiency
+
+let grid = null; // Initialized after we get width and height
+
+const grid_rows = Math.floor(height / NEARBY_RADIUS)
+const grid_columns = Math.floor(width / NEARBY_RADIUS);
+
+const emptyGrid = () => {
+  return Array(grid_rows).fill().map(() => Array(grid_columns).fill().map(() => []));
+};
+
+const cellFor = (grid, x, y) => {
+  return grid[Math.floor(x / NEARBY_RADIUS)][Math.floor(y / NEARBY_RADIUS)];
+};
+
+const addToGrid = (boid, grid) => {
+  cellFor(grid, boid.x, boid.y).append(boid);
+};
+
+const neighboringGridCells = (boid, grid) => {
+  const cells = [cellFor(grid, boid.x, boid.y)];
+  // XXX figure out neighbors
+};
+
+
 // This has to come early so width and height are set before we use them.
 const canvas = document.getElementById('screen');
 canvas.width = document.documentElement.offsetWidth * 0.95;
