@@ -85,8 +85,8 @@ const animate = (drawFrame) => {
   const step = (t) => {
     if (t > previous) {
       drawFrame(t - previous, t);
+      previous = t;
     }
-    previous = t;
     requestAnimationFrame(step);
   };
   requestAnimationFrame(step);
