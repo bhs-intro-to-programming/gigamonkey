@@ -110,16 +110,6 @@ const newVelocity = (b, nearby, forces) => {
 // vectors and then apply them with some clamping on the speed.
 
 /*
- * Stay away from the walls.
- */
-const wallRepulsion = (b) => {
-  return {
-    x: clampMagnitude((WALL_REPULSION / b.x) - (WALL_REPULSION / (width - b.x)), WALL_REPULSION),
-    y: clampMagnitude((WALL_REPULSION / b.y) - (WALL_REPULSION / (height - b.y)), WALL_REPULSION),
-  };
-};
-
-/*
  * Randomly speed up or slow down.
  */
 const randomSpeedChange = (b) => {
@@ -136,6 +126,18 @@ const randomSpeedChange = (b) => {
 const randomTurn = (b) => {
   const amt = Math.floor(Math.random() * MAX_RANDOM_TURN) * randomSign();
   return vector(speed(b) * RANDOM_TURN_FACTOR, direction(b) + amt);
+};
+
+/*
+ * Stay away from the walls.
+ */
+const wallRepulsion = (b) => {
+  const dx = WALL_REPULSION * (1 / b.x - 1 / (width - b.x));
+  const dy = WALL_REPULSION * (1 / b.y - 1 / (height - b.y));
+  return {
+    x: clampMagnitude(dx, WALL_REPULSION),
+    y: clampMagnitude(dy, WALL_REPULSION),
+  };
 };
 
 /*
