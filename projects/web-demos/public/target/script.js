@@ -10,7 +10,6 @@ const randomPosition = (w, h) => {
   };
 };
 
-
 target.onclick = (e) => {
   const { x, y } = randomPosition(target.clientWidth, target.clientHeight);
   target.style.left = `${x}px`;
