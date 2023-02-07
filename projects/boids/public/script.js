@@ -1,4 +1,5 @@
 import { setCanvas, drawTriangle, clear, width, height, animate } from './graphics.js';
+import { TAU, ZERO, randomInt, randomSign, clamp, clampMagnitude, distance, average, sumVectors, angle, vector } from './math.js';
 
 // This has to come early so graphics width and height are set before we use them.
 // Should really reorganize this, probably by totally rejiggering graphics.js
@@ -7,11 +8,6 @@ const canvas = document.getElementById('screen');
 canvas.width = document.documentElement.offsetWidth * 0.95;
 canvas.height = document.documentElement.offsetHeight * 0.95;
 setCanvas(canvas);
-
-////////////////////////////////////////////////////////////////
-// Mathematical constants
-const TAU = Math.PI * 2;
-const ZERO = { x: 0, y: 0 };
 
 ////////////////////////////////////////////////////////////////
 // Parameters
@@ -23,45 +19,6 @@ const NEARBY_RADIUS = SIZE * 12;
 const MAX_RANDOM_TURN = TAU / 20;
 const RANDOM_TURN_FACTOR = 0.1;
 const ANGLE_OF_VISION = TAU * 0.3;
-
-////////////////////////////////////////////////////////////////
-// Utility functions
-
-const randomInt = (n) => Math.floor(Math.random() * n);
-
-const randomSign = () => Math.random() < 0.5 ? -1 : 1;
-
-const clamp = (n, min, max) => (n < min ? min : n > max ? max : n);
-
-const clampMagnitude = (n, magnitude) => clamp(n, -magnitude, magnitude);
-
-const distance = (b1, b2) => Math.hypot(b1.x - b2.x, b1.y - b2.y);
-
-const sumVectors = (vs) => {
-  const sum = { x: 0, y: 0 };
-  vs.forEach(v => {
-    sum.x += v.x;
-    sum.y += v.y;
-  });
-  return sum;
-};
-
-const average = (ns) => ns.reduce((acc, n) => acc + n, 0) / ns.length;
-
-/*
- * Angle of the line from p1 to p2, expressed in radians from from 0 to TAU.
- */
-const angle = (p1, p2) => (TAU + Math.atan2(p2.y - p1.y, p2.x - p1.x)) % TAU;
-
-/*
- * Vector in x,y form with a given magnitude and direction.
- */
-const vector = (magnitude, direction) => {
-  return {
-    x: magnitude * Math.cos(direction),
-    y: magnitude * Math.sin(direction),
-  };
-};
 
 ////////////////////////////////////////////////////////////////
 // Boid functions
