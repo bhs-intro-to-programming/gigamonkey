@@ -5,7 +5,7 @@ const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 const encodeChar = (char, k) => {
   const n = alphabet.indexOf(char.toLowerCase());
   if (n !== -1) {
-    const encoded = alphabet[(n + k) % 26];
+    const encoded = alphabet[(n + k) % alphabet.length];
     return char.toUpperCase() === char ? encoded.toUpperCase() : encoded;
   } else {
     return char;
