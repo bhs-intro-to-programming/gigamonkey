@@ -42,3 +42,11 @@ const overRange = (start, end, fn, init) => {
 const sigma = (start, end, fn) => overRange(start, end, (acc, n) => acc + fn(n), 0);
 
 const pi = (start, end, fn) => overRange(start, end, (acc, n) => acc * fn(n), 1);
+
+const ffh = (n, a, b) => {
+  if (n === 0) {
+    return a;
+  } else {
+    return ffh(n - 1, b, a + b);
+  }
+};
