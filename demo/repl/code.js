@@ -50,3 +50,7 @@ const ffh = (n, a, b) => {
     return ffh(n - 1, b, a + b);
   }
 };
+
+const fastFib = (n) => {
+  return ffh(n, 0, 1);
+}
