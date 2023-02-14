@@ -1,36 +1,148 @@
-import { setCanvas, drawLine, drawCircle, width, height } from './graphics.js';
+import { setCanvas, drawLine, drawCircle, drawText, width, height } from './graphics.js';
 
 // Get the element object reperesenting the canvas defined in the HTML.
 const canvas = document.getElementById('screen')
-
-// This call installs the canvas element so the draw functions from graphics.js
-// will work. It also sets the width and height variables to the size of the
-// canvas.
+canvas.width = document.documentElement.offsetWidth * 0.80;
+canvas.height = document.documentElement.offsetHeight * 0.80;
 setCanvas(canvas);
 
-// Keep track of the most recently clicked point.
-let previous = null;
+const boardSize = Math.min(width, height) * 0.75;
+const boardLeft = (width - boardSize) / 2;
+const boardTop = (height - boardSize) / 2;
+const cellSize = boardSize / 3;
+const fontSize = boardSize / 3;
+const lineEndAdjustment = cellSize * 0.7;
 
-// Intall a click handler on the canvas that whenever the user clicks translates
-// the events offsetX and offsetY properties (which are bascially the position
-// on the canvas of the click) to a new point and draws a small circle. Also
-// after the first click it draws a line from the previously clicked point to
-// the new point.
-canvas.onclick = (e) => {
+let move = 0;
 
-  // Make a point object for the point that was just clicked.
-  const p = { x: e.offsetX, y: e.offsetY };
+const board = [
+  ['', '', ''],
+  ['', '', ''],
+  ['', '', ''],
+];
 
-  // Draw a circle at the new point.
-  drawCircle(p.x, p.y, 5, 'black');
+const lines = [
+  // Rows
+  [[0, 0], [0, 1], [0, 2]],
+  [[1, 0], [1, 1], [1, 2]],
+  [[2, 0], [2, 1], [2, 2]],
 
-  // If the previously clicked point p is not null, i.e. we've been clicked at
-  // least once already, draw a line between the previous point and the new
-  // point.
-  if (previous !== null) {
-    drawLine(previous.x, previous.y, p.x, p.y, 'black');
+  // Cols
+  [[0, 0], [1, 0], [2, 0]],
+  [[0, 1], [1, 1], [2, 1]],
+  [[0, 2], [1, 2], [2, 2]],
+
+  // Diagonals
+  [[0, 0], [1, 1], [2, 2]],
+  [[2, 0], [1, 1], [0, 2]],
+];
+
+
+const drawBoard = () => {
+  const x1 = boardLeft + cellSize;
+  const x2 = boardLeft + 2 * cellSize;
+  const y1 = boardTop + cellSize;
+  const y2 = boardTop + 2 * cellSize;;
+  drawLine(x1, boardTop, x1, boardTop + boardSize, 'grey', 2);
+  drawLine(x2, boardTop, x2, boardTop + boardSize, 'grey', 2);
+  drawLine(boardLeft, y1, boardLeft + boardSize, y1, 'grey', 2);
+  drawLine(boardLeft, y2, boardLeft + boardSize, y2, 'grey', 2);
+};
+
+const drawMarker = (marker, r, c) => {
+  const [x, y] = cellCenter(r, c);
+  const nudge = marker === 'O' ? cellSize / 9 : cellSize / 19;
+  drawText(marker, x - (fontSize * 0.3 + nudge), y + fontSize * 0.3, 'black', fontSize);
+};
+
+const cellCenter = (r, c) => {
+  return [
+    boardLeft + c * cellSize + cellSize / 2,
+    boardTop + r * cellSize + cellSize / 2
+  ];
+};
+
+const coordinates = (x, y) => {
+  return [
+    Math.floor((y - boardTop) / cellSize),
+    Math.floor((x - boardLeft) / cellSize)
+  ];
+}
+
+const validCoordinate = (c) => 0 <= c && c < 3;
+
+const validMove = (r, c) => {
+  return validCoordinate(r) && validCoordinate(c) && board[r][c] === '';
+}
+
+const makeMove = (r, c) => {
+  const marker = move % 2 === 0 ? 'X' : 'O';
+  drawMarker(marker, r, c);
+  board[r][c] = marker;
+  move++;
+}
+
+const isWinner = () => findWinner() !== null;
+
+const findWinner = () => {
+  for (let i = 0; i < lines.length; i++) {
+    if (isWinningLine(lines[i])) {
+      return lines[i];
+    }
+  }
+  return null;
+};
+
+const isWinningLine = (line) => {
+  const marker = markerAt(line[0]);
+  if (marker !== '') {
+    return marker === markerAt(line[1]) && marker === markerAt(line[2]);
+  } else {
+    return false;
+  }
+};
+
+const markerAt = (coord) => {
+  const [r, c] = coord; // e.g. [0, 0]
+  return board[r][c];
+};
+
+const drawThreeInARow = (winner) => {
+  const [r1, c1] = winner[0];
+  const [r2, c2] = winner[winner.length - 1];
+
+  const [x1, y1] = cellCenter(r1, c1);
+  const [x2, y2] = cellCenter(r2, c2);
+
+  let adjX1 = x1;
+  let adjX2 = x2;
+  let adjY1 = y1;
+  let adjY2 = y2;
+
+  if (y1 === y2 || x1 !== x2) {
+    adjX1 -= lineEndAdjustment;
+    adjX2 += lineEndAdjustment;
   }
 
-  // Make the new point the new value of the previous point.
-  previous = p;
+  if (x1 === x2 || y1 !== y2) {
+    const slope = y1 < y2 ? 1 : -1;
+    adjY1 -= (slope * lineEndAdjustment);
+    adjY2 += (slope * lineEndAdjustment);
+  }
+
+  drawLine(adjX1, adjY1, adjX2, adjY2, 'red', 15);
 };
+
+canvas.onclick = (e) => {
+  const [r, c] = coordinates(e.offsetX, e.offsetY);
+  if (!isWinner() && validMove(r, c)) {
+    makeMove(r, c);
+    const winner = findWinner();
+    if (winner !== null) {
+      drawThreeInARow(winner);
+    }
+  }
+};
+
+
+drawBoard();
