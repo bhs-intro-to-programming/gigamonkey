@@ -54,3 +54,11 @@ const ffh = (n, a, b) => {
 const fastFib = (n) => {
   return ffh(n, 0, 1);
 }
+
+const fibtree = (n) => {
+  if (n < 2) {
+    return 1;
+  } else {
+    return 1 + fibtree(n - 2) + fibtree(n - 1);
+  }
+}
