@@ -148,5 +148,3 @@ registerOnclick((x, y) => {
     }
   }
 });
-
-aoneuhasoneuht
