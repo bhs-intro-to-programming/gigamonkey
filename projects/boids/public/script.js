@@ -1,4 +1,4 @@
-import { setCanvas, drawTriangle, clear, width, height, animate } from './graphics.js';
+import { setCanvas, drawTriangle, drawCircle, clear, width, height, animate } from './graphics.js';
 import { TAU, ZERO, randomInt, randomSign, clamp, clampMagnitude, distance, distanceSquared, average, sumVectors, angle, vector } from './math.js';
 
 // This has to come early so graphics width and height are set before we use them.
@@ -11,15 +11,17 @@ setCanvas(canvas);
 
 ////////////////////////////////////////////////////////////////
 // Parameters
+
 const SIZE = 5;
 const SPEED_LIMIT = 20;
 const WALL_REPULSION = 100;
 const BOID_REPULSION = 50;
-const NEARBY_RADIUS = SIZE * 12;
+const NEARBY_RADIUS = SIZE * 10;
 const NEARBY_RADIUS_SQUARED = NEARBY_RADIUS ** 2;
 const MAX_RANDOM_TURN = TAU / 20;
 const RANDOM_TURN_FACTOR = 0.1;
 const ANGLE_OF_VISION = TAU * 0.3;
+const DRAW_CIRCLE = false;
 
 ////////////////////////////////////////////////////////////////
 // Boid functions
@@ -86,7 +88,12 @@ const drawBoid = (boid) => {
   const rightTail = sumVectors([boid, vector(SIZE, (d + TAU / 2 + x) % TAU)]);
   const nose = sumVectors([boid, vector(SIZE, d)]);
 
+
   drawTriangle(leftTail.x, leftTail.y, rightTail.x, rightTail.y, nose.x, nose.y, 'black');
+
+  if (DRAW_CIRCLE && boid === boids[0]) {
+    drawCircle(boid.x, boid.y, NEARBY_RADIUS, 'blue');
+  }
 };
 
 ////////////////////////////////////////////////////////////////
@@ -189,7 +196,7 @@ const matching = (boid, nearby) => {
 ////////////////////////////////////////////////////////////////
 // Grid for neighbor eficiency
 
-const GRID_SIZE = NEARBY_RADIUS * 1.25; // just a guess
+const GRID_SIZE = NEARBY_RADIUS * 2.25; // just a guess
 const gridRows = Math.ceil(height / GRID_SIZE)
 const gridColumns = Math.ceil(width / GRID_SIZE);
 
@@ -269,5 +276,10 @@ animate((elapsed) => {
   boids.forEach(b => updatePosition(b, elapsed, grid));
   clear();
   boids.forEach(b => drawBoid(b));
-  updateVelocities(boids, forces, grid);
+  let x;
+  if (x !== void 0) {
+    updateVelocities(boids, forces.slice(0,x), grid);
+  } else {
+    updateVelocities(boids, forces.slice(0,x), grid);
+  }
 });
