@@ -49,10 +49,10 @@ const randomBoid = () => {
 };
 
 const isNeighbor = (boid, other) => {
-  return boid !== other &&
-    distanceSquared(boid, other) <= NEARBY_RADIUS_SQUARED &&
-    canSee(boid, other);
+  return boid !== other && isClose(boid, other) && canSee(boid, other);
 };
+
+const isClose = (a, b) => distanceSquared(a, b) < NEARBY_RADIUS_SQUARED;
 
 const canSee = (boid, other) => {
   const theta = Math.abs(boid.direction - angle(boid, other));
@@ -224,9 +224,9 @@ const neighboringGridCells = (boid, grid) => {
   if (c > 0) {
     if (x - left < NEARBY_RADIUS) {
       cells.push(grid[r][c - 1]);
-      if (r > 0 && distanceSquared(boid, { x: left, y: top }) < NEARBY_RADIUS_SQUARED) {
+      if (r > 0 && isClose(boid, { x: left, y: top })) {
         cells.push(grid[r - 1][c - 1]);
-      } else if (r < gridRows - 1 && distanceSquared(boid, { x: left, y: bottom }) < NEARBY_RADIUS_SQUARED) {
+      } else if (r < gridRows - 1 && isClose(boid, { x: left, y: bottom })) {
         cells.push(grid[r + 1][c - 1]);
       }
     }
@@ -236,9 +236,9 @@ const neighboringGridCells = (boid, grid) => {
   if (c < gridColumns - 1) {
     if (right - x < NEARBY_RADIUS) {
       cells.push(grid[r][c + 1]);
-      if (r > 0 && distanceSquared(boid, { x: right, y: top }) < NEARBY_RADIUS_SQUARED) {
+      if (r > 0 && isClose(boid, { x: right, y: top })) {
         cells.push(grid[r - 1][c + 1]);
-      } else if (r < gridRows - 1 && distanceSquared(boid, { x: right, y: bottom }) < NEARBY_RADIUS_SQUARED) {
+      } else if (r < gridRows - 1 && isClose(boid, { x: right, y: bottom })) {
         cells.push(grid[r + 1][c + 1]);
       }
     }
