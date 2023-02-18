@@ -65,6 +65,10 @@ const angle = (p1, p2) => (TAU + Math.atan2(p2.y - p1.y, p2.x - p1.x)) % TAU;
  */
 const distance = (b1, b2) => Math.hypot(b1.x - b2.x, b1.y - b2.y);
 
+
+const distanceSquared = (b1, b2) => (b1.x - b2.x) ** 2 + (b1.y - b2.y) ** 2;
+
+
 /*
  * The distance on the x-axis of moving a total distance at a given angle.
  */
@@ -84,6 +88,7 @@ export {
   clamp,
   clampMagnitude,
   distance,
+  distanceSquared,
   randomInt,
   randomSign,
   sumVectors,

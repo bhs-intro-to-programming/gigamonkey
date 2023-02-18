@@ -1,5 +1,5 @@
 import { setCanvas, drawTriangle, clear, width, height, animate } from './graphics.js';
-import { TAU, ZERO, randomInt, randomSign, clamp, clampMagnitude, distance, average, sumVectors, angle, vector } from './math.js';
+import { TAU, ZERO, randomInt, randomSign, clamp, clampMagnitude, distance, distanceSquared, average, sumVectors, angle, vector } from './math.js';
 
 // This has to come early so graphics width and height are set before we use them.
 // Should really reorganize this, probably by totally rejiggering graphics.js
@@ -12,10 +12,11 @@ setCanvas(canvas);
 ////////////////////////////////////////////////////////////////
 // Parameters
 const SIZE = 5;
-const SPEED_LIMIT = 30;
-const WALL_REPULSION = 200;
-const BOID_REPULSION = 100;
+const SPEED_LIMIT = 20;
+const WALL_REPULSION = 100;
+const BOID_REPULSION = 50;
 const NEARBY_RADIUS = SIZE * 12;
+const NEARBY_RADIUS_SQUARED = NEARBY_RADIUS ** 2;
 const MAX_RANDOM_TURN = TAU / 20;
 const RANDOM_TURN_FACTOR = 0.1;
 const ANGLE_OF_VISION = TAU * 0.3;
@@ -24,7 +25,9 @@ const ANGLE_OF_VISION = TAU * 0.3;
 // Boid functions
 
 const boid = (x, y, dx, dy) => {
-  return { x, y, dx, dy };
+  const b = { x, y, dx, dy };
+  b.direction = direction(b);
+  return b;
 };
 
 const speed = (boid) => Math.hypot(boid.dx, boid.dy);
@@ -34,6 +37,7 @@ const direction = (boid) => angle(ZERO, { x: boid.dx, y: boid.dy });
 const setVelocity = (b, v) => {
   b.dx = v.dx;
   b.dy = v.dy;
+  b.direction = direction(v);
 };
 
 const randomBoid = () => {
@@ -46,19 +50,25 @@ const randomBoid = () => {
 
 const isNeighbor = (boid, other) => {
   return boid !== other &&
-    distance(boid, other) <= NEARBY_RADIUS &&
+    distanceSquared(boid, other) <= NEARBY_RADIUS_SQUARED &&
     canSee(boid, other);
 };
 
 const canSee = (boid, other) => {
-  const theta = Math.abs(direction(boid) - angle(boid, other));
+  const theta = Math.abs(boid.direction - angle(boid, other));
   return Math.min(theta, TAU - theta) < ANGLE_OF_VISION;
 };
 
 const neighbors = (boid, grid) => {
-  return neighboringGridCells(boid, grid).flatMap(cell => {
-    return cell.filter(other => isNeighbor(boid, other));
-  });
+  const ns = [];
+  for (const cell of neighboringGridCells(boid, grid)) {
+    for (const other of cell) {
+      if (isNeighbor(boid, other)) {
+        ns.push(other);
+      }
+    }
+  }
+  return ns;
 };
 
 const center = (boids) => {
@@ -70,7 +80,7 @@ const center = (boids) => {
 
 const drawBoid = (boid) => {
   // A trangle with center at center and nose pointing in the right direction.
-  const d = direction(boid);
+  const d = boid.direction;
   const x = 0.6;
   const leftTail = sumVectors([boid, vector(SIZE, (d + TAU / 2 - x) % TAU)])
   const rightTail = sumVectors([boid, vector(SIZE, (d + TAU / 2 + x) % TAU)]);
@@ -125,7 +135,7 @@ const randomSpeedChange = (b) => {
  */
 const randomTurn = (b) => {
   const amt = Math.floor(Math.random() * MAX_RANDOM_TURN) * randomSign();
-  return vector(speed(b) * RANDOM_TURN_FACTOR, direction(b) + amt);
+  return vector(speed(b) * RANDOM_TURN_FACTOR, b.direction + amt);
 };
 
 /*
@@ -214,9 +224,9 @@ const neighboringGridCells = (boid, grid) => {
   if (c > 0) {
     if (x - left < NEARBY_RADIUS) {
       cells.push(grid[r][c - 1]);
-      if (r > 0 && distance(boid, { x: left, y: top }) < NEARBY_RADIUS) {
+      if (r > 0 && distanceSquared(boid, { x: left, y: top }) < NEARBY_RADIUS_SQUARED) {
         cells.push(grid[r - 1][c - 1]);
-      } else if (r < gridRows - 1 && distance(boid, { x: left, y: bottom }) < NEARBY_RADIUS) {
+      } else if (r < gridRows - 1 && distanceSquared(boid, { x: left, y: bottom }) < NEARBY_RADIUS_SQUARED) {
         cells.push(grid[r + 1][c - 1]);
       }
     }
@@ -226,9 +236,9 @@ const neighboringGridCells = (boid, grid) => {
   if (c < gridColumns - 1) {
     if (right - x < NEARBY_RADIUS) {
       cells.push(grid[r][c + 1]);
-      if (r > 0 && distance(boid, { x: right, y: top }) < NEARBY_RADIUS) {
+      if (r > 0 && distanceSquared(boid, { x: right, y: top }) < NEARBY_RADIUS_SQUARED) {
         cells.push(grid[r - 1][c + 1]);
-      } else if (r < gridRows - 1 && distance(boid, { x: right, y: bottom }) < NEARBY_RADIUS) {
+      } else if (r < gridRows - 1 && distanceSquared(boid, { x: right, y: bottom }) < NEARBY_RADIUS_SQUARED) {
         cells.push(grid[r + 1][c + 1]);
       }
     }
