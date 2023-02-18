@@ -108,29 +108,13 @@ const markerAt = (coord) => {
 };
 
 const drawThreeInARow = (winner) => {
-  const [r1, c1] = winner[0];
-  const [r2, c2] = winner[winner.length - 1];
+  const [x1, y1] = cellCenter(...winner[0]);
+  const [x2, y2] = cellCenter(...winner[2]);
 
-  const [x1, y1] = cellCenter(r1, c1);
-  const [x2, y2] = cellCenter(r2, c2);
+  const dx = Math.sign(x2 - x1) * lineEndAdjustment;
+  const dy = Math.sign(y2 - y1) * lineEndAdjustment;
 
-  let adjX1 = x1;
-  let adjX2 = x2;
-  let adjY1 = y1;
-  let adjY2 = y2;
-
-  if (y1 === y2 || x1 !== x2) {
-    adjX1 -= lineEndAdjustment;
-    adjX2 += lineEndAdjustment;
-  }
-
-  if (x1 === x2 || y1 !== y2) {
-    const slope = y1 < y2 ? 1 : -1;
-    adjY1 -= (slope * lineEndAdjustment);
-    adjY2 += (slope * lineEndAdjustment);
-  }
-
-  drawLine(adjX1, adjY1, adjX2, adjY2, 'red', 15);
+  drawLine(x1 - dx, y1 - dy, x2 + dx, y2 + dy, 'red', 15);
 };
 
 canvas.onclick = (e) => {
