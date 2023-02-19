@@ -196,7 +196,7 @@ const matching = (boid, nearby) => {
 ////////////////////////////////////////////////////////////////
 // Grid for neighbor eficiency
 
-const GRID_SIZE = NEARBY_RADIUS * 2.25; // just a guess
+const GRID_SIZE = NEARBY_RADIUS;
 const gridRows = Math.ceil(height / GRID_SIZE)
 const gridColumns = Math.ceil(width / GRID_SIZE);
 
@@ -219,49 +219,22 @@ const neighboringGridCells = (boid, grid) => {
   const r = row(y);
   const c = column(x);
 
-  const left = c * GRID_SIZE;
-  const right = left + GRID_SIZE;
-  const top = r * GRID_SIZE;
-  const bottom = top + GRID_SIZE;
-
-  // Always include the cell we're in
-  const cells = [grid[r][c]];
-
-  // Check cells to left -- directly and two diagonals
-  if (c > 0) {
-    if (x - left < NEARBY_RADIUS) {
-      cells.push(grid[r][c - 1]);
-      if (r > 0 && isClose(boid, { x: left, y: top })) {
-        cells.push(grid[r - 1][c - 1]);
-      } else if (r < gridRows - 1 && isClose(boid, { x: left, y: bottom })) {
-        cells.push(grid[r + 1][c - 1]);
+  const cells = [];
+  for (let i = -1; i < 2; i++) {
+    for (let j = -1; j < 2; j++) {
+      const r1 = r + i;
+      if (0 <= r1 && r1 < gridRows) {
+        const c1 = c + j;
+        if (0 <= c1 && c1 < gridColumns) {
+          cells.push(grid[r1][c1]);
+        }
       }
     }
   }
-
-  // Check cells to right -- directly and two diagonals
-  if (c < gridColumns - 1) {
-    if (right - x < NEARBY_RADIUS) {
-      cells.push(grid[r][c + 1]);
-      if (r > 0 && isClose(boid, { x: right, y: top })) {
-        cells.push(grid[r - 1][c + 1]);
-      } else if (r < gridRows - 1 && isClose(boid, { x: right, y: bottom })) {
-        cells.push(grid[r + 1][c + 1]);
-      }
-    }
-  }
-
-  // Check above and below
-  if (r > 0 && y - top < NEARBY_RADIUS) {
-    cells.push(grid[r - 1][c]);
-  } else if (r < gridRows - 1 && bottom - y < NEARBY_RADIUS) {
-    cells.push(grid[r + 1][c]);
-  }
-
   return cells;
 };
 
-const boids = Array(2000).fill().map(randomBoid);
+const boids = Array(2500).fill().map(randomBoid);
 const forces = [
   randomSpeedChange,
   randomTurn,
