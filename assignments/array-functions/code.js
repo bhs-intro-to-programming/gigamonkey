@@ -37,7 +37,7 @@ const xanyOverOneHundred = (ns) => {
   return false;
 };
 
-const anyOverOneHundred = (ns) => ns.find(n => n > 100) !== undefined;
+const anyOverOneHundred = (ns) => ns.some(n => n > 100);
 
 const xpyramid = (n) => {
   const p = [];
