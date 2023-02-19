@@ -1,3 +1,17 @@
+const ciphertext = document.querySelector('#ciphertext');
+const key = document.querySelector('#key');
+
+
+ciphertext.onchange = (e) => {
+  record(e.target, e.target.value);
+};
+
+key.onchange = (e) => {
+  record(e.target, e.target.value);
+};
+
+
+
 // Add a div to every fieldset for logging input events.
 document.querySelectorAll('fieldset').forEach(fs => fs.append(document.createElement('div')));
 
@@ -7,15 +21,4 @@ const record = (element, text) => {
   element.closest('fieldset').querySelector('div').append(p);
 }
 
-const addOnChange = (element) => {
-  element.onchange = (e) => {
-    if (e.target.getAttribute('type') === 'checkbox') {
-      record(e.target, `${e.target.value} is checked: ${e.target.checked}`);
-    } else {
-      record(e.target, e.target.value);
-    }
-  }
-};
 
-document.querySelectorAll('button').forEach(el => el.onclick = (e) => record(e.target, 'Clicked!'));
-document.querySelectorAll('input, textarea, select').forEach(addOnChange);
