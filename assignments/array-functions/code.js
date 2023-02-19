@@ -1,4 +1,4 @@
-const countTens = (ns) => {
+const xcountTens = (ns) => {
   let count = 0;
   for (let i = 0; i < ns.length; i++) {
     if (ns[i] === 10) {
@@ -7,6 +7,8 @@ const countTens = (ns) => {
   }
   return count;
 };
+
+const countTens = (ns) => ns.reduce((acc, n) => acc + n === 10, 0);
 
 const sum = (ns) => {
   let total = 0;
