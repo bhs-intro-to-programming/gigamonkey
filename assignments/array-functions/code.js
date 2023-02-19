@@ -28,7 +28,7 @@ const evens = (ns) => {
   return even;
 };
 
-const anyOverOneHundred = (ns) => {
+const xanyOverOneHundred = (ns) => {
   for (let i = 0; i < ns.length; i++) {
     if (ns[i] > 100) {
       return true;
@@ -36,6 +36,8 @@ const anyOverOneHundred = (ns) => {
   }
   return false;
 };
+
+const anyOverOneHundred = (ns) => ns.find(n => n > 100);
 
 const xpyramid = (n) => {
   const p = [];
