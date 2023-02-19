@@ -8,7 +8,7 @@ const xcountTens = (ns) => {
   return count;
 };
 
-const countTens = (ns) => ns.reduce((acc, n) => acc + n === 10, 0);
+const countTens = (ns) => ns.reduce((acc, n) => acc + n === 10 ? 1 : 0, 0);
 
 const sum = (ns) => {
   let total = 0;
