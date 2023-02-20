@@ -17,5 +17,4 @@ const addOnChange = (element) => {
   }
 };
 
-document.querySelectorAll('button').forEach(el => el.onclick = (e) => record(e.target, 'Clicked!'));
-document.querySelectorAll('input, textarea, select').forEach(addOnChange);
+document.querySelectorAll('input, textarea').forEach(addOnChange);
