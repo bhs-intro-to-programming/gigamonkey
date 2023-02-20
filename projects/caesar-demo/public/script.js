@@ -7,6 +7,7 @@ const recordCiphertext = (e) => {
 };
 
 const encrypt = (text, key) => {
+  // TODO: actually implement caesar cipher.
   return `key: ${key}; plaintext: ${text}`;
 };
 
