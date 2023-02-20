@@ -1,19 +1,16 @@
 const plaintext = document.getElementById('plaintext');
 const key = document.getElementById('key');
+const ciphertext = document.getElementById('ciphertext');
 
-// Add a div to every fieldset for logging input events.
-document.querySelectorAll('fieldset').forEach(fs => fs.append(document.createElement('div')));
+const recordCiphertext = () => {
+  ciphertext.innerText = encrypt(plaintext.value, key.value);
+};
 
-const record = (element, text) => {
-  const p = document.createElement('p');
-  p.innerText = text;
-  element.closest('fieldset').querySelector('div').append(p);
+const encrypt = (text, key) => {
+  // TODO: implement Caeser cipher here.
+  return `key: ${key}; text: ${text}`;
 }
 
-plaintext.onchange = (e) => {
-  record(e.target, e.target.value);
-};
+plaintext.onchange = recordCiphertext;
+key.onchange = recordCiphertext;
 
-key.onchange = (e) => {
-  record(e.target, e.target.value);
-};

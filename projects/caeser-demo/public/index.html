@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width,initial-scale=1" name="viewport">
@@ -7,18 +8,12 @@
   <link href="style.css" rel="stylesheet" type="text/css">
   <script src="script.js" type="module"></script>
 </head>
+
 <body>
   <h1>Caeser cipher</h1>
-  <div id="elements">
-
-    <fieldset>
-      <textarea id="plaintext"></textarea>
-    </fieldset>
-
-    <fieldset>
-      <input id="key" type="range" min="0" max="25" value="13"></input>
-    </fieldset>
-
-  </div>
+  <textarea id="plaintext"></textarea>
+  <input id="key" type="range" min="0" max="25" value="13"></input>
+  <p id="ciphertext"></p>
 </body>
+
 </html>
