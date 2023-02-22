@@ -73,8 +73,7 @@ const isInBounds = (n) => 0 <= n && n < 3;
 
 const makeMove = (r, c) => {
   const marker = move % 2 === 0 ? 'X' : 'O';
-  const x = boardLeft + c * cellSize + cellSize / 2;
-  const y = boardTop + r * cellSize + cellSize / 2;
+  const [x, y] = cellCenter(r, c);
   const nudge = marker === 'O' ? cellSize / 9 : cellSize / 19;
   drawText(marker, x - (fontSize * 0.3 + nudge), y + fontSize * 0.3, 'black', fontSize);
   board[r][c] = marker;
@@ -90,13 +89,16 @@ const cellCenter = (r, c) => {
 
 const maybeDrawWinnerLine = (winner) => {
   if (winner) {
+    drawWinnerLine(winner);
+  }
+};
+
+const drawWinnerLine = (winner) => {
     const [x1, y1] = cellCenter(...winner[0]);
     const [x2, y2] = cellCenter(...winner[2]);
-
     const dx = Math.sign(x2 - x1) * lineEndAdjustment;
     const dy = Math.sign(y2 - y1) * lineEndAdjustment;
     drawLine(x1 - dx, y1 - dy, x2 + dx, y2 + dy, 'red', 15);
-  }
 };
 
 const gameOver = () => findWinner() || move === 9;
