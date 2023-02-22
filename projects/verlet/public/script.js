@@ -8,7 +8,6 @@ canvas.width = document.documentElement.offsetWidth * 0.75;
 canvas.height = document.documentElement.offsetHeight * 0.75;
 
 class Vector {
-
   static zero = new Vector(0, 0);
 
   constructor(x, y) {
@@ -25,7 +24,7 @@ class Vector {
   }
 
   times(n) {
-    return new Vector(this.x * n, this.y * n)
+    return new Vector(this.x * n, this.y * n);
   }
 
   divide(n) {
@@ -111,7 +110,7 @@ const collisions = () => {
       const dist = axis.length();
       if (dist < b1.radius + b2.radius) {
         const n = axis.divide(dist);
-        const bounce = n.times(((b1.radius + b2.radius) - dist) * 0.5);
+        const bounce = n.times((b1.radius + b2.radius - dist) * 0.5);
         b1.position = b1.position.plus(bounce);
         b2.position = b2.position.minus(bounce);
       }
@@ -119,14 +118,12 @@ const collisions = () => {
   }
 };
 
-
-
 animate((elapsed, t) => {
   spawn(t);
-  balls.forEach(b => b.accelerate(gravity));
-  balls.forEach(b => constrain(b));
+  balls.forEach((b) => b.accelerate(gravity));
+  balls.forEach((b) => constrain(b));
   collisions();
-  balls.forEach(b => b.updatePosition(elapsed));
+  balls.forEach((b) => b.updatePosition(elapsed));
   drawBackground(g);
-  balls.forEach(b => b.draw(g));
+  balls.forEach((b) => b.draw(g));
 });
