@@ -49,17 +49,21 @@ const drawBoard = () => {
 
 const findWinner = () => {
   for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-    const ms = [];
-    for (let j = 0; j < 3; j++) {
-      const [r, c] = line[j];
-      ms.push(board[r][c]);
-    }
-    if (ms[0] !== '' && allTheSame(ms)) {
-      return line;
+    const marks = extractLine(lines[i]);
+    if (marks[0] !== '' && allTheSame(marks)) {
+      return lines[i];
     }
   }
   return null;
+};
+
+const extractLine = (line) => {
+  const ms = [];
+  for (let j = 0; j < 3; j++) {
+    const [r, c] = line[j];
+    ms.push(board[r][c]);
+  }
+  return ms;
 };
 
 const allTheSame = (ms) => ms[0] === ms[1] && ms[0] === ms[2];
