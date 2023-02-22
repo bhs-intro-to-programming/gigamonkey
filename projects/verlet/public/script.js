@@ -1,52 +1,80 @@
 import { animate } from './animation.js';
 import graphics from './graphics.js';
 
-const distance = (a, b) => Math.abs(a - b);
-
-const clamp = (n, min, max) => (n < min ? min : n > max ? max : n);
-
-const launch = (b, speed, direction) => {
-  b.dx = Math.cos(direction) * speed;
-  b.dy = Math.sin(direction) * speed;
-};
-
-const drawBall = (g, b) => {
-  g.drawFilledCircle(b.x, b.y, b.size, 'blue');
-};
-
-const updatePosition = (b, width, height, elapsed) => {
-  maybeBounce(b, width, height);
-  b.x = clamp(b.x + b.dx * elapsed, 0, width);
-  b.y = clamp(b.y + b.dy * elapsed, 0, height);
-};
-
-const maybeBounce = (b, width, height) => {
-  if (Math.min(distance(b.x, 0), distance(b.x, width)) < b.size) {
-    b.dx *= -1;
-  }
-  if (Math.min(distance(b.y, 0), distance(b.y, height)) < b.size) {
-    b.dy *= -1;
-  }
-};
+// Based on https://www.youtube.com/watch?v=lS_qeBy3aQI
 
 const canvas = document.getElementById('screen');
 canvas.width = document.documentElement.offsetWidth * 0.75;
 canvas.height = document.documentElement.offsetHeight * 0.75;
 
-const ball = {
-  x: canvas.width / 2,
-  y: canvas.height / 2,
-  size: 15,
-  dx: 0,
-  dy: 0,
-};
+class Vector {
+
+  static zero = new Vector(0, 0);
+
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  plus(other) {
+    return new Vector(this.x + other.x, this.y + other.y);
+  }
+
+  minus(other) {
+    return new Vector(this.x - other.x, this.y - other.y);
+  }
+
+  times(n) {
+    return new Vector(this.x * n, this.y * n)
+  }
+}
+
+class Ball {
+  constructor(position, oldPosition, acceleration, radius = 50) {
+    this.position = position;
+    this.oldPosition = oldPosition;
+    this.acceleration = acceleration;
+    this.radius = radius;
+  }
+
+  updatePosition(dt) {
+    const v = this.position.minus(this.oldPosition);
+    this.oldPosition = this.position;
+    this.position = this.position.plus(v).plus(this.acceleration.times(dt ** 2));
+    this.acceleration = Vector.zero;
+  }
+
+  accelerate(acc) {
+    this.acceleration = this.acceleration.plus(acc);
+  }
+
+  draw(g) {
+    const { x, y } = this.position;
+    //console.log(`x: ${x}; y: ${y}`)
+    g.drawFilledCircle(x, y, this.radius, '#00f9');
+  }
+}
 
 const g = graphics(canvas);
+const mid = new Vector(g.width / 2, g.height / 2);
+const gravity = new Vector(0, 0.0001);
 
-launch(ball, 1.5, Math.random() * Math.PI * 2);
+const balls = [new Ball(mid, mid, Vector.zero, 20)];
+
+const drawBackground = (g) => {
+  g.clear();
+  g.drawFilledRect(0, 0, g.width, g.height, '#888');
+  g.drawFilledCircle(g.width / 2, g.height / 2, (Math.min(g.width, g.height) / 2) * 0.85, 'white');
+};
+
+const applyGravity = () => {
+  balls.forEach(b => b.accelerate(gravity));
+}
+
 
 animate((elapsed) => {
-  updatePosition(ball, canvas.width, canvas.height, elapsed);
-  g.clear();
-  drawBall(g, ball);
+  applyGravity();
+  balls.forEach(b => b.updatePosition(elapsed));
+  drawBackground(g);
+  balls.forEach(b => b.draw(g));
 });
