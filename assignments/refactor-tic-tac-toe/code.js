@@ -131,12 +131,11 @@ registerOnclick((x, y) => {
   const c = Math.floor((x - boardLeft) / cellSize);
 
   // Only do anything if it's a legal move and the game isn't over.
-  let winner = findWinner();
-  if (winner === null && isLegalMove(r, c)) {
+  if (findWinner() === null && isLegalMove(r, c)) {
     makeMove(r, c);
 
     // Check if there's a winner now
-    winner = findWinner();
+    const winner = findWinner();
     if (winner !== null) {
       drawWinnerLine(winner);
     }
