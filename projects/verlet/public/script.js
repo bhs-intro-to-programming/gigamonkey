@@ -72,13 +72,19 @@ const radius = (Math.min(g.width, g.height) / 2) * 0.85;
 
 const startAt = (x, y) => {
   const start = new Vector(x, y);
-  return new Ball(start, start, Vector.zero, Math.floor(10 + Math.random() * 10));
+  return new Ball(start, start, Vector.zero, Math.floor(5 + Math.random() * 10));
 };
 
-const balls = [
-  startAt(mid.x + 100, mid.y),
-  startAt(mid.x + 124, mid.y - 200)
-];
+const balls = [];
+
+let next = 0;
+
+const spawn = (t) => {
+  if (t > next) {
+    balls.push(startAt(mid.x + 100, mid.y));
+    next = t + 250;
+  }
+};
 
 const drawBackground = (g) => {
   g.clear();
@@ -113,7 +119,10 @@ const collisions = () => {
   }
 };
 
-animate((elapsed) => {
+
+
+animate((elapsed, t) => {
+  spawn(t);
   balls.forEach(b => b.accelerate(gravity));
   balls.forEach(b => constrain(b));
   collisions();
