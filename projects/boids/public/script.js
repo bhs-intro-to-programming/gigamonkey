@@ -88,7 +88,6 @@ const drawBoid = (boid) => {
   const rightTail = sumVectors([boid, vector(SIZE, (d + TAU / 2 + x) % TAU)]);
   const nose = sumVectors([boid, vector(SIZE, d)]);
 
-
   drawTriangle(leftTail.x, leftTail.y, rightTail.x, rightTail.y, nose.x, nose.y, 'black');
 
   if (DRAW_CIRCLE && boid === boids[0]) {
