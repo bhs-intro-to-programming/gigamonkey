@@ -37,15 +37,19 @@ const toBoardCoordinates = (x, y) => {
 };
 
 const drawBoard = () => {
-  const x1 = boardLeft + cellSize;
-  const x2 = boardLeft + 2 * cellSize;
-  const y1 = boardTop + cellSize;
-  const y2 = boardTop + 2 * cellSize;;
-  drawLine(x1, boardTop, x1, boardTop + boardSize, 'grey', 2);
-  drawLine(x2, boardTop, x2, boardTop + boardSize, 'grey', 2);
-  drawLine(boardLeft, y1, boardLeft + boardSize, y1, 'grey', 2);
-  drawLine(boardLeft, y2, boardLeft + boardSize, y2, 'grey', 2);
+  drawVertical(boardLeft + cellSize);
+  drawVertical(boaldLeft + 2 * cellSize);
+  drawHorizontal(boardTop + cellSize);
+  drawHorizontal(boardTop + 2 * cellSize);
 };
+
+const drawVertical = (x) => {
+  drawLine(x, boardTop, x, boardTop + boardSize, 'grey', 2);
+
+}
+const drawHorizontal = (y) => {
+  drawLine(boardLeft, y, boardLeft + boardSize, y, 'grey', 2);
+}
 
 const findWinner = () => {
   for (let i = 0; i < lines.length; i++) {
@@ -82,14 +86,14 @@ const drawMarker = (marker, r, c) => {
   const [x, y] = cellCenter(r, c);
   const nudge = marker === 'O' ? cellSize / 9 : cellSize / 19;
   drawText(marker, x - (fontSize * 0.3 + nudge), y + fontSize * 0.3, 'black', fontSize);
-}
+};
 
 const cellCenter = (r, c) => {
   return [
     boardLeft + c * cellSize + cellSize / 2,
     boardTop + r * cellSize + cellSize / 2
   ];
-}
+};
 
 const maybeDrawWinnerLine = (winner) => {
   if (winner) {
