@@ -83,7 +83,6 @@ const makeMove = (r, c) => {
 
 const maybeDrawWinnerLine = (winner) => {
   if (winner) {
-    // Draw the line through three in a row
     const [r1, c1] = winner[0];
     const [r2, c2] = winner[winner.length - 1];
 
@@ -112,8 +111,10 @@ const maybeDrawWinnerLine = (winner) => {
   }
 };
 
+const gameOver = () => findWinner() || move === 9;
+
 registerOnclick((x, y) => {
-  if (!findWinner()) {
+  if (!gameOver()) {
     const [r, c] = toBoardCoordinates(x, y);
     if (isLegalMove(r, c)) {
       makeMove(r, c);
