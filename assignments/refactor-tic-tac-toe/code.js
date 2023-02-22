@@ -82,9 +82,9 @@ const findWinner = () => {
   return null;
 };
 
-const isLegalMove = (r, c) => {
-  return 0 <= r && r < 3 && 0 <= c && c < 3 && board[r][c] === '';
-}
+const isLegalMove = (r, c) => isInBounds(r) && isInBounds(c) && board[r][c] === '';
+
+const isInBounds = (n) => 0 <= n && n < 3;
 
 const makeMove = (r, c) => {
   const marker = move % 2 === 0 ? 'X' : 'O';
@@ -95,7 +95,6 @@ const makeMove = (r, c) => {
   board[r][c] = marker;
   move++;
 };
-
 
 registerOnclick((x, y) => {
 
