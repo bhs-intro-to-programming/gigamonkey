@@ -3,6 +3,8 @@ class Graphics {
   constructor(canvas) {
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
+    this.width = canvas.width;
+    this.height = canvas.height;
   }
 
   drawLine(x1, y1, x2, y2, color, width = 1)  {
