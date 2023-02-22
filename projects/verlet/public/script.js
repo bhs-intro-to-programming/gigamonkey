@@ -70,14 +70,15 @@ const mid = new Vector(g.width / 2, g.height / 2);
 const gravity = new Vector(0, 0.0005);
 const radius = (Math.min(g.width, g.height) / 2) * 0.85;
 
-const start = new Vector(mid.x + 100, mid.y);
-
 const startAt = (x, y) => {
   const start = new Vector(x, y);
-  return new Ball(start, start, Vector.zero, 20);
+  return new Ball(start, start, Vector.zero, Math.floor(10 + Math.random() * 10));
 };
 
-const balls = [startAt(mid.x + 100, mid.y), startAt(mid.x + 150, mid.y - 200)];
+const balls = [
+  startAt(mid.x + 100, mid.y),
+  startAt(mid.x + 124, mid.y - 200)
+];
 
 const drawBackground = (g) => {
   g.clear();
@@ -95,9 +96,27 @@ const constrain = (b) => {
   }
 };
 
+const collisions = () => {
+  for (let i = 0; i < balls.length - 1; i++) {
+    const b1 = balls[i];
+    for (let j = i + 1; j < balls.length; j++) {
+      const b2 = balls[j];
+      const axis = b1.position.minus(b2.position);
+      const dist = axis.length();
+      if (dist < b1.radius + b2.radius) {
+        const n = axis.divide(dist);
+        const bounce = n.times(((b1.radius + b2.radius) - dist) * 0.5);
+        b1.position = b1.position.plus(bounce);
+        b2.position = b2.position.minus(bounce);
+      }
+    }
+  }
+};
+
 animate((elapsed) => {
   balls.forEach(b => b.accelerate(gravity));
   balls.forEach(b => constrain(b));
+  collisions();
   balls.forEach(b => b.updatePosition(elapsed));
   drawBackground(g);
   balls.forEach(b => b.draw(g));
