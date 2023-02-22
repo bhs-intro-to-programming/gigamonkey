@@ -29,7 +29,7 @@ const lines = [
   [[2, 0], [1, 1], [0, 2]],
 ];
 
-const toBoardCoordinates = (x, y) => {
+const boardCoordinates = (x, y) => {
   return [
     Math.floor((y - boardTop) / cellSize),
     Math.floor((x - boardLeft) / cellSize)
@@ -113,7 +113,7 @@ const gameOver = () => findWinner() || move === 9;
 
 registerOnclick((x, y) => {
   if (!gameOver()) {
-    const [r, c] = toBoardCoordinates(x, y);
+    const [r, c] = boardCoordinates(x, y);
     if (isLegalMove(r, c)) {
       makeMove(r, c);
       maybeDrawWinnerLine(findWinner());
