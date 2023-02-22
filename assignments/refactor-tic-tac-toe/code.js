@@ -34,7 +34,7 @@ const toBoardCoordinates = (x, y) => {
     Math.floor((y - boardTop) / cellSize),
     Math.floor((x - boardLeft) / cellSize)
   ];
-}
+};
 
 const drawBoard = () => {
   const x1 = boardLeft + cellSize;
@@ -54,7 +54,6 @@ const findWinner = () => {
       return lines[i];
     }
   }
-  return null;
 };
 
 const extractLine = (line) => {
@@ -83,7 +82,7 @@ const makeMove = (r, c) => {
 };
 
 const maybeDrawWinnerLine = (winner) => {
-  if (winner !== null) {
+  if (winner) {
     // Draw the line through three in a row
     const [r1, c1] = winner[0];
     const [r2, c2] = winner[winner.length - 1];
@@ -114,7 +113,7 @@ const maybeDrawWinnerLine = (winner) => {
 };
 
 registerOnclick((x, y) => {
-  if (findWinner() === null) {
+  if (!findWinner()) {
     const [r, c] = toBoardCoordinates(x, y);
     if (isLegalMove(r, c)) {
       makeMove(r, c);
