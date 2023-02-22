@@ -37,19 +37,19 @@ const toBoardCoordinates = (x, y) => {
 };
 
 const drawBoard = () => {
-  drawVertical(boardLeft + cellSize);
-  drawVertical(boardLeft + 2 * cellSize);
-  drawHorizontal(boardTop + cellSize);
-  drawHorizontal(boardTop + 2 * cellSize);
+  for (let i = 1; i <= 2; i++) {
+    drawVertical(boardLeft + i * cellSize);
+    drawHorizontal(boardTop + i * cellSize);
+  }
 };
 
 const drawVertical = (x) => {
   drawLine(x, boardTop, x, boardTop + boardSize, 'grey', 2);
+};
 
-}
 const drawHorizontal = (y) => {
   drawLine(boardLeft, y, boardLeft + boardSize, y, 'grey', 2);
-}
+};
 
 const findWinner = () => {
   for (let i = 0; i < lines.length; i++) {
@@ -102,11 +102,11 @@ const maybeDrawWinnerLine = (winner) => {
 };
 
 const drawWinnerLine = (winner) => {
-    const [x1, y1] = cellCenter(...winner[0]);
-    const [x2, y2] = cellCenter(...winner[2]);
-    const dx = Math.sign(x2 - x1) * lineEndAdjustment;
-    const dy = Math.sign(y2 - y1) * lineEndAdjustment;
-    drawLine(x1 - dx, y1 - dy, x2 + dx, y2 + dy, 'red', 15);
+  const [x1, y1] = cellCenter(...winner[0]);
+  const [x2, y2] = cellCenter(...winner[2]);
+  const dx = Math.sign(x2 - x1) * lineEndAdjustment;
+  const dy = Math.sign(y2 - y1) * lineEndAdjustment;
+  drawLine(x1 - dx, y1 - dy, x2 + dx, y2 + dy, 'red', 15);
 };
 
 const gameOver = () => findWinner() || move === 9;
