@@ -50,17 +50,19 @@ const drawBoard = () => {
 const findWinner = () => {
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
-    const ms = ['', '', ''];
+    const ms = [];
     for (let j = 0; j < 3; j++) {
       const [r, c] = line[j];
-      ms[j] = board[r][c];
+      ms.push(board[r][c]);
     }
-    if (ms[0] !== '' && ms[0] === ms[1] && ms[0] === ms[2]) {
+    if (ms[0] !== '' && allTheSame(ms)) {
       return line;
     }
   }
   return null;
 };
+
+const allTheSame = (ms) => ms[0] === ms[1] && ms[0] === ms[2];
 
 const isLegalMove = (r, c) => isInBounds(r) && isInBounds(c) && board[r][c] === '';
 
