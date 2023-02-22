@@ -82,6 +82,7 @@ const findWinner = () => {
       return lines[i];
     }
   }
+  return null;
 };
 
 registerOnclick((x, y) => {
