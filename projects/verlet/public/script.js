@@ -67,11 +67,17 @@ class Ball {
 
 const g = graphics(canvas);
 const mid = new Vector(g.width / 2, g.height / 2);
-const gravity = new Vector(0, 0.0001);
+const gravity = new Vector(0, 0.0005);
 const radius = (Math.min(g.width, g.height) / 2) * 0.85;
 
 const start = new Vector(mid.x + 100, mid.y);
-const balls = [new Ball(start, start, Vector.zero, 20)];
+
+const startAt = (x, y) => {
+  const start = new Vector(x, y);
+  return new Ball(start, start, Vector.zero, 20);
+};
+
+const balls = [startAt(mid.x + 100, mid.y), startAt(mid.x + 150, mid.y - 200)];
 
 const drawBackground = (g) => {
   g.clear();
