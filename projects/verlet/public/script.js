@@ -1,89 +1,19 @@
+// Based on explanation of Verlet integration in https://www.youtube.com/watch?v=lS_qeBy3aQI
+
 import { animate } from './animation.js';
 import graphics from './graphics.js';
-
-// Based on https://www.youtube.com/watch?v=lS_qeBy3aQI
+import vector from './vector.js';
+import ball from './ball.js';
 
 const canvas = document.getElementById('screen');
 canvas.width = document.documentElement.offsetWidth * 0.75;
 canvas.height = document.documentElement.offsetHeight * 0.75;
 
-class Vector {
-  static zero = new Vector(0, 0);
-
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
-  }
-
-  plus(other) {
-    return new Vector(this.x + other.x, this.y + other.y);
-  }
-
-  minus(other) {
-    return new Vector(this.x - other.x, this.y - other.y);
-  }
-
-  times(n) {
-    return new Vector(this.x * n, this.y * n);
-  }
-
-  divide(n) {
-    return new Vector(this.x / n, this.y / n);
-  }
-
-  length() {
-    return Math.hypot(this.x, this.y);
-  }
-  distance(other) {
-    return Math.hypot(this.x - other.x, this.y - other.y);
-  }
-}
-
-class Ball {
-  constructor(position, oldPosition, acceleration, radius = 50) {
-    this.position = position;
-    this.oldPosition = oldPosition;
-    this.acceleration = acceleration;
-    this.radius = radius;
-  }
-
-  updatePosition(dt) {
-    const v = this.position.minus(this.oldPosition);
-    this.oldPosition = this.position;
-    this.position = this.position.plus(v).plus(this.acceleration.times(dt ** 2));
-    this.acceleration = Vector.zero;
-  }
-
-  accelerate(acc) {
-    this.acceleration = this.acceleration.plus(acc);
-  }
-
-  draw(g) {
-    const { x, y } = this.position;
-    g.drawFilledCircle(x, y, this.radius, '#00f9');
-  }
-}
-
 const g = graphics(canvas);
-const mid = new Vector(g.width / 2, g.height / 2);
-const gravity = new Vector(0, 0.0005);
+const mid = vector(g.width / 2, g.height / 2);
+const gravity = vector(0, 0.0005);
 const radius = (Math.min(g.width, g.height) / 2) * 0.85;
-
-const startAt = (x, y) => {
-  const start = new Vector(x, y);
-  return new Ball(start, start, Vector.zero, Math.floor(5 + Math.random() * 10));
-};
-
-const balls = [];
-
-let next = 0;
-
-const spawn = (t) => {
-  if (t > next) {
-    balls.push(startAt(mid.x + 100, mid.y));
-    next = t + 250;
-  }
-};
+const zero = vector(0, 0);
 
 const drawBackground = (g) => {
   g.clear();
@@ -118,8 +48,22 @@ const collisions = () => {
   }
 };
 
+const spawner = (x, y, freq, balls) => {
+  let next = 0;
+  return (t) => {
+    if (t > next) {
+      const start = vector(x, y);
+      balls.push(ball(start, start, zero, Math.floor(5 + Math.random() * 10)));
+      next = t + freq;
+    }
+  };
+};
+
+const balls = [];
+const spawners = [spawner(mid.x + 100, mid.y, 250, balls)];
+
 animate((elapsed, t) => {
-  spawn(t);
+  spawners.forEach((s) => s(t));
   balls.forEach((b) => b.accelerate(gravity));
   balls.forEach((b) => constrain(b));
   collisions();
