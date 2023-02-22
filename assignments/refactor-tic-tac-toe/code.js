@@ -82,6 +82,17 @@ const findWinner = () => {
   return null;
 };
 
+const makeMove = () => {
+  const marker = move % 2 === 0 ? 'X' : 'O';
+  const x = boardLeft + c * cellSize + cellSize / 2;
+  const y = boardTop + r * cellSize + cellSize / 2;
+  const nudge = marker === 'O' ? cellSize / 9 : cellSize / 19;
+  drawText(marker, x - (fontSize * 0.3 + nudge), y + fontSize * 0.3, 'black', fontSize);
+  board[r][c] = marker;
+  move++;
+};
+
+
 registerOnclick((x, y) => {
 
   const r = Math.floor((y - boardTop) / cellSize);
@@ -90,15 +101,7 @@ registerOnclick((x, y) => {
   // Only do anything if it's a legal move and the game isn't over.
   let winner = findWinner();
   if (winner === null && 0 <= r && r < 3 && 0 <= c && c < 3 && board[r][c] === '') {
-
-    // Draw the mark and record the move
-    const marker = move % 2 === 0 ? 'X' : 'O';
-    const x = boardLeft + c * cellSize + cellSize / 2;
-    const y = boardTop + r * cellSize + cellSize / 2;
-    const nudge = marker === 'O' ? cellSize / 9 : cellSize / 19;
-    drawText(marker, x - (fontSize * 0.3 + nudge), y + fontSize * 0.3, 'black', fontSize);
-    board[r][c] = marker;
-    move++;
+    makeMove();
 
     // Check if there's a winner now
     winner = findWinner();
