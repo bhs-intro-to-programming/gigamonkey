@@ -79,7 +79,7 @@ const findWinner = () => {
     c = lines[i][2][1];
     const m2 = board[r][c];
     if (m0 !== '' && m0 === m1 && m0 === m2) {
-      return winner;
+      return lines[i];
     }
   }
 };
