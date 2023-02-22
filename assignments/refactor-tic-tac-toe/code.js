@@ -67,16 +67,16 @@ const drawBoard = () => {
 };
 
 const findWinner = () => {
-  // Check if there's a winner already.
   for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
     const ms = ['', '', ''];
     for (let j = 0; j < 3; j++) {
-      let r = lines[i][j][0];
-      let c = lines[i][j][1];
+      let r = line[j][0];
+      let c = line[j][1];
       ms[j] = board[r][c];
     }
     if (ms[0] !== '' && ms[0] === ms[1] && ms[0] === ms[2]) {
-      return lines[i];
+      return line;
     }
   }
   return null;
