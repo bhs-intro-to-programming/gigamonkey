@@ -6,8 +6,8 @@ import vector from './vector.js';
 import ball from './ball.js';
 
 const canvas = document.getElementById('screen');
-canvas.width = document.documentElement.offsetWidth * 0.75;
-canvas.height = document.documentElement.offsetHeight * 0.75;
+canvas.width = document.documentElement.offsetWidth * 0.95;
+canvas.height = document.documentElement.offsetHeight * 0.95;
 
 const g = graphics(canvas);
 const mid = vector(g.width / 2, g.height / 2);
@@ -49,12 +49,13 @@ const collisions = () => {
 };
 
 const spawner = (x, y, freq, balls) => {
-  let next = 0;
-  return (t) => {
-    if (t > next) {
+  let since = 0;
+  return (elapsed) => {
+    since += elapsed;
+    if (since > freq) {
       const start = vector(x, y);
       balls.push(ball(start, start, zero, Math.floor(5 + Math.random() * 10)));
-      next = t + freq;
+      since = 0;
     }
   };
 };
@@ -62,8 +63,8 @@ const spawner = (x, y, freq, balls) => {
 const balls = [];
 const spawners = [spawner(mid.x + 100, mid.y, 250, balls)];
 
-animate((elapsed, t) => {
-  spawners.forEach((s) => s(t));
+animate((elapsed) => {
+  spawners.forEach((s) => s(elapsed));
   balls.forEach((b) => b.accelerate(gravity));
   balls.forEach((b) => constrain(b));
   collisions();
