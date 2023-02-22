@@ -81,15 +81,20 @@ const makeMove = (r, c) => {
   move++;
 };
 
+const cellCenter = (r, c) => {
+  return [
+    boardLeft + c * cellSize + cellSize / 2,
+    boardTop + r * cellSize + cellSize / 2
+  ];
+}
+
 const maybeDrawWinnerLine = (winner) => {
   if (winner) {
     const [r1, c1] = winner[0];
     const [r2, c2] = winner[winner.length - 1];
 
-    const x1 = boardLeft + c1 * cellSize + cellSize / 2;
-    const y1 = boardTop + r1 * cellSize + cellSize / 2;
-    const x2 = boardLeft + c2 * cellSize + cellSize / 2;
-    const y2 = boardTop + r2 * cellSize + cellSize / 2;
+    const [x1, y1] = cellCenter(r1, c1);
+    const [x2, y2] = cellCenter(r2, c2);
 
     let adjX1 = x1;
     let adjX2 = x2;
