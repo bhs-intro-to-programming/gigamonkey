@@ -31,17 +31,6 @@ const cellSize = boardSize / 3;
 const fontSize = boardSize / 3;
 const lineEndAdjustment = cellSize * 0.7;
 
-const drawBoard = (x1, x2, y1, y2, boardTop, boardLeft) => {
-  drawLine(x1, boardTop, x1, boardTop + boardSize, 'grey', 2);
-  drawLine(x2, boardTop, x2, boardTop + boardSize, 'grey', 2);
-  drawLine(boardLeft, y1, boardLeft + boardSize, y1, 'grey', 2);
-  drawLine(boardLeft, y2, boardLeft + boardSize, y2, 'grey', 2);
-}
-
-const underThree = (x) => {
-  return 0 <= x && x < 3
-}
-
 let move = 0;
 
 const board = [
@@ -49,31 +38,6 @@ const board = [
   ['', '', ''],
   ['', '', ''],
 ];
-
-const checkWinner = (r, c, lines, board) => {
-  for (let i = 0; i < lines.length; i++) {
-    r = lines[i][0][0];
-    c = lines[i][0][1];
-    const m0 = board[r][c];
-    r = lines[i][1][0];
-    c = lines[i][1][1];
-    const m1 = board[r][c];
-    r = lines[i][2][0];
-    c = lines[i][2][1];
-    const m2 = board[r][c];
-    if (m0 !== '' && m0 === m1 && m0 === m2) {
-      return lines[i]
-    }
-  }
-}
-
-const adjust = (firsts, seconds, adjustment, adjustees) => {
-  if (firsts[0] === firsts[1] || seconds[0] !== seconds[1]) {
-    const slope = y1 < y2 ? 1 : -1;
-    adjustees[0] -= (slope * adjustment);
-    adjustees[1] += (slope * adjustment);
-  }
-}
 
 const lines = [
   // Rows
@@ -96,7 +60,10 @@ const x1 = boardLeft + cellSize;
 const x2 = boardLeft + 2 * cellSize;
 const y1 = boardTop + cellSize;
 const y2 = boardTop + 2 * cellSize;;
-drawBoard(x1, x2, y1, y2, boardTop, boardLeft)
+drawLine(x1, boardTop, x1, boardTop + boardSize, 'grey', 2);
+drawLine(x2, boardTop, x2, boardTop + boardSize, 'grey', 2);
+drawLine(boardLeft, y1, boardLeft + boardSize, y1, 'grey', 2);
+drawLine(boardLeft, y2, boardLeft + boardSize, y2, 'grey', 2);
 
 registerOnclick((x, y) => {
 
@@ -105,15 +72,26 @@ registerOnclick((x, y) => {
   let c;
 
   // Check if there's a winner already.
-  if (checkWinner(r, c, lines, board)) {
-    winner = checkWinner(r, c, lines, board);
+  for (let i = 0; i < lines.length; i++) {
+    r = lines[i][0][0];
+    c = lines[i][0][1];
+    const m0 = board[r][c];
+    r = lines[i][1][0];
+    c = lines[i][1][1];
+    const m1 = board[r][c];
+    r = lines[i][2][0];
+    c = lines[i][2][1];
+    const m2 = board[r][c];
+    if (m0 !== '' && m0 === m1 && m0 === m2) {
+      winner = lines[i];
+    }
   }
 
   r = Math.floor((y - boardTop) / cellSize);
   c = Math.floor((x - boardLeft) / cellSize);
 
   // Only do anything if it's a legal move and the game isn't over.
-  if (winner === null && underThree(r) && underThree(c) && board[r][c] === '') {
+  if (winner === null && 0 <= r && r < 3 && 0 <= c && c < 3 && board[r][c] === '') {
 
     // Draw the mark and record the move
     const marker = move % 2 === 0 ? 'X' : 'O';
@@ -126,28 +104,45 @@ registerOnclick((x, y) => {
 
     // Check if there's a winner now
     winner = null;
-    if (checkWinner(r, c, lines, board)) {
-      winner = checkWinner(r, c, lines, board);
+    for (let i = 0; i < lines.length; i++) {
+      r = lines[i][0][0];
+      c = lines[i][0][1];
+      const m0 = board[r][c];
+      r = lines[i][1][0];
+      c = lines[i][1][1];
+      const m1 = board[r][c];
+      r = lines[i][2][0];
+      c = lines[i][2][1];
+      const m2 = board[r][c];
+      if (m0 !== '' && m0 === m1 && m0 === m2) {
+        winner = lines[i];
+      }
     }
     if (winner !== null) {
       // Draw the line through three in a row
       const [r1, c1] = winner[0];
       const [r2, c2] = winner[winner.length - 1];
 
-      const location = (boardLocation, cr12) => {
-        let xOrY = boardLocation + cr12 * cellSize + cellSize / 2
-        return xOrY
+      const x1 = boardLeft + c1 * cellSize + cellSize / 2;
+      const y1 = boardTop + r1 * cellSize + cellSize / 2;
+      const x2 = boardLeft + c2 * cellSize + cellSize / 2;
+      const y2 = boardTop + r2 * cellSize + cellSize / 2;
+
+      let adjX1 = x1;
+      let adjX2 = x2;
+      let adjY1 = y1;
+      let adjY2 = y2;
+
+      if (y1 === y2 || x1 !== x2) {
+        adjX1 -= lineEndAdjustment;
+        adjX2 += lineEndAdjustment;
       }
 
-      let adjX1 = location(boardLeft, c1);
-      let adjX2 = location(boardLeft, c2);
-      let adjY1 = location(boardTop, r1);
-      let adjY2 = location(boardTop, r2);
-
-      adjust([y1, y2], [x1, x2], lineEndAdjustment, [adjX1, adjX2])
-
-
-      adjust([x1, x2], [y1, y2], lineEndAdjustment, [adjY1, adjY2])
+      if (x1 === x2 || y1 !== y2) {
+        const slope = y1 < y2 ? 1 : -1;
+        adjY1 -= (slope * lineEndAdjustment);
+        adjY2 += (slope * lineEndAdjustment);
+      }
 
       drawLine(adjX1, adjY1, adjX2, adjY2, 'red', 15);
     }
