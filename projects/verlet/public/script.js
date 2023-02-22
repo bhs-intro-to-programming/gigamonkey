@@ -27,6 +27,17 @@ class Vector {
   times(n) {
     return new Vector(this.x * n, this.y * n)
   }
+
+  divide(n) {
+    return new Vector(this.x / n, this.y / n);
+  }
+
+  length() {
+    return Math.hypot(this.x, this.y);
+  }
+  distance(other) {
+    return Math.hypot(this.x - other.x, this.y - other.y);
+  }
 }
 
 class Ball {
@@ -50,7 +61,6 @@ class Ball {
 
   draw(g) {
     const { x, y } = this.position;
-    //console.log(`x: ${x}; y: ${y}`)
     g.drawFilledCircle(x, y, this.radius, '#00f9');
   }
 }
@@ -58,22 +68,30 @@ class Ball {
 const g = graphics(canvas);
 const mid = new Vector(g.width / 2, g.height / 2);
 const gravity = new Vector(0, 0.0001);
+const radius = (Math.min(g.width, g.height) / 2) * 0.85;
 
-const balls = [new Ball(mid, mid, Vector.zero, 20)];
+const start = new Vector(mid.x + 100, mid.y);
+const balls = [new Ball(start, start, Vector.zero, 20)];
 
 const drawBackground = (g) => {
   g.clear();
   g.drawFilledRect(0, 0, g.width, g.height, '#888');
-  g.drawFilledCircle(g.width / 2, g.height / 2, (Math.min(g.width, g.height) / 2) * 0.85, 'white');
+  g.drawFilledCircle(mid.x, mid.y, radius, 'white');
 };
 
-const applyGravity = () => {
-  balls.forEach(b => b.accelerate(gravity));
-}
-
+const constrain = (b) => {
+  const toObj = b.position.minus(mid);
+  const dist = toObj.length();
+  if (dist > radius - b.radius) {
+    const n = toObj.divide(dist);
+    const constrainedPosition = mid.plus(n.times(radius - b.radius));
+    b.position = constrainedPosition;
+  }
+};
 
 animate((elapsed) => {
-  applyGravity();
+  balls.forEach(b => b.accelerate(gravity));
+  balls.forEach(b => constrain(b));
   balls.forEach(b => b.updatePosition(elapsed));
   drawBackground(g);
   balls.forEach(b => b.draw(g));
