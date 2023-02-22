@@ -73,12 +73,16 @@ const isInBounds = (n) => 0 <= n && n < 3;
 
 const makeMove = (r, c) => {
   const marker = move % 2 === 0 ? 'X' : 'O';
-  const [x, y] = cellCenter(r, c);
-  const nudge = marker === 'O' ? cellSize / 9 : cellSize / 19;
-  drawText(marker, x - (fontSize * 0.3 + nudge), y + fontSize * 0.3, 'black', fontSize);
+  drawMarker(marker, r, c)
   board[r][c] = marker;
   move++;
 };
+
+const drawMarker = (marker, r, c) => {
+  const [x, y] = cellCenter(r, c);
+  const nudge = marker === 'O' ? cellSize / 9 : cellSize / 19;
+  drawText(marker, x - (fontSize * 0.3 + nudge), y + fontSize * 0.3, 'black', fontSize);
+}
 
 const cellCenter = (r, c) => {
   return [
