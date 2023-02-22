@@ -90,15 +90,11 @@ const cellCenter = (r, c) => {
 
 const maybeDrawWinnerLine = (winner) => {
   if (winner) {
-    const [r1, c1] = winner[0];
-    const [r2, c2] = winner[winner.length - 1];
-
-    const [x1, y1] = cellCenter(r1, c1);
-    const [x2, y2] = cellCenter(r2, c2);
+    const [x1, y1] = cellCenter(...winner[0]);
+    const [x2, y2] = cellCenter(...winner[2]);
 
     const dx = Math.sign(x2 - x1) * lineEndAdjustment;
     const dy = Math.sign(y2 - y1) * lineEndAdjustment;
-
     drawLine(x1 - dx, y1 - dy, x2 + dx, y2 + dy, 'red', 15);
   }
 };
