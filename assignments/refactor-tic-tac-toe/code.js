@@ -52,8 +52,7 @@ const findWinner = () => {
     const line = lines[i];
     const ms = ['', '', ''];
     for (let j = 0; j < 3; j++) {
-      let r = line[j][0];
-      let c = line[j][1];
+      const [r, c] = line[j];
       ms[j] = board[r][c];
     }
     if (ms[0] !== '' && ms[0] === ms[1] && ms[0] === ms[2]) {
