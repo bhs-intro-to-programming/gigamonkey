@@ -37,7 +37,7 @@ const toBoardCoordinates = (x, y) => {
 };
 
 const drawBoard = () => {
-  for (let i = 1; i <= 2; i++) {
+  for (const i of [1,2]) {
     drawVertical(boardLeft + i * cellSize);
     drawHorizontal(boardTop + i * cellSize);
   }
