@@ -108,21 +108,8 @@ registerOnclick((x, y) => {
     move++;
 
     // Check if there's a winner now
-    winner = null;
-    for (let i = 0; i < lines.length; i++) {
-      r = lines[i][0][0];
-      c = lines[i][0][1];
-      const m0 = board[r][c];
-      r = lines[i][1][0];
-      c = lines[i][1][1];
-      const m1 = board[r][c];
-      r = lines[i][2][0];
-      c = lines[i][2][1];
-      const m2 = board[r][c];
-      if (m0 !== '' && m0 === m1 && m0 === m2) {
-        winner = lines[i];
-      }
-    }
+    winner = findWinner();
+
     if (winner !== null) {
       // Draw the line through three in a row
       const [r1, c1] = winner[0];
