@@ -82,7 +82,7 @@ const findWinner = () => {
   return null;
 };
 
-const makeMove = () => {
+const makeMove = (r, c) => {
   const marker = move % 2 === 0 ? 'X' : 'O';
   const x = boardLeft + c * cellSize + cellSize / 2;
   const y = boardTop + r * cellSize + cellSize / 2;
@@ -101,7 +101,7 @@ registerOnclick((x, y) => {
   // Only do anything if it's a legal move and the game isn't over.
   let winner = findWinner();
   if (winner === null && 0 <= r && r < 3 && 0 <= c && c < 3 && board[r][c] === '') {
-    makeMove();
+    makeMove(r, c);
 
     // Check if there's a winner now
     winner = findWinner();
