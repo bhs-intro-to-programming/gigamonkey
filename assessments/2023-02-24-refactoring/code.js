@@ -15,7 +15,7 @@ const drawSnowman = (x, base, size) => {
   const buttSize = size - (headSize + torsoSize); 
   const headY = (base - size) + headSize/2;
   const torsoY = headY + headSize/2 + torsoSize/2;
-  const buttY = torsoY + torsoSize + buttSize;
+  const buttY = torsoY + torsoSize/2+ buttSize/2;
   drawHead(x, headY, headSize/2);
   drawTorso(x, torsoY, torsoSize/2)
   drawButt(x, buttY, buttSize/2);
