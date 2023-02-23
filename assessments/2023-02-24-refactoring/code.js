@@ -38,7 +38,7 @@ const drawEyes = (x, y, size) => {
 
 const drawNose = (x, y, size) => {
   const length = size * 0.8;
-  drawFilledTriangle(x, y, x + length, y + 10, x, y + 12, 'orange');
+  drawFilledTriangle(x, y, x + length, y + length * 0.2, x, y + length * 0.3, 'orange');
 };
 
 const drawMouth = (x, y, size) => {
