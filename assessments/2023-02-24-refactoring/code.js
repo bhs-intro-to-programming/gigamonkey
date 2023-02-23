@@ -17,7 +17,7 @@ const drawBody = (x, y, size) => {
 };
 
 const drawArms = (x, y, size) => {
-  const x1 = x + size * 0.3;
+  const x1 = x + size * 0.45;
   const y1 = y - size * 0.2;
   const x2 = x1 + 150;
   const y2 = y1 - 30;
