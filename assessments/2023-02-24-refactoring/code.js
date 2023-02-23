@@ -13,6 +13,7 @@ const drawHead = (x, y, size) => {
 const drawBody = (x, y, size) => {
   drawCircle(x, y, size, 'black');
   drawCircle(x, y + size + size * 1.25, size * 1.25, 'black');
+  drawArms(x, y, size);
 };
 
 const drawArms = (x, y, size) => {
