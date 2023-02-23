@@ -11,7 +11,7 @@ const drawBackground = () => {
 };
 
 const drawSnowman = (x, base, size) => {
-  const headSize = size * 0.12;
+  const headSize = size * 0.15;
   const bodySize = size - headSize;
   const headY = base - size;
   drawHead(x, headY, headSize);
@@ -65,7 +65,7 @@ const drawSnowball = (x, y, size) => {
 };
 
 const drawBody = (x, y, size) => {
-  const size1 = size * 0.45 / 2;
+  const size1 = size * 0.48 / 2;
   const size2 = (size - size1) / 2;
   const y1 = y + size1;
   const y2 = y + size1 * 2 + size2;
