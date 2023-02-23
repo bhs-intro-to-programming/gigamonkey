@@ -80,7 +80,7 @@ const drawBody = (x, y, size) => {
   const y2 = y + size1 * 2 + size2;
   drawTorso(x, y, size);
   drawSnowball(x, y2, size2);
- ;
+};
 
 const drawArms = (x, y, size) => {
   drawArm(x, y, size, 1);
