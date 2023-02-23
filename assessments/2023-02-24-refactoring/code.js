@@ -1,6 +1,6 @@
 const drawPicture = (horizon, base, size) => {
   drawBackground(horizon);
-  drawSnowman(width/2, base, size, [ 3, 4, 5 ]);
+  drawSnowman(width / 2, base, size, [3, 4, 5]);
 };
 
 const drawBackground = (horizon) => {
@@ -14,13 +14,13 @@ const drawSnowman = (x, base, size, proportions) => {
   const total = proportions.reduce((tot, p) => tot + p, 0);
   const headSize = size * (headP / total);
   const torsoSize = size * (torsoP / total)
-  const buttSize = size * (buttP / total); 
-  const headY = (base - size) + headSize/2;
-  const torsoY = headY + headSize/2 + torsoSize/2;
-  const buttY = torsoY + torsoSize/2+ buttSize/2;
-  drawHead(x, headY, headSize/2);
-  drawTorso(x, torsoY, torsoSize/2)
-  drawButt(x, buttY, buttSize/2);
+  const buttSize = size * (buttP / total);
+  const headY = (base - size) + headSize / 2;
+  const torsoY = headY + headSize / 2 + torsoSize / 2;
+  const buttY = torsoY + torsoSize / 2 + buttSize / 2;
+  drawHead(x, headY, headSize / 2);
+  drawTorso(x, torsoY, torsoSize / 2)
+  drawButt(x, buttY, buttSize / 2);
 };
 
 const drawHead = (x, y, size) => {
@@ -54,12 +54,12 @@ const drawHat = (x, y, size) => {
   const brimHeight = brimWidth * 0.08;
   const hatWidth = brimWidth * 0.7;
   const hatHeight = 50;
-  drawFilledRect(x - brimWidth/2, brimTop, brimWidth, brimHeight, 'black');
-  drawFilledRect(x - hatWidth/2, brimTop - hatHeight, hatWidth, hatHeight, 'black');
+  drawFilledRect(x - brimWidth / 2, brimTop, brimWidth, brimHeight, 'black');
+  drawFilledRect(x - hatWidth / 2, brimTop - hatHeight, hatWidth, hatHeight, 'black');
 };
 
-const drawCoal = (x, y) => {
-  drawFilledCircle(x, y, 4, 'black');
+const drawCoal = (x, y, size) => {
+  drawFilledCircle(x, y, size, 'black');
 };
 
 const drawSnowball = (x, y, size) => {
@@ -92,7 +92,7 @@ const drawArm = (x, y, size, direction) => {
 
 const drawButtons = (x, y, size) => {
   for (let i = 0; i < 3; i++) {
-    drawCoal(x, y - size * 0.5 + i * size * 0.5);
+    drawCoal(x, y - size * 0.5 + i * size * 0.5, 4);
   }
 }
 
