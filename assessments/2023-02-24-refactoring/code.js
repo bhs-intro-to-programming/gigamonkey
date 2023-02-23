@@ -9,9 +9,10 @@ const drawBackground = () => {
   drawFilledRect(0, horizon, width, height, 'white');
 };
 
-const drawSnowman = () => {
-  const headSize = 50;
-  const bodySize = 70;
+const drawSnowman = (x, base, size) => {
+  // Snowman at base of height size
+  const headSize = size * 0.25;
+  const bodySize = size * 0.75;
   const x = width / 2;
   const headY = height * 0.2;
   drawHead(x, headY, headSize);
@@ -63,10 +64,12 @@ const drawSnowball = (x, y, size) => {
 };
 
 const drawBody = (x, y, size) => {
-  drawSnowball(x, y, size);
-  drawSnowball(x, y + size + size * 1.25, size * 1.25);
-  drawArms(x, y, size);
-  drawButtons(x, y, size);
+  const size1 = size * 0.3;
+  const size2 = size - size1;
+  drawSnowball(x, y, size1);
+  drawSnowball(x, y + size1 + size2, size2);
+  drawArms(x, y, size1);
+  drawButtons(x, y, size1);
 };
 
 const drawArms = (x, y, size) => {
