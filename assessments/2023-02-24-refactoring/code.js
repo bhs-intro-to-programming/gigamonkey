@@ -63,7 +63,7 @@ const drawSnowball = (x, y, size) => {
 };
 
 const drawBody = (x, y, size) => {
-  const size1 = size * 0.13;
+  const size1 = size * 0.3;
   const size2 = size - size1;
   drawSnowball(x, y + size1, size1);
   drawSnowball(x, y + size1 * 2 + size2, size2);
