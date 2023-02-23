@@ -16,12 +16,16 @@ const drawEyes = (x, y, size) => {
 
 const drawCoal = (x, y) => {
   drawFilledCircle(x, y, 4, 'black');
-}
+};
+
+const drawSnowball = (x, y, size) => {
+    drawCircle(x, y, size + 2, 'black', 3);
+  drawFilledCircle(x, y, size, 'white', 3);
+};
 
 
 const drawBody = (x, y, size) => {
-  drawCircle(x, y, size + 2, 'black', 3);
-  drawFilledCircle(x, y, size, 'white', 3);
+  drawSnowball(x, y, size);
   drawCircle(x, y + size + size * 1.25, size * 1.25, 'black', 3);
   drawArms(x, y, size);
   drawButtons(x, y, size);
