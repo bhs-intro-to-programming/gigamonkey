@@ -1,6 +1,6 @@
-const drawPicture = (horizon) => {
+const drawPicture = (horizon, base) => {
   drawBackground(horizon);
-  drawSnowman(width/2, horizon + height * 0.2, height * 0.6);
+  drawSnowman(width/2, base, height * 0.6);
 };
 
 const drawBackground = (horizon) => {
@@ -100,4 +100,4 @@ const drawButtons = (x, y, size) => {
   }
 }
 
-drawPicture(height * 0.7);
+drawPicture(height * 0.7, height * 0.9);
