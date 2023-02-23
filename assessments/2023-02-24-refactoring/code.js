@@ -1,3 +1,8 @@
+const drawBackground = () => {
+  drawFilledRect(0, 0, width, height * 0.8, 'blue');
+}
+
+
 const drawSnowman = () => {
   drawHead(width / 2, height * 0.2, 50);
   drawBody(width / 2, height * 0.2 + 50 + 70, 70);
