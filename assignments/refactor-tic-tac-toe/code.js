@@ -33,11 +33,19 @@ const drawTheBoard = () => {
   const x1 = boardLeft + cellSize;
   const x2 = boardLeft + 2 * cellSize;
   const y1 = boardTop + cellSize;
-  const y2 = boardTop + 2 * cellSize;;
-  drawLine(x1, boardTop, x1, boardTop + boardSize, 'grey', 2);
-  drawLine(x2, boardTop, x2, boardTop + boardSize, 'grey', 2);
-  drawLine(boardLeft, y1, boardLeft + boardSize, y1, 'grey', 2);
-  drawLine(boardLeft, y2, boardLeft + boardSize, y2, 'grey', 2);
+  const y2 = boardTop + 2 * cellSize;
+  drawVerticalLine(x1);
+  drawVerticalLine(x2);
+  drawHorizontalLine(y1);
+  drawHorizontalLine(y2);
+};
+
+const drawVerticalLine = (x) => {
+  drawLine(x, boardTop, x, boardTop + boardSize, 'grey', 2);
+};
+
+const drawHorizontalLine = (y) => {
+  drawLine(boardLeft, y, boardLeft + boardSize, y, 'grey', 2);
 };
 
 const findWinner = () => {
