@@ -34,29 +34,12 @@ const drawBody = (x, y, size) => {
 const drawArms = (x, y, size) => {
   drawArm(x, y, size, 1);
   drawArm(x, y, size, -1);
-}
-
+};
 
 const drawArm = (x, y, size, direction) => {
   const x1 = x + size * 0.45 * direction;
   const y1 = y - size * 0.2;
   const x2 = x1 + size * 1.5 * direction;
-  const y2 = y1 - 30;
-  drawLine(x1, y1, x2, y2, 'black', 3);
-};
-
-const drawLeftArm = (x, y, size) => {
-  const x1 = x - size * 0.45;
-  const y1 = y - size * 0.2;
-  const x2 = x1 - size * 1.5;
-  const y2 = y1 - 30;
-  drawLine(x1, y1, x2, y2, 'black', 3);
-};
-
-const drawRightArm = (x, y, size) => {
-  const x1 = x + size * 0.45;
-  const y1 = y - size * 0.2;
-  const x2 = x1 + size * 1.5;
   const y2 = y1 - 30;
   drawLine(x1, y1, x2, y2, 'black', 3);
 };
