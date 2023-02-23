@@ -12,8 +12,7 @@ const drawHead = (x, y, size) => {
 const drawEyes = (x, y, size) => {
   drawFilledCircle(x - size * 0.25, y - size * 0.25, 4, 'black');
   drawFilledCircle(x + size * 0.25, y - size * 0.25, 4, 'black');
-
-}
+};
 
 const drawCoal = (x, y) => {
   drawFilledCircle(x, y, 4, 'black');
@@ -48,7 +47,7 @@ const drawRightArm = (x, y, size) => {
   drawLine(x1, y1, x2, y2, 'black');
 };
 
-const drawButtons = (x, y, size) = > {
+const drawButtons = (x, y, size) => {
 
 }
 
