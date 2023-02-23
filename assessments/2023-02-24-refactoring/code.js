@@ -1,6 +1,7 @@
 const drawBackground = () => {
-  drawFilledRect(0, 0, width, height * 0.7, '#ddeeff');
-  drawFilledRect(0, height * 0.7, width, height, 'white');
+  const horizon = height * 0.7;
+  drawFilledRect(0, 0, width, horizon, '#ddeeff');
+  drawFilledRect(0, horizon, width, height, 'white');
 }
 
 
