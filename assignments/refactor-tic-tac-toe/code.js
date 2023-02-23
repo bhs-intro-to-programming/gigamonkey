@@ -50,13 +50,24 @@ const getMark = (line, p) => {
   return board[r][c];
 };
 
+const getMarks = (line) => {
+  return [
+    getMark(line, 0),
+    getMark(line, 1),
+    getMark(line, 2),
+  ];
+};
+
+const allTheSame = (marks) => marks[0] === marks[1] && marks[0] === marks[2];
+
+const isWinner = (line) => {
+  const marks = getMarks(line);
+  return marks[0] !== '' && allTheSame(marks);
+}
+
 const findWinner = () => {
   for (let i = 0; i < lines.length; i++) {
-    const marks = [];
-    marks.push(getMark(lines[i], 0));
-    marks.push(getMark(lines[i], 1));
-    marks.push(getMark(lines[i], 2));
-    if (marks[0] !== '' && marks[0] === marks[1] && marks[0] === marks[2]) {
+    if (isWinner(lines[i])) {
       return lines[i];
     }
   }
