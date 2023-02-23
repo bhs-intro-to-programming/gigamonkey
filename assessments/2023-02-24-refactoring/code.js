@@ -27,6 +27,7 @@ const drawHead = (x, y, size) => {
   drawHat(x, y, size);
 };
 
+// Draw eyes in the snowball at x, y of size size.
 const drawEyes = (x, y, size) => {
   drawFilledCircle(x - size * 0.25, y - size * 0.25, 4, 'black');
   drawFilledCircle(x + size * 0.25, y - size * 0.25, 4, 'black');
