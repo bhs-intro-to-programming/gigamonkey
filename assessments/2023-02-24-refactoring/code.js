@@ -40,7 +40,8 @@ const drawMouth = (x, y, size) => {
 
 const drawHat = (x, y, size) => {
   const brimTop = y - size * 0.9;
-  drawFilledRect(x - size * 1.25, brimTop, x + size * 1.25, brimTop + 2, 'red');
+  const brimWidth = size * 1.25;
+  drawFilledRect(x - brimWidth/2, brimTop, x + brimWidth/2, brimTop + 2, 'black');
 }
 
 const drawCoal = (x, y) => {
