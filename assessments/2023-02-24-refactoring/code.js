@@ -17,7 +17,7 @@ const drawEyes = (x, y, size) => {
 
 const drawMouth = (x, y, size) => {
   for (let i = 0; i < 3; i++) {
-    drawCoal(x - size * 0.3 + i * size * 0.3, y + size * 0.45);
+    drawCoal(x - size * 0.3 + i * size * 0.3, y + size * 0.50);
   }
 };
 
