@@ -43,7 +43,7 @@ const drawNose = (x, y, length) => {
 const drawMouth = (x, y, size) => {
   for (let i = 0; i < 5; i++) {
     const dy = -2 * (2.1 ** Math.abs(i - 2));
-    drawCoal(x - (i - 2) * size * 0.21, y + size * 0.6 + dy, 4);
+    drawCoal(x - (i - 2.1) * size * 0.21, y + size * 0.6 + dy, 4);
   }
 };
 
