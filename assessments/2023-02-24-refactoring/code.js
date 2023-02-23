@@ -1,10 +1,9 @@
 const drawPicture = () => {
-  drawBackground();
-  drawSnowman(width/2, height * 0.8, height * 0.5);
+  drawBackground(height * 0.7);
+  drawSnowman(width/2, horizon + height * 0.1, height * 0.5);
 };
 
-const drawBackground = () => {
-  const horizon = height * 0.7;
+const drawBackground = (horizon) => {
   drawFilledRect(0, 0, width, horizon, '#ddeeff');
   drawFilledRect(0, horizon, width, height, 'white');
   drawLine(0, horizon, width, horizon, '#bbb');
@@ -17,7 +16,6 @@ const drawSnowman = (x, base, size) => {
   drawHead(x, headY, headSize);
   drawBody(x, headY + headSize, bodySize);
 };
-
 
 const drawHead = (x, y, size) => {
   drawSnowball(x, y, size);
