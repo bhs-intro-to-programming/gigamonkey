@@ -1,6 +1,6 @@
 const drawPicture = () => {
   drawBackground();
-  drawSnowman(width/2, height * 0.7);
+  drawSnowman(width/2, height * 0.2, height * 0.5);
 };
 
 const drawBackground = () => {
@@ -10,14 +10,21 @@ const drawBackground = () => {
   drawLine(0, horizon, width, horizon, '#bbb');
 };
 
-const drawSnowman = (x, size) => {
+const drawSnowman = (x, base, size) => {
   // Snowman at base of height size
+  // top of hat should be at base + size
+  // middle of bottom snowball is at base + radius of that 
+
+  // total head height is 2 * radius + y - size * 0.9;
+
+
   const headSize = size * 0.15;
   const bodySize = size - headSize;
-  const headY = height - size;
+  const headY = base - size;
   drawHead(x, headY, headSize);
   drawBody(x, headY + headSize, bodySize);
 };
+
 
 const drawHead = (x, y, size) => {
   drawSnowball(x, y, size);
@@ -53,7 +60,7 @@ const drawHat = (x, y, size) => {
   const hatHeight = 50;
   drawFilledRect(x - brimWidth/2, brimTop, brimWidth, brimHeight, 'black');
   drawFilledRect(x - hatWidth/2, brimTop - hatHeight, hatWidth, hatHeight, 'black');
-}
+};
 
 const drawCoal = (x, y) => {
   drawFilledCircle(x, y, 4, 'black');
