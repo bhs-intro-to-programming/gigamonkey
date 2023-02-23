@@ -40,7 +40,7 @@ const drawMouth = (x, y, size) => {
 
 const drawHat = (x, y, size) => {
   const brimTop = y - size * 0.9;
-  const brimWidth = size * 1.25;
+  const brimWidth = size;
   drawFilledRect(x - brimWidth/2, brimTop, x + brimWidth/2, brimTop + 2, 'black');
 }
 
