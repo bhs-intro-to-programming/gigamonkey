@@ -124,4 +124,4 @@ registerOnclick((x, y) => {
   }
 });
 
-drawBoard();
+drawTheBoard();
