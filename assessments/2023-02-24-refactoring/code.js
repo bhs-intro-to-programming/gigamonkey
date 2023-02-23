@@ -1,6 +1,6 @@
 const drawPicture = () => {
   drawBackground();
-  drawSnowman();
+  drawSnowman(width/2, height * 0.7);
 };
 
 const drawBackground = () => {
@@ -9,11 +9,10 @@ const drawBackground = () => {
   drawFilledRect(0, horizon, width, height, 'white');
 };
 
-const drawSnowman = (x, base, size) => {
+const drawSnowman = (x, size) => {
   // Snowman at base of height size
   const headSize = size * 0.25;
   const bodySize = size * 0.75;
-  const x = width / 2;
   const headY = height * 0.2;
   drawHead(x, headY, headSize);
   drawBody(x, headY + headSize + bodySize, bodySize);
