@@ -29,7 +29,7 @@ const drawLeftArm = (x, y, size) => {
   drawLine(x1, y1, x2, y2, 'black');
 };
 
-const drawLeftArm = (x, y, size) => {
+const drawRightArm = (x, y, size) => {
   const x1 = x + size * 0.45;
   const y1 = y - size * 0.2;
   const x2 = x1 + size * 1.5;
