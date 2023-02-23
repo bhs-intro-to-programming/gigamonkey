@@ -17,7 +17,7 @@ const drawEyes = (x, y, size) => {
 
 const drawMouth = (x, y, size) => {
   for (let i = 0; i < 5; i++) { 
-    const dy = Math.abs(i - 2) * 10;
+    const dy = Math.abs(i - 2) * -3;
     drawCoal(x - size * 0.35 + i * size * 0.2, y + size * 0.55 + dy);
   }
 };
