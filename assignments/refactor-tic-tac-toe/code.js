@@ -102,8 +102,7 @@ const isLegalMove = (r, c) => {
   return 0 <= r && r < 3 && 0 <= c && c < 3 && board[r][c] === '';
 };
 
-const maybeDrawWinningLine = () => {
-  const winner = findWinner();
+const maybeDrawWinningLine = (winner) => {
   if (winner !== null) {
     drawWinningLine(winner);
   }
@@ -117,8 +116,7 @@ registerOnclick((x, y) => {
   if (!gameOver()) {
     if (isLegalMove(r, c)) {
       makeMove(r, c);
-      maybeDrawWinningLine();
-
+      maybeDrawWinningLine(findWinner());
     }
   }
 });
