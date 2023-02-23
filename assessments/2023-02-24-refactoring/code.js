@@ -10,8 +10,12 @@ const drawBackground = () => {
 };
 
 const drawSnowman = () => {
-  drawHead(width / 2, height * 0.2, 50);
-  drawBody(width / 2, height * 0.2 + 50 + 70, 70);
+  const size = 50;
+  const bodySize = 70;
+  const x = width / 2;
+  const headY = height * 0.2;
+  drawHead(x, headY, size);
+  drawBody(x, headY + size + bodySize, bodySize);
 };
 
 const drawHead = (x, y, size) => {
