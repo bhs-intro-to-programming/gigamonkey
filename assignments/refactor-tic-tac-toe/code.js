@@ -46,16 +46,17 @@ const drawHorizontalLine = (y) => {
 
 const findWinner = () => {
   for (let i = 0; i < lines.length; i++) {
+    const marks = [];
     let r = lines[i][0][0];
     let c = lines[i][0][1];
-    const m0 = board[r][c];
+    marks.push(board[r][c]);
     r = lines[i][1][0];
     c = lines[i][1][1];
-    const m1 = board[r][c];
+    marks.push(board[r][c]);
     r = lines[i][2][0];
     c = lines[i][2][1];
-    const m2 = board[r][c];
-    if (m0 !== '' && m0 === m1 && m0 === m2) {
+    marks.push(board[r][c]);
+    if (marks[0] !== '' && marks[0] === marks[1] && marks[0] === marks[2]) {
       return lines[i];
     }
   }
