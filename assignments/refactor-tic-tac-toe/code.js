@@ -96,21 +96,27 @@ const makeMove = (r, c) => {
   move++;
 };
 
-registerOnclick((x, y) => {
+const gameOver = () => findWinner() !== null || move === 9;
 
-  let winner = findWinner();
+const isLegalMove = (r, c) => {
+  return 0 <= r && r < 3 && 0 <= c && c < 3 && board[r][c] === '';
+};
+
+registerOnclick((x, y) => {
 
   const r = Math.floor((y - boardTop) / cellSize);
   const c = Math.floor((x - boardLeft) / cellSize);
 
-  // Only do anything if it's a legal move and the game isn't over.
-  if (winner === null && 0 <= r && r < 3 && 0 <= c && c < 3 && board[r][c] === '') {
-    makeMove(r, c);
-    
-    // Check if there's a winner now
-    winner = findWinner();
-    if (winner !== null) {
-      drawWinningLine(winner);
+  if (!gameOver()) {
+    // Only do anything if it's a legal move and the game isn't over.
+    if (isLegalMove(r, c)) {
+      makeMove(r, c);
+
+      // Check if there's a winner now
+      let winner = findWinner();
+      if (winner !== null) {
+        drawWinningLine(winner);
+      }
     }
   }
 });
