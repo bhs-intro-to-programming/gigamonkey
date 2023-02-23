@@ -1,6 +1,6 @@
 const drawBackground = () => {
   drawFilledRect(0, 0, width, height * 0.8, '#ddeeff');
-  drawFilledRect(0, hight * 0.8, width, height, 'white');
+  drawFilledRect(0, height * 0.8, width, height, 'white');
 }
 
 
