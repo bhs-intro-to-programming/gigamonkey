@@ -22,11 +22,11 @@ const drawSnowman = (x, base, size) => {
 };
 
 const drawHead = (x, y, size) => {
-  drawSnowball(x, y, size);
-  drawEyes(x, y, size);
-  drawNose(x, y, size);
-  drawMouth(x, y, size);
-  drawHat(x, y, size);
+  drawSnowball(x, y, size/2);
+  drawEyes(x, y, size/2);
+  drawNose(x, y, size/2);
+  drawMouth(x, y, size/2);
+  drawHat(x, y, size/2);
 };
 
 // Draw eyes in the snowball at x, y of size.
