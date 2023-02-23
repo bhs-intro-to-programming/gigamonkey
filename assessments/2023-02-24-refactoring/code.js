@@ -1,9 +1,13 @@
+const drawPicture = () => {
+  drawBackground();
+  drawSnowman();
+};
+
 const drawBackground = () => {
   const horizon = height * 0.7;
   drawFilledRect(0, 0, width, horizon, '#ddeeff');
   drawFilledRect(0, horizon, width, height, 'white');
-}
-
+};
 
 const drawSnowman = () => {
   drawHead(width / 2, height * 0.2, 50);
@@ -68,5 +72,4 @@ const drawButtons = (x, y, size) => {
   }
 }
 
-drawBackground();
-drawSnowman();
+drawPicture();
