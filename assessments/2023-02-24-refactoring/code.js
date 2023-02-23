@@ -26,7 +26,7 @@ const drawSnowball = (x, y, size) => {
 
 const drawBody = (x, y, size) => {
   drawSnowball(x, y, size);
-  drawCircle(x, y + size + size * 1.25, size * 1.25, 'black', 3);
+  drawSnowball(x, y + size + size * 1.25, size * 1.25);
   drawArms(x, y, size);
   drawButtons(x, y, size);
 };
