@@ -6,3 +6,5 @@ const drawSnowman = () => {
 const drawHead = (x, y, size) => {
   drawCircle(x, y, size, 'black');
 }
+
+drawSnowman();
