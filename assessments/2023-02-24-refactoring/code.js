@@ -36,7 +36,7 @@ const drawLeftArm = (x, y, size) => {
   const y1 = y - size * 0.2;
   const x2 = x1 - size * 1.5;
   const y2 = y1 - 30;
-  drawLine(x1, y1, x2, y2, 'black');
+  drawLine(x1, y1, x2, y2, 'black', 3);
 };
 
 const drawRightArm = (x, y, size) => {
@@ -44,7 +44,7 @@ const drawRightArm = (x, y, size) => {
   const y1 = y - size * 0.2;
   const x2 = x1 + size * 1.5;
   const y2 = y1 - 30;
-  drawLine(x1, y1, x2, y2, 'black');
+  drawLine(x1, y1, x2, y2, 'black', 3);
 };
 
 const drawButtons = (x, y, size) => {
