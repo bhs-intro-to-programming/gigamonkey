@@ -13,11 +13,12 @@ const drawSnowman = (x, base, size) => {
   const headSize = size * 0.15;
   const torsoSize = size * 0.18;
   const buttSize = size - (headSize + torsoSize); 
-  const bodySize = size - headSize;
   const headY = (base - size) + headSize;
+  const torsoY = headY + headSize + torsoSize;
+  const buttY = torsoY + torsoSize + buttSize;
   drawHead(x, headY, headSize);
-  drawTorso(x, headY + headSize + torsoSize, torsoSize)
-  drawButt(x, headY + headSize, bodySize);
+  drawTorso(x, torsoY, torsoSize)
+  drawButt(x, buttY, buttSize);
 };
 
 const drawHead = (x, y, size) => {
@@ -72,12 +73,7 @@ const drawTorso = (x, y, size) => {
 };
 
 const drawButt = (x, y, size) => {
-  const p1 = 0.42;
-  const p2 = 1 - p1;
-  const size1 = size * p1 / 2;
-  const size2 = size * p2 / 2;
-  const y2 = y + size1 * 2 + size2;
-  drawSnowball(x, y2, size2);
+  drawSnowball(x, y, size);
 };
 
 const drawArms = (x, y, size) => {
