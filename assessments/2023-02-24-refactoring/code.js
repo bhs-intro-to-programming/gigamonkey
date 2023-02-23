@@ -1,5 +1,5 @@
 const drawSnowman = () => {
-  drawHead(width/2, height/2, 20);
+  drawHead(width/2, height * 0.25, 50);
 
 }
 
