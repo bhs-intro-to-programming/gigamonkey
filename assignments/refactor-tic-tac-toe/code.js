@@ -56,6 +56,7 @@ const findWinner = () => {
     r = lines[i][2][0];
     c = lines[i][2][1];
     marks.push(board[r][c]);
+    console.log(marks);
     if (marks[0] !== '' && marks[0] === marks[1] && marks[0] === marks[2]) {
       return lines[i];
     }
