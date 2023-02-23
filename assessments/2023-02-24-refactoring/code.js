@@ -1,6 +1,6 @@
 const drawPicture = (horizon, base, size) => {
   drawBackground(horizon);
-  drawSnowman(width/2, base, size);
+  drawSnowman(width/2, base, size, [ 10, 12, 20]);
 };
 
 const drawBackground = (horizon) => {
@@ -9,10 +9,12 @@ const drawBackground = (horizon) => {
   drawLine(0, horizon, width, horizon, '#bbb');
 };
 
-const drawSnowman = (x, base, size) => {
-  const headSize = size * 0.25;
-  const torsoSize = size * 0.30;
-  const buttSize = size - (headSize + torsoSize); 
+const drawSnowman = (x, base, size, proportions) => {
+  const [headP, torsoP, buttP] = proportions;
+  const total = proportions.reduce((tot, p) => tot + p, 0);
+  const headSize = size * (headP / total);
+  const torsoSize = size * (torsoP / total)
+  const buttSize = size - (buttP / total); 
   const headY = (base - size) + headSize/2;
   const torsoY = headY + headSize/2 + torsoSize/2;
   const buttY = torsoY + torsoSize/2+ buttSize/2;
