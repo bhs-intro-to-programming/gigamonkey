@@ -48,7 +48,9 @@ const drawRightArm = (x, y, size) => {
 };
 
 const drawButtons = (x, y, size) => {
-
+  for (let i = 0; i < 3; i++) {
+    drawCoal(x, y - size * 0.5 + i * size * 0.3);
+  }
 }
 
 drawSnowman();
