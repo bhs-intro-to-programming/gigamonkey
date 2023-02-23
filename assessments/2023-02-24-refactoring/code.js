@@ -25,15 +25,15 @@ const drawSnowman = (x, base, size, proportions) => {
 
 const drawHead = (x, y, size) => {
   drawSnowball(x, y, size);
-  drawEyes(x, y, size);
+  drawEyes(x, y, size * 0.25);
   drawNose(x, y, size);
   drawMouth(x, y, size);
   drawHat(x, y, size);
 };
 
-const drawEyes = (x, y, size) => {
-  drawCoal(x - size * 0.25, y - size * 0.25, 4);
-  drawCoal(x + size * 0.25, y - size * 0.25, 4);
+const drawEyes = (x, y, spacing) => {
+  drawCoal(x - spacing, y - spacing, 4);
+  drawCoal(x + spacing, y - spacing, 4);
 };
 
 const drawNose = (x, y, size) => {
