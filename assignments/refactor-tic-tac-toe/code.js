@@ -30,10 +30,10 @@ const lines = [
 ];
 
 const drawTheBoard = () => {
-  drawVerticalLine(boardLeft + cellSize);
-  drawVerticalLine(boardLeft + 2 * cellSize);
-  drawHorizontalLine(boardTop + cellSize);
-  drawHorizontalLine(boardTop + 2 * cellSize);
+  for (let i = 1; i <= 2; i++) {
+    drawVerticalLine(boardLeft + i * cellSize);
+    drawHorizontalLine(boardTop + i * cellSize);
+  }
 };
 
 const drawVerticalLine = (x) => {
