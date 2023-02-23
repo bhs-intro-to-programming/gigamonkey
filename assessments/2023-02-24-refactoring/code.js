@@ -11,14 +11,7 @@ const drawBackground = () => {
 };
 
 const drawSnowman = (x, base, size) => {
-  // Snowman at base of height size
-  // top of hat should be at base + size
-  // middle of bottom snowball is at base + radius of that 
-
-  // total head height is 2 * radius + y - size * 0.9;
-
-
-  const headSize = size * 0.15;
+  const headSize = size * 0.12;
   const bodySize = size - headSize;
   const headY = base - size;
   drawHead(x, headY, headSize);
