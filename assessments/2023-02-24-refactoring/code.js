@@ -32,8 +32,8 @@ const drawHead = (x, y, size) => {
 };
 
 const drawEyes = (x, y, size) => {
-  drawFilledCircle(x - size * 0.25, y - size * 0.25, 4, 'black');
-  drawFilledCircle(x + size * 0.25, y - size * 0.25, 4, 'black');
+  drawCoal(x - size * 0.25, y - size * 0.25, 4);
+  drawCoal(x + size * 0.25, y - size * 0.25, 4);
 };
 
 const drawNose = (x, y, size) => {
