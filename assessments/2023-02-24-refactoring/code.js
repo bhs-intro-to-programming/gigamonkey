@@ -12,7 +12,7 @@ const drawBackground = () => {
 const drawSnowman = (x, size) => {
   // Snowman at base of height size
   const headSize = size * 0.15;
-  const bodySize = size * 0.75;
+  const bodySize = size - headSize;
   const headY = height * 0.2;
   drawHead(x, headY, headSize);
   drawBody(x, headY + headSize + bodySize, bodySize);
