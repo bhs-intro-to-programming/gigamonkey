@@ -102,21 +102,23 @@ const isLegalMove = (r, c) => {
   return 0 <= r && r < 3 && 0 <= c && c < 3 && board[r][c] === '';
 };
 
+const maybeDrawWinningLine = () => {
+  const winner = findWinner();
+  if (winner !== null) {
+    drawWinningLine(winner);
+  }
+};
+
 registerOnclick((x, y) => {
 
   const r = Math.floor((y - boardTop) / cellSize);
   const c = Math.floor((x - boardLeft) / cellSize);
 
   if (!gameOver()) {
-    // Only do anything if it's a legal move and the game isn't over.
     if (isLegalMove(r, c)) {
       makeMove(r, c);
+      maybeDrawWinningLine();
 
-      // Check if there's a winner now
-      let winner = findWinner();
-      if (winner !== null) {
-        drawWinningLine(winner);
-      }
     }
   }
 });
