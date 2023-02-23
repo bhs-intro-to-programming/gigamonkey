@@ -6,7 +6,7 @@ const drawSnowman = () => {
 const drawHead = (x, y, size) => {
   drawSnowball(x, y, size);
   drawEyes(x, y, size);
-  drawFilledTriangle(x, y, x + 36, y + 10, x, y + 12, 'orange');
+  drawNose(x, y, size);
   drawMouth(x, y, size);
 };
 
@@ -15,8 +15,12 @@ const drawEyes = (x, y, size) => {
   drawFilledCircle(x + size * 0.25, y - size * 0.25, 4, 'black');
 };
 
+const drawNose = (x, y, size) => {
+  drawFilledTriangle(x, y, x + 36, y + 10, x, y + 12, 'orange');
+};
+
 const drawMouth = (x, y, size) => {
-  for (let i = 0; i < 5; i++) { 
+  for (let i = 0; i < 5; i++) {
     const dy = -2 * (1.9 ** Math.abs(i - 2));
     drawCoal(x - size * 0.35 + i * size * 0.2, y + size * 0.6 + dy);
   }
@@ -27,7 +31,7 @@ const drawCoal = (x, y) => {
 };
 
 const drawSnowball = (x, y, size) => {
-    drawCircle(x, y, size + 2, 'black', 3);
+  drawCircle(x, y, size + 2, 'black', 3);
   drawFilledCircle(x, y, size, 'white', 3);
 };
 
