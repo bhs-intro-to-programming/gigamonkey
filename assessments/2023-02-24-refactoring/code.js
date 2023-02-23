@@ -15,7 +15,7 @@ const drawSnowman = (x, size) => {
   const bodySize = size - headSize;
   const headY = height * 0.2;
   drawHead(x, headY, headSize);
-  drawBody(x, headY + headSize + bodySize, bodySize);
+  drawBody(x, headY + headSize, bodySize);
 };
 
 const drawHead = (x, y, size) => {
