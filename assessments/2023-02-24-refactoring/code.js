@@ -19,6 +19,7 @@ const drawHead = (x, y, size) => {
   drawEyes(x, y, size);
   drawNose(x, y, size);
   drawMouth(x, y, size);
+  drawHat(x, y, size);
 };
 
 const drawEyes = (x, y, size) => {
@@ -36,6 +37,11 @@ const drawMouth = (x, y, size) => {
     drawCoal(x - size * 0.35 + i * size * 0.2, y + size * 0.6 + dy);
   }
 };
+
+const drawHat = (x, y, size) => {
+  const brimTop = y - size * 0.9;
+  drawFilledRect(x - size * 1.25, brimTop, x + size * 1.25, brimTop + 10);
+}
 
 const drawCoal = (x, y) => {
   drawFilledCircle(x, y, 4, 'black');
