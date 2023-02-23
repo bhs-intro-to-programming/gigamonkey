@@ -145,7 +145,7 @@ const circleLine = (radius) => {
     } else { c = 'red' }
   }
 }
-//circleLine(12)
+circleLine(12)
 
 const xdartboard = (howManyCircles) => {
   let radius = height / 2
