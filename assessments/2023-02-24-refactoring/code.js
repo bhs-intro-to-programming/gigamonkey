@@ -66,4 +66,5 @@ const drawButtons = (x, y, size) => {
   }
 }
 
+drawBackground();
 drawSnowman();
