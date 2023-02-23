@@ -11,11 +11,13 @@ const drawBackground = (horizon) => {
 
 const drawSnowman = (x, base, size) => {
   const headSize = size * 0.15;
+  const torsoSize = size * 0.25;
+  const buttSize = size - (headSize + torsoSize); 
   const bodySize = size - headSize;
-  const headY = base - size;
+  const headY = (base - size) + headSize;
   drawHead(x, headY, headSize);
-  drawTorso(x, headY + headSize, bodySize)
-  drawBody(x, headY + headSize, bodySize);
+  drawTorso(x, headY + headSize + torsoSize, torsoSize)
+  drawButt(x, headY + headSize, bodySize);
 };
 
 const drawHead = (x, y, size) => {
@@ -72,7 +74,7 @@ const drawTorso = (x, y, size) => {
   drawButtons(x, y1, size1);
 };
 
-const drawBody = (x, y, size) => {
+const drawButt = (x, y, size) => {
   const p1 = 0.42;
   const p2 = 1 - p1;
   const size1 = size * p1 / 2;
