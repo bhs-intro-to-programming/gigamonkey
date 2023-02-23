@@ -95,4 +95,4 @@ const drawButtons = (x, y, size) => {
   }
 }
 
-drawPicture(height * 0.7, height * 0.9, height * 0.5);
+drawPicture(height * 0.7, height * 0.9, height * 0.7);
