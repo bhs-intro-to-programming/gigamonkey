@@ -21,7 +21,7 @@ const drawCoal = (x, y) => {
 
 const drawBody = (x, y, size) => {
   drawCircle(x, y, size, 'black');
-  drawCircle(x, y + size + size * 1.25, size * 1.25, 'black');
+  drawCircle(x, y + size + size * 1.25, size * 1.25, 'black', 3);
   drawArms(x, y, size);
   drawButtons(x, y, size);
 };
