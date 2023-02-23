@@ -83,7 +83,7 @@ const drawArms = (x, y, size) => {
 
 const drawArm = (x, y, size, direction) => {
   const x1 = x + size * 0.6 * direction;
-  const x2 = x2 + size * 2.35 * direction;
+  const x2 = x + size * 2.35 * direction;
   drawLine(x1, y - size * 0.25, x2, y - size * 0.85, 'black', 3);
 };
 
