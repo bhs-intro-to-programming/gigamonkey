@@ -4,7 +4,7 @@ const drawSnowman = () => {
 };
 
 const drawHead = (x, y, size) => {
-  drawCircle(x, y, size, 'black', 3);
+  drawSnowball(x, y, size);
   drawEyes(x, y, size);
   drawFilledTriangle(x, y, x + 36, y + 10, x, y + 12, 'orange')
 };
