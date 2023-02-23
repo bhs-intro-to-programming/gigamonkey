@@ -41,7 +41,7 @@ const drawTheBoard = () => {
 };
 
 const drawVerticalLine = (x) => {
-  drawLine(x, boardTop, x, boardTop + boardSize, 'blue', 2);
+  drawLine(x, boardTop, x, boardTop + boardSize, 'grey', 2);
 };
 
 const drawHorizontalLine = (y) => {
