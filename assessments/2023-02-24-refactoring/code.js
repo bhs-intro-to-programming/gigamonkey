@@ -85,7 +85,7 @@ const drawArm = (x, y, size, direction) => {
   const x1 = x + size * 0.6 * direction;
   const y1 = y - size * 0.25;
   const x2 = x1 + size * 1.75 * direction;
-  const y2 = y1 - size * 0.65;
+  const y2 = y - size * 0.85;
   drawLine(x1, y1, x2, y2, 'black', 3);
 };
 
@@ -93,6 +93,6 @@ const drawButtons = (x, y, size) => {
   for (let i = 0; i < 3; i++) {
     drawCoal(x, y - size * 0.5 + i * size * 0.5, 4);
   }
-}
+};
 
 drawPicture(height * 0.7, height * 0.9, height * 0.7);
