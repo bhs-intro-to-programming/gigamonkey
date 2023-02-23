@@ -15,6 +15,12 @@ const drawBody = (x, y, size) => {
   drawCircle(x, y + size + size * 1.25, size * 1.25, 'black');
 };
 
-
+const drawArms = (x, y, size) => {
+  const x1 = x + size * 0.3;
+  const y1 = y - size * 0.2;
+  const x2 = x1 + 150;
+  conts y2 = y1 + 30;
+  drawLine(x1, y1, x2, y2, 'black');
+}
 
 drawSnowman();
