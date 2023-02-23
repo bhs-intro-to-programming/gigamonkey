@@ -5,7 +5,7 @@ const drawSnowman = () => {
 
 const drawHead = (x, y, size) => {
   drawCircle(x, y, size, 'black');
-  drawFilledCircle(x - size / 2, y - size/2, 4, 'black');
+  drawFilledCircle(x - size * 0.25, y - size * 0.25, 4, 'black');
 }
 
 drawSnowman();
