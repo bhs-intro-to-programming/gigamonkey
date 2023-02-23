@@ -35,7 +35,6 @@ const drawSnowball = (x, y, size) => {
   drawFilledCircle(x, y, size, 'white', 3);
 };
 
-
 const drawBody = (x, y, size) => {
   drawSnowball(x, y, size);
   drawSnowball(x, y + size + size * 1.25, size * 1.25);
