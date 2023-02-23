@@ -43,6 +43,7 @@ const drawHat = (x, y, size) => {
   const brimWidth = size * 2;
   console.log(`x: ${x}; brimWidth: ${brimWidth}; width/2: ${width/2}`);
   drawFilledRect(x - brimWidth/2, brimTop, brimWidth, 6, 'black');
+  drawFilledRect(x - brimWidth/2 * 0.8, brimTop - 70, brimWidth * 0.8, 70, 'black');
 }
 
 const drawCoal = (x, y) => {
