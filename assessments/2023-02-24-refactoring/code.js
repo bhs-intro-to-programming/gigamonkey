@@ -11,7 +11,7 @@ const drawBackground = (horizon) => {
 
 const drawSnowman = (x, base, size) => {
   const headSize = size * 0.15;
-  const torsoSize = size * 0.25;
+  const torsoSize = size * 0.18;
   const buttSize = size - (headSize + torsoSize); 
   const bodySize = size - headSize;
   const headY = (base - size) + headSize;
