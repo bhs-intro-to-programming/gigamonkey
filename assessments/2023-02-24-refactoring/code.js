@@ -65,10 +65,12 @@ const drawSnowball = (x, y, size) => {
 const drawBody = (x, y, size) => {
   const size1 = size * 0.3;
   const size2 = size - size1;
-  drawSnowball(x, y + size1, size1);
-  drawSnowball(x, y + size1 * 2 + size2, size2);
-  drawArms(x, y, size1);
-  drawButtons(x, y, size1);
+  const y1 = y + size1;
+  const y2 = y + size1 * 2 + size2;
+  drawSnowball(x, y1, size1);
+  drawSnowball(x, y2, size2);
+  drawArms(x, y1, size1);
+  drawButtons(x, y1, size1);
 };
 
 const drawArms = (x, y, size) => {
