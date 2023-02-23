@@ -1,6 +1,6 @@
 const drawSnowman = () => {
   drawHead(width/2, height * 0.25, 50);
-  drawBody(width/2, height * 0.25 + 50 + 100, 100);
+  drawBody(width/2, height * 0.25 + 50 + 70, 70);
 };
 
 const drawHead = (x, y, size) => {
