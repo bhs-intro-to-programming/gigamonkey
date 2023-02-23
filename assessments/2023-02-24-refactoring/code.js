@@ -7,6 +7,7 @@ const drawBackground = () => {
   const horizon = height * 0.7;
   drawFilledRect(0, 0, width, horizon, '#ddeeff');
   drawFilledRect(0, horizon, width, height, 'white');
+  drawLine(0, horizon, width, horizon, '#bbb');
 };
 
 const drawSnowman = (x, size) => {
