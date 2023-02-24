@@ -1,8 +1,3 @@
-const drawCoal = (x, y, size) => {
-  drawFilledCircle(x, y, size, 'black');
-};
-
-
 
 const horizon = height * 0.7;
 const base = height * 0.9;
@@ -34,8 +29,8 @@ drawFilledCircle(x, headY, headRadius, 'white', 3);
 
 // Draw the eyes
 const eyeSpacing = headRadius * 0.25;
-drawCoal(x - eyeSpacing, headY - eyeSpacing, 4);
-drawCoal(x + eyeSpacing, headY - eyeSpacing, 4);
+drawFilledCircle(x - eyeSpacing, headY - eyeSpacing, 4, 'black');
+drawFilledCircle(x + eyeSpacing, headY - eyeSpacing, 4, 'black');
 
 // Draw the nose
 const noseLength = headRadius * 0.8;
@@ -44,7 +39,7 @@ drawFilledTriangle(x, headY, x + noseLength, headY + noseLength * 0.2, x, headY 
 // Draw the mouth
 for (let i = 0; i < 5; i++) {
   const dy = -2 * (2.1 ** Math.abs(i - 2));
-  drawCoal(x - (i - 2.3) * headRadius * 0.21, headY + headRadius * 0.65 + dy, 4);
+  drawFilledCircle(x - (i - 2.3) * headRadius * 0.21, headY + headRadius * 0.65 + dy, 4, 'black');
 }
 
 // Draw the hat
@@ -71,7 +66,7 @@ drawLine(x1, torsoY - torsoRadius * 0.25, x2, torsoY - torsoRadius * 0.85, 'blac
 
 // Draw the buttons
 for (let i = 0; i < 3; i++) {
-  drawCoal(x, torsoY - torsoRadius * 0.5 + i * torsoRadius * 0.5, 4);
+  drawFilledCircle(x, torsoY - torsoRadius * 0.5 + i * torsoRadius * 0.5, 4, 'black');
 }
 
 // Draw the butt
