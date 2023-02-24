@@ -1,15 +1,4 @@
 
-
-const drawHat = (x, y, size) => {
-  const brimTop = y - size * 0.9;
-  const brimWidth = size * 2.25;
-  const brimHeight = brimWidth * 0.08;
-  const hatWidth = brimWidth * 0.7;
-  const hatHeight = size * 1.25;
-  drawFilledRect(x - brimWidth / 2, brimTop, brimWidth, brimHeight, 'black');
-  drawFilledRect(x - hatWidth / 2, brimTop - hatHeight, hatWidth, hatHeight, 'black');
-};
-
 const drawCoal = (x, y, size) => {
   drawFilledCircle(x, y, size, 'black');
 };
@@ -88,7 +77,15 @@ for (let i = 0; i < 5; i++) {
   drawCoal(x - (i - 2.3) * headRadius * 0.21, headY + headRadius * 0.65 + dy, 4);
 }
 
-drawHat(x, headY, headRadius);
+// Draw the hat
+const brimTop = headY - headRadius * 0.9;
+const brimWidth = headRadius * 2.25;
+const brimHeight = brimWidth * 0.08;
+const hatWidth = brimWidth * 0.7;
+const hatHeight = headRadius * 1.25;
+drawFilledRect(x - brimWidth / 2, brimTop, brimWidth, brimHeight, 'black');
+drawFilledRect(x - hatWidth / 2, brimTop - hatHeight, hatWidth, hatHeight, 'black');
+
 
 
 drawTorso(x, torsoY, torsoSize / 2)
