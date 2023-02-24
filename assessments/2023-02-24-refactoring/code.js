@@ -1,10 +1,4 @@
 
-const drawMouth = (x, y, size) => {
-  for (let i = 0; i < 5; i++) {
-    const dy = -2 * (2.1 ** Math.abs(i - 2));
-    drawCoal(x - (i - 2.3) * size * 0.21, y + size * 0.65 + dy, 4);
-  }
-};
 
 const drawHat = (x, y, size) => {
   const brimTop = y - size * 0.9;
@@ -88,8 +82,12 @@ drawCoal(x + eyeSpacing, headY - eyeSpacing, 4);
 const noseLength = headRadius * 0.8;
 drawFilledTriangle(x, headY, x + noseLength, headY + noseLength * 0.2, x, headY + noseLength * 0.3, 'orange');
 
+// Draw the mouth
+for (let i = 0; i < 5; i++) {
+  const dy = -2 * (2.1 ** Math.abs(i - 2));
+  drawCoal(x - (i - 2.3) * headRadius * 0.21, headY + headRadius * 0.65 + dy, 4);
+}
 
-drawMouth(x, headY, headRadius);
 drawHat(x, headY, headRadius);
 
 
