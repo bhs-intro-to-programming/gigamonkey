@@ -8,9 +8,7 @@ const drawSnowball = (x, y, size) => {
   drawFilledCircle(x, y, size, 'white', 3);
 };
 
-const drawButt = (x, y, size) => {
-  drawSnowball(x, y, size);
-};
+
 
 const drawArms = (x, y, size) => {
   drawArm(x, y, size, 1);
@@ -86,4 +84,5 @@ drawSnowball(x, torsoY, torsoRadius);
 drawArms(x, torsoY, torsoRadius);
 drawButtons(x, torsoY, torsoRadius);
 
-drawButt(x, buttY, buttSize / 2);
+// Draw the but
+drawSnowball(x, buttY, buttSize / 2);
