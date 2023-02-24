@@ -1,8 +1,6 @@
 import { setCanvas, drawTriangle, drawCircle, clear, width, height, animate } from './graphics.js';
 import { TAU, ZERO, randomInt, randomSign, clamp, clampMagnitude, distance, distanceSquared, average, sumVectors, angle, vector } from './math.js';
 
-let stepNum = 0;
-
 // This has to come early so graphics width and height are set before we use them.
 // Should really reorganize this, probably by totally rejiggering graphics.js
 
@@ -248,7 +246,6 @@ const forces = [
 ];
 
 animate((elapsed) => {
-  stepNum++;
   const grid = emptyGrid();
   boids.forEach(b => updatePosition(b, elapsed, grid));
   clear();
