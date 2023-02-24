@@ -81,7 +81,9 @@ drawFilledRect(x - hatWidth / 2, brimTop - hatHeight, hatWidth, hatHeight, 'blac
 
 // Draw the torso
 const torsoRadius = torsoSize / 2;
-drawSnowball(x, torsoY, torsoRadius);
+drawCircle(x, torsoY, torsoRadius + 2, 'black', 3);
+drawFilledCircle(x, torsoY, torsoRadius, 'white', 3);
+
 drawArms(x, torsoY, torsoRadius);
 drawButtons(x, torsoY, torsoRadius);
 
