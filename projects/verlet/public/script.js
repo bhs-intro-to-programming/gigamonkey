@@ -48,20 +48,32 @@ const collisions = () => {
   }
 };
 
+const random = (a, b) => {
+  const [min, max] = b === undefined ? [0, a] : [a, b];
+  return min + Math.random() * (max - min);
+};
+
 const spawner = (x, y, freq, balls) => {
+  const r = 5;
   let since = 0;
   return (elapsed) => {
     since += elapsed;
     if (since > freq) {
       const start = vector(x, y);
-      balls.push(ball(start, start, zero, Math.floor(5 + Math.random() * 10)));
+      const velocity = vector(random(-r, r), -random(2 * r));
+      const prev = start.minus(velocity);
+      balls.push(ball(start, prev, zero, Math.floor(5 + Math.random() * 10)));
       since = 0;
     }
   };
 };
 
 const balls = [];
-const spawners = [spawner(mid.x + 100, mid.y, 250, balls)];
+const spawners = [
+  spawner(mid.x, mid.y, 200, balls),
+  //spawner(mid.x + 100, mid.y, 250, balls),
+  //spawner(mid.x - 200, mid.y - 100, 250, balls)
+];
 
 animate((elapsed) => {
   spawners.forEach((s) => s(elapsed));
