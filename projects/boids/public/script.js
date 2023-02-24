@@ -1,6 +1,8 @@
 import { setCanvas, drawTriangle, drawCircle, clear, width, height, animate } from './graphics.js';
 import { TAU, ZERO, randomInt, randomSign, clamp, clampMagnitude, distance, distanceSquared, average, sumVectors, angle, vector } from './math.js';
 
+let stepNum = 0;
+
 // This has to come early so graphics width and height are set before we use them.
 // Should really reorganize this, probably by totally rejiggering graphics.js
 
@@ -37,6 +39,7 @@ const speed = (boid) => Math.hypot(boid.dx, boid.dy);
 const direction = (boid) => angle(ZERO, { x: boid.dx, y: boid.dy });
 
 const setVelocity = (b, v) => {
+  if (isNaN(v.dx) || isNaN(v.dy)) debugger;
   b.dx = v.dx;
   b.dy = v.dy;
   b.direction = direction(v);
@@ -99,8 +102,12 @@ const drawBoid = (boid) => {
 // Simulation machinery
 
 const updatePosition = (b, elapsed, grid) => {
-  b.x = clamp(b.x + 10 * b.dx / elapsed, 0, width);
-  b.y = clamp(b.y + 10 * b.dy / elapsed, 0, height);
+  const nx = clamp(b.x + 10 * b.dx / elapsed, 0, width);
+  if (isNaN(nx)) debugger;
+  b.x = nx;
+  const ny = clamp(b.y + 10 * b.dy / elapsed, 0, height);
+  if (isNaN(ny)) debugger;
+  b.y = ny;
   addToGrid(b, grid);
 };
 
@@ -112,12 +119,24 @@ const updateVelocities = (boids, forces, grid) => {
   boids.forEach((b, i) => setVelocity(b, updated[i]));
 };
 
+const ff = (f, b, nearby) => {
+  const v = f(b, nearby);
+  if (isNaN(v.x) || isNaN(v.y)) debugger;
+  return v;
+};
+
+
 const newVelocity = (b, nearby, forces) => {
-  const { x, y } = sumVectors(forces.map(f => f(b, nearby)));
+  const { x, y } = sumVectors(forces.map(f => ff(f, b, nearby)));
+  if (isNaN(x) || isNaN(y)) debugger;
   const target = { dx: b.dx + x, dy: b.dy + y };
+  if (isNaN(target.dx) || isNaN(target.dy)) debugger;
   const s = speed(b);
+  if (isNaN(s)) debugger;
   const ds = speed(target) - s;
+  if (isNaN(ds)) debugger;
   const r = vector(clampMagnitude(s + ds * 0.5, SPEED_LIMIT), direction(target));
+  if (isNaN(r.x) || isNaN(r.y)) debugger;
   return { dx: r.x, dy: r.y };
 };
 
@@ -174,7 +193,12 @@ const repulsion = (boid, nearby) => {
   if (nearby.length === 0) {
     return ZERO;
   } else {
-    return sumVectors(nearby.map(n => vector(BOID_REPULSION / distance(n, boid), angle(n, boid))));
+    return sumVectors(nearby.map(n => {
+      return vector(
+        clampMagnitude(BOID_REPULSION / distance(n, boid), SPEED_LIMIT),
+        angle(n, boid)
+      );
+    }));
   }
 };
 
@@ -244,6 +268,7 @@ const forces = [
 ];
 
 animate((elapsed) => {
+  stepNum++;
   const grid = emptyGrid();
   boids.forEach(b => updatePosition(b, elapsed, grid));
   clear();
