@@ -8,12 +8,6 @@ const drawSnowball = (x, y, size) => {
   drawFilledCircle(x, y, size, 'white', 3);
 };
 
-const drawTorso = (x, y, size) => {
-  drawSnowball(x, y, size);
-  drawArms(x, y, size);
-  drawButtons(x, y, size);
-};
-
 const drawButt = (x, y, size) => {
   drawSnowball(x, y, size);
 };
@@ -86,7 +80,10 @@ const hatHeight = headRadius * 1.25;
 drawFilledRect(x - brimWidth / 2, brimTop, brimWidth, brimHeight, 'black');
 drawFilledRect(x - hatWidth / 2, brimTop - hatHeight, hatWidth, hatHeight, 'black');
 
+// Draw the torso
+const torsoRadius = torsoSize / 2;
+drawSnowball(x, torsoY, torsoRadius);
+drawArms(x, torsoY, torsoRadius);
+drawButtons(x, torsoY, torsoRadius);
 
-
-drawTorso(x, torsoY, torsoSize / 2)
 drawButt(x, buttY, buttSize / 2);
