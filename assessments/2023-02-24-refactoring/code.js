@@ -1,9 +1,4 @@
 
-const drawBackground = (horizon) => {
-  drawFilledRect(0, 0, width, horizon, '#ddeeff');
-  drawFilledRect(0, horizon, width, height, 'white');
-  drawLine(0, horizon, width, horizon, '#bbb');
-};
 
 const drawSnowman = (x, base, size, proportions) => {
   const [headP, torsoP, buttP] = proportions;
@@ -95,5 +90,10 @@ const drawButtons = (x, y, size) => {
 const horizon = height * 0.7;
 const base = height * 0.9;
 const size = height * 0.7;
-drawBackground(horizon);
+
+// Draw the background
+drawFilledRect(0, 0, width, horizon, '#ddeeff');
+drawFilledRect(0, horizon, width, height, 'white');
+drawLine(0, horizon, width, horizon, '#bbb');
+
 drawSnowman(width / 2, base, size, [3, 4, 5]);
