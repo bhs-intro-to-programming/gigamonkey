@@ -62,14 +62,12 @@ drawCircle(x, torsoY, torsoRadius + 2, 'black', 3);
 drawFilledCircle(x, torsoY, torsoRadius, 'white', 3);
 
 // Draw the arms
-const drawArm = (x, y, size, direction) => {
-  const x1 = x + size * 0.6 * direction;
-  const x2 = x + size * 2.35 * direction;
-  drawLine(x1, y - size * 0.25, x2, y - size * 0.85, 'black', 3);
-};
-
-drawArm(x, torsoY, torsoRadius, 1);
-drawArm(x, torsoY, torsoRadius, -1);
+let x1 = x + torsoRadius * 0.6;
+let x2 = x + torsoRadius * 2.35;
+drawLine(x1, torsoY - torsoRadius * 0.25, x2, torsoY - torsoRadius * 0.85, 'black', 3);
+x1 = x + torsoRadius * 0.6 * -1;
+x2 = x + torsoRadius * 2.35 * -1;
+drawLine(x1, torsoY - torsoRadius * 0.25, x2, torsoY - torsoRadius * 0.85, 'black', 3);
 
 // Draw the buttons
 for (let i = 0; i < 3; i++) {
