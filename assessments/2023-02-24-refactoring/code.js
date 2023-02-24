@@ -1,10 +1,6 @@
-
 const drawCoal = (x, y, size) => {
   drawFilledCircle(x, y, size, 'black');
 };
-
-
-
 
 const drawArms = (x, y, size) => {
   drawArm(x, y, size, 1);
@@ -17,11 +13,6 @@ const drawArm = (x, y, size, direction) => {
   drawLine(x1, y - size * 0.25, x2, y - size * 0.85, 'black', 3);
 };
 
-const drawButtons = (x, y, size) => {
-  for (let i = 0; i < 3; i++) {
-    drawCoal(x, y - size * 0.5 + i * size * 0.5, 4);
-  }
-};
 
 const horizon = height * 0.7;
 const base = height * 0.9;
@@ -81,7 +72,11 @@ drawCircle(x, torsoY, torsoRadius + 2, 'black', 3);
 drawFilledCircle(x, torsoY, torsoRadius, 'white', 3);
 
 drawArms(x, torsoY, torsoRadius);
-drawButtons(x, torsoY, torsoRadius);
+
+// Draw the buttons
+for (let i = 0; i < 3; i++) {
+  drawCoal(x, torsoY - torsoRadius * 0.5 + i * torsoRadius * 0.5, 4);
+}
 
 // Draw the butt
 const buttRadius = buttSize / 2;
