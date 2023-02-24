@@ -32,12 +32,10 @@ const ZERO = { x: 0, y: 0 };
  * Vector in x,y form with a given magnitude and direction.
  */
 const vector = (magnitude, direction) => {
-  const v = {
+  return {
     x: magnitude * Math.cos(direction),
     y: magnitude * Math.sin(direction),
   };
-  if (isNaN(v.x) || isNaN(v.y)) debugger;
-  return v;
 };
 
 /*
@@ -46,7 +44,6 @@ const vector = (magnitude, direction) => {
 const sumVectors = (vs) => {
   const sum = { x: 0, y: 0 };
   vs.forEach(v => {
-    if (isNaN(v.x) || isNaN(v.y)) debugger;
     sum.x += v.x;
     sum.y += v.y;
   });

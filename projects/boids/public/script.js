@@ -39,7 +39,6 @@ const speed = (boid) => Math.hypot(boid.dx, boid.dy);
 const direction = (boid) => angle(ZERO, { x: boid.dx, y: boid.dy });
 
 const setVelocity = (b, v) => {
-  if (isNaN(v.dx) || isNaN(v.dy)) debugger;
   b.dx = v.dx;
   b.dy = v.dy;
   b.direction = direction(v);
@@ -102,12 +101,8 @@ const drawBoid = (boid) => {
 // Simulation machinery
 
 const updatePosition = (b, elapsed, grid) => {
-  const nx = clamp(b.x + 10 * b.dx / elapsed, 0, width);
-  if (isNaN(nx)) debugger;
-  b.x = nx;
-  const ny = clamp(b.y + 10 * b.dy / elapsed, 0, height);
-  if (isNaN(ny)) debugger;
-  b.y = ny;
+  b.x = clamp(b.x + 10 * b.dx / elapsed, 0, width);
+  b.y = clamp(b.y + 10 * b.dy / elapsed, 0, height);
   addToGrid(b, grid);
 };
 
@@ -119,24 +114,12 @@ const updateVelocities = (boids, forces, grid) => {
   boids.forEach((b, i) => setVelocity(b, updated[i]));
 };
 
-const ff = (f, b, nearby) => {
-  const v = f(b, nearby);
-  if (isNaN(v.x) || isNaN(v.y)) debugger;
-  return v;
-};
-
-
 const newVelocity = (b, nearby, forces) => {
-  const { x, y } = sumVectors(forces.map(f => ff(f, b, nearby)));
-  if (isNaN(x) || isNaN(y)) debugger;
+  const { x, y } = sumVectors(forces.map(f => f(b, nearby)));
   const target = { dx: b.dx + x, dy: b.dy + y };
-  if (isNaN(target.dx) || isNaN(target.dy)) debugger;
   const s = speed(b);
-  if (isNaN(s)) debugger;
   const ds = speed(target) - s;
-  if (isNaN(ds)) debugger;
   const r = vector(clampMagnitude(s + ds * 0.5, SPEED_LIMIT), direction(target));
-  if (isNaN(r.x) || isNaN(r.y)) debugger;
   return { dx: r.x, dy: r.y };
 };
 
@@ -231,10 +214,7 @@ const emptyGrid = () => {
 };
 
 const addToGrid = (boid, grid) => {
-  if (!grid[row(boid.y)]) debugger;
-  const cell = grid[row(boid.y)][column(boid.x)];
-  if (!cell) debugger;
-  cell.push(boid);
+  grid[row(boid.y)][column(boid.x)].push(boid);
 };
 
 const neighboringGridCells = (boid, grid) => {
