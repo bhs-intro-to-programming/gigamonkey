@@ -52,7 +52,8 @@ const buttY = torsoY + torsoSize / 2 + buttSize / 2;
 
 // Draw the head
 const headRadius = headSize / 2;
-drawSnowball(x, headY, headRadius);
+drawCircle(x, headY, headRadius + 2, 'black', 3);
+drawFilledCircle(x, headY, headRadius, 'white', 3);
 
 // Draw the eyes
 const eyeSpacing = headRadius * 0.25;
