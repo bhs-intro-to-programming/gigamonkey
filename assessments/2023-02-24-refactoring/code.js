@@ -1,9 +1,4 @@
 
-
-const drawNose = (x, y, length) => {
-  drawFilledTriangle(x, y, x + length, y + length * 0.2, x, y + length * 0.3, 'orange');
-};
-
 const drawMouth = (x, y, size) => {
   for (let i = 0; i < 5; i++) {
     const dy = -2 * (2.1 ** Math.abs(i - 2));
@@ -89,7 +84,11 @@ const eyeSpacing = headRadius * 0.25;
 drawCoal(x - eyeSpacing, headY - eyeSpacing, 4);
 drawCoal(x + eyeSpacing, headY - eyeSpacing, 4);
 
-drawNose(x, headY, headRadius * 0.8);
+// Draw the nose
+const noseLength = headRadius * 0.8;
+drawFilledTriangle(x, headY, x + noseLength, headY + noseLength * 0.2, x, headY + noseLength * 0.3, 'orange');
+
+
 drawMouth(x, headY, headRadius);
 drawHat(x, headY, headRadius);
 
