@@ -1,15 +1,4 @@
 
-
-
-
-const drawHead = (x, y, size) => {
-  drawSnowball(x, y, size);
-  drawEyes(x, y, size * 0.25);
-  drawNose(x, y, size * 0.8);
-  drawMouth(x, y, size);
-  drawHat(x, y, size);
-};
-
 const drawEyes = (x, y, spacing) => {
   drawCoal(x - spacing, y - spacing, 4);
   drawCoal(x + spacing, y - spacing, 4);
@@ -95,6 +84,14 @@ const headY = (base - size) + headSize / 2;
 const torsoY = headY + headSize / 2 + torsoSize / 2;
 const buttY = torsoY + torsoSize / 2 + buttSize / 2;
 
-drawHead(x, headY, headSize / 2);
+// Draw the head
+const headRadius = headSize / 2;
+drawSnowball(x, headY, headRadius);
+drawEyes(x, headY, headRadius * 0.25);
+drawNose(x, headY, headRadius * 0.8);
+drawMouth(x, headY, headRadius);
+drawHat(x, headY, headRadius);
+
+
 drawTorso(x, torsoY, torsoSize / 2)
 drawButt(x, buttY, buttSize / 2);
