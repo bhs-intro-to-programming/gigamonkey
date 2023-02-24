@@ -2,16 +2,6 @@ const drawCoal = (x, y, size) => {
   drawFilledCircle(x, y, size, 'black');
 };
 
-const drawArms = (x, y, size) => {
-  drawArm(x, y, size, 1);
-  drawArm(x, y, size, -1);
-};
-
-const drawArm = (x, y, size, direction) => {
-  const x1 = x + size * 0.6 * direction;
-  const x2 = x + size * 2.35 * direction;
-  drawLine(x1, y - size * 0.25, x2, y - size * 0.85, 'black', 3);
-};
 
 
 const horizon = height * 0.7;
@@ -71,7 +61,15 @@ const torsoRadius = torsoSize / 2;
 drawCircle(x, torsoY, torsoRadius + 2, 'black', 3);
 drawFilledCircle(x, torsoY, torsoRadius, 'white', 3);
 
-drawArms(x, torsoY, torsoRadius);
+// Draw the arms
+const drawArm = (x, y, size, direction) => {
+  const x1 = x + size * 0.6 * direction;
+  const x2 = x + size * 2.35 * direction;
+  drawLine(x1, y - size * 0.25, x2, y - size * 0.85, 'black', 3);
+};
+
+drawArm(x, torsoY, torsoRadius, 1);
+drawArm(x, torsoY, torsoRadius, -1);
 
 // Draw the buttons
 for (let i = 0; i < 3; i++) {
