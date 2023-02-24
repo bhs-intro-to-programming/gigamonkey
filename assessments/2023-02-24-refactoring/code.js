@@ -3,10 +3,6 @@ const drawCoal = (x, y, size) => {
   drawFilledCircle(x, y, size, 'black');
 };
 
-const drawSnowball = (x, y, size) => {
-  drawCircle(x, y, size + 2, 'black', 3);
-  drawFilledCircle(x, y, size, 'white', 3);
-};
 
 
 
@@ -87,5 +83,7 @@ drawFilledCircle(x, torsoY, torsoRadius, 'white', 3);
 drawArms(x, torsoY, torsoRadius);
 drawButtons(x, torsoY, torsoRadius);
 
-// Draw the but
-drawSnowball(x, buttY, buttSize / 2);
+// Draw the butt
+const buttRadius = buttSize / 2;
+drawCircle(x, buttY, buttRadius + 2, 'black', 3);
+drawFilledCircle(x, buttY, buttRadius, 'white', 3);
