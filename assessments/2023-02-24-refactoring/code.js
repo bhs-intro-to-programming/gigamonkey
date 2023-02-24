@@ -1,8 +1,4 @@
 
-const drawEyes = (x, y, spacing) => {
-  drawCoal(x - spacing, y - spacing, 4);
-  drawCoal(x + spacing, y - spacing, 4);
-};
 
 const drawNose = (x, y, length) => {
   drawFilledTriangle(x, y, x + length, y + length * 0.2, x, y + length * 0.3, 'orange');
@@ -87,7 +83,12 @@ const buttY = torsoY + torsoSize / 2 + buttSize / 2;
 // Draw the head
 const headRadius = headSize / 2;
 drawSnowball(x, headY, headRadius);
-drawEyes(x, headY, headRadius * 0.25);
+
+// Draw the eyes
+const eyeSpacing = headRadius * 0.25;
+drawCoal(x - eyeSpacing, headY - eyeSpacing, 4);
+drawCoal(x + eyeSpacing, headY - eyeSpacing, 4);
+
 drawNose(x, headY, headRadius * 0.8);
 drawMouth(x, headY, headRadius);
 drawHat(x, headY, headRadius);
