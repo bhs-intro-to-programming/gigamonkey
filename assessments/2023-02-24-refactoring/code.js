@@ -27,7 +27,7 @@ const drawBack = (horizon) => {
   drawFilledRect(0, 0, width, horizon, '#ddeeff');
   drawFilledRect(0, horizon, width, height, 'white');
   drawLine(0, horizon, width, horizon, '#bbb');
-}; drawBack(horizon);
+}; //drawBack(horizon);
 
 
 // Draw the head
