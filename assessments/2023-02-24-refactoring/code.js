@@ -83,7 +83,7 @@ const drawPicture = (horizon, base, size) => {
   const proportions = [3, 4, 5];
   const [headP, torsoP, buttP] = proportions;
   const total = proportions.reduce((tot, p) => tot + p, 0);
-  globals = { base, size, total }
+  const globals = { base, size, total }
   drawTop(size, headP, total)
   /*
     const torsoSize = size * (torsoP / total)
