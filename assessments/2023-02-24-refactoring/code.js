@@ -1,6 +1,7 @@
-let horizon
-let base
-let size
+let horizon = height * 0.7;
+let base = height * 0.9;
+let size = height * 0.7;
+
 const x = width / 2;
 const proportions = [3, 4, 5];
 const [headP, torsoP, buttP] = proportions;
