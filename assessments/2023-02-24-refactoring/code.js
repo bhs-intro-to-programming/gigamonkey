@@ -103,4 +103,8 @@ const drawPicture = (height) => {
   drawTorso()
   drawHat()
   drawButton()
-}; drawPicture(height * 0.7, height * 0.9, height * 0.7);
+}; 
+
+drawBack(height * 0.7);
+
+drawPicture(height * 0.7, height * 0.9, height * 0.7);
