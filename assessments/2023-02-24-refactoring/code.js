@@ -1,102 +1,106 @@
-//The big function was bothering me it doesnt hurt too much to change 6 or so values instead of calling it different also who wants a different size snowman thats not art thats just picky sooooo I guess im just using societal logic
-const x = width / 2;
-const proportions = [3, 4, 5];
-const [headP, torsoP, buttP] = proportions;
-const total = proportions.reduce((tot, p) => tot + p, 0);
 
-const headSize = height * 0.7 * (headP / total);
-const torsoSize = height * 0.7 * (torsoP / total)
-const buttSize = height * 0.7 * (buttP / total);
+// Draw the background
+const backGround = (horizon) => {
 
-const headY = (height * 0.9 - height * 0.7) + headSize / 2;
-const torsoY = headY + headSize / 2 + torsoSize / 2;
-const buttY = torsoY + torsoSize / 2 + buttSize / 2;
-
-const drawBackground = (horizon) => {
   drawFilledRect(0, 0, width, horizon, '#ddeeff');
   drawFilledRect(0, horizon, width, height, 'white');
   drawLine(0, horizon, width, horizon, '#bbb');
 }
 
-const drawHead = () => {
-  const headRadius = headSize / 2;
-  drawCircle(x, headY, headRadius + 2, 'black', 3);
-  drawFilledCircle(x, headY, headRadius, 'white', 3);
-  return headRadius
+// Draw the snowman
+const drawSnowMan = (base, size) => {
+  const x = width / 2;
+  const proportions = [3, 4, 5];
+  const [headP, torsoP, buttP] = proportions;
+  const total = proportions.reduce((tot, p) => tot + p, 0);
+
+  const headSize = size * (headP / total);
+  const torsoSize = size * (torsoP / total)
+  const buttSize = size * (buttP / total);
+
+  const headY = (base - size) + headSize / 2;
+  const torsoY = headY + headSize / 2 + torsoSize / 2;
+  const buttY = torsoY + torsoSize / 2 + buttSize / 2;
+
+  const torsoObj = { size: torsoSize, y: torsoY, radius: torsoSize / 2 }
+
+  const headObj = { size: headSize, y: headY, radius: headSize / 2 };
+
+  const buttObj = { size: buttSize, y: buttY, radius: buttSize / 2 }
+  
+  head(headObj, x);
+  eyes(headObj, x);
+  nose(headObj, x);
+  mouth(headObj, x);
+  hat(headObj, x);
+  torso(torsoObj, x);
+  arms(torsoObj, x);
+  buttons(torsoObj, x);
+  butt(buttObj, x);
+};
+// Draw the head
+const head = (headObj, x) => {
+  drawCircle(x, headObj.y, headObj.radius + 2, 'black', 3);
+  drawFilledCircle(x, headObj.y, headObj.radius, 'white', 3);
 }
 
-const drawEyes = (sy, headRadius) => {
-  const eyeSpacing = headRadius * 0.25;
-  drawFilledCircle(x + eyeSpacing * sy, headY - eyeSpacing, 4, 'black');
+// Draw the eyes
+const eyes = (headObj, x) => {
+  const eyeSpacing = headObj.radius * 0.25;
+  drawFilledCircle(x - eyeSpacing, headObj.y - eyeSpacing, 4, 'black');
+  drawFilledCircle(x + eyeSpacing, headObj.y - eyeSpacing, 4, 'black');
 }
 
-const drawNose = (headRadius) => {
-  const noseLength = headRadius * 0.8;
-  drawFilledTriangle(x, headY, x + noseLength, headY + noseLength * 0.2, x, headY + noseLength * 0.3, 'orange');
+// Draw the nose
+const nose = (headObj, x) => {
+  const noseLength = headObj.radius * 0.8;
+  drawFilledTriangle(x, headObj.y, x + noseLength, headObj.y + noseLength * 0.2, x, headObj.y + noseLength * 0.3, 'orange');
 }
-
-const drawMouth = (headRadius) => {
+// Draw the mouth
+const mouth = (headObj, x) => {
   for (let i = 0; i < 5; i++) {
     const dy = -2 * (2.1 ** Math.abs(i - 2));
-    drawFilledCircle(x - (i - 2.3) * headRadius * 0.21, headY + headRadius * 0.65 + dy, 4, 'black');
+    drawFilledCircle(x - (i - 2.3) * headObj.radius * 0.21, headObj.y + headObj.radius * 0.65 + dy, 4, 'black');
   }
 }
 
-const drawHat = (headRadius) => {
-  const brimTop = headY - headRadius * 0.9;
-  const brimWidth = headRadius * 2.25;
+// Draw the hat
+const hat = (headObj, x) => {
+  const brimTop = headObj.y - headObj.radius * 0.9;
+  const brimWidth = headObj.radius * 2.25;
   const brimHeight = brimWidth * 0.08;
   const hatWidth = brimWidth * 0.7;
-  const hatHeight = headRadius * 1.25;
+  const hatHeight = headObj.radius * 1.25;
   drawFilledRect(x - brimWidth / 2, brimTop, brimWidth, brimHeight, 'black');
   drawFilledRect(x - hatWidth / 2, brimTop - hatHeight, hatWidth, hatHeight, 'black');
+};
+// Draw the torso
+const torso = (torsoObj, x) => {
+  drawCircle(x, torsoObj.y, torsoObj.radius + 2, 'black', 3);
+  drawFilledCircle(x, torsoObj.y, torsoObj.radius, 'white', 3);
 }
-
-const drawTorso = () => {
-  const torsoRadius = torsoSize / 2;
-  drawCircle(x, torsoY, torsoRadius + 2, 'black', 3);
-  drawFilledCircle(x, torsoY, torsoRadius, 'white', 3);
-  return torsoRadius
+// Draw the arms
+const arms = (torsoObj, x) => {
+  let x1 = x + torsoObj.radius * 0.6;
+  let x2 = x + torsoObj.radius * 2.35;
+  drawLine(x1, torsoObj.y - torsoObj.radius * 0.25, x2, torsoObj.y - torsoObj.radius * 0.85, 'black', 3);
+  x1 = x + torsoObj.radius * 0.6 * -1;
+  x2 = x + torsoObj.radius * 2.35 * -1;
+  drawLine(x1, torsoObj.y - torsoObj.radius * 0.25, x2, torsoObj.y - torsoObj.radius * 0.85, 'black', 3);
 }
-
-const drawArms = (sy, torsoRadius) => {
-  let x1 = x + torsoRadius * 0.6 * sy;
-  let x2 = x + torsoRadius * 2.35 * sy;
-  const offMiddle = (mul) => torsoY - torsoRadius * mul
-  drawLine(x1, offMiddle(0.25), x2, offMiddle(0.85), 'black', 3);
-}
-
-const drawButtons = (torsoRadius) => {
+// Draw the buttons
+const buttons = (torsoObj, x) => {
   for (let i = 0; i < 3; i++) {
-    drawFilledCircle(x, torsoY - torsoRadius * 0.5 + i * torsoRadius * 0.5, 4, 'black');
+    drawFilledCircle(x, torsoObj.y - torsoObj.radius * 0.5 + i * torsoObj.radius * 0.5, 4, 'black');
   }
 }
-
-const drawButt = () => {
-  const buttRadius = buttSize / 2;
-  drawCircle(x, buttY, buttRadius + 2, 'black', 3);
-  drawFilledCircle(x, buttY, buttRadius, 'white', 3);
+// Draw the butt
+const butt = (buttObj, x) => {
+  drawCircle(x, buttObj.y, buttObj.radius + 2, 'black', 3);
+  drawFilledCircle(x, buttObj.y, buttObj.radius, 'white', 3);
 }
-
-const protrusions = (headRadius, torsoRadius) => {
-  drawNose(headRadius)
-  drawMouth(headRadius)
-  drawHat(headRadius)
-  drawButtons(torsoRadius)
+const drawPicture = (horizon, base, size) => {
+  backGround(horizon);
+  drawSnowMan(base, size);
 }
-
-const drawThing = () => {
-  drawBackground(height * 0.7)
-  const headRadius = drawHead()
-  const torsoRadius = drawTorso()
-  drawButt()
-  for (let i = -1; i < 2; i += 2) {
-    drawEyes(i, headRadius)
-    drawArms(i, torsoRadius)
-  }
-  protrusions(headRadius, torsoRadius)
-}
-
-drawThing()
-
-//it hurts me that this is more lines than the origional
+drawPicture(height * 0.7, height * 0.9, height * 0.7);
