@@ -100,7 +100,7 @@ const makeMove = (r, c) => {
 };
 
 //game isn't over
-const gameOver = () => findWinner() !== null || move < 9
+const gameOver = () => findWinner() !== null || move >= 9
 
 //legal move 
 const isLegalMove = (r, c) => {
