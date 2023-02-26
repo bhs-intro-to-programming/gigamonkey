@@ -1,5 +1,5 @@
 const horizon = height * 0.7;
-const base = height * 0.8;
+const base = height * 0.9;
 const size = height * 0.7;
 
 const x = width / 2;
