@@ -13,9 +13,9 @@ const drawSnowman = (x, size, base, proportions, eyeSpacing) => {
   const [headP, torsoP, buttP] = proportions;
   const total = proportions.reduce((tot, p) => tot + p, 0);
 
-  const headRadius = size / 2 * (headP / total);
-  const torsoRadius = size / 2 * (torsoP / total)
-  const buttRadius = size / 2 * (buttP / total);
+  const headRadius = scaledRadius(size, headP, total);
+  const torsoRadius = scaledRadius(size, torsoP, total);
+  const buttRadius = scaledRadius(size, buttP, total);
 
   const headY = (base - size) + headRadius;
   const torsoY = headY + headRadius + torsoRadius;
@@ -25,6 +25,8 @@ const drawSnowman = (x, size, base, proportions, eyeSpacing) => {
   drawTorso(x, torsoY, torsoRadius);
   drawButt(x, buttY, buttRadius);
 };
+
+const scaledRadius = (size, p, total) => size / 2 * (p / total);
 
 const drawHead = (x, y, radius, eyeSpacing) => {
   drawSnowball(x, y, radius);
