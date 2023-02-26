@@ -70,13 +70,13 @@ const drawHat = (x, headRadius, headY) => {
   drawFilledRect(x - hatWidth / 2, brimTop - hatHeight, hatWidth, hatHeight, 'black');
 };
 
-const drawTorso = (x, torsoY, torsoSize) => {
-  const torsoRadius = torsoSize / 2;
-  drawCircle(x, torsoY, torsoRadius + 2, 'black', 3);
-  drawFilledCircle(x, torsoY, torsoRadius, 'white', 3);
+const drawTorso = (x, y, size) => {
+  const radius = size / 2;
+  drawCircle(x, y, radius + 2, 'black', 3);
+  drawFilledCircle(x, y, radius, 'white', 3);
 
-  drawArms(x, torsoY, torsoRadius);
-  drawButtons(x, torsoY, torsoRadius);
+  drawArms(x, y, radius);
+  drawButtons(x, y, radius);
 };
 
 const drawArms = (x, y, r) => {
@@ -96,10 +96,8 @@ const drawButtons = (x, y, r) => {
   }
 };
 
-const drawButt = (x, buttSize, buttY) => {
-  const buttRadius = buttSize / 2;
-  drawCircle(x, buttY, buttRadius + 2, 'black', 3);
-  drawFilledCircle(x, buttY, buttRadius, 'white', 3);
+const drawButt = (x, y, size) => {
+  drawSnowball(x, y, size / 2);
 };
 
 drawPicture(height * 0.7, height * 0.9, height * 0.7);
