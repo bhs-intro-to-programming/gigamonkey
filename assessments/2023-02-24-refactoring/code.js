@@ -23,8 +23,8 @@ const drawSnowman = (x, size, base, proportions, eyeSpacing) => {
   console.log([headY, torsoY, buttY]);
 
   drawHead(x, ys[0], rs[0], eyeSpacing);
-  drawTorso(x, torsoY, rs[1]);
-  drawButt(x, buttY, rs[2]);
+  drawTorso(x, ys[1], rs[1]);
+  drawButt(x, ys[2], rs[2]);
 };
 
 const sum = (ns) => ns.reduce((tot, n) => tot + n, 0);
