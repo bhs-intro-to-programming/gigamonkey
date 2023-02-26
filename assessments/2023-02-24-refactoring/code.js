@@ -29,7 +29,7 @@ const drawSnowman = (x, size, base, proportions) => {
 const drawHead = (x, y, size) => {
   const radius = size / 2;
   drawSnowball(x, y, radius);
-  drawEyes(x, y, radius);
+  drawEyes(x, y, radius, 0.25);
   drawNose(x, y, radius);
   drawMouth(x, y,radius);
   drawHat(x, y, radius);
@@ -44,10 +44,10 @@ const drawCoal = (x, y) => {
   drawFilledCircle(x, y, 4, 'black');
 }
 
-const drawEyes = (x, headY, headRadius) => {
-  const eyeSpacing = headRadius * 0.25;
-  drawCoal(x - eyeSpacing, headY - eyeSpacing);
-  drawCoal(x +eyeSpacing, headY - eyeSpacing);
+const drawEyes = (x, y, r, spacing) => {
+  const eyeSpacing = r * spacing;
+  drawCoal(x - eyeSpacing, y - eyeSpacing);
+  drawCoal(x +eyeSpacing, y - eyeSpacing);
 };
 
 const drawNose = (x, headY, headRadius) => {
