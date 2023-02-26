@@ -25,12 +25,7 @@ const drawSnowman = (width, base, size) => {
 
   drawHead(x, headY, headSize);
   drawTorso(x, torsoY, torsoSize);
- 
-
-  // Draw the butt
-  const buttRadius = buttSize / 2;
-  drawCircle(x, buttY, buttRadius + 2, 'black', 3);
-  drawFilledCircle(x, buttY, buttRadius, 'white', 3);
+  drawButt(x, buttY, buttSize);
 };
 
 const drawHead = (x, y, size) => {
@@ -81,5 +76,11 @@ const drawTorso = (x, y, size) => {
     drawFilledCircle(x, y - radius * 0.5 + i * radius * 0.5, 4, 'black');
   }
 };
+
+const drawButt = (x, buttY, buttSize) => {
+  const buttRadius = buttSize / 2;
+  drawCircle(x, buttY, buttRadius + 2, 'black', 3);
+  drawFilledCircle(x, buttY, buttRadius, 'white', 3);
+}
 
 drawPicture(height * 0.7, height * 0.9, height * 0.7);
