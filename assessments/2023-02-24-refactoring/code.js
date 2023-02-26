@@ -28,7 +28,6 @@ const drawSnowman = (size, base) => {
   drawHead(x, headSize, headY);
   drawTorso(x, torsoSize, torsoY);
   drawButt(x, buttSize, buttY);
-
 };
 
 const drawHead = (x, headSize, headY) => {
@@ -36,10 +35,7 @@ const drawHead = (x, headSize, headY) => {
   drawCircle(x, headY, headRadius + 2, 'black', 3);
   drawFilledCircle(x, headY, headRadius, 'white', 3);
 
-  // Draw the eyes
-  const eyeSpacing = headRadius * 0.25;
-  drawFilledCircle(x - eyeSpacing, headY - eyeSpacing, 4, 'black');
-  drawFilledCircle(x + eyeSpacing, headY - eyeSpacing, 4, 'black');
+  drawEyes(x, headRadius);
 
   // Draw the nose
   const noseLength = headRadius * 0.8;
@@ -59,6 +55,13 @@ const drawHead = (x, headSize, headY) => {
   const hatHeight = headRadius * 1.25;
   drawFilledRect(x - brimWidth / 2, brimTop, brimWidth, brimHeight, 'black');
   drawFilledRect(x - hatWidth / 2, brimTop - hatHeight, hatWidth, hatHeight, 'black');
+};
+
+
+const drawEyes = (x, headRadius) => {
+  const eyeSpacing = headRadius * 0.25;
+  drawFilledCircle(x - eyeSpacing, headY - eyeSpacing, 4, 'black');
+  drawFilledCircle(x + eyeSpacing, headY - eyeSpacing, 4, 'black');
 };
 
 const drawTorso = (x, torsoSize, torsoY) => {
