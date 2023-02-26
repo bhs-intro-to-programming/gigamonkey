@@ -72,19 +72,23 @@ const drawTorso = (x, y, size) => {
   drawCircle(x, y, radius + 2, 'black', 3);
   drawFilledCircle(x, y, radius, 'white', 3);
 
-  // Draw the arms
-  let x1 = x + radius * 0.6;
-  let x2 = x + radius * 2.35;
-  drawLine(x1, y - radius * 0.25, x2, y - radius * 0.85, 'black', 3);
-  x1 = x + radius * 0.6 * -1;
-  x2 = x + radius * 2.35 * -1;
-  drawLine(x1, y - radius * 0.25, x2, y - radius * 0.85, 'black', 3);
+  drawArms(x, y, radius);
 
   // Draw the buttons
   for (let i = 0; i < 3; i++) {
     drawFilledCircle(x, y - radius * 0.5 + i * radius * 0.5, 4, 'black');
   }
 };
+
+const drawArms = (x, y, radius) => {
+  let x1 = x + radius * 0.6;
+  let x2 = x + radius * 2.35;
+  drawLine(x1, y - radius * 0.25, x2, y - radius * 0.85, 'black', 3);
+  x1 = x + radius * 0.6 * -1;
+  x2 = x + radius * 2.35 * -1;
+  drawLine(x1, y - radius * 0.25, x2, y - radius * 0.85, 'black', 3);
+};
+
 
 const drawButt = (x, y, size) => {
   const radius = size / 2;
