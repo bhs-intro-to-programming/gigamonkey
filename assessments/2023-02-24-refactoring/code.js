@@ -26,19 +26,6 @@ const drawSnowman = (base, size) => {
   drawHead(x, headY, headSize);
   drawTorso(x, torsoY, torsoSize);
 
-  // Draw the arms
-  let x1 = x + torsoRadius * 0.6;
-  let x2 = x + torsoRadius * 2.35;
-  drawLine(x1, torsoY - torsoRadius * 0.25, x2, torsoY - torsoRadius * 0.85, 'black', 3);
-  x1 = x + torsoRadius * 0.6 * -1;
-  x2 = x + torsoRadius * 2.35 * -1;
-  drawLine(x1, torsoY - torsoRadius * 0.25, x2, torsoY - torsoRadius * 0.85, 'black', 3);
-
-  // Draw the buttons
-  for (let i = 0; i < 3; i++) {
-    drawFilledCircle(x, torsoY - torsoRadius * 0.5 + i * torsoRadius * 0.5, 4, 'black');
-  }
-
   // Draw the butt
   const buttRadius = buttSize / 2;
   drawCircle(x, buttY, buttRadius + 2, 'black', 3);
@@ -79,6 +66,20 @@ const drawTorso = (x, y, size) => {
   const torsoRadius = size / 2;
   drawCircle(x, y, torsoRadius + 2, 'black', 3);
   drawFilledCircle(x, y, torsoRadius, 'white', 3);
+
+  // Draw the arms
+  let x1 = x + torsoRadius * 0.6;
+  let x2 = x + torsoRadius * 2.35;
+  drawLine(x1, torsoY - torsoRadius * 0.25, x2, torsoY - torsoRadius * 0.85, 'black', 3);
+  x1 = x + torsoRadius * 0.6 * -1;
+  x2 = x + torsoRadius * 2.35 * -1;
+  drawLine(x1, torsoY - torsoRadius * 0.25, x2, torsoY - torsoRadius * 0.85, 'black', 3);
+
+  // Draw the buttons
+  for (let i = 0; i < 3; i++) {
+    drawFilledCircle(x, torsoY - torsoRadius * 0.5 + i * torsoRadius * 0.5, 4, 'black');
+  }
+
 };
 
 drawPicture(height * 0.7, height * 0.9, height * 0.7);
