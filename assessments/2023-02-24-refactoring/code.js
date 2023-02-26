@@ -32,13 +32,17 @@ const drawSnowman = (size, base) => {
 
 const drawHead = (x, headSize, headY) => {
   const headRadius = headSize / 2;
-  drawCircle(x, headY, headRadius + 2, 'black', 3);
-  drawFilledCircle(x, headY, headRadius, 'white', 3);
 
+  drawSnowball(x, headY, headRadius);
   drawEyes(x, headRadius, headY);
   drawNose(x, headRadius, headY);
   drawMouth(x, headRadius, headY);
   drawHat(x, headRadius, headY);
+};
+
+const drawSnowball = (x, headY, headRadius) => {
+  drawCircle(x, headY, headRadius + 2, 'black', 3);
+  drawFilledCircle(x, headY, headRadius, 'white', 3);
 };
 
 
