@@ -29,10 +29,10 @@ const drawSnowman = (x, size, base, proportions) => {
 const drawHead = (x, y, size) => {
   const radius = size / 2;
   drawSnowball(x, y, radius);
-  drawEyes(x, radius, y);
-  drawNose(x, radius, y);
-  drawMouth(x, radius, y);
-  drawHat(x, radius, y);
+  drawEyes(x, y, radius);
+  drawNose(x, y, radius);
+  drawMouth(x, y,radius);
+  drawHat(x, y, radius);
 };
 
 const drawSnowball = (x, y, r) => {
@@ -44,25 +44,25 @@ const drawCoal = (x, y) => {
   drawFilledCircle(x, y, 4, 'black');
 }
 
-const drawEyes = (x, headRadius, headY) => {
+const drawEyes = (x, headY, headRadius) => {
   const eyeSpacing = headRadius * 0.25;
   drawCoal(x - eyeSpacing, headY - eyeSpacing);
   drawCoal(x +eyeSpacing, headY - eyeSpacing);
 };
 
-const drawNose = (x, headRadius, headY) => {
+const drawNose = (x, headY, headRadius) => {
   const noseLength = headRadius * 0.8;
   drawFilledTriangle(x, headY, x + noseLength, headY + noseLength * 0.2, x, headY + noseLength * 0.3, 'orange');
 };
 
-const drawMouth = (x, headRadius, headY) => {
+const drawMouth = (x, headY, headRadius) => {
   for (let i = 0; i < 5; i++) {
     const dy = -2 * (2.1 ** Math.abs(i - 2));
     drawCoal(x - (i - 2.3) * headRadius * 0.21, headY + headRadius * 0.65 + dy);
   }
 };
 
-const drawHat = (x, headRadius, headY) => {
+const drawHat = (x, headY, headRadius) => {
   const brimTop = headY - headRadius * 0.9;
   const brimWidth = headRadius * 2.25;
   const brimHeight = brimWidth * 0.08;
