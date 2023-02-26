@@ -77,7 +77,7 @@ const drawTorso = (x, y, r) => {
 
 const drawArms = (x, y, r) => {
   drawArm1(x, y, r, 1);
-  drawArm2(x, y, r);
+  drawArm1(x, y, r, -1);
 };
 
 const drawArm1 = (x, y, r, s) => {
