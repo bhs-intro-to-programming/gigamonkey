@@ -22,7 +22,7 @@ const hatHeight = headRadius * 1.25;
 
 
 
-const drawHead = (headY, headRadius) => {
+const drawHead = () => {
   drawCircle(width / 2, headY, headRadius + 2, 'black', 3);
   drawFilledCircle(width / 2, headY, headRadius, 'white', 3);
 }
