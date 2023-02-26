@@ -28,11 +28,14 @@ const drawSnowman = (width, base, size) => {
   drawButt(x, buttY, buttSize);
 };
 
-const drawHead = (x, y, size) => {
-  const radius = size / 2;
+const drawSnowball = (x, y, radius) => {
   drawCircle(x, y, radius + 2, 'black', 3);
   drawFilledCircle(x, y, radius, 'white', 3);
+};
 
+const drawHead = (x, y, size) => {
+  const radius = size / 2;
+  drawSnowball(x, y, radius);
   drawEyes(x, y, radius);
   drawNose(x, y, radius);
   drawMouth(x, y, radius);
