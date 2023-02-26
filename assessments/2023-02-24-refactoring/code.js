@@ -83,9 +83,7 @@ const drawTorso = (x, torsoSize, torsoY) => {
 
 const drawArms = (x, torsoY, torsoRadius) => {
   drawArm(x, torsoY, torsoRadius, 1);
-  let x1 = x + torsoRadius * 0.6 * -1;
-  let x2 = x + torsoRadius * 2.35 * -1;
-  drawLine(x1, torsoY - torsoRadius * 0.25, x2, torsoY - torsoRadius * 0.85, 'black', 3);
+  drawArm(x, torsoY, torsoRadius, -1);
 };
 
 const drawArm = (x, y, r, s) => {
