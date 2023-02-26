@@ -14,14 +14,20 @@ const drawSnowman = (x, size, base, proportions, eyeSpacing) => {
   const rs = proportions.map((p) => scaledRadius(size, p, total));
 
   const top = base - size;
+  const ys = rs.reduce((ys, r, i) => ys.push(top + r + 2 * sum(rs.slice(0, i))));
+  console.log(ys);
+
   const headY = top + rs[0];
   const torsoY = top + rs[0] + rs[0] + rs[1];
   const buttY = top + rs[0] + rs[0] + rs[1] + rs[1] + rs[2];
+  console.log([headY, torsoY, buttY]);
 
   drawHead(x, headY, rs[0], eyeSpacing);
   drawTorso(x, torsoY, rs[1]);
   drawButt(x, buttY, rs[2]);
 };
+
+const sum = (ns) => ns.reduce((tot, n) => tot + n, 0);
 
 const scaledRadius = (size, p, total) => size / 2 * (p / total);
 
