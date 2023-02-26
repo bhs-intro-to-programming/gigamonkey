@@ -25,26 +25,24 @@ const drawSnowman = (size, base) => {
   const torsoY = headY + headSize / 2 + torsoSize / 2;
   const buttY = torsoY + torsoSize / 2 + buttSize / 2;
 
-  drawHead(x, headSize, headY);
+  drawHead(x, headY, headSize);
   drawTorso(x, torsoSize, torsoY);
   drawButt(x, buttSize, buttY);
 };
 
-const drawHead = (x, headSize, headY) => {
-  const headRadius = headSize / 2;
-
-  drawSnowball(x, headY, headRadius);
-  drawEyes(x, headRadius, headY);
-  drawNose(x, headRadius, headY);
-  drawMouth(x, headRadius, headY);
-  drawHat(x, headRadius, headY);
+const drawHead = (x, y, size) => {
+  const radius = size / 2;
+  drawSnowball(x, y, radius);
+  drawEyes(x, radius, y);
+  drawNose(x, radius, y);
+  drawMouth(x, radius, y);
+  drawHat(x, radius, y);
 };
 
-const drawSnowball = (x, headY, headRadius) => {
-  drawCircle(x, headY, headRadius + 2, 'black', 3);
-  drawFilledCircle(x, headY, headRadius, 'white', 3);
+const drawSnowball = (x, y, r) => {
+  drawCircle(x, y, r + 2, 'black', 3);
+  drawFilledCircle(x, y, r, 'white', 3);
 };
-
 
 const drawEyes = (x, headRadius, headY) => {
   const eyeSpacing = headRadius * 0.25;
@@ -79,19 +77,22 @@ const drawTorso = (x, torsoSize, torsoY) => {
   drawCircle(x, torsoY, torsoRadius + 2, 'black', 3);
   drawFilledCircle(x, torsoY, torsoRadius, 'white', 3);
 
-  // Draw the arms
-  let x1 = x + torsoRadius * 0.6;
-  let x2 = x + torsoRadius * 2.35;
-  drawLine(x1, torsoY - torsoRadius * 0.25, x2, torsoY - torsoRadius * 0.85, 'black', 3);
-  x1 = x + torsoRadius * 0.6 * -1;
-  x2 = x + torsoRadius * 2.35 * -1;
-  drawLine(x1, torsoY - torsoRadius * 0.25, x2, torsoY - torsoRadius * 0.85, 'black', 3);
+  drawArms(x, torsoY, torsoRadius);
 
   // Draw the buttons
   for (let i = 0; i < 3; i++) {
     drawFilledCircle(x, torsoY - torsoRadius * 0.5 + i * torsoRadius * 0.5, 4, 'black');
   }
 
+};
+
+const drawArms = (x, torsoY, torsoRadius) => {
+  let x1 = x + torsoRadius * 0.6;
+  let x2 = x + torsoRadius * 2.35;
+  drawLine(x1, torsoY - torsoRadius * 0.25, x2, torsoY - torsoRadius * 0.85, 'black', 3);
+  x1 = x + torsoRadius * 0.6 * -1;
+  x2 = x + torsoRadius * 2.35 * -1;
+  drawLine(x1, torsoY - torsoRadius * 0.25, x2, torsoY - torsoRadius * 0.85, 'black', 3);
 };
 
 
