@@ -1,7 +1,7 @@
 const drawPicture = (horizon, base, size) => {
   drawBackground(width, horizon);
   drawSnowman(width * 0.25, base, size);
-  drawSnowman(width * 0.75, base - 120, size * 0.8);
+  drawSnowman(width * 0.75, base - 50, size * 0.8);
 };
 
 const drawBackground = (width, horizon) => {
