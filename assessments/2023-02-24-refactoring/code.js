@@ -77,7 +77,7 @@ const drawTorso = (x, y, size) => {
 
   // Draw the buttons
   for (let i = 0; i < 3; i++) {
-    drawFilledCircle(x, torsoY - torsoRadius * 0.5 + i * torsoRadius * 0.5, 4, 'black');
+    drawFilledCircle(x, y - torsoRadius * 0.5 + i * torsoRadius * 0.5, 4, 'black');
   }
 
 };
