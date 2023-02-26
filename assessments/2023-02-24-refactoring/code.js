@@ -82,13 +82,17 @@ const drawTorso = (x, torsoSize, torsoY) => {
 };
 
 const drawArms = (x, torsoY, torsoRadius) => {
-  let x1 = x + torsoRadius * 0.6;
-  let x2 = x + torsoRadius * 2.35;
-  drawLine(x1, torsoY - torsoRadius * 0.25, x2, torsoY - torsoRadius * 0.85, 'black', 3);
+  drawArm(x, torsoY, torsoRadius, 1);
   x1 = x + torsoRadius * 0.6 * -1;
   x2 = x + torsoRadius * 2.35 * -1;
   drawLine(x1, torsoY - torsoRadius * 0.25, x2, torsoY - torsoRadius * 0.85, 'black', 3);
 };
+
+const drawArm = (x, y, r, s) => {
+  let x1 = x + r * 0.6 * s;
+  let x2 = x + r * 2.35 * s;
+  drawLine(x1, y - r * 0.25, x2, y - r * 0.85, 'black', 3);
+}
 
 const drawButtons = (x, y, r) => {
   for (let i = 0; i < 3; i++) {
