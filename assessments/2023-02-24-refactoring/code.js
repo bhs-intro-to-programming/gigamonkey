@@ -14,7 +14,7 @@ const drawSnowman = (x, size, base, proportions, eyeSpacing) => {
   const rs = proportions.map((p) => scaledRadius(size, p, total));
 
   const top = base - size;
-  const ys = rs.reduce((ys, r, i) => ys.push(top + r + 2 * sum(rs.slice(0, i))), []);
+  const ys = rs.reduce((ys, r, i) => [ ...ys, top + r + 2 * sum(rs.slice(0, i))], []);
   console.log(ys);
 
   const headY = top + rs[0];
