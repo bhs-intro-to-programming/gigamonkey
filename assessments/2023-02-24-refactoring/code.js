@@ -23,7 +23,7 @@ const drawSnowman = (x, size, base, proportions, eyeSpacing) => {
 
   drawHead(x, headY, headSize / 2, eyeSpacing);
   drawTorso(x, torsoY, torsoSize / 2);
-  drawButt(x, buttY, buttSize);
+  drawButt(x, buttY, buttSize / 2);
 };
 
 const drawHead = (x, y, radius, eyeSpacing) => {
@@ -94,8 +94,8 @@ const drawButtons = (x, y, r) => {
   }
 };
 
-const drawButt = (x, y, size) => {
-  drawSnowball(x, y, size / 2);
+const drawButt = (x, y, radius) => {
+  drawSnowball(x, y, radius);
 };
 
 drawPicture(height * 0.7, height * 0.9, height * 0.7);
