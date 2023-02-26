@@ -94,9 +94,8 @@ const drawButtons = (x, y, r) => {
 }
 
 const drawButt = (x, y, size) => {
-  const buttRadius = size / 2;
-  drawCircle(x, y, buttRadius + 2, 'black', 3);
-  drawFilledCircle(x, y, buttRadius, 'white', 3);
+  const r = size / 2;
+  drawSnowball(x, y, r);
 };
 
 drawPicture(height * 0.7, height * 0.9, height * 0.7);
