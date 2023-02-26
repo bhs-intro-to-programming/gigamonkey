@@ -12,10 +12,8 @@ const drawBackground = (horizon) => {
 const drawSnowman = (x, size, base, proportions, eyeSpacing) => {
   const total = proportions.reduce((tot, p) => tot + p, 0);
   const top = base - size;
-
   const rs = proportions.map((p) => scaledRadius(size, p, total));
   const ys = rs.reduce((ys, r, i) => [ ...ys, top + r + 2 * sum(rs.slice(0, i))], []);
-
   drawHead(x, ys[0], rs[0], eyeSpacing);
   drawTorso(x, ys[1], rs[1]);
   drawButt(x, ys[2], rs[2]);
@@ -40,7 +38,7 @@ const drawSnowball = (x, y, r) => {
 
 const drawCoal = (x, y) => {
   drawFilledCircle(x, y, 4, 'black');
-}
+};
 
 const drawEyes = (x, y, r, spacing) => {
   const eyeSpacing = r * spacing;
@@ -89,7 +87,7 @@ const drawArm = (x, y, r, s) => {
 
 const drawButtons = (x, y, r) => {
   for (let i = 0; i < 3; i++) {
-    drawCoal(x, y - r * 0.5 + i * r * 0.5);
+    drawCoal(x, y + (i - 1) * r * 0.5);
   }
 };
 
