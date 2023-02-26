@@ -34,6 +34,7 @@ const drawHead = (x, y, size) => {
   drawFilledCircle(x, y, r, 'white', 3);
 
   drawEyes(x, y, r);
+  drawNose(x, y, r);
 
   // Draw the nose
   const noseLength = r * 0.8;
@@ -59,6 +60,12 @@ const drawEyes = (x, y, r) => {
   const eyeSpacing = r * 0.25;
   drawFilledCircle(x - eyeSpacing, y - eyeSpacing, 4, 'black');
   drawFilledCircle(x + eyeSpacing, y - eyeSpacing, 4, 'black');
+};
+
+const drawNose = (x, y, r)=> {
+  const noseLength = r * 0.8;
+  drawFilledTriangle(x, y, x + noseLength, y + noseLength * 0.2, x, y + noseLength * 0.3, 'orange');
+
 }
 
 const drawTorso = (x, y, size) => {
