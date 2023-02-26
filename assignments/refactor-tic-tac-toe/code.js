@@ -83,7 +83,7 @@ registerOnclick((x, y) => {
 
 
     winner = checkForWinner()
-    if (!winner) {
+    if (winner) {
       // Draw the line through three in a row
       const [r1, c1] = winner[0];
       const [r2, c2] = winner[winner.length - 1];
