@@ -86,8 +86,8 @@ const drawArm = (x, y, r, s) => {
 };
 
 const drawButtons = (x, y, r) => {
-  for (let i = 0; i < 3; i++) {
-    drawCoal(x, y + (i - 1) * r * 0.5);
+  for (let i = -1; i < 2; i++) {
+    drawCoal(x, y + i * r * 0.5);
   }
 };
 
