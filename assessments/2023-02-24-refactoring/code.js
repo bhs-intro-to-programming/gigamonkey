@@ -10,8 +10,8 @@ const drawBackground = (horizon) => {
 };
 
 const drawSnowman = (x, size, base, proportions, eyeSpacing) => {
-  const total = sum(proportions);
   const top = base - size;
+  const total = sum(proportions);
   const rs = proportions.map((p) => scaledRadius(size, p, total));
   const ys = rs.reduce((ys, r, i) => [ ...ys, top + r + 2 * sum(rs.slice(0, i))], []);
   drawHead(x, ys[0], rs[0], eyeSpacing);
