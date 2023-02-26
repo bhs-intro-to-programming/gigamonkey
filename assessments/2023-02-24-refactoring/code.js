@@ -84,7 +84,7 @@ const drawButt = (buttSize, buttY) => {
 const drawpicture = () => {
   drawBackround(height * 0.7, height * 0.9, height * 0.7);
   drawHead();
-  drawEyes(height * 0.2, height * 0.3, height * 0.2);
+  drawEyes();
   drawmouth(height * 0.2, height * 0.3, height * 0.2);
   drawNose(height * 0.2, height * 0.3, height * 0.2);
   drawHat(height * 0.2, height * 0.3, height * 0.2);
