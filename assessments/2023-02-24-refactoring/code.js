@@ -10,18 +10,16 @@ const drawBackground = (horizon) => {
 };
 
 const drawSnowman = (x, size, base, proportions, eyeSpacing) => {
-  const [headP, torsoP, buttP] = proportions;
   const total = proportions.reduce((tot, p) => tot + p, 0);
+  const rs = proportions.map((p) => scaledRadius(size, p, total));
 
-  const [ headRadius, torsoRadius, buttRadius ] = proportions.map((p) => scaledRadius(size, p, total));
+  const headY = (base - size) + rs[0];
+  const torsoY = headY + rs[0] + rs[1];
+  const buttY = torsoY + rs[1] + rs[2];
 
-  const headY = (base - size) + headRadius;
-  const torsoY = headY + headRadius + torsoRadius;
-  const buttY = torsoY + torsoRadius + buttRadius;
-
-  drawHead(x, headY, headRadius, eyeSpacing);
-  drawTorso(x, torsoY, torsoRadius);
-  drawButt(x, buttY, buttRadius);
+  drawHead(x, headY, headR, eyeSpacing);
+  drawTorso(x, torsoY, torsoR);
+  drawButt(x, buttY, buttR);
 };
 
 const scaledRadius = (size, p, total) => size / 2 * (p / total);
