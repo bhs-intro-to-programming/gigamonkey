@@ -42,10 +42,14 @@ const drawSnowball = (x, y, r) => {
   drawFilledCircle(x, y, r, 'white', 3);
 };
 
+const drawCoal = (x, y) => {
+  drawFilledCircle(x, y, 4, 'black');
+}
+
 const drawEyes = (x, headRadius, headY) => {
   const eyeSpacing = headRadius * 0.25;
-  drawFilledCircle(x - eyeSpacing, headY - eyeSpacing, 4, 'black');
-  drawFilledCircle(x + eyeSpacing, headY - eyeSpacing, 4, 'black');
+  drawCoal(x - eyeSpacing, headY - eyeSpacing);
+  drawCoal(x +eyeSpacing, headY - eyeSpacing);
 };
 
 const drawNose = (x, headRadius, headY) => {
