@@ -23,7 +23,7 @@ const drawSnowman = (base, size) => {
   const torsoY = headY + headSize / 2 + torsoSize / 2;
   const buttY = torsoY + torsoSize / 2 + buttSize / 2;
 
-  drawHead(x, headY, headSize);
+  drawHead(x, headY, headSize / 2);
   drawTorso(x, torsoY, torsoSize);
   drawButt(x, buttY, buttSize);
 };
@@ -33,8 +33,7 @@ const drawSnowball = (x, y, r) => {
   drawFilledCircle(x, y, r, 'white', 3);
 }
 
-const drawHead = (x, y, size) => {
-  const r = size / 2;
+const drawHead = (x, y, r) => {
   drawSnowball(x, y, r);
   drawEyes(x, y, r);
   drawNose(x, y, r);
@@ -91,7 +90,7 @@ const drawButtons = (x, y, r) => {
   for (let i = 0; i < 3; i++) {
     drawFilledCircle(x, y - r * 0.5 + i * r * 0.5, 4, 'black');
   }
-}
+};
 
 const drawButt = (x, y, size) => {
   const r = size / 2;
