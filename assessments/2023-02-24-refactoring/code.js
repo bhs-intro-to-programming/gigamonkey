@@ -93,6 +93,6 @@ const drawpicture = () => {
   drawButtons();
   drawButt();
 }
-drawpicture(height * 0.7, height * 0.9, height * 0.7);
+drawpicture();
 // I dont understand why it it became like this I understand in the original DrawPicture at the end of the function
 //resized everything together but i dont understand how it would affect it.
