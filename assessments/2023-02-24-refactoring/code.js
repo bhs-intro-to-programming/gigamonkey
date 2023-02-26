@@ -77,19 +77,13 @@ const drawTorso = (x, y, size) => {
 };
 
 const drawArms = (x, y, radius) => {
-  drawArm1(x, y, radius, 1);
-  drawArm1(x, y, radius, -1);
+  drawArm(x, y, radius, 1);
+  drawArm(x, y, radius, -1);
 };
 
-const drawArm1 = (x, y, radius, sign) => {
+const drawArm = (x, y, radius, sign) => {
   let x1 = x + radius * 0.6 * sign;
   let x2 = x + radius * 2.35 * sign;
-  drawLine(x1, y - radius * 0.25, x2, y - radius * 0.85, 'black', 3);
-};
-
-const drawArm2 = (x, y, radius) => {
-  let x1 = x + radius * 0.6 * -1;
-  let x2 = x + radius * 2.35 * -1;
   drawLine(x1, y - radius * 0.25, x2, y - radius * 0.85, 'black', 3);
 };
 
