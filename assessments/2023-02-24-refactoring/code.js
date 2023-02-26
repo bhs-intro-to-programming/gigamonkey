@@ -82,16 +82,16 @@ const drawButt = (buttSize, buttY) => {
   drawFilledCircle(x, buttY, buttRadius, 'white', 3);
 }
 const drawpicture = () => {
-  drawBackround(height * 0.7, height * 0.9, height * 0.7);
+  drawBackround();
   drawHead();
   drawEyes();
-  drawmouth(height * 0.2, height * 0.3, height * 0.2);
-  drawNose(height * 0.2, height * 0.3, height * 0.2);
-  drawHat(height * 0.2, height * 0.3, height * 0.2);
-  drawTorso(height * 0.1, height * 0.1, height * 0.1);
-  drawArms(height * 0.1, height * 0.1, height * 0.1);
-  drawButtons(height * 0.1, height * 0.1, height * 0.1);
-  drawButt(height * 0.1, height * 0.1, height * 0.1);
+  drawmouth();
+  drawNose();
+  drawHat();
+  drawTorso();
+  drawArms();
+  drawButtons();
+  drawButt();
 }
 drawpicture(height * 0.7, height * 0.9, height * 0.7);
 // I dont understand why it it became like this I understand in the original DrawPicture at the end of the function
