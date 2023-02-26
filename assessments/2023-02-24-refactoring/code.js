@@ -28,7 +28,7 @@ const drawHead = (x, y, radius, eyeSpacing) => {
   drawEyes(x, y, radius, eyeSpacing);
   drawNose(x, y, radius);
   drawMouth(x, y,radius);
-  drawHat(x, y, y - radius * 0.9, radius * 2.25, radius * 1.35);
+  drawHat(x, y, y - radius * 0.9, radius * 2.25, radius * 1.55);
 };
 
 const drawSnowball = (x, y, r) => {
