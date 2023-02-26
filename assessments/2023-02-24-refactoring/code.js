@@ -26,13 +26,7 @@ const drawSnowman = (size, base) => {
   const buttY = torsoY + torsoSize / 2 + buttSize / 2;
 
   drawHead(x, headSize, headY);
-
-
-
-  // Draw the torso
-  const torsoRadius = torsoSize / 2;
-  drawCircle(x, torsoY, torsoRadius + 2, 'black', 3);
-  drawFilledCircle(x, torsoY, torsoRadius, 'white', 3);
+  drawTorso(x, torsoSize, torsoY);
 
   // Draw the arms
   let x1 = x + torsoRadius * 0.6;
@@ -82,5 +76,12 @@ const drawHead = (x, headSize, headY) => {
   drawFilledRect(x - brimWidth / 2, brimTop, brimWidth, brimHeight, 'black');
   drawFilledRect(x - hatWidth / 2, brimTop - hatHeight, hatWidth, hatHeight, 'black');
 };
+
+const drawTorso = (x, torsoSize, torsoY) => {
+  const torsoRadius = torsoSize / 2;
+  drawCircle(x, torsoY, torsoRadius + 2, 'black', 3);
+  drawFilledCircle(x, torsoY, torsoRadius, 'white', 3);
+};
+
 
 drawPicture(height * 0.7, height * 0.9, height * 0.7);
