@@ -84,7 +84,7 @@ const drawButt = (buttSize, buttY) => {
 const drawpicture = () => {
   drawBackround(horizon);
   drawHead(headY, headRadius);
-  drawEyes();
+  drawEyes(headRadius, headY);
   drawmouth();
   drawNose();
   drawHat();
