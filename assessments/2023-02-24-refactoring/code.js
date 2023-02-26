@@ -1,3 +1,7 @@
+const horizon = height * 0.7;
+const base = height * 0.8;
+const size = height * 0.7;
+
 const x = width / 2;
 const proportions = [3, 4, 5];
 const [headP, torsoP, buttP, size, base, horizon] = proportions;
@@ -93,7 +97,7 @@ const drawButt = () => {
   drawFilledCircle(x, buttY, buttRadius, 'white', 3);
 }; drawButt();
 
-const drawPicture = (horizon) => {
+const drawPicture = (horizon, base, size) => {
   drawBack(horizon);
   drawHead()
   drawEyes()
