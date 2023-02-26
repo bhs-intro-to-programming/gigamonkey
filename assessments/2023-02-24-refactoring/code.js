@@ -81,8 +81,8 @@ const drawArms = (x, y, r) => {
 };
 
 const drawArm1 = (x, y, r) => {
-  let x1 = x + r * 0.6;
-  let x2 = x + r * 2.35;
+  let x1 = x + r * 0.6 * 1;
+  let x2 = x + r * 2.35 * 1;
   drawLine(x1, y - r * 0.25, x2, y - r * 0.85, 'black', 3);
 };
 
