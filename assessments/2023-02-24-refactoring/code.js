@@ -1,10 +1,7 @@
 const drawPicture = (horizon, base, size) => {
 
-  // Draw the background
-  drawFilledRect(0, 0, width, horizon, '#ddeeff');
-  drawFilledRect(0, horizon, width, height, 'white');
-  drawLine(0, horizon, width, horizon, '#bbb');
-
+  drawBackground(horizon);
+  
   // Draw the snowman
   const x = width / 2;
   const proportions = [3, 4, 5];
@@ -70,6 +67,12 @@ const drawPicture = (horizon, base, size) => {
   const buttRadius = buttSize / 2;
   drawCircle(x, buttY, buttRadius + 2, 'black', 3);
   drawFilledCircle(x, buttY, buttRadius, 'white', 3);
+};
+
+const drawBackground = (horizon) => {
+  drawFilledRect(0, 0, width, horizon, '#ddeeff');
+  drawFilledRect(0, horizon, width, height, 'white');
+  drawLine(0, horizon, width, horizon, '#bbb');
 };
 
 drawPicture(height * 0.7, height * 0.9, height * 0.7);
