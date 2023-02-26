@@ -94,7 +94,7 @@ const drawArm = (x, y, r, s) => {
 
 const drawButtons = (x, y, r) => {
   for (let i = 0; i < 3; i++) {
-    drawFilledCircle(x, y - r * 0.5 + i * r * 0.5, 4, 'black');
+    drawCoal(x, y - r * 0.5 + i * r * 0.5);
   }
 };
 
