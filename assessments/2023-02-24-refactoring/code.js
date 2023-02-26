@@ -1,8 +1,6 @@
 const drawPicture = (horizon, base, size) => {
-
   drawBackground(horizon);
   drawSnowman(size, base);
-
 };
 
 const drawBackground = (horizon) => {
@@ -26,7 +24,7 @@ const drawSnowman = (size, base) => {
   const buttY = torsoY + torsoSize / 2 + buttSize / 2;
 
   drawHead(x, headY, headSize);
-  drawTorso(x, torsoSize, torsoY);
+  drawTorso(x, torsoY, torsoSize);
   drawButt(x, buttSize, buttY);
 };
 
@@ -72,7 +70,7 @@ const drawHat = (x, headRadius, headY) => {
   drawFilledRect(x - hatWidth / 2, brimTop - hatHeight, hatWidth, hatHeight, 'black');
 };
 
-const drawTorso = (x, torsoSize, torsoY) => {
+const drawTorso = (x, torsoY, torsoSize) => {
   const torsoRadius = torsoSize / 2;
   drawCircle(x, torsoY, torsoRadius + 2, 'black', 3);
   drawFilledCircle(x, torsoY, torsoRadius, 'white', 3);
@@ -81,16 +79,16 @@ const drawTorso = (x, torsoSize, torsoY) => {
   drawButtons(x, torsoY, torsoRadius);
 };
 
-const drawArms = (x, torsoY, torsoRadius) => {
-  drawArm(x, torsoY, torsoRadius, 1);
-  drawArm(x, torsoY, torsoRadius, -1);
+const drawArms = (x, y, r) => {
+  drawArm(x, y, r, 1);
+  drawArm(x, y, r, -1);
 };
 
 const drawArm = (x, y, r, s) => {
   let x1 = x + r * 0.6 * s;
   let x2 = x + r * 2.35 * s;
   drawLine(x1, y - r * 0.25, x2, y - r * 0.85, 'black', 3);
-}
+};
 
 const drawButtons = (x, y, r) => {
   for (let i = 0; i < 3; i++) {
