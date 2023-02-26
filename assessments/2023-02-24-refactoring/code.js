@@ -35,12 +35,8 @@ const drawHead = (x, y, size) => {
 
   drawEyes(x, y, radius);
   drawNose(x, y, radius);
- 
-  // Draw the mouth
-  for (let i = 0; i < 5; i++) {
-    const dy = -2 * (2.1 ** Math.abs(i - 2));
-    drawFilledCircle(x - (i - 2.3) * radius * 0.21, y + radius * 0.65 + dy, 4, 'black');
-  }
+  drawMouth(x, y, radius);
+
 
   // Draw the hat
   const brimTop = y - radius * 0.9;
@@ -62,6 +58,14 @@ const drawNose = (x, y, radius) => {
   const noseLength = radius * 0.8;
   drawFilledTriangle(x, y, x + noseLength, y + noseLength * 0.2, x, y + noseLength * 0.3, 'orange');
 };
+
+const drawMouth = (x, y, radius) => {
+  for (let i = 0; i < 5; i++) {
+    const dy = -2 * (2.1 ** Math.abs(i - 2));
+    drawFilledCircle(x - (i - 2.3) * radius * 0.21, y + radius * 0.65 + dy, 4, 'black');
+  }
+};
+
 const drawTorso = (x, y, size) => {
   const radius = size / 2;
   drawCircle(x, y, radius + 2, 'black', 3);
