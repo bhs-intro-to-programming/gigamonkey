@@ -68,22 +68,25 @@ const drawHat = (x, y, r) => {
 };
 
 const drawTorso = (x, y, size) => {
-  const torsoRadius = size / 2;
-  drawCircle(x, y, torsoRadius + 2, 'black', 3);
-  drawFilledCircle(x, y, torsoRadius, 'white', 3);
+  const r = size / 2;
+  drawCircle(x, y, r + 2, 'black', 3);
+  drawFilledCircle(x, y, r, 'white', 3);
 
-  // Draw the arms
-  let x1 = x + torsoRadius * 0.6;
-  let x2 = x + torsoRadius * 2.35;
-  drawLine(x1, y - torsoRadius * 0.25, x2, y - torsoRadius * 0.85, 'black', 3);
-  x1 = x + torsoRadius * 0.6 * -1;
-  x2 = x + torsoRadius * 2.35 * -1;
-  drawLine(x1, y - torsoRadius * 0.25, x2, y - torsoRadius * 0.85, 'black', 3);
+  drawArms(x, y, r);
 
   // Draw the buttons
   for (let i = 0; i < 3; i++) {
-    drawFilledCircle(x, y - torsoRadius * 0.5 + i * torsoRadius * 0.5, 4, 'black');
+    drawFilledCircle(x, y - r * 0.5 + i * r * 0.5, 4, 'black');
   }
+};
+
+const drawArms = (x, y, r) => {
+  let x1 = x + r * 0.6;
+  let x2 = x + r * 2.35;
+  drawLine(x1, y - r * 0.25, x2, y - r * 0.85, 'black', 3);
+  x1 = x + r * 0.6 * -1;
+  x2 = x + r * 2.35 * -1;
+  drawLine(x1, y - r * 0.25, x2, y - r * 0.85, 'black', 3);
 };
 
 const drawButt = (x, y, size) => {
