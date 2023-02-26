@@ -45,7 +45,7 @@ const drawEyes = (x, y, r) => {
   drawFilledCircle(x + eyeSpacing, y - eyeSpacing, 4, 'black');
 };
 
-const drawNose = (x, y, r)=> {
+const drawNose = (x, y, r) => {
   const noseLength = r * 0.8;
   drawFilledTriangle(x, y, x + noseLength, y + noseLength * 0.2, x, y + noseLength * 0.3, 'orange');
 };
@@ -73,11 +73,8 @@ const drawTorso = (x, y, size) => {
   drawFilledCircle(x, y, r, 'white', 3);
 
   drawArms(x, y, r);
+  drawButtons(x, y, r);
 
-  // Draw the buttons
-  for (let i = 0; i < 3; i++) {
-    drawFilledCircle(x, y - r * 0.5 + i * r * 0.5, 4, 'black');
-  }
 };
 
 const drawArms = (x, y, r) => {
@@ -88,6 +85,12 @@ const drawArms = (x, y, r) => {
   x2 = x + r * 2.35 * -1;
   drawLine(x1, y - r * 0.25, x2, y - r * 0.85, 'black', 3);
 };
+
+const drawButtons = (x, y, r) => {
+  for (let i = 0; i < 3; i++) {
+    drawFilledCircle(x, y - r * 0.5 + i * r * 0.5, 4, 'black');
+  }
+}
 
 const drawButt = (x, y, size) => {
   const buttRadius = size / 2;
