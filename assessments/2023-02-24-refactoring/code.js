@@ -72,9 +72,7 @@ const drawHat = (x, y, r) => {
 
 const drawTorso = (x, y, size) => {
   const r = size / 2;
-  drawCircle(x, y, r + 2, 'black', 3);
-  drawFilledCircle(x, y, r, 'white', 3);
-
+  drawSnowball(x, y, r);
   drawArms(x, y, r);
   drawButtons(x, y, r);
 
