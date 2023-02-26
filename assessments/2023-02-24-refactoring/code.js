@@ -21,13 +21,12 @@ const drawSnowman = (x, size, base, proportions, eyeSpacing) => {
   const torsoY = headY + headSize / 2 + torsoSize / 2;
   const buttY = torsoY + torsoSize / 2 + buttSize / 2;
 
-  drawHead(x, headY, headSize, eyeSpacing);
+  drawHead(x, headY, headSize / 2, eyeSpacing);
   drawTorso(x, torsoY, torsoSize);
   drawButt(x, buttY, buttSize);
 };
 
-const drawHead = (x, y, size, eyeSpacing) => {
-  const radius = size / 2;
+const drawHead = (x, y, radius, eyeSpacing) => {
   drawSnowball(x, y, radius);
   drawEyes(x, y, radius, eyeSpacing);
   drawNose(x, y, radius);
