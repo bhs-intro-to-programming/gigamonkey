@@ -93,7 +93,8 @@ const drawButt = () => {
   drawFilledCircle(x, buttY, buttRadius, 'white', 3);
 }; drawButt();
 
-const drawPicture = (height) => {
+const drawPicture = (horizon) => {
+  drawBack(horizon);
   drawHead()
   drawEyes()
   drawMouth()
@@ -103,4 +104,6 @@ const drawPicture = (height) => {
   drawTorso()
   drawHat()
   drawButton()
-}; drawPicture(height * 0.7, height * 0.9, height * 0.7);
+};
+
+drawPicture(height * 0.7, height * 0.9, height * 0.7);
