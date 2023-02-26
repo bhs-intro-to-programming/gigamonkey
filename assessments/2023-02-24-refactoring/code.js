@@ -1,9 +1,6 @@
 const drawPicture = (horizon, base, size) => {
-
   drawBackground(horizon);
   drawSnowman(base, size);
-
-
 };
 
 const drawBackground = (horizon) => {
@@ -26,6 +23,33 @@ const drawSnowman = (base, size) => {
   const torsoY = headY + headSize / 2 + torsoSize / 2;
   const buttY = torsoY + torsoSize / 2 + buttSize / 2;
 
+  drawHead(x, headY, headSize);
+
+  // Draw the torso
+  const torsoRadius = torsoSize / 2;
+  drawCircle(x, torsoY, torsoRadius + 2, 'black', 3);
+  drawFilledCircle(x, torsoY, torsoRadius, 'white', 3);
+
+  // Draw the arms
+  let x1 = x + torsoRadius * 0.6;
+  let x2 = x + torsoRadius * 2.35;
+  drawLine(x1, torsoY - torsoRadius * 0.25, x2, torsoY - torsoRadius * 0.85, 'black', 3);
+  x1 = x + torsoRadius * 0.6 * -1;
+  x2 = x + torsoRadius * 2.35 * -1;
+  drawLine(x1, torsoY - torsoRadius * 0.25, x2, torsoY - torsoRadius * 0.85, 'black', 3);
+
+  // Draw the buttons
+  for (let i = 0; i < 3; i++) {
+    drawFilledCircle(x, torsoY - torsoRadius * 0.5 + i * torsoRadius * 0.5, 4, 'black');
+  }
+
+  // Draw the butt
+  const buttRadius = buttSize / 2;
+  drawCircle(x, buttY, buttRadius + 2, 'black', 3);
+  drawFilledCircle(x, buttY, buttRadius, 'white', 3);
+};
+
+const drawHead = (x, headY, headSize) => {
   // Draw the head
   const headRadius = headSize / 2;
   drawCircle(x, headY, headRadius + 2, 'black', 3);
@@ -54,29 +78,7 @@ const drawSnowman = (base, size) => {
   const hatHeight = headRadius * 1.25;
   drawFilledRect(x - brimWidth / 2, brimTop, brimWidth, brimHeight, 'black');
   drawFilledRect(x - hatWidth / 2, brimTop - hatHeight, hatWidth, hatHeight, 'black');
-
-  // Draw the torso
-  const torsoRadius = torsoSize / 2;
-  drawCircle(x, torsoY, torsoRadius + 2, 'black', 3);
-  drawFilledCircle(x, torsoY, torsoRadius, 'white', 3);
-
-  // Draw the arms
-  let x1 = x + torsoRadius * 0.6;
-  let x2 = x + torsoRadius * 2.35;
-  drawLine(x1, torsoY - torsoRadius * 0.25, x2, torsoY - torsoRadius * 0.85, 'black', 3);
-  x1 = x + torsoRadius * 0.6 * -1;
-  x2 = x + torsoRadius * 2.35 * -1;
-  drawLine(x1, torsoY - torsoRadius * 0.25, x2, torsoY - torsoRadius * 0.85, 'black', 3);
-
-  // Draw the buttons
-  for (let i = 0; i < 3; i++) {
-    drawFilledCircle(x, torsoY - torsoRadius * 0.5 + i * torsoRadius * 0.5, 4, 'black');
-  }
-
-  // Draw the butt
-  const buttRadius = buttSize / 2;
-  drawCircle(x, buttY, buttRadius + 2, 'black', 3);
-  drawFilledCircle(x, buttY, buttRadius, 'white', 3);
 };
+
 
 drawPicture(height * 0.7, height * 0.9, height * 0.7);
