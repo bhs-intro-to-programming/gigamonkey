@@ -11,16 +11,10 @@ const drawBackground = (horizon) => {
 
 const drawSnowman = (x, size, base, proportions, eyeSpacing) => {
   const total = proportions.reduce((tot, p) => tot + p, 0);
-  const rs = proportions.map((p) => scaledRadius(size, p, total));
-
   const top = base - size;
-  const ys = rs.reduce((ys, r, i) => [ ...ys, top + r + 2 * sum(rs.slice(0, i))], []);
-  console.log(ys);
 
-  const headY = top + rs[0];
-  const torsoY = top + rs[0] + rs[0] + rs[1];
-  const buttY = top + rs[0] + rs[0] + rs[1] + rs[1] + rs[2];
-  console.log([headY, torsoY, buttY]);
+  const rs = proportions.map((p) => scaledRadius(size, p, total));
+  const ys = rs.reduce((ys, r, i) => [ ...ys, top + r + 2 * sum(rs.slice(0, i))], []);
 
   drawHead(x, ys[0], rs[0], eyeSpacing);
   drawTorso(x, ys[1], rs[1]);
