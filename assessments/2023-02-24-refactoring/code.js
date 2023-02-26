@@ -15,15 +15,15 @@ const drawSnowman = (x, size, base, proportions, eyeSpacing) => {
 
   const headRadius = size / 2 * (headP / total);
   const torsoRadius = size / 2 * (torsoP / total)
-  const buttSize = size * (buttP / total);
+  const buttRadius = size / 2 * (buttP / total);
 
   const headY = (base - size) + headRadius;
   const torsoY = headY + headRadius + torsoRadius;
-  const buttY = torsoY + torsoRadius + buttSize / 2;
+  const buttY = torsoY + torsoRadius + buttRadius;
 
   drawHead(x, headY, headRadius, eyeSpacing);
   drawTorso(x, torsoY, torsoRadius);
-  drawButt(x, buttY, buttSize / 2);
+  drawButt(x, buttY, buttRadius);
 };
 
 const drawHead = (x, y, radius, eyeSpacing) => {
