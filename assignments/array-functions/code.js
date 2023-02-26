@@ -1,0 +1,1 @@
+const countTens = (ns) => ns.filter(n => n === 10).length;
