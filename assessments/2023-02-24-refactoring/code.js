@@ -76,13 +76,21 @@ const drawTorso = (x, y, r) => {
 };
 
 const drawArms = (x, y, r) => {
+  drawArm1(x, y, r);
+  drawArm2(x, y, r);
+};
+
+const drawArm1 = (x, y, r) => {
   let x1 = x + r * 0.6;
   let x2 = x + r * 2.35;
   drawLine(x1, y - r * 0.25, x2, y - r * 0.85, 'black', 3);
-  x1 = x + r * 0.6 * -1;
-  x2 = x + r * 2.35 * -1;
-  drawLine(x1, y - r * 0.25, x2, y - r * 0.85, 'black', 3);
 };
+
+const drawArm2 = (x, y, r) => {
+  let x1 = x + r * 0.6 * -1;
+  let x2 = x + r * 2.35 * -1;
+  drawLine(x1, y - r * 0.25, x2, y - r * 0.85, 'black', 3);
+}
 
 const drawButtons = (x, y, r) => {
   for (let i = 0; i < 3; i++) {
