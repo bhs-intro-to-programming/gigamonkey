@@ -62,12 +62,12 @@ const drawMouth = (x, headY, headRadius) => {
   }
 };
 
-const drawHat = (x, headY, headRadius) => {
-  const brimTop = headY - headRadius * 0.9;
-  const brimWidth = headRadius * 2.25;
+const drawHat = (x, y, r) => {
+  const brimTop = y - r * 0.9;
+  const brimWidth = r * 2.25;
   const brimHeight = brimWidth * 0.08;
   const hatWidth = brimWidth * 0.7;
-  const hatHeight = headRadius * 1.25;
+  const hatHeight = r * 1.25;
   drawFilledRect(x - brimWidth / 2, brimTop, brimWidth, brimHeight, 'black');
   drawFilledRect(x - hatWidth / 2, brimTop - hatHeight, hatWidth, hatHeight, 'black');
 };
