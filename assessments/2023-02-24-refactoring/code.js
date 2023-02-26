@@ -85,7 +85,7 @@ const drawpicture = () => {
   drawBackround(horizon);
   drawHead(headY, headRadius);
   drawEyes(headRadius, headY);
-  drawmouth();
+  drawmouth(headRadius, headY);
   drawNose();
   drawHat();
   drawTorso();
