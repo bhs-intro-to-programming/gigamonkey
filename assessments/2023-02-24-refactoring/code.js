@@ -22,7 +22,7 @@ const hatHeight = headRadius * 1.25;
 
 
 
-const drawHead = () => {
+const drawHead = (headY, headRadius) => {
   drawCircle(width / 2, headY, headRadius + 2, 'black', 3);
   drawFilledCircle(width / 2, headY, headRadius, 'white', 3);
 }
@@ -82,8 +82,8 @@ const drawButt = (buttSize, buttY) => {
   drawFilledCircle(x, buttY, buttRadius, 'white', 3);
 }
 const drawpicture = () => {
-  drawBackround();
-  drawHead();
+  drawBackround(horizon);
+  drawHead(headY, headRadius);
   drawEyes();
   drawmouth();
   drawNose();
