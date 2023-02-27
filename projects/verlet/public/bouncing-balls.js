@@ -22,24 +22,20 @@ const drawBackground = (g) => {
 const walls = (b) => {
   // If the ball is touching (or beyond) one of the four walls compute its new
   // velocity and from that its new position and move it to that position.
-
-  const foo = () => {
-    //console.log(`pos: ${JSON.stringify(b.position)}; v: ${JSON.stringify(b.velocity)}`);
-  };
-
   if (b.position.x - b.radius <= 0 || g.width <= b.position.x + b.radius) {
     const { x: dx, y: dy } = b.velocity;
-    foo();
     b.position = b.position.plus(vector(-2 * dx, 0));
-    foo();
   }
 
   if (b.position.y - b.radius <= 0 || g.height <= b.position.y + b.radius) {
     const { x: dx, y: dy } = b.velocity;
-    foo();
     b.position = b.position.plus(vector(0, -2 * dy));
-    foo();
   }
+};
+
+
+const newVelocity = (v1, v2, m1, m2) => {
+  return v1.times((m1 - m2) / (m1 + m2)).plus(v2.times((2 * m2) / (m1 + m2)));
 };
 
 
@@ -51,10 +47,15 @@ const collisions = () => {
       const axis = b1.position.minus(b2.position);
       const dist = axis.length();
       if (dist < b1.radius + b2.radius) {
-        const n = axis.divide(dist);
-        const bounce = n.times((b1.radius + b2.radius - dist) * 0.5);
-        b1.position = b1.position.plus(bounce);
-        b2.position = b2.position.minus(bounce);
+        // Compute new velocity and update position.
+        const b1v1 = b1.velocity;
+        const b2v1 = b2.velocity;
+
+        const b1v2 = newVelocity(b1v1, b2v1, b1.mass, b2.mass);
+        const b2v2 = newVelocity(b2v1, b1v1, b2.mass, b1.mass);
+
+        b1.position = b1.oldPosition.plus(b1v2);
+        b2.position = b2.oldPosition.plus(b2v2);
       }
     }
   }
@@ -65,7 +66,7 @@ const random = (a, b) => {
   return min + Math.random() * (max - min);
 };
 
-const spawner = (x, y, freq, balls) => {
+const spawner = (x, y, min, max, freq, balls) => {
   const r = 0.2;
   let since = 0;
   return (elapsed) => {
@@ -74,31 +75,32 @@ const spawner = (x, y, freq, balls) => {
       const start = vector(x, y);
       const velocity = vector(random(-r, r), -random(2 * r));
       const prev = start.minus(velocity.times(elapsed));
-      balls.push(ball(start, prev, zero, Math.floor(5 + Math.random() * 10)));
+      balls.push(ball(start, prev, zero, Math.floor(min + Math.random() * (max - min))));
       since = 0;
     }
   };
 };
 
-const spawn = (x, y, balls) => {
+const spawn = (x, y, min, max, balls) => {
   const r = 0.2;
   const start = vector(x, y);
   const velocity = vector(random(-r, r), -random(2 * r));
   const prev = start.minus(velocity.times(5));
-  balls.push(ball(start, prev, zero, Math.floor(5 + Math.random() * 10)));
+  balls.push(ball(start, prev, zero, Math.floor(min + Math.random() * (max - min))));
 };
 
 
 const balls = [];
 const spawners = [
-  spawner(mid.x, mid.y, 500, balls),
+  spawner(mid.x, mid.y, 50, 100, 1000, balls),
   //spawner(mid.x + 100, mid.y, 250, balls),
   //spawner(mid.x - 200, mid.y - 100, 250, balls)
 ];
 
 const steps = 8;
 
-//spawn(mid.x, mid.y, balls);
+//spawn(mid.x, mid.y, 20, 20, balls);
+//spawn(50, 80, 40, 40, balls);
 
 animate((elapsed) => {
   const step = elapsed / steps;

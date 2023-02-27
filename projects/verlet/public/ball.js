@@ -27,6 +27,10 @@ class Ball {
   get velocity() {
     return this.position.minus(this.oldPosition);
   }
+
+  get mass() {
+    return Math.PI * this.radius ** 2;
+  }
 }
 
 export default (p, op, acc, radius = 50) => new Ball(p, op, acc, radius);
