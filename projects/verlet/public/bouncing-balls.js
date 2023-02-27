@@ -100,10 +100,11 @@ const balls = spawnBalls(5, 6);
 document.body.onkeydown = (e) => {
   if (e.key === 'ArrowUp') {
     changeSpeed(balls, 1);
+    e.preventDefault();
   } else if (e.key === 'ArrowDown') {
     changeSpeed(balls, -1);
+    e.preventDefault();
   }
-  e.preventDefault();
 };
 
 animate((elapsed) => {
