@@ -54,14 +54,14 @@ const random = (a, b) => {
 };
 
 const spawner = (x, y, freq, balls) => {
-  const r = 5;
+  const r = 0.2;
   let since = 0;
   return (elapsed) => {
     since += elapsed;
     if (since > freq) {
       const start = vector(x, y);
       const velocity = vector(random(-r, r), -random(2 * r));
-      const prev = start.minus(velocity);
+      const prev = start.minus(velocity.times(elapsed));
       balls.push(ball(start, prev, zero, Math.floor(5 + Math.random() * 10)));
       since = 0;
     }
@@ -70,17 +70,22 @@ const spawner = (x, y, freq, balls) => {
 
 const balls = [];
 const spawners = [
-  spawner(mid.x, mid.y, 200, balls),
+  spawner(mid.x, mid.y, 500, balls),
   //spawner(mid.x + 100, mid.y, 250, balls),
   //spawner(mid.x - 200, mid.y - 100, 250, balls)
 ];
 
+const steps = 8;
+
 animate((elapsed) => {
-  spawners.forEach((s) => s(elapsed));
-  balls.forEach((b) => b.accelerate(gravity));
-  balls.forEach((b) => constrain(b));
-  collisions();
-  balls.forEach((b) => b.updatePosition(elapsed));
+  const step = elapsed / steps;
+  for (let i = 0; i < steps; i++) {
+    spawners.forEach((s) => s(step));
+    balls.forEach((b) => b.accelerate(gravity));
+    balls.forEach((b) => constrain(b));
+    collisions();
+    balls.forEach((b) => b.updatePosition(step));
+  }
   drawBackground(g);
   balls.forEach((b) => b.draw(g));
 });
