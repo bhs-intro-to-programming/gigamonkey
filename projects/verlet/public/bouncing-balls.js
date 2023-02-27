@@ -16,28 +16,23 @@ const zero = vector(0, 0);
 
 const drawBackground = (g) => {
   g.clear();
-  g.drawFilledRect(0, 0, g.width, g.height, '#88f');
+  g.drawFilledRect(0, 0, g.width, g.height, '#99f');
 };
 
 const walls = (b) => {
-  // If the ball is touching (or beyond) one of the four walls compute its new
-  // velocity and from that its new position and move it to that position.
+  const { x: dx, y: dy } = b.velocity;
   if (b.position.x - b.radius <= 0 || g.width <= b.position.x + b.radius) {
-    const { x: dx, y: dy } = b.velocity;
     b.position = b.position.plus(vector(-2 * dx, 0));
   }
-
   if (b.position.y - b.radius <= 0 || g.height <= b.position.y + b.radius) {
-    const { x: dx, y: dy } = b.velocity;
     b.position = b.position.plus(vector(0, -2 * dy));
   }
 };
 
 
-const newVelocity = (v1, v2, m1, m2) => {
+const collisionVelocity = (v1, v2, m1, m2) => {
   return v1.times((m1 - m2) / (m1 + m2)).plus(v2.times((2 * m2) / (m1 + m2)));
 };
-
 
 const collisions = () => {
   for (let i = 0; i < balls.length - 1; i++) {
@@ -51,8 +46,8 @@ const collisions = () => {
         const b1v1 = b1.velocity;
         const b2v1 = b2.velocity;
 
-        const b1v2 = newVelocity(b1v1, b2v1, b1.mass, b2.mass);
-        const b2v2 = newVelocity(b2v1, b1v1, b2.mass, b1.mass);
+        const b1v2 = collisionVelocity(b1v1, b2v1, b1.mass, b2.mass);
+        const b2v2 = collisionVelocity(b2v1, b1v1, b2.mass, b1.mass);
 
         b1.position = b1.oldPosition.plus(b1v2);
         b2.position = b2.oldPosition.plus(b2v2);
@@ -66,46 +61,46 @@ const random = (a, b) => {
   return min + Math.random() * (max - min);
 };
 
-const spawner = (x, y, min, max, freq, balls) => {
-  const r = 0.2;
-  let since = 0;
-  return (elapsed) => {
-    since += elapsed;
-    if (since > freq) {
-      const start = vector(x, y);
-      const velocity = vector(random(-r, r), -random(2 * r));
-      const prev = start.minus(velocity.times(elapsed));
-      balls.push(ball(start, prev, zero, Math.floor(min + Math.random() * (max - min))));
-      since = 0;
-    }
-  };
-};
-
-const spawn = (x, y, min, max, balls) => {
-  const r = 0.2;
+const spawn = (x, y, v, r) => {
   const start = vector(x, y);
-  const velocity = vector(random(-r, r), -random(2 * r));
-  const prev = start.minus(velocity.times(5));
-  balls.push(ball(start, prev, zero, Math.floor(min + Math.random() * (max - min))));
+  const prev = start.minus(v);
+  return ball(start, prev, zero, r);
 };
 
+const spawnBalls = (rows, cols) => {
+  const balls = [];
+  for (let row = 0; row < rows; row++) {
+    for (let col = 0; col < cols; col++) {
+      const x = col * g.width / cols + g.width / (cols * 2);
+      const y = row * g.height / rows + g.height / (rows * 2);
+      balls.push(spawn(x, y, vector(random(-1, 1), random(-1, 1)), random(20, 50)));
+    }
+  }
+  return balls;
+};
 
-const balls = [];
-const spawners = [
-  spawner(mid.x, mid.y, 50, 100, 1000, balls),
-  //spawner(mid.x + 100, mid.y, 250, balls),
-  //spawner(mid.x - 200, mid.y - 100, 250, balls)
-];
+const changeSpeed = (balls, sign) => {
+  console.log(`Changing speed ${sign}`);
+  balls.forEach(b => {
+    b.accelerate(b.velocity.times(sign * 0.01))
+  });
+};
 
 const steps = 8;
+const balls = spawnBalls(5, 4);
 
-//spawn(mid.x, mid.y, 20, 20, balls);
-//spawn(50, 80, 40, 40, balls);
+// Globally speed up and slow down balls
+document.body.onkeydown = (e) => {
+  if (e.key === 'ArrowUp') {
+    changeSpeed(balls, 1);
+  } else if (e.key === 'ArrowDown') {
+    changeSpeed(balls, -1);
+  }
+};
 
 animate((elapsed) => {
   const step = elapsed / steps;
   for (let i = 0; i < steps; i++) {
-    spawners.forEach((s) => s(step));
     balls.forEach((b) => walls(b));
     collisions();
     balls.forEach((b) => b.updatePosition(step));
