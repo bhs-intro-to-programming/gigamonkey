@@ -14,9 +14,14 @@ const mid = vector(g.width / 2, g.height / 2);
 const radius = (Math.min(g.width, g.height) / 2) * 0.85;
 const zero = vector(0, 0);
 
+
+let r = 128;
+
+const rgb = () => `rgb(${r}, 128, 255)`;
+
 const drawBackground = (g) => {
   g.clear();
-  g.drawFilledRect(0, 0, g.width, g.height, '#99f');
+  g.drawFilledRect(0, 0, g.width, g.height, rgb());
 };
 
 const walls = (b) => {
@@ -61,6 +66,8 @@ const random = (a, b) => {
   return min + Math.random() * (max - min);
 };
 
+const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+
 const spawn = (x, y, v, r) => {
   const start = vector(x, y);
   const prev = start.minus(v);
@@ -80,14 +87,14 @@ const spawnBalls = (rows, cols) => {
 };
 
 const changeSpeed = (balls, sign) => {
-  console.log(`Changing speed ${sign}`);
+  r = clamp(r + sign * 4, 0, 255);
   balls.forEach(b => {
     b.accelerate(b.velocity.times(sign * 0.01))
   });
 };
 
 const steps = 8;
-const balls = spawnBalls(5, 4);
+const balls = spawnBalls(5, 6);
 
 // Globally speed up and slow down balls
 document.body.onkeydown = (e) => {
@@ -96,6 +103,7 @@ document.body.onkeydown = (e) => {
   } else if (e.key === 'ArrowDown') {
     changeSpeed(balls, -1);
   }
+  e.preventDefault();
 };
 
 animate((elapsed) => {
