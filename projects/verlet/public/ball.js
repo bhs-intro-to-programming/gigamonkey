@@ -9,7 +9,7 @@ class Ball {
   }
 
   updatePosition(dt) {
-    const v = this.position.minus(this.oldPosition);
+    const v = this.velocity;
     this.oldPosition = this.position;
     this.position = this.position.plus(v).plus(this.acceleration.times(dt ** 2));
     this.acceleration = vector(0, 0);
@@ -22,6 +22,10 @@ class Ball {
   draw(g) {
     const { x, y } = this.position;
     g.drawFilledCircle(x, y, this.radius, '#00f9');
+  }
+
+  get velocity() {
+    return this.position.minus(this.oldPosition);
   }
 }
 
