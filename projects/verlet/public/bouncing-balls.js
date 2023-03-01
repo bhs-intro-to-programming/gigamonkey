@@ -41,7 +41,7 @@ const collisions = () => {
       const axis = b1.position.minus(b2.position);
       const dist = axis.length();
       if (dist < b1.radius + b2.radius) {
-        collide(b1, b2, axis.normalized());
+        collide(b1, b2, axis.normalized(), 1);
       }
     }
   }
@@ -96,7 +96,7 @@ const cols = Math.floor(g.width / (maxSize * 4.5));
 
 let balls;
 
-if (false) {
+if (true) {
   balls = spawnBalls(rows, cols);
 } else {
   balls = [
