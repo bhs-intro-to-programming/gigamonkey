@@ -14,7 +14,6 @@ const mid = vector(g.width / 2, g.height / 2);
 const radius = (Math.min(g.width, g.height) / 2) * 0.85;
 const zero = vector(0, 0);
 
-
 let r = 128;
 
 const rgb = () => `rgb(${r}, 128, 255)`;
@@ -34,53 +33,27 @@ const walls = (b) => {
   }
 };
 
-
-const collisionVelocity = (v1, v2, m1, m2) => {
-  return v1.times((m1 - m2) / (m1 + m2)).plus(v2.times((2 * m2) / (m1 + m2)));
-};
-
-//let outputs = 0;
-
 const collisions = () => {
   for (let i = 0; i < balls.length - 1; i++) {
     const b1 = balls[i];
     for (let j = i + 1; j < balls.length; j++) {
       const b2 = balls[j];
-
       const axis = b1.position.minus(b2.position);
       const dist = axis.length();
       if (dist < b1.radius + b2.radius) {
-
-        const relativeVelocity = b1.velocity.minus(b2.velocity)
-        const collisionNormal = axis.normalized()
-
-        const e = 1; // perfectly elastic collisions
-        //const j = -(e+1) * relativeVelocity.dot(collisionNormal) / ((collisionNormal.dot(collisionNormal) * 1/b1.mass + 1/b2.mass));
-        const j = -(e+1) * relativeVelocity.dot(collisionNormal) / (1/b1.mass + 1/b2.mass);
-
-        const b1v2 = b1.velocity.plus(collisionNormal.times(j).divide(b1.mass));
-        const b2v2 = b2.velocity.minus(collisionNormal.times(j).divide(b2.mass));
-
-        /*
-        if (outputs++ < 5) {
-          console.log(`j: ${j}`);
-          console.log(`b1.velocity: ${JSON.stringify(b1.velocity)}`);
-          console.log(`b2.velocity: ${JSON.stringify(b2.velocity)}`);
-          console.log(`scaled1: ${JSON.stringify(collisionNormal.times(j).divide(b1.mass))}`);
-          console.log(`scaled2: ${JSON.stringify(collisionNormal.times(j).divide(b2.mass))}`);
-          console.log(`relativeVelocity: ${JSON.stringify(relativeVelocity)}`);
-          console.log(`collisionNormal: ${JSON.stringify(collisionNormal)}`);
-          console.log(`b1v2: ${JSON.stringify(b1v2)}`);
-          console.log(`b2v2: ${JSON.stringify(b2v2)}`);
-          console.log('---');
-        }
-        */
-
-        b1.position = b1.oldPosition.plus(b1v2);
-        b2.position = b2.oldPosition.plus(b2v2);
+        collide(b1, b2, axis.normalized());
       }
     }
   }
+};
+
+const collide = (b1, b2, collisionNormal, e = 1) => {
+  const relativeVelocity = b1.velocity.minus(b2.velocity)
+  const j = -(e+1) * relativeVelocity.dot(collisionNormal) / (1/b1.mass + 1/b2.mass);
+  const b1v2 = b1.velocity.plus(collisionNormal.times(j).divide(b1.mass));
+  const b2v2 = b2.velocity.minus(collisionNormal.times(j).divide(b2.mass));
+  b1.position = b1.oldPosition.plus(b1v2);
+  b2.position = b2.oldPosition.plus(b2v2);
 };
 
 const random = (a, b) => {
@@ -123,7 +96,7 @@ const cols = Math.floor(g.width / (maxSize * 4.5));
 
 let balls;
 
-if (true) {
+if (false) {
   balls = spawnBalls(rows, cols);
 } else {
   balls = [
