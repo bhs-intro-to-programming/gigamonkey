@@ -39,20 +39,42 @@ const collisionVelocity = (v1, v2, m1, m2) => {
   return v1.times((m1 - m2) / (m1 + m2)).plus(v2.times((2 * m2) / (m1 + m2)));
 };
 
+//let outputs = 0;
+
 const collisions = () => {
   for (let i = 0; i < balls.length - 1; i++) {
     const b1 = balls[i];
     for (let j = i + 1; j < balls.length; j++) {
       const b2 = balls[j];
+
       const axis = b1.position.minus(b2.position);
       const dist = axis.length();
       if (dist < b1.radius + b2.radius) {
-        // Compute new velocity and update position.
-        const b1v1 = b1.velocity;
-        const b2v1 = b2.velocity;
 
-        const b1v2 = collisionVelocity(b1v1, b2v1, b1.mass, b2.mass);
-        const b2v2 = collisionVelocity(b2v1, b1v1, b2.mass, b1.mass);
+        const relativeVelocity = b1.velocity.minus(b2.velocity)
+        const collisionNormal = axis.normalized()
+
+        const e = 1; // perfectly elastic collisions
+        //const j = -(e+1) * relativeVelocity.dot(collisionNormal) / ((collisionNormal.dot(collisionNormal) * 1/b1.mass + 1/b2.mass));
+        const j = -(e+1) * relativeVelocity.dot(collisionNormal) / (1/b1.mass + 1/b2.mass);
+
+        const b1v2 = b1.velocity.plus(collisionNormal.times(j).divide(b1.mass));
+        const b2v2 = b2.velocity.minus(collisionNormal.times(j).divide(b2.mass));
+
+        /*
+        if (outputs++ < 5) {
+          console.log(`j: ${j}`);
+          console.log(`b1.velocity: ${JSON.stringify(b1.velocity)}`);
+          console.log(`b2.velocity: ${JSON.stringify(b2.velocity)}`);
+          console.log(`scaled1: ${JSON.stringify(collisionNormal.times(j).divide(b1.mass))}`);
+          console.log(`scaled2: ${JSON.stringify(collisionNormal.times(j).divide(b2.mass))}`);
+          console.log(`relativeVelocity: ${JSON.stringify(relativeVelocity)}`);
+          console.log(`collisionNormal: ${JSON.stringify(collisionNormal)}`);
+          console.log(`b1v2: ${JSON.stringify(b1v2)}`);
+          console.log(`b2v2: ${JSON.stringify(b2v2)}`);
+          console.log('---');
+        }
+        */
 
         b1.position = b1.oldPosition.plus(b1v2);
         b2.position = b2.oldPosition.plus(b2v2);
@@ -80,7 +102,7 @@ const spawnBalls = (rows, cols) => {
     for (let col = 0; col < cols; col++) {
       const x = col * g.width / cols + g.width / (cols * 2);
       const y = row * g.height / rows + g.height / (rows * 2);
-      balls.push(spawn(x, y, vector(random(-1, 1), random(-1, 1)), random(20, 50)));
+      balls.push(spawn(x, y, vector(random(-1, 1), random(-1, 1)), random(minSize, maxSize)));
     }
   }
   return balls;
@@ -93,8 +115,24 @@ const changeSpeed = (balls, sign) => {
   });
 };
 
+const minSize = 20;
+const maxSize = 50;
 const steps = 8;
-const balls = spawnBalls(5, 6);
+const rows = Math.floor(g.height / (maxSize * 4.5));
+const cols = Math.floor(g.width / (maxSize * 4.5));
+
+let balls;
+
+if (true) {
+  balls = spawnBalls(rows, cols);
+} else {
+  balls = [
+    spawn(50, mid.y + 50, vector(1, 0), 23),
+    //spawn(24, g.height - 50, vector(1, 1), 23),
+    spawn(mid.x, mid.y, vector(0, 0), 50),
+  ];
+}
+
 
 // Globally speed up and slow down balls
 document.body.onkeydown = (e) => {
