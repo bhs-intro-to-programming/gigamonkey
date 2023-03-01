@@ -23,13 +23,15 @@ const drawBackground = (g) => {
   g.drawFilledRect(0, 0, g.width, g.height, rgb());
 };
 
+const WALL = { velocity: vector(0,0), mass: Infinity };
+
 const walls = (b) => {
-  const { x: dx, y: dy } = b.velocity;
+  const v = b.velocity;
   if (b.position.x - b.radius <= 0 || g.width <= b.position.x + b.radius) {
-    b.position = b.position.plus(vector(-2 * dx, 0));
+    collide(b, WALL, vector(Math.sign(v.x), 0), 1);
   }
   if (b.position.y - b.radius <= 0 || g.height <= b.position.y + b.radius) {
-    b.position = b.position.plus(vector(0, -2 * dy));
+    collide(b, WALL, vector(0, Math.sign(v.y)), 1);
   }
 };
 
@@ -47,13 +49,16 @@ const collisions = () => {
   }
 };
 
-const collide = (b1, b2, collisionNormal, e = 1) => {
+const collide = (b1, b2, collisionNormal, elasticity) => {
   const relativeVelocity = b1.velocity.minus(b2.velocity)
-  const j = -(e+1) * relativeVelocity.dot(collisionNormal) / (1/b1.mass + 1/b2.mass);
+  const j = -(elasticity + 1) * relativeVelocity.dot(collisionNormal) / (1/b1.mass + 1/b2.mass);
   const b1v2 = b1.velocity.plus(collisionNormal.times(j).divide(b1.mass));
   const b2v2 = b2.velocity.minus(collisionNormal.times(j).divide(b2.mass));
   b1.position = b1.oldPosition.plus(b1v2);
-  b2.position = b2.oldPosition.plus(b2v2);
+  if (b2.position) {
+    // This is guarded for wall collisions where wall doesn't have a position.
+    b2.position = b2.oldPosition.plus(b2v2);
+  }
 };
 
 const random = (a, b) => {
@@ -105,7 +110,6 @@ if (true) {
     spawn(mid.x, mid.y, vector(0, 0), 50),
   ];
 }
-
 
 // Globally speed up and slow down balls
 document.body.onkeydown = (e) => {
