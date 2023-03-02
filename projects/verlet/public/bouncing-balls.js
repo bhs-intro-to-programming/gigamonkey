@@ -94,23 +94,38 @@ const random = (a, b) => {
 
 const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
 
+const randomSpawn = (n, walls) => {
+  const balls = [];
+  for (let i = 0; i < n; i++) {
+    const v = vector(random(-1, 1), random(-1, 1));
+    while (true) {
+      const x = random(0, g.width);
+      const y = random(0, g.height);
+      const r = random(minSize, maxSize);
+      const b = spawn(x, y, v, r);
+      if (!balls.some(o => overlap(b, o)) && !walls.some(w => onWall(b, w))) {
+        balls.push(b);
+        break;
+      }
+    }
+  }
+  return balls;
+};
+
 const spawn = (x, y, v, r) => {
   const start = vector(x, y);
   const prev = start.minus(v);
   return ball(start, prev, zero, r);
 };
 
-const spawnBalls = (rows, cols) => {
-  const balls = [];
-  for (let row = 0; row < rows; row++) {
-    for (let col = 0; col < cols; col++) {
-      const x = col * g.width / cols + g.width / (cols * 2);
-      const y = row * g.height / rows + g.height / (rows * 2);
-      balls.push(spawn(x, y, vector(random(-1, 1), random(-1, 1)), random(minSize, maxSize)));
-    }
-  }
-  return balls;
+const overlap = (b1, b2) => {
+  return b2.position.minus(b1.position).length() <= b1.radius + b2.radius;
 };
+
+const onWall = (b, w) => {
+  return w.closestPoint(b.position).minus(b.position).length() <= b.radius;
+}
+
 
 const changeSpeed = (balls, sign) => {
   r = clamp(r + sign * 4, 0, 255);
@@ -125,17 +140,7 @@ const steps = 8;
 const rows = Math.floor(g.height / (maxSize * 4.5));
 const cols = Math.floor(g.width / (maxSize * 4.5));
 
-let balls;
-
-if (true) {
-  balls = spawnBalls(rows, cols);
-} else {
-  balls = [
-    spawn(50, mid.y + 50, vector(1, 0), 23),
-    //spawn(24, g.height - 50, vector(1, 1), 23),
-    spawn(mid.x, mid.y, vector(0, 0), 50),
-  ];
-}
+const balls = randomSpawn(40, walls);
 
 // Globally speed up and slow down balls
 document.body.onkeydown = (e) => {
