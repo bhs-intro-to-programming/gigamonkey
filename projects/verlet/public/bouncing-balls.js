@@ -52,12 +52,14 @@ const collisions = () => {
 const collide = (b1, b2, collisionNormal, elasticity) => {
   const relativeVelocity = b1.velocity.minus(b2.velocity)
   const j = -(elasticity + 1) * relativeVelocity.dot(collisionNormal) / (1/b1.mass + 1/b2.mass);
-  const b1v2 = b1.velocity.plus(collisionNormal.times(j).divide(b1.mass));
-  const b2v2 = b2.velocity.minus(collisionNormal.times(j).divide(b2.mass));
-  b1.position = b1.oldPosition.plus(b1v2);
-  if (b2.position) {
-    // This is guarded for wall collisions where wall doesn't have a position.
-    b2.position = b2.oldPosition.plus(b2v2);
+  const scaled = collisionNormal.times(j);
+  reposition(b1, b1.velocity.plus(scaled.divide(b1.mass));
+  reposition(b2, b2.velocity.minus(scaled.divide(b2.mass));
+};
+
+const reposition = (o, v) => {
+  if (o.mass < Infinity) {
+    o.position = o.oldPosition.plus(v);
   }
 };
 
