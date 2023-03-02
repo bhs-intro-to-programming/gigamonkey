@@ -20,14 +20,12 @@ class Line {
     // Apparently t is scaled by the magnitude of the segment so that t=0 when
     // the point is at p1 and t=1 when point is at p2. Otherwise the closest
     // point is off the segment. Still not sure how that works out.
-    if (0 <= t && t <= 1) {
-      return this.p1.plus(segment.times(t));
+    if (t < 0) {
+      return this.p1;
+    } else if (t > 1) {
+      return this.p2;
     } else {
-      if (this.p1.minus(p).length() < this.p2.minus(p).length()) {
-        return this.p1;
-      } else {
-        return this.p2;
-      }
+      return this.p1.plus(segment.times(t));
     }
   }
 }
