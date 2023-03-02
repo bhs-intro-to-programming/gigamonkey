@@ -13,10 +13,20 @@ const mid = vector(g.width / 2, g.height / 2);
 const radius = (Math.min(g.width, g.height) / 2) * 0.85;
 const zero = vector(0, 0);
 
-// Random barricade
-const barricade = line(
-  vector(g.width * 0.33, g.height * 0.33),
-  vector(g.width * 0.66, g.height * 0.66));
+const topLeft = vector(0, 0);
+const bottomLeft = vector(0, g.height);
+const topRight = vector(g.width, 0);
+const bottomRight = vector(g.width, g.height);
+
+
+const walls = [
+  line(topLeft, topRight),
+  line(topLeft, bottomLeft),
+  line(bottomLeft, bottomRight),
+  line(topRight, bottomRight),
+  // Random barricade
+  line(vector(g.width * 0.33, g.height * 0.33), vector(g.width * 0.66, g.height * 0.66)),
+];
 
 let r = 128;
 
@@ -27,19 +37,14 @@ const drawBackground = (g) => {
   g.drawFilledRect(0, 0, g.width, g.height, rgb());
 };
 
-const WALL = { velocity: vector(0,0), mass: Infinity };
+const IMMOVABLE_OBJECT = { velocity: vector(0,0), mass: Infinity };
 
-const walls = (b) => {
-  const v = b.velocity;
-  if (b.position.x - b.radius <= 0 || g.width <= b.position.x + b.radius) {
-    collide(b, WALL, vector(Math.sign(v.x), 0), 1);
-  }
-  if (b.position.y - b.radius <= 0 || g.height <= b.position.y + b.radius) {
-    collide(b, WALL, vector(0, Math.sign(v.y)), 1);
-  }
+const collisions = (balls, walls) => {
+  ballCollisions(balls);
+  wallCollisions(balls, walls);
 };
 
-const collisions = () => {
+const ballCollisions = (balls) => {
   for (let i = 0; i < balls.length - 1; i++) {
     const b1 = balls[i];
     for (let j = i + 1; j < balls.length; j++) {
@@ -53,7 +58,19 @@ const collisions = () => {
   }
 };
 
-const centerLine = line(vector(mid.x, g.height * 0.25), vector(mid.x, g.height * 0.75));
+const wallCollisions = (balls, walls) => {
+  for (const b of balls) {
+    for (const w of walls) {
+      const pointOnWall = w.closestPoint(b.position);
+      if (pointOnWall) {
+        const axis = b.position.minus(pointOnWall);
+        if (axis.length() < b.radius) {
+          collide(b, IMMOVABLE_OBJECT, axis.normalized(), 1);
+        }
+      }
+    }
+  }
+};
 
 const collide = (b1, b2, collisionNormal, elasticity) => {
   const relativeVelocity = b1.velocity.minus(b2.velocity)
@@ -63,17 +80,6 @@ const collide = (b1, b2, collisionNormal, elasticity) => {
   reposition(b2, b2.velocity.minus(scaled.divide(b2.mass)));
 };
 
-const barricadeCollisions = (barricade) => {
-  for (const b of balls) {
-    const pointOnWall = barricade.closestPoint(b.position);
-    if (pointOnWall) {
-      const axis = b.position.minus(pointOnWall);
-      if (axis.length() < b.radius) {
-        collide(b, WALL, axis.normalized(), 1);
-      }
-    }
-  }
-}
 
 const reposition = (o, v) => {
   if (o.mass < Infinity) {
@@ -145,16 +151,10 @@ document.body.onkeydown = (e) => {
 animate((elapsed) => {
   const step = elapsed / steps;
   for (let i = 0; i < steps; i++) {
-    balls.forEach((b) => walls(b));
-    collisions();
-    barricadeCollisions(barricade);
+    collisions(balls, walls);
     balls.forEach((b) => b.updatePosition(step));
   }
   drawBackground(g);
-  barricade.draw(g);
-  balls.forEach((b) => {
-    b.draw(g)
-    //const p = barricade.closestPoint(b.position);
-    //if (p) {g.drawLine(b.position.x, b.position.y, p.x, p.y, 'red', 1);}
-  });
+  walls.forEach((w) => w.draw(g));
+  balls.forEach((b) => b.draw(g));
 });

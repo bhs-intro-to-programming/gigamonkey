@@ -6,21 +6,6 @@ class Line {
     this.p2 = p2;
   }
 
-  get mass() {
-    return Infinity;
-  }
-
-  linePoint(p) {
-
-  }
-
-  distanceTo(p0) {
-    // From https://en.wikipedia.org/wiki/Distance_from_a_point_to_a_line#Line_defined_by_two_points
-    const twiceArea = Math.abs((p2.x - p1.x) * (p1.y - p0.y) - (p1.x - p0.x) * (p2.y - p1.y));
-    const base = Math.hypot(p2.x - p1.x, p2.y - p1.y);
-    return twiceArea / base;
-  }
-
   draw(g) {
     g.drawLine(this.p1.x, this.p1.y, this.p2.x, this.p2.y, 'black', 1);
   }
@@ -44,18 +29,6 @@ class Line {
         return this.p2;
       }
     }
-  }
-
-  // This almost works except it's a pain to figure out if the result is
-  // actually on the segment.
-  closestPointX(p) {
-    // Project the vector from the start of the line segment to point p onto the
-    // vector of the line segment.
-    const toP = p.minus(this.p1);
-    const segment = this.p2.minus(this.p1);
-    const u = segment.normalized();
-    const v = u.times(toP.dot(u)); // projection of toP onto segment
-    return this.p1.plus(v);
   }
 }
 
