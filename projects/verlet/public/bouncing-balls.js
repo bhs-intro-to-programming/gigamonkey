@@ -1,9 +1,8 @@
-// Based on explanation of Verlet integration in https://www.youtube.com/watch?v=lS_qeBy3aQI
-
 import { animate } from './animation.js';
 import graphics from './graphics.js';
 import vector from './vector.js';
 import ball from './ball.js';
+import line from './line.js';
 
 const canvas = document.getElementById('screen');
 canvas.width = document.documentElement.offsetWidth * 0.95;
@@ -13,6 +12,11 @@ const g = graphics(canvas);
 const mid = vector(g.width / 2, g.height / 2);
 const radius = (Math.min(g.width, g.height) / 2) * 0.85;
 const zero = vector(0, 0);
+
+// Random barricade
+const barricade = line(
+  vector(g.width * 0.33, g.height * 0.33),
+  vector(g.width * 0.66, g.height * 0.66));
 
 let r = 128;
 
@@ -49,13 +53,27 @@ const collisions = () => {
   }
 };
 
+const centerLine = line(vector(mid.x, g.height * 0.25), vector(mid.x, g.height * 0.75));
+
 const collide = (b1, b2, collisionNormal, elasticity) => {
   const relativeVelocity = b1.velocity.minus(b2.velocity)
   const j = -(elasticity + 1) * relativeVelocity.dot(collisionNormal) / (1/b1.mass + 1/b2.mass);
   const scaled = collisionNormal.times(j);
-  reposition(b1, b1.velocity.plus(scaled.divide(b1.mass));
-  reposition(b2, b2.velocity.minus(scaled.divide(b2.mass));
+  reposition(b1, b1.velocity.plus(scaled.divide(b1.mass)));
+  reposition(b2, b2.velocity.minus(scaled.divide(b2.mass)));
 };
+
+const barricadeCollisions = (barricade) => {
+  for (const b of balls) {
+    const pointOnWall = barricade.closestPoint(b.position);
+    if (pointOnWall) {
+      const axis = b.position.minus(pointOnWall);
+      if (axis.length() < b.radius) {
+        collide(b, WALL, axis.normalized(), 1);
+      }
+    }
+  }
+}
 
 const reposition = (o, v) => {
   if (o.mass < Infinity) {
@@ -129,8 +147,14 @@ animate((elapsed) => {
   for (let i = 0; i < steps; i++) {
     balls.forEach((b) => walls(b));
     collisions();
+    barricadeCollisions(barricade);
     balls.forEach((b) => b.updatePosition(step));
   }
   drawBackground(g);
-  balls.forEach((b) => b.draw(g));
+  barricade.draw(g);
+  balls.forEach((b) => {
+    b.draw(g)
+    //const p = barricade.closestPoint(b.position);
+    //if (p) {g.drawLine(b.position.x, b.position.y, p.x, p.y, 'red', 1);}
+  });
 });

@@ -28,6 +28,10 @@ class Vector {
     return Math.hypot(this.x, this.y);
   }
 
+  magnitudeSquared() {
+    return this.x ** 2 + this.y ** 2;
+  }
+
   distance(other) {
     return Math.hypot(this.x - other.x, this.y - other.y);
   }
