@@ -7,7 +7,7 @@ class Line {
   }
 
   draw(g) {
-    g.drawLine(this.p1.x, this.p1.y, this.p2.x, this.p2.y, 'black', 1);
+    g.drawLine(this.p1.x, this.p1.y, this.p2.x, this.p2.y, '#448', 10);
   }
 
   closestPoint(p) {
@@ -15,11 +15,15 @@ class Line {
     const toP = p.minus(this.p1);
     const segment = this.p2.minus(this.p1);
     const dot = segment.dot(toP);
-    const t = dot / segment.magnitudeSquared(); // I don't really grok this line
 
-    // Apparently t is scaled by the magnitude of the segment so that t=0 when
-    // the point is at p1 and t=1 when point is at p2. Otherwise the closest
-    // point is off the segment. Still not sure how that works out.
+    // I think this works because the dot product is itself inherently squared,
+    // as in the dot product of a vector with itself is the square of its
+    // magnitude. So if toP was the same as segment dot would be the square of
+    // the magnitude of segment and thus t would end up being one. And if dot is
+    // zero then obviously t will be zero. And if dot is negative or greater
+    // than segment than t will be less than 0 or greater than 1.
+    const t = dot / segment.magnitudeSquared();
+
     if (t < 0) {
       return this.p1;
     } else if (t > 1) {
