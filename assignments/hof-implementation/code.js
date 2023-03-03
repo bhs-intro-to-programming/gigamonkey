@@ -9,7 +9,13 @@ const map = (fn, array) => {
 };
 
 const flatMap = (fn, array) => {
-  return array.flatMap(fn)
+  const r = [];
+  for (const a of array) {
+    for (const x of fn(a)) {
+      r.push(a);
+    }
+  }
+  return r;
 };
 
 const reduce = (fn, initialValue, array) => {
