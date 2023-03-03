@@ -1,57 +1,54 @@
 // N.B. Do not use the array methods of the same name to implement these functions!
 
 const filter = (predicate, array) => {
-  let list = []
+  let a = []
   for (let i = 0; i < array.length; i++) {
-    if (predicate(array[i])){
-      list.push(array[i])
-    }
+    if (predicate(array[i]))
+      a.push(array[i])
   }
-  return list
+  return a
 };
 
 const map = (fn, array) => {
-  let list = []
+  let a = []
   for (let i = 0; i < array.length; i++) {
-    list.push(fn(array[i]))
+    a.push(fn(array[i]))
   }
-  return list
+  return a
 };
 
-const reduce = (fn, initialValue, array) => {
-  let number = initialValue
-  for (let i = 0; i < array.length; i++) {
-    number = fn(number, array[i])
-  }
-  return number
-};
 
 const flatMap = (fn, array) => {
-  let list = []
-  
-  for ( let i = 0; i < array.length; i++) {
-    let abc = fn(array[i])
-    for (let l = 0; l < abc.length; l++) {
-      list.push(abc[l])
+  let a = []
+  for (let i = 0; i < array.length; i++) {
+    let p = fn(array[i])
+    for (let j= 0; j < p.length; j++){
+      a.push(p[j])
     }
   }
-  return list
+  return a
 };
+
+
+const reduce = (fn, initialValue, array) => {
+
+  };
+
 
 const every = (predicate, array) => {
   for (let i = 0; i < array.length; i++) {
-    if (!predicate(array[i])) {
-      return false
+    if (!predicate(array[i])){
+  return false
     }
   }
   return true
-};
+}
+
 
 const some = (predicate, array) => {
   for (let i = 0; i < array.length; i++) {
-    if (predicate(array[i])) {
-      return true
-    }
+    if (predicate(array[i]))
+   return true
   }
   return false
-};
+}
