@@ -35,14 +35,7 @@ const reduce = (fn, initialValue, array) => {
   };
 
 
-const every = (predicate, array) => {
-  for (let i = 0; i < array.length; i++) {
-    if (!predicate(array[i])){
-  return false
-    }
-  }
-  return true
-}
+const every = (predicate, array) => !predicate(array[0]);
 
 
 const some = (predicate, array) => {
