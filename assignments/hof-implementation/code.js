@@ -19,7 +19,7 @@ const flatMap = (fn, array) => {
 };
 
 const reduce = (fn, initialValue, array) => {
-  return array.reduce(initialValue(fn))
+  return array.reduce(fn, initialValue)
 };
 
 const every = (predicate, array) => {
