@@ -12,7 +12,7 @@ const flatMap = (fn, array) => {
   const r = [];
   for (const a of array) {
     for (const x of fn(a)) {
-      r.push(a);
+      r.push(x);
     }
   }
   return r;
