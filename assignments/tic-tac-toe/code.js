@@ -19,7 +19,7 @@ registerOnclick((x, y) => {
   const marker = i % 2 === 0 ? 'X' : 'O';
   const c = Math.floor(x / (width / 3));
   const r = Math.floor(y / (height / 3));
-  const xx = (c * (width / 3) + width / 6) - width / 17;
+  const xx = (c * (width / 3) + width / 6) - width / 19;
   const yy = (r * (height / 3) + height / 6) + width / 19;
   drawText(marker, xx, yy, 'black', Math.min(width, height) * 0.3);
   i++
