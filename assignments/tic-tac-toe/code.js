@@ -18,7 +18,7 @@ let i = 0
 registerOnclick((x, y) => {
   if (i % 2 == 0) {
     const c = Math.floor(x / (width / 3));
-    const xx = c * (width / 3) + width / 6;
+    const xx = (c * (width / 3) + width / 6) - width / 12;
     drawText('X', xx, y, 'black', Math.min(width, height) * 0.3);
     i++
   } else {
