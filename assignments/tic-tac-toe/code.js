@@ -21,7 +21,7 @@ registerOnclick((x, y) => {
       drawText('X', width / 6, y, 'black', Math.min(width, height) * 0.3);
     } else if ((width / 3) < x < (2 * width / 3)) {
       drawText('X', width / 2, y, 'black', Math.min(width, height) * 0.3);
-    } else if (x > (2 * width / 3)) {
+    } else {
       drawText('X', 5 * width / 6, y, 'black', Math.min(width, height) * 0.3);
     }
     i++
