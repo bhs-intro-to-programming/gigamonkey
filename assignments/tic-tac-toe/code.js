@@ -16,13 +16,10 @@ for (let i = 1; i <= 3; i++) {
 
 let i = 0
 registerOnclick((x, y) => {
-  if (i % 2 == 0) {
-    const c = Math.floor(x / (width / 3));
-    const xx = (c * (width / 3) + width / 6) - width / 17;
-    drawText('X', xx, y, 'black', Math.min(width, height) * 0.3);
-    i++
-  } else {
-    drawText('O', x, y, 'black', Math.min(width, height) * 0.3);
-    i++
-  }
+  const marker = i % 2 === 0 ? 'X' : 'O';
+  const c = Math.floor(x / (width / 3));
+  const xx = (c * (width / 3) + width / 6) - width / 17;
+  drawText(marker, xx, y, 'black', Math.min(width, height) * 0.3);
+  i++
+
 });
