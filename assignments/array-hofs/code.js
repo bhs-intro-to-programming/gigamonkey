@@ -33,3 +33,7 @@ const flatpairs = (xs) => {
 const allEven = (numbers) => {
   return numbers.every((n) => n % 2 === 0);
 };
+
+const someEven = (numbers) => {
+  return numbers.some((n) => n % 2 === 0);
+}
