@@ -1,9 +1,12 @@
+// Helper function
+const isEven = (n) => n % 2 === 0;
+
 const evens = (numbers) => {
-  return numbers.filter((n) => n % 2 === 0);
+  return numbers.filter(isEven);
 };
 
 const odds = (numbers) => {
-  return numbers.filter((n) => n % 2 !== 0);
+  return numbers.filter((n) => !isEven(n));
 };
 
 const big = (numbers) => {
@@ -31,11 +34,11 @@ const flatpairs = (xs) => {
 };
 
 const allEven = (numbers) => {
-  return numbers.every((n) => n % 2 === 0);
+  return numbers.every(isEven);
 };
 
 const someEven = (numbers) => {
-  return numbers.some((n) => n % 2 === 0);
+  return numbers.some(isEven);
 };
 
 const lengthOfNames = (strings) => {
