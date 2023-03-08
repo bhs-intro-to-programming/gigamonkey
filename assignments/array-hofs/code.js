@@ -9,3 +9,11 @@ const odds = (numbers) => {
 const big = (numbers) => {
   return numbers.filter((n) => n > 100);
 };
+
+const names = (students) => {
+  return students.map((s) => s.name);
+};
+
+const grades = (students) => {
+  return students.map((s) => s.grade);
+};
