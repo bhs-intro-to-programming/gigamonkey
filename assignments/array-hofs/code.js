@@ -36,4 +36,8 @@ const allEven = (numbers) => {
 
 const someEven = (numbers) => {
   return numbers.some((n) => n % 2 === 0);
-}
+};
+
+const lengthOfNames = (strings) => {
+  return strings.filter((s) => s[0] === s[0].toUpperCase()).map((s) => s.length);
+};
