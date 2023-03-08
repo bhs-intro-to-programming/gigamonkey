@@ -29,3 +29,7 @@ const averageGrade = (students) => {
 const flatpairs = (xs) => {
   return xs.flatMap((x) => [x, x]);
 };
+
+const allEven = (numbers) => {
+  return numbers.every((n) => n % 2 === 0);
+};
