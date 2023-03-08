@@ -23,3 +23,14 @@ const reduce = (fn, initialValue, array) => {
   }
   return value;
 };
+
+const flatMap = (fn, array) => {
+  let r = [];
+  for (let i = 0; i < array.length; i++) {
+    const subarray = fn(array[i]);
+    for (let j = 0; j < subarray.length; j++) {
+      r.push(subarray[j]);
+    }
+  }
+  return r;
+};
