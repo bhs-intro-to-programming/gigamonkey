@@ -21,3 +21,7 @@ const grades = (students) => {
 const pairs = (xs) => {
   return xs.map((x) => [x, x]);
 };
+
+const averageGrade = (students) => {
+  return students.reduce((tot, s) => tot + s.grade, 0) / students.length;
+};
