@@ -15,3 +15,11 @@ const map = (fn, array) => {
   }
   return r;
 };
+
+const reduce = (fn, initialValue, array) => {
+  let value = initialValue;
+  for (let i = 0; i < array.length; i++) {
+    value = fn(value, array[i]);
+  }
+  return value;
+};
