@@ -1,118 +1,91 @@
 import {
   setCanvas,
   drawLine,
-  drawCircle,
-  drawRect,
-  drawTriangle,
   drawFilledCircle,
   drawFilledRect,
-  drawFilledTriangle,
-  drawText,
-  clear,
   width,
   height,
 } from './graphics.js';
 
 setCanvas(document.getElementById('screen'));
 
-const SUN_SIZE = 100;
-const SUN_RAYS = 6;
-const SUN_RAY_PROPORTION = 2;
-const SMALL_CLOUD_SIZE = 25;
-const BIG_CLOUD_SIZE = 35;
-const TRUNK_WIDTH = 20;
-const TRUNK_HEIGHT = 55;
-const LEAVES_RADIUS = 40;
-const MIN_APPLES = 5;
-const MAX_APPLES = 8;
-
-
 const drawPicture = (horizon) => {
-  drawSky(horizon);
-  drawGround(horizon);
-  drawSun(SUN_SIZE, SUN_RAYS, SUN_RAY_PROPORTION);
-  drawClouds();
-  drawTrees(5, horizon * 1.1);
-};
+  const sunSize = 100;
+  const sunRays = 6;
+  const sunRayProportion = 2;
+  const sunRayWidth = 7;
+  const smallCloudSize = 25;
+  const bigCloudSize = 35;
+  const numTrees = 5;
+  const trunkWidth = 20;
+  const trunkHeight = 55;
+  const leavesRadius = 40;
+  const minApples = 5;
+  const maxApples = 8;
+  const appleRadius = 6;
 
-const drawSky = (horizon) => {
+  // Draw sky
   drawFilledRect(0, 0, width, horizon, 'skyblue');
-};
 
-const drawGround = (horizon) => {
+  // Draw ground
   drawFilledRect(0, horizon, width, horizon, 'green');
-};
 
-const drawSun = (size, rays, rayProportion) => {
-  // Sun is always at top right and the way we draw the rays depends on that.
-  drawFilledCircle(width, 0, size, 'yellow');
-  drawRays(rays, size * rayProportion);
-};
+  // Draw the sun. The sun is always at top right and the way we draw the rays
+  // depends on that.
+  drawFilledCircle(width, 0, sunSize, 'yellow');
 
-const drawRays = (rays, length) => {
-  // This is kinda hardwired for the fact the sun is at the top right corner
+  // Draw the sun's rays.
   const startAngle = (Math.PI / 2) * 0.023;
-  const r = ((Math.PI / 2) - 2 * startAngle) / (rays - 1);
-  for (let i = 0; i < rays; i++) {
+  const r = ((Math.PI / 2) - 2 * startAngle) / (sunRays - 1);
+  for (let i = 0; i < sunRays; i++) {
     const angle = startAngle + Math.PI + (i * r);
-    drawRay(width, 0, angle, length);
+    const x2 = width + sunSize * sunRayProportion * Math.cos(angle);
+    const y2 = 0 - sunSize * sunRayProportion * Math.sin(angle);
+    drawLine(width, 0, x2, y2, 'yellow', sunRayWidth);
+  }
+
+  // Draw small cloud
+  let x = width * 0.1;
+  let y = height * 0.2;
+  drawFilledCircle(x, y, smallCloudSize, 'white');
+  drawFilledCircle(x + smallCloudSize * 2.5, y, smallCloudSize, 'white');
+  drawFilledCircle(x+ (smallCloudSize * 1.25), y - smallCloudSize * 0.5, smallCloudSize, 'white');
+  drawFilledCircle(x+ (smallCloudSize * 1.25), y + smallCloudSize * 0.5, smallCloudSize, 'white');
+
+  // Draw big cloud
+  x = width * 0.5;
+  drawFilledCircle(x, y, bigCloudSize, 'white');
+  drawFilledCircle(x + bigCloudSize * 2.5, y, bigCloudSize, 'white');
+  drawFilledCircle(x+ (bigCloudSize * 1.25), y - bigCloudSize * 0.5, bigCloudSize, 'white');
+  drawFilledCircle(x+ (bigCloudSize * 1.25), y + bigCloudSize * 0.5, bigCloudSize, 'white');
+
+  // Draw trees
+  const gap = width / (numTrees + 1);
+  const treeBaseY = horizon * 1.1;
+  for (let i = 0; i < numTrees; i++) {
+    // Draw one tree
+    const treeBaseX = (i + 1) * gap;
+    const leavesX = treeBaseX + trunkWidth / 2;
+    const leavesY = treeBaseY - trunkHeight - (leavesRadius - 2);
+    const numApples = minApples + Math.floor(Math.random() * (maxApples - minApples));
+
+    // Draw trunk
+    drawFilledRect(treeBaseX, treeBaseY - trunkHeight, trunkWidth, trunkHeight, 'sienna');
+
+    // Draw leaves
+    drawFilledCircle(leavesX, leavesY, leavesRadius, 'forestgreen');
+
+    // Draw apples
+    let r = appleRadius;
+    drawFilledCircle(leavesX + -r / 2 + Math.random() * r, leavesY + -r / 2 + Math.random() * r, r, 'crimson');
+    for (let i = 0; i < numApples; i++) {
+      const angle = i * ((Math.PI * 2) / numApples);
+      const d = leavesRadius - appleRadius * 1.25 - (Math.random() * appleRadius * 2);
+      const ax = leavesX + d * Math.cos(angle);
+      const ay = leavesY + d * Math.sin(angle);
+      drawFilledCircle(ax + -r / 2 + Math.random() * r, ay + -r / 2 + Math.random() * r, r, 'crimson');
+    }
   }
 };
-
-const drawRay = (x, y, angle, length) => {
-  const x2 = x + length * Math.cos(angle);
-  const y2 = y - length * Math.sin(angle);
-  drawLine(x, y, x2, y2, 'yellow', 7);
-};
-
-const drawClouds = () => {
-  drawCloud(width * 0.1, height * 0.2, SMALL_CLOUD_SIZE);
-  drawCloud(width * 0.5, height * 0.2, BIG_CLOUD_SIZE);
-};
-
-const drawCloud = (x, y, size) => {
-  drawFilledCircle(x, y, size, 'white');
-  drawFilledCircle(x+size*2.5, y, size, 'white');
-  drawFilledCircle(x+(size*1.25), y - size * 0.5, size, 'white');
-  drawFilledCircle(x+(size*1.25), y + size * 0.5, size, 'white');
-};
-
-const drawTrees = (num, baseY) => {
-  const gap = width / (num + 1);
-  for (let i = 0; i < num; i++) {
-    drawTree((i + 1) * gap, baseY, TRUNK_WIDTH, TRUNK_HEIGHT, LEAVES_RADIUS);
-  }
-};
-
-const drawTree = (baseX, baseY, trunkWidth, trunkHeight, leavesRadius) => {
-  const leavesX = baseX + trunkWidth / 2;
-  const leavesY = baseY - trunkHeight - (leavesRadius - 2);
-  const numApples = MIN_APPLES + Math.floor(Math.random() * (MAX_APPLES - MIN_APPLES));
-
-  drawFilledRect(baseX, baseY - trunkHeight, trunkWidth, trunkHeight, 'sienna');
-  drawLeaves(leavesX, leavesY, leavesRadius);
-  drawApples(numApples, leavesX, leavesY, leavesRadius, 6);
-};
-
-const drawLeaves = (x, y, radius) => {
-  drawFilledCircle(x, y, radius, 'forestgreen');
-};
-
-const drawApples = (num, x, y, radius, appleRadius) => {
-  drawApple(x, y, appleRadius);
-  for (let i = 0; i < num; i++) {
-    const angle = i * ((Math.PI * 2) / num);
-    const d = radius - appleRadius * 1.25 - (Math.random() * appleRadius * 2);
-    const ax = x + d * Math.cos(angle);
-    const ay = y + d * Math.sin(angle);
-    drawApple(ax, ay, appleRadius);
-  }
-};
-
-const drawApple = (x, y, r) => {
-  drawFilledCircle(x + jitter(r), y + jitter(r), r, 'crimson');
-};
-
-const jitter = (r) => -r/2 + Math.random() * r;
 
 drawPicture(height * 0.78);
