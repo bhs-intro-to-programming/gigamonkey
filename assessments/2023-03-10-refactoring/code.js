@@ -85,7 +85,8 @@ const drawTrees = () => {
   const gap = width / (numTrees + 1);
   const treeBaseY = horizon * 1.1;
   for (let i = 0; i < numTrees; i++) {
-  
+  }
+}
 
 const drawOneTree = () => {
   const treeBaseX = (i + 1) * gap;
