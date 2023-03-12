@@ -118,7 +118,7 @@ const drawApples = () => {
     drawFilledCircle(ax + -r / 2 + Math.random() * r, ay + -r / 2 + Math.random() * r, r, 'crimson');
   }
 }
-}
+
 
 
 drawPicture(height * 0.78);
