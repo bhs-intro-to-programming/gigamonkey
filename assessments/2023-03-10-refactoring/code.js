@@ -116,4 +116,4 @@ drawBack(height * 0.78);
 drawSun();
 drawBigCloud(height, width);
 drawSmallCloud(height, width);
-drawTrees(horizon * .78) 
+drawTrees(height * .78) 
