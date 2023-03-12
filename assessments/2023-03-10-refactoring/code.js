@@ -119,6 +119,6 @@ const drawApples = () => {
   }
 }
 }
-};
+
 
 drawPicture(height * 0.78);
