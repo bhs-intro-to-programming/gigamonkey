@@ -55,4 +55,10 @@ const someonesFavorite = (people, food) => {
     }
   }
   return false;
-}
+};
+
+const strange = (people) => people.filter((p) => p.isStrange);
+
+const birthdays = (students) => students.map((s) => s.birthday);
+
+const heaviest = (animals) => animals.reduce((h, a) => Math.max(h, a.weight), 0);
