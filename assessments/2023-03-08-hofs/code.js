@@ -62,3 +62,9 @@ const strange = (people) => people.filter((p) => p.isStrange);
 const birthdays = (students) => students.map((s) => s.birthday);
 
 const heaviest = (animals) => animals.reduce((h, a) => Math.max(h, a.weight), 0);
+
+const allStudents = (grades) => grades.flatMap((grade) => grade.students);
+
+const allCromulent = (things) => things.every(isCromulent);
+
+const notAllTerrible = (things) => things.some((t) => !isTerrible(t));
