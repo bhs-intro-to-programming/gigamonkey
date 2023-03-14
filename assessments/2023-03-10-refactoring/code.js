@@ -1,19 +1,19 @@
-const drawPicture = () => {
-  drawbackround(horizon, bigCloudSize, smallCloudSize);
-  drawTrees(numTrees, horizon, trunkWidth, trunkHeight, leavesRadius);
-  drawSun(sunSize, sunRays, sunRayProportion, sunRayWidth);
-}
-const sunSize = 100;
-const sunRays = 6;
-const sunRayProportion = 2;
-const sunRayWidth = 7;
-const smallCloudSize = 25;
-const bigCloudSize = 35;
-const numTrees = 5;
-const trunkWidth = 20;
-const trunkHeight = 55;
-const leavesRadius = 40;
- 
+const drawPicture = (horizon, width) => {
+
+  const sunSize = 100;
+  const sunRays = 6;
+  const sunRayProportion = 2;
+  const sunRayWidth = 7;
+  const smallCloudSize = 25;
+  const bigCloudSize = 35;
+  const numTrees = 5;
+  const trunkWidth = 20;
+  const trunkHeight = 55;
+  const leavesRadius = 40;
+  const minApples = 5;
+  const maxApples = 8;
+  const appleRadius = 6;
+
   drawSky(horizon, width);
   drawGround(horizon, width);
   sunSize(100);
