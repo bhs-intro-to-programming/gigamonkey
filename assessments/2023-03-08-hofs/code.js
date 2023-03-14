@@ -27,3 +27,14 @@ const join = (strings, delimiter) => {
   }
   return joined;
 };
+
+const allSiblings = (students) => {
+  const siblings = [];
+  for (let i = 0; i < students.length; i++) {
+    const sibs = students[i].siblings;
+    for (let j = 0; j < sibs.length; j++) {
+      siblings.push(sibs[j]);
+    }
+  }
+  return siblings;
+};
