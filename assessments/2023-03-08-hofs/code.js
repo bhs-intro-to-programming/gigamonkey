@@ -38,3 +38,12 @@ const allSiblings = (students) => {
   }
   return siblings;
 };
+
+const allPassing = (students, passing) => {
+  for (let i = 0; i < students.length; i++) {
+    if (students[i].grade < passing) {
+      return false;
+    }
+  }
+  return true;
+};
