@@ -6,7 +6,7 @@ const evens = (numbers) => {
     }
   }
   return r;
-}
+};
 
 const shouty = (strings) => {
   const r = [];
@@ -14,4 +14,16 @@ const shouty = (strings) => {
     r.push(strings[i].toUpperCase());    
   }
   return r;
-}
+};
+
+const join = (strings, delimiter) => {
+  let joined = null;
+  for (let i = 0; i < strings.length; i++) {
+    if (joined === null) {
+      joined = strings[i];
+    } else {
+      joined += delimiter + strings[i];
+    }
+  }
+  return joined;
+};
