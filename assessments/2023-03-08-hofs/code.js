@@ -47,3 +47,12 @@ const allPassing = (students, passing) => {
   }
   return true;
 };
+
+const someonesFavorite = (people, food) => {
+  for (let i = 0; i < people.length; i++) {
+    if (people[i].favoriteFood === food) {
+      return true;
+    }
+  }
+  return false;
+}
