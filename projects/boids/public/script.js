@@ -148,8 +148,8 @@ const randomTurn = (b) => {
  * Stay away from the walls.
  */
 const wallRepulsion = (b) => {
-  const dx = WALL_REPULSION * (1 / b.x - 1 / (width - b.x));
-  const dy = WALL_REPULSION * (1 / b.y - 1 / (height - b.y));
+  const dx = WALL_REPULSION * (1 / b.x) - (1 / (width - b.x));
+  const dy = WALL_REPULSION * (1 / b.y) - (1 / (height - b.y));
   return {
     x: clampMagnitude(dx, WALL_REPULSION),
     y: clampMagnitude(dy, WALL_REPULSION),
