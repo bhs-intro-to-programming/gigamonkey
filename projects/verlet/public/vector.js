@@ -38,23 +38,20 @@ class Vector {
 
   normalizedX() {
     // Based on Physics for Game Developers, p. 288
-    const tolerance = 0.0001
+    const tolerance = 0.0001;
     const m = Math.hypot(this.x, this.y);
     if (m < tolerance) m = 1;
     const x = this.x / m;
     const y = this.y / m;
 
-    return new Vector(
-      Math.abs(x) < tolerance ? 0 : x,
-      Math.abs(y) < tolerance ? 0 : y
-    );
+    return new Vector(Math.abs(x) < tolerance ? 0 : x, Math.abs(y) < tolerance ? 0 : y);
   }
 
   normalized() {
     // Based on pure math. Maybe this has numeric problems when the magnitude is
     // very small? (The normalized x and y could go to infinity.)
     const m = Math.hypot(this.x, this.y);
-    return new Vector(this.x / m, this.y / m)
+    return new Vector(this.x / m, this.y / m);
   }
 }
 

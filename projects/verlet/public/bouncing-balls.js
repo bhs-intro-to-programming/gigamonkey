@@ -18,7 +18,6 @@ const bottomLeft = vector(0, g.height);
 const topRight = vector(g.width, 0);
 const bottomRight = vector(g.width, g.height);
 
-
 const walls = [
   line(topLeft, topRight),
   line(topLeft, bottomLeft),
@@ -37,7 +36,7 @@ const drawBackground = (g) => {
   g.drawFilledRect(0, 0, g.width, g.height, rgb());
 };
 
-const IMMOVABLE_OBJECT = { velocity: vector(0,0), mass: Infinity };
+const IMMOVABLE_OBJECT = { velocity: vector(0, 0), mass: Infinity };
 
 const collisions = (balls, walls) => {
   ballCollisions(balls);
@@ -73,13 +72,12 @@ const wallCollisions = (balls, walls) => {
 };
 
 const collide = (b1, b2, collisionNormal, elasticity) => {
-  const relativeVelocity = b1.velocity.minus(b2.velocity)
-  const j = -(elasticity + 1) * relativeVelocity.dot(collisionNormal) / (1/b1.mass + 1/b2.mass);
+  const relativeVelocity = b1.velocity.minus(b2.velocity);
+  const j = (-(elasticity + 1) * relativeVelocity.dot(collisionNormal)) / (1 / b1.mass + 1 / b2.mass);
   const scaled = collisionNormal.times(j);
   reposition(b1, b1.velocity.plus(scaled.divide(b1.mass)));
   reposition(b2, b2.velocity.minus(scaled.divide(b2.mass)));
 };
-
 
 const reposition = (o, v) => {
   if (o.mass < Infinity) {
@@ -103,7 +101,7 @@ const randomSpawn = (n, walls) => {
       const y = random(0, g.height);
       const r = random(minSize, maxSize);
       const b = spawn(x, y, v, r);
-      if (!balls.some(o => overlap(b, o)) && !walls.some(w => onWall(b, w))) {
+      if (!balls.some((o) => overlap(b, o)) && !walls.some((w) => onWall(b, w))) {
         balls.push(b);
         break;
       }
@@ -124,13 +122,12 @@ const overlap = (b1, b2) => {
 
 const onWall = (b, w) => {
   return w.closestPoint(b.position).minus(b.position).length() <= b.radius;
-}
-
+};
 
 const changeSpeed = (balls, sign) => {
   r = clamp(r + sign * 4, 0, 255);
-  balls.forEach(b => {
-    b.accelerate(b.velocity.times(sign * 0.01))
+  balls.forEach((b) => {
+    b.accelerate(b.velocity.times(sign * 0.01));
   });
 };
 
