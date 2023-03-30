@@ -113,3 +113,6 @@ const redFruits = (fruits) => {
   return fruits.filter((f) => f.colors.includes('red'));
 }
 
+const weights = (fruits) => {
+  return fruits.map((f) => f.grams);
+}
