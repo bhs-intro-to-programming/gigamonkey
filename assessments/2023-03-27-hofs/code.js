@@ -169,3 +169,13 @@ const allCountries = (fruits) => {
   }
   return r;
 };
+
+const allGrownInMoreThanNCountries = (fruits, n) => {
+  for (let i = 0; i < fruits.length; i++) {
+    if (fruits[i].grownIn.length <= n) {
+      return false;
+    }
+  }
+  return true;
+};
+
