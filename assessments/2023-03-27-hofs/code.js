@@ -151,3 +151,10 @@ const names = (fruits) => {
   return r;
 };
 
+const averageInconvenience = (fruits) => {
+  const avg = 0;
+  for (let i = 0; i < fruits.length; i++) {
+    avg += fruits.inconvenience / fruits.length;
+  }
+  return avg;
+};
