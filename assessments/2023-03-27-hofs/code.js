@@ -111,8 +111,12 @@ const isInconvenient = (fruit) => fruit.inconvenience >= 5;
 
 const redFruits = (fruits) => {
   return fruits.filter((f) => f.colors.includes('red'));
-}
+};
 
 const weights = (fruits) => {
   return fruits.map((f) => f.grams);
-}
+};
+
+const heaviest = (fruits) => {
+  return fruits.reduce((h, f) => Math.max(h, f.grams), 0);
+};
