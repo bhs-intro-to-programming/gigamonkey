@@ -144,7 +144,7 @@ const tasty = (fruits) => {
 }
 
 const names = (fruits) => {
-  const r =[];
+  const r = [];
   for (let i = 0; i < fruits.length; i++) {
     r.push(fruits[i].name);
   }
@@ -157,4 +157,15 @@ const averageInconvenience = (fruits) => {
     avg += fruits.inconvenience / fruits.length;
   }
   return avg;
+};
+
+const allCountries = (fruits) => {
+  const r = [];
+  for (let i = 0; i < fruits.length; i++) {
+    const countries = fruits[i].grownIn;
+    for (let j = 0; j < countries.length; j++) {
+      r.push(countries[j]);
+    }
+  }
+  return r;
 };
