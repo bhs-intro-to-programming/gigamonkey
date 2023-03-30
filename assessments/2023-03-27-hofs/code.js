@@ -105,7 +105,7 @@ const fruitBowl = [
   }
 ];
 
-const isTasty = (fruit) => fruit.tastiness >= 8;
+const isTasty = (fruit) => fruit.tastiness >= 5;
 
 const isInconvenient = (fruit) => fruit.inconvenience >= 5;
 
