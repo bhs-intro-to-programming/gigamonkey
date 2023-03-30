@@ -128,3 +128,7 @@ const allColors = (fruits) => {
 const allAreTasty = (fruits) => {
   return fruits.every(isTasty);
 };
+
+const notAllInconvenient = (fruits) => {
+  return fruits.some((f) => !isInconvenient(f));
+};
