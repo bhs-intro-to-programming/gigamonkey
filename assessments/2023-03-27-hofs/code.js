@@ -142,3 +142,12 @@ const tasty = (fruits) => {
   }
   return r;
 }
+
+const names = (fruits) => {
+  const r =[];
+  for (let i = 0; i < fruits.length; i++) {
+    r.push(fruits[i].name);
+  }
+  return r;
+};
+
