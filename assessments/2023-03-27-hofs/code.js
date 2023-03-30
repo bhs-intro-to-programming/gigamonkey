@@ -179,3 +179,11 @@ const allGrownInMoreThanNCountries = (fruits, n) => {
   return true;
 };
 
+const someMoreThanNColors = (fruits, n) => {
+  for (let i = 0; i < fruits.length; i++) {
+    if (fruits[i].colors.length > n) {
+      return true;
+    }
+  }
+  return false;
+};
