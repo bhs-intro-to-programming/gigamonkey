@@ -132,3 +132,13 @@ const allAreTasty = (fruits) => {
 const notAllInconvenient = (fruits) => {
   return fruits.some((f) => !isInconvenient(f));
 };
+
+const tasty = (fruits) => {
+  const r = [];
+  for (let i = 0; i < fruits.length; i++) {
+    if (isTasty(fruits[i])) {
+      r.push(fruits[i]);
+    }
+  }
+  return r;
+}
