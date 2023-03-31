@@ -1,6 +1,8 @@
+@import url('../shared.css');
+
 body {
   width: 40em;
-  margin: 1in auto;
+  margin: 0.5in auto;
 }
 
 h1 {
