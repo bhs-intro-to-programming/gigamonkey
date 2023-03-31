@@ -28,20 +28,20 @@ li.done, li.done li {
 
 @media screen {
 
-.options {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-}
+  .options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
 
-.options a {
-  border: 1px solid grey;
-  text-align: center;
-  font-size: 48px;
-  text-decoration: none;
-  font-family: "Gill Sans";
-  border-radius: 4px;
-  background: #ddfa;
-}
+  .options a {
+    border: 1px solid grey;
+    text-align: center;
+    font-size: 48px;
+    text-decoration: none;
+    font-family: "Gill Sans";
+    border-radius: 4px;
+    background: #ddfa;
+  }
 
 }
