@@ -5,22 +5,21 @@ body {
 
 h1 {
   font-family: sans-serif;
+  text-align: center;
 }
 
-p {
-  font-size: 18px;
-}
-
-#doors {
-  width: 100%;
+.options {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 30vh;
+  grid-template-columns: repeat(2, 1fr);
   gap: 10px;
 }
 
-#doors div {
-  border: 1px solid black;
-  font-size: 100px;
-  /*height: 100px;*/
+.options a {
+  border: 1px solid grey;
+  text-align: center;
+  font-size: 48px;
+  text-decoration: none;
+  font-family: "Gill Sans";
+  border-radius: 4px;
+  background: #ddfa;
 }
