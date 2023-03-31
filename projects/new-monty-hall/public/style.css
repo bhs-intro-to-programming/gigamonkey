@@ -9,13 +9,13 @@ h1 {
 }
 
 li {
-  list-style-image: url("checkbox-unchecked-svgrepo-com.svg");
+  list-style-image: url("/img/checkbox-unchecked-svgrepo-com.svg");
   line-height: 1.5;
   padding-left: 0.5em;
 }
 
 li.done, li.done li {
-  list-style-image: url("checkbox-checked-svgrepo-com.svg");
+  list-style-image: url("/img/checkbox-checked-svgrepo-com.svg");
 }
 
 @media print {
