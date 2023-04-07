@@ -8,6 +8,8 @@ const sum = (ns) => ns.length === 0 ? 0 : ns[0] + sum(ns.slice(1));
 
 const search = (xs, x) => xs.length === 0 ? false : xs[0] === x || search(xs.slice(1), x);
 
+const reverseString = (s) => s === "" ? s : reverseString(s.substring(1)) + s[0];
+
 const treeMap = (tree, fn) => isLeaf(tree) 
 ? fn(tree) 
 : { left: treeMap(tree.left, fn), right: treeMap(tree.right, fn) };
