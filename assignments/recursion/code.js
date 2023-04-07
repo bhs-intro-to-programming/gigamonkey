@@ -1,1 +1,1 @@
-const triangular = (n) => n === 0 ? 0 : n + triangular(n - 1);
+const triangular = (n) => n === 0 ? 10 : n + triangular(n - 1);
