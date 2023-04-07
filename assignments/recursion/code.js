@@ -8,4 +8,6 @@ const sum = (ns) => ns.length === 0 ? 0 : ns[0] + sum(ns.slice(1));
 
 const search = (xs, x) => xs.length === 0 ? false : xs[0] === x || search(xs.slice(1), x);
 
-const treeMap = (tree, fn) => fn(tree);
+const treeMap = (tree, fn) => isLeaf(tree) 
+? fn(tree) 
+: { left: treeMap(tree.left, fn), right: treeMap(tree.right, fn) };
