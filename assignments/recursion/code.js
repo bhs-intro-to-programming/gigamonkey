@@ -13,3 +13,19 @@ const reverseString = (s) => s === "" ? s : reverseString(s.substring(1)) + s[0]
 const treeMap = (tree, fn) => isLeaf(tree) 
 ? fn(tree) 
 : { left: treeMap(tree.left, fn), right: treeMap(tree.right, fn) };
+
+const change = (amt, coins) => {
+
+  const table = coins.map((c) => [1, ...Array(c - 1).fill(0)]);
+
+  const get = (i, c) => (i < 0 || c < 0) ? 0 : table[c][i % table[c].length];
+  const put = (i, c, value) => table[c][i % table[c].length] = value;
+
+  for (let i = 1; i <= amt; i++) {
+    for (let c = 0; c < coins.length; c++) {
+      put(i, c, get(i - coins[c], c) + get(i, c - 1));
+    }
+  }
+
+  return get(amt, coins.length - 1);
+};
