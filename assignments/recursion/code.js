@@ -2,13 +2,15 @@ const factorial = (n) => n < 2 ? 1 : n * factorial(n - 1);
 
 const triangular = (n) => n === 0 ? 0 : n + triangular(n - 1);
 
+
 const fibonacci = (n) => {
-  if (n < 2) {
+  if (n === 1) {
     return n;
   } else {
-    return fibonacci(n - 2) + fibonacci(n - 1);
+    return n * fibonacci(n + 1(n - 1))
   }
 }
+
 const gcd = (a, b) => b === 0 ? a : gcd(b, a % b);
 
 const sum = (ns) => ns.length === 0 ? 0 : ns[0] + sum(ns.slice(1));
