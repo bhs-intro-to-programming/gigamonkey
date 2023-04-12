@@ -16,8 +16,8 @@ const fibonacci = (n) => {
   const helper = (i) => {
     if (i <= n) {
       table[i] = table[i - 2] + table[i - 1];
+      helper(i + 1);
     }
-    helper(i + 1);
   }
   helper(2);
   return table[n];
