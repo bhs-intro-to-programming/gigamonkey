@@ -2,11 +2,25 @@ const factorial = (n) => n < 2 ? 1 : n * factorial(n - 1);
 
 const triangular = (n) => n === 0 ? 0 : n + triangular(n - 1);
 
-const fibonacci = (n) => {
+const fibonacciDP = (n) => {
   const helper = (n, a, b) => {
     return n === 0 ? a : helper(n - 1, b, a + b);
   }
   return helper(n, 0, 1);
+}
+
+const fibonacci = (n) => {
+  const table = Array(n+1).fill();
+  table[0] = 0;
+  table[1] = 1;
+  const helper = (i) => {
+    if (i <= n) {
+      table[i] = table[i - 2] + table[i - 1];
+    }
+    helper(i + 1);
+  }
+  helper(2);
+  return table[n];
 }
 
 const fibonacciX = (n) => n < 2 ? n : fibonacci(n - 2) + fibonacci(n - 1);
