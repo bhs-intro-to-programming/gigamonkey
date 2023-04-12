@@ -6,7 +6,7 @@ const fibonacci = (n) => {
   if (n < 2) {
     return n;
   } else {
-    return n + fibonacci(n - 1)
+    return fibonacci(n - 2) + fibonacci(n - 1);
   }
 }
 const gcd = (a, b) => b === 0 ? a : gcd(b, a % b);
