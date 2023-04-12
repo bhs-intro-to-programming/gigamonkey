@@ -5,7 +5,7 @@ const triangular = (n) => n === 0 ? 0 : n + triangular(n - 1);
 const fibonacciSimple = (n) => n < 2 ? n : fibonacci(n - 2) + fibonacci(n - 1);
 
 const fibonacciTable = (n) => {
-  const table = [0, 1, ...Array(n-1).fill()];
+  const table = [0, 1, ...Array(Math.max(0, n-1)).fill()];
   const helper = (i) => {
     if (i <= n) {
       table[i] = table[i - 2] + table[i - 1];
