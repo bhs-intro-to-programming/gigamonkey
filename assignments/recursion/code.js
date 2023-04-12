@@ -3,8 +3,8 @@ const factorial = (n) => n < 2 ? 1 : n * factorial(n - 1);
 const triangular = (n) => n === 0 ? 0 : n + triangular(n - 1);
 
 const fibonacci = (n) => {
-  if (n === 0) {
-    return 0
+  if (n < 2) {
+    return n;
   } else {
     return n + fibonacci(n - 1)
   }
