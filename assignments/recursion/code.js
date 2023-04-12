@@ -23,7 +23,15 @@ const fibonacciDP = (n) => {
   return helper(n, 0, 1);
 };
 
-const fibonacci = fibonacciTable;
+const fibonacciDPI = (n) => {
+  let [a, b] = [0, 1];
+  for (let i = 0; i < n; i++) {
+    [a, b] = [b, a + b];
+  }
+  return a;
+};
+
+const fibonacci = fibonacciDPI;
 
 const gcd = (a, b) => b === 0 ? a : gcd(b, a % b);
 
