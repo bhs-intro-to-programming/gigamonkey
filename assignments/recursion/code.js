@@ -2,8 +2,14 @@ const factorial = (n) => n < 2 ? 1 : n * factorial(n - 1);
 
 const triangular = (n) => n === 0 ? 0 : n + triangular(n - 1);
 
+const fibonacci = (n) => {
+  const helper = (n, a, b) => {
+    return n === 0 ? a : helper(n - 1, b, a + b);
+  }
+  return helper(n, 0, 1);
+}
 
-const fibonacci = (n) => n < 2 ? n : fibonacci(n - 2) + fibonacci(n - 1);
+const fibonacciX = (n) => n < 2 ? n : fibonacci(n - 2) + fibonacci(n - 1);
 
 const gcd = (a, b) => b === 0 ? a : gcd(b, a % b);
 
