@@ -27,6 +27,4 @@ const countXs = (s) => {
 const every = (xs, p) => xs.length === 0 ? true : p(xs[0]) && every(xs.slice(1), p);
 
 
-const some = (xs, p) => {
-
-}
+const some = (xs, p) => xs.length === 0 ? false : p(xs[0]) || some(xs.slice(1), p);
