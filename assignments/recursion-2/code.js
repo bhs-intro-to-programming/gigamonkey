@@ -24,6 +24,8 @@ const countXs = (s) => {
   return [...s].reduce((count, c) => count + (c === 'x' ? 1 : 0), 0);
 }
 
+const maximum = (ns) => ns.length === 0 ? -Infinity : Math.max(ns[0], maximum(ns.slice(1)));
+
 const every = (xs, p) => xs.length === 0 ? true : p(xs[0]) && every(xs.slice(1), p);
 
 
