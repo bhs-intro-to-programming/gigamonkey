@@ -7,3 +7,15 @@ const double = (a, b) => b === 0 ? a : 2 * double(a, b - 1);
 const triple = (a, b) => b === 0 ? a : 3 * triple(a, b - 1);
 
 const power = (a, b) => b === 0 ? 1 : a * power(a, b - 1);
+
+const deleteXs = (s) => {
+  if (s === '') {
+    return s;
+   } else {
+     if (s[0] === 'x') {
+       return deleteXs(s.substring(1));       
+     } else {
+       return s[0] + deleteXs(s.substring(1));
+     }
+   }
+};
