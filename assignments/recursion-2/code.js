@@ -24,9 +24,8 @@ const countXs = (s) => {
   return [...s].reduce((count, c) => count + (c === 'x' ? 1 : 0), 0);
 }
 
-const every = (xs, p) => {
+const every = (xs, p) => xs.length === 0 ? true : p(xs[0]) && every(xs.slice(1), p);
 
-}
 
 const some = (xs, p) => {
 
