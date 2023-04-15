@@ -23,3 +23,11 @@ const deleteXs = (s) => {
 const countXs = (s) => {
   return [...s].reduce((count, c) => count + (c === 'x' ? 1 : 0), 0);
 }
+
+const every = (xs, p) => {
+
+}
+
+const some = (xs, p) => {
+
+}
