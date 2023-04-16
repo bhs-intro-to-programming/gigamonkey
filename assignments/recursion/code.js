@@ -63,19 +63,11 @@ const treeMap = (tree, fn) => {
 };
 
 const change = (amt, coins) => {
-
-  const table = coins.map((c) => [1, ...Array(c - 1).fill(1)]);
-
-  const get = (i, c) => (i < 0 || c < 0) ? 0 : table[c][i % table[c].length];
-  const put = (i, c, value) => table[c][i % table[c].length] = value;
-
-  for (let i = 1; i <= amt; i++) {
-    for (let c = 0; c < coins.length; c++) {
-      put(i, c, get(i - coins[c], c) + get(i, c - 1));
-    }
+  if (amt === 0) {
+    return 1;
+  } else if (amt < 0 || coins.length === 0) {
+    return 0;
+  } else {
+    return change(amt - coins[0]) + change(amt, coins.slice(1));
   }
-
-  return get(amt, coins.length - 1);
 };
-
-const changex = (c, v) => c === 0 ? 1 : c < 0 || v.length === 0 ? 0 : change(c - v[0], v) + change(c, v.slice(1))
