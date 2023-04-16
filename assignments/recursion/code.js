@@ -63,6 +63,7 @@ const change = (amt, coins) => {
       put(i, c, get(i - coins[c], c) + get(i, c - 1));
     }
   }
+  if (amt === 0) { return 1;}
 
   return get(amt, coins.length - 1);
 };
