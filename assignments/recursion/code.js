@@ -10,13 +10,7 @@ const sum = (ns) => ns.length === 0 ? 0 : ns[0] + sum(ns.slice(1));
 
 const search = (xs, x) => xs.length > 0 && (xs[0] === x || search(xs.slice(1), x)); 
 
-const reverseString = (s) => {
-  if (s === '') {
-    return s;
-   } else {
-     return reverseString(s.substring(1)) + s[0];
-   }
-};
+const reverseString = (s) => s === '' ? '' : reverseString(s.substring(1)) + s[0];
 
 const treeMap = (tree, fn) => {
   if (isLeaf(tree)) {
