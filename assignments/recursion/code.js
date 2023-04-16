@@ -5,7 +5,7 @@ const triangular = (n) => n === 0 ? 0 : n + triangular(n - 1);
 const fibonacciSimple = (n) => n < 2 ? n : fibonacci(n - 2) + fibonacci(n - 1);
 
 const fibonacciTable = (n) => {
-  const table = [0, 1, ...Array(Math.max(0, n-1)).fill()];
+  const table = [0, 1, ...Array(Math.max(0, n - 1)).fill()];
   const helper = (i) => {
     if (i <= n) {
       table[i] = table[i - 2] + table[i - 1];
@@ -37,7 +37,17 @@ const gcd = (a, b) => b === 0 ? a : gcd(b, a % b);
 
 const sum = (ns) => ns.length === 0 ? 0 : ns[0] + sum(ns.slice(1));
 
-const search = (xs, x) => xs.length > 0 && (xs[0] === x || search(xs.slice(1), x));
+const searchx = (xs, x) => xs.length > 0 && (xs[0] === x || search(xs.slice(1), x));
+
+const search = (ar, x) => {
+  if (ar[0] === x) {
+    return true;
+  } else if (ar.length === 1) {
+    return false
+  }
+  return search(ar.slice(1), x)
+}
+
 
 const reverseString = (s) => s === "" ? s : reverseString(s.substring(1)) + s[0];
 
