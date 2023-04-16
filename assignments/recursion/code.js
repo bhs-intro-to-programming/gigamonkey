@@ -37,17 +37,7 @@ const gcd = (a, b) => b === 0 ? a : gcd(b, a % b);
 
 const sum = (ns) => ns.length === 0 ? 0 : ns[0] + sum(ns.slice(1));
 
-const searchx = (xs, x) => xs.length > 0 && (xs[0] === x || search(xs.slice(1), x));
-
-const search = (ar, x) => {
-  if (ar[0] === x) {
-    return true;
-  } else if (ar.length === 1) {
-    return false
-  }
-  return search(ar.slice(1), x)
-}
-
+const search = (xs, x) => xs.length > 0 && (xs[0] === x || search(xs.slice(1), x));
 
 const reverseString = (s) => s === "" ? s : reverseString(s.substring(1)) + s[0];
 
