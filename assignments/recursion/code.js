@@ -16,12 +16,9 @@ const treeMap = (tree, fn) => isLeaf(tree)
   ? fn(tree)
   : { left: treeMap(tree.left, fn), right: treeMap(tree.right, fn) };
 
-const change = (amt, coins) => {
-  if (amt === 0) {
-    return 1;
-  } else if (amt < 0 || coins.length === 0) {
-    return 0;
-  } else {
-    return change(amt - coins[0], coins) + change(amt, coins.slice(1));
-  }
-};
+const change = (amt, coins) => 
+  amt === 0
+  ? 1
+  : (amt < 0 || coins.length === 0) 
+  ? 0
+  : change(amt - coins[0], coins) + change(amt, coins.slice(1));
