@@ -6,38 +6,21 @@ const factorial = (n) => {
   }
 };
 
-const triangular = (n) => n === 0 ? 0 : n + triangular(n - 1);
-
-const fibonacciSimple = (n) => n < 2 ? n : fibonacci(n - 2) + fibonacci(n - 1);
-
-const fibonacciTable = (n) => {
-  const table = [0, 1, ...Array(Math.max(0, n - 1)).fill()];
-  const helper = (i) => {
-    if (i <= n) {
-      table[i] = table[i - 2] + table[i - 1];
-      helper(i + 1);
-    }
+const triangular = (n) => {
+  if (n === 0) {
+    return 0;
+  } else {
+    return n + triangular(n - 1);
   }
-  helper(2);
-  return table[n];
 };
 
-const fibonacciDP = (n) => {
-  const helper = (n, a, b) => {
-    return n === 0 ? a : helper(n - 1, b, a + b);
+const fibonacci= (n) => {
+  if (n < 2) {
+    return n;
+  } else {
+    return fibonacci(n - 2) + fibonacci(n - 1);
   }
-  return helper(n, 0, 1);
 };
-
-const fibonacciDPI = (n) => {
-  let [a, b] = [0, 1];
-  for (let i = 0; i < n; i++) {
-    [a, b] = [b, a + b];
-  }
-  return a;
-};
-
-const fibonacci = fibonacciDPI;
 
 const gcd = (a, b) => b === 0 ? a : gcd(b, a % b);
 
