@@ -46,7 +46,13 @@ const search = (xs, x) => {
   }
 };
 
-const reverseString = (s) => s === "" ? s : reverseString(s.substring(1)) + s[0];
+const reverseString = (s) => {
+  if (s === '') {
+    return s;
+   } else {
+     return reverseString(s.substring(1)) + s[0];
+   }
+};
 
 const treeMap = (tree, fn) => {
   if (isLeaf(tree)) {
