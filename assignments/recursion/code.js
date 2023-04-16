@@ -68,6 +68,6 @@ const change = (amt, coins) => {
   } else if (amt < 0 || coins.length === 0) {
     return 0;
   } else {
-    return change(amt - coins[0]) + change(amt, coins.slice(1));
+    return change(amt - coins[0], coins) + change(amt, coins.slice(1));
   }
 };
