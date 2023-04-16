@@ -54,7 +54,8 @@ const change = (amt, coins) => {
   const table = coins.map((c) => [1, ...Array(c - 1).fill(0)]);
 
   //const get = (i, c) => (i < 0 || c < 0) ? 0 : table[c][i % table[c].length];
-  const get = (i, c) => i < 0 ? 0 : c < 0 ? 0 : table[c][i % table[c].length];
+  const get = (i, c) => (i < 0 || c < 0) ? 0 : i == 0 ? 1 : table[c][i % table[c].length];
+  //const get = (i, c) => i < 0 ? 0 : c < 0 ? 0 : table[c][i % table[c].length];
   const put = (i, c, value) => table[c][i % table[c].length] = value;
 
   for (let i = 1; i <= amt; i++) {
