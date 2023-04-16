@@ -22,9 +22,21 @@ const fibonacci= (n) => {
   }
 };
 
-const gcd = (a, b) => b === 0 ? a : gcd(b, a % b);
+const gcd = (a, b) => {
+  if (b === 0) {
+    return a;
+  } else {
+    return gcd(b, a % b);
+  }
+};
 
-const sum = (ns) => ns.length === 0 ? 0 : ns[0] + sum(ns.slice(1));
+const sum = (ns) => {
+  if (ns.length === 0) {
+    return 0;
+  } else {
+    return ns[0] + sum(ns.slice(1));
+  }
+};
 
 const search = (xs, x) => xs.length > 0 && (xs[0] === x || search(xs.slice(1), x));
 
