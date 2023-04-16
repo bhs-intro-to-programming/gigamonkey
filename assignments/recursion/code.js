@@ -38,7 +38,13 @@ const sum = (ns) => {
   }
 };
 
-const search = (xs, x) => xs.length > 0 && (xs[0] === x || search(xs.slice(1), x));
+const search = (xs, x) => {
+  if (xs.length === 0) {
+    return false;
+  } else {
+    return xs[0] === x || search(xs.slice(1), x);
+  }
+};
 
 const reverseString = (s) => s === "" ? s : reverseString(s.substring(1)) + s[0];
 
