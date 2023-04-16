@@ -12,13 +12,9 @@ const search = (xs, x) => xs.length > 0 && (xs[0] === x || search(xs.slice(1), x
 
 const reverseString = (s) => s === '' ? '' : reverseString(s.substring(1)) + s[0];
 
-const treeMap = (tree, fn) => {
-  if (isLeaf(tree)) {
-    return fn(tree);
-  } else {
-    return { left: treeMap(tree.left, fn), right: treeMap(tree.right, fn) };
-  }
-};
+const treeMap = (tree, fn) => isLeaf(tree)
+  ? fn(tree)
+  : { left: treeMap(tree.left, fn), right: treeMap(tree.right, fn) };
 
 const change = (amt, coins) => {
   if (amt === 0) {
