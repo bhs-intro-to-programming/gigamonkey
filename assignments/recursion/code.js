@@ -4,29 +4,11 @@ const triangular = (n) => n === 0 ? 0 : n + triangular(n - 1);
 
 const fibonacci= (n) => n < 2 ? n : fibonacci(n - 2) + fibonacci(n - 1);
 
-const gcd = (a, b) => {
-  if (b === 0) {
-    return a;
-  } else {
-    return gcd(b, a % b);
-  }
-};
+const gcd = (a, b) => b === 0 ? a : gcd(b, a % b);
 
-const sum = (ns) => {
-  if (ns.length === 0) {
-    return 0;
-  } else {
-    return ns[0] + sum(ns.slice(1));
-  }
-};
+const sum = (ns) => ns.length === 0 ? 0 : ns[0] + sum(ns.slice(1));
 
-const search = (xs, x) => {
-  if (xs.length === 0) {
-    return false;
-  } else {
-    return xs[0] === x || search(xs.slice(1), x);
-  }
-};
+const search = (xs, x) => xs.length > 0 && (xs[0] === x || search(xs.slice(1), x)); 
 
 const reverseString = (s) => {
   if (s === '') {
