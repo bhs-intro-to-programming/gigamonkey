@@ -49,7 +49,7 @@ const treeMap = (tree, fn) => {
   }
 };
 
-const changex = (amt, coins) => {
+const change = (amt, coins) => {
 
   const table = coins.map((c) => [1, ...Array(c - 1).fill(1)]);
 
@@ -65,4 +65,4 @@ const changex = (amt, coins) => {
   return get(amt, coins.length - 1);
 };
 
-const change = (c, v) => c === 0 ? 1 : c < 0 || v.length === 0 ? 0 : change(c - v[0], v) + change(c, v.slice(1))
+const changex = (c, v) => c === 0 ? 1 : c < 0 || v.length === 0 ? 0 : change(c - v[0], v) + change(c, v.slice(1))
