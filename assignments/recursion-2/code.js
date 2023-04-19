@@ -1,3 +1,4 @@
+/* 
 const add = (a, b) => {
   if (b === 0) {
     return a;
@@ -85,13 +86,11 @@ const some = (xs, p) => {
     return p(xs[0]) || some(xs.slice(1), p);
   }
 };
-
-
-/*
+*/
 
 const add = (a, b) => b === 0 ? a : 1 + add(a, b - 1);
 
-const multiply = (a, b) => b === 0 ? 0 : b === 1 ? a : a + multiply(a, b - 1);
+const multiply = (a, b) => b === 0 ? 0 : a + multiply(a, b - 1);
 
 const double = (a, b) => b === 0 ? a : 2 * double(a, b - 1);
 
@@ -121,4 +120,3 @@ const every = (xs, p) => xs.length === 0 || p(xs[0]) && every(xs.slice(1), p);
 
 const some = (xs, p) => xs.length !== 0 && (p(xs[0]) || some(xs.slice(1), p));
 
-*/
