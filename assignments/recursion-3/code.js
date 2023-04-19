@@ -37,3 +37,5 @@ const isDescending = (ns) => {
   }
   return true;
 }
+
+const sumNested = (xs) => 0;
