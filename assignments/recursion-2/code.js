@@ -100,10 +100,7 @@ const power = (a, b) => b === 0 ? 1 : a * power(a, b - 1);
 
 const deleteXs = (s) => s === '' ? '' : (s[0] === 'x' ? '' : s[0]) + deleteXs(s.substring(1));
 
-
-const countXs = (s) => {
-  return [...s].reduce((count, c) => count + (c === 'x' ? 1 : 0), 0);
-}
+const countXs = (s) => s === '' ? 0 : (s[0] === 'x' ? 1 : 0) + countXs(s.substring(1));
 
 const maximum = (ns) => ns.length === 0 ? -Infinity : Math.max(ns[0], maximum(ns.slice(1)));
 
