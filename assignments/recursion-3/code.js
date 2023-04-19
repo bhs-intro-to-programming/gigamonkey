@@ -29,7 +29,7 @@ const isAscending = (ns) => {
 }
 
 const isDescending = (ns) => {
-  const copy = [...ns].sort((a, b) => a - b);
+  const copy = [...ns].sort((a, b) => b - a);
   for (let i = 0; i < ns.length; i++) {
     if (ns[i] !== copy[i]) {
       return false;
