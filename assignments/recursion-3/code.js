@@ -24,6 +24,6 @@ const isPrime = (n, d) => {
   } else if (n % d === 0) {
     return false;
   } else {
-    return isPrime(n, n - 1);
+    return isPrime(n, d - 1);
   }
 }
