@@ -30,7 +30,13 @@ const triple = (a, b) => {
   }
 };
 
-const power = (a, b) => b === 0 ? 1 : a * power(a, b - 1);
+const power = (a, b) => {
+  if (b === 0) {
+    return 1;
+   } else {
+     return a * power(a, b - 1);
+   }
+};
 
 const deleteXs = (s) => {
   if (s === '') {
