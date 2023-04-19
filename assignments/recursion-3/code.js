@@ -20,6 +20,8 @@ const lucas = (n) => {
 
 const isPrime = (n) => {
 
+  if (n < 2} return false;
+
   const helper = (d) => {
     if (d === 1) {
       return true;
