@@ -30,5 +30,5 @@ const isPrime = (n) => {
     }
   }
 
-  return helper(n, n - 1);
+  return helper(n - 1);
 }
