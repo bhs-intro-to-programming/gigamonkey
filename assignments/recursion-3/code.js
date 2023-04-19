@@ -17,20 +17,3 @@ const lucas = (n) => {
     return lucas(n - 2) + lucas(n - 1);
   }
 }
-
-const isPrime = (n) => {
-
-  if (n < 2) return false;
-
-  const helper = (d) => {
-    if (d === 1) {
-      return true;
-    } else if (n % d === 0) {
-      return false;
-    } else {
-      return helper(d - 1);
-    }
-  }
-
-  return helper(Math.floor(Math.sqrt(n)));
-}
