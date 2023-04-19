@@ -1,0 +1,1 @@
+const sumSquares = (n) => n === 0 ? 0 : n ** 2 + sumSquares(n - 1);
