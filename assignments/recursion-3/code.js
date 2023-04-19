@@ -38,4 +38,10 @@ const isDescending = (ns) => {
   return true;
 }
 
-const sumNested = (xs) => 0;
+const sumNested = (arg) => {
+  if (isNumber(arg)) {
+    return arg;
+  } else {
+    return arg.reduce((acc, arg) => acc + sumNested(arg), 0);
+  }
+}
