@@ -17,3 +17,13 @@ const lucas = (n) => {
     return lucas(n - 2) + lucas(n - 1);
   }
 }
+
+const isSorted = (ns) => {
+  const copy = [...ns].sort();
+  for (let i = 0; i < ns.length; i++) {
+    if (ns[i] !== copy[i]) {
+      return false;
+    }
+  }
+  return true;
+}
