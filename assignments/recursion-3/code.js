@@ -47,3 +47,5 @@ const sumNested = (arg) => {
     return sumNested(arg[0]) + sumNested(arg.slice(1));
   }
 }
+
+const searchNested = (tree, target) => false;
