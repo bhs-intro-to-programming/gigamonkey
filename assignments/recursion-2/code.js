@@ -9,14 +9,18 @@ const add = (a, b) => {
 const multiply = (a, b) => {
   if (b === 0) {
     return 0;
-  } else if (b === 1) {
-    return a;
    } else {
      return a + multiply(a, b - 1);
    }
 };
 
-const double = (a, b) => b === 0 ? a : 2 * double(a, b - 1);
+const double = (a, b) => {
+  if (b === 0) {
+    return a;
+  } else {
+    return 2 * double(a, b - 1);
+  }
+}
 
 const triple = (a, b) => b === 0 ? a : 3 * triple(a, b - 1);
 
