@@ -20,7 +20,7 @@ const lucas = (n) => {
 
 const isPrime = (n) => {
 
-  const helper = (d) => {
+  const helper = (n, d) => {
     if (d === 1) {
       return true;
     } else if (n % d === 0) {
@@ -30,5 +30,5 @@ const isPrime = (n) => {
     }
   }
 
-  return helper(n - 1);
+  return helper(n, n - 1);
 }
