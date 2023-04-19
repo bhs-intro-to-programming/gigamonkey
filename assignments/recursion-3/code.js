@@ -11,7 +11,7 @@ const isDescending = (ns) => ns.length < 2 || ns[0] >= ns[1] && isDescending(ns.
 const sumNested = (arg) => arg.length === 0 ? 0 : isNumber(arg) ? arg : sumNested(arg[0]) + sumNested(arg.slice(1));
 
 const searchNested = (tree, target) => 
-  (isNumber(tree) ? tree === target : false) || 
+  isNumber(tree) ? tree === target : 
   (tree.length !== 0 && 
     (searchNested(tree[0], target) || searchNested(tree.slice(1), target)));
 
