@@ -51,7 +51,15 @@ const deleteXs = (s) => {
 };
 
 const countXs = (s) => {
-  return [...s].reduce((count, c) => count + (c === 'x' ? 1 : 0), 0);
+  if (s === '') {
+    return s;
+  } else {
+    if (s[0] === 'x') {
+      return 1 + count(s.substring(1));
+    } else {
+      return count(s.substring(1));
+    }
+  }
 }
 
 const maximum = (ns) => ns.length === 0 ? -Infinity : Math.max(ns[0], maximum(ns.slice(1)));
