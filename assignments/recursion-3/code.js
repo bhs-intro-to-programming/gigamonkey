@@ -2,15 +2,7 @@ const product = (ns) => ns.length === 0 ? 1 : ns[0] * product(ns.slice(1));
 
 const sumSquares = (n) => n === 0 ? 0 : n ** 2 + sumSquares(n - 1);
 
-const lucas = (n) => {
-  if (n === 0) {
-    return 2;
-  } else if (n === 1) {
-    return 1;
-  } else {
-    return lucas(n - 2) + lucas(n - 1);
-  }
-};
+const lucas = (n) => n < 2 ? [2,1][n] : lucas(n - 2) + lucas(n - 1);
 
 const isAscending = (ns) => {
   const copy = [...ns].sort();
