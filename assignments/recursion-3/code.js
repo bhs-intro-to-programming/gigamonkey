@@ -48,4 +48,12 @@ const sumNested = (arg) => {
   }
 }
 
-const searchNested = (tree, target) => false;
+const searchNested = (tree, target) => {
+  if (isNumber(tree)) {
+    return tree === target;
+  } else if (tree.length === 0) {
+    return false;
+  } else {
+    return searchNested(tree[0], target) || searchNested(tree.slice(1), target);
+  }
+}
