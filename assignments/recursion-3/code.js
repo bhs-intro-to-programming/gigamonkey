@@ -72,6 +72,12 @@ const evaluate = (expr) => {
     const right = evaluate(expr.right);
     if (expr.op === '+') {
       return left + right;
+    } else if (expr.op === '-') {
+      return left - right;
+    } else if (expr.op === '*') {
+      return left * right;
+    } else if (expr.op === '/') {
+      return left / right;
     }
   }
-}
+};
