@@ -78,7 +78,13 @@ const every = (xs, p) => {
   }
 };
 
-const some = (xs, p) => xs.length !== 0 && (p(xs[0]) || some(xs.slice(1), p));
+const some = (xs, p) => {
+  if (xs.length === 0) {
+    return false;
+  } else {
+    return p(xs[0]) || some(xs.slice(1), p);
+  }
+};
 
 
 /*
