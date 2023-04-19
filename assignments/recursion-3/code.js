@@ -44,6 +44,6 @@ const sumNested = (arg) => {
   } else if (isNumber(arg)) {
     return arg;
   } else {
-    return sumNested(arg[0]) + sumNested(arg.slice(1)));
+    return sumNested(arg[0]) + sumNested(arg.slice(1));
   }
 }
