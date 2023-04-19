@@ -63,3 +63,7 @@ const searchNested = (tree, target) => {
     return searchNested(tree[0], target) || searchNested(tree.slice(1), target);
   }
 };
+
+const evaluate = (expr) => {
+  return 0;
+}
