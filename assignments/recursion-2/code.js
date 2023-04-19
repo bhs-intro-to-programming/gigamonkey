@@ -20,9 +20,15 @@ const double = (a, b) => {
   } else {
     return 2 * double(a, b - 1);
   }
-}
+};
 
-const triple = (a, b) => b === 0 ? a : 3 * triple(a, b - 1);
+const triple = (a, b) => {
+  if (b === 0) {
+    return a;
+  } else {
+    return 3 * triple(a, b - 1);
+  }
+};
 
 const power = (a, b) => b === 0 ? 1 : a * power(a, b - 1);
 
