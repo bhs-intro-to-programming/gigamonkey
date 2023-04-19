@@ -30,5 +30,5 @@ const isPrime = (n) => {
     }
   }
 
-  return helper(Math.ceil(Math.sqrt(n)));
+  return helper(Math.floor(Math.sqrt(n)));
 }
