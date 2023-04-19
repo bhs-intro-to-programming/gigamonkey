@@ -39,9 +39,11 @@ const isDescending = (ns) => {
 }
 
 const sumNested = (arg) => {
-  if (isNumber(arg)) {
+  if (arg.length === 0) {
+    return 0; 
+  } else if (isNumber(arg)) {
     return arg;
   } else {
-    return arg.reduce((acc, arg) => acc + sumNested(arg), 0);
+    return sumNested(arg[0]) + sumNested(arg.slice(1)));
   }
 }
