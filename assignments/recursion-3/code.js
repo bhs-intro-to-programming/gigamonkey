@@ -65,5 +65,13 @@ const searchNested = (tree, target) => {
 };
 
 const evaluate = (expr) => {
-  return 0;
+  if (isNumber(expr)) {
+    return expr;
+  } else {
+    const left = evaluate(expr.left);
+    const right = evaluate(expr.right);
+    if (expr.op === '+') {
+      return left + right;
+    }
+  }
 }
