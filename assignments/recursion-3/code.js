@@ -18,8 +18,18 @@ const lucas = (n) => {
   }
 }
 
-const isSorted = (ns) => {
+const isAscending = (ns) => {
   const copy = [...ns].sort();
+  for (let i = 0; i < ns.length; i++) {
+    if (ns[i] !== copy[i]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+const isDescending = (ns) => {
+  const copy = [...ns].sort((a, b) => b - a);
   for (let i = 0; i < ns.length; i++) {
     if (ns[i] !== copy[i]) {
       return false;
