@@ -1,10 +1,10 @@
 const product = (ns) => {
-  let r = 1;
-  for (let i = 0; i < ns.length; i++) {
-    r *= ns[i];
+  if (ns.length === 0) {
+    return 1;
+  } else {
+    return ns[0] * product(ns.slice(1));
   }
-  return r;
-}
+};
 
 const sumSquares = (n) => n === 0 ? 0 : n ** 2 + sumSquares(n - 1);
 
@@ -16,7 +16,7 @@ const lucas = (n) => {
   } else {
     return lucas(n - 2) + lucas(n - 1);
   }
-}
+};
 
 const isAscending = (ns) => {
   const copy = [...ns].sort();
@@ -26,7 +26,7 @@ const isAscending = (ns) => {
     }
   }
   return true;
-}
+};
 
 const isDescending = (ns) => {
   const copy = [...ns].sort((a, b) => b - a);
@@ -36,7 +36,7 @@ const isDescending = (ns) => {
     }
   }
   return true;
-}
+};
 
 const sumNested = (arg) => {
   if (arg.length === 0) {
@@ -46,7 +46,7 @@ const sumNested = (arg) => {
   } else {
     return sumNested(arg[0]) + sumNested(arg.slice(1));
   }
-}
+};
 
 const searchNested = (tree, target) => {
   if (isNumber(tree)) {
@@ -56,4 +56,4 @@ const searchNested = (tree, target) => {
   } else {
     return searchNested(tree[0], target) || searchNested(tree.slice(1), target);
   }
-}
+};
