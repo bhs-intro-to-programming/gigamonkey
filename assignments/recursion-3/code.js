@@ -4,13 +4,7 @@ const sumSquares = (n) => n === 0 ? 0 : n ** 2 + sumSquares(n - 1);
 
 const lucas = (n) => n < 2 ? [2, 1][n] : lucas(n - 2) + lucas(n - 1);
 
-const isAscending = (ns) => {
-  if (ns.length < 2) {
-    return true;
-  } else {
-    return ns[0] <= ns[1] && isAscending(ns.slice(1));
-  }
-};
+const isAscending = (ns) => ns.length < 2 || ns[0] <= ns[1] && isAscending(ns.slice(1));
 
 const isDescending = (ns) => {
   if (ns.length < 2) {
@@ -87,23 +81,19 @@ const lucas = (n) => {
 };
 
 const isAscending = (ns) => {
-  const copy = [...ns].sort();
-  for (let i = 0; i < ns.length; i++) {
-    if (ns[i] !== copy[i]) {
-      return false;
-    }
+  if (ns.length < 2) {
+    return true;
+  } else {
+    return ns[0] <= ns[1] && isAscending(ns.slice(1));
   }
-  return true;
 };
 
 const isDescending = (ns) => {
-  const copy = [...ns].sort((a, b) => b - a);
-  for (let i = 0; i < ns.length; i++) {
-    if (ns[i] !== copy[i]) {
-      return false;
-    }
+  if (ns.length < 2) {
+    return true;
+  } else {
+    return ns[0] >= ns[1] && isDescending(ns.slice(1));
   }
-  return true;
 };
 
 const sumNested = (arg) => {
