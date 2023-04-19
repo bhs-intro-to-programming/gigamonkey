@@ -55,9 +55,9 @@ const countXs = (s) => {
     return 0;
   } else {
     if (s[0] === 'x') {
-      return 1 + count(s.substring(1));
+      return 1 + countXs(s.substring(1));
     } else {
-      return count(s.substring(1));
+      return countXs(s.substring(1));
     }
   }
 }
