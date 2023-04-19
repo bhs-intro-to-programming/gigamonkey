@@ -62,7 +62,13 @@ const countXs = (s) => {
   }
 }
 
-const maximum = (ns) => ns.length === 0 ? -Infinity : Math.max(ns[0], maximum(ns.slice(1)));
+const maximum = (ns) => {
+  if (ns.length === 0) {
+    return -Infinity;
+   } else {
+     return Math.max(ns[0], maximum(ns.slice(1)));
+   }
+};
 
 const every = (xs, p) => xs.length === 0 || p(xs[0]) && every(xs.slice(1), p);
 
