@@ -6,13 +6,7 @@ const lucas = (n) => n < 2 ? [2, 1][n] : lucas(n - 2) + lucas(n - 1);
 
 const isAscending = (ns) => ns.length < 2 || ns[0] <= ns[1] && isAscending(ns.slice(1));
 
-const isDescending = (ns) => {
-  if (ns.length < 2) {
-    return true;
-  } else {
-    return ns[0] >= ns[1] && isDescending(ns.slice(1));
-  }
-};
+const isDescending = (ns) => ns.length < 2 || ns[0] >= ns[1] && isDescending(ns.slice(1));
 
 const sumNested = (arg) => {
   if (arg.length === 0) {
