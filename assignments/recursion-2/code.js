@@ -52,7 +52,7 @@ const deleteXs = (s) => {
 
 const countXs = (s) => {
   if (s === '') {
-    return s;
+    return 0;
   } else {
     if (s[0] === 'x') {
       return 1 + count(s.substring(1));
