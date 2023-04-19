@@ -18,12 +18,16 @@ const lucas = (n) => {
   }
 }
 
-const isPrime = (n, d) => {
-  if (d === 1) {
-    return true;
-  } else if (n % d === 0) {
-    return false;
+const isPrime = (n) => {
+  if (d === undefined) {
+    return isPrime(n, n - 1);
   } else {
-    return isPrime(n, d - 1);
+    if (d === 1) {
+      return true;
+    } else if (n % d === 0) {
+      return false;
+    } else {
+      return isPrime(n, d - 1);
+    }
   }
 }
