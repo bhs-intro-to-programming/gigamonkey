@@ -18,7 +18,7 @@ const lucas = (n) => {
   }
 }
 
-const isPrime = (n) => {
+const isPrime = (n, d) => {
   if (d === undefined) {
     return isPrime(n, n - 1);
   } else {
