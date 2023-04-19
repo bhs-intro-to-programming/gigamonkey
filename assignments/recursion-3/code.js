@@ -1,12 +1,6 @@
 const product = (ns) => ns.length === 0 ? 1 : ns[0] * product(ns.slice(1));
 
-const sumSquares = (n) => {
-  if (n === 0) {
-    return 0;
-  } else {
-    return n ** 2 + sumSquares(n - 1);
-  }
-};
+const sumSquares = (n) => n === 0 ? 0 : n ** 2 + sumSquares(n - 1);
 
 const lucas = (n) => {
   if (n === 0) {
