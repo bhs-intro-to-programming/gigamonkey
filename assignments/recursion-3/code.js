@@ -1,3 +1,5 @@
+/*
+
 const product = (ns) => ns.length === 0 ? 1 : ns[0] * product(ns.slice(1));
 
 const sumSquares = (n) => n === 0 ? 0 : n ** 2 + sumSquares(n - 1);
@@ -31,7 +33,7 @@ const fns = {
 const evaluate = (expr) =>
   isNumber(expr) ? expr : fns[expr.op](evaluate(expr.left), evaluate(expr.right));
 
-/*
+*/
 
 const product = (ns) => {
   if (ns.length === 0) {
@@ -113,4 +115,3 @@ const evaluate = (expr) => {
   }
 };
 
-*/
