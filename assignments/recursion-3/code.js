@@ -10,10 +10,10 @@ const isAscending = (ns) => ns.length < 2 || ns[0] <= ns[1] && isAscending(ns.sl
 const isDescending = (ns) => ns.length < 2 || ns[0] >= ns[1] && isDescending(ns.slice(1));
 
 const sumNested = (arg) =>
-  arg.length === 0
-    ? 0
-    : isNumber(arg)
-      ? arg
+  isNumber(arg)
+    ? arg
+    : arg.length === 0
+      ? 0
       : sumNested(arg[0]) + sumNested(arg.slice(1));
 
 const searchNested = (tree, target) =>
