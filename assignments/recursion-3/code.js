@@ -78,10 +78,10 @@ const isDescending = (ns) => {
 };
 
 const sumNested = (arg) => {
-  if (arg.length === 0) {
-    return 0; 
-  } else if (isNumber(arg)) {
+  if (isNumber(arg)) {
     return arg;
+  } else if (arg.length === 0) {
+    return 0;
   } else {
     return sumNested(arg[0]) + sumNested(arg.slice(1));
   }
