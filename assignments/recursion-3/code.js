@@ -77,13 +77,13 @@ const isDescending = (ns) => {
   }
 };
 
-const sumNested = (arg) => {
-  if (isNumber(arg)) {
-    return arg;
-  } else if (arg.length === 0) {
+const sumNested = (tree) => {
+  if (isNumber(tree)) {
+    return tree;
+  } else if (tree.length === 0) {
     return 0;
   } else {
-    return sumNested(arg[0]) + sumNested(arg.slice(1));
+    return sumNested(tree[0]) + sumNested(tree.slice(1));
   }
 };
 
