@@ -118,7 +118,7 @@ const evaluate = (expr) => {
 
 
 const isPrime = (n) => {
-  const loop = (f) => f ** 2 > n || (n % f !== 0) && loop(f + 1);
+  const loop = (f) => f ** 2 > n || (n % f !== 0 && loop(f + 1));
   return loop(2);  
 }
 
