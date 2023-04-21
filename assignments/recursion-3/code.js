@@ -119,13 +119,13 @@ const evaluate = (expr) => {
 const sumPrimesBelow = (n) => {
   if (n === 0) {
     return 0;
-   } else {
+  } else {
     if (isPrime(n)) {
       return n + sumPrimesBelow(n - 1);
     } else {
       return sumPrimesBelow(n - 1);
     }
-   }
+  }
 }
 
 const factors = (n, fs, i) => {
@@ -148,7 +148,7 @@ const factors = (n, fs, i) => {
 
 const isPrime = (n) => {
   const loop = (f) => f ** 2 > n || (n % f !== 0 && loop(f + 1));
-  return n > 1 && loop(2);  
+  return n > 1 && loop(2);
 }
 
 const nthPrime = (n) => {
@@ -161,3 +161,48 @@ const nthPrime = (n) => {
   }
   return loop(2, 1);
 }
+
+const filter = (xs, p) => {
+  if (xs.length === 0) {
+    return [];
+  } else {
+    const [first, ...rest] = xs;
+    if (p(first)) {
+      return [first, ...filter(rest, p)];
+    } else {
+      return filter(rest, p);
+    }
+  }
+}
+
+const reduce = (xs, fn, value) => {
+  if (xs.length === 0) {
+    return value;
+  } else {
+    return fn(value, reduce(xs.slice(1), fn, xs[0]));
+  }
+}
+
+
+const reduce = (xs, fn, value) => {
+  if (xs.length === 0) {
+    return value;
+  } else {
+    return reduce(xs.slice(1), fn, fn(value, xs[0]));
+  }
+}
+
+const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+
+const rotate = (char, places) => {
+  const lower = char.toLowerCase();
+  const i = alphabet.indexOf(lower);
+  if (i === -1) {
+    return char;
+  } else {
+    const rotated = alphabet[(i + places) % alphabet.length];
+    return lower === char ? rotated : rotated.toUpperCase();
+  }
+}
+
+
