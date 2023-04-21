@@ -121,7 +121,7 @@ const sumPrimes = (n) => n === 0 ? 0 : (isPrime(n) ? n : 0) + sumPrimes(n - 1);
 
 const isPrime = (n) => {
   const loop = (f) => f ** 2 > n || (n % f !== 0 && loop(f + 1));
-  return loop(2);  
+  return n > 1 && loop(2);  
 }
 
 const nthPrime = (n) => {
