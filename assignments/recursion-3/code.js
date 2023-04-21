@@ -130,5 +130,5 @@ const nthPrime = (n) => {
       return loop(i + 1, c);
     }
   }
-  return loop(2, 0);
+  return loop(2, 1);
 }
