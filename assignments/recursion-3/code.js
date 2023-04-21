@@ -205,4 +205,19 @@ const rotate = (char, places) => {
   }
 }
 
+const caesar = (s, key) => {
+  if (s === '') {
+    return s;
+  } else {
+    return rotate(s[0], key) + caesar(s.substring(1), key);
+  }
+};
 
+
+const map = (list, f) => {
+  if (list === null) {
+    return null;
+  } else {
+    return { first: f(list.first), rest: map(list.rest, f) };
+  }
+}
