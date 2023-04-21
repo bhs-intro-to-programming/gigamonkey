@@ -116,8 +116,17 @@ const evaluate = (expr) => {
 
 */
 
-const sumPrimesBelow = (n) => n === 0 ? 0 : (isPrime(n) ? n : 0) + sumPrimesBelow(n - 1);
-
+const sumPrimesBelow = (n) => {
+  if (n === 0) {
+    return 0;
+   } else {
+    if (isPrime(n)) {
+      return n + sumPrimesBelow(n - 1);
+    } else {
+      return sumPrimesBelow(n - 1);
+    }
+   }
+}
 
 const factors = (n, fs, i) => {
   if (i === undefined) i = 2;
