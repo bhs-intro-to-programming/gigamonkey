@@ -213,6 +213,14 @@ const caesar = (s, key) => {
   }
 };
 
+const toList = (xs) => {
+  if (xs.length === 0) {
+    return null;
+  } else {
+    return { first: xs[0], rest: toList(xs.slice(1)) };
+  }
+};
+
 
 const map = (list, f) => {
   if (list === null) {
