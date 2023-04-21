@@ -125,7 +125,7 @@ const isPrime = (n) => {
 const nthPrime = (n) => {
   const loop = (i, c) => {
     if (isPrime(i)) {
-      return c === n ? i : loop(i, c + 1);
+      return c === n ? i : loop(i + 1, c + 1);
     } else {
       return loop(i + 1, c);
     }
