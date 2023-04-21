@@ -120,6 +120,7 @@ const sumPrimesBelow = (n) => n === 0 ? 0 : (isPrime(n) ? n : 0) + sumPrimesBelo
 
 
 const factors = (n, fs, i) => {
+  if (i === undefined) i = 2;
   if (n === 1) {
     return fs;
   } else {
