@@ -121,7 +121,7 @@ const sumPrimesBelow = (n) => n === 0 ? 0 : (isPrime(n) ? n : 0) + sumPrimesBelo
 
 const factors = (n, fs, i) => {
   if (n === 1) {
-    return fs;
+    return fs.concat([1]);
   } else {
     if (i ** 2 > n) {
       return fs.concat([n]);
