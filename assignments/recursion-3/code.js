@@ -175,7 +175,7 @@ const filter = (xs, p) => {
   }
 }
 
-const reduce = (xs, fn, value) => {
+const rreduce = (xs, fn, value) => {
   if (xs.length === 0) {
     return value;
   } else {
@@ -184,7 +184,7 @@ const reduce = (xs, fn, value) => {
 }
 
 
-const reduce = (xs, fn, value) => {
+const lreduce = (xs, fn, value) => {
   if (xs.length === 0) {
     return value;
   } else {
