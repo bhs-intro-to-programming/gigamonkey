@@ -116,7 +116,7 @@ const evaluate = (expr) => {
 
 */
 
-const sumPrimes = (n) => n === 0 ? 0 : (isPrime(n) ? n : 0) + sumPrimes(n - 1);
+const sumPrimesBelow = (n) => n === 0 ? 0 : (isPrime(n) ? n : 0) + sumPrimes(n - 1);
 
 
 const isPrime = (n) => {
