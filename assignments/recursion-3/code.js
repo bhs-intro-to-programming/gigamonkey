@@ -194,13 +194,15 @@ const lreduce = (xs, fn, value) => {
 
 const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
+const mod = (n, m) => ((n % m) + m) % m;
+
 const rotate = (char, places) => {
   const lower = char.toLowerCase();
   const i = alphabet.indexOf(lower);
   if (i === -1) {
     return char;
   } else {
-    const rotated = alphabet[(i + places) % alphabet.length];
+    const rotated = alphabet[mod(i + places, alphabet.length)];
     return lower === char ? rotated : rotated.toUpperCase();
   }
 }
