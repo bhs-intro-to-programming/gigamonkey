@@ -119,6 +119,23 @@ const evaluate = (expr) => {
 const sumPrimesBelow = (n) => n === 0 ? 0 : (isPrime(n) ? n : 0) + sumPrimesBelow(n - 1);
 
 
+const factors = (n, fs, i) => {
+  if (n === 1) {
+    return fs;
+  } else {
+    if (i ** 2 > n) {
+      return fs.concat([n]);
+    } else if (n % i === 0) {
+      return factors(n / i, fs.concat([i]), 2);
+    } else {
+      return factors(n, fs, i + 1);
+    }
+  }
+};
+
+
+
+
 const isPrime = (n) => {
   const loop = (f) => f ** 2 > n || (n % f !== 0 && loop(f + 1));
   return n > 1 && loop(2);  
