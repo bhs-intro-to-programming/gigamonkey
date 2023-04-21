@@ -121,3 +121,14 @@ const isPrime = (n) => {
   const loop = (f) => f ** 2 > n ? true : (n % f !== 0) && loop(f + 1);
   return loop(2);  
 }
+
+const nthPrime = (n) => {
+  const loop = (i, c) => {
+    if (isPrime(i)) {
+      return c === n ? i : loop(i, c + 1);
+    } else {
+      return loop(i + 1, c);
+    }
+  }
+  loop(2, 0);
+}
