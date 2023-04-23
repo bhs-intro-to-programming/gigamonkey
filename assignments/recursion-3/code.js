@@ -29,13 +29,8 @@ const fns = {
   '/': (a, b) => a / b,
 };
 
-const evaluatex = (expr) =>
+const evaluate = (expr) =>
   isNumber(expr) ? expr : fns[expr.op](evaluate(expr.left), evaluate(expr.right));
-
-const evaluate = (expr) => 
-  isNumber(expr) 
-    ? expr 
-    : Function(`return ${evaluate(expr.left)} ${expr.op} ${evaluate(expr.right)}`)();
 
 /*
 
