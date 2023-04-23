@@ -35,7 +35,7 @@ const evaluatex = (expr) =>
 const evaluate = (expr) => 
   isNumber(expr) 
     ? expr 
-    : new Function(`return ${evaluate(expr.left)} ${expr.op} ${evaluate(expr.right)}`)();
+    : Function(`return ${evaluate(expr.left)} ${expr.op} ${evaluate(expr.right)}`)();
 
 /*
 
