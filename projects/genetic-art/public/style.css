@@ -14,3 +14,7 @@ canvas {
   margin: 1in auto;
   border: 1px dotted grey;
 }
+
+#image {
+  display: none;
+}
