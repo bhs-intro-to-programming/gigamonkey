@@ -37,6 +37,10 @@ const fillReference = (image) => {
   doc.generated.width = w;
   doc.generated.height = h;
 
+  doc.best.width = w;
+  doc.best.height = h;
+
+
   const ctx = doc.reference.getContext('2d');
   ctx.drawImage(image, 0, 0, w, h);
 
@@ -132,27 +136,23 @@ const loop = (run, after) => {
 
 const runPopulation = (pop, ctx, width, height) => {
   return new Promise((resolve, reject) => {
-    let best = null;
-    let max = -Infinity;
     let i = 0;
+    let best = -Infinity;
+    const scored = [];
     loop(() => {
       if (i < pop.length) {
-        const c = pop[i++];
-        const fitness = drawTriangles(c, ctx, width, height);
-
-        if (fitness > max) {
-          console.log(fitness);
-          max = fitness;
-          best = c;
+        const dna = pop[i++];
+        const fitness = drawTriangles(dna, ctx, width, height);
+        if (fitness > best) {
+          best = fitness;
+          drawTriangles(dna, doc.best.getContext('2d'), width, height);
         }
+        scored.push({ dna, fitness });
       }
       return i >= pop.length;
-    }, () => {
-      resolve({best, fitness: max});
-    });
+    }, () => resolve(scored));
   });
 };
-
 
 const image = new Image();
 image.src = "mona-lisa.jpg";
@@ -164,6 +164,7 @@ image.onload = async () => {
   const { width, height } = doc.generated;
   const pop = makePopulation(1000, width, height);
 
-  const {best, fitness} = await runPopulation(pop, ctx, width, height);
-  drawTriangles(best, ctx, width, height);
+  const scored = await runPopulation(pop, ctx, width, height);
+  const best = scored.reduce((best, c) => c.fitness > best.fitness ? c : best);
+  drawTriangles(best.dna, ctx, width, height);
 };
