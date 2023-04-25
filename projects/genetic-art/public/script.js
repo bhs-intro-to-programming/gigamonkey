@@ -130,33 +130,40 @@ const loop = (run, after) => {
   requestAnimationFrame(step);
 };
 
+const runPopulation = (pop, ctx, width, height) => {
+  return new Promise((resolve, reject) => {
+    let best = null;
+    let max = -Infinity;
+    let i = 0;
+    loop(() => {
+      if (i < pop.length) {
+        const c = pop[i++];
+        const fitness = drawTriangles(c, ctx, width, height);
+
+        if (fitness > max) {
+          console.log(fitness);
+          max = fitness;
+          best = c;
+        }
+      }
+      return i >= pop.length;
+    }, () => {
+      resolve({best, fitness: max});
+    });
+  });
+};
+
+
 const image = new Image();
 image.src = "mona-lisa.jpg";
 
-image.onload = () => {
+image.onload = async () => {
   fillReference(image);
 
   const ctx = doc.generated.getContext('2d', { willReadFrequently: true });
   const { width, height } = doc.generated;
-  const pop = makePopulation(100, width, height);
+  const pop = makePopulation(1000, width, height);
 
-  let best = null;
-  let max = -Infinity;
-
-  let i = 0;
-  loop(() => {
-    if (i < pop.length) {
-      const c = pop[i++];
-      const fitness = drawTriangles(c, ctx, width, height);
-
-      if (fitness > max) {
-        console.log(fitness);
-        max = fitness;
-        best = c;
-      }
-    }
-    return i >= pop.length;
-  }, () => {
-    drawTriangles(best, ctx, width, height);
-  });
+  const {best, fitness} = await runPopulation(pop, ctx, width, height);
+  drawTriangles(best, ctx, width, height);
 };
