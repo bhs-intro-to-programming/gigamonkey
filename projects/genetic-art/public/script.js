@@ -1,5 +1,8 @@
 const doc = Object.fromEntries([...document.querySelectorAll('[id]')].map(e => [e.id, e]));
 
+let oldBest = 0;
+let number = 0;
+
 const point =  (x, y) => ({ x, y });
 const color = (r, g, b, a) => ({ r, g, b, a });
 const triangle = (a, b, c, color) => ({ a, b, c, color });
@@ -131,6 +134,7 @@ const runPopulation = (pop, ctx, problem) => {
       if (i < pop.length) {
         const dna = pop[i++];
 
+        number++;
         drawTriangles(dna, ctx, width, height);
 
         const fitness = scoreImage(ctx, problem);
@@ -140,12 +144,36 @@ const runPopulation = (pop, ctx, problem) => {
           best = fitness;
           drawTriangles(dna, doc.best.getContext('2d'), width, height);
           doc.bestScore.innerText = `Score: ${fitness.toFixed(4)}`;
+          newBest(dna, fitness, width, height);
         }
         scored.push({ dna, fitness });
       }
       return i >= pop.length;
     }, () => resolve(scored));
   });
+};
+
+const newBest = (dna, fitness, width, height) => {
+
+  const oldDistance = 1 - oldBest;
+  const newDistance = 1 - fitness;
+
+  if ((oldDistance / newDistance) - 1 > 0.1) {
+    oldBest = fitness;
+
+    const template = document.querySelector(`#newbest`).content.cloneNode(true);
+
+    const canvas = template.querySelector('canvas');
+    const caption = template.querySelector('figcaption');
+
+    canvas.width = width;
+    canvas.height = height;
+
+    drawTriangles(dna, canvas.getContext('2d'), width, height);
+    caption.innerText = `#${number}; fitness: ${fitness.toFixed(4)}`;
+
+    document.querySelector('#bests').prepend(template);
+  }
 };
 
 const clamp = (n, min, max) => Math.min(Math.max(min, n), max);
@@ -199,7 +227,7 @@ const mutate = (dna, problem) => {
     newTriangles[random.number(newTriangles.length)] = random.triangle(problem.width, problem.height);
   }
   return newTriangles;
-}
+};
 
 const nextPopulation = (scored, problem) => {
   const best = scored.reduce((best, c) => c.fitness > best.fitness ? c : best);
