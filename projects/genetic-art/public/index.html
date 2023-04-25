@@ -8,9 +8,15 @@
   <script src="script.js" type="module"></script>
 </head>
 <body>
-  <div>
-    <canvas id="reference"></canvas>
-    <canvas id="generated"></canvas>
+  <div id="canvases">
+    <figure>
+      <canvas id="reference"></canvas>
+      <figcaption><a>Reference image</a></figcaption>
+    </figure>
+    <figure>
+      <canvas id="generated"></canvas>
+      <figcaption>Generated. <span id="score"></span></figcaption>
+    </figure>
   </div>
 </body>
 </html>

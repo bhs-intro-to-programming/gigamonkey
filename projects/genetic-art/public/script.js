@@ -40,17 +40,17 @@ const fillReference = (image) => {
   const ctx = doc.reference.getContext('2d');
   ctx.drawImage(image, 0, 0, w, h);
 
-  // For debugging fitness function.
-  //const ctx2 = doc.generated.getContext('2d');
-  //ctx2.drawImage(image, 0, 0, w, h);
-
   referenceImageData = ctx.getImageData(0, 0, w, h);
 };
 
 const rgba = ({r, g, b, a}) => `rgba(${r}, ${g}, ${b}, ${a / 255})`;
 
-const drawTriangles = (triangles, ctx) => {
+const drawTriangles = (triangles, ctx, width, height) => {
+  ctx.clearRect(0, 0, width, height);
   triangles.forEach(t => drawTriangle(t, ctx));
+  const fitness = scoreImage(ctx, width, height);
+  doc.score.innerText = `Score: ${fitness}`;
+  return fitness;
 };
 
 const drawTriangle = (triangle, ctx) => {
@@ -113,14 +113,50 @@ const opaquify = (v, a) => Math.round((v * a) / 255 + (255 - a));
  */
 const toRGB = (r, g, b, a) => [r, g, b].map((v) => opaquify(v, a));
 
+const makePopulation = (size, w, h) => Array(size).fill().map(() => random.triangles(50, w, h));
+
+doc.reference.nextElementSibling.querySelector('a').href = "https://en.wikipedia.org/wiki/Mona_Lisa#/media/File:Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg";
+
+const loop = (run, after) => {
+  let done = false;
+  const step = (t) => {
+    done = run();
+    if (!done) {
+      requestAnimationFrame(step);
+    } else {
+      after();
+    }
+  };
+  requestAnimationFrame(step);
+};
 
 const image = new Image();
 image.src = "mona-lisa.jpg";
+
 image.onload = () => {
   fillReference(image);
-  console.log(referenceImageData);
 
-  const ctx = doc.generated.getContext('2d');
-  drawTriangles(random.triangles(50, doc.generated.width, doc.generated.height), ctx);
-  console.log(scoreImage(ctx, doc.generated.width, doc.generated.height));
+  const ctx = doc.generated.getContext('2d', { willReadFrequently: true });
+  const { width, height } = doc.generated;
+  const pop = makePopulation(100, width, height);
+
+  let best = null;
+  let max = -Infinity;
+
+  let i = 0;
+  loop(() => {
+    if (i < pop.length) {
+      const c = pop[i++];
+      const fitness = drawTriangles(c, ctx, width, height);
+
+      if (fitness > max) {
+        console.log(fitness);
+        max = fitness;
+        best = c;
+      }
+    }
+    return i >= pop.length;
+  }, () => {
+    drawTriangles(best, ctx, width, height);
+  });
 };

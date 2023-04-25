@@ -3,18 +3,27 @@
   margin: 0;
 }
 
-html,
 body {
   height: 100%;
   width: 100%;
-  text-align: center;
+  margin: 1in auto;
+}
+
+#canvases {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
 }
 
 canvas {
-  margin: 1in auto;
   border: 1px dotted grey;
 }
 
 #image {
   display: none;
+}
+
+figcaption {
+  text-align: center;
 }
