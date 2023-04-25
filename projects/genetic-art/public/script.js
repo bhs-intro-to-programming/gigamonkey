@@ -119,6 +119,7 @@ const loop = (run, after) => {
 
 const runPopulation = (pop, ctx, problem) => {
   const { width, height } = problem;
+
   return new Promise((resolve, reject) => {
     let i = 0;
     let best = -Infinity;
@@ -144,6 +145,42 @@ const runPopulation = (pop, ctx, problem) => {
   });
 };
 
+const clamp = (n, min, max) => Math.min(Math.max(min, n), max);
+
+const mutatePoint = (p, problem) => {
+  return {
+    x: clamp(p.x + random.number(-50, 50), 0, problem.width),
+    y: clamp(p.y + random.number(-50, 50), 0, problem.height),
+  };
+};
+
+const mutateColor = (color) => {
+  const { r, g, b, a } = color;
+  return {
+    r: clamp(r + random.number(-25, 25), 0, 255),
+    g: clamp(g + random.number(-25, 25), 0, 255),
+    b: clamp(b + random.number(-25, 25), 0, 255),
+    a: clamp(a + random.number(-25, 25), 0, 255),
+  };
+};
+
+const mutateTriangle = (triangle, problem) => {
+  const { a, b, c, color } = triangle;
+  return {
+    a: mutatePoint(a, problem),
+    b: mutatePoint(b, problem),
+    c: mutatePoint(c, problem),
+    color: mutateColor(color),
+  };
+};
+
+const mutate = (dna, problem) => dna.map(t => mutateTriangle(t, problem));
+
+const nextPopulation = (scored, problem) => {
+  const best = scored.reduce((best, c) => c.fitness > best.fitness ? c : best);
+  return [ best.dna, ...Array(scored.length - 1).fill().map(() => mutate(best.dna, problem)) ];
+};
+
 doc.reference.nextElementSibling.querySelector('a').href = "https://en.wikipedia.org/wiki/Mona_Lisa#/media/File:Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg";
 
 const image = new Image();
@@ -155,10 +192,12 @@ image.onload = async () => {
 
   const ctx = doc.generated.getContext('2d', { willReadFrequently: true });
   const { width, height } = doc.generated;
-  const pop = makePopulation(1000, problem.width, problem.height);
 
-  const scored = await runPopulation(pop, ctx, problem);
-  const best = scored.reduce((best, c) => c.fitness > best.fitness ? c : best);
-  drawTriangles(best.dna, ctx, width, height);
-  doc.score.innerText = `Score: ${best.fitness}`;
+  let pop = makePopulation(100, problem.width, problem.height);
+
+  for (let i = 0; true; i++) {
+    doc.generation.innerText = `Generation ${i}`;
+    const scored = await runPopulation(pop, ctx, problem);
+    pop = nextPopulation(scored, problem);
+  }
 };

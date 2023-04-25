@@ -8,6 +8,9 @@ body {
   width: 100%;
   margin: 1in auto;
 }
+h1 {
+  text-align: center;
+}
 
 #canvases {
   display: flex;
