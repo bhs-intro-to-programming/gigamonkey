@@ -1,6 +1,8 @@
 const doc = Object.fromEntries([...document.querySelectorAll('[id]')].map(e => [e.id, e]));
 
-let referenceImageData;
+const point =  (x, y) => ({ x, y });
+const color = (r, g, b, a) => ({ r, g, b, a });
+const triangle = (a, b, c, color) => ({ a, b, c, color });
 
 const random = {
 
@@ -22,29 +24,26 @@ const random = {
 
 };
 
-const point =  (x, y) => ({ x, y });
-const color = (r, g, b, a) => ({ r, g, b, a });
-const triangle = (a, b, c, color) => ({ a, b, c, color });
-
 const fillReference = (image) => {
-
-  const w = 500;
-  const h = image.naturalHeight * w / image.naturalWidth;
-
-  doc.reference.width = w
-  doc.reference.height = h;
-
-  doc.generated.width = w;
-  doc.generated.height = h;
-
-  doc.best.width = w;
-  doc.best.height = h;
-
-
+  const { width, height } = sizeCanvases(image);
   const ctx = doc.reference.getContext('2d');
-  ctx.drawImage(image, 0, 0, w, h);
+  ctx.drawImage(image, 0, 0, width, height);
+  const imageData = ctx.getImageData(0, 0, width, height).data;
 
-  referenceImageData = ctx.getImageData(0, 0, w, h);
+  // The farthest away one image can be from another given the number of pixels.
+  const farthest = Math.sqrt(((imageData.length / 4) * 3) * 255 ** 2)
+
+  return { imageData, width, height, farthest };
+};
+
+const sizeCanvases = (image) => {
+  const width = 500;
+  const height = image.naturalHeight * width / image.naturalWidth;
+  document.querySelectorAll('canvas').forEach(e => {
+    e.width = width;
+    e.height = height;
+  });
+  return { width, height };
 };
 
 const rgba = ({r, g, b, a}) => `rgba(${r}, ${g}, ${b}, ${a / 255})`;
@@ -52,9 +51,6 @@ const rgba = ({r, g, b, a}) => `rgba(${r}, ${g}, ${b}, ${a / 255})`;
 const drawTriangles = (triangles, ctx, width, height) => {
   ctx.clearRect(0, 0, width, height);
   triangles.forEach(t => drawTriangle(t, ctx));
-  const fitness = scoreImage(ctx, width, height);
-  doc.score.innerText = `Score: ${fitness}`;
-  return fitness;
 };
 
 const drawTriangle = (triangle, ctx) => {
@@ -76,34 +72,23 @@ const rgb = (data, idx) => {
   return toRGB(r, g, b, a);
 };
 
-const scoreImage = (ctx, width, height) => {
+const scoreImage = (ctx, problem) => {
+  const { imageData, width, height } = problem;
+
   const generatedImageData = ctx.getImageData(0, 0, width, height).data;
   let sum = 0;
-  let limit = 0;
-
-  // The farthest away one image can be from another given the number of pixels.
-  const farthest = Math.sqrt(((generatedImageData.length / 4) * 3) * 255 ** 2)
 
   for (let i = 0; i < generatedImageData.length; i += 4) {
-    const ref = rgb(referenceImageData.data, i);
+    const ref = rgb(imageData, i);
     const gen = rgb(generatedImageData, i);
-    if (limit > 0) {
-      console.log(`ref: ${ref}; gen: ${gen}`);
-    }
     ref.forEach((n, i) => {
-      if (limit > 0) {
-        console.log(`  ref: ${n}; gen: ${gen[i]}`);
-      }
       sum += (n - gen[i]) ** 2;
     });
-    limit--;
   }
-
-  const distance = Math.sqrt(sum);
 
   // If the distance is zero the fitness is 1.0. If distance is actually the
   // farthest away we can be then fitness is 0.0.
-  return (farthest - distance) / farthest;
+  return (problem.farthest - Math.sqrt(sum)) / problem.farthest;
 }
 
 /*
@@ -119,8 +104,6 @@ const toRGB = (r, g, b, a) => [r, g, b].map((v) => opaquify(v, a));
 
 const makePopulation = (size, w, h) => Array(size).fill().map(() => random.triangles(50, w, h));
 
-doc.reference.nextElementSibling.querySelector('a').href = "https://en.wikipedia.org/wiki/Mona_Lisa#/media/File:Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg";
-
 const loop = (run, after) => {
   let done = false;
   const step = (t) => {
@@ -134,7 +117,8 @@ const loop = (run, after) => {
   requestAnimationFrame(step);
 };
 
-const runPopulation = (pop, ctx, width, height) => {
+const runPopulation = (pop, ctx, problem) => {
+  const { width, height } = problem;
   return new Promise((resolve, reject) => {
     let i = 0;
     let best = -Infinity;
@@ -142,10 +126,16 @@ const runPopulation = (pop, ctx, width, height) => {
     loop(() => {
       if (i < pop.length) {
         const dna = pop[i++];
-        const fitness = drawTriangles(dna, ctx, width, height);
+
+        drawTriangles(dna, ctx, width, height);
+
+        const fitness = scoreImage(ctx, problem);
+        doc.score.innerText = `Score: ${fitness}`;
+
         if (fitness > best) {
           best = fitness;
           drawTriangles(dna, doc.best.getContext('2d'), width, height);
+          doc.bestScore.innerText = `Score: ${fitness}`;
         }
         scored.push({ dna, fitness });
       }
@@ -154,17 +144,21 @@ const runPopulation = (pop, ctx, width, height) => {
   });
 };
 
+doc.reference.nextElementSibling.querySelector('a').href = "https://en.wikipedia.org/wiki/Mona_Lisa#/media/File:Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg";
+
 const image = new Image();
 image.src = "mona-lisa.jpg";
 
 image.onload = async () => {
-  fillReference(image);
+
+  const problem = fillReference(image);
 
   const ctx = doc.generated.getContext('2d', { willReadFrequently: true });
   const { width, height } = doc.generated;
-  const pop = makePopulation(1000, width, height);
+  const pop = makePopulation(1000, problem.width, problem.height);
 
-  const scored = await runPopulation(pop, ctx, width, height);
+  const scored = await runPopulation(pop, ctx, problem);
   const best = scored.reduce((best, c) => c.fitness > best.fitness ? c : best);
   drawTriangles(best.dna, ctx, width, height);
+  doc.score.innerText = `Score: ${best.fitness}`;
 };
