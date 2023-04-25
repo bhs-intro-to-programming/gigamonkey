@@ -27,7 +27,8 @@ const random = {
 const fillReference = (image) => {
   const { width, height } = sizeCanvases(image);
   const ctx = doc.reference.getContext('2d');
-  ctx.drawImage(image, 0, 0, width, height);
+  const dim = 550;
+  ctx.drawImage(image, 300, 150, dim, dim, 0, 0, width, height);
   const imageData = ctx.getImageData(0, 0, width, height).data;
 
   // The farthest away one image can be from another given the number of pixels.
@@ -37,8 +38,10 @@ const fillReference = (image) => {
 };
 
 const sizeCanvases = (image) => {
-  const width = 500;
-  const height = image.naturalHeight * width / image.naturalWidth;
+  //const width = 500;
+  //const height = image.naturalHeight * width / image.naturalWidth;
+  const width = 200;
+  const height = 200;
   document.querySelectorAll('canvas').forEach(e => {
     e.width = width;
     e.height = height;
@@ -131,12 +134,12 @@ const runPopulation = (pop, ctx, problem) => {
         drawTriangles(dna, ctx, width, height);
 
         const fitness = scoreImage(ctx, problem);
-        doc.score.innerText = `Score: ${fitness}`;
+        doc.score.innerText = `Score: ${fitness.toFixed(4)}`;
 
         if (fitness > best) {
           best = fitness;
           drawTriangles(dna, doc.best.getContext('2d'), width, height);
-          doc.bestScore.innerText = `Score: ${fitness}`;
+          doc.bestScore.innerText = `Score: ${fitness.toFixed(4)}`;
         }
         scored.push({ dna, fitness });
       }
@@ -166,15 +169,37 @@ const mutateColor = (color) => {
 
 const mutateTriangle = (triangle, problem) => {
   const { a, b, c, color } = triangle;
-  return {
-    a: mutatePoint(a, problem),
-    b: mutatePoint(b, problem),
-    c: mutatePoint(c, problem),
-    color: mutateColor(color),
-  };
+  if (Math.random() < 0.01) {
+    if (Math.random() < 0.5) {
+      return {
+        a: mutatePoint(a, problem),
+        b: mutatePoint(b, problem),
+        c: mutatePoint(c, problem),
+        color
+      };
+    } else {
+      return { a, b, c, color: mutateColor(color) };
+    }
+  } else {
+    return { a, b, c, color };
+  }
 };
 
-const mutate = (dna, problem) => dna.map(t => mutateTriangle(t, problem));
+const mutate = (dna, problem) => {
+  const newTriangles = dna.map(t => mutateTriangle(t, problem));
+  const swaps = random.number(3);
+  for (let i = 0; i < swaps; i++) {
+    const a = random.number(newTriangles.length);
+    const b = random.number(newTriangles.length);
+    const tmp = newTriangles[a];
+    newTriangles[a] = newTriangles[b];
+    newTriangles[b] = tmp;
+  }
+  if (Math.random() < 0.001) {
+    newTriangles[random.number(newTriangles.length)] = random.triangle(problem.width, problem.height);
+  }
+  return newTriangles;
+}
 
 const nextPopulation = (scored, problem) => {
   const best = scored.reduce((best, c) => c.fitness > best.fitness ? c : best);
