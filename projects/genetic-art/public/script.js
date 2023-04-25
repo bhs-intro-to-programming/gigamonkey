@@ -153,6 +153,36 @@ const runPopulation = (pop, ctx, problem) => {
   });
 };
 
+
+const runContinuous = (start, ctx, problem) => {
+  const { width, height } = problem;
+
+  drawTriangles(start, ctx, width, height);
+  let bestFitness = scoreImage(ctx, problem);
+  doc.score.innerText = `Score: ${bestFitness.toFixed(4)}`;
+  let best = { dna: start, fitness: bestFitness };
+
+  const step = (t) => {
+    number++;
+    const dna = mutate(best, problem);
+    drawTriangles(dna, ctx, width, height);
+
+    const fitness = scoreImage(ctx, problem);
+    doc.score.innerText = `Score: ${fitness.toFixed(4)}`;
+
+    if (fitness > bestFitness) {
+      bestFitness = fitness;
+      best = { dna, fitness };
+      drawTriangles(dna, doc.best.getContext('2d'), width, height);
+      doc.bestScore.innerText = `Score: ${fitness.toFixed(4)}`;
+      newBest(dna, fitness, width, height);
+    }
+    requestAnimationFrame(step);
+  };
+
+  requestAnimationFrame(step);
+};
+
 const newBest = (dna, fitness, width, height) => {
 
   const oldDistance = 1 - oldBest;
@@ -180,18 +210,18 @@ const clamp = (n, min, max) => Math.min(Math.max(min, n), max);
 
 const mutatePoint = (p, problem) => {
   return {
-    x: clamp(p.x + random.number(-50, 50), 0, problem.width),
-    y: clamp(p.y + random.number(-50, 50), 0, problem.height),
+    x: clamp(p.x + random.number(-5, 5), 0, problem.width),
+    y: clamp(p.y + random.number(-5, 5), 0, problem.height),
   };
 };
 
 const mutateColor = (color) => {
   const { r, g, b, a } = color;
   return {
-    r: clamp(r + random.number(-25, 25), 0, 255),
-    g: clamp(g + random.number(-25, 25), 0, 255),
-    b: clamp(b + random.number(-25, 25), 0, 255),
-    a: clamp(a + random.number(-25, 25), 0, 255),
+    r: clamp(r + random.number(-5, 5), 0, 255),
+    g: clamp(g + random.number(-5, 5), 0, 255),
+    b: clamp(b + random.number(-5, 5), 0, 255),
+    a: clamp(a + random.number(-5, 5), 0, 255),
   };
 };
 
@@ -213,7 +243,8 @@ const mutateTriangle = (triangle, problem) => {
   }
 };
 
-const mutate = (dna, problem) => {
+const mutate = (best, problem) => {
+  const { dna, fitness } = best;
   const newTriangles = dna.map(t => mutateTriangle(t, problem));
   const swaps = random.number(3);
   for (let i = 0; i < swaps; i++) {
@@ -223,15 +254,17 @@ const mutate = (dna, problem) => {
     newTriangles[a] = newTriangles[b];
     newTriangles[b] = tmp;
   }
+  /*
   if (Math.random() < 0.001) {
     newTriangles[random.number(newTriangles.length)] = random.triangle(problem.width, problem.height);
-  }
+    }
+  */
   return newTriangles;
 };
 
 const nextPopulation = (scored, problem) => {
   const best = scored.reduce((best, c) => c.fitness > best.fitness ? c : best);
-  return [ best.dna, ...Array(scored.length - 1).fill().map(() => mutate(best.dna, problem)) ];
+  return [ best.dna, ...Array(scored.length - 1).fill().map(() => mutate(best, problem)) ];
 };
 
 doc.reference.nextElementSibling.querySelector('a').href = "https://en.wikipedia.org/wiki/Mona_Lisa#/media/File:Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg";
@@ -246,11 +279,18 @@ image.onload = async () => {
   const ctx = doc.generated.getContext('2d', { willReadFrequently: true });
   const { width, height } = doc.generated;
 
-  let pop = makePopulation(100, problem.width, problem.height);
+  let start = random.triangles(50, problem.width, problem.height);
+  runContinuous(start, ctx, problem)
+
+  /*
+
+  let pop = makePopulation(2, problem.width, problem.height);
 
   for (let i = 0; true; i++) {
     doc.generation.innerText = `Generation ${i}`;
     const scored = await runPopulation(pop, ctx, problem);
     pop = nextPopulation(scored, problem);
   }
+
+  */
 };
