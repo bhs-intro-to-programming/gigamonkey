@@ -1,13 +1,11 @@
+import { point, color, triangle, rgba, rgb, drawTriangle, drawTriangles } from './graphics.js';
+
 const doc = Object.fromEntries([...document.querySelectorAll('[id]')].map(e => [e.id, e]));
 
 const IMAGE_URL = "https://en.wikipedia.org/wiki/Mona_Lisa#/media/File:Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg";
 
 let oldBest = 0;
 let number = 0;
-
-const point =  (x, y) => ({ x, y });
-const color = (r, g, b, a) => ({ r, g, b, a });
-const triangle = (a, b, c, color) => ({ a, b, c, color });
 
 const random = {
 
@@ -49,32 +47,6 @@ const sizeCanvases = (width, height) => {
     e.width = width;
     e.height = height;
   });
-};
-
-const rgba = ({r, g, b, a}) => `rgba(${r}, ${g}, ${b}, ${a / 255})`;
-
-const drawTriangles = (triangles, ctx, width, height) => {
-  ctx.clearRect(0, 0, width, height);
-  triangles.forEach(t => drawTriangle(t, ctx));
-};
-
-const drawTriangle = (triangle, ctx) => {
-  const { a, b, c, color } = triangle;
-  ctx.fillStyle = rgba(color);
-  ctx.beginPath();
-  ctx.moveTo(a.x, a.y);
-  ctx.lineTo(b.x, b.y);
-  ctx.lineTo(c.x, c.y);
-  ctx.lineTo(a.x, a.y);
-  ctx.fill();
-};
-
-const rgb = (data, idx) => {
-  const r = data[idx];
-  const g = data[idx + 1];
-  const b = data[idx + 2];
-  const a = data[idx + 3];
-  return toRGB(r, g, b, a);
 };
 
 const scoreImage = (ctx, problem) => {
