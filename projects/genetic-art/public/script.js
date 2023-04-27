@@ -3,13 +3,15 @@ import { randomInt } from './random.js';
 
 const doc = Object.fromEntries([...document.querySelectorAll('[id]')].map(e => [e.id, e]));
 
+const TRIANGLES = 64;
+
 const IMAGE = {
   cite: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/687px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg',
   src: 'mona-lisa.jpg',
   x: 300,
   y: 150,
-  width: 550,
-  height: 550,
+  width: 575,
+  height: 700,
 }
 
 let oldBest = 0;
@@ -35,7 +37,10 @@ const random = {
 
 };
 
-const loadReference = (image, width, height) => {
+const loadReference = (image, scale) => {
+
+  const width = image.width * scale;
+  const height = image.height * scale;
 
   const img = new Image();
 
@@ -48,11 +53,13 @@ const loadReference = (image, width, height) => {
     ctx.drawImage(img, image.x, image.y, image.width, image.height, 0, 0, width, height);
     const imageData = ctx.getImageData(0, 0, width, height).data;
 
-    // The farthest away one image can be from another given the number of pixels.
+    // The farthest away one image can be from another given the number of
+    // pixels. In practice we can't actually be this far away from an actual
+    // image unless it is either completely white or completely black.
     const farthest = Math.sqrt(((imageData.length / 4) * 3) * 255 ** 2)
 
     runContinuous(
-      random.triangles(64, width, height),
+      random.triangles(TRIANGLES, width, height),
       doc.generated.getContext('2d', { willReadFrequently: true }),
       { imageData, width, height, farthest }
     );
@@ -257,4 +264,4 @@ const mutate = (critter, problem) => {
 };
 
 // Kick things off by loading our reference image.
-loadReference(IMAGE, 200, 200);
+loadReference(IMAGE, 200 / IMAGE.width)
