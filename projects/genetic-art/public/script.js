@@ -1,8 +1,9 @@
 import { point, color, triangle, rgba, rgb, drawTriangle, drawTriangles } from './graphics.js';
-import { randomInt } from './random.js';
+import { randomInt, randomizer } from './random.js';
 
 const doc = Object.fromEntries([...document.querySelectorAll('[id]')].map(e => [e.id, e]));
 
+const POP_SIZE = 1000;
 const TRIANGLES = 64;
 
 const IMAGE = {
@@ -15,7 +16,7 @@ const IMAGE = {
 }
 
 let oldBest = 0;
-let number = 0;
+let critterNumber = 0;
 
 const random = {
 
@@ -35,9 +36,11 @@ const random = {
 
   triangles: (n, width, height) => Array(n).fill().map(() => random.triangle(width, height)),
 
+  population: (size, w, h) => Array(size).fill().map(() => random.triangles(TRIANGLES, w, h)),
+
 };
 
-const loadReference = (image, scale) => {
+const loadReference = (image, scale, start) => {
 
   const width = image.width * scale;
   const height = image.height * scale;
@@ -58,11 +61,9 @@ const loadReference = (image, scale) => {
     // image unless it is either completely white or completely black.
     const farthest = Math.sqrt(((imageData.length / 4) * 3) * 255 ** 2)
 
-    runContinuous(
-      random.triangles(TRIANGLES, width, height),
-      doc.generated.getContext('2d', { willReadFrequently: true }),
-      { imageData, width, height, farthest }
-    );
+    const ctx2 = doc.generated.getContext('2d', { willReadFrequently: true });
+
+    start(ctx2, { imageData, width, height, farthest });
   };
 
   img.src = image.src;
@@ -92,91 +93,85 @@ const scoreImage = (ctx, problem) => {
 
   // If the distance is zero the fitness is 1.0. If distance is actually the
   // farthest away we can be then fitness is 0.0.
-  return (farthest - Math.sqrt(sum)) / farthest;
-}
-
-/*
- * Translate value at a given alpha to the corresponding value at full opacity.
- * Loosely based on code from https://stackoverflow.com/a/11615135.
- */
-const opaquify = (v, a) => Math.round((v * a) / 255 + (255 - a));
-
-/*
- * Translate rgba values we get from ImageData into RGB triples.
- */
-const toRGB = (r, g, b, a) => [r, g, b].map((v) => opaquify(v, a));
-
-const makePopulation = (size, w, h) => Array(size).fill().map(() => random.triangles(50, w, h));
-
-const loop = (run, after) => {
-  let done = false;
-  const step = (t) => {
-    done = run();
-    if (!done) {
-      requestAnimationFrame(step);
-    } else {
-      after();
-    }
-  };
-  requestAnimationFrame(step);
+  return ((farthest - Math.sqrt(sum)) / farthest) ** 2;
 };
 
-/*
- * Score all the members of the population by drawing them and measuring the
- * pixel-by-pixel differenc.
- */
-const runPopulation = (pop, ctx, problem) => {
-  const { width, height } = problem;
-
-  return new Promise((resolve, reject) => {
-    let i = 0;
-    let best = -Infinity;
-    const scored = [];
-    loop(() => {
-      if (i < pop.length) {
-        number++;
-
-        const dna = pop[i++];
-        const fitness = scoreCritter(dna, ctx, problem);
-
-        if (fitness > best) {
-          best = fitness;
-          drawTriangles(dna, doc.best.getContext('2d'), width, height);
-          doc.bestScore.innerText = `Score: ${fitness.toFixed(4)}`;
-          newBest(dna, fitness, problem);
-        }
-        scored.push({ dna, fitness });
-      }
-      return i >= pop.length;
-    }, () => resolve(scored));
-  });
-};
-
-const scoreCritter = (dna, ctx, problem) => {
+const scored = (dna, ctx, problem) => {
+  doc.generation.innerText = `${TRIANGLES} triangles - #${critterNumber++}`;
   drawTriangles(dna, ctx, problem.width, problem.height);
   const fitness = scoreImage(ctx, problem);
   doc.score.innerText = `Score: ${fitness.toFixed(4)}`;
-  return fitness;
+  return { dna, fitness };
 };
 
-const runContinuous = (start, ctx, problem) => {
+/*
+ * Asexual reproduction. Basically hill-climbing by mutating the current best
+ * until we get a better one.
+ */
+const runContinuous = (ctx, problem) => {
+  const start = random.triangles(TRIANGLES, problem.width, problem.height);
+  let best = scored(start, ctx, problem);
+  newBest(best, problem);
 
-  let best = { dna: start, fitness: scoreCritter(start, ctx, problem) };
-
-  const step = (t) => {
-    doc.generation.innerText = `#${number++}`;
-
-    const dna = mutate(best, problem);
-    const fitness = scoreCritter(dna, ctx, problem);
-
-    if (fitness > best.fitness) {
-      best = { dna, fitness };
+  const step = () => {
+    const next = scored(mutate(best.dna, problem), ctx, problem);
+    if (next.fitness > best.fitness) {
+      best = next;
       newBest(best, problem);
     }
     requestAnimationFrame(step);
   };
-
   requestAnimationFrame(step);
+};
+
+const runPopulation = async (ctx, problem) => {
+  let gen = 0;
+  console.log(`Generation ${gen++}`);
+  const seedDNA = random.population(POP_SIZE, problem.width, problem.height);
+  let population = await scoreGenomes(seedDNA, ctx, problem);
+
+  while (true) {
+    // TODO: display best and worst.
+    console.log(`Generation ${gen++}`);
+    population = await scoreGenomes(newPopulation(population, problem), ctx, problem);
+  }
+};
+
+/*
+ * Score all the genomes in a population by drawing them and measuring the
+ * pixel-by-pixel difference, returning a Promise of the scored population.
+ */
+const scoreGenomes = (genomes, ctx, problem) => {
+  console.log('Scoring genomes.');
+  return new Promise((resolve, reject) => {
+
+    let i = 0;
+    let best = { dna: null, fitness: -Infinity };
+
+    const withScores = [];
+
+    const step = () => {
+      if (i < genomes.length) {
+        const next = scored(genomes[i++], ctx, problem);
+        withScores.push(next);
+        if (next.fitness > best.fitness) {
+          best = next
+          newBest(best, problem);
+        }
+        requestAnimationFrame(step);
+      } else {
+        resolve(withScores);
+      }
+    };
+    requestAnimationFrame(step);
+  });
+};
+
+const cross = (dna1, dna2) => dna1.map((t, i) => Math.random() < 0.5 ? t : dna2[i]);
+
+const newPopulation = (population, problem) => {
+  const r = randomizer(population, 'fitness');
+  return population.map(() => mutate(cross(r().dna, r().dna), problem));
 };
 
 const newBest = (best, problem) => {
@@ -201,7 +196,7 @@ const newBest = (best, problem) => {
     canvas.height = height;
 
     drawTriangles(dna, canvas.getContext('2d'), width, height);
-    caption.innerText = `#${number}; fitness: ${fitness.toFixed(4)}`;
+    caption.innerText = `#${critterNumber}; fitness: ${fitness.toFixed(4)}`;
 
     document.querySelector('#bests').prepend(template);
   }
@@ -244,8 +239,7 @@ const mutateTriangle = (triangle, problem) => {
   }
 };
 
-const mutate = (critter, problem) => {
-  const { dna, fitness } = critter;
+const mutate = (dna, problem) => {
   const newTriangles = dna.map(t => mutateTriangle(t, problem));
   const swaps = random.number(3);
   for (let i = 0; i < swaps; i++) {
@@ -255,13 +249,11 @@ const mutate = (critter, problem) => {
     newTriangles[a] = newTriangles[b];
     newTriangles[b] = tmp;
   }
-  /*
   if (Math.random() < 0.001) {
     newTriangles[random.number(newTriangles.length)] = random.triangle(problem.width, problem.height);
-    }
-  */
+  }
   return newTriangles;
 };
 
 // Kick things off by loading our reference image.
-loadReference(IMAGE, 200 / IMAGE.width)
+loadReference(IMAGE, 200 / IMAGE.width, runPopulation);
