@@ -28,7 +28,7 @@ const random = {
 };
 
 const fillReference = (image) => {
-  const { width, height } = sizeCanvases(image);
+  const { width, height } = sizeCanvases(image, 200, 200);
   const ctx = doc.reference.getContext('2d');
   const dim = 550;
   ctx.drawImage(image, 300, 150, dim, dim, 0, 0, width, height);
@@ -40,11 +40,7 @@ const fillReference = (image) => {
   return { imageData, width, height, farthest };
 };
 
-const sizeCanvases = (image) => {
-  //const width = 500;
-  //const height = image.naturalHeight * width / image.naturalWidth;
-  const width = 200;
-  const height = 200;
+const sizeCanvases = (image, width, height) => {
   document.querySelectorAll('canvas').forEach(e => {
     e.width = width;
     e.height = height;
@@ -135,6 +131,7 @@ const runPopulation = (pop, ctx, problem) => {
         const dna = pop[i++];
 
         number++;
+
         drawTriangles(dna, ctx, width, height);
 
         const fitness = scoreImage(ctx, problem);
@@ -164,6 +161,8 @@ const runContinuous = (start, ctx, problem) => {
 
   const step = (t) => {
     number++;
+    doc.generation.innerText = `#${number}`;
+
     const dna = mutate(best, problem);
     drawTriangles(dna, ctx, width, height);
 
@@ -188,7 +187,7 @@ const newBest = (dna, fitness, width, height) => {
   const oldDistance = 1 - oldBest;
   const newDistance = 1 - fitness;
 
-  if ((oldDistance / newDistance) - 1 > 0.1) {
+  if (newDistance < oldDistance * 0.9) {
     oldBest = fitness;
 
     const template = document.querySelector(`#newbest`).content.cloneNode(true);
@@ -279,7 +278,7 @@ image.onload = async () => {
   const ctx = doc.generated.getContext('2d', { willReadFrequently: true });
   const { width, height } = doc.generated;
 
-  let start = random.triangles(50, problem.width, problem.height);
+  let start = random.triangles(4096, problem.width, problem.height);
   runContinuous(start, ctx, problem)
 
   /*
