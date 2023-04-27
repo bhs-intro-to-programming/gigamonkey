@@ -1,5 +1,7 @@
 const doc = Object.fromEntries([...document.querySelectorAll('[id]')].map(e => [e.id, e]));
 
+const IMAGE_URL = "https://en.wikipedia.org/wiki/Mona_Lisa#/media/File:Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg";
+
 let oldBest = 0;
 let number = 0;
 
@@ -27,8 +29,10 @@ const random = {
 
 };
 
-const fillReference = (image) => {
-  const { width, height } = sizeCanvases(image, 200, 200);
+const fillReference = (image, url, width, height) => {
+  sizeCanvases(width, height);
+  doc.reference.nextElementSibling.querySelector('a').href = url;
+
   const ctx = doc.reference.getContext('2d');
   const dim = 550;
   ctx.drawImage(image, 300, 150, dim, dim, 0, 0, width, height);
@@ -40,12 +44,11 @@ const fillReference = (image) => {
   return { imageData, width, height, farthest };
 };
 
-const sizeCanvases = (image, width, height) => {
+const sizeCanvases = (width, height) => {
   document.querySelectorAll('canvas').forEach(e => {
     e.width = width;
     e.height = height;
   });
-  return { width, height };
 };
 
 const rgba = ({r, g, b, a}) => `rgba(${r}, ${g}, ${b}, ${a / 255})`;
@@ -75,7 +78,7 @@ const rgb = (data, idx) => {
 };
 
 const scoreImage = (ctx, problem) => {
-  const { imageData, width, height } = problem;
+  const { imageData, width, height, farthest } = problem;
 
   const generatedImageData = ctx.getImageData(0, 0, width, height).data;
   let sum = 0;
@@ -90,7 +93,7 @@ const scoreImage = (ctx, problem) => {
 
   // If the distance is zero the fitness is 1.0. If distance is actually the
   // farthest away we can be then fitness is 0.0.
-  return (problem.farthest - Math.sqrt(sum)) / problem.farthest;
+  return (farthest - Math.sqrt(sum)) / farthest;
 }
 
 /*
@@ -119,6 +122,11 @@ const loop = (run, after) => {
   requestAnimationFrame(step);
 };
 
+
+/*
+ * Score all the members of the population by drawing them and measuring the
+ * pixel-by-pixel differenc.
+ */
 const runPopulation = (pop, ctx, problem) => {
   const { width, height } = problem;
 
@@ -128,20 +136,16 @@ const runPopulation = (pop, ctx, problem) => {
     const scored = [];
     loop(() => {
       if (i < pop.length) {
-        const dna = pop[i++];
-
         number++;
 
-        drawTriangles(dna, ctx, width, height);
-
-        const fitness = scoreImage(ctx, problem);
-        doc.score.innerText = `Score: ${fitness.toFixed(4)}`;
+        const dna = pop[i++];
+        const fitness = scoreCritter(dna, ctx, problem);
 
         if (fitness > best) {
           best = fitness;
           drawTriangles(dna, doc.best.getContext('2d'), width, height);
           doc.bestScore.innerText = `Score: ${fitness.toFixed(4)}`;
-          newBest(dna, fitness, width, height);
+          newBest(dna, fitness, problem);
         }
         scored.push({ dna, fitness });
       }
@@ -150,31 +154,26 @@ const runPopulation = (pop, ctx, problem) => {
   });
 };
 
+const scoreCritter = (dna, ctx, problem) => {
+  drawTriangles(dna, ctx, problem.width, problem.height);
+  const fitness = scoreImage(ctx, problem);
+  doc.score.innerText = `Score: ${fitness.toFixed(4)}`;
+  return fitness;
+};
 
 const runContinuous = (start, ctx, problem) => {
-  const { width, height } = problem;
 
-  drawTriangles(start, ctx, width, height);
-  let bestFitness = scoreImage(ctx, problem);
-  doc.score.innerText = `Score: ${bestFitness.toFixed(4)}`;
-  let best = { dna: start, fitness: bestFitness };
+  let best = { dna: start, fitness: scoreCritter(start, ctx, problem) };
 
   const step = (t) => {
-    number++;
-    doc.generation.innerText = `#${number}`;
+    doc.generation.innerText = `#${number++}`;
 
     const dna = mutate(best, problem);
-    drawTriangles(dna, ctx, width, height);
+    const fitness = scoreCritter(dna, ctx, problem);
 
-    const fitness = scoreImage(ctx, problem);
-    doc.score.innerText = `Score: ${fitness.toFixed(4)}`;
-
-    if (fitness > bestFitness) {
-      bestFitness = fitness;
+    if (fitness > best.fitness) {
       best = { dna, fitness };
-      drawTriangles(dna, doc.best.getContext('2d'), width, height);
-      doc.bestScore.innerText = `Score: ${fitness.toFixed(4)}`;
-      newBest(dna, fitness, width, height);
+      newBest(best, problem);
     }
     requestAnimationFrame(step);
   };
@@ -182,7 +181,13 @@ const runContinuous = (start, ctx, problem) => {
   requestAnimationFrame(step);
 };
 
-const newBest = (dna, fitness, width, height) => {
+const newBest = (best, problem) => {
+
+  const { dna, fitness } = best;
+  const { width, height } = problem;
+
+  drawTriangles(dna, doc.best.getContext('2d'), width, height);
+  doc.bestScore.innerText = `Score: ${fitness.toFixed(4)}`;
 
   const oldDistance = 1 - oldBest;
   const newDistance = 1 - fitness;
@@ -191,7 +196,6 @@ const newBest = (dna, fitness, width, height) => {
     oldBest = fitness;
 
     const template = document.querySelector(`#newbest`).content.cloneNode(true);
-
     const canvas = template.querySelector('canvas');
     const caption = template.querySelector('figcaption');
 
@@ -242,8 +246,8 @@ const mutateTriangle = (triangle, problem) => {
   }
 };
 
-const mutate = (best, problem) => {
-  const { dna, fitness } = best;
+const mutate = (critter, problem) => {
+  const { dna, fitness } = critter;
   const newTriangles = dna.map(t => mutateTriangle(t, problem));
   const swaps = random.number(3);
   for (let i = 0; i < swaps; i++) {
@@ -261,35 +265,13 @@ const mutate = (best, problem) => {
   return newTriangles;
 };
 
-const nextPopulation = (scored, problem) => {
-  const best = scored.reduce((best, c) => c.fitness > best.fitness ? c : best);
-  return [ best.dna, ...Array(scored.length - 1).fill().map(() => mutate(best, problem)) ];
-};
-
-doc.reference.nextElementSibling.querySelector('a').href = "https://en.wikipedia.org/wiki/Mona_Lisa#/media/File:Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg";
-
 const image = new Image();
-image.src = "mona-lisa.jpg";
 
 image.onload = async () => {
-
-  const problem = fillReference(image);
-
+  const problem = fillReference(image, IMAGE_URL, 200, 200);
+  const start = random.triangles(64, problem.width, problem.height);
   const ctx = doc.generated.getContext('2d', { willReadFrequently: true });
-  const { width, height } = doc.generated;
-
-  let start = random.triangles(4096, problem.width, problem.height);
   runContinuous(start, ctx, problem)
-
-  /*
-
-  let pop = makePopulation(2, problem.width, problem.height);
-
-  for (let i = 0; true; i++) {
-    doc.generation.innerText = `Generation ${i}`;
-    const scored = await runPopulation(pop, ctx, problem);
-    pop = nextPopulation(scored, problem);
-  }
-
-  */
 };
+
+image.src = "mona-lisa.jpg";
