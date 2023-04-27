@@ -1,15 +1,23 @@
 import { point, color, triangle, rgba, rgb, drawTriangle, drawTriangles } from './graphics.js';
+import { randomInt } from './random.js';
 
 const doc = Object.fromEntries([...document.querySelectorAll('[id]')].map(e => [e.id, e]));
 
-const IMAGE_URL = "https://en.wikipedia.org/wiki/Mona_Lisa#/media/File:Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg";
+const IMAGE = {
+  cite: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/687px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg',
+  src: 'mona-lisa.jpg',
+  x: 300,
+  y: 150,
+  width: 550,
+  height: 550,
+}
 
 let oldBest = 0;
 let number = 0;
 
 const random = {
 
-  number: (min, max) => max === undefined ? random.number(0, min) : min + Math.floor(Math.random() * (max - min)),
+  number: (min, max) => max === undefined ? random.number(0, min) : randomInt(min, max),
 
   point: (width, height) => point(random.number(width), random.number(height)),
 
@@ -27,19 +35,30 @@ const random = {
 
 };
 
-const fillReference = (image, url, width, height) => {
-  sizeCanvases(width, height);
-  doc.reference.nextElementSibling.querySelector('a').href = url;
+const loadReference = (image, width, height) => {
 
-  const ctx = doc.reference.getContext('2d');
-  const dim = 550;
-  ctx.drawImage(image, 300, 150, dim, dim, 0, 0, width, height);
-  const imageData = ctx.getImageData(0, 0, width, height).data;
+  const img = new Image();
 
-  // The farthest away one image can be from another given the number of pixels.
-  const farthest = Math.sqrt(((imageData.length / 4) * 3) * 255 ** 2)
+  img.onload = async () => {
 
-  return { imageData, width, height, farthest };
+    sizeCanvases(width, height);
+    doc.reference.nextElementSibling.querySelector('a').href = image.cite;
+
+    const ctx = doc.reference.getContext('2d');
+    ctx.drawImage(img, image.x, image.y, image.width, image.height, 0, 0, width, height);
+    const imageData = ctx.getImageData(0, 0, width, height).data;
+
+    // The farthest away one image can be from another given the number of pixels.
+    const farthest = Math.sqrt(((imageData.length / 4) * 3) * 255 ** 2)
+
+    runContinuous(
+      random.triangles(64, width, height),
+      doc.generated.getContext('2d', { willReadFrequently: true }),
+      { imageData, width, height, farthest }
+    );
+  };
+
+  img.src = image.src;
 };
 
 const sizeCanvases = (width, height) => {
@@ -50,6 +69,7 @@ const sizeCanvases = (width, height) => {
 };
 
 const scoreImage = (ctx, problem) => {
+
   const { imageData, width, height, farthest } = problem;
 
   const generatedImageData = ctx.getImageData(0, 0, width, height).data;
@@ -93,7 +113,6 @@ const loop = (run, after) => {
   };
   requestAnimationFrame(step);
 };
-
 
 /*
  * Score all the members of the population by drawing them and measuring the
@@ -237,13 +256,5 @@ const mutate = (critter, problem) => {
   return newTriangles;
 };
 
-const image = new Image();
-
-image.onload = async () => {
-  const problem = fillReference(image, IMAGE_URL, 200, 200);
-  const start = random.triangles(64, problem.width, problem.height);
-  const ctx = doc.generated.getContext('2d', { willReadFrequently: true });
-  runContinuous(start, ctx, problem)
-};
-
-image.src = "mona-lisa.jpg";
+// Kick things off by loading our reference image.
+loadReference(IMAGE, 200, 200);

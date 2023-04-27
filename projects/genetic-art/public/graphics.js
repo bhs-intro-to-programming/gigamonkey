@@ -18,6 +18,7 @@ const triangle = (a, b, c, color) => ({ a, b, c, color });
  */
 const rgba = ({r, g, b, a}) => `rgba(${r}, ${g}, ${b}, ${a / 255})`;
 
+
 /*
  * Draw a single triangle.
  */
