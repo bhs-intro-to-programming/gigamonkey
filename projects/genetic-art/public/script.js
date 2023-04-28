@@ -4,7 +4,9 @@ import { randomInt, randomizer } from './random.js';
 const doc = Object.fromEntries([...document.querySelectorAll('[id]')].map(e => [e.id, e]));
 
 const POP_SIZE = 1000;
-const TRIANGLES = 64;
+const TRIANGLES = 1;
+
+let addTriangle = false;
 
 const IMAGE = {
   cite: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/687px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg',
@@ -114,7 +116,11 @@ const runContinuous = (ctx, problem) => {
   newBest(best, problem);
 
   const step = () => {
-    const next = scored(mutate(best.dna, problem), ctx, problem);
+    if (addTriangle) {
+      best.dna.push(random.triangle(problem.width, problem.height));
+      addTriangle = false;
+    }
+    const next = scored(mutate(best.dna, problem, 1/best.dna.length), ctx, problem);
     if (next.fitness > best.fitness) {
       best = next;
       newBest(best, problem);
@@ -133,7 +139,8 @@ const runPopulation = async (ctx, problem) => {
   while (true) {
     // TODO: display best and worst.
     console.log(`Generation ${gen++}`);
-    population = await scoreGenomes(newPopulation(population, problem), ctx, problem);
+    const offspring = await scoreGenomes(newPopulation(population, problem), ctx, problem);
+    population = [...offspring, ...population].sort((a, b) => b.fitness - a.fitness).splice(0, population.length);
   }
 };
 
@@ -167,11 +174,18 @@ const scoreGenomes = (genomes, ctx, problem) => {
   });
 };
 
-const cross = (dna1, dna2) => dna1.map((t, i) => Math.random() < 0.5 ? t : dna2[i]);
+const crossRandom = (dna1, dna2) => dna1.map((t, i) => Math.random() < 0.5 ? t : dna2[i]);
+
+const crossRandomPoint = (dna1, dna2) => {
+  const i = randomInt(0, dna1.length);
+  return [...dna1.slice(0, i), ...dna2.slice(i)];
+}
+
+const cross = crossRandomPoint;
 
 const newPopulation = (population, problem) => {
   const r = randomizer(population, 'fitness');
-  return population.map(() => mutate(cross(r().dna, r().dna), problem));
+  return population.map(() => mutate(cross(r().dna, r().dna), problem, 0.005));
 };
 
 const newBest = (best, problem) => {
@@ -221,9 +235,9 @@ const mutateColor = (color) => {
   };
 };
 
-const mutateTriangle = (triangle, problem) => {
+const mutateTriangle = (triangle, problem, rate) => {
   const { a, b, c, color } = triangle;
-  if (Math.random() < 0.01) {
+  if (Math.random() < rate) {
     if (Math.random() < 0.5) {
       return {
         a: mutatePoint(a, problem),
@@ -239,8 +253,8 @@ const mutateTriangle = (triangle, problem) => {
   }
 };
 
-const mutate = (dna, problem) => {
-  const newTriangles = dna.map(t => mutateTriangle(t, problem));
+const mutate = (dna, problem, triangleRate) => {
+  const newTriangles = dna.map(t => mutateTriangle(t, problem, triangleRate));
   const swaps = random.number(3);
   for (let i = 0; i < swaps; i++) {
     const a = random.number(newTriangles.length);
@@ -255,5 +269,22 @@ const mutate = (dna, problem) => {
   return newTriangles;
 };
 
+const mutateLast = (dna, problem, triangleRate) => {
+  return dna.map((t, i) => {
+    if (i === dna.length - 1) {
+      return mutateTriangle(t, problem, triangleRate);
+    } else {
+      return { ...t};
+    }
+  });
+};
+
+
+
+document.querySelector('button').onclick = () => {
+  addTriangle = true;
+};
+
 // Kick things off by loading our reference image.
-loadReference(IMAGE, 200 / IMAGE.width, runPopulation);
+//loadReference(IMAGE, 200 / IMAGE.width, runPopulation);
+loadReference(IMAGE, 200 / IMAGE.width, runContinuous);
