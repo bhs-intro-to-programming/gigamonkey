@@ -62,3 +62,4 @@ const fibtree = (n) => {
     return 1 + fibtree(n - 2) + fibtree(n - 1);
   }
 }
+console.log('hello');
