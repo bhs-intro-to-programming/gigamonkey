@@ -33,7 +33,9 @@ const random = {
       random.point(width, height),
       random.point(width, height),
       random.point(width, height),
-      random.color())
+      //random.color()
+      color(128, 128, 128, 128)
+    );
   },
 
   triangles: (n, width, height) => Array(n).fill().map(() => random.triangle(width, height)),
@@ -407,8 +409,6 @@ const mutateLast = (dna, problem, triangleRate) => {
     }
   });
 };
-
-
 
 document.querySelector('button').onclick = () => {
   addTriangle = true;
