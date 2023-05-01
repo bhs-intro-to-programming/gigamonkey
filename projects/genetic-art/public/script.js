@@ -4,7 +4,7 @@ import { randomInt, randomizer, choose } from './random.js';
 const doc = Object.fromEntries([...document.querySelectorAll('[id]')].map(e => [e.id, e]));
 
 const POP_SIZE = 100;
-const TRIANGLES = 150;
+const TRIANGLES = 50;
 
 let addTriangle = false;
 
@@ -13,8 +13,8 @@ const IMAGE = {
   src: 'mona-lisa.jpg',
   x: 300,
   y: 150,
-  width: 575,
-  height: 700,
+  width: 550,
+  height: 550,
 }
 
 let oldBest = 0;
