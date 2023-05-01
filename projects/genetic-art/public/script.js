@@ -103,7 +103,7 @@ const scoreImage = (ctx, problem) => {
 
   // If the distance is zero the fitness is 1.0. If distance is actually the
   // farthest away we can be then fitness is 0.0.
-  return ((farthest - Math.sqrt(sum)) / farthest) ** 2;
+  return ((farthest - Math.sqrt(sum)) / farthest);
 };
 
 const scored = (dna, ctx, problem) => {
