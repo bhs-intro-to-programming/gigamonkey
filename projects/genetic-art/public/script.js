@@ -305,9 +305,9 @@ const newPopulation = (population, problem) => {
 
   console.log(`best: ${best}; worst: ${worst}; m: ${m}`);
 
-  const parents = population.slice(0, population.length / 2);
+  const parents = population.slice(0, population.length * 0.1);
   const r = randomizer(parents, 'fitness');
-  return population.map(() => mutate(cross(r().dna, r().dna), problem, m));
+  return population.map(() => mutate(cross(r().dna, r().dna), problem, 0.01));
 };
 
 
@@ -364,13 +364,16 @@ const mutateTriangle = (triangle, problem, rate) => {
   if (Math.random() < rate) {
     if (Math.random() < 0.5) {
       return {
+        ...triangle,
         a: mutatePoint(a, problem),
         b: mutatePoint(b, problem),
         c: mutatePoint(c, problem),
-        ...triangle
       };
     } else {
-      return { color: mutateColor(color), ...triangle };
+      return {
+        ...triangle,
+        color: mutateColor(color),
+      };
     }
   } else {
     return { ...triangle };
@@ -387,9 +390,11 @@ const mutate = (dna, problem, triangleRate) => {
     newTriangles[a] = newTriangles[b];
     newTriangles[b] = tmp;
   }
+  /*
   if (Math.random() < 0.001) {
     newTriangles[random.number(newTriangles.length)] = random.triangle(problem.width, problem.height);
   }
+  */
   return newTriangles;
 };
 
