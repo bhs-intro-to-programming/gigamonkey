@@ -1,10 +1,10 @@
 import { point, color, triangle, rgba, rgb, drawTriangle, drawTriangles } from './graphics.js';
-import { randomInt, randomizer } from './random.js';
+import { randomInt, randomizer, choose } from './random.js';
 
 const doc = Object.fromEntries([...document.querySelectorAll('[id]')].map(e => [e.id, e]));
 
-const POP_SIZE = 1000;
-const TRIANGLES = 1;
+const POP_SIZE = 100;
+const TRIANGLES = 150;
 
 let addTriangle = false;
 
@@ -38,8 +38,16 @@ const random = {
 
   triangles: (n, width, height) => Array(n).fill().map(() => random.triangle(width, height)),
 
-  population: (size, w, h) => Array(size).fill().map(() => random.triangles(TRIANGLES, w, h)),
+  population: (size, problem) => {
+    const { width, height } = problem;
+    return Array(size).fill().map(() => random.triangles(TRIANGLES, width, height))
+  },
 
+  populationX: (size, problem) => {
+    const { width, height } = problem;
+    const root = random.triangles(TRIANGLES, width, height);
+    return Array(size).fill(root).map((r) => mutate(r, problem, 1.0));
+  },
 };
 
 const loadReference = (image, scale, start) => {
@@ -120,7 +128,7 @@ const runContinuous = (ctx, problem) => {
       best.dna.push(random.triangle(problem.width, problem.height));
       addTriangle = false;
     }
-    const next = scored(mutate(best.dna, problem, 1/best.dna.length), ctx, problem);
+    const next = scored(mutate(best.dna, problem, 0.01 /*1/best.dna.length*/), ctx, problem);
     if (next.fitness > best.fitness) {
       best = next;
       newBest(best, problem);
@@ -133,7 +141,7 @@ const runContinuous = (ctx, problem) => {
 const runPopulation = async (ctx, problem) => {
   let gen = 0;
   console.log(`Generation ${gen++}`);
-  const seedDNA = random.population(POP_SIZE, problem.width, problem.height);
+  const seedDNA = random.population(POP_SIZE, problem);
   let population = await scoreGenomes(seedDNA, ctx, problem);
 
   while (true) {
@@ -143,6 +151,106 @@ const runPopulation = async (ctx, problem) => {
     population = [...offspring, ...population].sort((a, b) => b.fitness - a.fitness).splice(0, population.length);
   }
 };
+
+// Pick triangles at random to make image.
+// Each triangle looses some energy for being in the image but gains energy based on fitness of image.
+// When a triangle's energy is depleted, it is removed from the population.
+// When a triangle gets enough energy, it splits its energy to make a child.
+// The child will be mutated from its parent.
+//
+// energy = 0 = death
+
+// energy decrement should be based on moving average of image fitness so as
+// average fitness goes up (and thus the reward for being part of an image) goes
+// up, the cost of being part of an image also goes up. Perhaps something like
+// averageFitness divided by 100 or 1000. Possibly also the cost should be a
+// function of the number of triangles in that slot? So if there's one triangle
+// it's almost free and therefore it can accumulate energy and spawn more
+// children but as more triangles are spawned, they have to be more productive
+// to survive.
+
+// Possibly the threshold for reproducing should also be tied to the average
+// image fitness.
+
+
+const runTriangles = async (ctx, problem) => {
+  const { width, height } = problem;
+
+  const triangles = Array(TRIANGLES).fill().map(() => random.triangles(100, width, height));
+  const weight = 0.9;
+
+  let average = 1.0;
+  let best = { fitness: -Infinity }
+
+  const step = () => {
+    const img = triangles.map(selectTriangle);
+    const next = scored(img, ctx, problem);
+
+    if (next.fitness > best.fitness) {
+      best = next;
+      newBest(next, problem);
+    }
+
+    img.forEach((t, i) => {
+      // Gain energy image is above average, lose if we're below.
+      t.energy += next.fitness - average;
+      t.energy -= average / 2;
+
+      if (t.energy <= 0) {
+        // Triangle ran out of energy and died.
+        removeTriangle(t, triangles[i], i)
+
+        if (triangles[i].length === 0) {
+          // Uh, repopulate I guess.
+          console.log(`Repopulating species ${i}`);
+          triangles[i] = random.triangles(100, width, height);
+        }
+
+      } else if (t.energy > average * 0.95) {
+        // Triangle has engery for a kid
+        const child = mutateTriangle(t, problem, 1.0);
+        child.energy /= 2;
+        t.energy /= 2;
+        triangles[i].push(child);
+        //console.log(`Spawning child at ${i}; pop: ${triangles[i].length}`);
+      }
+    });
+
+    // Update moving average.
+    average = (average * weight) + (next.fitness * (1 - weight));
+
+    requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+};
+
+const removeTriangle = (t, species, i) => {
+  //console.log(`Removing triangle from ${i} length: ${species.length}`);
+  const last = species.pop();
+  if (last !== t) {
+    const idx = species.indexOf(t);
+    //console.log(`Putting ${last} in ${idx}`);
+    species[idx] = last;
+  } else {
+    //console.log(`t was last`);
+  }
+  //console.log(`Removed triangle from ${i} length: ${species.length}`);
+};
+
+
+const selectTriangle = (ts) => {
+
+  const t = choose(ts);
+  if (t === undefined) {
+    debugger;
+  }
+  if (!('energy' in t)) {
+    t.energy = 1.0;
+  }
+  return t;
+}
+
+
 
 /*
  * Score all the genomes in a population by drawing them and measuring the
@@ -183,10 +291,26 @@ const crossRandomPoint = (dna1, dna2) => {
 
 const cross = crossRandomPoint;
 
-const newPopulation = (population, problem) => {
+const newPopulationX = (population, problem) => {
   const r = randomizer(population, 'fitness');
-  return population.map(() => mutate(cross(r().dna, r().dna), problem, 0.005));
+  return population.map(() => mutate(cross(r().dna, r().dna), problem, 0.01));
 };
+
+const newPopulation = (population, problem) => {
+  population.sort((a, b) => b.fitness - a.fitness);
+
+  const best = population[0].fitness;
+  const worst = population[population.length - 1].fitness;
+  const m = 1 / (100 * (best - worst));
+
+  console.log(`best: ${best}; worst: ${worst}; m: ${m}`);
+
+  const parents = population.slice(0, population.length / 2);
+  const r = randomizer(parents, 'fitness');
+  return population.map(() => mutate(cross(r().dna, r().dna), problem, m));
+};
+
+
 
 const newBest = (best, problem) => {
 
@@ -243,13 +367,13 @@ const mutateTriangle = (triangle, problem, rate) => {
         a: mutatePoint(a, problem),
         b: mutatePoint(b, problem),
         c: mutatePoint(c, problem),
-        color
+        ...triangle
       };
     } else {
-      return { a, b, c, color: mutateColor(color) };
+      return { color: mutateColor(color), ...triangle };
     }
   } else {
-    return { a, b, c, color };
+    return { ...triangle };
   }
 };
 
@@ -288,3 +412,4 @@ document.querySelector('button').onclick = () => {
 // Kick things off by loading our reference image.
 //loadReference(IMAGE, 200 / IMAGE.width, runPopulation);
 loadReference(IMAGE, 200 / IMAGE.width, runContinuous);
+//loadReference(IMAGE, 200 / IMAGE.width, runTriangles);
