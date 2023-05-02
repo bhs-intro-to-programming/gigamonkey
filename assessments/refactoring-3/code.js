@@ -1,5 +1,5 @@
 const drawPicture = () => {
-
+  clear();
 };
 
 drawPicture();
