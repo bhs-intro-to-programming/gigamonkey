@@ -1,6 +1,6 @@
 const drawPicture = () => {
   drawFilledRect(0, 0, width, height, '#ff00ff99');
-  drawSnowflake(width/2, height/2, 10);
+  drawSnowflake(width/2, height/2, 30);
 };
 
 const drawSnowflake = (x, y, size) => {
