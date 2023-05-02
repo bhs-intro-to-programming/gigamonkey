@@ -5,7 +5,7 @@ const drawPicture = () => {
 
 const drawSnowflake = (x, y, size) => {
   drawFilledTriangle(x - size, y - size, x + size, y - size, x, y + size, 'white')
-  drawFilledTriangle(x - size, y + size, x + size, y + size, x, y - 2 * size, 'white')
+  drawFilledTriangle(x - size, y + 2 * size, x + size, y + 2 * size, x, y - 2 * size, 'white')
 };
 
 drawPicture();
