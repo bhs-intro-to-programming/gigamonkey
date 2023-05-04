@@ -1,5 +1,5 @@
 import { point, color, triangle, rgba, rgb, drawTriangle, drawTriangles } from './graphics.js';
-import { randomInt, randomizer, choose } from './random.js';
+import { randomInt, randomizer, choose, shuffled } from './random.js';
 
 const doc = Object.fromEntries([...document.querySelectorAll('[id]')].map(e => [e.id, e]));
 
@@ -392,6 +392,17 @@ const mutate = (dna, problem, triangleRate) => {
     newTriangles[a] = newTriangles[b];
     newTriangles[b] = tmp;
   }
+  if (Math.random() < 0.01) {
+    const toSplit = random.number(newTriangles.length);
+    const ts = splitTriangle(newTriangles[toSplit]);
+
+    const m = randomInt(0, ts.length);
+    ts[m] = mutateTriangle(ts[m], problem, 1.0);
+
+    newTriangles.splice(toSplit, 1, ...ts);
+    const toRemove = random.number(newTriangles.length);
+    newTriangles.splice(toRemove, 1);
+  }
   /*
   if (Math.random() < 0.001) {
     newTriangles[random.number(newTriangles.length)] = random.triangle(problem.width, problem.height);
@@ -410,11 +421,51 @@ const mutateLast = (dna, problem, triangleRate) => {
   });
 };
 
+/*
+ * Randomly split a triangle into two triangles.
+ */
+const splitTriangle = (t) => {
+  const vs = shuffled([t.a, t.b, t.c]);
+  const dx = vs[2].x - vs[1].x;
+  const dy = vs[2].y - vs[1].y;
+  let nv;
+  if (dx !== 0) {
+    const rx = (1 - Math.random()) * dx;
+    nv = { x: vs[1].x + rx, y: vs[1].y + (rx * dy / dx) };
+  } else {
+    const ry = (1 - Math.random()) * dy;
+    nv = { x: vs[1].x + (ry * (dx / dy)), y: vs[1].y + ry };
+  }
+  return [
+    triangle(vs[0], nv, vs[1], t.color),
+    triangle(vs[0], nv, vs[2], t.color),
+  ];
+};
+
 document.querySelector('button').onclick = () => {
   addTriangle = true;
 };
+
+const testTriangleSplit = (ctx, problem) => {
+  const red = color(255, 0, 0, 128);
+  const blue = color(0, 0, 255, 128);
+  const t0 = triangle(
+    point(0, 0),
+    point(0, problem.height),
+    point(problem.width, 0),
+    color(255, 0, 0, 255)
+  );
+  const ts = splitTriangle(t0);
+  //console.log(JSON.stringify(ts, null, 2));
+  drawTriangle({...ts[0], color: blue }, ctx);
+  drawTriangle({...ts[1], color: red}, ctx);
+  //drawTriangle(t0, ctx);
+
+}
+
 
 // Kick things off by loading our reference image.
 //loadReference(IMAGE, 200 / IMAGE.width, runPopulation);
 loadReference(IMAGE, 200 / IMAGE.width, runContinuous);
 //loadReference(IMAGE, 200 / IMAGE.width, runTriangles);
+//loadReference(IMAGE, 200 / IMAGE.width, testTriangleSplit);
