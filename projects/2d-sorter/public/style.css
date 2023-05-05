@@ -18,6 +18,12 @@ text {
   font-family: "Gill Sans";
 }
 
+text:hover,
+circle:hover
+{
+  cursor: grab;
+}
+
 .item text {
   font-weight: 300;
 }
