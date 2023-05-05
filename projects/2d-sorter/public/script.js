@@ -37,8 +37,6 @@ const svg = new Svg(document.getElementById("plot"));
 
 const origin = { x: svg.width / 2, y: svg.height / 2 };
 
-svg.selected = null;
-
 const axesOpts = { 'class': 'axis' };
 
 const gt = svg.text(origin.x, 0, "Good Tool", { 'text-anchor': 'middle', 'dominant-baseline': 'text-after-edge' } );
@@ -101,45 +99,66 @@ const clamp = (v, min, max) => Math.min(Math.max(v, min), max);
  * within the bounds
  */
 const logicalPosition = (x, y, origin, bounds) => {
-  console.log(bounds);
   return {
     x: clamp((x - origin.x) / (bounds.width / 2), -1, 1),
     y: clamp((origin.y - y) / (bounds.height / 2), -1, 1),
   };
 };
 
+const physicalPosition = (x, y, origin, bounds) => {
+  return {
+    x: origin.x + x * (bounds.width / 2),
+    y: origin.y - y * (bounds.height / 2),
+  };
+};
 
 const setupDrag = (e) => {
 
+  let selected = null;
+  let clickOffset = null;
+
   e.onmousedown = (evt) => {
-    console.log(evt);
+    const { offsetX: x, offsetY: y } = evt;
+
     if (evt.target !== e) {
-      svg.selected = evt.target.parentNode;
+      selected = evt.target.parentNode;
+
+      const item = svgToItems.get(selected);
+      const p = physicalPosition(item.position.x, item.position.y, origin, dragBounds);
+
+      // Offset from where we actually clicked to where the item should be positioned.
+      clickOffset = { x: x - p.x, y: y - p.y };
+
       evt.stopPropagation();
     } else {
       if (uses.length > 0) {
-        const { offsetX: x, offsetY: y } = evt;
         const label = uses.pop();
-        const pos = logicalPosition(x, y, origin, dragBounds);
         const g = svg.g({'class': 'item', 'draggable': true}, e);
         svg.circle(origin.x, origin.y, 4, { 'fill': '#f003', 'stroke': 'blue', 'stroke-width': 1 }, g);
         svg.text(origin.x + 8, origin.y + 2, label, { 'text-anchor': 'start', 'dominant-baseline': 'middle' }, g);
 
         const item = new Item(label, dragBounds, g);
         svgToItems.set(g, item);
+
+        const pos = logicalPosition(x, y, origin, dragBounds);
         item.moveTo(pos);
-        svg.selected = g;
+        clickOffset = { x: 0, y: 0 };
+        selected = g;
       }
     }
   };
 
   e.onmouseup = () => {
-    svg.selected = null;
+    selected = null;
+    clickOffset = null;
   };
 
   e.onmousemove = (evt) => {
-    if (svg.selected !== null) {
-      svgToItems.get(svg.selected).moveTo(logicalPosition(evt.offsetX, evt.offsetY, origin, dragBounds));
+    if (selected !== null) {
+      const { offsetX: x, offsetY: y } = evt;
+      const item = svgToItems.get(selected);
+      const newPos = { x: x - clickOffset.x, y: y - clickOffset.y };
+      item.moveTo(logicalPosition(newPos.x, newPos.y, origin, dragBounds));
     }
   };
 }
