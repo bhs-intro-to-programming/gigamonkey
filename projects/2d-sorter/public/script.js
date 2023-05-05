@@ -34,20 +34,57 @@ class Item {
 const logEvent = (e) => { console.log(e); };
 
 const svg = new Svg(document.getElementById("plot"));
+
 const origin = { x: svg.width / 2, y: svg.height / 2 };
 
 svg.selected = null;
 
 const axesOpts = { 'class': 'axis' };
 
-svg.line(origin.x, 50, origin.x, svg.height - 50, axesOpts);
-svg.line(100, origin.y, svg.width - 100, origin.y, axesOpts);
+const gt = svg.text(origin.x, 0, "Good Tool", { 'text-anchor': 'middle', 'dominant-baseline': 'text-after-edge' } );
+const bt = svg.text(origin.x, svg.height - 10, "Bad Tool", { 'text-anchor': 'middle', 'dominant-baseline': 'text-before-edge' });
 
-svg.text(origin.x, 45, "Good Tool", { 'text-anchor': 'middle', 'dominant-baseline': 'text-after-edge' } );
-svg.text(origin.x, svg.height - 45, "Bad Tool", { 'text-anchor': 'middle', 'dominant-baseline': 'text-before-edge' });
+const hurts = svg.text(0, origin.y, "Hurts learning", { 'text-anchor': 'start', 'dominant-baseline': 'middle' });
+const helps = svg.text(svg.width, origin.y, "Helps learning", { 'text-anchor': 'end', 'dominant-baseline': 'middle' });
 
-svg.text(0, origin.y, "Hurts learning", { 'text-anchor': 'start', 'dominant-baseline': 'middle' });
-svg.text(svg.width, origin.y, "Helps learning", { 'text-anchor': 'end', 'dominant-baseline': 'middle' });
+const hBorder = Math.max(hurts.getBBox().width, helps.getBBox().width) + 5;
+const vBorder = Math.max(gt.getBBox().height, bt.getBBox().height) * 2;
+
+bt.setAttribute('y', svg.height - (vBorder - 5));
+gt.setAttribute('y', (vBorder - 5));
+
+// Draw box for debugging
+//svg.rect(hBorder, vBorder, svg.width - hBorder * 2, svg.height - vBorder * 2, {});
+
+// Draw axes
+svg.line(origin.x, vBorder, origin.x, svg.height - vBorder, axesOpts);
+svg.line(hBorder, origin.y, svg.width - hBorder, origin.y, axesOpts);
+svg.polygon(
+  [
+    {x: origin.x - 10, y: vBorder + 10},
+    {x: origin.x + 10, y: vBorder + 10},
+    {x: origin.x, y: vBorder},
+  ], axesOpts);
+svg.polygon(
+  [
+    {x: origin.x - 10, y: svg.height - vBorder - 10},
+    {x: origin.x + 10, y: svg.height - vBorder - 10},
+    {x: origin.x, y: svg.height - vBorder},
+  ], axesOpts);
+svg.polygon(
+  [
+    {x: svg.width - hBorder - 10, y: origin.y - 10 },
+    {x: svg.width - hBorder - 10, y: origin.y + 10 },
+    {x: svg.width - hBorder, y: origin.y },
+  ], axesOpts);
+
+svg.polygon(
+  [
+    {x: hBorder + 10, y: origin.y - 10 },
+    {x: hBorder + 10, y: origin.y + 10 },
+    {x: hBorder, y: origin.y },
+  ], axesOpts);
+
 
 svg.e.onmousedown = (evt) => {
   if (evt.target !== svg.e) {

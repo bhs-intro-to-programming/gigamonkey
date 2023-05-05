@@ -20,6 +20,10 @@ class Svg {
     return this.#setAttributes(this.element("line"), { x1, y1, x2, y2, ...opts }, parent);
   }
 
+  rect(x, y, width, height, opts, parent) {
+    return this.#setAttributes(this.element("rect"), { x, y, width, height, ...opts }, parent);
+  }
+
   text(x, y, text, opts, parent) {
     const t = this.element("text");
     t.textContent = text;
@@ -32,6 +36,11 @@ class Svg {
 
   g(opts, parent) {
     return this.#setAttributes(this.element("g"), opts, parent);
+  }
+
+  polygon(coords, opts, parent) {
+    const points = coords.map(({x, y}) => `${x},${y}`).join(" ");
+    return this.#setAttributes(this.element("polygon"), { points, ...opts }, parent);
   }
 
   #setAttributes(e, opts, parent) {
