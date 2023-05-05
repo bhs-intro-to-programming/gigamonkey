@@ -15,58 +15,72 @@ const uses = [
 class Item {
   // x, and y are values in the range [-1, 1] indicating how far they are from
   // the origin on each scale.
-  constructor(x, y, label) {
-    this.x = x;
-    this.y = y;
+  constructor(label, svg, g) {
     this.label = label;
+    this.position = { x: 0, y: 0 };
+    this.g = g;
+    this.xScale = svg.width / 2;
+    this.yScale = svg.height / 2;
+  }
+
+  moveTo(pos) {
+    this.position = pos;
+    const x = this.position.x * this.xScale;
+    const y = - (this.position.y * this.yScale);
+    this.g.setAttribute('transform', `translate(${x} ${y})`);
   }
 }
 
 const logEvent = (e) => { console.log(e); };
 
 const svg = new Svg(document.getElementById("plot"));
+const origin = { x: svg.width / 2, y: svg.height / 2 };
+
 svg.selected = null;
 
-const middleX = svg.width / 2;
-const middleY = svg.height / 2;
+const axesOpts = { 'class': 'axis' };
 
-const axesOpts = { stroke: "#aaa", 'stroke-width': 2 };
-svg.line(middleX, 50, middleX, svg.height - 50, axesOpts);
-svg.line(100, middleY, svg.width - 100, middleY, axesOpts);
+svg.line(origin.x, 50, origin.x, svg.height - 50, axesOpts);
+svg.line(100, origin.y, svg.width - 100, origin.y, axesOpts);
 
-svg.text(middleX, 45, "Good Tool", { 'text-anchor': 'middle', 'dominant-baseline': 'text-after-edge' } );
-svg.text(middleX, svg.height - 45, "Bad Tool", { 'text-anchor': 'middle', 'dominant-baseline': 'text-before-edge' });
+svg.text(origin.x, 45, "Good Tool", { 'text-anchor': 'middle', 'dominant-baseline': 'text-after-edge' } );
+svg.text(origin.x, svg.height - 45, "Bad Tool", { 'text-anchor': 'middle', 'dominant-baseline': 'text-before-edge' });
 
-svg.text(0, middleY, "Hurts learning", { 'text-anchor': 'start', 'dominant-baseline': 'middle' });
-svg.text(svg.width, middleY, "Helps learning", { 'text-anchor': 'end', 'dominant-baseline': 'middle' });
+svg.text(0, origin.y, "Hurts learning", { 'text-anchor': 'start', 'dominant-baseline': 'middle' });
+svg.text(svg.width, origin.y, "Helps learning", { 'text-anchor': 'end', 'dominant-baseline': 'middle' });
 
 svg.e.onmousedown = (evt) => {
   if (evt.target !== svg.e) {
     svg.selected = evt.target.parentNode;
-    console.log(`selecting ${svg.selected}`);
     evt.stopPropagation();
   } else {
     if (uses.length > 0) {
       const { offsetX: x, offsetY: y } = evt;
       const label = uses.pop();
+
+      const pos = logicalPosition(x, y, origin, svg);
+
       const g = svg.g({'class': 'item', 'draggable': true});
-      svg.circle(x, y, 4, { 'fill': '#f003', 'stroke': 'blue', 'stroke-width': 1 }, g);
-      svg.text(x + 8, y + 2, label, { 'text-anchor': 'start', 'dominant-baseline': 'middle' }, g);
-      itemsToSvg.set(label, g);
-      svgToItems.set(g, lable);
+      svg.circle(origin.x, origin.y, 4, { 'fill': '#f003', 'stroke': 'blue', 'stroke-width': 1 }, g);
+      svg.text(origin.x + 8, origin.y + 2, label, { 'text-anchor': 'start', 'dominant-baseline': 'middle' }, g);
+
+      const item = new Item(label, svg, g);
+      svgToItems.set(g, item);
+      item.moveTo(pos);
     }
   }
 };
 
+const logicalPosition = (x, y, origin, svg) => {
+  return { x: (x - origin.x) / (svg.width / 2), y: (origin.y - y) / (svg.height / 2) };
+};
+
 svg.e.onmouseup = () => {
-  console.log(`deselecting ${svg.selected}`);
   svg.selected = null;
 };
 
 svg.e.onmousemove = (evt) => {
   if (svg.selected !== null) {
-    const { offsetX: x, offsetY: y } = evt;
-    console.log(`dragging to ${x},${y}`);
+    svgToItems.get(svg.selected).moveTo(logicalPosition(evt.offsetX, evt.offsetY, origin, svg));
   }
-
 };

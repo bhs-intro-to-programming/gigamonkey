@@ -24,3 +24,8 @@ h1 {
 p {
   font-size: 18px;
 }
+
+line.axis {
+  stroke: #aaa;
+  stroke-width: 2px;
+}
