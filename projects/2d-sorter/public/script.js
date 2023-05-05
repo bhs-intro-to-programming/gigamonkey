@@ -117,7 +117,7 @@ const setupDrag = (e) => {
       selected = evt.target.parentNode;
 
       // Get offset from where we actually clicked to where the item should be positioned.
-      const p = svgToItems.get(selected).physicalPosition(origin, dragBounds);
+      const p = svgToItems.get(selected)?.physicalPosition(origin, dragBounds);
       clickOffset = { x: x - p.x, y: y - p.y };
 
       evt.stopPropagation();
@@ -156,14 +156,26 @@ const addItem = (label, x, y, e) => {
   return g;
 }
 
+const randomSign = () => Math.sign(Math.random() - 0.5);
+const randomNum = (n) => Math.floor(Math.random() * n);
+
 const randomPositions = (bounds, e) => {
-  while (uses.length > 0) {
-    const x = origin.x + (-100 + Math.random() * 200);
-    const y = origin.y + (-100 + Math.random() * 200);
-    addItem(uses.pop(), x, y, e);
+  const a = (Math.PI * 2) / uses.length - 2;
+  const lim = Math.min(bounds.width / 4, bounds.height / 4);
+  for (let i = 0; i < uses.length; i++) {
+    const h = lim + randomNum(lim);
+    const x = origin.x + Math.cos(a * i + 1) * h;
+    const y = origin.y + Math.sin(a * i + 1) * h;
+    addItem(uses[i], x, y, e);
   }
+  uses.splice(0, uses.length);
 };
 
-//randomPositions(dragBounds, svg.e);
+randomPositions(dragBounds, svg.e);
 drawAxes(svg);
 setupDrag(svg.e);
+
+
+document.querySelector('input').onchange = (e) => {
+  addItem(e.currentTarget.value, origin.x, origin.y, svg.e);
+}
