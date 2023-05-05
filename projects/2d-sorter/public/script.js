@@ -1,6 +1,7 @@
 import { Svg } from './svg.js';
 
-const itemsToSvg = new Map();
+const logEvent = (e) => { console.log(e); };
+
 const svgToItems = new Map();
 
 const uses = [
@@ -23,44 +24,54 @@ class Item {
     this.yScale = bounds.height / 2;
   }
 
-  moveTo(pos) {
-    this.position = pos;
-    const x = this.position.x * this.xScale;
-    const y = - (this.position.y * this.yScale);
-    this.g.setAttribute('transform', `translate(${x} ${y})`);
+  moveTo(x, y, origin, bounds) {
+    // Translate raw x,y SVG coordinate to -1,1 coordinates based on the
+    // position within the bounds
+    this.position = {
+      x: clamp((x - origin.x) / (bounds.width / 2), -1, 1),
+      y: clamp((origin.y - y) / (bounds.height / 2), -1, 1),
+    };
+    const nx = this.position.x * this.xScale;
+    const ny = - (this.position.y * this.yScale);
+    this.g.setAttribute('transform', `translate(${nx} ${ny})`);
   }
-}
 
-const logEvent = (e) => { console.log(e); };
+  physicalPosition (origin, bounds) {
+    return {
+      x: origin.x + this.position.x * (bounds.width / 2),
+      y: origin.y - this.position.y * (bounds.height / 2),
+    };
+  };
+}
 
 const svg = new Svg(document.getElementById("plot"));
 
 const origin = { x: svg.width / 2, y: svg.height / 2 };
 
 const axesOpts = { 'class': 'axis' };
+const labelPadding = 5;
 
-const gt = svg.text(origin.x, 0, "Good Tool", { 'text-anchor': 'middle', 'dominant-baseline': 'text-after-edge' } );
-const bt = svg.text(origin.x, svg.height - 10, "Bad Tool", { 'text-anchor': 'middle', 'dominant-baseline': 'text-before-edge' });
+const labels = {
+  north: svg.text(origin.x, 0, "Good Tool", { 'text-anchor': 'middle', 'dominant-baseline': 'text-after-edge' } ),
+  south: svg.text(origin.x, svg.height - 10, "Bad Tool", { 'text-anchor': 'middle', 'dominant-baseline': 'text-before-edge' }),
+  west: svg.text(0, origin.y, "Hurts learning", { 'text-anchor': 'end', 'dominant-baseline': 'middle' }),
+  east: svg.text(svg.width, origin.y, "Helps learning", { 'text-anchor': 'start', 'dominant-baseline': 'middle' }),
+};
 
-const hurts = svg.text(0, origin.y, "Hurts learning", { 'text-anchor': 'end', 'dominant-baseline': 'middle' });
-const helps = svg.text(svg.width, origin.y, "Helps learning", { 'text-anchor': 'start', 'dominant-baseline': 'middle' });
+const hBorder = Math.max(labels.west.getBBox().width, labels.east.getBBox().width) * 3;
+const vBorder = Math.max(labels.north.getBBox().height, labels.south.getBBox().height) * 2;
 
-const hBorder = Math.max(hurts.getBBox().width, helps.getBBox().width) * 3;
-const vBorder = Math.max(gt.getBBox().height, bt.getBBox().height) * 2;
+labels.south.setAttribute('y', svg.height - (vBorder - labelPadding));
+labels.north.setAttribute('y', vBorder - labelPadding);
+labels.west.setAttribute('x', hBorder - labelPadding);
+labels.east.setAttribute('x', svg.width - hBorder + labelPadding);
+
 const dragBounds = {
   x: hBorder,
   y: vBorder,
   width: svg.width - hBorder * 2,
   height: svg.height - vBorder * 2
 };
-
-bt.setAttribute('y', svg.height - (vBorder - 5));
-gt.setAttribute('y', (vBorder - 5));
-hurts.setAttribute('x', hBorder - 5);
-helps.setAttribute('x', (svg.width - hBorder) + 5);
-
-// Draw box for debugging
-//const r = svg.rect(hBorder, vBorder, svg.width - hBorder * 2, svg.height - vBorder * 2, {});
 
 const drawAxes = (svg) => {
   svg.line(origin.x, vBorder, origin.x, svg.height - vBorder, axesOpts);
@@ -94,24 +105,6 @@ const drawAxes = (svg) => {
 
 const clamp = (v, min, max) => Math.min(Math.max(v, min), max);
 
-/*
- * Translate raw x,y SVG coordinate to -1,1 coordinates based on the position
- * within the bounds
- */
-const logicalPosition = (x, y, origin, bounds) => {
-  return {
-    x: clamp((x - origin.x) / (bounds.width / 2), -1, 1),
-    y: clamp((origin.y - y) / (bounds.height / 2), -1, 1),
-  };
-};
-
-const physicalPosition = (x, y, origin, bounds) => {
-  return {
-    x: origin.x + x * (bounds.width / 2),
-    y: origin.y - y * (bounds.height / 2),
-  };
-};
-
 const setupDrag = (e) => {
 
   let selected = null;
@@ -123,27 +116,15 @@ const setupDrag = (e) => {
     if (evt.target !== e) {
       selected = evt.target.parentNode;
 
-      const item = svgToItems.get(selected);
-      const p = physicalPosition(item.position.x, item.position.y, origin, dragBounds);
-
-      // Offset from where we actually clicked to where the item should be positioned.
+      // Get offset from where we actually clicked to where the item should be positioned.
+      const p = svgToItems.get(selected).physicalPosition(origin, dragBounds);
       clickOffset = { x: x - p.x, y: y - p.y };
 
       evt.stopPropagation();
     } else {
       if (uses.length > 0) {
-        const label = uses.pop();
-        const g = svg.g({'class': 'item', 'draggable': true}, e);
-        svg.circle(origin.x, origin.y, 4, { 'fill': '#f003', 'stroke': 'blue', 'stroke-width': 1 }, g);
-        svg.text(origin.x + 8, origin.y + 2, label, { 'text-anchor': 'start', 'dominant-baseline': 'middle' }, g);
-
-        const item = new Item(label, dragBounds, g);
-        svgToItems.set(g, item);
-
-        const pos = logicalPosition(x, y, origin, dragBounds);
-        item.moveTo(pos);
         clickOffset = { x: 0, y: 0 };
-        selected = g;
+        selected = addItem(uses.pop(), x, y, e);
       }
     }
   };
@@ -158,10 +139,31 @@ const setupDrag = (e) => {
       const { offsetX: x, offsetY: y } = evt;
       const item = svgToItems.get(selected);
       const newPos = { x: x - clickOffset.x, y: y - clickOffset.y };
-      item.moveTo(logicalPosition(newPos.x, newPos.y, origin, dragBounds));
+      item.moveTo(newPos.x, newPos.y, origin, dragBounds);
     }
   };
 }
 
+const addItem = (label, x, y, e) => {
+  const g = svg.g({ 'class': 'item' }, e);
+  svg.circle(origin.x, origin.y, 4, { 'fill': '#f003', 'stroke': 'blue', 'stroke-width': 1 }, g);
+  svg.text(origin.x + 8, origin.y + 2, label, { 'text-anchor': 'start', 'dominant-baseline': 'middle' }, g);
+
+  const item = new Item(label, dragBounds, g);
+  svgToItems.set(g, item);
+
+  item.moveTo(x, y, origin, dragBounds);
+  return g;
+}
+
+const randomPositions = (bounds, e) => {
+  while (uses.length > 0) {
+    const x = origin.x + (-100 + Math.random() * 200);
+    const y = origin.y + (-100 + Math.random() * 200);
+    addItem(uses.pop(), x, y, e);
+  }
+};
+
+//randomPositions(dragBounds, svg.e);
 drawAxes(svg);
 setupDrag(svg.e);
