@@ -24,9 +24,9 @@ const encodeChar = (char, k) => {
   if (n !== -1) {
     const encoded = alphabet[(n + k) % 26];
     return char.toUpperCase() === char ? encoded.toUpperCase() : encoded;
- } else {
-   return char;
- }
+  } else {
+    return char;
+  }
 }
 
 const cc = (s, k) => [...s].map(c => encodeChar(c, k)).join('');
@@ -76,4 +76,24 @@ const unaryToNumbers = (unary) => {
   }
   if (n > 0) r.push(n);
   return r;
+}
+
+const unaryToNumbersR = (unary) => {
+  const helper = (n, bits) => {
+    if (bits.length === 0) {
+      return n > 0 ? [n] : [];
+    } else {
+      const [first, ...rest] = bits;
+      if (first === 1) {
+        return helper(n + 1, rest);
+      } else {
+        if (n > 0) {
+          return [n, ...helper(0, rest)];
+        } else {
+          return helper(0, rest);
+        }
+      }
+    }
+  };
+  return helper(0, unary);
 }
