@@ -62,4 +62,16 @@ const fibtree = (n) => {
     return 1 + fibtree(n - 2) + fibtree(n - 1);
   }
 }
-console.log('hello');
+
+const unaryToNumbers = (unary) => {
+  const r = [];
+  let n = 0;
+  for (let i = 0; i < unary.length; i++) {
+    if (unary[i] === 1) {
+      n++;
+    } else {
+      r.push(n);
+    }
+  }
+  return r;
+}
