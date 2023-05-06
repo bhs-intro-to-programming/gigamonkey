@@ -70,8 +70,10 @@ const unaryToNumbers = (unary) => {
     if (unary[i] === 1) {
       n++;
     } else {
-      r.push(n);
-      n = 0;
+      if (n > 0) {
+        r.push(n);
+        n = 0;
+      }
     }
   }
   if (n > 0) r.push(n);
