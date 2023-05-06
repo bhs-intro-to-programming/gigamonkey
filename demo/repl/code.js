@@ -85,14 +85,13 @@ const unaryToNumbersR = (unary) => {
     if (bits.length === 0) {
       return n > 0 ? [n] : [];
     } else {
-      const [first, ...rest] = bits;
-      if (first === 1) {
-        return helper(n + 1, rest);
+      if (bits[0] === 1) {
+        return helper(n + 1, bits.slice(1));
       } else {
         if (n > 0) {
-          return [n, ...helper(0, rest)];
+          return [n, ...helper(0, bits.slice(1))];
         } else {
-          return helper(0, rest);
+          return helper(0, bits.slice(1));
         }
       }
     }
