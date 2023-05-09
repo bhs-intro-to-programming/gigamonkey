@@ -129,3 +129,15 @@ const reduce = (xs, fn, init) => {
     return reduce(xs.slice(1), fn, fn(init, xs[0]));
   }
 };
+
+const filter = (xs, p) => {
+  if (xs.length === 0) {
+    return [];
+  } else {
+    if (p(xs[0])) {
+      return [xs[0], ...filter(xs.slice(1), p)];
+    } else {
+      return filter(xs.slice(1), p);
+    }
+  }
+};
