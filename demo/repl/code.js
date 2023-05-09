@@ -126,6 +126,6 @@ const reduce = (xs, fn, init) => {
   if (xs.length === 0) {
     return init;
   } else {
-    return fn(reduce(xs.slice(1), fn, init), xs[0]);
+    return reduce(xs.slice(1), fn, fn(init, xs[0]));
   }
 };
