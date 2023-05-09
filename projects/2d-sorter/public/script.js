@@ -200,3 +200,27 @@ socket.onopen = (event) => {
 socket.onmessage = (event) => {
   console.log("Message from server ", event.data);
 };
+
+
+/*
+setTimeout(() => {
+  console.log('changing instructions');
+  document.querySelector('.instructions').classList.add('show');
+
+},1500);
+*/
+
+const inst = document.querySelector('.instructions');
+const icon = inst.querySelector('.icon');
+
+inst.onclick = (e) => {
+  if (e.target.innerText === '?') {
+    console.log('changing instructions');
+    inst.querySelector('.icon').innerText = 'X';
+    inst.classList.add('show');
+  } else if (e.target.innerText === 'X') {
+    inst.querySelector('.icon').innerText = '?';
+    inst.classList.remove('show');
+  }
+
+};
