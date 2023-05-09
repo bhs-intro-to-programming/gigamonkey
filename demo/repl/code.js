@@ -103,11 +103,17 @@ class Foo {
   static random() {
     return new Foo();
   }
+  toString() {
+    return "I'm a Foo!"
+  }
 }
 
 class Bar {
   static random() {
     return new Bar();
+  }
+  toString() {
+    return "I'm a Bar!"
   }
 }
 
