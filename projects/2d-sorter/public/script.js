@@ -6,10 +6,11 @@ const svgToItems = new Map();
 
 const uses = [
   "Write an essay",
-  "Summarize some text",
-  "Ask the name of a rhetorical device",
+  "Summarize text to help understand it",
+  "Lookup the name of something from a description.",
   "Find grammatical errors in writing",
   "Get style suggestions on code",
+  "Get style suggestions on writing",
   "Get quotations from a book",
 ];
 
@@ -171,11 +172,28 @@ const randomPositions = (bounds, e) => {
   uses.splice(0, uses.length);
 };
 
-randomPositions(dragBounds, svg.e);
 drawAxes(svg);
+randomPositions(dragBounds, svg.e);
 setupDrag(svg.e);
 
 
 document.querySelector('input').onchange = (e) => {
   addItem(e.currentTarget.value, origin.x, origin.y, svg.e);
+  e.currentTarget.value = '';
 }
+
+
+// Create WebSocket connection.
+const socket = new WebSocket(`ws://${window.location.host}`);
+
+// Connection opened
+socket.onopen = (event) => {
+  console.log(`web socket opened`);
+  console.log(event);
+  socket.send("Hello Server!");
+};
+
+// Listen for messages
+socket.onmessage = (event) => {
+  console.log("Message from server ", event.data);
+};
