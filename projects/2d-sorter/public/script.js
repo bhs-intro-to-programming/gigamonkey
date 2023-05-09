@@ -184,7 +184,10 @@ document.querySelector('input').onchange = (e) => {
 
 
 // Create WebSocket connection.
-const socket = new WebSocket(`ws://${window.location.host}`);
+
+const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+
+const socket = new WebSocket(`${wsProtocol}//${window.location.host}`);
 
 // Connection opened
 socket.onopen = (event) => {
