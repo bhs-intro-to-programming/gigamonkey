@@ -98,3 +98,18 @@ const unaryToNumbersR = (unary) => {
   };
   return helper(0, unary);
 }
+
+class Foo {
+  static random() {
+    return new Foo();
+  }
+}
+
+class Bar {
+  static random() {
+    return new Bar();
+  }
+}
+
+console.log(Foo.random());
+console.log(Bar.random());
