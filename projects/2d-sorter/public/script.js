@@ -4,36 +4,27 @@ const logEvent = (e) => { console.log(e); };
 
 const svgToItems = new Map();
 
-const uses = [
-  "Write an essay",
-  "Summarize text to help understand it",
-  "Lookup the name of something from a description.",
-  "Find grammatical errors in writing",
-  "Get style suggestions on code",
-  "Get style suggestions on writing",
-  "Get quotations from a book",
-];
-
 class Item {
   // x, and y are values in the range [-1, 1] indicating how far they are from
   // the origin on each scale.
-  constructor(label, bounds, g) {
+  constructor(label, g) {
     this.label = label;
     this.position = { x: 0, y: 0 };
     this.g = g;
-    this.xScale = bounds.width / 2;
-    this.yScale = bounds.height / 2;
   }
 
   moveTo(x, y, origin, bounds) {
     // Translate raw x,y SVG coordinate to -1,1 coordinates based on the
     // position within the bounds
+    const xScale = bounds.width / 2;
+    const yScale = bounds.height / 2;
+
     this.position = {
-      x: clamp((x - origin.x) / (bounds.width / 2), -1, 1),
-      y: clamp((origin.y - y) / (bounds.height / 2), -1, 1),
+      x: clamp((x - origin.x) / xScale, -1, 1),
+      y: clamp((origin.y - y) / yScale, -1, 1),
     };
-    const nx = this.position.x * this.xScale;
-    const ny = - (this.position.y * this.yScale);
+    const nx = this.position.x * xScale;
+    const ny = -this.position.y * yScale;
     this.g.setAttribute('transform', `translate(${nx} ${ny})`);
   }
 
@@ -122,11 +113,6 @@ const setupDrag = (e) => {
       clickOffset = { x: x - p.x, y: y - p.y };
 
       evt.stopPropagation();
-    } else {
-      if (uses.length > 0) {
-        clickOffset = { x: 0, y: 0 };
-        selected = addItem(uses.pop(), x, y, e);
-      }
     }
   };
 
@@ -150,7 +136,7 @@ const addItem = (label, x, y, e) => {
   svg.circle(origin.x, origin.y, 4, { 'fill': '#f003', 'stroke': 'blue', 'stroke-width': 1 }, g);
   svg.text(origin.x + 8, origin.y + 2, label, { 'text-anchor': 'start', 'dominant-baseline': 'middle' }, g);
 
-  const item = new Item(label, dragBounds, g);
+  const item = new Item(label, g);
   svgToItems.set(g, item);
 
   item.moveTo(x, y, origin, dragBounds);
@@ -160,20 +146,20 @@ const addItem = (label, x, y, e) => {
 const randomSign = () => Math.sign(Math.random() - 0.5);
 const randomNum = (n) => Math.floor(Math.random() * n);
 
-const randomPositions = (bounds, e) => {
-  const a = (Math.PI * 2) / uses.length - 2;
+const positionItemsRandomly = (data, bounds, e) => {
+  const a = (Math.PI * 2) / Object.keys(data).length - 2;
   const lim = Math.min(bounds.width / 4, bounds.height / 4);
-  for (let i = 0; i < uses.length; i++) {
+  Object.entries(data).forEach(([item, pos], i) => {
     const h = lim + randomNum(lim);
     const x = origin.x + Math.cos(a * i + 1) * h;
     const y = origin.y + Math.sin(a * i + 1) * h;
-    addItem(uses[i], x, y, e);
-  }
-  uses.splice(0, uses.length);
+    pos.self = { x, y };
+    addItem(item, x, y, e);
+  });
+  console.log(JSON.stringify(data, null, 2));
 };
 
 drawAxes(svg);
-randomPositions(dragBounds, svg.e);
 setupDrag(svg.e);
 
 
@@ -192,23 +178,21 @@ const socket = new WebSocket(`${wsProtocol}//${window.location.host}`);
 // Connection opened
 socket.onopen = (event) => {
   console.log(`web socket opened`);
-  console.log(event);
-  socket.send("Hello Server!");
+  socket.send("hello");
 };
 
 // Listen for messages
 socket.onmessage = (event) => {
+  const msg = JSON.parse(event.data);
+  if ('items' in msg) {
+    positionItemsRandomly(msg.items, dragBounds, svg.e);
+  }
   console.log("Message from server ", event.data);
 };
 
-
-/*
-setTimeout(() => {
-  console.log('changing instructions');
-  document.querySelector('.instructions').classList.add('show');
-
-},1500);
-*/
+const postNewItem = (item) => {
+  socket.send(JSON.stringify({action: 'new', item}));
+};
 
 const inst = document.querySelector('.instructions');
 const icon = inst.querySelector('.icon');
