@@ -222,5 +222,11 @@ inst.onclick = (e) => {
     inst.querySelector('.icon').innerText = '?';
     inst.classList.remove('show');
   }
-
 };
+
+document.onkeydown = (e) => {
+  if (e.key === 'Escape') {
+    inst.querySelector('.icon').innerText = '?';
+    inst.classList.remove('show');
+  }
+}
