@@ -181,3 +181,5 @@ const foo = (c, n) => {
   }
   return next;
 };
+
+const start = Array(10).fill().map((_, i) => i)
