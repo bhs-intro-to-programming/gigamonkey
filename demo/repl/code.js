@@ -153,6 +153,7 @@ const makeAnswer = (gu) => {
     // With some probability take a random unused value from the current gen and
     // push it on the answer. Otherwise push the current value
     if (Math.random() < 0.1 || taken.indexOf(gu[j]) === -1) {
+      console.log(`here ${taken.indexOf(gu[j]) === -1}`)
       // Pick a random index that hasn't been used yet.
       const i = Math.floor(Math.random() * taken.length)
       answer.push(taken[i])
@@ -184,3 +185,4 @@ const foo = (c, n) => {
 };
 
 const start = Array(10).fill().map((_, i) => i)
+const start2 = foo(start, 10);
