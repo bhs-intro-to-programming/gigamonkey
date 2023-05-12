@@ -141,3 +141,24 @@ const filter = (xs, p) => {
     }
   }
 };
+
+const makeAnswer = (gu) => {
+
+  const taken = Array(gu.length).fill().map((_, i) => i);
+
+  const answer = []
+
+  for (let j = 0; j < gu.length; j++) {
+    // With some probability take a random unused value from the current gen and
+    // push it on the answer. Otherwise push the current value
+    if (Math.random() < 0.1 || taken.indexOf(gu[j]) === -1) {
+      const i = Math.floor(Math.random() * taken.length)
+      answer.push(gu[taken[i]])
+      taken.splice(i, 1)
+    } else {
+      answer.push(gu[j])
+      taken.splice(taken.indexOf(gu[j]), 1)
+    }
+  }
+  return answer;
+}
