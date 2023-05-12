@@ -171,9 +171,8 @@ const swap = (c) => {
   const b = (a + 1 + r(c.length - 1)) % c.length;
   const tmp = c[a];
   c[a] = c[b];
-  c[b] = c[a];
+  c[b] = tmp;
 };
-
 
 const foo = (c, n) => {
   const next = [...c];
