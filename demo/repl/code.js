@@ -163,3 +163,22 @@ const makeAnswer = (gu) => {
   }
   return answer;
 }
+
+const r = (n) => Math.floor(Math.random() * n);
+
+const swap = (c) => {
+  const a = r(c.length);
+  const b = a + 1 + r(c.length - 1);
+  const tmp = c[a];
+  c[a] = c[b];
+  c[b] = c[a];
+};
+
+
+const foo = (c, n) => {
+  const next = [...c];
+  for (let i = 0; i < n; i++) {
+    swap(next);
+  }
+  return next;
+};
