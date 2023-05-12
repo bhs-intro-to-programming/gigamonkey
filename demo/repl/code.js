@@ -117,10 +117,11 @@ class Bar {
   }
 }
 
+/*
 console.log(Foo.random());
 console.log(Bar.random());
 console.log((Math.random() < 0.5 ? Foo : Bar).random());
-
+*/
 
 const reduce = (xs, fn, init) => {
   if (xs.length === 0) {
