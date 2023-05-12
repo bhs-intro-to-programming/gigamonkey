@@ -153,8 +153,9 @@ const makeAnswer = (gu) => {
     // With some probability take a random unused value from the current gen and
     // push it on the answer. Otherwise push the current value
     if (Math.random() < 0.1 || taken.indexOf(gu[j]) === -1) {
+      // Pick a random index that hasn't been used yet.
       const i = Math.floor(Math.random() * taken.length)
-      answer.push(gu[taken[i]])
+      answer.push(taken[i])
       taken.splice(i, 1)
     } else {
       answer.push(gu[j])
