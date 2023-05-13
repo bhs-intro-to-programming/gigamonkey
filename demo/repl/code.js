@@ -239,7 +239,7 @@ const factorsR = (n) => {
 
 const factors = (n) => {
   const fs = [];
-  const left = n;
+  let left = n;
   let f = 2;
   while (left > 1) {
     if (left % f === 0) {
