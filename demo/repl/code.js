@@ -202,6 +202,7 @@ const isPrimeR = (n) => {
 }
 
 const isPrime = (n) => {
+  const lim = Math.sqrt(n);
   for (let f = 2; f <= lim; f++) {
     if (n % f === 0) {
       return false;
