@@ -202,7 +202,7 @@ const isPrime = (n) => {
 }
 
 
-const coPrime = (n, m) => {
+const coprime = (n, m) => {
   const nf = factors(n);
   const mf = factors(m);
   return !nf.some(f => mf.indexOf(f) !== -1);
@@ -229,7 +229,8 @@ const triples = (n) => {
     for (let b = a + 1; b <= n - 1; b++) {
       for (let c = b + 1; c < n; c++) {
         if (a ** 2 + b ** 2 === c ** 2) {
-          if (coPrime(a, b) && coPrime(b, c)) {
+          if (coprime(a, b) && coprime(b, c)) {
+            if (!coprime(a, c)) console.log(`whoops`);
             r.push([a, b, c]);
           }
         }
