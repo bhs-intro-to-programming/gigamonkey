@@ -266,3 +266,11 @@ const triples = (n) => {
   }
   return r;
 }
+
+const numbers = (start, end) => {
+  if (end === undefined) {
+    return Array(start).fill().map((_, i) => i);
+  } else {
+    return Array((end - start)).fill().map((_, i) => start + i);
+  }
+};
