@@ -189,13 +189,15 @@ const start2 = foo(start, 10);
 
 
 const triples = (n) => {
+  let r = [];
   for (let a = 1; a <= n - 2; a++) {
     for (let b = a + 1; b <= n - 1; b++) {
       for (let c = b + 1; c < n; c++) {
         if (a ** 2 + b ** 2 === c ** 2) {
-          console.log(`${a}^2 + ${b}^2 = ${c}^2`);
+          r.push([a, b, c]);
         }
       }
     }
   }
+  return r;
 }
