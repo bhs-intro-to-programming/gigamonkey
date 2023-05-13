@@ -212,9 +212,8 @@ const isPrime = (n) => {
 }
 
 const coprime = (n, m) => {
-  const nf = factors(n);
   const mf = factors(m);
-  return !nf.some(f => mf.indexOf(f) !== -1);
+  return !factors(n).some(f => mf.indexOf(f) !== -1);
 }
 
 const nextPrime = (p) => {
@@ -223,34 +222,33 @@ const nextPrime = (p) => {
 };
 
 const factorsR = (n) => {
-  const loop = (n, f, soFar) => {
+  const helper = (n, f, soFar) => {
     if (n === 1) {
       return soFar;
     } else {
       if (n % f === 0) {
-        return loop(n / f, 2, [...soFar, f]);
+        return helper(n / f, 2, [...soFar, f]);
       } else {
-        return loop(n, nextPrime(f), soFar);
+        return helper(n, nextPrime(f), soFar);
       }
     }
   }
-  return loop(n, 2, []);
+  return helper(n, 2, []);
 };
 
 const factors = (n) => {
-  const fs = [];
-  let left = n;
+  const soFar = [];
   let f = 2;
-  while (left > 1) {
-    if (left % f === 0) {
-      fs.push(f);
-      left /= f;
+  while (n > 1) {
+    if (n % f === 0) {
+      soFar.push(f);
+      n /= f;
       f = 2;
     } else {
       f++;
     }
   }
-  return fs;
+  return soFar;
 }
 
 const triples = (n) => {
