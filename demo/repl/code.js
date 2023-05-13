@@ -229,8 +229,7 @@ const triples = (n) => {
     for (let b = a + 1; b <= n - 1; b++) {
       for (let c = b + 1; c < n; c++) {
         if (a ** 2 + b ** 2 === c ** 2) {
-          if (coprime(a, b) && coprime(b, c)) {
-            if (!coprime(a, c)) console.log(`whoops`);
+          if (coprime(a, b) && coprime(b, c) && coprime(a, c)) {
             r.push([a, b, c]);
           }
         }
