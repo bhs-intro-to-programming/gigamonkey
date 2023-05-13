@@ -222,7 +222,7 @@ const nextPrime = (p) => {
   return loop(p + 1);
 };
 
-const factors = (n) => {
+const factorsR = (n) => {
   const loop = (n, f, soFar) => {
     if (n === 1) {
       return soFar;
@@ -236,6 +236,22 @@ const factors = (n) => {
   }
   return loop(n, 2, []);
 };
+
+const factors = (n) => {
+  const fs = [];
+  const left = n;
+  let f = 2;
+  while (left > 1) {
+    if (left % f === 0) {
+      fs.push(f);
+      f = 2;
+      left /= f;
+    } else {
+      f++;
+    }
+  }
+  return fs;
+}
 
 const triples = (n) => {
   let r = [];
