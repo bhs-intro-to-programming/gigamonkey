@@ -209,8 +209,9 @@ const coprime = (n, m) => {
 }
 
 const factors = (n) => {
+  const lim = Math.sqrt(n);
   const loop = (n, f, soFar) => {
-    if (n === 1) {
+    if (n > lim) {
       return soFar;
     } else {
       if (n % f === 0) {
