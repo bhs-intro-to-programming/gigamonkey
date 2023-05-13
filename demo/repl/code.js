@@ -208,10 +208,14 @@ const coprime = (n, m) => {
   return !nf.some(f => mf.indexOf(f) !== -1);
 }
 
+const nextPrime = (p) => {
+  const loop = (n) => isPrime(n) ? n : loop(n + 1);
+  return loop(p + 1);
+};
+
 const factors = (n) => {
-  const lim = Math.sqrt(n);
   const loop = (n, f, soFar) => {
-    if (n > lim) {
+    if (n === 1) {
       return soFar;
     } else {
       if (n % f === 0) {
