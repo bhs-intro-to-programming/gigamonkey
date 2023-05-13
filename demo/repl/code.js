@@ -190,7 +190,7 @@ const start2 = foo(start, 10);
 const isPrime = (n) => {
   const lim = Math.sqrt(n);
   const loop = (f) => {
-    if (f >= lim) {
+    if (f > lim) {
       return true;
     } else if (n % f === 0) {
       return false;
