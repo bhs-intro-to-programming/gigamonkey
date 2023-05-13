@@ -187,7 +187,7 @@ const foo = (c, n) => {
 const start = Array(10).fill().map((_, i) => i)
 const start2 = foo(start, 10);
 
-const isPrime = (n) => {
+const isPrimeR = (n) => {
   const lim = Math.sqrt(n);
   const loop = (f) => {
     if (f > lim) {
@@ -201,6 +201,14 @@ const isPrime = (n) => {
   return loop(2);
 }
 
+const isPrime = (n) => {
+  for (let f = 2; f <= lim; f++) {
+    if (n % f === 0) {
+      return false;
+    }
+  }
+  return true;
+}
 
 const coprime = (n, m) => {
   const nf = factors(n);
