@@ -219,9 +219,9 @@ const triples = (n) => {
     for (let b = a + 1; b <= n - 1; b++) {
       for (let c = b + 1; c < n; c++) {
         if (a ** 2 + b ** 2 === c ** 2) {
-          if (coPrime(a, b) && coPrime(b, c)) {
+          //if (coPrime(a, b) && coPrime(b, c)) {
             r.push([a, b, c]);
-          }
+          //}
         }
       }
     }
