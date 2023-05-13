@@ -209,20 +209,19 @@ const coPrime = (n, m) => {
 }
 
 const factors = (n) => {
-  return factorsHelper(n, 2, []);
-}
-
-const factorsHelper = (n, f, soFar) => {
-  if (n === 1) {
-    return soFar;
-  } else {
-    if (n % f === 0) {
-      return factorsHelper(n / f, 2, [...soFar, f]);
+  const loop = (n, f, soFar) => {
+    if (n === 1) {
+      return soFar;
     } else {
-      return factorsHelper(n, f + 1, soFar);
+      if (n % f === 0) {
+        return loop(n / f, 2, [...soFar, f]);
+      } else {
+        return loop(n, f + 1, soFar);
+      }
     }
   }
-}
+  return loop(n, 2, []);
+};
 
 const triples = (n) => {
   let r = [];
