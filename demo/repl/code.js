@@ -188,7 +188,13 @@ const start = Array(10).fill().map((_, i) => i)
 const start2 = foo(start, 10);
 
 const isPrime = (n) => {
+  return factors(n).length === 1;
+}
 
+const coPrime = (n, m) => {
+  const nf = factors(n);
+  const mf = factors(m);
+  return !nf.some(f => mf.indexOf(f) !== -1);
 }
 
 const factors = (n) => {
