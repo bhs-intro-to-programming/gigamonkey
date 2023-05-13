@@ -221,7 +221,7 @@ const factors = (n) => {
       if (n % f === 0) {
         return loop(n / f, 2, [...soFar, f]);
       } else {
-        return loop(n, f + 1, soFar);
+        return loop(n, nextPrime(f), soFar);
       }
     }
   }
