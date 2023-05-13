@@ -187,6 +187,25 @@ const foo = (c, n) => {
 const start = Array(10).fill().map((_, i) => i)
 const start2 = foo(start, 10);
 
+const isPrime = (n) => {
+
+}
+
+const factors = (n) => {
+  return factorsHelper(n, 2, []);
+}
+
+const factorsHelper = (n, f, soFar) => {
+  if (n === 1) {
+    return soFar;
+  } else {
+    if (n % f === 0) {
+      return factorsHelper(n / f, 2, [...soFar, f]);
+    } else {
+      return factorsHelper(n, f + 1, soFar);
+    }
+  }
+}
 
 const triples = (n) => {
   let r = [];
