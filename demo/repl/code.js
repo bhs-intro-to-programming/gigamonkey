@@ -244,8 +244,8 @@ const factors = (n) => {
   while (left > 1) {
     if (left % f === 0) {
       fs.push(f);
-      f = 2;
       left /= f;
+      f = 2;
     } else {
       f++;
     }
