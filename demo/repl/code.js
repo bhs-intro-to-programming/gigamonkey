@@ -188,8 +188,19 @@ const start = Array(10).fill().map((_, i) => i)
 const start2 = foo(start, 10);
 
 const isPrime = (n) => {
-  return factors(n).length === 1;
+  const lim = Math.sqrt(n);
+  const loop = (f) => {
+    if (f >= lim) {
+      return true;
+    } else if (n % f === 0) {
+      return false;
+    } else {
+      return loop(f + 1);
+    }
+  }
+  return loop(2);
 }
+
 
 const coPrime = (n, m) => {
   const nf = factors(n);
