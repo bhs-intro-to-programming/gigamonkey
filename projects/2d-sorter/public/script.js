@@ -4,13 +4,18 @@ const logEvent = (e) => { console.log(e); };
 
 const svgToItems = new Map();
 
+/*
+ * An item positioned on the plot. We store the position in logical ranges of
+ * [-1, 1] for each axis and then translate to a physical position when we
+ * render.
+ */
 class Item {
   // x, and y are values in the range [-1, 1] indicating how far they are from
   // the origin on each scale.
-  constructor(label, g) {
+  constructor(label, g, x = 0, y = 0) {
     this.label = label;
-    this.position = { x: 0, y: 0 };
     this.g = g;
+    this.position = { x, y };
   }
 
   moveTo(x, y, origin, bounds) {
@@ -28,6 +33,9 @@ class Item {
     this.g.setAttribute('transform', `translate(${nx} ${ny})`);
   }
 
+  /*
+   * Translate back to a physical position.
+   */
   physicalPosition (origin, bounds) {
     return {
       x: origin.x + this.position.x * (bounds.width / 2),
