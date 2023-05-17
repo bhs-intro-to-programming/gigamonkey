@@ -274,3 +274,23 @@ const numbers = (start, end) => {
     return Array((end - start)).fill().map((_, i) => start + i);
   }
 };
+
+class Code {
+  constructor(x) {
+    this.x = x;
+  }
+  render() {
+    return this.x.toUpperCase();
+  }
+}
+
+const code = (strings, ...exprs) => {
+  let text = '';
+  strings.forEach((s, i) => {
+    text += s;
+    if (i < exprs.length) {
+      text += exprs[i].render();
+    }
+  });
+  return text;
+}
