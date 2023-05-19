@@ -10,6 +10,8 @@ p {
 }
 
 #grid {
+  position: relative;
+  z-index: 2;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 10px;
@@ -22,6 +24,7 @@ p {
 
 #grid div {
   /*border: 1px solid black;*/
+  z-index: 1;
   border-radius: 50%;
   width: 7vmin;
   height: 7vmin;
@@ -29,5 +32,10 @@ p {
   justify-self: center;
   margin: 10px;
   background-color: white;
-  filter: drop-shadow(5px 5px 5px white);
+  /*filter: drop-shadow(5px 5px 5px white);*/
+}
+
+#grid div.red {
+  background-color: red;
+  /*filter: drop-shadow(5px 5px 5px red);*/
 }
