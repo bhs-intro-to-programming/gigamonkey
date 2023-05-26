@@ -10,7 +10,7 @@ const needMittens = (outside, warm) => {
   return outside && !warm;
 };
 
-const isisVenomous = (striped, blueHeaded) => {
+const isVenomous = (striped, blueHeaded) => {
   return striped || !blueHeaded;
 };
 
