@@ -2,3 +2,4 @@
 const foo = (n) => n * 2;
 
 console.log('yo');
+console.log(foo(100));
