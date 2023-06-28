@@ -1,3 +1,5 @@
+import java.nio.charset.StandardCharsets;
+
 public class Foo {
   public static void main(String[] argv) {
     var text = new String(System.in.readAllBytes(), StandardCharsets.UTF_8);
