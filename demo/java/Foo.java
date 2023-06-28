@@ -7,4 +7,5 @@ public class Foo {
     System.out.println("hello, world! " + System.currentTimeMillis());
     System.out.println(text.length() + " characters in input.");
   }
+  public static fib(long n) { return n < 2 ? n : fib(n - 2) + fib(n - 1); }
 }
