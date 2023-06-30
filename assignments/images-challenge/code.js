@@ -1,186 +1,71 @@
-const cx = width / 2;
-const cy = height / 2;
+drawFilledRect(0, height - 1000, 1000, 1000, 'red');
 
-/* 
- * The main function F is used to iterate from z_0 = 0 via the
- * recurrence relation: z_n+1 = z_n ^ 2 + c
- */
-const f = (z, c) => square(z).map((n, i) => n + c[i]);
+drawFilledRect(0, height - 500, 1000, 1000, 'orange');
 
-/*
- * Square a complex number.
- */
-const square = ([a, b]) => [a ** 2 - b ** 2, 2 * a * b];
+drawFilledRect(0, height - 400, 1000, 1000, 'yellow');
 
-/*
- * Translate graphical coordinates to zoomed coordinates with cx, cy in
- * the center of the drawing area.
- */
-const coord = (gx, gy, x, y, zoom) => [adjust(gx, cx, zoom, x), adjust(gy, cy, zoom, y)];
+drawFilledRect(0, height - 300, 1000, 1000, 'red');
 
-const adjust = (g, c, zoom, offset) => ((g - c) / zoom) + offset;
+drawFilledRect(0, height - 200, 1000, 1000, 'orange');
 
+drawFilledRect(0, height - 100, 1000, 1000, 'yellow');
 
-/*
- * How fast (if at all) does the iteration of f head toward positive
- * or negative infinity?
- */
-const escapeVelocity = (c, iterations) => {
-  let z = [0, 0];
-  for (let i = 0; i < iterations; i++) {
-    z = f(z, c);
-    if (z.some((x) => !isFinite(x))) {
-      return i;
-    }
-  }
-  return 0;
-};
+drawFilledRect(360, height - 550, 10, 1000, 'yellow');
 
-/*
- * Translate a number from 0 to 1 into an RGB color. Bias toward blue.
- */
-const color = (n) => {
-  const c = Math.round(n * (2 ** 24 - 1));
-  const [r, g, b] = Array(3).fill().map((_, i) => (c >> ((2 - i) * 8)) & 0xff);
-  return `rgb(${r}, ${b}, ${g})`;
-};
+drawFilledRect(250, height - 559, 230, 100, 'green');
 
-/*
- * Draw the Mandelbrot set using a given number of iterations
- * with point cx, cy at the center of the drawing area and zoomed
- * by the given amount.  
- */
-const drawMandelbrot = (iterations, x, y, zoom) => {
-  const start = performance.now();
-  for (let gx = 0; gx < width; gx++) {
-    for (let gy = 0; gy < height; gy++) {
-      const e = escapeVelocity(coord(gx, gy, x, y, zoom), iterations);
-      const c = e === 0 ? 'black' : color(e / iterations);
-      drawFilledRect(gx, gy, 1, 1, c);
-    }
-  }
-  const t = Math.round(performance.now() - start);
-  console.log(`Rendered in ${t / 1000} seconds.`);
-};
+drawFilledRect(270, height - 550, 10, 80, 'black');
 
-// drawMandelbrot(5000, -0.5, 0, 200);
+drawFilledRect(270, height - 520, 40, 10, 'black');
+
+drawFilledRect(300, height - 550, 10, 80, 'black');
+
+drawFilledRect(320, height - 550, 10, 80, 'black');
+
+drawFilledRect(320, height - 520, 40, 10, 'black');
+
+drawFilledRect(320, height - 480, 40, 10, 'black');
+
+drawFilledRect(320, height - 550, 40, 10, 'black');
+
+drawFilledRect(370, height - 550, 10, 80, 'black');
+
+drawFilledRect(370, height - 480, 40, 10, 'black');
+
+drawFilledRect(420, height - 550, 10, 80, 'black');
+
+drawFilledRect(420, height - 480, 40, 10, 'black');
+
+//drawCircle(width/2, height/4, 10, 'blue');
+
+//drawRect(50, 50, 60, 40, 'black');
+
+drawFilledCircle(width/2, height/1.1, 200, 'brown');
+
+drawFilledCircle(width/2, height/2, 100, 'brown');
+
+drawCircle(width/2, height/2, 100, 'black');
+
+//drawFilledRect(5, height - 20, 45, 15, 'purple');
+
+drawFilledCircle(width/3, height/3, 50, 'brown');
+
+drawFilledCircle(width/1.5, height/3, 50, 'brown');
+
+drawCircle(width/2, height/1.9, 50, 'black');
+
+drawFilledCircle(width/1.7, height/2.1, 50, 'brown');
+
+drawFilledCircle(width/2.2, height/2.1, 50, 'brown');
 
 
-/*
- * This code is running in an environment the same as simple-draw. Thus you have
- * two variables that will be helpful.
- *
- *  width - the width of the drawing area.
- *  height - the height of the drawing area.
- *
- * And these methods which do the same thing as in simple-draw.
- *
- *  drawLine(x1, y1, x2, y2, color, lineWidth)
- *
- *  drawCircle(x, y, radius, color, lineWidth=1)
- *
- *  drawRect(x, y, w, h, color, lineWidth=1)
- *
- *  drawTriangle(x1, y1, x2, y2, x3, y3, color, lineWidth=1)
- *
- *  drawFilledCircle(x, y, r, color)
- *
- *  drawFilledRect(x, y, width, height, color)
- *
- *  drawFilledTriangle(x1, y1, x2, y2, x3, y3, color)
- *
- *  clear()
- * 
- *
- */
+drawFilledCircle(width/2, height/2, 15, 'black');
 
-// Max's code
+drawFilledCircle(width/1.7, height/2.2, 12, 'red');
 
-/*
- * This code is running in an environment the same as simple-draw. Thus you have
- * two variables that will be helpful.
- *
- *  width - the width of the drawing area.
- *  height - the height of the drawing area.
- *
- * And these methods which do the same thing as in simple-draw.
- *
- *  drawLine(x1, y1, x2, y2, color, lineWidth)
- *
- *  drawCircle(x, y, radius, color, lineWidth=1)
- *
- *  drawRect(x, y, w, h, color, lineWidth=1)
- *
- *  drawTriangle(x1, y1, x2, y2, x3, y3, color, lineWidth=1)
- *
- *  drawFilledCircle(x, y, r, color)
- *
- *  drawFilledRect(x, y, width, height, color)
- *
- *  drawFilledTriangle(x1, y1, x2, y2, x3, y3, color)
- *
- *  clear()
- */
+drawFilledCircle(width/2.5, height/2.2, 12, 'red');
 
-const circleLineRed = (radius) => {
-  let diameter = radius * 2
-  let x = 0
-  while (x < width - diameter) {
-    drawFilledCircle(diameter + x, height / 2, radius, 'red')
-    x += diameter
-  }
-}
-//circleLineRed(12)
+drawLine(180, 220, width/2.2, height/2.2, 'black')
 
+drawLine(320, 220, width/1.9, height/2.2, 'black')
 
-const circleLine = (radius) => {
-  let diameter = radius * 2
-  let x = 0
-  let c = 'red'
-  while (x < width - diameter) {
-    drawFilledCircle(diameter + x, height / 2, radius, c)
-    x += diameter
-    if (c == 'red') {
-      c = 'blue'
-    } else { c = 'red' }
-  }
-}
-circleLine(12)
-
-const xdartboard = (howManyCircles) => {
-  let radius = height / 2
-  let c = 'red'
-  while (radius > width / 6 / howManyCircles) {
-    drawFilledCircle(width / 2, height / 2, radius, c)
-    radius = radius - width / 2 / howManyCircles
-    if (c == 'red') {
-      c = 'blue'
-    } else { c = 'red' }
-  }
-}
-
-const dartboard = (howManyCircles) => {
-  const max = Math.min(width, height) / 2;
-  const band = max / howManyCircles;
-  let c = 'red'
-  for (let i = 0; i < howManyCircles; i++) {
-    drawFilledCircle(width / 2, height / 2, (howManyCircles - i) * band, c)
-    if (c == 'red') {
-      c = 'blue'
-    } else {
-      c = 'red'
-    }
-  }
-}
-
-
-
-//dartboard(12);
-
-/*
-const checkerBoard = (NumSq) =>
-  let width = height / 5
-let c = 'red'
-while (width > height / 10 / NumSq) {
-  drawFilledSquare(width / 10, height / 5)
-}*/
