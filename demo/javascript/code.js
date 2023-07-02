@@ -14,4 +14,6 @@ p
   .then(x => console.log(`The promise was kept! ${x}`))
   .catch(e => console.log(`Problem: ${e}`));
 
-console.log(typeof () => 10);
+const fn = () => 10;
+
+console.log(typeof fn);
