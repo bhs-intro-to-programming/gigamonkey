@@ -10,4 +10,4 @@ const bar = () => {
 
 const p = bar();
 console.log(p);
-p.then(x => console.log(x));
+p.then(x => console.log(`The promise was kept! ${x}`));
