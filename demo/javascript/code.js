@@ -13,3 +13,5 @@ console.log(p);
 p
   .then(x => console.log(`The promise was kept! ${x}`))
   .catch(e => console.log(`Problem: ${e}`));
+
+console.log(typeof () => 10);
