@@ -8,4 +8,6 @@ const bar = () => {
   });
 };
 
-bar().then(x => console.log(x));
+const p = bar();
+console.log(p);
+p.then(x => console.log(x));
