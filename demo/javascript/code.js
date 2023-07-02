@@ -8,7 +8,7 @@ const bar = () => {
   });
 };
 
-const p = Promise.reject(10); // bar();
+const p = Promise.resolve(10); // bar();
 console.log(p);
 p
   .then(x => console.log(`The promise was kept! ${x}`))
