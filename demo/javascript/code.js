@@ -17,3 +17,5 @@ p
 const fn = () => 10;
 
 console.log(typeof fn);
+
+const x = { foo: () => console.log('foo'); }
