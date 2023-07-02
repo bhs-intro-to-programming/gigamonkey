@@ -1,7 +1,11 @@
-// Sample code
-const foo = (n) => n * 2;
+const foo = (callback) => {
+  setTimeout(() => callback('hello'), 2000);
+}
 
-console.log('yo');
-console.log(foo(100));
+const bar = () => {
+  return new Promise((resolve, reject) => {
+    foo(resolve);
+  }
+}
 
-console.log("xbye");
+bar().then(x => console.log(x));
