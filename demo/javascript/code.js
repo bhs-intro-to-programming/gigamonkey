@@ -5,7 +5,7 @@ const foo = (callback) => {
 const bar = () => {
   return new Promise((resolve, reject) => {
     foo(resolve);
-  }
-}
+  });
+};
 
 bar().then(x => console.log(x));
