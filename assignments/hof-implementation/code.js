@@ -1,4 +1,4 @@
-const filter = (predicate, array) => {
+const xfilter = (predicate, array) => {
   let r = [];
   for (let i = 0; i < array.length; i++) {
     if (predicate(array[i])) {
