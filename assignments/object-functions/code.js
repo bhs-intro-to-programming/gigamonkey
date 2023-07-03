@@ -16,6 +16,6 @@ const sumSalaries = (objs) => objs.reduce((acc, o) => acc + o.salary, 0);
 const newHighScore = (high, ps) => ps.reduce((h, p) => Math.max(h, p.score), high);
 
 const summarizeBooks = (books) => ({
-  titles: books.map((b) => b.title),
+  titles: books.map((b) => b.title + "fnord"),
   pages: books.reduce((tot, b) => tot + b.pages, 0)
 });
