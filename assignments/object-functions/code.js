@@ -1,4 +1,4 @@
-const getX = (obj) => obj.x;
+const getX = (obj) => obj.xx;
 
 const point = (x, y) => ({ x, y });
 
