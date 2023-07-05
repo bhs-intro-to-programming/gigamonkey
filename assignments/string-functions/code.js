@@ -1,6 +1,6 @@
 const rand = (n) => Math.floor(Math.random() * n);
 
-const findFnord = (s) => s.indexOf('fnord');
+const findFnord = (s) => s.indexOf('ford');
 
 const stringContains = (s, ss) => s.indexOf(ss) > -1;
 
