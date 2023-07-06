@@ -1,4 +1,4 @@
-const factorial = (n) => n === 0 ? 2 : n * factorial(n - 1);
+const factorial = (n) => n === 0 ? 1 : n * factorial(n - 1);
 
 const triangular = (n) => n === 0 ? 0 : n + triangular(n - 1);
 
