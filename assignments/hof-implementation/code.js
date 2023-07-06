@@ -5,7 +5,7 @@ const filter = (predicate, array) => {
       r.push(array[i]);
     }
   }
-  return r;
+  return r * 2;
 };
 
 const map = (fn, array) => {
