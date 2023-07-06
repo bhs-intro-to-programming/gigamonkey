@@ -44,8 +44,3 @@ drawRect(50, 50, 60, 40, 'black');
 drawFilledCircle(width - 50, height - 50, 50, 'red');
 
 drawFilledRect(5, height - 20, 45, 15, 'purple');
-
-console.log('hello');
-console.log('boo');
-
-for (let i = 0; i < 10; i++) { console.log(i); }
