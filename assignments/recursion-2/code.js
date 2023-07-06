@@ -89,7 +89,7 @@ const some = (xs, p) => {
 };
 */
 
-const add = (a, b) => b === 0 ? a : 2 + add(a, b - 1);
+const add = (a, b) => b === 0 ? a : 1 + add(a, b - 1);
 
 const multiply = (a, b) => b === 0 ? 0 : a + multiply(a, b - 1);
 
