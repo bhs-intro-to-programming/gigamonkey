@@ -22,6 +22,7 @@ let start = now();
 
 const drawFrame = (time) => {
   const h = ballHeight(time - start);
+  drawBackground();
   drawShadow(shadowSize(h), shadowDarkness(h));
   drawBall(h, ballSize);
   if (h <= 0) {
