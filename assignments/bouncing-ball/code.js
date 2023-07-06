@@ -21,7 +21,7 @@ let ballSize = 15;
 let start = now();
 
 const drawFrame = (time) => {
-  const h = height(time - start);
+  const h = ballHeight(time - start);
   drawShadow(shadowSize(h), shadowDarkness(h));
   drawBall(h, ballSize);
   if (h <= 0) {
@@ -30,7 +30,7 @@ const drawFrame = (time) => {
 };
 
 // Compute the height in pixels at time t after the ball hit the ground
-const height = (t) => Math.max(0, t * (bounce - (gravity * t) / 2));
+const ballHeight = (t) => Math.max(0, t * (bounce - (gravity * t) / 2));
 
 // The higher we are, the lighter the shadow.
 const shadowDarkness = (h) => 148 + 1.015 ** h;
