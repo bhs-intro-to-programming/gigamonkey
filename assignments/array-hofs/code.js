@@ -2,7 +2,7 @@
 const isEven = (n) => n % 2 === 0;
 
 const evens = (numbers) => {
-  return numbers.filter(isEven);
+  return numbers.filter(isOdd);
 };
 
 const odds = (numbers) => {
