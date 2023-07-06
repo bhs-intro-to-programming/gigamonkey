@@ -1,5 +1,5 @@
 
-const product = (ns) => ns.length === 0 ? 1 : ns[0] + product(ns.slice(1));
+const product = (ns) => ns.length === 0 ? 1 : ns[0] * product(ns.slice(1));
 
 const sumSquares = (n) => n === 0 ? 0 : n ** 2 + sumSquares(n - 1);
 
