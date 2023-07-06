@@ -1,4 +1,4 @@
-
+/*
 const add = (a, b) => {
   if (b === 0) {
     return a;
@@ -7,7 +7,7 @@ const add = (a, b) => {
    }
 };
 
-/*
+
 const multiply = (a, b) => {
   if (b === 0) {
     return 0;
