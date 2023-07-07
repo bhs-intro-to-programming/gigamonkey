@@ -1,5 +1,20 @@
-const drawPicture = (horizon,width) => {
+//
+// Notes:
+//
+//  - Factor out all new functions to the top level of the file, i.e. not nested
+//    within other functions.
+//
+//  - Do not introduce any new global variables. Write your new functions to
+//    take the values they need as arguments and then pass them when you call
+//    the function.
+//
+//  - When you are done you should still have a drawPicture function and the
+//    call to it at the bottom of the file should be unchanged. The thing that
+//    should have changed is drawPicture should be much shorter, having been
+//    rewritten in terms of new functions you have defined.
+//
 
+const drawPicture = (horizon) => {
   const sunSize = 100;
   const sunRays = 6;
   const sunRayProportion = 2;
@@ -14,15 +29,41 @@ const drawPicture = (horizon,width) => {
   const maxApples = 8;
   const appleRadius = 6;
 
-  drawSky(horizon,width);
-  drawGround(horizon,width);
-  sunSize(100);
-  sunRays(6);
-  smallCloudSize(25);
-  bigCloudSize(35);
+  // Draw sky
+  drawFilledRect(0, 0, width, horizon, 'skyblue');
 
+  // Draw ground
+  drawFilledRect(0, horizon, width, horizon, 'green');
 
-  
+  // Draw the sun. The sun is always at top right and the way we draw the rays
+  // depends on that.
+  drawFilledCircle(width, 0, sunSize, 'yellow');
+
+  // Draw the sun's rays.
+  const startAngle = (Math.PI / 2) * 0.023;
+  const r = ((Math.PI / 2) - 2 * startAngle) / (sunRays - 1);
+  for (let i = 0; i < sunRays; i++) {
+    const angle = startAngle + Math.PI + (i * r);
+    const x2 = width + sunSize * sunRayProportion * Math.cos(angle);
+    const y2 = 0 - sunSize * sunRayProportion * Math.sin(angle);
+    drawLine(width, 0, x2, y2, 'yellow', sunRayWidth);
+  }
+
+  // Draw small cloud
+  let x = width * 0.1;
+  let y = height * 0.2;
+  drawFilledCircle(x, y, smallCloudSize, 'white');
+  drawFilledCircle(x + smallCloudSize * 2.5, y, smallCloudSize, 'white');
+  drawFilledCircle(x+ (smallCloudSize * 1.25), y - smallCloudSize * 0.5, smallCloudSize, 'white');
+  drawFilledCircle(x+ (smallCloudSize * 1.25), y + smallCloudSize * 0.5, smallCloudSize, 'white');
+
+  // Draw big cloud
+  x = width * 0.5;
+  drawFilledCircle(x, y, bigCloudSize, 'white');
+  drawFilledCircle(x + bigCloudSize * 2.5, y, bigCloudSize, 'white');
+  drawFilledCircle(x+ (bigCloudSize * 1.25), y - bigCloudSize * 0.5, bigCloudSize, 'white');
+  drawFilledCircle(x+ (bigCloudSize * 1.25), y + bigCloudSize * 0.5, bigCloudSize, 'white');
+
   // Draw trees
   const gap = width / (numTrees + 1);
   const treeBaseY = horizon * 1.1;
@@ -51,49 +92,5 @@ const drawPicture = (horizon,width) => {
     }
   }
 };
-
-const drawSky = (width, horizon) => {
-  drawFilledRect(0, 0, width, horizon, 'skyblue');
-}
-
- const drawGround = (width,horizon) => {
-   drawFilledRect(0, horizon, width, horizon, 'green');
- }
-  
-const drawSun = (sunSize) => {
-  drawFilledCircle(width, 0, sunSize, 'yellow');
-}
-
-const drawSunRays = (sunRays) => {
-  const startAngle = (Math.PI / 2) * 0.023;
-  const r = ((Math.PI / 2) - 2 * startAngle) / (sunRays - 1);
-  for (let i = 0; i < sunRays; i++) {
-    const angle = startAngle + Math.PI + (i * r);
-    const x2 = width + sunSize * sunRayProportion * Math.cos(angle);
-    const y2 = 0 - sunSize * sunRayProportion * Math.sin(angle);
-    drawLine(width, 0, x2, y2, 'yellow', sunRayWidth);
-  }
-}
-
-const drawSmallCloud = () => {
-  let x = width * 0.1;
-  let y = height * 0.2;
-  drawFilledCircle(x, y, smallCloudSize, 'white');
-  drawFilledCircle(x + smallCloudSize * 2.5, y, smallCloudSize, 'white');
-  drawFilledCircle(x+ (smallCloudSize * 1.25), y - smallCloudSize * 0.5, smallCloudSize, 'white');
-  drawFilledCircle(x+ (smallCloudSize * 1.25), y + smallCloudSize * 0.5, smallCloudSize, 'white');
-
-}
-
-const drawBigCloud = () => {
-  x = width * 0.5;
-  drawFilledCircle(x, y, bigCloudSize, 'white');
-  drawFilledCircle(x + bigCloudSize * 2.5, y, bigCloudSize, 'white');
-  drawFilledCircle(x+ (bigCloudSize * 1.25), y - bigCloudSize * 0.5, bigCloudSize, 'white');
-  drawFilledCircle(x+ (bigCloudSize * 1.25), y + bigCloudSize * 0.5, bigCloudSize, 'white');
-
-}
-
-
 
 drawPicture(height * 0.78);
