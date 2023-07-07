@@ -1,19 +1,3 @@
-//
-// Notes:
-//
-//  - Factor out all new functions to the top level of the file, i.e. not nested
-//    within other functions.
-//
-//  - Do not introduce any new global variables. Write your new functions to
-//    take the values they need as arguments and then pass them when you call
-//    the function.
-//
-//  - When you are done you should still have a drawPicture function and the
-//    call to it at the bottom of the file should be unchanged. The thing that
-//    should have changed is drawPicture should be much shorter, having been
-//    rewritten in terms of new functions you have defined.
-//
-
 const drawPicture = (horizon) => {
   const sunSize = 100;
   const sunRays = 6;
