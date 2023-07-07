@@ -9,7 +9,7 @@
   "6",
   null,
   null,
-  "It tests whether limit is a prime number.",
+  "\n                It tests whether there are at most max prime\n                numbers below limit.\n              ",
   null,
   null,
   null,
