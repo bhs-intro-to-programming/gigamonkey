@@ -15,3 +15,5 @@
 
 
 const day1p1 = (text) => text;
+
+run('code.js', day1p1);
