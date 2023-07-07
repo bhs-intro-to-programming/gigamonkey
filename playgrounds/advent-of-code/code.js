@@ -12,3 +12,6 @@
 //
 // Which will load the file and pass them to your function and then print the
 // return value in the REPL.
+
+
+const day1p1 = (text) => text;
