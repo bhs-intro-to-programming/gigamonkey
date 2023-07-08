@@ -1,8 +1,5 @@
 import com.gigamonkeys.bhs.*;
 
-/*
- * Draw a picture.
- */
 public class MyPicture implements Picture {
 
   public void draw(Canvas c) {
