@@ -1,15 +1,11 @@
 /*
- * Just add test methods like the one shown below. (Oh, and maybe fix the bug in
- * subtract.) All numbers are double.
+ * Draw a picture.
  */
 
-public class Tests {
+public class MyPicture {
 
-  public double add(double x, double y) { return x + y; }
+  public static void main(String[] argv) {
+    System.out.println("alert('hello from Java');");
+  }
 
-  public double subtract(double a, double b) { return add(a, b); }
-
-  public double multiply(double a, double b) { return a * b; }
-
-  // Add more methods here ...
 }
