@@ -19,5 +19,12 @@
     "answer": "2 * w + 2 * h",
     "correct": true,
     "timestamp": 1688775681150
+  },
+  {
+    "name": "Area of a square",
+    "canonical": "s**2",
+    "answer": "s ** 2",
+    "correct": true,
+    "timestamp": 1688775685706
   }
 ]
