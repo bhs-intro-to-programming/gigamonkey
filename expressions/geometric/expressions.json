@@ -5,5 +5,12 @@
     "answer": "4 * s",
     "correct": true,
     "timestamp": 1688775671703
+  },
+  {
+    "name": "Perimeter of a rectangle",
+    "canonical": "2 * (w + h)",
+    "answer": "w * h",
+    "correct": false,
+    "timestamp": 1688775674447
   }
 ]
