@@ -6,6 +6,7 @@ public class MyPicture {
 
   public static void main(String[] argv) {
     System.out.println("""
+    console.log('hello');
     const canvas = document.querySelector('canvas');
     const r = canvas.parentElement.getBoundingClientRect();
     canvas.setAttribute('width', r.width - 2);
