@@ -6,7 +6,7 @@ import com.gigamonkeys.bhs.*;
 public class MyPicture implements Picture {
 
   public void draw(Canvas c) {
-    c.drawLine(0, 0, c.width(), c.height(), "black", 1);
+    c.drawLine(0, 0, c.width(), c.height(), "blue", 1);
   }
 
   public static void main(String[] argv) {
