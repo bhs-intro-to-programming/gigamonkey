@@ -1,7 +1,8 @@
+import com.gigamonkeys.bhs.Canvas;
+
 /*
  * Draw a picture.
  */
-
 public class MyPicture {
 
   public static void main(String[] argv) {
