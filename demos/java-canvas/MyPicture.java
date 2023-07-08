@@ -5,9 +5,13 @@ import com.gigamonkeys.bhs.Canvas;
  */
 public class MyPicture {
 
+  public void draw(Canvas c) {
+    c.drawLine(0, 0, 200, 400, "red", 1);
+  }
+
   public static void main(String[] argv) {
     var c = new Canvas(200, 400);
-    c.drawLine(0, 0, 200, 400, "red", 1);
+    new MyPicture().draw(c);
     System.out.println(c.getCode());
   }
 
