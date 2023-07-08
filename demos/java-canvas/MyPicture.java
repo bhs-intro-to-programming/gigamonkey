@@ -1,9 +1,9 @@
-import com.gigamonkeys.bhs.Canvas;
+import com.gigamonkeys.bhs.*;
 
 /*
  * Draw a picture.
  */
-public class MyPicture {
+public class MyPicture implements Picture {
 
   public void draw(Canvas c) {
     c.drawLine(0, 0, 200, 400, "black", 1);
