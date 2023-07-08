@@ -4,41 +4,6 @@
     "canonical": "10",
     "answer": "10",
     "correct": true,
-    "timestamp": 1688774982961
-  },
-  {
-    "name": "Two plus two",
-    "canonical": "2 + 2",
-    "answer": "4",
-    "correct": true,
-    "timestamp": 1688774985441
-  },
-  {
-    "name": "1337 times 32",
-    "canonical": "1337 * 32",
-    "answer": "234",
-    "correct": false,
-    "timestamp": 1688774996473
-  },
-  {
-    "name": "1337 times 32",
-    "canonical": "1337 * 32",
-    "answer": "1337 * 32",
-    "correct": true,
-    "timestamp": 1688775484986
-  },
-  {
-    "name": "A million",
-    "canonical": "1e6",
-    "answer": "1000000",
-    "correct": true,
-    "timestamp": 1688775497890
-  },
-  {
-    "name": "Sally's apples",
-    "canonical": "6 - 4",
-    "answer": " 6 - 4",
-    "correct": true,
-    "timestamp": 1688775504113
+    "timestamp": 1688779042782
   }
 ]
