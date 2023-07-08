@@ -3,7 +3,7 @@ import com.gigamonkeys.bhs.Canvas;
 /*
  * Draw a picture.
  */
-public class Test {
+public class Foo {
 
   public static void main(String[] argv) {
     var c = new Canvas(200, 400);
