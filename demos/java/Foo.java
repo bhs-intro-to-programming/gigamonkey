@@ -1,15 +1,14 @@
-import java.nio.charset.StandardCharsets;
+import com.gigamonkeys.bhs.Canvas;
 
-class Foo {
+/*
+ * Draw a picture.
+ */
+public class MyPicture {
 
-  public static void main(String[] argv) throws Exception {
-    var text = new String(System.in.readAllBytes(), StandardCharsets.UTF_8);
-    System.out.println("hello, world! " + System.currentTimeMillis());
-    System.out.println(text.length() + " characters in input.");
-    System.out.println(fib(10));
+  public static void main(String[] argv) {
+    var c = new Canvas(200, 400);
+    c.drawLine(0, 0, 200, 400, "blue", 1);
+    System.out.println(c.getCode());
   }
 
-  public static long fib(long n) {
-    return n < 2 ? n : fib(n - 2) + fib(n - 1);
-  }
 }
