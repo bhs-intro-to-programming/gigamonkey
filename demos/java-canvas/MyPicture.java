@@ -16,7 +16,7 @@ public class MyPicture {
     const width = canvas.width;
     const height = canvas.height;
     ctx.clearRect(0, 0, width, height);
-    ctx.strokeStyle = 'blue';
+    ctx.strokeStyle = 'rebeccapurple';
     ctx.lineWidth = 10;
     ctx.beginPath();
     ctx.moveTo(0, 0);
