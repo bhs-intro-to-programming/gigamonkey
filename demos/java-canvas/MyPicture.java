@@ -6,6 +6,7 @@ public class MyPicture {
 
   public static void main(String[] argv) {
     System.out.println("""
+    (() => {
     const canvas = document.querySelector('canvas');
     alert(canvas);
     const r = canvas.parentElement.getBoundingClientRect();
@@ -21,6 +22,7 @@ public class MyPicture {
     ctx.moveTo(0, 0);
     ctx.lineTo(width, height);
     ctx.stroke();
+    })();
     """);
   }
 
