@@ -23,7 +23,7 @@ public class MyPicture {
     ctx.lineTo(width, height);
     ctx.stroke();
     })();
-    """);
+    """)
   }
 
 }
