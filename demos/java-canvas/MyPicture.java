@@ -20,6 +20,9 @@ public class MyPicture {
     ctx.clearRect(0, 0, width, height);
     """);
     System.out.println(c.getCode());
+    System.out.println("""
+    })();
+    """);
   }
 
 }
