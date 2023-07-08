@@ -9,6 +9,6 @@ public class MyPicture implements Picture {
     c.drawLine(0, 0, c.width(), c.height(), "blue", 10);
     c.drawLine(0, c.height(), c.width(), 0, "red", 10);
     c.drawCircle(c.width() / 2, c.height() / 2, 50, "black", 2);
-    c.drawRect(20, 20, c.width() - 40, c.height() - 40, "purple", 3);
+    c.drawFilledRect(20, 20, c.width() - 40, c.height() - 40, "purple", 3);
   }
 }
