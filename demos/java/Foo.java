@@ -1,16 +1,20 @@
 import java.nio.charset.StandardCharsets;
+import java.nio.Files;
+import java.nio.Paths;
 
 public class Foo {
 
   public static void main(String[] argv) throws Exception {
     var text = new String(System.in.readAllBytes(), StandardCharsets.UTF_8);
-    System.out.println(text);
-    System.out.println("hello, world! " + System.currentTimeMillis());
-    System.out.println(text.length() + " characters in input.");
-    System.out.println(fib(10));
+    for (String filename: argv) {
+          System.out.println(filename + ": " + digest(filename));
+    }
   }
 
-  public static long fib(long n) {
-    return n < 2 ? n : fib(n - 2) + fib(n - 1);
+  public static String digest(String filename) throws NoSuchAlgorithmException, IOException {
+    String content = Files.readString(Paths.get(filename));
+    MessageDigest md = MessageDigest.getInstance("SHA-1");
+    byte[] bytes = content.getBytes(StandardCharsets.UTF_8);
+    return byteArrayToHexString(md.digest(bytes));
   }
 }
