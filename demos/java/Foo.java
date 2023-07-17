@@ -1,6 +1,6 @@
 import java.nio.charset.StandardCharsets;
 
-class Foo {
+public class Foo {
 
   public static void main(String[] argv) throws Exception {
     var text = new String(System.in.readAllBytes(), StandardCharsets.UTF_8);
