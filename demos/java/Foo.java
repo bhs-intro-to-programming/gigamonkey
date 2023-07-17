@@ -1,6 +1,8 @@
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.security.NoSuchAlgorithmException;
+import java.io.IOException;
 
 public class Foo {
 
