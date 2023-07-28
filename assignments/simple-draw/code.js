@@ -1,3 +1,6 @@
+const ground = height * 0.8;
+drawLine(0, ground, width, ground, 2, 'grey');
+
 const x = width/2;
 const headSize = 50;
 const headY = 50 + 20;
