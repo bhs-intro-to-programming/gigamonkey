@@ -54,5 +54,12 @@
     "answer": "((d) => { let d2 = new Date(d); d2.setDate(d2.getDate() + 1); return (d2 - d) / 1000; })(new Date())",
     "correct": true,
     "timestamp": 1690557484366
+  },
+  {
+    "name": "Minutes in a year",
+    "canonical": "60 * 24 * 365",
+    "answer": "60 * 24 * 365",
+    "correct": true,
+    "timestamp": 1690563299857
   }
 ]
