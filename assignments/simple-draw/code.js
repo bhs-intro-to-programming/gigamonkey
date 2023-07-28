@@ -1,5 +1,5 @@
 const ground = height * 0.8;
-drawLine(0, ground, width, ground, '#eee', 1);
+drawLine(0, ground, width, ground, '#bbb', 1);
 
 const x = width/2;
 const headSize = 50;
