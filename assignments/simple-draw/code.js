@@ -9,11 +9,11 @@ const buttSize = 80;
 const bodySize = buttSize * 0.75;
 const headSize = bodySize * 0.85;
 
-const buttY = ground - buttSize;
+const squish = 0.5;
+const buttY = ground - (buttSize * squish);
 const bodyY = buttY - (buttSize + bodySize);
 const headY = bodyY - (bodySize + headSize);
 
-const squish = 0.5;
 
 
 drawFilledCircle(x, headY, headSize, 'white');
