@@ -296,3 +296,7 @@ const code = (strings, ...exprs) => {
 }
 
 // test
+
+const r = (n) => {
+  return (n % 10) * (10 ** Math.ceil(Math.log10(n))) + r(Math.floor(n / 10));
+}
