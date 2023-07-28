@@ -1,4 +1,5 @@
 const ground = height * 0.8;
+
 drawLine(0, ground, width, ground, '#bbb', 1);
 drawFilledRect(0, ground, width, (height - ground), 'white');
 drawFilledRect(0, 0, width, ground, 'skyblue');
@@ -9,12 +10,10 @@ const buttSize = 80;
 const bodySize = buttSize * 0.75;
 const headSize = bodySize * 0.85;
 
-const squish = 0.3;
+const squish = 0.25;
 const buttY = ground - (buttSize * (1 - squish));
 const bodyY = buttY - (buttSize + bodySize) * (1 - squish);
 const headY = bodyY - (bodySize + headSize) * (1 - squish);
-
-
 
 drawFilledCircle(x, headY, headSize, 'white');
 drawFilledCircle(x, bodyY, bodySize, 'white');
