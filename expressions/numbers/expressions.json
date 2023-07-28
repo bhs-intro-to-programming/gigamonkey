@@ -19,5 +19,12 @@
     "answer": "1337 * 32",
     "correct": true,
     "timestamp": 1690557166791
+  },
+  {
+    "name": "A million",
+    "canonical": "1e6",
+    "answer": "1_000 * 1_000",
+    "correct": true,
+    "timestamp": 1690557175538
   }
 ]
