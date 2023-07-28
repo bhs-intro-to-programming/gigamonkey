@@ -1,6 +1,6 @@
 const ground = height * 0.8;
 drawLine(0, ground, width, ground, '#bbb', 1);
-drawFilledRectangle(0, ground, width, height, 'white');
+drawFilledRectangle(0, ground, width, (height - ground), 'white');
 
 const x = width/2;
 const headSize = 50;
