@@ -1,8 +1,10 @@
 const headSize = 50;
-drawFilledCircle(width / 2, headSize + 20, headSize, 'white');
+const headY = headSize + 20; // move it down a bit from top of canvas
 const bodySize = headSize * 1.2;
-const bodyY = headSize + 20 + headSize + bodySize;
-drawFilledCircle(width / 2, bodyY, bodySize, 'white');
+const bodyY = headY + headSize + bodySize;
 const buttSize = bodySize * 1.3;
 const buttY = bodyY + bodySize + buttSize;
+
+drawFilledCircle(width / 2, headY, headSize, 'white');
+drawFilledCircle(width / 2, bodyY, bodySize, 'white');
 drawFilledCircle(width / 2, buttY, buttSize, 'white');
