@@ -9,4 +9,4 @@ const drawSnowman = (x, headY, headSize, squish) => {
   drawFilledCircle(x, buttY, buttSize, 'white');
 };
 
-drawSnowman(width / 2, 70, 50, 1.2);
+drawSnowman(width / 2, 70, 50, 2.2);
