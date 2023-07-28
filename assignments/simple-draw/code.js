@@ -1,10 +1,8 @@
 const drawSnowman = (x, headY, headSize) => {
-  //const headSize = 50;
-  //const headY = headSize + 20; // move it down a bit from top of canvas
   const bodySize = headSize * 1.2;
-  const bodyY = headY + headSize + bodySize;
+  const bodyY = headY + (headSize * 0.95) + bodySize;
   const buttSize = bodySize * 1.3;
-  const buttY = bodyY + bodySize + buttSize;
+  const buttY = bodyY + (bodySize * 0.95) + buttSize;
 
   drawFilledCircle(x, headY, headSize, 'white');
   drawFilledCircle(x, bodyY, bodySize, 'white');
