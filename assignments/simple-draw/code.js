@@ -1,6 +1,7 @@
 const ground = height * 0.8;
 drawLine(0, ground, width, ground, '#bbb', 1);
 drawFilledRect(0, ground, width, (height - ground), 'white');
+drawFilledRect(0, 0, width, ground, 'skyblue');
 
 const x = width/2;
 const headSize = 50;
