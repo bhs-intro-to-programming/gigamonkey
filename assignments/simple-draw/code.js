@@ -6,9 +6,9 @@ const drawSnowman = (x, headY, headSize) => {
   const buttSize = bodySize * 1.3;
   const buttY = bodyY + bodySize + buttSize;
 
-  drawFilledCircle(width / 2, headY, headSize, 'white');
-  drawFilledCircle(width / 2, bodyY, bodySize, 'white');
-  drawFilledCircle(width / 2, buttY, buttSize, 'white');
+  drawFilledCircle(x, headY, headSize, 'white');
+  drawFilledCircle(x, bodyY, bodySize, 'white');
+  drawFilledCircle(x, buttY, buttSize, 'white');
 };
 
 drawSnowman(width / 2, 70, 50);
