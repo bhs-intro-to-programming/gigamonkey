@@ -298,5 +298,9 @@ const code = (strings, ...exprs) => {
 // test
 
 const revN = (n) => {
-  return (n % 10) * (10 ** Math.floor(Math.log10(n))) + revN(Math.floor(n / 10));
+  if (n === 0) {
+    return 0
+  } else {
+    return (n % 10) * (10 ** Math.floor(Math.log10(n))) + revN(Math.floor(n / 10));
+  }
 }
