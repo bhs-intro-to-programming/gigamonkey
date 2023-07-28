@@ -11,8 +11,8 @@ const headSize = bodySize * 0.85;
 
 const squish = 0.5;
 const buttY = ground - (buttSize * squish);
-const bodyY = buttY - (buttSize + bodySize);
-const headY = bodyY - (bodySize + headSize);
+const bodyY = buttY - (buttSize + bodySize) * squish;
+const headY = bodyY - (bodySize + headSize) * squish;
 
 
 
