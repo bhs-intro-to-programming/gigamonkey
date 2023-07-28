@@ -1,3 +1,4 @@
+const x = width/2;
 const headSize = 50;
 const headY = 50 + 20;
 const squish = 0.5;
