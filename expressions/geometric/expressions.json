@@ -68,5 +68,12 @@
     "answer": "4 * s",
     "correct": true,
     "timestamp": 1690563424353
+  },
+  {
+    "name": "The curved surface area of a cylinder",
+    "canonical": "Math.PI * 2 * r * h",
+    "answer": "Math.PI * 2 * d * h",
+    "correct": false,
+    "timestamp": 1690563446717
   }
 ]
