@@ -10,3 +10,5 @@ const drawSnowman = (x, headY, headSize) => {
   drawFilledCircle(width / 2, bodyY, bodySize, 'white');
   drawFilledCircle(width / 2, buttY, buttSize, 'white');
 };
+
+drawSnowman(width / 2, 70, 50);
