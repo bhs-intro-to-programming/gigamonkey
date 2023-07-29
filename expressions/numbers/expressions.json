@@ -75,5 +75,12 @@
     "answer": "60 * 60 * 24 * 365 * 100",
     "correct": true,
     "timestamp": 1690573351139
+  },
+  {
+    "name": "Fraction of an hour",
+    "canonical": "58 / 60",
+    "answer": "58 / 60",
+    "correct": true,
+    "timestamp": 1690661662279
   }
 ]
