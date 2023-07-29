@@ -89,5 +89,12 @@
     "answer": "58 % 13",
     "correct": true,
     "timestamp": 1690661667248
+  },
+  {
+    "name": "Doubling, doubling, toil and troubling",
+    "canonical": "2 ** 8",
+    "answer": "2 ** 8",
+    "correct": true,
+    "timestamp": 1690661672095
   }
 ]
