@@ -1,4 +1,4 @@
-const ground = height * 0.8;
+const ground = height * 0.75;
 
 drawLine(0, ground, width, ground, '#000', 1);
 drawFilledRect(0, ground, width, (height - ground), 'white');
