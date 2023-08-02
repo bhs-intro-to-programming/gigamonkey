@@ -4,7 +4,7 @@ drawLine(0, ground, width, ground, '#000', 1);
 drawFilledRect(0, ground, width, (height - ground), 'white');
 drawFilledRect(0, 0, width, ground, 'skyblue');
 
-const x = width/2;
+const x = width / 2;
 
 const buttSize = 80;
 const bodySize = buttSize * 0.75;
